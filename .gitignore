@@ -1,0 +1,17 @@
+# Python/runtime cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local environments and package caches
+.venv/
+.uv-cache/
+.ipynb_checkpoints/
+
+# Logs and transient run metadata
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
