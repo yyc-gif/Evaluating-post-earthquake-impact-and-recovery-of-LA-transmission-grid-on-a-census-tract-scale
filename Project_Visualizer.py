@@ -2214,7 +2214,7 @@ def plot_gantt_chart(
 
 
 def plot_stage4_crew_base_map(stage4_dir: str) -> None:
-    """Map active C57 crew-origin proxies and integer crew allocations."""
+    """Map active C57 crew-origin proxies."""
     base_csv = DATA_DIR / "stage45_active_crew_bases_C57.csv"
     if not base_csv.exists():
         print(f"  [Stage 4 Warning] Crew-base CSV missing: {base_csv}")
@@ -2300,17 +2300,14 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
         )
 
     utility_colors = {"LADWP": "#1f77b4", "SCE": "#d95f02"}
-    max_crews = max(int(base_gdf["integer_crews"].max()), 1)
-    size_min, size_max = 55.0, 440.0
-    base_gdf["plot_size"] = size_min + (base_gdf["integer_crews"] / max_crews) * (size_max - size_min)
-
+    base_marker_size = 105.0
     for utility, group in base_gdf.groupby("utility", dropna=False):
         utility_name = str(utility).strip() or "Unknown"
         color = utility_colors.get(utility_name, "#6a3d9a")
         ax.scatter(
             group["longitude"],
             group["latitude"],
-            s=group["plot_size"],
+            s=base_marker_size,
             marker="o",
             color=color,
             edgecolor="white",
@@ -2318,48 +2315,6 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
             alpha=0.92,
             zorder=4,
             label=f"{utility_name} crew bases",
-        )
-
-    label_offsets = {
-        "D01": (0.035, -0.014),
-        "D02": (0.045, 0.016),
-        "D03": (-0.050, 0.020),
-        "D04": (0.000, -0.028),
-        "D05": (-0.050, -0.018),
-        "D06": (0.045, 0.034),
-        "D07": (0.040, 0.010),
-        "D09": (0.034, 0.012),
-        "D10": (-0.040, 0.000),
-        "D12": (0.032, -0.010),
-        "D13": (-0.038, 0.014),
-    }
-    for _, row in base_gdf.sort_values("yard_id").iterrows():
-        dx, dy = label_offsets.get(str(row["yard_id"]), (0.010, 0.010))
-        ax.annotate(
-            f"{row['yard_id']} ({int(row['integer_crews'])})",
-            xy=(row["longitude"], row["latitude"]),
-            xytext=(row["longitude"] + dx, row["latitude"] + dy),
-            textcoords="data",
-            ha="center",
-            va="center",
-            fontsize=FS_ANNOTATION,
-            color="#222222",
-            zorder=5,
-            arrowprops={
-                "arrowstyle": "-",
-                "color": "#666666",
-                "linewidth": 0.55,
-                "alpha": 0.75,
-                "shrinkA": 2,
-                "shrinkB": 4,
-            },
-            bbox={
-                "boxstyle": "round,pad=0.16",
-                "facecolor": "white",
-                "edgecolor": "#c7c7c7",
-                "linewidth": 0.45,
-                "alpha": 0.88,
-            },
         )
 
     bounds_sources = []
@@ -2378,7 +2333,7 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
 
     style_axis(
         ax,
-        title="Active crew origin proxies and crew allocation",
+        title="Active crew origin proxies",
         xlabel="Longitude",
         ylabel="Latitude",
     )
@@ -2412,7 +2367,6 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
                     label=f"{utility} crew bases",
                 )
             )
-    handles.append(Line2D([0], [0], color="none", label="Marker size = integer crews"))
     legend = ax.legend(handles=handles, loc="upper right", frameon=True, fontsize=FS_LEGEND)
     format_legend(legend)
 
