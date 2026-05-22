@@ -11,6 +11,12 @@ __pycache__/
 # Logs and transient run metadata
 *.log
 
+# Non-core diagnostics and sensitivity runs
+Sensitivity Output*/
+*audit*.csv
+*debug*.csv
+*sensitivity*.csv
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
