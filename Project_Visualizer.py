@@ -2300,7 +2300,7 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
         )
 
     utility_colors = {"LADWP": "#1f77b4", "SCE": "#d95f02"}
-    base_marker_size = 105.0
+    base_marker_size = 58.0
     for utility, group in base_gdf.groupby("utility", dropna=False):
         utility_name = str(utility).strip() or "Unknown"
         color = utility_colors.get(utility_name, "#6a3d9a")
@@ -2311,7 +2311,7 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
             marker="o",
             color=color,
             edgecolor="white",
-            linewidth=0.9,
+            linewidth=0.7,
             alpha=0.92,
             zorder=4,
             label=f"{utility_name} crew bases",
