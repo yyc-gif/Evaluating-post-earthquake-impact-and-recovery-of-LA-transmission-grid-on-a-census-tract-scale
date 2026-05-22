@@ -2212,6 +2212,215 @@ def plot_gantt_chart(
     plt.tight_layout()
     save_plot(fig, output_dir, filename)
 
+
+def plot_stage4_crew_base_map(stage4_dir: str) -> None:
+    """Map active C57 crew-origin proxies and integer crew allocations."""
+    base_csv = DATA_DIR / "stage45_active_crew_bases_C57.csv"
+    if not base_csv.exists():
+        print(f"  [Stage 4 Warning] Crew-base CSV missing: {base_csv}")
+        return
+
+    bases = pd.read_csv(base_csv)
+    bases.columns = [str(c).strip() for c in bases.columns]
+    required = {"yard_id", "utility", "facility", "integer_crews", "latitude", "longitude"}
+    missing = sorted(required - set(bases.columns))
+    if missing:
+        print(f"  [Stage 4 Warning] Crew-base CSV missing columns: {missing}")
+        return
+
+    bases["latitude"] = pd.to_numeric(bases["latitude"], errors="coerce")
+    bases["longitude"] = pd.to_numeric(bases["longitude"], errors="coerce")
+    bases["integer_crews"] = pd.to_numeric(bases["integer_crews"], errors="coerce").fillna(0).astype(int)
+    bases = bases.dropna(subset=["latitude", "longitude"]).copy()
+    bases = bases[bases["integer_crews"] > 0].copy()
+    if bases.empty:
+        print("  [Stage 4 Warning] Crew-base map has no active bases with valid coordinates.")
+        return
+
+    devices = pd.DataFrame()
+    if os.path.exists(DEVICES_CSV):
+        devices = pd.read_csv(DEVICES_CSV)
+        devices.columns = [str(c).strip() for c in devices.columns]
+        lat_col = next((c for c in ["LATITUDE", "latitude", "Lat", "lat"] if c in devices.columns), None)
+        lon_col = next((c for c in ["LONGITUDE", "longitude", "Lon", "lon"] if c in devices.columns), None)
+        if lat_col and lon_col:
+            devices = devices.copy()
+            devices["latitude"] = pd.to_numeric(devices[lat_col], errors="coerce")
+            devices["longitude"] = pd.to_numeric(devices[lon_col], errors="coerce")
+            devices = devices.dropna(subset=["latitude", "longitude"])
+        else:
+            devices = pd.DataFrame()
+
+    basemap_layers = []
+    for path in [SHAPEFILE_PATH, CITY_BOUNDARY_SHP]:
+        if os.path.exists(path):
+            try:
+                layer = gpd.read_file(path)
+                if not layer.empty:
+                    if layer.crs is None:
+                        layer = layer.set_crs(epsg=4326)
+                    else:
+                        layer = layer.to_crs(epsg=4326)
+                    basemap_layers.append(layer)
+            except Exception as exc:
+                print(f"  [Stage 4 Warning] Could not read crew-base map layer {path}: {exc}")
+
+    base_gdf = gpd.GeoDataFrame(
+        bases,
+        geometry=gpd.points_from_xy(bases["longitude"], bases["latitude"]),
+        crs="EPSG:4326",
+    )
+    sub_gdf = (
+        gpd.GeoDataFrame(
+            devices,
+            geometry=gpd.points_from_xy(devices["longitude"], devices["latitude"]),
+            crs="EPSG:4326",
+        )
+        if not devices.empty
+        else gpd.GeoDataFrame(geometry=[], crs="EPSG:4326")
+    )
+
+    apply_publication_style()
+    fig, ax = plt.subplots(figsize=get_figsize("PANEL_FULLROW", width_cm=13.2, height_cm=9.2))
+
+    if basemap_layers:
+        basemap_layers[0].boundary.plot(ax=ax, color="#d2d2d2", linewidth=0.35, alpha=0.75, zorder=0)
+        if len(basemap_layers) > 1:
+            basemap_layers[1].boundary.plot(ax=ax, color="#8a8a8a", linewidth=1.1, alpha=0.95, zorder=1)
+
+    if not sub_gdf.empty:
+        sub_gdf.plot(
+            ax=ax,
+            color="#7a7a7a",
+            markersize=10,
+            alpha=0.45,
+            linewidth=0,
+            zorder=2,
+            label="Substations",
+        )
+
+    utility_colors = {"LADWP": "#1f77b4", "SCE": "#d95f02"}
+    max_crews = max(int(base_gdf["integer_crews"].max()), 1)
+    size_min, size_max = 55.0, 440.0
+    base_gdf["plot_size"] = size_min + (base_gdf["integer_crews"] / max_crews) * (size_max - size_min)
+
+    for utility, group in base_gdf.groupby("utility", dropna=False):
+        utility_name = str(utility).strip() or "Unknown"
+        color = utility_colors.get(utility_name, "#6a3d9a")
+        ax.scatter(
+            group["longitude"],
+            group["latitude"],
+            s=group["plot_size"],
+            marker="o",
+            color=color,
+            edgecolor="white",
+            linewidth=0.9,
+            alpha=0.92,
+            zorder=4,
+            label=f"{utility_name} crew bases",
+        )
+
+    label_offsets = {
+        "D01": (0.035, -0.014),
+        "D02": (0.045, 0.016),
+        "D03": (-0.050, 0.020),
+        "D04": (0.000, -0.028),
+        "D05": (-0.050, -0.018),
+        "D06": (0.045, 0.034),
+        "D07": (0.040, 0.010),
+        "D09": (0.034, 0.012),
+        "D10": (-0.040, 0.000),
+        "D12": (0.032, -0.010),
+        "D13": (-0.038, 0.014),
+    }
+    for _, row in base_gdf.sort_values("yard_id").iterrows():
+        dx, dy = label_offsets.get(str(row["yard_id"]), (0.010, 0.010))
+        ax.annotate(
+            f"{row['yard_id']} ({int(row['integer_crews'])})",
+            xy=(row["longitude"], row["latitude"]),
+            xytext=(row["longitude"] + dx, row["latitude"] + dy),
+            textcoords="data",
+            ha="center",
+            va="center",
+            fontsize=FS_ANNOTATION,
+            color="#222222",
+            zorder=5,
+            arrowprops={
+                "arrowstyle": "-",
+                "color": "#666666",
+                "linewidth": 0.55,
+                "alpha": 0.75,
+                "shrinkA": 2,
+                "shrinkB": 4,
+            },
+            bbox={
+                "boxstyle": "round,pad=0.16",
+                "facecolor": "white",
+                "edgecolor": "#c7c7c7",
+                "linewidth": 0.45,
+                "alpha": 0.88,
+            },
+        )
+
+    bounds_sources = []
+    if basemap_layers:
+        bounds_sources.append(basemap_layers[-1].total_bounds)
+    if not sub_gdf.empty:
+        bounds_sources.append(sub_gdf.total_bounds)
+    bounds_sources.append(base_gdf.total_bounds)
+    bounds_arr = np.asarray(bounds_sources, dtype=float)
+    minx, miny = np.nanmin(bounds_arr[:, [0, 1]], axis=0)
+    maxx, maxy = np.nanmax(bounds_arr[:, [2, 3]], axis=0)
+    pad_x = max((maxx - minx) * 0.06, 0.015)
+    pad_y = max((maxy - miny) * 0.06, 0.015)
+    ax.set_xlim(minx - pad_x, maxx + pad_x)
+    ax.set_ylim(miny - pad_y, maxy + pad_y)
+
+    style_axis(
+        ax,
+        title="Active crew origin proxies and crew allocation",
+        xlabel="Longitude",
+        ylabel="Latitude",
+    )
+    ax.grid(True, linestyle=":", linewidth=0.45, color="#b8b8b8", alpha=0.55)
+    ax.set_aspect("equal", adjustable="box")
+
+    handles = [
+        Line2D(
+            [0], [0],
+            marker="o",
+            color="none",
+            markerfacecolor="#7a7a7a",
+            markeredgecolor="none",
+            markersize=5,
+            alpha=0.55,
+            label="Substations",
+        )
+    ]
+    present_utilities = set(base_gdf["utility"].astype(str).str.strip())
+    for utility, color in utility_colors.items():
+        if utility in present_utilities:
+            handles.append(
+                Line2D(
+                    [0], [0],
+                    marker="o",
+                    color="none",
+                    markerfacecolor=color,
+                    markeredgecolor="white",
+                    markeredgewidth=0.8,
+                    markersize=7,
+                    label=f"{utility} crew bases",
+                )
+            )
+    handles.append(Line2D([0], [0], color="none", label="Marker size = integer crews"))
+    legend = ax.legend(handles=handles, loc="upper right", frameon=True, fontsize=FS_LEGEND)
+    format_legend(legend)
+
+    out_path = os.path.join(stage4_dir, "vis_stage4_crew_bases_map.png")
+    save_figure(fig, out_path)
+    print(f"  -> Saved Crew Base Map: {out_path}")
+
+
 def vis_stage4():
     """Generate Stage 4 scheduling comparison figures and crew-schedule Gantt charts."""
     stage4_dir = os.path.join(OUTPUT_ROOT, "Stage 4 Output")
@@ -2286,6 +2495,8 @@ def vis_stage4():
     # PART 1: Logistics Heatmaps
     # ==================================================================
     print("\n[PART 1] Visualizing Logistics Heatmaps...")
+
+    plot_stage4_crew_base_map(stage4_dir)
 
     base_to_task_file = os.path.join(stage4_dir, "travel_base_to_task.csv")
     if os.path.exists(base_to_task_file):
