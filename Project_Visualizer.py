@@ -1509,6 +1509,7 @@ def vis_stage2():
     # 0) Map-based figures
     # ------------------------------------------------------------------
     vis_stage2_top10_map()
+    vis_stage2_topology_with_tracts_latlon()
 
     # ------------------------------------------------------------------
     # 1) Percolation curves: render each percolation_curve_*.csv

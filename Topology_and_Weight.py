@@ -62,7 +62,7 @@ class Paths:
     OUTPUT_MAPPING_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC.csv")
     OUTPUT_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges.csv")
     OUTPUT_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes.csv")
-    OUTPUT_PLOT_PNG: Optional[str] = None
+    OUTPUT_PLOT_PNG: Optional[str] = str(DATA_DIR / "topology_final_validation.png")
     OUTPUT_INTERACTIVE_HTML: str = str(DATA_DIR / "topology_interactive_validation.html")
     OUTPUT_SUPPRESSED_THRESHOLD_CSV: str = str(DATA_DIR / "substations_suppressed_by_threshold.csv")
     OUTPUT_LINE_SPLIT_AUDIT_CSV: str = str(DATA_DIR / "transmission_line_substation_split_audit.csv")
