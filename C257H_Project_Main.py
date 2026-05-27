@@ -2014,96 +2014,9 @@ def run_stage_2(cfg: Config, stage_0_data: Dict, out_dirs: Dict) -> Dict:
 
 
 # ==========================================================================
-# [PART 5] Stage 3: Dynamic Recovery Simulation (Theoretical Limit)
+# [PART 5] Stage 3: MC Source-Gated Recovery Simulation
 # =============================================================================
-# Contains: Step recovery simulation, KPIs (T50/T80), Graph Robustness, run_stage_3
-def simulate_recovery(
-    t_grid: np.ndarray,
-    sub_index: pd.Index,
-    damage_probs: pd.DataFrame,
-    start_times: np.ndarray = None,
-    method: str = 'normal',
-) -> pd.DataFrame:
-    """
-    Build substation recovery time series using Probabilistic Restoration Models.
-    
-    Method 'normal':
-        Formula: Func(t) = Sum( P(DS_k) * NormCDF_k(t - start_time; mu/factor, sigma) )
-    
-    Method 'lognormal':
-        Formula: Func(t) = Sum( P(DS_k) * LognormCDF_k(t - start_time; s=beta, scale=median) )
-    """
-    n_time = len(t_grid)
-    n_subs = len(sub_index)
-
-    # 1. Handle Start Times (Shift)
-    # If no start time provided (Stage 3), everyone starts at t=0
-    if start_times is None:
-        start_times = np.zeros(n_subs)
-    
-    # 2. Reshape for Broadcasting: (Time, 1) - (1, Subs) = (Time, Subs)
-    # This creates the "Effective Repair Time" matrix
-    t_eff_matrix = t_grid[:, np.newaxis] - start_times[np.newaxis, :]
-    
-    # Safety clip for Lognormal (undefined for t <= 0)
-    t_eff_matrix = np.maximum(t_eff_matrix, 1e-9)
-
-    # 3. Align Probabilities to Substation Order
-    probs_arr = damage_probs.reindex(sub_index, fill_value=0.0).values
-    F_t_mat = np.zeros((n_time, n_subs))
-    
-    # 4. Select Restoration Parameters based on Method
-    if method == 'lognormal':
-        ds_params = REPAIR_PARAM_LOGNORMAL
-    else:
-        ds_params = REPAIR_PARAM_NORMAL_HR
-
-    # 5. Vectorized Curve Accumulation
-    for ds in range(5):
-        weight_ds = probs_arr[:, ds]
-        
-        # Optimization: Skip if no substation has this DS
-        if np.sum(weight_ds) == 0:
-            continue
-
-        if ds == 0:
-            # DS0: Functionality is 1.0 from t=0
-            F_t_mat += weight_ds[np.newaxis, :]
-        else:
-            # Retrieve parameters for current DS
-            params = ds_params.get(ds, None)
-            if params is None: continue
-            
-            p1, p2 = params  # (Mu, Sigma) or (Median, Beta)
-
-            # Core Logic Switch
-            if method == 'lognormal':
-                # Expert Logic: Lognorm(Median, Beta)
-                # s=Beta, scale=Median
-                raw_cdf_vals = lognorm.cdf(t_eff_matrix, s=p2, scale=p1)
-                cdf_at_zero = float(lognorm.cdf(0.0, s=p2, scale=p1))
-                
-            elif method == 'normal':
-                # Old Logic: Normal(Mean/Factor, Std)
-                # Apply bypass factor to Mean only
-                adjusted_mu = p1
-                raw_cdf_vals = norm.cdf(t_eff_matrix, loc=adjusted_mu, scale=p2)
-                cdf_at_zero = float(norm.cdf(0.0, loc=adjusted_mu, scale=p2))
-            
-            else:
-                raise ValueError(f"Unknown method: {method}")
-
-            init_func = float(INITIAL_FUNCTIONALITY_BY_DS.get(ds, 0.0))
-            denom = max(1.0 - cdf_at_zero, 1e-12)
-            progress_vals = np.clip((raw_cdf_vals - cdf_at_zero) / denom, 0.0, 1.0)
-            cdf_vals = init_func + (1.0 - init_func) * progress_vals
-            
-            # Add Weighted Contribution: P(DS) * CDF(t)
-            # Broadcasting: (1, N_subs) * (N_time, N_subs)
-            F_t_mat += weight_ds[np.newaxis, :] * cdf_vals
-
-    # Clip result to [0, 1] to handle floating point noise
-    return pd.DataFrame(np.clip(F_t_mat, 0.0, 1.0), index=t_grid, columns=sub_index)
+# Contains: MC damage-state recovery, KPIs (T50/T80), Graph Robustness, run_stage_3
 
 
 def _damage_records_to_state_matrix(
@@ -2201,9 +2114,8 @@ def simulate_recovery_mc_source_gated(
     """
     Estimate mean recovery as E[gate(F_run(t))] from MC damage realizations.
 
-    This is stricter than applying the source gate to the expected recovery
-    curve, because the energized island test is evaluated separately for each
-    Monte Carlo realization and each recovery time step before averaging.
+    The energized island test is evaluated separately for each Monte Carlo
+    realization and each recovery time step before averaging.
     """
     logger = logging.getLogger()
     sub_index = pd.Index([clean_substation_id(s) for s in sub_index], name="substation_id")
@@ -2538,14 +2450,13 @@ def run_stage_3(
     out_dirs: Dict,
 ) -> Dict:
     """
-    Orchestrate Stage 3: HAZUS PROBABILISTIC RESTORATION (Aggregation).
-    
-    Replaces deterministic step functions with the 'Expected Functionality' curve.
-    
+    Orchestrate Stage 3: MC source-gated probabilistic restoration.
+
     Logic:
-    1. Reads raw Stage 1 MC samples (Damage States 0-4).
-    2. Calculates P(DS) for every substation.
-    3. Generates the weighted average of Hazus S-Curves (0->1).
+    1. Reads raw Stage 1 MC damage-state samples.
+    2. Builds DS-specific Hazus recovery curves for each realization.
+    3. Applies the active-source island gate per realization and timestep.
+    4. Averages the gated realizations into the substation recovery series.
     """
     if not cfg.RUN_STAGE_3:
         logging.info("--- STAGE 3: Skipped ---")
@@ -2553,7 +2464,7 @@ def run_stage_3(
 
     logger = logging.getLogger()
     logger.info("=" * 50)
-    logger.info("--- STAGE 3: Hazus Probabilistic Recovery (MC Aggregation) ---")
+    logger.info("--- STAGE 3: MC Source-Gated Hazus Recovery ---")
 
     # --- 1. Validation & Setup ---
     # We still check for Stage 1 inputs, though we primarily read from disk now.
@@ -2572,7 +2483,7 @@ def run_stage_3(
     t_grid = np.arange(0, cfg.TIME_END_HR + cfg.DT_HR, cfg.DT_HR)
     
     # Output Containers
-    all_damage_probs = {}          # Damage-state probabilities retained for diagnostics/audits.
+    all_damage_probs = {}          # Damage-state probabilities retained for diagnostics only.
     all_damage_state_samples = {}
     all_mean_sub_repair_times = {} # Logistics: Duration for Crew Scheduling
     all_mean_sub_init_func0 = {}   # Consistency: t=0 state
@@ -2592,18 +2503,17 @@ def run_stage_3(
         damage_state_samples = _damage_records_to_state_matrix(df_recs, sub_index)
         all_damage_state_samples[scenario] = damage_state_samples
 
-        # B. Calculate Damage Probabilities (Aggregation)
-        # Count frequency of DS0, DS1, DS2... for each substation
+        # B. Calculate diagnostic damage probabilities.
+        # Recovery synthesis uses MC damage-state samples directly below.
         ds_counts = pd.crosstab(df_recs["substation_id"], df_recs["damage_state"])
         ds_probs = ds_counts.div(ds_counts.sum(axis=1), axis=0)
         
         # Ensure matrix has all substations and all 5 DS columns (0-4)
         ds_probs = ds_probs.reindex(index=sub_index.astype(str), columns=range(5), fill_value=0.0)
         
-        # Store for later stages
         all_damage_probs[scenario] = ds_probs
 
-        # C. Simulate recovery as E[gate(F_run(t))]: source connectivity is
+        # C. Simulate recovery as E[gate(F_run(t))], with source connectivity
         # evaluated per MC realization before averaging.
         R_sub_mean_df = simulate_recovery_mc_source_gated(
             t_grid,
@@ -3408,7 +3318,7 @@ def run_stage_4(
 ) -> dict:
     """
     Stage 4: Rule-based scheduling baselines (e.g., Centrality, Impact, Random).
-    Now uses Hazus Probabilistic Restoration.
+    Uses MC source-gated Hazus restoration after scheduled repair starts.
     """
     if not cfg.RUN_STAGE_4:
         logging.info("--- STAGE 4: Skipped ---")
@@ -3416,7 +3326,7 @@ def run_stage_4(
 
     logger = logging.getLogger()
     logger.info("=" * 50)
-    logger.info("--- STAGE 4: Rule-Based Baselines (Hazus Probabilistic) ---")
+    logger.info("--- STAGE 4: Rule-Based Baselines (MC Source-Gated Hazus) ---")
 
     # =========================================================================
     # 1. Load Context
@@ -3646,7 +3556,7 @@ def run_stage_5(
 ) -> Dict:
     """
     Stage 5: Genetic Algorithm (GA) optimization (Multi-Policy).
-    Now uses Hazus Probabilistic Restoration.
+    Uses MC source-gated Hazus restoration after scheduled repair starts.
     """
     if not cfg.RUN_STAGE_5:
         logging.info("--- STAGE 5 (GA): Skipped ---")
@@ -3654,7 +3564,7 @@ def run_stage_5(
 
     logger = logging.getLogger()
     logger.info("=" * 50)
-    logger.info("--- STAGE 5: Genetic Algorithm Optimization (Hazus Probabilistic) ---")
+    logger.info("--- STAGE 5: Genetic Algorithm Optimization (MC Source-Gated Hazus) ---")
 
     # --- 1. Helpers & Inputs ---
     def _norm01(x, eps=1e-12):
