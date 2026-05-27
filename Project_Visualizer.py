@@ -525,14 +525,6 @@ def save_plot(fig: plt.Figure, folder: str, filename: str) -> None:
     print(f"  [Saved] {filename}")
 
 
-def save_plot_variants(fig: plt.Figure, folder: str, filenames: list[str]) -> None:
-    """Save a figure to multiple filenames using shared export settings."""
-    for idx, filename in enumerate(filenames):
-        path = os.path.join(folder, filename)
-        save_figure(fig, path, close=(idx == len(filenames) - 1))
-        print(f"  [Saved] {filename}")
-
-
 def _stage2_choose_x_axis(df: pd.DataFrame, fallback_col: str) -> str:
     """Select the preferred x-axis column for Stage 2 percolation plots."""
     if "fraction_removed" in df.columns:
@@ -1832,12 +1824,6 @@ def _stage3_get_main_kpi_file(stage_dir: str, scenario: str) -> str | None:
     return candidate if os.path.exists(candidate) else None
 
 
-def _stage3_get_raw_kpi_file(stage_dir: str, scenario: str) -> str | None:
-    """I/O adaptation only: raw baseline stays explicit and never replaces Stage 3 main input."""
-    candidate = os.path.join(stage_dir, f"tract_kpis_raw_{scenario}.csv")
-    return candidate if os.path.exists(candidate) else None
-
-
 def _stage3_metric_label(metric: str) -> str:
     """Map raw Stage 3 KPI names to manuscript-facing labels."""
     if metric == "T50":
@@ -2053,20 +2039,6 @@ def stage6_equity_display_name(name: str) -> str:
     if "closeness-first" in lower or "closeness" in lower:
         return "Closeness First"
     return short_strategy_display_name(s)
-
-
-def _ordered_legend(ax):
-    """Reorder legend entries using LEGEND_ORDER, without renaming labels."""
-    handles, labels = ax.get_legend_handles_labels()
-    label_to_handle = {lab: h for h, lab in zip(labels, handles)}
-
-    ordered_handles = []
-    ordered_labels = []
-    for lab in LEGEND_ORDER:
-        if lab in label_to_handle:
-            ordered_handles.append(label_to_handle[lab])
-            ordered_labels.append(lab)
-    return ordered_handles, ordered_labels
 
 
 def _detect_rule_col(df: pd.DataFrame) -> str:
@@ -2437,8 +2409,6 @@ def vis_stage4():
 
     def _stage4_get_main_pop_kpi_file(scenario: str) -> str | None:
         """I/O adaptation only: prefer the current main/gated Stage 4 KPI export."""
-        # rule_kpis_system_{scenario}.csv is a legacy name and is no longer a
-        # valid input for the current main output.
         main_path = os.path.join(stage4_dir, f"rule_kpis_pop_{scenario}.csv")
         if os.path.exists(main_path):
             return main_path
@@ -2903,36 +2873,16 @@ def _stage6_get_main_curves_file(stage_dir: str) -> str | None:
     return csv_path if os.path.exists(csv_path) else None
 
 
-def _stage6_get_raw_curves_file(stage_dir: str) -> str | None:
-    """I/O adaptation only: raw baseline curves stay supplementary and never replace the main input."""
-    csv_path = os.path.join(stage_dir, "recovery_curves_all_system_raw_baseline.csv")
-    return csv_path if os.path.exists(csv_path) else None
-
-
 def _stage6_get_main_kpis_file(stage_dir: str) -> str | None:
     """I/O adaptation only: Stage 6 KPI main figures stay on the current main/gated export."""
     csv_path = os.path.join(stage_dir, "recovery_kpis_all_system.csv")
     return csv_path if os.path.exists(csv_path) else None
 
 
-def _stage6_get_raw_kpis_file(stage_dir: str) -> str | None:
-    """I/O adaptation only: raw baseline KPIs stay supplementary and never replace the main input."""
-    csv_path = os.path.join(stage_dir, "recovery_kpis_all_system_raw_baseline.csv")
-    return csv_path if os.path.exists(csv_path) else None
-
-
-def _stage6_load_recovery_kpis_csv(stage_dir: str, raw_baseline: bool = False):
-    """Load Stage 6 KPI tables without changing main-vs-raw semantics."""
-    csv_path = (
-        _stage6_get_raw_kpis_file(stage_dir)
-        if raw_baseline
-        else _stage6_get_main_kpis_file(stage_dir)
-    )
-    expected_name = (
-        "recovery_kpis_all_system_raw_baseline.csv"
-        if raw_baseline
-        else "recovery_kpis_all_system.csv"
-    )
+def _stage6_load_recovery_kpis_csv(stage_dir: str):
+    """Load the current Stage 6 main KPI table."""
+    csv_path = _stage6_get_main_kpis_file(stage_dir)
+    expected_name = "recovery_kpis_all_system.csv"
     if csv_path is None:
         print(f"  [Stage 6] {expected_name} not found: {os.path.join(stage_dir, expected_name)}")
         return None, None
@@ -2946,18 +2896,10 @@ def _stage6_load_recovery_kpis_csv(stage_dir: str, raw_baseline: bool = False):
     return df, csv_path
 
 
-def _stage6_load_recovery_curves_csv(stage_dir: str, raw_baseline: bool = False):
-    """Load Stage 6 recovery curves while keeping main and raw-baseline semantics explicit."""
-    csv_path = (
-        _stage6_get_raw_curves_file(stage_dir)
-        if raw_baseline
-        else _stage6_get_main_curves_file(stage_dir)
-    )
-    expected_name = (
-        "recovery_curves_all_system_raw_baseline.csv"
-        if raw_baseline
-        else "recovery_curves_all_system.csv"
-    )
+def _stage6_load_recovery_curves_csv(stage_dir: str):
+    """Load the current Stage 6 main recovery-curve table."""
+    csv_path = _stage6_get_main_curves_file(stage_dir)
+    expected_name = "recovery_curves_all_system.csv"
     if csv_path is None:
         print(f"  [Stage 6] {expected_name} not found: {os.path.join(stage_dir, expected_name)}")
         return None, None, None
@@ -3003,7 +2945,6 @@ def _stage6_parse_curve_column(column_name: str):
       Northridge_S4_centrality-first_Pop
       Northridge_S3_Mean_SVI
       Northridge_GA_Balanced_Pop
-      Northridge_S4_centrality-first_RawBaseline_Pop
     """
     col = str(column_name).strip()
     if not col or col == "time_hr":
@@ -3017,11 +2958,6 @@ def _stage6_parse_curve_column(column_name: str):
         core = col[:-4]
     else:
         return None
-
-    is_raw_baseline = False
-    if core.endswith("_RawBaseline"):
-        is_raw_baseline = True
-        core = core[: -len("_RawBaseline")]
 
     scenario = None
     raw_key = ""
@@ -3045,20 +2981,17 @@ def _stage6_parse_curve_column(column_name: str):
     elif raw_key.startswith("Stage3_"):
         key = raw_key.replace("Stage3_", "S3_", 1)
 
-    return scenario, key, weight_type, is_raw_baseline
+    return scenario, key, weight_type
 
 
 def _stage6_reconstruct_curve_dicts(
     df_curves: pd.DataFrame,
     time_grid: pd.Index,
-    raw_baseline: bool = False,
 ):
     """Rebuild per-scenario curve dictionaries from consolidated Stage 6 CSV tables.
 
-    The parser preserves the distinction between gated main results and
-    raw-baseline comparison curves so downstream plotting functions can
-    reconstruct the original scenario-by-scenario figure inputs without mixing
-    the two reporting modes.
+    The parser reconstructs scenario-by-scenario figure inputs from the current
+    main/gated Stage 6 export.
     """
     curves_by_weight = {"Population": {}, "SVI_Weighted": {}}
 
@@ -3067,9 +3000,7 @@ def _stage6_reconstruct_curve_dicts(
         if parsed is None:
             continue
 
-        scenario, key, weight_type, is_raw_baseline = parsed
-        if is_raw_baseline != raw_baseline:
-            continue
+        scenario, key, weight_type = parsed
         if key not in STAGE6_RECOVERY_STYLE_CONFIG:
             continue
 
@@ -3201,11 +3132,11 @@ def _stage6_plot_single_scenario_recovery_curve(
 
 def _stage6_plot_recovery_curves_from_csv(stage_dir: str) -> None:
     """Driver: read the Stage 6 main curves CSV and regenerate the existing recovery plots."""
-    df_curves, time_grid, csv_path = _stage6_load_recovery_curves_csv(stage_dir, raw_baseline=False)
+    df_curves, time_grid, csv_path = _stage6_load_recovery_curves_csv(stage_dir)
     if df_curves is None or time_grid is None:
         return
 
-    curves_by_weight = _stage6_reconstruct_curve_dicts(df_curves, time_grid, raw_baseline=False)
+    curves_by_weight = _stage6_reconstruct_curve_dicts(df_curves, time_grid)
     if not any(curves_by_weight.get(weight) for weight in curves_by_weight):
         print(f"  [Stage 6] No recognized recovery curves found in: {csv_path}")
         return
@@ -3246,7 +3177,7 @@ def vis_stage6(
 
     This stage visualizes population-weighted versus SVI-weighted recovery
     outcomes using compact dumbbell, diverging-gap, and reconstructed recovery
-    curve panels. The implementation preserves the raw strategy naming logic of
+    curve panels. The implementation preserves the strategy naming logic of
     the current workflow while applying fixed publication-oriented layout rules.
     """
     if out_dirs and "STAGE6_DIR" in out_dirs:
@@ -3258,13 +3189,13 @@ def vis_stage6(
         print(f"  [Warning] Directory not found: {stage_dir}")
         return
 
-    print("--- Visualizing Stage 6 (Strict Raw Names + Fixed Layout) ---")
+    print("--- Visualizing Stage 6 (Current Main Results + Fixed Layout) ---")
     apply_publication_style()
 
     _stage6_plot_recovery_curves_from_csv(stage_dir)
     
     # 1. Load Data
-    df, target_file = _stage6_load_recovery_kpis_csv(stage_dir, raw_baseline=False)
+    df, target_file = _stage6_load_recovery_kpis_csv(stage_dir)
     if df is None or target_file is None:
         return
 
@@ -3277,18 +3208,18 @@ def vis_stage6(
         r_str = str(r).lower()
         return ("svipop" in r_str.lower()) or (r_str.endswith("_svi")) or ("_svi_" in r_str.lower())
 
-    def _get_raw_base_name(r):
-        """Strip weighting and raw-baseline suffixes from a Stage 6 rule label."""
+    def _get_base_strategy_name(r):
+        """Strip weighting suffixes from a Stage 6 rule label."""
         r = str(r).strip()
         base = r
         for suffix in ["_svipop", "_svi", "_pop"]:
             if r.lower().endswith(suffix):
                 base = r[:len(r)-len(suffix)]
                 break
-        return base.replace("_RawBaseline", "")
+        return base
 
     df["Weighting"] = df["rule"].apply(lambda x: "SVI" if _is_svi(x) else "Pop")
-    df["Strategy"] = df["rule"].apply(_get_raw_base_name)
+    df["Strategy"] = df["rule"].apply(_get_base_strategy_name)
 
     wide = df.pivot_table(
         index=["scenario", "Strategy"], 

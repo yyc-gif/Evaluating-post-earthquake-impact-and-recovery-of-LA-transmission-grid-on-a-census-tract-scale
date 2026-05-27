@@ -71,11 +71,6 @@ def cm_to_inch(*values):
     return converted[0] if len(converted) == 1 else converted
 
 
-def get_panel_map_tall_figsize() -> tuple[float, float]:
-    """Return the Stage 2 companion-panel figsize in inches."""
-    return cm_to_inch(PANEL_MAP_TALL["width_cm"], PANEL_MAP_TALL["height_cm"])
-
-
 def style_axis_publication(ax, xlabel: str | None = None, ylabel: str | None = None):
     """Apply the Stage 2 manuscript axis typography."""
     if xlabel is not None:

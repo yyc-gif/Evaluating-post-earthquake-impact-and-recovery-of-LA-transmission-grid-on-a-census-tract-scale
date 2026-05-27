@@ -3082,7 +3082,6 @@ def simulate_rule_schedule(
     crew_origin_ids: Optional[List[str]] = None,
     source_gate_graph: Optional[nx.Graph] = None,
     source_ids: Optional[set[str]] = None,
-    # initial_values removed (Obsolute)
 ) -> pd.DataFrame:
     """
     Simulate a multi-crew repair schedule and generate MC source-gated Hazus recovery curves.
@@ -3453,7 +3452,6 @@ def run_stage_4(
                 crew_origin_ids=crew_origin_ids,
                 source_gate_graph=G,
                 source_ids=source_ids,
-                # initial_values removed (Obsolute)
             )
 
             # C. Propagate to Tracts (Tract = W * Substation)

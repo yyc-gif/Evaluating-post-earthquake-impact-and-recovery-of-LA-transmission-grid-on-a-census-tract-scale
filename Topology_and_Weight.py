@@ -80,15 +80,8 @@ class Paths:
     LINE_SNAP_SECONDARY_OUTER_START_M: Optional[float] = None  # Optional stricter secondary shell start.
     LINE_SNAP_SECONDARY_OUTER_MARGIN_M: Optional[float] = None  # Optional stricter outer-shell margin.
     LINE_SNAP_SECONDARY_OUTER_RATIO_MAX: Optional[float] = None  # Optional stricter outer-shell ratio.
-    LINE_SNAP_STRICT_TOLERANCE_M: float = 150.0  # Legacy trial-era field retained only for backward compatibility.
-    LINE_SNAP_EXTENDED_TOLERANCE_M: float = 350.0  # Legacy trial-era field retained only for backward compatibility.
-    LINE_SNAP_SECOND_NEAREST_MARGIN_M: float = 100.0  # Legacy trial-era field retained only for backward compatibility.
-    LINE_SNAP_SECOND_NEAREST_RATIO_MAX: float = 0.75  # Legacy trial-era field retained only for backward compatibility.
-    ENABLE_EXTENDED_SUBSTATION_SNAP: bool = False  # Legacy trial switch retained only for backward compatibility.
-    MAX_LINE_ENDPOINT_DIST_KM: float = 0.5  # Legacy connectivity fallback radius retained for compatibility only.
     MAX_SUBSTATION_TO_GRAPH_SNAP_DIST_M: float = 100.0
     ENABLE_PROTECTED_JUNCTION_CLUSTER_SNAP: bool = False
-    PROTECTED_JUNCTION_CLUSTER_SNAP_TOLERANCE_M: Optional[float] = None  # Legacy; joint snap uses LINE_SNAP_* rules.
     ENABLE_SUBSTATION_LINE_SPLIT: bool = True
     LINE_SPLIT_TOLERANCE_M: float = 100.0
     LINE_SPLIT_MIN_ENDPOINT_DIST_M: float = 25.0
