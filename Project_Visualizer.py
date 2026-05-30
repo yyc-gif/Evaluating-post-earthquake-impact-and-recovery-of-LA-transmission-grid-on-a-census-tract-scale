@@ -4823,16 +4823,6 @@ def vis_stage7(gdf):
                     zorder=1,
                 )
 
-            hotspot_plot = merged_plot.loc[merged_plot["tract_id"].isin(hotspot_ids)].copy()
-            if not hotspot_plot.empty:
-                hotspot_plot.boundary.plot(
-                    ax=ax,
-                    color=STAGE7_HOTSPOT_COLOR,
-                    linewidth=1.35,
-                    alpha=0.96,
-                    zorder=3,
-                )
-
             bounds_src = observed if not observed.empty else merged_plot
             minx, miny, maxx, maxy = bounds_src.total_bounds
             pad_x = (maxx - minx) * 0.03
@@ -4848,36 +4838,17 @@ def vis_stage7(gdf):
             ]
             if not missing.empty:
                 handles.append(mpatches.Patch(color="lightgrey", label="Missing"))
-            if not hotspot_plot.empty:
-                handles.append(
-                    mlines.Line2D(
-                        [],
-                        [],
-                        color=STAGE7_HOTSPOT_COLOR,
-                        linewidth=1.35,
-                        label="Recovery-vulnerability hotspots (Top 10)",
-                    )
-                )
 
             legend = ax.legend(
                 handles=handles,
-                title=None,
-                loc="upper center",
-                bbox_to_anchor=(0.5, -0.035),
-                frameon=False,
-                ncol=min(len(handles), 5),
-                borderpad=0.08,
-                labelspacing=0.25,
-                columnspacing=0.9,
-                handletextpad=0.35,
-                handlelength=1.25,
-                borderaxespad=0.0,
+                title="Cluster",
+                loc="lower left",
+                framealpha=0.95,
             )
             format_legend(legend)
 
             style_axis(ax, title="Clusters")
             ax.axis("off")
-            fig.subplots_adjust(left=0.02, right=0.98, top=0.91, bottom=0.14)
 
             save_plot(fig, stage_dir, "vis_stage7_map_clusters.png")
 
