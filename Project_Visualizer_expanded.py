@@ -170,9 +170,16 @@ def configure_namespace(namespace: dict) -> None:
         "width_cm": namespace["PANEL_FULLROW"]["width_cm"],
         "height_cm": namespace["PANEL_MAP_TALL"]["height_cm"],
     }
+    expanded_stage3_map_size = {
+        "width_cm": 13.2,
+        "height_cm": namespace["PANEL_MAP_TALL"]["height_cm"],
+    }
     namespace["PANEL_MAP_EXPANDED"] = expanded_map_size
+    namespace["PANEL_MAP_EXPANDED_STAGE3"] = expanded_stage3_map_size
     namespace["FIGURE_SIZE_PRESETS"]["PANEL_MAP_EXPANDED"] = expanded_map_size
+    namespace["FIGURE_SIZE_PRESETS"]["PANEL_MAP_EXPANDED_STAGE3"] = expanded_stage3_map_size
     namespace["FIGURE_SIZE_PRESETS"]["PANEL_MAP_TALL"] = expanded_map_size
+    namespace["STAGE3_MAP_FIGURE_ROLE"] = "PANEL_MAP_EXPANDED_STAGE3"
 
     pretty_names = namespace["PRETTY_VAR_NAMES"]
     pretty_names["T50"] = "Recovery time (T50, hr)"

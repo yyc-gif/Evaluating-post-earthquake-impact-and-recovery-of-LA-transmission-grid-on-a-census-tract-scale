@@ -320,6 +320,15 @@ PANEL_ASYM_LEFT = {"width_cm": 11.6, "height_cm": 6.5}
 PANEL_ASYM_RIGHT = {"width_cm": 6.6, "height_cm": 9.4}
 PANEL_MAP_TALL = {"width_cm": 8.9, "height_cm": 11.8}
 PANEL_GANTT = {"width_cm": 18.8, "height_cm": 9.8}
+STAGE3_MAP_FIGURE_ROLE = "PANEL_MAP_TALL"
+STAGE3_TIME_CMAP = mcolors.LinearSegmentedColormap.from_list(
+    "stage3_time_blue_gold_red",
+    ["#313695", "#74add1", "#f6bd60", "#f46d43", "#a50026"],
+)
+STAGE3_AUC_CMAP = mcolors.LinearSegmentedColormap.from_list(
+    "stage3_auc_red_gold_blue",
+    ["#a50026", "#f46d43", "#f6bd60", "#74add1", "#313695"],
+)
 
 FIGURE_SIZE_PRESETS = {
     "COMPOSITE_FULL_DEFAULT": COMPOSITE_FULL_DEFAULT,
@@ -780,10 +789,11 @@ def plot_map(
         vmax = float(data_vals_valid.max())
 
     # Truncated colormap to avoid near-white low end
-    base_cmap = plt.colormaps.get_cmap(cmap)
+    base_cmap = cmap if isinstance(cmap, mcolors.Colormap) else plt.colormaps.get_cmap(cmap)
+    cmap_name = getattr(base_cmap, "name", str(cmap))
     new_colors = base_cmap(np.linspace(cmap_low, cmap_high, 256))
     truncated_cmap = mcolors.LinearSegmentedColormap.from_list(
-        f"{cmap}_trunc_{cmap_low}_{cmap_high}",
+        f"{cmap_name}_trunc_{cmap_low}_{cmap_high}",
         new_colors,
     )
 
@@ -1881,10 +1891,10 @@ def vis_stage3(gdf):
 
                 metric_label = _stage3_metric_label(metric)
                 if metric == "AUC":
-                    c_map = "RdBu"
+                    c_map = STAGE3_AUC_CMAP
                     v_min, v_max = _stage3_auc_display_limits(df[metric])
                 else:
-                    c_map = "RdBu_r"
+                    c_map = STAGE3_TIME_CMAP
                     v_min = None
                     v_max = None
 
@@ -1900,7 +1910,7 @@ def vis_stage3(gdf):
                     vmax=v_max,
                     cmap_low=0.0,
                     cmap_high=1.0,
-                    figure_role="PANEL_MAP_TALL",
+                    figure_role=STAGE3_MAP_FIGURE_ROLE,
                 )
 
                 # Histogram + KDE
@@ -4823,6 +4833,16 @@ def vis_stage7(gdf):
                     zorder=1,
                 )
 
+            hotspot_plot = merged_plot.loc[merged_plot["tract_id"].isin(hotspot_ids)].copy()
+            if not hotspot_plot.empty:
+                hotspot_plot.boundary.plot(
+                    ax=ax,
+                    color=STAGE7_HOTSPOT_COLOR,
+                    linewidth=1.35,
+                    alpha=0.96,
+                    zorder=3,
+                )
+
             bounds_src = observed if not observed.empty else merged_plot
             minx, miny, maxx, maxy = bounds_src.total_bounds
             pad_x = (maxx - minx) * 0.03
@@ -4838,17 +4858,36 @@ def vis_stage7(gdf):
             ]
             if not missing.empty:
                 handles.append(mpatches.Patch(color="lightgrey", label="Missing"))
+            if not hotspot_plot.empty:
+                handles.append(
+                    mlines.Line2D(
+                        [],
+                        [],
+                        color=STAGE7_HOTSPOT_COLOR,
+                        linewidth=1.35,
+                        label="Recovery-vulnerability hotspots (Top 10)",
+                    )
+                )
 
             legend = ax.legend(
                 handles=handles,
-                title="Cluster",
-                loc="lower left",
-                framealpha=0.95,
+                title=None,
+                loc="upper center",
+                bbox_to_anchor=(0.5, -0.035),
+                frameon=False,
+                ncol=min(len(handles), 5),
+                borderpad=0.08,
+                labelspacing=0.25,
+                columnspacing=0.9,
+                handletextpad=0.35,
+                handlelength=1.25,
+                borderaxespad=0.0,
             )
             format_legend(legend)
 
             style_axis(ax, title="Clusters")
             ax.axis("off")
+            fig.subplots_adjust(left=0.02, right=0.98, top=0.91, bottom=0.14)
 
             save_plot(fig, stage_dir, "vis_stage7_map_clusters.png")
 
