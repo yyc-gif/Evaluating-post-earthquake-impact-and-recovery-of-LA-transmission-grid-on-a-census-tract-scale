@@ -163,6 +163,17 @@ def configure_namespace(namespace: dict) -> None:
     namespace["CITY_BOUNDARY_SHP"] = str(ensure_expanded_boundary_geojson())
     namespace["OUTPUT_ROOT"] = str(PROJECT_ROOT)
 
+    # Expanded maps cover a wider geography than the base study area. Keep the
+    # original tall map height, but use the established full-row manuscript
+    # width so equal-aspect map panels are not visually shrunk by tight export.
+    expanded_map_size = {
+        "width_cm": namespace["PANEL_FULLROW"]["width_cm"],
+        "height_cm": namespace["PANEL_MAP_TALL"]["height_cm"],
+    }
+    namespace["PANEL_MAP_EXPANDED"] = expanded_map_size
+    namespace["FIGURE_SIZE_PRESETS"]["PANEL_MAP_EXPANDED"] = expanded_map_size
+    namespace["FIGURE_SIZE_PRESETS"]["PANEL_MAP_TALL"] = expanded_map_size
+
     pretty_names = namespace["PRETTY_VAR_NAMES"]
     pretty_names["T50"] = "Recovery time (T50, hr)"
     pretty_names["T80"] = "Recovery time (T80, hr)"
