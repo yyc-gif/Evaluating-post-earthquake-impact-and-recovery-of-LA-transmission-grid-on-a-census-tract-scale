@@ -349,7 +349,7 @@ def _write_canvas_validation_map_html(
     :root {{
       --bg: #f8fafc;
       --panel: rgba(255, 255, 255, 0.96);
-      --line-real: #7a7a7a;
+      --line-real: #DFC98A;
       --line-direct: #1f77b4;
       --node-main: #e6550d;
       --node-island: #b2182b;
@@ -648,7 +648,7 @@ def _write_canvas_validation_map_html(
 
       if (layerState.real) {{
         for (const line of payload.real_lines) {{
-          drawPolyline(line, "#7a7a7a", 1.0, [5, 5], 0.35);
+          drawPolyline(line, "#DFC98A", 1.0, [5, 5], 0.35);
         }}
       }}
       if (layerState.direct) {{
@@ -918,7 +918,7 @@ def visualize_topology(
 
         background_lines.plot(
             ax=ax,
-            color="#7a7a7a",
+            color="#DFC98A",
             linewidth=0.78,
             linestyle="--",
             alpha=0.38,
@@ -993,7 +993,7 @@ def visualize_topology(
         legend_handles = [
             Line2D(
                 [0], [0],
-                color="#7a7a7a",
+                color="#DFC98A",
                 linewidth=0.78,
                 linestyle="--",
                 alpha=0.38,

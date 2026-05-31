@@ -4868,6 +4868,44 @@ def run_stage_7(
 
     df_main.to_csv(out_dir / "clusters_labels_final.csv", index=False)
 
+    # =========================================================
+    # Export Summary Table: Scenario × Strategy Performance Metrics
+    # =========================================================
+    # Load recovery_kpis_all_system.csv from Stage 6 if available
+    stage6_kpis_path = out_dirs["STAGE6_DIR"] / "recovery_kpis_all_system.csv"
+    if stage6_kpis_path.exists():
+        try:
+            df_kpis = pd.read_csv(stage6_kpis_path)
+            
+            # Rename 'rule' to 'strategy' for clarity, add scenario column if missing
+            if "rule" in df_kpis.columns:
+                df_kpis.rename(columns={"rule": "strategy"}, inplace=True)
+            
+            # Extract population vs SVI-weighted indicators
+            def _extract_weighting(strategy_str):
+                s = str(strategy_str).lower()
+                if "svi" in s:
+                    return "SVI"
+                else:
+                    return "Population"
+            
+            df_kpis["weighting"] = df_kpis["strategy"].apply(_extract_weighting)
+            
+            # Select core metrics and reorder
+            core_cols = ["scenario", "strategy", "weighting"]
+            metric_cols = [c for c in ["T50", "T80", "AUC"] if c in df_kpis.columns]
+            keep_cols = [c for c in core_cols + metric_cols if c in df_kpis.columns]
+            
+            df_summary = df_kpis[keep_cols].copy()
+            df_summary = df_summary.sort_values(["scenario", "strategy"]).reset_index(drop=True)
+            
+            # Export to CSV
+            out_path = out_dir / "strategy_performance_summary.csv"
+            df_summary.to_csv(out_path, index=False)
+            logger.info(f"Exported strategy performance summary: {out_path}")
+        except Exception as e:
+            logger.warning(f"Failed to export strategy performance summary: {e}")
+
     logger.info("--- STAGE 7 Complete ---")
     return {"clusters": df_main}
 

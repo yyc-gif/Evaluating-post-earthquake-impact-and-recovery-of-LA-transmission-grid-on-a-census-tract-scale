@@ -398,6 +398,94 @@ def get_figsize(
     return cm_to_inch(w_cm * scale_width, h_cm * scale_height)
 
 
+def calculate_and_save_network_stats(output_dir: str, stage_label: str = "1") -> None:
+    """
+    Calculate network statistics from the CEC graph and save to CSV.
+    
+    Computes:
+    - Number of nodes
+    - Number of edges
+    - Average degree
+    - Mean shortest path length (for connected components)
+    
+    Args:
+        output_dir: Directory where to save network_stats.csv
+        stage_label: Stage number (e.g., "1" for Stage 1 Output)
+    """
+    try:
+        # Load the graph
+        edges_path = CEC_GRAPH_EDGES_CSV
+        nodes_path = CEC_GRAPH_NODES_CSV
+        
+        if not os.path.exists(edges_path):
+            print(f"  [Network Stats] Edge list not found: {edges_path}")
+            return
+        
+        # Build graph from edge list
+        edges_df = pd.read_csv(edges_path)
+        
+        # Validate required columns
+        if "u" not in edges_df.columns or "v" not in edges_df.columns:
+            print(f"  [Network Stats] Edge list missing 'u' or 'v' columns")
+            return
+        
+        # Create NetworkX graph
+        G = nx.from_pandas_edgelist(
+            edges_df,
+            source="u",
+            target="v",
+            create_using=nx.MultiGraph(),
+        )
+        
+        # Calculate statistics
+        num_nodes = G.number_of_nodes()
+        num_edges = G.number_of_edges()
+        
+        # Average degree
+        if num_nodes > 0:
+            avg_degree = 2 * num_edges / num_nodes
+        else:
+            avg_degree = 0.0
+        
+        # Mean shortest path length (only for largest connected component)
+        if num_nodes > 1:
+            # Convert to simple graph for path calculations
+            G_simple = nx.Graph(G)
+            components = list(nx.connected_components(G_simple))
+            
+            if components:
+                largest_cc = max(components, key=len)
+                G_lcc = G_simple.subgraph(largest_cc).copy()
+                
+                if len(G_lcc) > 1:
+                    mean_shortest_path = nx.average_shortest_path_length(G_lcc)
+                else:
+                    mean_shortest_path = 0.0
+            else:
+                mean_shortest_path = 0.0
+        else:
+            mean_shortest_path = 0.0
+        
+        # Save to CSV
+        stats_df = pd.DataFrame({
+            "Metric": ["Number of Nodes", "Number of Edges", "Average Degree", "Mean Shortest Path Length"],
+            "Value": [num_nodes, num_edges, avg_degree, mean_shortest_path]
+        })
+        
+        output_path = os.path.join(output_dir, "network_stats.csv")
+        os.makedirs(output_dir, exist_ok=True)
+        stats_df.to_csv(output_path, index=False)
+        
+        print(f"  [Network Stats] Saved to: {output_path}")
+        print(f"    - Nodes: {num_nodes}")
+        print(f"    - Edges: {num_edges}")
+        print(f"    - Avg Degree: {avg_degree:.2f}")
+        print(f"    - Mean Shortest Path: {mean_shortest_path:.2f}")
+        
+    except Exception as e:
+        print(f"  [Network Stats] Error: {e}")
+
+
 def apply_publication_style() -> None:
     """Apply restrained journal-style defaults across plot families."""
     sns.set_theme(context="paper", style="whitegrid", rc=PUBLICATION_RCPARAMS)
@@ -1160,7 +1248,7 @@ def vis_stage2_topology_with_tracts_latlon():
     if not cec_lines_la.empty:
         cec_lines_la.plot(
             ax=ax,
-            color="#737373",
+            color="#DFC98A",
             linewidth=0.7,
             alpha=0.95,
             zorder=1,
@@ -1188,6 +1276,14 @@ def vis_stage2_topology_with_tracts_latlon():
         label="CEC substations",
     )
 
+    # City boundary
+    city_boundary_line = mlines.Line2D(
+        [], [],
+        color="#bdbdbd",
+        linewidth=1.2,
+        label="Study Area Boundary",
+    )
+
     style_axis(ax, xlabel="Longitude", ylabel="Latitude")
     ax.set_aspect("equal", "box")
     ax.set_anchor("C")
@@ -1200,6 +1296,9 @@ def vis_stage2_topology_with_tracts_latlon():
         if l not in seen:
             seen.add(l)
             uniq.append((h, l))
+    
+    # Add city boundary legend manually
+    uniq.append((city_boundary_line, "Study Area Boundary"))
 
     # Viewport based on city bbox with padding
     dx, dy = xmax - xmin, ymax - ymin
@@ -1740,6 +1839,14 @@ def vis_stage2():
             ax=ax,
         )
         style_colorbar(ax.collections[0].colorbar)
+        
+        # Reduce x-axis ticks for readability
+        x_ticks = ax.get_xticks()
+        if len(x_ticks) > 5:
+            # Show only every other tick
+            tick_step = max(1, len(x_ticks) // 3)
+            ax.set_xticks(x_ticks[::tick_step])
+            ax.set_xticklabels(ax.get_xticklabels()[::tick_step])
 
         style_axis(ax, title="Centrality correlations (auxiliary)", xrotation=45, yrotation=0)
         for lab in ax.get_xticklabels():
@@ -1773,7 +1880,7 @@ def vis_stage2():
                 linestyle=spec["linestyle"],
                 marker=spec["marker"],
                 linewidth=1.3,
-                markersize=3.8,
+                markersize=2.8,
                 label=spec["label"],
             )
 
@@ -1787,7 +1894,7 @@ def vis_stage2():
                 linestyle=spec["linestyle"],
                 marker=spec["marker"],
                 linewidth=1.2,
-                markersize=3.5,
+                markersize=2.8,
                 alpha=0.95,
                 label=spec["label"],
             )
@@ -1836,8 +1943,6 @@ def _stage3_get_main_kpi_file(stage_dir: str, scenario: str) -> str | None:
 
 def _stage3_metric_label(metric: str) -> str:
     """Map raw Stage 3 KPI names to manuscript-facing labels."""
-    if metric == "T50":
-        return "T50 (hr)"
     if metric == "T80":
         return "T80 (hr)"
     return metric
@@ -1885,7 +1990,7 @@ def vis_stage3(gdf):
             df.rename(columns={df.columns[0]: "tract_id"}, inplace=True)
             df["tract_id"] = df["tract_id"].astype(str).str.split(".").str[0]
 
-            for metric in ["T50", "T80", "AUC"]:
+            for metric in ["T80", "AUC"]:
                 if metric not in df.columns:
                     continue
 
@@ -1915,11 +2020,24 @@ def vis_stage3(gdf):
 
                 # Histogram + KDE
                 fig, ax = plt.subplots(figsize=get_figsize("PANEL_ASYM_LEFT"))
-                if metric in {"T50", "T80"}:
+                if metric in {"T80"}:
                     bins = _stage3_fixed_bins(df[metric], bin_width=0.1)
                     sns.histplot(df[metric], bins=bins, kde=True, ax=ax)
                 else:
                     sns.histplot(df[metric], bins=30, kde=True, ax=ax)
+
+                if scen == "2pc50" and metric == "T80":
+                    tick_values = list(range(35, 47))
+                    ax.set_xticks(tick_values)
+                    ax.set_xticklabels([str(v) for v in tick_values])
+                    if df[metric].min() >= 35 and df[metric].max() <= 46:
+                        ax.set_xlim(35, 46)
+                else:
+                    x_min = df[metric].min()
+                    x_max = df[metric].max()
+                    ax.set_xticks([x_min, x_max])
+                    ax.set_xticklabels([f"{x_min:.1f}", f"{x_max:.1f}"])
+
                 style_axis(ax, title=scen, xlabel=metric_label, ylabel="Count")
                 save_plot(fig, stage_dir, f"vis_stage3_hist_{metric}_{scen}.png")
 
@@ -2085,7 +2203,7 @@ def plot_gantt_chart(
     """
     Generic function to plot Crew Schedule Gantt Charts.
     - Red bars: Travel time
-    - Blue bars: Repair duration
+    - Light gray bars: Repair duration
     """
     if df.empty:
         print(f"  [Gantt] Warning: DataFrame for {title_suffix} is empty. Skipping.")
@@ -2136,11 +2254,11 @@ def plot_gantt_chart(
             )
             added_label_travel = True
 
-        # Plot Repair (Blue)
+        # Plot Repair (Light Gray)
         lbl = "Repair Duration" if not added_label_repair else ""
         ax.barh(
             y, repair_dur, left=repair_start, 
-            color="#66b3ff", edgecolor="black", height=0.6, label=lbl
+            color="#d3d3d3", edgecolor="black", height=0.6, label=lbl
         )
         added_label_repair = True
 
@@ -2521,17 +2639,17 @@ def vis_stage4():
         
         # 1. Clean Data Headers & Types
         df_kpi.columns = df_kpi.columns.str.strip()
-        if "T50" not in df_kpi.columns:
+        if "T80" not in df_kpi.columns:
             continue
             
-        df_kpi["T50"] = pd.to_numeric(df_kpi["T50"], errors="coerce")
+        df_kpi["T80"] = pd.to_numeric(df_kpi["T80"], errors="coerce")
 
         # 2. Filter: Keep valid numbers (0.0 is valid!) but drop NaNs
         #    NaN = Strategy never recovered. 0.0 = Instant/Started Healthy.
-        df_kpi = df_kpi[np.isfinite(df_kpi["T50"])].copy()
+        df_kpi = df_kpi[np.isfinite(df_kpi["T80"])].copy()
 
         if df_kpi.empty:
-            print(f"  [Info] All strategies failed to reach 50% recovery for {scen}. Skipping KPI plot.")
+            print(f"  [Info] All strategies failed to reach 80% recovery for {scen}. Skipping KPI plot.")
             continue
 
         rule_col = _detect_rule_col(df_kpi)
@@ -2539,9 +2657,9 @@ def vis_stage4():
         # 3. Stage 4 manuscript-friendly strategy naming
         df_kpi["display_name"] = df_kpi[rule_col].apply(stage4_kpi_display_name)
 
-        # 4. Sorting: Fastest (Lowest T50) on Top
+        # 4. Sorting: Fastest (Lowest T80) on Top
         #    We sort ascending, but plotting usually draws bottom-up, so we verify order below.
-        df_plot = df_kpi.sort_values("T50", ascending=True).reset_index(drop=True)
+        df_plot = df_kpi.sort_values("T80", ascending=True).reset_index(drop=True)
 
         # 5. Semantic Color Palette
         #    Winner = Green, Random = Grey, Others = Muted Blue
@@ -2566,7 +2684,7 @@ def vis_stage4():
 
         bars = ax.barh(
             y=df_plot.index, 
-            width=df_plot["T50"], 
+            width=df_plot["T80"], 
             color=colors, 
             edgecolor="none", # Cleaner look without borders
             height=0.7
@@ -2589,11 +2707,11 @@ def vis_stage4():
         style_axis(
             ax,
             title=scen,
-            xlabel="Time to 50% system recovery (hours)",
+            xlabel="Time to 80% system recovery (hours)",
         )
 
         # 9. Direct Value Annotation (Right of Bar)
-        max_val = df_plot["T50"].max()
+        max_val = df_plot["T80"].max()
         x_limit = max(max_val * 1.25, 10.0) # Ensure room for text
         ax.set_xlim(0, x_limit)
 
@@ -2631,7 +2749,7 @@ def vis_stage4():
         # Final Layout Adjustment
         plt.tight_layout()
         
-        out_path = os.path.join(stage4_dir, f"vis_stage4_kpi_t50_{scen}.png")
+        out_path = os.path.join(stage4_dir, f"vis_stage4_kpi_t80_{scen}.png")
         save_figure(fig, out_path)
         print(f"  -> Saved [Pub-Quality] KPI Plot: {out_path}")
         
@@ -3210,8 +3328,8 @@ def vis_stage6(
         return
 
     # 2. Process Data (Pop vs SVI)
-    df["T50"] = pd.to_numeric(df["T50"], errors="coerce")
-    df = df[np.isfinite(df["T50"])]
+    df["T80"] = pd.to_numeric(df["T80"], errors="coerce")
+    df = df[np.isfinite(df["T80"])]
     
     def _is_svi(r): 
         """Identify whether a Stage 6 rule label belongs to the SVI-weighted track."""
@@ -3234,12 +3352,17 @@ def vis_stage6(
     wide = df.pivot_table(
         index=["scenario", "Strategy"], 
         columns="Weighting", 
-        values="T50", 
+        values="T80", 
         aggfunc="mean"
     ).reset_index()
 
     if "Pop" not in wide.columns or "SVI" not in wide.columns:
         print("  [Skip] Data does not have both 'Pop' and 'SVI' columns.")
+        return
+    
+    # Check that we have valid T80 data
+    if wide["Pop"].isna().all() or wide["SVI"].isna().all():
+        print("  [Skip] T80 recovery time data not available for equity analysis.")
         return
 
     wide["Gap"] = wide["SVI"] - wide["Pop"]
@@ -3249,7 +3372,7 @@ def vis_stage6(
         """Map raw Stage 6 strategy names to their equity-figure display labels."""
         return stage6_equity_display_name(name)
 
-    main_text_scenarios = ["2pc50", "Northridge", "SanFernando"]
+    main_text_scenarios = ["2pc50"]
     strategy_order = STAGE6_EQUITY_DISPLAY_ORDER.copy()
 
     wide_main = wide[wide["scenario"].isin(main_text_scenarios)].copy()
@@ -3309,10 +3432,10 @@ def vis_stage6(
             ax.grid(axis="x", linestyle="--", alpha=0.5)
 
             ax.set_xlim(0.0, 1.0)
-            style_axis(ax, title=scen, xlabel="Recovery time T50 (hours)")
+            style_axis(ax, title=scen, xlabel="Recovery time T80 (hours)")
 
             ax.text(
-                0.5, 0.5, "T50 not applicable",
+                0.5, 0.5, "T80 not applicable",
                 transform=ax.transAxes,
                 ha="center", va="center",
                 fontsize=FS_LABEL,
@@ -3411,7 +3534,7 @@ def vis_stage6(
         ax.grid(axis="x", linestyle="--", alpha=0.5)
 
         # Per-subplot x label (requested)
-        style_axis(ax, title=scen, xlabel="Recovery time T50 (hours)")
+        style_axis(ax, title=scen, xlabel="Recovery time T80 (hours)")
 
         all_vals = np.concatenate([data["Pop"].values, data["SVI"].values])
         if len(all_vals) > 0:
@@ -3427,14 +3550,14 @@ def vis_stage6(
     legend_labels = [handle.get_label() for handle in handles]
 
     plt.tight_layout()
-    plt.subplots_adjust(bottom=0.12, left=0.28, hspace=0.58)
+    plt.subplots_adjust(bottom=0.17, left=0.28, hspace=0.58)
 
-    # Bring legend closer (was too far)
+    # Position legend below the axis labels to avoid overlap
     legend = fig.legend(
         handles=handles,
         labels=legend_labels,
         loc="lower center",
-        bbox_to_anchor=(0.5, 0.02),
+        bbox_to_anchor=(0.5, -0.02),
         ncol=3,
         frameon=False,
     )
@@ -3521,7 +3644,7 @@ def vis_stage6(
             style_axis(
                 ax,
                 title=scen,
-                xlabel="T50 gap (hours): SVI-weighted minus population-weighted",
+                xlabel="T80 gap (hours): SVI-weighted minus population-weighted",
                 title_weight="normal",
             )
             ax.set_xlim(-x_limit, x_limit)
@@ -3636,7 +3759,7 @@ def vis_stage6(
     for _stage6_rule in ["centrality-first", "betweenness-first", "impact-first", "degree-first", "closeness-first", "hospital-first", "random"]:
         style_map[_stage6_rule].update(_stage6_line_style(_stage6_rule, role="topology"))
 
-    for scen in SCENARIOS:
+    for scen in ["2pc50"]:
         print(f"\n[Stage 6] Processing Dual Topology: {scen}...")
 
         fig, axes = plt.subplots(
@@ -4198,6 +4321,8 @@ def vis_stage7_cluster_top10_impact_degree_km(
     fig.subplots_adjust(left=0.11, right=0.985, top=0.92, bottom=0.36)
     save_plot(fig, stage7_dir, f"vis_stage7_cluster{clu_key}_top{int(top_n)}_impact_{impact_mode}_degree_km.png")
 
+
+
 def vis_stage7(gdf):
     """Generate Stage 7 PCA diagnostics, cluster maps, and tract-typology profiles."""
     stage_dir = os.path.join(OUTPUT_ROOT, "Stage 7 Output")
@@ -4263,6 +4388,62 @@ def vis_stage7(gdf):
                 if all(tok in key for tok in contains_tokens):
                     return col
         return None
+
+    def _rule_weighting_label(rule_str: str) -> str:
+        r = str(rule_str).strip().lower()
+        if "svipop" in r or r.endswith("_svi") or r.endswith("_svipop") or "_svi_" in r:
+            return "SVI"
+        return "Population"
+
+    def _cleanup_strategy_name(rule_str: str) -> str:
+        rule = str(rule_str).strip()
+        for suffix in ["_svipop", "_svi", "_pop"]:
+            if rule.lower().endswith(suffix):
+                return rule[: len(rule) - len(suffix)]
+        return rule
+
+    def _export_stage7_strategy_performance_summary() -> None:
+        stage6_dir = os.path.join(OUTPUT_ROOT, "Stage 6 Output")
+        if not os.path.exists(stage6_dir):
+            print("  [Info] Stage 6 directory not found; skipping Stage 7 strategy performance export.")
+            return
+
+        df_kpis, _ = _stage6_load_recovery_kpis_csv(stage6_dir)
+        if df_kpis is None or df_kpis.empty:
+            print("  [Info] Stage 6 KPI CSV missing or empty; skipping summary export.")
+            return
+
+        scenario_col = _find_column_alias(df_kpis, ["scenario", "Scenario"], contains_tokens=["scenario"])
+        rule_col = _find_column_alias(df_kpis, ["rule", "Rule", "strategy", "Strategy"], contains_tokens=["rule", "strategy"])
+        t50_col = _find_column_alias(df_kpis, ["T50", "t50", "T_50"], contains_tokens=["t50"])
+        t80_col = _find_column_alias(df_kpis, ["T80", "t80", "T_80"], contains_tokens=["t80"])
+        auc_col = _find_column_alias(df_kpis, ["AUC", "auc"], contains_tokens=["auc"])
+
+        if None in (scenario_col, rule_col, t50_col, t80_col, auc_col):
+            print("  [Info] Stage 6 KPI CSV does not contain required columns for summary export.")
+            return
+
+        df_export = df_kpis[[scenario_col, rule_col, t50_col, t80_col, auc_col]].copy()
+        df_export = df_export.rename(
+            columns={
+                scenario_col: "scenario",
+                rule_col: "strategy",
+                t50_col: "T50",
+                t80_col: "T80",
+                auc_col: "AUC",
+            }
+        )
+        df_export["strategy"] = df_export["strategy"].astype(str)
+        df_export["weighting"] = df_export["strategy"].apply(_rule_weighting_label)
+        df_export["strategy"] = df_export["strategy"].apply(_cleanup_strategy_name)
+        df_export = df_export.sort_values(["scenario", "strategy"]).reset_index(drop=True)
+
+        out_path = os.path.join(stage_dir, "strategy_performance_summary.csv")
+        try:
+            df_export.to_csv(out_path, index=False)
+            print(f"  [Info] Exported Stage 7 strategy performance summary: {out_path}")
+        except Exception as e:
+            print(f"  [Warning] Failed to write Stage 7 strategy performance summary: {e}")
 
     def _plot_stage7_scree(df_pc_stats: pd.DataFrame | None) -> None:
         """Draw the Stage 7 scree plot from the exported PCA statistics table."""
@@ -5129,8 +5310,14 @@ if __name__ == "__main__":
     print("   ENHANCED VISUALIZATION GENERATOR      ")
     print("=========================================")
     
+    # Calculate and save network statistics (early stage)
+    print("\n--- Computing Network Statistics ---")
+    stage1_dir = os.path.join(OUTPUT_ROOT, "Stage 1 Output")
+    os.makedirs(stage1_dir, exist_ok=True)
+    calculate_and_save_network_stats(stage1_dir, stage_label="1")
+    
     # Load GIS Data
-    print("Loading shapefile for mapping...")
+    print("\nLoading shapefile for mapping...")
     gdf_la = load_shapefile()
     
     vis_stage1(gdf_la)
