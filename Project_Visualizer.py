@@ -2417,6 +2417,19 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
             label=f"{utility_name} crew bases",
         )
 
+    for _, row in base_gdf.iterrows():
+        ax.text(
+            row["longitude"],
+            row["latitude"],
+            str(int(row["integer_crews"])),
+            ha="center",
+            va="center",
+            color="white",
+            fontsize=4,
+            fontweight="bold",
+            zorder=5,
+        )
+
     bounds_sources = []
     if basemap_layers:
         bounds_sources.append(basemap_layers[-1].total_bounds)
@@ -3372,310 +3385,340 @@ def vis_stage6(
         """Map raw Stage 6 strategy names to their equity-figure display labels."""
         return stage6_equity_display_name(name)
 
-    main_text_scenarios = ["2pc50"]
     strategy_order = STAGE6_EQUITY_DISPLAY_ORDER.copy()
 
-    wide_main = wide[wide["scenario"].isin(main_text_scenarios)].copy()
-    wide_main["scenario"] = pd.Categorical(
-        wide_main["scenario"],
-        categories=main_text_scenarios,
-        ordered=True,
-    )
-    wide_main["Strategy_Display"] = wide_main["Strategy"].apply(_display_strategy_label)
-    extra_strategy_labels = [
-        lab for lab in wide_main["Strategy_Display"].dropna().unique().tolist()
-        if lab not in strategy_order
-    ]
-    wide_main["Strategy_Display"] = pd.Categorical(
-        wide_main["Strategy_Display"],
-        categories=strategy_order + extra_strategy_labels,
-        ordered=True,
-    )
-    wide_main = wide_main.sort_values(["scenario", "Strategy_Display"]).copy()
-    scenarios = [s for s in main_text_scenarios if s in wide_main["scenario"].astype(str).tolist()]
+    # Create T50 and T80 pivots
+    wide_t50 = df.pivot_table(
+        index=["scenario", "Strategy"], 
+        columns="Weighting", 
+        values="T50", 
+        aggfunc="mean"
+    ).reset_index()
     
-    # ==========================================================================
-    # FIG 1: Multi-Scenario Dumbbell Plot
-    # ==========================================================================
-    nrows = len(scenarios)
-    fig_height_cm = max(COMPOSITE_FULL_DEFAULT["height_cm"], 4.6 * nrows + 1.8)
-    fig, axes = plt.subplots(
-        nrows,
-        1,
-        figsize=get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=fig_height_cm),
-    )
-    if nrows == 1:
-        axes = [axes]
+    wide_t80 = df.pivot_table(
+        index=["scenario", "Strategy"], 
+        columns="Weighting", 
+        values="T80", 
+        aggfunc="mean"
+    ).reset_index()
 
-    c_pop = "#1f77b4"  # Blue
-    c_svi = "#ff7f0e"  # Orange
-    c_neu = "#444444"  # Dark Grey
-    dumbbell_marker_size = 58
-    identical_marker_size = 46
-    annotation_size = max(FS_ANNOTATION - 1.0, 5.8)
-
-    eps_identical = 1e-6  # strict identical check (prevents false "identical" markers)
-
-    for ax, scen in zip(axes, scenarios):
-        data = wide_main[wide_main["scenario"].astype(str) == scen].copy()
+    # Helper function to create individual dumbbell plot for a scenario + metric
+    def _plot_single_dumbbell_chart(data, scenario_name, metric_label, metric_short):
+        """Create a single dumbbell plot for one scenario and metric (T50 or T80)."""
+        if data.empty:
+            return
+        
+        data = data.copy()
         y_pos = np.arange(len(data))
-
-        # --- Handle "not applicable" scenario: all Pop/SVI are zero (placeholder) ---
+        
+        # --- Handle "not applicable" scenario ---
         pop_vals = pd.to_numeric(data["Pop"], errors="coerce").fillna(0.0).values
         svi_vals = pd.to_numeric(data["SVI"], errors="coerce").fillna(0.0).values
         all_zero = (np.allclose(pop_vals, 0.0) and np.allclose(svi_vals, 0.0))
 
+        fig, ax = plt.subplots(figsize=get_figsize("PANEL_FULLROW"))
+        
+        c_pop = "#1f77b4"  # Blue
+        c_svi = "#ff7f0e"  # Orange
+        c_neu = "#444444"  # Dark Grey
+        dumbbell_marker_size = 58
+        identical_marker_size = 46
+        annotation_size = max(FS_ANNOTATION - 1.0, 5.8)
+        eps_identical = 1e-6
+
         if all_zero:
-            # Keep y-axis strategies, but do not plot meaningless zeros
             ax.set_yticks(y_pos)
             ax.set_yticklabels(data["Strategy_Display"].astype(str), fontsize=FS_TICK)
             ax.grid(axis="x", linestyle="--", alpha=0.5)
-
             ax.set_xlim(0.0, 1.0)
-            style_axis(ax, title=scen, xlabel="Recovery time T80 (hours)")
-
+            style_axis(ax, title=scenario_name, xlabel=metric_label)
             ax.text(
-                0.5, 0.5, "T80 not applicable",
+                0.5, 0.5, f"{metric_short} not applicable",
                 transform=ax.transAxes,
                 ha="center", va="center",
                 fontsize=FS_LABEL,
                 color=c_neu,
                 fontweight="bold",
             )
-            continue
+        else:
+            # Draw connecting lines
+            ax.hlines(
+                y=y_pos,
+                xmin=data["Pop"],
+                xmax=data["SVI"],
+                color="grey",
+                alpha=0.4,
+                linewidth=1.1,
+                zorder=1,
+            )
 
-        # Draw connecting lines
-        ax.hlines(
-            y=y_pos,
-            xmin=data["Pop"],
-            xmax=data["SVI"],
-            color="grey",
-            alpha=0.4,
-            linewidth=1.1,
-            zorder=1,
-        )
-
-        # Draw endpoints
-        ax.scatter(
-            data["Pop"], y_pos,
-            color=c_pop, s=dumbbell_marker_size,
-            label="Population-weighted", zorder=3,
-            edgecolors="white",
-        )
-        ax.scatter(
-            data["SVI"], y_pos,
-            color=c_svi, s=dumbbell_marker_size,
-            label="SVI-weighted", zorder=3,
-            edgecolors="white",
-        )
-
-        # Draw "identical time" marker only when truly identical
-        overlap_mask = np.isclose(pop_vals, svi_vals, atol=eps_identical, rtol=0.0)
-        if np.any(overlap_mask):
+            # Draw endpoints
             ax.scatter(
-                pop_vals[overlap_mask],
-                y_pos[overlap_mask],
-                color=c_neu,
-                s=identical_marker_size,
-                zorder=4,
+                data["Pop"], y_pos,
+                color=c_pop, s=dumbbell_marker_size,
+                label="Population-weighted", zorder=3,
+                edgecolors="white",
+            )
+            ax.scatter(
+                data["SVI"], y_pos,
+                color=c_svi, s=dumbbell_marker_size,
+                label="SVI-weighted", zorder=3,
                 edgecolors="white",
             )
 
-        # Annotate values
-        x_min = np.nanmin(np.r_[data["Pop"].values, data["SVI"].values])
-        x_max = np.nanmax(np.r_[data["Pop"].values, data["SVI"].values])
-        x_range = x_max - x_min
-        offset = x_range * 0.05 if x_range > 0 else 0.5
-
-        for i, (p, s) in enumerate(zip(data["Pop"].values, data["SVI"].values)):
-            if np.isclose(p, s, atol=eps_identical, rtol=0.0):
-                ax.text(
-                    p + offset * 0.6,
-                    i,
-                    f"{p:.1f}",
-                    va="center",
-                    ha="left",
-                    fontsize=annotation_size,
-                    fontweight="normal",
+            # Draw "identical time" marker only when truly identical
+            overlap_mask = np.isclose(pop_vals, svi_vals, atol=eps_identical, rtol=0.0)
+            if np.any(overlap_mask):
+                ax.scatter(
+                    pop_vals[overlap_mask],
+                    y_pos[overlap_mask],
                     color=c_neu,
-                    alpha=0.85,
-                )
-            else:
-                ha_p = "right" if p < s else "left"
-                off_p = -offset * 0.6 if p < s else offset * 0.6
-                ax.text(
-                    p + off_p,
-                    i,
-                    f"{p:.1f}",
-                    va="center",
-                    ha=ha_p,
-                    fontsize=annotation_size,
-                    fontweight="normal",
-                    color=c_pop,
-                    alpha=0.85,
+                    s=identical_marker_size,
+                    zorder=4,
+                    edgecolors="white",
                 )
 
-                ha_s = "left" if p < s else "right"
-                off_s = offset * 0.6 if p < s else -offset * 0.6
-                ax.text(
-                    s + off_s,
-                    i,
-                    f"{s:.1f}",
-                    va="center",
-                    ha=ha_s,
-                    fontsize=annotation_size,
-                    fontweight="normal",
-                    color=c_svi,
-                    alpha=0.85,
-                )
+            # Annotate values
+            x_min = np.nanmin(np.r_[data["Pop"].values, data["SVI"].values])
+            x_max = np.nanmax(np.r_[data["Pop"].values, data["SVI"].values])
+            x_range = x_max - x_min
+            offset = x_range * 0.05 if x_range > 0 else 0.5
 
-        ax.set_yticks(y_pos)
-        ax.set_yticklabels(data["Strategy_Display"].astype(str), fontsize=FS_TICK)
-        ax.grid(axis="x", linestyle="--", alpha=0.5)
+            for i, (p, s) in enumerate(zip(data["Pop"].values, data["SVI"].values)):
+                if np.isclose(p, s, atol=eps_identical, rtol=0.0):
+                    ax.text(
+                        p + offset * 0.6,
+                        i,
+                        f"{p:.1f}",
+                        va="center",
+                        ha="left",
+                        fontsize=annotation_size,
+                        fontweight="normal",
+                        color=c_neu,
+                        alpha=0.85,
+                    )
+                else:
+                    ha_p = "right" if p < s else "left"
+                    off_p = -offset * 0.6 if p < s else offset * 0.6
+                    ax.text(
+                        p + off_p,
+                        i,
+                        f"{p:.1f}",
+                        va="center",
+                        ha=ha_p,
+                        fontsize=annotation_size,
+                        fontweight="normal",
+                        color=c_pop,
+                        alpha=0.85,
+                    )
 
-        # Per-subplot x label (requested)
-        style_axis(ax, title=scen, xlabel="Recovery time T80 (hours)")
+                    ha_s = "left" if p < s else "right"
+                    off_s = offset * 0.6 if p < s else -offset * 0.6
+                    ax.text(
+                        s + off_s,
+                        i,
+                        f"{s:.1f}",
+                        va="center",
+                        ha=ha_s,
+                        fontsize=annotation_size,
+                        fontweight="normal",
+                        color=c_svi,
+                        alpha=0.85,
+                    )
 
-        all_vals = np.concatenate([data["Pop"].values, data["SVI"].values])
-        if len(all_vals) > 0:
-            mn, mx = float(np.min(all_vals)), float(np.max(all_vals))
-            pad = (mx - mn) * 0.15 if mx > mn else 1.0
-            ax.set_xlim(max(0.0, mn - pad), mx + pad)
+            ax.set_yticks(y_pos)
+            ax.set_yticklabels(data["Strategy_Display"].astype(str), fontsize=FS_TICK)
+            ax.grid(axis="x", linestyle="--", alpha=0.5)
+            style_axis(ax, title=scenario_name, xlabel=metric_label)
 
-    handles = [
-        mlines.Line2D([], [], color=c_pop, marker="o", linestyle="None", markersize=6, label="Population-weighted (General population)"),
-        mlines.Line2D([], [], color=c_svi, marker="o", linestyle="None", markersize=6, label="SVI-weighted (Vulnerable population)"),
-        mlines.Line2D([], [], color=c_neu, marker="o", linestyle="None", markersize=6, label="Identical recovery time"),
-    ]
-    legend_labels = [handle.get_label() for handle in handles]
+            all_vals = np.concatenate([data["Pop"].values, data["SVI"].values])
+            if len(all_vals) > 0:
+                mn, mx = float(np.min(all_vals)), float(np.max(all_vals))
+                pad = (mx - mn) * 0.15 if mx > mn else 1.0
+                ax.set_xlim(max(0.0, mn - pad), mx + pad)
 
-    plt.tight_layout()
-    plt.subplots_adjust(bottom=0.17, left=0.28, hspace=0.58)
-
-    # Position legend below the axis labels to avoid overlap
-    legend = fig.legend(
-        handles=handles,
-        labels=legend_labels,
-        loc="lower center",
-        bbox_to_anchor=(0.5, -0.02),
-        ncol=3,
-        frameon=False,
-    )
-    format_legend(legend)
-
-    save_plot(fig, stage_dir, "vis_stage6_Dumbbell_RawNames.png")
-
-    # ==========================================================================
-    # FIG 2: Multi-Scenario Diverging Gap Plot
-    # ==========================================================================
-    if scenarios:
-        nrows = len(scenarios)
-        fig_height_cm = max(COMPOSITE_FULL_DEFAULT["height_cm"], 4.8 * nrows + 2.1)
-        fig, axes = plt.subplots(
-            nrows,
-            1,
-            figsize=get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=fig_height_cm),
+        # Legend
+        handles = [
+            mlines.Line2D([], [], color=c_pop, marker="o", linestyle="None", markersize=6, label="Population-weighted"),
+            mlines.Line2D([], [], color=c_svi, marker="o", linestyle="None", markersize=6, label="SVI-weighted"),
+            mlines.Line2D([], [], color=c_neu, marker="o", linestyle="None", markersize=6, label="Identical recovery time"),
+        ]
+        legend = ax.legend(
+            handles=handles,
+            loc="upper left",
+            frameon=False,
+            fontsize=FS_LEGEND,
         )
-        if nrows == 1:
-            axes = [axes]
+        format_legend(legend)
+        
+        fig.subplots_adjust(left=0.28, right=0.985, top=0.92, bottom=0.16)
+        save_plot(fig, stage_dir, f"vis_stage6_Dumbbell_{scenario_name}_{metric_short}.png")
 
+    # Generate individual dumbbell plots for each scenario and metric
+    all_scenarios = df["scenario"].unique().tolist()
+    for scenario in all_scenarios:
+        for metric_col, metric_label, metric_short in [
+            ("T50", "Recovery time T50 (hours)", "T50"),
+            ("T80", "Recovery time T80 (hours)", "T80"),
+        ]:
+            # Filter and prepare data for this scenario + metric
+            wide_metric = df.pivot_table(
+                index=["scenario", "Strategy"], 
+                columns="Weighting", 
+                values=metric_col, 
+                aggfunc="mean"
+            ).reset_index()
+            
+            wide_scenario = wide_metric[wide_metric["scenario"].astype(str) == scenario].copy()
+            if wide_scenario.empty:
+                continue
+            
+            # Add display labels
+            wide_scenario["Strategy_Display"] = wide_scenario["Strategy"].apply(_display_strategy_label)
+            extra_strategy_labels = [
+                lab for lab in wide_scenario["Strategy_Display"].dropna().unique().tolist()
+                if lab not in strategy_order
+            ]
+            wide_scenario["Strategy_Display"] = pd.Categorical(
+                wide_scenario["Strategy_Display"],
+                categories=strategy_order + extra_strategy_labels,
+                ordered=True,
+            )
+            wide_scenario = wide_scenario.sort_values("Strategy_Display").copy()
+            
+            _plot_single_dumbbell_chart(wide_scenario, scenario, metric_label, metric_short)
+
+    # ==========================================================================
+    # FIG 2: Per-Scenario Diverging Gap Plot
+    # ==========================================================================
+    def _plot_single_gap_chart(data, scenario_name, metric_short):
+        """Create a single diverging gap plot for one scenario and metric."""
+        if data.empty or "Gap" not in data.columns:
+            return
+        
+        data = data.copy()
+        y_pos = np.arange(len(data))
+        gaps = pd.to_numeric(data["Gap"], errors="coerce").fillna(0.0).values
+        
+        fig, ax = plt.subplots(figsize=get_figsize("PANEL_FULLROW"))
+        
         c_faster = "#2ca02c"
         c_slower = "#d62728"
         c_neutral = "#8c8c8c"
         gap_neutral_threshold = 0.05
         gap_annotation_size = max(FS_ANNOTATION - 1.2, 5.6)
-
-        max_abs_gap = float(np.nanmax(np.abs(wide_main["Gap"].values))) if not wide_main.empty else 0.0
+        
+        max_abs_gap = float(np.nanmax(np.abs(gaps))) if len(gaps) > 0 else 0.0
         x_limit = max(0.35, max_abs_gap * 1.18)
         text_offset = max(0.03, x_limit * 0.025)
-
-        for ax, scen in zip(axes, scenarios):
-            data = wide_main[wide_main["scenario"].astype(str) == scen].copy()
-            y_pos = np.arange(len(data))
-            gaps = pd.to_numeric(data["Gap"], errors="coerce").fillna(0.0).values
-
-            bar_colors = []
-            for gap in gaps:
-                if gap < -gap_neutral_threshold:
-                    bar_colors.append(c_faster)
-                elif gap > gap_neutral_threshold:
-                    bar_colors.append(c_slower)
-                else:
-                    bar_colors.append(c_neutral)
-
-            ax.barh(
-                y_pos,
-                gaps,
-                color=bar_colors,
-                edgecolor="none",
-                height=0.60,
-                zorder=2,
-            )
-            ax.axvline(0.0, color="#4a4a4a", linewidth=0.9, zorder=1)
-
-            for idx, gap in enumerate(gaps):
-                if gap < -gap_neutral_threshold:
-                    text_color = c_faster
-                elif gap > gap_neutral_threshold:
-                    text_color = c_slower
-                else:
-                    text_color = c_neutral
-
-                if np.isclose(gap, 0.0, atol=gap_neutral_threshold):
-                    x_text = text_offset
-                    ha = "left"
-                else:
-                    x_text = gap + (text_offset if gap > 0 else -text_offset)
-                    ha = "left" if gap > 0 else "right"
-
-                ax.text(
-                    x_text,
-                    idx,
-                    f"{gap:+.1f}",
-                    va="center",
-                    ha=ha,
-                    fontsize=gap_annotation_size,
-                    color=text_color,
-                    alpha=0.9,
-                )
-
-            ax.set_yticks(y_pos)
-            ax.set_yticklabels(data["Strategy_Display"].astype(str), fontsize=FS_TICK)
-            style_axis(
-                ax,
-                title=scen,
-                xlabel="T80 gap (hours): SVI-weighted minus population-weighted",
-                title_weight="normal",
-            )
-            ax.set_xlim(-x_limit, x_limit)
-            ax.grid(axis="x", linestyle="--", alpha=0.45)
-
-        fig.suptitle(
-            "Equity gap in recovery time",
-            fontsize=FS_PANEL,
-            fontweight="normal",
-            y=0.995,
+        
+        bar_colors = []
+        for gap in gaps:
+            if gap < -gap_neutral_threshold:
+                bar_colors.append(c_faster)
+            elif gap > gap_neutral_threshold:
+                bar_colors.append(c_slower)
+            else:
+                bar_colors.append(c_neutral)
+        
+        ax.barh(
+            y_pos,
+            gaps,
+            color=bar_colors,
+            edgecolor="none",
+            height=0.60,
+            zorder=2,
         )
-        plt.tight_layout()
-        plt.subplots_adjust(top=0.95, bottom=0.12, left=0.30, hspace=0.72)
-
+        ax.axvline(0.0, color="#4a4a4a", linewidth=0.9, zorder=1)
+        
+        for idx, gap in enumerate(gaps):
+            if gap < -gap_neutral_threshold:
+                text_color = c_faster
+            elif gap > gap_neutral_threshold:
+                text_color = c_slower
+            else:
+                text_color = c_neutral
+            
+            if np.isclose(gap, 0.0, atol=gap_neutral_threshold):
+                x_text = text_offset
+                ha = "left"
+            else:
+                x_text = gap + (text_offset if gap > 0 else -text_offset)
+                ha = "left" if gap > 0 else "right"
+            
+            ax.text(
+                x_text,
+                idx,
+                f"{gap:+.1f}",
+                va="center",
+                ha=ha,
+                fontsize=gap_annotation_size,
+                color=text_color,
+                alpha=0.9,
+            )
+        
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels(data["Strategy_Display"].astype(str), fontsize=FS_TICK)
+        style_axis(
+            ax,
+            title=scenario_name,
+            xlabel=f"{metric_short} gap (hours): SVI-weighted minus population-weighted",
+            title_weight="normal",
+        )
+        ax.set_xlim(-x_limit, x_limit)
+        ax.grid(axis="x", linestyle="--", alpha=0.45)
+        
         legend_handles = [
             mpatches.Patch(color=c_faster, label="SVI-weighted faster"),
             mpatches.Patch(color=c_slower, label="SVI-weighted slower"),
             mpatches.Patch(color=c_neutral, label="Near-equal recovery"),
         ]
-        legend_labels = [handle.get_label() for handle in legend_handles]
-        legend = fig.legend(
+        legend = ax.legend(
             handles=legend_handles,
-            labels=legend_labels,
-            loc="lower center",
-            bbox_to_anchor=(0.5, 0.02),
-            ncol=3,
+            loc="upper left",
             frameon=False,
+            fontsize=FS_LEGEND,
         )
         format_legend(legend)
-
-        save_plot(fig, stage_dir, "vis_stage6_Diverging_RawNames.png")
+        
+        fig.subplots_adjust(left=0.30, right=0.985, top=0.92, bottom=0.16)
+        save_plot(fig, stage_dir, f"vis_stage6_Diverging_{scenario_name}_{metric_short}.png")
+    
+    # Generate individual diverging gap plots for each scenario and metric
+    for scenario in all_scenarios:
+        for metric_col, metric_label, metric_short in [
+            ("T50", "T50", "T50"),
+            ("T80", "T80", "T80"),
+        ]:
+            # Filter and prepare data for this scenario + metric
+            wide_metric = df.pivot_table(
+                index=["scenario", "Strategy"], 
+                columns="Weighting", 
+                values=metric_col, 
+                aggfunc="mean"
+            ).reset_index()
+            
+            wide_scenario = wide_metric[wide_metric["scenario"].astype(str) == scenario].copy()
+            if wide_scenario.empty:
+                continue
+            
+            # Calculate gap
+            wide_scenario["Gap"] = wide_scenario["SVI"] - wide_scenario["Pop"]
+            
+            # Add display labels
+            wide_scenario["Strategy_Display"] = wide_scenario["Strategy"].apply(_display_strategy_label)
+            extra_strategy_labels = [
+                lab for lab in wide_scenario["Strategy_Display"].dropna().unique().tolist()
+                if lab not in strategy_order
+            ]
+            wide_scenario["Strategy_Display"] = pd.Categorical(
+                wide_scenario["Strategy_Display"],
+                categories=strategy_order + extra_strategy_labels,
+                ordered=True,
+            )
+            wide_scenario = wide_scenario.sort_values("Strategy_Display").copy()
+            
+            _plot_single_gap_chart(wide_scenario, scenario, metric_short)
 
     # ======================================================================
     # Dual Topology Recovery (Stage 3 baseline + Stage 4 rules + Stage 5 GA)
@@ -5297,6 +5340,9 @@ def vis_stage7(gdf):
 
     plt.tight_layout(rect=(0.0, 0.165, 1.0, 1.0))
     save_plot(fig, stage_dir, "vis_stage7_kde_profiles.png")
+    
+    # Export strategy performance summary CSV
+    _export_stage7_strategy_performance_summary()
 
 # ==============================================================================
 # ▶️ Main
