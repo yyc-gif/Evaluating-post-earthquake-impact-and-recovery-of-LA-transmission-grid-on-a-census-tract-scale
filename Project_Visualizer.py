@@ -3459,8 +3459,11 @@ def vis_stage6(
         return
 
     # 2. Process Data (Pop vs SVI)
-    df["T50"] = pd.to_numeric(df["T50"], errors="coerce")
-    df = df[np.isfinite(df["T50"])]
+    if "T80" not in df.columns:
+        print("  [Skip] Stage 6 KPI table does not contain T80.")
+        return
+    df["T80"] = pd.to_numeric(df["T80"], errors="coerce")
+    df = df[np.isfinite(df["T80"])].copy()
     
     def _is_svi(r): 
         """Identify whether a Stage 6 rule label belongs to the SVI-weighted track."""
@@ -3483,12 +3486,16 @@ def vis_stage6(
     wide = df.pivot_table(
         index=["scenario", "Strategy"], 
         columns="Weighting", 
-        values="T50", 
+        values="T80", 
         aggfunc="mean"
     ).reset_index()
 
     if "Pop" not in wide.columns or "SVI" not in wide.columns:
         print("  [Skip] Data does not have both 'Pop' and 'SVI' columns.")
+        return
+    
+    if wide["Pop"].isna().all() or wide["SVI"].isna().all():
+        print("  [Skip] T80 recovery time data not available for equity analysis.")
         return
 
     wide["Gap"] = wide["SVI"] - wide["Pop"]
@@ -3498,41 +3505,29 @@ def vis_stage6(
         """Map raw Stage 6 strategy names to their equity-figure display labels."""
         return stage6_equity_display_name(name)
 
-    main_text_scenarios = ["2pc50", "Northridge", "SanFernando"]
+    counterpart_scenarios = [
+        scen for scen in SCENARIOS if scen in wide["scenario"].astype(str).unique().tolist()
+    ]
     strategy_order = STAGE6_EQUITY_DISPLAY_ORDER.copy()
 
-    wide_main = wide[wide["scenario"].isin(main_text_scenarios)].copy()
-    wide_main["scenario"] = pd.Categorical(
-        wide_main["scenario"],
-        categories=main_text_scenarios,
+    wide_counterpart = wide[wide["scenario"].isin(counterpart_scenarios)].copy()
+    wide_counterpart["scenario"] = pd.Categorical(
+        wide_counterpart["scenario"],
+        categories=counterpart_scenarios,
         ordered=True,
     )
-    wide_main["Strategy_Display"] = wide_main["Strategy"].apply(_display_strategy_label)
+    wide_counterpart["Strategy_Display"] = wide_counterpart["Strategy"].apply(_display_strategy_label)
     extra_strategy_labels = [
-        lab for lab in wide_main["Strategy_Display"].dropna().unique().tolist()
+        lab for lab in wide_counterpart["Strategy_Display"].dropna().unique().tolist()
         if lab not in strategy_order
     ]
-    wide_main["Strategy_Display"] = pd.Categorical(
-        wide_main["Strategy_Display"],
+    wide_counterpart["Strategy_Display"] = pd.Categorical(
+        wide_counterpart["Strategy_Display"],
         categories=strategy_order + extra_strategy_labels,
         ordered=True,
     )
-    wide_main = wide_main.sort_values(["scenario", "Strategy_Display"]).copy()
-    scenarios = [s for s in main_text_scenarios if s in wide_main["scenario"].astype(str).tolist()]
+    wide_counterpart = wide_counterpart.sort_values(["scenario", "Strategy_Display"]).copy()
     
-    # ==========================================================================
-    # FIG 1: Multi-Scenario Dumbbell Plot
-    # ==========================================================================
-    nrows = len(scenarios)
-    fig_height_cm = max(COMPOSITE_FULL_DEFAULT["height_cm"], 4.6 * nrows + 1.8)
-    fig, axes = plt.subplots(
-        nrows,
-        1,
-        figsize=get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=fig_height_cm),
-    )
-    if nrows == 1:
-        axes = [axes]
-
     c_pop = "#1f77b4"  # Blue
     c_svi = "#ff7f0e"  # Orange
     c_neu = "#444444"  # Dark Grey
@@ -3541,9 +3536,25 @@ def vis_stage6(
     annotation_size = max(FS_ANNOTATION - 1.0, 5.8)
 
     eps_identical = 1e-6  # strict identical check (prevents false "identical" markers)
+    handles = [
+        mlines.Line2D([], [], color=c_pop, marker="o", linestyle="None", markersize=6, label="Population-weighted"),
+        mlines.Line2D([], [], color=c_svi, marker="o", linestyle="None", markersize=6, label="SVI-weighted"),
+        mlines.Line2D([], [], color=c_neu, marker="o", linestyle="None", markersize=6, label="Identical recovery time"),
+    ]
 
-    for ax, scen in zip(axes, scenarios):
-        data = wide_main[wide_main["scenario"].astype(str) == scen].copy()
+    # ==========================================================================
+    # FIG 1: Scenario-specific T80 counterpart dumbbell plots
+    # ==========================================================================
+    for scen in counterpart_scenarios:
+        data = wide_counterpart[wide_counterpart["scenario"].astype(str) == scen].copy()
+        data = data.dropna(subset=["Pop", "SVI"])
+        if data.empty:
+            continue
+
+        fig_height_cm = max(COMPOSITE_MEDIUM["height_cm"], 0.62 * len(data) + 3.0)
+        fig, ax = plt.subplots(
+            figsize=get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=fig_height_cm)
+        )
         y_pos = np.arange(len(data))
 
         # --- Handle "not applicable" scenario: all Pop/SVI are zero (placeholder) ---
@@ -3558,16 +3569,26 @@ def vis_stage6(
             ax.grid(axis="x", linestyle="--", alpha=0.5)
 
             ax.set_xlim(0.0, 1.0)
-            style_axis(ax, title=scen, xlabel="Recovery time T50 (hours)")
+            style_axis(ax, title=_stage1_scenario_label(scen), xlabel="Recovery time T80 (hours)")
 
             ax.text(
-                0.5, 0.5, "T50 not applicable",
+                0.5, 0.5, "T80 not applicable",
                 transform=ax.transAxes,
                 ha="center", va="center",
                 fontsize=FS_LABEL,
                 color=c_neu,
                 fontweight="bold",
             )
+            fig.subplots_adjust(left=0.28, right=0.98, top=0.90, bottom=0.24)
+            legend = fig.legend(
+                handles=handles,
+                loc="lower center",
+                bbox_to_anchor=(0.5, 0.04),
+                ncol=3,
+                frameon=False,
+            )
+            format_legend(legend)
+            save_plot(fig, stage_dir, f"vis_stage6_t80_counterpart_dumbbell_{scen}.png")
             continue
 
         # Draw connecting lines
@@ -3660,148 +3681,124 @@ def vis_stage6(
         ax.grid(axis="x", linestyle="--", alpha=0.5)
 
         # Per-subplot x label (requested)
-        style_axis(ax, title=scen, xlabel="Recovery time T50 (hours)")
+        style_axis(
+            ax,
+            title=_stage1_scenario_label(scen),
+            xlabel="Recovery time T80 (hours)",
+        )
 
         all_vals = np.concatenate([data["Pop"].values, data["SVI"].values])
         if len(all_vals) > 0:
             mn, mx = float(np.min(all_vals)), float(np.max(all_vals))
             pad = (mx - mn) * 0.15 if mx > mn else 1.0
             ax.set_xlim(max(0.0, mn - pad), mx + pad)
-
-    handles = [
-        mlines.Line2D([], [], color=c_pop, marker="o", linestyle="None", markersize=6, label="Population-weighted (General population)"),
-        mlines.Line2D([], [], color=c_svi, marker="o", linestyle="None", markersize=6, label="SVI-weighted (Vulnerable population)"),
-        mlines.Line2D([], [], color=c_neu, marker="o", linestyle="None", markersize=6, label="Identical recovery time"),
-    ]
-    legend_labels = [handle.get_label() for handle in handles]
-
-    plt.tight_layout()
-    plt.subplots_adjust(bottom=0.12, left=0.28, hspace=0.58)
-
-    # Bring legend closer (was too far)
-    legend = fig.legend(
-        handles=handles,
-        labels=legend_labels,
-        loc="lower center",
-        bbox_to_anchor=(0.5, 0.02),
-        ncol=3,
-        frameon=False,
-    )
-    format_legend(legend)
-
-    save_plot(fig, stage_dir, "vis_stage6_Dumbbell_RawNames.png")
-
-    # ==========================================================================
-    # FIG 2: Multi-Scenario Diverging Gap Plot
-    # ==========================================================================
-    if scenarios:
-        nrows = len(scenarios)
-        fig_height_cm = max(COMPOSITE_FULL_DEFAULT["height_cm"], 4.8 * nrows + 2.1)
-        fig, axes = plt.subplots(
-            nrows,
-            1,
-            figsize=get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=fig_height_cm),
-        )
-        if nrows == 1:
-            axes = [axes]
-
-        c_faster = "#2ca02c"
-        c_slower = "#d62728"
-        c_neutral = "#8c8c8c"
-        gap_neutral_threshold = 0.05
-        gap_annotation_size = max(FS_ANNOTATION - 1.2, 5.6)
-
-        max_abs_gap = float(np.nanmax(np.abs(wide_main["Gap"].values))) if not wide_main.empty else 0.0
-        x_limit = max(0.35, max_abs_gap * 1.18)
-        text_offset = max(0.03, x_limit * 0.025)
-
-        for ax, scen in zip(axes, scenarios):
-            data = wide_main[wide_main["scenario"].astype(str) == scen].copy()
-            y_pos = np.arange(len(data))
-            gaps = pd.to_numeric(data["Gap"], errors="coerce").fillna(0.0).values
-
-            bar_colors = []
-            for gap in gaps:
-                if gap < -gap_neutral_threshold:
-                    bar_colors.append(c_faster)
-                elif gap > gap_neutral_threshold:
-                    bar_colors.append(c_slower)
-                else:
-                    bar_colors.append(c_neutral)
-
-            ax.barh(
-                y_pos,
-                gaps,
-                color=bar_colors,
-                edgecolor="none",
-                height=0.60,
-                zorder=2,
-            )
-            ax.axvline(0.0, color="#4a4a4a", linewidth=0.9, zorder=1)
-
-            for idx, gap in enumerate(gaps):
-                if gap < -gap_neutral_threshold:
-                    text_color = c_faster
-                elif gap > gap_neutral_threshold:
-                    text_color = c_slower
-                else:
-                    text_color = c_neutral
-
-                if np.isclose(gap, 0.0, atol=gap_neutral_threshold):
-                    x_text = text_offset
-                    ha = "left"
-                else:
-                    x_text = gap + (text_offset if gap > 0 else -text_offset)
-                    ha = "left" if gap > 0 else "right"
-
-                ax.text(
-                    x_text,
-                    idx,
-                    f"{gap:+.1f}",
-                    va="center",
-                    ha=ha,
-                    fontsize=gap_annotation_size,
-                    color=text_color,
-                    alpha=0.9,
-                )
-
-            ax.set_yticks(y_pos)
-            ax.set_yticklabels(data["Strategy_Display"].astype(str), fontsize=FS_TICK)
-            style_axis(
-                ax,
-                title=scen,
-                xlabel="T50 gap (hours): SVI-weighted minus population-weighted",
-                title_weight="normal",
-            )
-            ax.set_xlim(-x_limit, x_limit)
-            ax.grid(axis="x", linestyle="--", alpha=0.45)
-
-        fig.suptitle(
-            "Equity gap in recovery time",
-            fontsize=FS_PANEL,
-            fontweight="normal",
-            y=0.995,
-        )
-        plt.tight_layout()
-        plt.subplots_adjust(top=0.95, bottom=0.12, left=0.30, hspace=0.72)
-
-        legend_handles = [
-            mpatches.Patch(color=c_faster, label="SVI-weighted faster"),
-            mpatches.Patch(color=c_slower, label="SVI-weighted slower"),
-            mpatches.Patch(color=c_neutral, label="Near-equal recovery"),
-        ]
-        legend_labels = [handle.get_label() for handle in legend_handles]
+        fig.subplots_adjust(left=0.28, right=0.98, top=0.90, bottom=0.24)
         legend = fig.legend(
-            handles=legend_handles,
-            labels=legend_labels,
+            handles=handles,
             loc="lower center",
-            bbox_to_anchor=(0.5, 0.02),
+            bbox_to_anchor=(0.5, 0.04),
             ncol=3,
             frameon=False,
         )
         format_legend(legend)
+        save_plot(fig, stage_dir, f"vis_stage6_t80_counterpart_dumbbell_{scen}.png")
 
-        save_plot(fig, stage_dir, "vis_stage6_Diverging_RawNames.png")
+    # ==========================================================================
+    # FIG 2: Scenario-specific T80 diverging gap plots
+    # ==========================================================================
+    c_faster = "#2ca02c"
+    c_slower = "#d62728"
+    c_neutral = "#8c8c8c"
+    gap_neutral_threshold = 0.05
+    gap_annotation_size = max(FS_ANNOTATION - 1.2, 5.6)
+    legend_handles = [
+        mpatches.Patch(color=c_faster, label="SVI-weighted faster"),
+        mpatches.Patch(color=c_slower, label="SVI-weighted slower"),
+        mpatches.Patch(color=c_neutral, label="Near-equal recovery"),
+    ]
+
+    for scen in counterpart_scenarios:
+        data = wide_counterpart[wide_counterpart["scenario"].astype(str) == scen].copy()
+        data = data.dropna(subset=["Pop", "SVI", "Gap"])
+        if data.empty:
+            continue
+
+        fig_height_cm = max(COMPOSITE_MEDIUM["height_cm"], 0.62 * len(data) + 3.2)
+        fig, ax = plt.subplots(
+            figsize=get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=fig_height_cm)
+        )
+        y_pos = np.arange(len(data))
+        gaps = pd.to_numeric(data["Gap"], errors="coerce").fillna(0.0).values
+
+        max_abs_gap = float(np.nanmax(np.abs(gaps))) if gaps.size else 0.0
+        x_limit = max(0.35, max_abs_gap * 1.18)
+        text_offset = max(0.03, x_limit * 0.025)
+
+        bar_colors = []
+        for gap in gaps:
+            if gap < -gap_neutral_threshold:
+                bar_colors.append(c_faster)
+            elif gap > gap_neutral_threshold:
+                bar_colors.append(c_slower)
+            else:
+                bar_colors.append(c_neutral)
+
+        ax.barh(
+            y_pos,
+            gaps,
+            color=bar_colors,
+            edgecolor="none",
+            height=0.60,
+            zorder=2,
+        )
+        ax.axvline(0.0, color="#4a4a4a", linewidth=0.9, zorder=1)
+
+        for idx, gap in enumerate(gaps):
+            if gap < -gap_neutral_threshold:
+                text_color = c_faster
+            elif gap > gap_neutral_threshold:
+                text_color = c_slower
+            else:
+                text_color = c_neutral
+
+            if np.isclose(gap, 0.0, atol=gap_neutral_threshold):
+                x_text = text_offset
+                ha = "left"
+            else:
+                x_text = gap + (text_offset if gap > 0 else -text_offset)
+                ha = "left" if gap > 0 else "right"
+
+            ax.text(
+                x_text,
+                idx,
+                f"{gap:+.1f}",
+                va="center",
+                ha=ha,
+                fontsize=gap_annotation_size,
+                color=text_color,
+                alpha=0.9,
+            )
+
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels(data["Strategy_Display"].astype(str), fontsize=FS_TICK)
+        style_axis(
+            ax,
+            title=f"{_stage1_scenario_label(scen)}: T80 equity gap",
+            xlabel="T80 gap (hours): SVI-weighted minus population-weighted",
+            title_weight="normal",
+        )
+        ax.set_xlim(-x_limit, x_limit)
+        ax.grid(axis="x", linestyle="--", alpha=0.45)
+        fig.subplots_adjust(left=0.30, right=0.98, top=0.90, bottom=0.24)
+        legend = fig.legend(
+            handles=legend_handles,
+            loc="lower center",
+            bbox_to_anchor=(0.5, 0.04),
+            ncol=3,
+            frameon=False,
+        )
+        format_legend(legend)
+        save_plot(fig, stage_dir, f"vis_stage6_t80_counterpart_gap_{scen}.png")
 
     # ======================================================================
     # Dual Topology Recovery (Stage 3 baseline + Stage 4 rules + Stage 5 GA)
