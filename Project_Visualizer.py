@@ -1741,7 +1741,7 @@ def vis_stage2():
         )
         style_colorbar(ax.collections[0].colorbar)
 
-        style_axis(ax, title="Centrality correlations (auxiliary)", xrotation=45, yrotation=0)
+        style_axis(ax, title="Correlation among substation priority metrics", xrotation=45, yrotation=0)
         for lab in ax.get_xticklabels():
             lab.set_horizontalalignment("right")
 
