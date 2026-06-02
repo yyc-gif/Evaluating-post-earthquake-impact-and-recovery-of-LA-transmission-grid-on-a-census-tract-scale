@@ -832,6 +832,253 @@ def plot_map(
     # Save
     save_plot(fig, output_dir, filename)
 
+
+def _stage1_output_dir() -> str | None:
+    """Return the Stage 1 output directory, preferring the expanded run."""
+    candidates = [
+        os.path.join(OUTPUT_ROOT, "Stage 1 Output_expanded"),
+        os.path.join(OUTPUT_ROOT, "Stage 1 Output"),
+    ]
+    for candidate in candidates:
+        if os.path.exists(candidate):
+            return candidate
+    return None
+
+
+def _stage1_scenario_label(scenario: str) -> str:
+    return {
+        "2pc50": "2%-in-50 yr",
+        "Northridge": "Northridge",
+        "SanFernando": "San Fernando",
+        "LongBeach": "Long Beach",
+    }.get(scenario, scenario)
+
+
+def _stage1_load_supply(stage_dir: str, scenario: str) -> pd.Series | None:
+    supply_file = os.path.join(stage_dir, f"MC_Tract_Supply_{scenario}.csv")
+    if not os.path.exists(supply_file):
+        return None
+
+    df = pd.read_csv(supply_file)
+    if ("tract_id" not in df.columns) or ("supply" not in df.columns):
+        return None
+
+    tract_id = df["tract_id"].astype(str).str.split(".").str[0].str.strip()
+    supply = pd.to_numeric(df["supply"], errors="coerce").clip(0.0, 1.0)
+    return pd.Series(supply.values, index=tract_id, name="supply")
+
+
+def _stage1_match_supply_to_gdf(gdf, supply: pd.Series):
+    if gdf is None or supply is None:
+        return None
+
+    data_df = supply.to_frame(name="supply")
+    data_df.index = data_df.index.astype(str).str.split(".").str[0].str.strip()
+
+    gdf_base = gdf.copy()
+    gdf_base["tract_id"] = (
+        gdf_base["tract_id"].astype(str).str.split(".").str[0].str.strip()
+    )
+
+    matched_gdf = None
+    best_match_count = 0
+    strategies = [
+        (lambda s: s, False),
+        (lambda s: s.str.zfill(11), False),
+        (lambda s: s, True),
+        (lambda s: s.str[-6:], False),
+    ]
+
+    for func, zfill_gdf in strategies:
+        temp_data = data_df.copy()
+        temp_gdf = gdf_base.copy()
+        if zfill_gdf:
+            temp_gdf["tract_id"] = temp_gdf["tract_id"].str.zfill(11)
+        else:
+            temp_data.index = func(temp_data.index)
+
+        merged = temp_gdf.merge(
+            temp_data,
+            left_on="tract_id",
+            right_index=True,
+            how="inner",
+        )
+        if len(merged) > best_match_count:
+            best_match_count = len(merged)
+            matched_gdf = merged
+
+    return matched_gdf if best_match_count > 0 else None
+
+
+def plot_stage1_supplemental_diagnostics(gdf, stage_dir: str) -> None:
+    """Create cross-scenario Stage 1 diagnostics for supplementary material."""
+    scenario_order = ["Northridge", "SanFernando", "LongBeach", "2pc50"]
+    palette = {
+        "Northridge": "#2166ac",
+        "SanFernando": "#1b7837",
+        "LongBeach": "#d95f0e",
+        "2pc50": "#b2182b",
+    }
+
+    damage_frames = []
+    for scen in scenario_order:
+        dev_file = os.path.join(stage_dir, f"MC_Device_Damage_AvgDS_{scen}.csv")
+        if not os.path.exists(dev_file):
+            continue
+        df = pd.read_csv(dev_file)
+        if "avg_damage_state" not in df.columns:
+            continue
+        damage_frames.append(
+            pd.DataFrame(
+                {
+                    "scenario": scen,
+                    "scenario_label": _stage1_scenario_label(scen),
+                    "avg_damage_state": pd.to_numeric(
+                        df["avg_damage_state"],
+                        errors="coerce",
+                    ),
+                }
+            )
+        )
+
+    if damage_frames:
+        damage_df = pd.concat(damage_frames, ignore_index=True).dropna()
+        label_order = [_stage1_scenario_label(s) for s in scenario_order]
+        label_palette = {_stage1_scenario_label(s): palette[s] for s in scenario_order}
+        fig, ax = plt.subplots(figsize=get_figsize("PANEL_FULLROW", height_cm=7.0))
+        sns.boxplot(
+            data=damage_df,
+            x="scenario_label",
+            y="avg_damage_state",
+            hue="scenario_label",
+            order=label_order,
+            palette=label_palette,
+            legend=False,
+            width=0.48,
+            linewidth=0.7,
+            fliersize=2.0,
+            ax=ax,
+        )
+        sns.stripplot(
+            data=damage_df,
+            x="scenario_label",
+            y="avg_damage_state",
+            order=label_order,
+            color="black",
+            alpha=0.22,
+            size=1.8,
+            jitter=0.18,
+            ax=ax,
+        )
+        style_axis(
+            ax,
+            title="Substation damage severity across scenarios",
+            xlabel="Scenario",
+            ylabel="Average damage state (0-4)",
+        )
+        ax.set_ylim(0.0, 4.1)
+        save_plot(fig, stage_dir, "vis_stage1_supp_damage_severity_scenarios.png")
+
+    fig, ax = plt.subplots(figsize=get_figsize("PANEL_FULLROW", height_cm=7.0))
+    plotted_any = False
+    for scen in scenario_order:
+        supply = _stage1_load_supply(stage_dir, scen)
+        if supply is None:
+            continue
+        values = supply.dropna().astype(float).clip(0.0, 1.0).sort_values().values
+        if values.size == 0:
+            continue
+        y = np.arange(1, values.size + 1) / values.size
+        ax.step(
+            values,
+            y,
+            where="post",
+            color=palette[scen],
+            linewidth=1.4,
+            label=_stage1_scenario_label(scen),
+        )
+        plotted_any = True
+
+    if plotted_any:
+        style_axis(
+            ax,
+            title="Initial tract-level supply across scenarios",
+            xlabel="Initial tract-level supply (0-1)",
+            ylabel="Cumulative share of tracts",
+        )
+        ax.set_xlim(0.0, 1.0)
+        ax.set_ylim(0.0, 1.0)
+        legend = ax.legend(loc="lower right", frameon=True)
+        format_legend(legend)
+        save_plot(fig, stage_dir, "vis_stage1_supp_initial_supply_ecdf_scenarios.png")
+    else:
+        plt.close(fig)
+
+    if gdf is not None:
+        base_cmap = plt.colormaps.get_cmap("RdBu")
+        supply_cmap = mcolors.LinearSegmentedColormap.from_list(
+            "stage1_supply_rd_bu",
+            base_cmap(np.linspace(0.0, 1.0, 256)),
+        )
+        fig, axes = plt.subplots(
+            2,
+            2,
+            figsize=get_figsize("COMPOSITE_FULL_DENSE", height_cm=15.0),
+        )
+        axes = axes.ravel()
+        for ax, scen in zip(axes, scenario_order):
+            supply = _stage1_load_supply(stage_dir, scen)
+            matched = _stage1_match_supply_to_gdf(gdf, supply)
+            if matched is not None:
+                matched.plot(
+                    column="supply",
+                    ax=ax,
+                    legend=False,
+                    cmap=supply_cmap,
+                    vmin=0.0,
+                    vmax=1.0,
+                    linewidth=0.12,
+                    edgecolor="white",
+                    missing_kwds={"color": "lightgrey", "edgecolor": "none"},
+                )
+                minx, miny, maxx, maxy = matched.total_bounds
+                dx = max(maxx - minx, 1e-9)
+                dy = max(maxy - miny, 1e-9)
+                ax.set_xlim(minx - 0.035 * dx, maxx + 0.035 * dx)
+                ax.set_ylim(miny - 0.035 * dy, maxy + 0.035 * dy)
+            ax.set_title(_stage1_scenario_label(scen), fontsize=FS_TITLE)
+            ax.axis("off")
+
+        sm = plt.cm.ScalarMappable(
+            cmap=supply_cmap,
+            norm=plt.Normalize(vmin=0.0, vmax=1.0),
+        )
+        sm._A = []
+        cbar = fig.colorbar(
+            sm,
+            ax=axes.tolist(),
+            fraction=0.025,
+            pad=0.02,
+            ticks=np.linspace(0.0, 1.0, 5),
+        )
+        style_colorbar(cbar, label="Initial tract-level supply (0-1)")
+        fig.suptitle(
+            "Spatial patterns of initial tract-level supply",
+            fontsize=FS_SUPTITLE,
+            fontweight="semibold",
+            y=0.98,
+        )
+        fig.subplots_adjust(
+            left=0.02,
+            right=0.86,
+            top=0.90,
+            bottom=0.04,
+            wspace=0.06,
+            hspace=0.18,
+        )
+        save_plot(fig, stage_dir, "vis_stage1_supp_initial_supply_maps_scenarios.png")
+
+
 def vis_stage1(gdf):
     """
     Stage 1 visualization (TRACT SUPPLY + SUBSTATION AVG DS).
@@ -845,9 +1092,9 @@ def vis_stage1(gdf):
       - vis_stage1_hist_supply_<SCEN>.png
       - vis_stage1_hist_sub_avg_ds_<SCEN>.png
     """
-    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 1 Output")
-    if not os.path.exists(stage_dir):
-        print(f"  [Warning] Directory not found: {stage_dir}")
+    stage_dir = _stage1_output_dir()
+    if stage_dir is None:
+        print(f"  [Warning] Directory not found: {os.path.join(OUTPUT_ROOT, 'Stage 1 Output')}")
         return
 
     print("--- Visualizing Stage 1 ---")
@@ -983,6 +1230,8 @@ def vis_stage1(gdf):
             ax.set_xlim(0.0, 4.0)
             save_plot(fig, stage_dir, f"vis_stage1_hist_sub_avg_ds_{scen}.png")
             plt.close(fig)
+
+    plot_stage1_supplemental_diagnostics(gdf, stage_dir)
 
 # ==============================================================================
 # 2️⃣ Stage 2: Topology
