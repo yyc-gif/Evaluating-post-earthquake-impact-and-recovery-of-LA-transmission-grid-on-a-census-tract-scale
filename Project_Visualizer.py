@@ -972,7 +972,6 @@ def plot_stage1_supplemental_diagnostics(gdf, stage_dir: str) -> None:
         )
         style_axis(
             ax,
-            title="Substation damage severity across scenarios",
             xlabel="Scenario",
             ylabel="Average damage state (0-4)",
         )
@@ -1002,7 +1001,6 @@ def plot_stage1_supplemental_diagnostics(gdf, stage_dir: str) -> None:
     if plotted_any:
         style_axis(
             ax,
-            title="Initial tract-level supply across scenarios",
             xlabel="Initial tract-level supply (0-1)",
             ylabel="Cumulative share of tracts",
         )
@@ -1062,12 +1060,6 @@ def plot_stage1_supplemental_diagnostics(gdf, stage_dir: str) -> None:
             ticks=np.linspace(0.0, 1.0, 5),
         )
         style_colorbar(cbar, label="Initial tract-level supply (0-1)")
-        fig.suptitle(
-            "Spatial patterns of initial tract-level supply",
-            fontsize=FS_SUPTITLE,
-            fontweight="semibold",
-            y=0.98,
-        )
         fig.subplots_adjust(
             left=0.02,
             right=0.86,
@@ -1926,7 +1918,6 @@ def vis_stage2():
             )
             style_axis(
                 ax,
-                title="Impact vs impact population",
                 xlabel="Impact population",
                 ylabel="Impact (lambda2-based)",
             )
@@ -1990,7 +1981,7 @@ def vis_stage2():
         )
         style_colorbar(ax.collections[0].colorbar)
 
-        style_axis(ax, title="Correlation among substation priority metrics", xrotation=45, yrotation=0)
+        style_axis(ax, xrotation=45, yrotation=0)
         for lab in ax.get_xticklabels():
             lab.set_horizontalalignment("right")
 
@@ -2564,7 +2555,6 @@ def plot_stage4_crew_base_map(stage4_dir: str) -> None:
 
     style_axis(
         ax,
-        title="Active crew origin proxies",
         xlabel="Longitude",
         ylabel="Latitude",
     )
@@ -4585,7 +4575,6 @@ def vis_stage7(gdf):
 
         style_axis(
             ax,
-            title="PCA scree plot",
             xlabel="Principal component",
             ylabel="Eigenvalue",
             title_size=FS_LABEL,
@@ -4700,7 +4689,6 @@ def vis_stage7(gdf):
 
         style_axis(
             ax,
-            title="K-means elbow plot (standardized features)",
             xlabel="Number of clusters (k)",
             ylabel="Inertia",
             title_size=FS_LABEL,
@@ -4850,7 +4838,6 @@ def vis_stage7(gdf):
 
             style_axis(
                 ax,
-                title="Loadings",
                 xlabel="Principal component",
                 ylabel="Features",
                 xrotation=0,
@@ -4894,7 +4881,6 @@ def vis_stage7(gdf):
         )
         style_axis(
             ax,
-            title="PCA projection colored by cluster",
             xlabel=_pc_axis_label("PC1"),
             ylabel=_pc_axis_label("PC2"),
             title_pad=2.5,
@@ -4929,7 +4915,6 @@ def vis_stage7(gdf):
                     label=clu,
                 )
 
-            ax.set_title("PCA projection colored by cluster", fontsize=FS_LABEL, fontweight="normal", pad=4.0)
             ax.set_xlabel("")
             ax.set_ylabel("")
             ax.set_zlabel("")
@@ -5131,7 +5116,7 @@ def vis_stage7(gdf):
             )
             format_legend(legend)
 
-            style_axis(ax, title="Clusters")
+            style_axis(ax)
             ax.axis("off")
             fig.subplots_adjust(left=0.02, right=0.98, top=0.91, bottom=0.14)
 
@@ -5197,7 +5182,6 @@ def vis_stage7(gdf):
         fig.subplots_adjust(left=0.36)
         style_axis(
             ax,
-            title="Profiles",
             xlabel="Cluster",
             ylabel="Feature",
         )
