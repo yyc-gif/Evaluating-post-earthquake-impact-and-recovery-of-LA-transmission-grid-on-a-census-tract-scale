@@ -1,0 +1,6 @@
+| Parameter | Tested range | Max within-strategy change in T80_pop (h) | Rank stability (Spearman rho) | Interpretation |
+| --- | --- | --- | --- | --- |
+| Crew availability | (0.5)–(2.0) | 49.7 | 0.60–1.00 | Controls recovery speed; low rank stability at 2.0 reflects near-convergence of strategy T80 values. |
+| Repair-time scale | (0.75)–(1.50) | 45.1 | 0.99–1.00 | Shifts recovery milestones strongly but preserves strategy ordering. |
+| IDW threshold $\theta_W$ | (0.05)–(0.20) | 1.1 | 1.00 | Changes dependency concentration; aggregate recovery milestones remain nearly flat. |
+| Source-gate threshold $\tau_g$ | (0.40)–(0.60) | 5.7 | 1.00 | Moderate model-boundary effect; leading strategy group remains stable. |

@@ -35,7 +35,7 @@ git lfs pull
 - `Project_Visualizer.py` and `Project_Visualizer_expanded.py` - Generate maps, recovery curves, Gantt charts, logistics heatmaps, KPI plots, and Stage 7 clustering figures.
 - `Data/` - Required input data and intermediate mapping/topology files.
 - `Stage 1 Output_expanded/` through `Stage 7 Output_expanded/` - Expanded-area pipeline outputs.
-- `Sensitivity Output_expanded/` - Sensitivity experiment outputs.
+- `Sensitivity Output_clean/` - Validated `2pc50`-only sensitivity figures and tables.
 
 ## Quickstart
 

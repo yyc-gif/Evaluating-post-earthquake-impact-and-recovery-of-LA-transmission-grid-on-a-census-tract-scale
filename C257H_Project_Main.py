@@ -28,6 +28,7 @@ LA power grid. It covers:
 - Stage 5:   GA-Based Scheduling Optimization
 - Stage 6:   Consolidation, KPI Calculation & Plotting
 - Stage 7:   Tract-Level Typology (K-Means + PCA Diagnostics)
+- Sensitivity: 2%-in-50-year scenario only
 """
 
 # --- Standard library imports -------------------------------------------------
@@ -176,6 +177,7 @@ class Config:
     RUN_STAGE_5: bool = True
     RUN_STAGE_6: bool = True
     RUN_STAGE_7: bool = True
+    RUN_SENSITIVITY_ANALYSIS: bool = True
 
 def setup_logging(log_file: Path) -> logging.Logger:
     """
@@ -4966,6 +4968,11 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
             stage_1_data,
             out_dirs,
         )
+
+        if cfg.RUN_SENSITIVITY_ANALYSIS:
+            from build_sensitivity_outputs import run_sensitivity_analysis_2pc50
+
+            run_sensitivity_analysis_2pc50()
 
         logger.info("=" * 70)
         logger.info("PIPELINE COMPLETED SUCCESSFULLY")
