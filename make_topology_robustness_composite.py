@@ -28,6 +28,8 @@ HALF_PANEL_WIDTH_CM = 8.9
 HORIZONTAL_GAP_CM = 0.7
 VERTICAL_GAP_CM = 0.55
 TOP_LABEL_MARGIN_CM = 0.38
+MAP_PANEL_HEIGHT_CM = 6.6
+ROBUSTNESS_PANEL_HEIGHT_CM = 6.9
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 MANUSCRIPT_DIR = PROJECT_ROOT / "Manuscript_Figures"
@@ -64,7 +66,7 @@ def render_panel_a(temp_root: Path) -> Path:
 
     topology_visualization.VALIDATION_MAP_LAYOUT_CM = {
         "width_cm": HALF_PANEL_WIDTH_CM,
-        "height_cm": 7.2,
+        "height_cm": MAP_PANEL_HEIGHT_CM,
     }
 
     cfg = replace(
@@ -216,7 +218,10 @@ def render_panel_b(temp_root: Path) -> Path:
     }
     with plt.rc_context(publication_style):
         fig, ax = plt.subplots(
-            figsize=(cm_to_inch(HALF_PANEL_WIDTH_CM), cm_to_inch(7.2))
+            figsize=(
+                cm_to_inch(HALF_PANEL_WIDTH_CM),
+                cm_to_inch(MAP_PANEL_HEIGHT_CM),
+            )
         )
         city.plot(
             ax=ax,
@@ -274,14 +279,14 @@ def render_panel_b(temp_root: Path) -> Path:
                 label="CEC substations",
             ),
         ]
-        fig.subplots_adjust(left=0.12, right=0.985, top=0.985, bottom=0.31)
+        fig.subplots_adjust(left=0.13, right=0.985, top=0.975, bottom=0.30)
         ax.legend(
             handles=legend_handles,
             loc="upper center",
             bbox_to_anchor=(0.5, -0.245),
             ncol=2,
             frameon=False,
-            fontsize=7.0,
+            fontsize=6.7,
             handlelength=1.25,
             handletextpad=0.3,
             columnspacing=0.7,
@@ -301,6 +306,119 @@ def render_panel_b(temp_root: Path) -> Path:
     return output_png
 
 
+def render_panel_c(temp_root: Path) -> Path:
+    """Render the robustness comparison from the Stage 2 CSV outputs."""
+    output_png = temp_root / "robustness_comparison.png"
+    stage2 = PROJECT_ROOT / "Stage 2 Output_expanded"
+    series = [
+        (
+            stage2 / "percolation_curve_impact.csv",
+            "Impact lambda2-targeted",
+            "#b22222",
+            "o",
+            "-",
+        ),
+        (
+            stage2 / "percolation_curve_random.csv",
+            "Random baseline",
+            "#888888",
+            "s",
+            "--",
+        ),
+        (
+            stage2 / "exploratory_percolation_curve_degree.csv",
+            "Degree-targeted",
+            "#2ca25f",
+            "^",
+            "-",
+        ),
+        (
+            stage2 / "exploratory_percolation_curve_betweenness_centrality.csv",
+            "Betweenness-targeted",
+            "#d95f02",
+            "D",
+            "-",
+        ),
+        (
+            stage2 / "exploratory_percolation_curve_closeness_centrality.csv",
+            "Closeness-targeted",
+            "#3182bd",
+            "v",
+            "-",
+        ),
+    ]
+    style = {
+        "font.family": "sans-serif",
+        "font.sans-serif": ["Arial", "DejaVu Sans"],
+        "font.size": 8.0,
+        "axes.labelsize": 8.5,
+        "xtick.labelsize": 7.5,
+        "ytick.labelsize": 7.5,
+        "legend.fontsize": 7.0,
+        "axes.linewidth": 0.6,
+        "xtick.major.width": 0.6,
+        "ytick.major.width": 0.6,
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
+    }
+    with plt.rc_context(style):
+        fig, ax = plt.subplots(
+            figsize=(
+                cm_to_inch(FIGURE_WIDTH_CM),
+                cm_to_inch(ROBUSTNESS_PANEL_HEIGHT_CM),
+            )
+        )
+        for path, label, color, marker, linestyle in series:
+            data = pd.read_csv(path)
+            ax.plot(
+                pd.to_numeric(data["nodes_removed"], errors="coerce"),
+                pd.to_numeric(data["lcc_fraction"], errors="coerce"),
+                color=color,
+                linestyle=linestyle,
+                linewidth=1.0,
+                marker=marker,
+                markersize=3.2,
+                markeredgewidth=0.35,
+                markevery=1,
+                label=label,
+            )
+        ax.set_xlim(-1, 92)
+        ax.set_ylim(-0.02, 1.03)
+        ax.set_xlabel("Number of substations removed")
+        ax.set_ylabel("Largest connected component fraction")
+        ax.grid(True, color="#d9d9d9", alpha=0.72, linewidth=0.45)
+        ax.set_axisbelow(True)
+        for spine in ax.spines.values():
+            spine.set_color("#bdbdbd")
+            spine.set_linewidth(0.6)
+        ax.tick_params(direction="out", color="#4d4d4d")
+        handles, labels = ax.get_legend_handles_labels()
+        fig.legend(
+            handles,
+            labels,
+            loc="upper center",
+            bbox_to_anchor=(0.53, 0.975),
+            ncol=3,
+            frameon=False,
+            fontsize=7.0,
+            handlelength=1.7,
+            handletextpad=0.4,
+            columnspacing=1.0,
+            labelspacing=0.35,
+        )
+        fig.subplots_adjust(left=0.105, right=0.985, top=0.79, bottom=0.17)
+        fig.savefig(
+            output_png,
+            dpi=EXPORT_DPI,
+            facecolor="white",
+            edgecolor="none",
+            bbox_inches=None,
+            pad_inches=0,
+        )
+        plt.close(fig)
+    return output_png
+
+
 def main() -> None:
     MANUSCRIPT_DIR.mkdir(parents=True, exist_ok=True)
     temp_root = Path(tempfile.mkdtemp(prefix="topology_composite_"))
@@ -308,9 +426,7 @@ def main() -> None:
         panel_paths = {
             "a": render_panel_a(temp_root),
             "b": render_panel_b(temp_root),
-            "c": PROJECT_ROOT
-            / "Stage 2 Output_expanded"
-            / "vis_stage2_percolation_compare_targeted_attacks.png",
+            "c": render_panel_c(temp_root),
         }
         panels = {key: load_panel(path) for key, path in panel_paths.items()}
 
@@ -374,7 +490,7 @@ def main() -> None:
                 fig.text(
                     x_cm / FIGURE_WIDTH_CM,
                     y_cm / figure_height_cm,
-                    f"({key})",
+                    key.upper(),
                     ha="left",
                     va="bottom",
                     fontsize=9.5,
