@@ -101,7 +101,7 @@ def style_axis(ax: plt.Axes, grid: bool = True) -> None:
         ax.set_axisbelow(True)
 
 
-def panel_label(ax: plt.Axes, label: str, x: float = -0.10, y: float = 1.04) -> None:
+def panel_label(ax: plt.Axes, label: str, x: float = -0.10, y: float = 1.02) -> None:
     ax.text(
         x,
         y,
@@ -135,15 +135,15 @@ def make_t80_composite(tracts: gpd.GeoDataFrame) -> None:
     mapped = tracts.merge(kpis[["tract_id", "T80"]], on="tract_id", how="inner")
 
     with mpl.rc_context(RC):
-        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(7.8)))
+        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(7.35)))
         gs = fig.add_gridspec(
             1,
             2,
             width_ratios=[0.92, 1.18],
             left=0.070,
             right=0.955,
-            bottom=0.17,
-            top=0.91,
+            bottom=0.16,
+            top=0.90,
             wspace=0.18,
         )
         ax_hist = fig.add_subplot(gs[0, 0])
@@ -196,8 +196,8 @@ def make_t80_composite(tracts: gpd.GeoDataFrame) -> None:
         cbar.ax.tick_params(labelsize=7.0, width=0.5, length=2.5)
         cbar.outline.set_linewidth(0.5)
 
-        panel_label(ax_hist, "A", x=-0.14)
-        panel_label(ax_map, "B", x=-0.03)
+        panel_label(ax_hist, "A", x=-0.12, y=1.025)
+        panel_label(ax_map, "B", x=-0.055, y=1.025)
         save_pair(fig, "t80_distribution_and_spatial_pattern_composite")
 
 
@@ -387,16 +387,16 @@ def make_recovery_composite() -> None:
     kpis["T80"] = pd.to_numeric(kpis["T80"], errors="coerce")
 
     with mpl.rc_context(RC):
-        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(20.3)))
+        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(18.4)))
         gs = fig.add_gridspec(
             3,
             2,
-            height_ratios=[0.92, 0.96, 1.08],
+            height_ratios=[0.92, 1.12, 1.06],
             left=0.17,
             right=0.985,
-            bottom=0.135,
-            top=0.975,
-            hspace=0.52,
+            bottom=0.14,
+            top=0.97,
+            hspace=0.43,
             wspace=0.31,
         )
         ax_a = fig.add_subplot(gs[0, :])
@@ -409,17 +409,17 @@ def make_recovery_composite() -> None:
         plot_graph_metric(ax_c, "lcc_fraction", "2pc50: connectivity", "Giant component fraction")
         plot_graph_metric(ax_d, "avg_degree", "2pc50: average degree", "Average degree (k)")
 
-        panel_label(ax_a, "A", x=-0.15, y=1.02)
-        panel_label(ax_b, "B", x=-0.15, y=1.02)
-        panel_label(ax_c, "C", x=-0.25, y=1.02)
-        panel_label(ax_d, "D", x=-0.23, y=1.02)
+        panel_label(ax_a, "A", x=-0.13, y=1.015)
+        panel_label(ax_b, "B", x=-0.13, y=1.015)
+        panel_label(ax_c, "C", x=-0.19, y=1.015)
+        panel_label(ax_d, "D", x=-0.18, y=1.015)
 
         handles, labels = ax_c.get_legend_handles_labels()
         legend = fig.legend(
             handles,
             labels,
             loc="lower center",
-            bbox_to_anchor=(0.55, 0.018),
+            bbox_to_anchor=(0.55, 0.022),
             ncol=4,
             frameon=False,
             fontsize=6.8,
@@ -461,7 +461,7 @@ def plot_kde_block(
         3,
         3,
         height_ratios=[1.0, 1.0, 0.16],
-        hspace=0.78,
+        hspace=0.58,
         wspace=0.40,
     )
     axes: list[plt.Axes] = []
@@ -671,18 +671,18 @@ def make_stage7_composite(tracts: gpd.GeoDataFrame) -> None:
     cluster_counts = data["cluster"].value_counts().sort_index(key=lambda index: index.astype(int))
 
     with mpl.rc_context(RC):
-        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(17.6)))
+        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(14.6)))
         outer = fig.add_gridspec(
             2,
             2,
-            width_ratios=[1.0, 1.0],
-            height_ratios=[1.14, 1.0],
+            width_ratios=[1.12, 0.88],
+            height_ratios=[1.20, 0.86],
             left=0.055,
             right=0.965,
-            bottom=0.045,
-            top=0.955,
-            hspace=0.27,
-            wspace=0.30,
+            bottom=0.055,
+            top=0.94,
+            hspace=0.16,
+            wspace=0.25,
         )
 
         kde_axes = plot_kde_block(fig, outer[0, 0], data, cluster_counts)
@@ -695,10 +695,10 @@ def make_stage7_composite(tracts: gpd.GeoDataFrame) -> None:
         plot_cluster_map(ax_clusters, mapped, map_bounds)
         plot_hotspot_map(fig, ax_hotspots, mapped, map_bounds)
 
-        panel_label(kde_axes[0], "A", x=-0.28, y=1.10)
-        panel_label(ax_heat, "B", x=-0.32, y=1.08)
-        panel_label(ax_clusters, "C", x=-0.06, y=1.02)
-        panel_label(ax_hotspots, "D", x=-0.07, y=1.02)
+        panel_label(kde_axes[0], "A", x=-0.23, y=1.035)
+        panel_label(ax_heat, "B", x=-0.20, y=1.015)
+        panel_label(ax_clusters, "C", x=-0.055, y=1.015)
+        panel_label(ax_hotspots, "D", x=-0.06, y=1.015)
         save_pair(fig, "recovery_vulnerability_typology_composite")
 
 

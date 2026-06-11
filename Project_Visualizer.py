@@ -5702,7 +5702,7 @@ def vis_stage7(gdf):
 
     n_cols = 3
     n_rows = math.ceil(len(feat_cols) / n_cols)
-    fig_height_cm = max(12.8, 4.0 * n_rows + 4.2)
+    fig_height_cm = max(11.6, 3.95 * n_rows + 3.2)
     fig, axes = plt.subplots(
         n_rows,
         n_cols,
@@ -5717,7 +5717,7 @@ def vis_stage7(gdf):
         x_col = f"{col}__log1p" if col in log1p_cols else col
         panel_title = PRETTY_VAR_NAMES.get(col, col)
         if col in log1p_cols:
-            panel_title = f"{panel_title} (log axis)"
+            panel_title = f"{panel_title}\n(log axis)"
 
         kde_kwargs = {
             "data": df_plot,
@@ -5726,7 +5726,7 @@ def vis_stage7(gdf):
             "hue_order": clusters_label_order,
             "common_norm": False,
             "fill": False,
-            "linewidth": 2.0,
+            "linewidth": 1.25,
             "palette": cluster_label_palette,
             "ax": ax,
             "warn_singular": False,
@@ -5751,7 +5751,7 @@ def vis_stage7(gdf):
                 float(np.median(subset)),
                 color=cluster_color_map.get(cluster, "black"),
                 linestyle="--",
-                linewidth=1.2,
+                linewidth=0.8,
                 alpha=0.9,
             )
 
@@ -5789,26 +5789,26 @@ def vis_stage7(gdf):
         )
         for cluster in clusters_order
     ]
-    ref_handle = Line2D([0], [0], color="black", lw=1.6, linestyle="--", label="Dashed lines = cluster median")
+    ref_handle = Line2D([0], [0], color="black", lw=1.2, linestyle="--", label="Cluster median")
     if legend_ax is not None:
         fig.delaxes(legend_ax)
 
     legend = fig.legend(
         handles=[*cluster_handles, ref_handle],
         loc="lower center",
-        bbox_to_anchor=(0.5, 0.035),
+        bbox_to_anchor=(0.5, 0.022),
         frameon=False,
         ncol=4,
-        columnspacing=1.0,
-        handletextpad=0.55,
-        handlelength=1.7,
+        columnspacing=0.8,
+        handletextpad=0.4,
+        handlelength=1.45,
         borderaxespad=0.0,
     )
     format_legend(legend)
     for text in legend.get_texts():
         text.set_fontsize(FS_LEGEND)
 
-    plt.tight_layout(rect=(0.015, 0.18, 0.995, 0.995), h_pad=1.0, w_pad=0.8)
+    plt.tight_layout(rect=(0.02, 0.13, 0.995, 0.985), h_pad=0.72, w_pad=0.75)
     save_plot(fig, stage_dir, "vis_stage7_kde_profiles.png")
 
 # ==============================================================================

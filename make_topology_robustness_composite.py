@@ -28,8 +28,8 @@ HALF_PANEL_WIDTH_CM = 8.9
 HORIZONTAL_GAP_CM = 0.7
 VERTICAL_GAP_CM = 0.55
 TOP_LABEL_MARGIN_CM = 0.38
-MAP_PANEL_HEIGHT_CM = 6.6
-ROBUSTNESS_PANEL_HEIGHT_CM = 6.9
+MAP_PANEL_HEIGHT_CM = 6.15
+ROBUSTNESS_PANEL_HEIGHT_CM = 5.85
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 MANUSCRIPT_DIR = PROJECT_ROOT / "Manuscript_Figures"
@@ -68,6 +68,7 @@ def render_panel_a(temp_root: Path) -> Path:
         "width_cm": HALF_PANEL_WIDTH_CM,
         "height_cm": MAP_PANEL_HEIGHT_CM,
     }
+    topology_visualization.COMPACT_COMPOSITE_LAYOUT = True
 
     cfg = replace(
         expanded_topology.EXPANDED_PATHS,
@@ -279,11 +280,11 @@ def render_panel_b(temp_root: Path) -> Path:
                 label="CEC substations",
             ),
         ]
-        fig.subplots_adjust(left=0.13, right=0.985, top=0.975, bottom=0.30)
+        fig.subplots_adjust(left=0.13, right=0.985, top=0.975, bottom=0.265)
         ax.legend(
             handles=legend_handles,
             loc="upper center",
-            bbox_to_anchor=(0.5, -0.245),
+            bbox_to_anchor=(0.5, -0.185),
             ncol=2,
             frameon=False,
             fontsize=6.7,
@@ -393,20 +394,25 @@ def render_panel_c(temp_root: Path) -> Path:
             spine.set_linewidth(0.6)
         ax.tick_params(direction="out", color="#4d4d4d")
         handles, labels = ax.get_legend_handles_labels()
-        fig.legend(
+        legend = ax.legend(
             handles,
             labels,
-            loc="upper center",
-            bbox_to_anchor=(0.53, 0.975),
-            ncol=3,
-            frameon=False,
-            fontsize=7.0,
-            handlelength=1.7,
+            loc="upper right",
+            bbox_to_anchor=(0.995, 0.985),
+            ncol=2,
+            frameon=True,
+            facecolor="white",
+            edgecolor="#d0d0d0",
+            framealpha=0.94,
+            fontsize=6.8,
+            handlelength=1.55,
             handletextpad=0.4,
-            columnspacing=1.0,
-            labelspacing=0.35,
+            columnspacing=0.8,
+            labelspacing=0.25,
+            borderpad=0.35,
         )
-        fig.subplots_adjust(left=0.105, right=0.985, top=0.79, bottom=0.17)
+        legend.get_frame().set_linewidth(0.45)
+        fig.subplots_adjust(left=0.105, right=0.985, top=0.975, bottom=0.18)
         fig.savefig(
             output_png,
             dpi=EXPORT_DPI,
@@ -480,11 +486,11 @@ def main() -> None:
                 ax.imshow(panels[key], interpolation="none")
                 ax.set_axis_off()
 
-            label_y_top = top_y_cm + top_height_cm + 0.02
+            label_y_top = top_y_cm + top_height_cm + 0.015
             labels = {
-                "a": (0.02, label_y_top),
-                "b": (HALF_PANEL_WIDTH_CM + HORIZONTAL_GAP_CM + 0.02, label_y_top),
-                "c": (0.02, bottom_height_cm + 0.04),
+                "a": (0.03, label_y_top),
+                "b": (HALF_PANEL_WIDTH_CM + HORIZONTAL_GAP_CM + 0.03, label_y_top),
+                "c": (0.03, bottom_height_cm - 0.02),
             }
             for key, (x_cm, y_cm) in labels.items():
                 fig.text(

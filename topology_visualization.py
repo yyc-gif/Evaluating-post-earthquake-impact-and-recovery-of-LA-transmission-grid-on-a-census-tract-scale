@@ -73,6 +73,7 @@ COMPANION_LEGEND_FONT = 7.0
 COMPANION_LEGEND_HANDLELENGTH = 1.0
 COMPANION_LEGEND_HANDLETEXTPAD = 0.20
 COMPANION_LEGEND_COLUMNSPACING = 0.32
+COMPACT_COMPOSITE_LAYOUT = False
 
 
 def cm_to_inch(*values):
@@ -1050,17 +1051,21 @@ def visualize_topology(
             )
 
         compact_panel = VALIDATION_MAP_LAYOUT_CM["width_cm"] <= 10.5
+        compact_composite = compact_panel and COMPACT_COMPOSITE_LAYOUT
         fig.subplots_adjust(
             left=0.11 if compact_panel else 0.09,
             right=0.985,
             top=0.985,
-            bottom=0.31 if compact_panel else 0.19,
+            bottom=0.265 if compact_composite else (0.31 if compact_panel else 0.19),
         )
         if legend_handles:
             legend = ax.legend(
                 handles=legend_handles,
                 loc="upper center",
-                bbox_to_anchor=(0.5, -0.245 if compact_panel else -0.135),
+                bbox_to_anchor=(
+                    0.5,
+                    -0.185 if compact_composite else (-0.245 if compact_panel else -0.135),
+                ),
                 ncol=2 if compact_panel else 3,
                 frameon=False,
                 fontsize=COMPANION_LEGEND_FONT,
