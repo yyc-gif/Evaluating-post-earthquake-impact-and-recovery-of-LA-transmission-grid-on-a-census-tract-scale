@@ -11,6 +11,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib import colors
+from matplotlib.transforms import Bbox
+from strategy_names import (
+    CANONICAL_STRATEGY_LABELS,
+    CANONICAL_STRATEGY_ORDER,
+    canonical_strategy_key,
+    canonical_strategy_label,
+)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -21,9 +28,18 @@ SUPP_DIR = CLEAN_DIR / "Supplementary"
 TABLE_DIR = CLEAN_DIR / "Tables"
 SUMMARY_PATH = DATA_DIR / "sensitivity_summary_2pc50.csv"
 MAPPING_DIAGNOSTICS_PATH = DATA_DIR / "sensitivity_mapping_diagnostics.csv"
+SOURCE_GATE_DIAGNOSTICS_PATH = (
+    DATA_DIR / "sensitivity_source_gate_diagnostics_2pc50.csv"
+)
+SOURCE_GATE_SUMMARY_PATH = (
+    DATA_DIR / "sensitivity_source_gate_mechanism_summary_2pc50.csv"
+)
 SENSITIVITY_SCENARIO = "2pc50"
-EXPORT_DPI = 300
+EXPORT_DPI = 600
 CM_PER_INCH = 2.54
+FIGURE_WIDTH_SINGLE_CM = 8.9
+FIGURE_WIDTH_MEDIUM_CM = 13.2
+FIGURE_WIDTH_FULL_CM = 18.5
 FS_TITLE = 9.5
 FS_LABEL = 8.5
 FS_TICK = 7.5
@@ -32,27 +48,56 @@ FS_COLORBAR = 7.5
 FS_ANNOTATION = 7.0
 FS_TABLE = 7.4
 FS_TABLE_HEADER = 7.8
-EXPORT_PAD_INCHES = 0.04
 
-STRATEGY_ORDER = [
-    "impact-first",
-    "hospital-first",
-    "centrality-first",
-    "betweenness-first",
-    "degree-first",
-    "closeness-first",
-    "random",
-]
+STRATEGY_ORDER = CANONICAL_STRATEGY_ORDER
 
 STRATEGY_STYLE = {
-    "impact-first": {"color": "#bf1b2c", "linewidth": 1.6, "marker": "o"},
-    "hospital-first": {"color": "#2166ac", "linewidth": 1.6, "marker": "o"},
-    "centrality-first": {"color": "#b8b0be", "linewidth": 1.1, "marker": None},
-    "betweenness-first": {"color": "#a8d5a2", "linewidth": 1.1, "marker": None},
-    "degree-first": {"color": "#d3a7d9", "linewidth": 1.1, "marker": None},
-    "closeness-first": {"color": "#f7bf85", "linewidth": 1.1, "marker": None},
-    "random": {"color": "#8e8e8e", "linewidth": 1.2, "linestyle": "--", "marker": None},
+    "centrality-first": {
+        "color": "#e41a1c", "linewidth": 1.08, "linestyle": "-.",
+        "alpha": 0.82, "zorder": 6, "marker": None,
+    },
+    "betweenness-first": {
+        "color": "#ffd92f", "linewidth": 1.05,
+        "linestyle": (0, (5.0, 1.5, 1.2, 1.5)),
+        "alpha": 0.82, "zorder": 5, "marker": None,
+    },
+    "impact-first": {
+        "color": "#ff7f00", "linewidth": 1.12, "linestyle": ":",
+        "alpha": 0.82, "zorder": 4, "marker": None,
+    },
+    "degree-first": {
+        "color": "#4daf4a", "linewidth": 1.05, "linestyle": "--",
+        "alpha": 0.82, "zorder": 7, "marker": None,
+    },
+    "closeness-first": {
+        "color": "#377eb8", "linewidth": 1.05,
+        "linestyle": (0, (4.0, 1.6)),
+        "alpha": 0.82, "zorder": 8, "marker": None,
+    },
+    "hospital-first": {
+        "color": "#555555", "linewidth": 1.02,
+        "linestyle": (0, (2.2, 1.4)),
+        "alpha": 0.82, "zorder": 3, "marker": None,
+    },
+    "random": {
+        "color": "lightgray", "linewidth": 1.10, "linestyle": "-",
+        "alpha": 0.82, "zorder": 1, "marker": None,
+    },
+    "GA_Balanced": {
+        "color": "#6a3d9a", "linewidth": 1.22, "linestyle": "-",
+        "alpha": 0.92, "zorder": 10, "marker": None,
+    },
+    "GA_HospFirst": {
+        "color": "#c51b7d", "linewidth": 1.18, "linestyle": "-",
+        "alpha": 0.90, "zorder": 9, "marker": None,
+    },
+    "GA_Efficiency": {
+        "color": "#1b9e77", "linewidth": 1.18, "linestyle": "-",
+        "alpha": 0.90, "zorder": 9, "marker": None,
+    },
 }
+
+STRATEGY_LABELS = CANONICAL_STRATEGY_LABELS
 
 PANEL_CONFIG = [
     (
@@ -97,23 +142,18 @@ PARAMETER_TABLE_META = {
     "crew_availability": (
         "Crew availability",
         "(0.5)\u2013(2.0)",
-        "Controls recovery speed; low rank stability at 2.0 reflects "
-        "near-convergence of strategy T80 values.",
     ),
     "repair_time_scale": (
         "Repair-time scale",
         "(0.75)\u2013(1.50)",
-        "Shifts recovery milestones strongly but preserves strategy ordering.",
     ),
     "idw_threshold": (
         "IDW threshold theta_W",
         "(0.05)\u2013(0.20)",
-        "Changes dependency concentration; aggregate recovery milestones remain nearly flat.",
     ),
     "source_gate_threshold": (
         "Source-gate threshold tau_g",
         "(0.40)\u2013(0.60)",
-        "Moderate model-boundary effect; leading strategy group remains stable.",
     ),
 }
 
@@ -131,7 +171,11 @@ def apply_style() -> None:
     plt.rcParams.update(
         {
             "font.family": "sans-serif",
-            "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+            "font.sans-serif": ["Arial", "DejaVu Sans"],
+            "mathtext.fontset": "custom",
+            "mathtext.rm": "Arial",
+            "mathtext.it": "Arial:italic",
+            "mathtext.bf": "Arial:bold",
             "axes.titlesize": FS_TITLE,
             "axes.labelsize": FS_LABEL,
             "xtick.labelsize": FS_TICK,
@@ -151,19 +195,48 @@ def apply_style() -> None:
             "xtick.major.size": 3.0,
             "ytick.major.size": 3.0,
             "axes.titlepad": 4.0,
+            "pdf.fonttype": 42,
+            "ps.fonttype": 42,
+            "svg.fonttype": "none",
         }
     )
 
 
+def tiered_export_bbox(fig: plt.Figure) -> Bbox:
+    """Keep tight vertical cropping while preserving the assigned width tier."""
+    fig.canvas.draw()
+    tight = fig.get_tightbbox(fig.canvas.get_renderer())
+    target_width = fig.get_figwidth()
+    if tight.width >= target_width:
+        return tight
+    pad_inches = 0.04
+    return Bbox.from_bounds(
+        tight.x0 - (target_width - tight.width) / 2.0,
+        tight.y0 - pad_inches,
+        target_width,
+        tight.height + 2.0 * pad_inches,
+    )
+
+
 def save(fig: plt.Figure, path: Path) -> None:
+    export_bbox = tiered_export_bbox(fig)
     fig.savefig(
         path,
         dpi=EXPORT_DPI,
-        bbox_inches="tight",
-        pad_inches=EXPORT_PAD_INCHES,
+        bbox_inches=export_bbox,
+        pad_inches=0,
         facecolor="white",
         edgecolor="none",
     )
+    if path.suffix.lower() in {".png", ".jpg", ".jpeg", ".tif", ".tiff"}:
+        fig.savefig(
+            path.with_suffix(".pdf"),
+            format="pdf",
+            bbox_inches=export_bbox,
+            pad_inches=0,
+            facecolor="white",
+            edgecolor="none",
+        )
     plt.close(fig)
 
 
@@ -171,17 +244,81 @@ def fmt_tick(value: float) -> str:
     return f"{value:g}"
 
 
-def read_summary() -> pd.DataFrame:
-    df = pd.read_csv(SUMMARY_PATH)
+def reorder_legend_row_major(
+    handles: list,
+    labels: list[str],
+    ncol: int,
+) -> tuple[list, list[str]]:
+    """Reorder inputs so Matplotlib's column fill reads row by row."""
+    n_items = len(labels)
+    nrows = int(np.ceil(n_items / ncol))
+    order = [
+        row * ncol + col
+        for col in range(ncol)
+        for row in range(nrows)
+        if row * ncol + col < n_items
+    ]
+    return [handles[idx] for idx in order], [labels[idx] for idx in order]
+
+
+def prepare_summary(summary: pd.DataFrame) -> pd.DataFrame:
+    """Validate a freshly computed live sensitivity summary."""
+    df = summary.copy()
+    required_columns = {
+        "scenario",
+        "strategy",
+        "sensitivity_group",
+        "parameter_value",
+        "T80_pop",
+    }
+    missing_columns = required_columns - set(df.columns)
+    if missing_columns:
+        raise ValueError(
+            f"Live sensitivity summary is missing {sorted(missing_columns)}."
+        )
+    resolved_keys = df["strategy"].map(canonical_strategy_key)
+    if resolved_keys.isna().any():
+        unknown = sorted(df.loc[resolved_keys.isna(), "strategy"].astype(str).unique())
+        raise ValueError(f"Unknown sensitivity strategies: {unknown}.")
+    df["strategy"] = resolved_keys
     df["parameter_value"] = pd.to_numeric(df["parameter_value"], errors="coerce")
     df["T80_pop"] = pd.to_numeric(df["T80_pop"], errors="coerce")
-    df = df.dropna(subset=["parameter_value", "T80_pop"]).copy()
+    if df[["parameter_value", "T80_pop"]].isna().any().any():
+        raise ValueError(
+            "Live sensitivity summary contains missing parameter_value or T80_pop values."
+        )
     _validate_summary(df)
     return df
 
 
 def _validate_summary(summary: pd.DataFrame) -> None:
     """Reject mixed scenarios or incomplete 2pc50 sensitivity grids."""
+    expected_rows = len(STRATEGY_ORDER) * (
+        1 + sum(len(values) for values in EXPECTED_PARAMETER_VALUES.values())
+    )
+    if len(summary) != expected_rows:
+        raise ValueError(
+            f"2pc50 sensitivity summary must contain {expected_rows} rows; "
+            f"found {len(summary)}."
+        )
+    duplicate_keys = summary.duplicated(
+        ["strategy", "sensitivity_group", "parameter_value"],
+        keep=False,
+    )
+    if duplicate_keys.any():
+        examples = (
+            summary.loc[
+                duplicate_keys,
+                ["strategy", "sensitivity_group", "parameter_value"],
+            ]
+            .drop_duplicates()
+            .head(10)
+            .to_dict("records")
+        )
+        raise ValueError(
+            f"2pc50 sensitivity summary contains duplicate cases: {examples}."
+        )
+
     scenarios = set(summary["scenario"].astype(str))
     if scenarios != {SENSITIVITY_SCENARIO}:
         raise ValueError(
@@ -279,8 +416,13 @@ def compute_rank_stability(summary: pd.DataFrame) -> pd.DataFrame:
                 "scenario": SENSITIVITY_SCENARIO,
                 "sensitivity_group": group,
                 "parameter_value": parameter_value,
-                "top_strategy_by_T80": "; ".join(sorted(current_top)),
-                "second_strategy_by_T80": "; ".join(current_second),
+                "top_strategy_by_T80": "; ".join(
+                    canonical_strategy_label(value)
+                    for value in sorted(current_top)
+                ),
+                "second_strategy_by_T80": "; ".join(
+                    canonical_strategy_label(value) for value in current_second
+                ),
                 "spearman_rank_corr_vs_baseline_T80": rho,
                 "top_strategy_changed_T80": baseline_top.isdisjoint(current_top),
                 "T80_strategy_spread_hr": current_spread,
@@ -316,24 +458,48 @@ def build_main_table(
     rank_df: pd.DataFrame,
 ) -> pd.DataFrame:
     """Build the compact 2pc50 table directly from validated experiment rows."""
+    def interpret(max_change: float, rho_values: pd.Series) -> str:
+        if max_change < 1.0:
+            timing = "Little change in absolute T80"
+        elif max_change < 10.0:
+            timing = "Moderate change in absolute T80"
+        else:
+            timing = "Large change in absolute T80"
+
+        rho = pd.to_numeric(rho_values, errors="coerce").dropna()
+        if rho.empty:
+            ranking = "rank stability unavailable"
+        elif float(rho.min()) >= 0.90:
+            ranking = "strategy ranking remains stable"
+        elif float(rho.min()) >= 0.70:
+            ranking = "strategy ranking is generally stable"
+        else:
+            ranking = "strategy ranking is parameter-sensitive"
+        return f"{timing}; {ranking}."
+
     rows = []
     for group in RANK_ROW_ORDER:
         group_df = summary[summary["sensitivity_group"] == group]
         within_strategy_change = group_df.groupby("strategy")["T80_pop"].agg(
             lambda values: float(values.max() - values.min())
         )
-        label, tested_range, interpretation = PARAMETER_TABLE_META[group]
+        max_change = float(within_strategy_change.max())
+        rank_subset = rank_df[rank_df["sensitivity_group"] == group]
+        label, tested_range = PARAMETER_TABLE_META[group]
         rows.append(
             {
                 "Parameter": label,
                 "Tested range": tested_range,
                 "Max within-strategy change in T80_pop (h)": (
-                    f"{within_strategy_change.max():.1f}"
+                    f"{max_change:.1f}"
                 ),
                 "Rank stability (Spearman rho)": _format_rank_stability(
-                    rank_df[rank_df["sensitivity_group"] == group]
+                    rank_subset
                 ),
-                "Interpretation": interpretation,
+                "Interpretation": interpret(
+                    max_change,
+                    rank_subset["spearman_rank_corr_vs_baseline_T80"],
+                ),
             }
         )
     return pd.DataFrame(rows)
@@ -349,7 +515,7 @@ def write_rank_stability_table(rank_df: pd.DataFrame) -> None:
 
 def plot_t80_response(summary: pd.DataFrame, scenario: str, output_path: Path) -> None:
     scenario_df = summary[summary["scenario"] == scenario].copy()
-    fig, axes = plt.subplots(2, 2, figsize=cm_to_inch(18.5, 12.2))
+    fig, axes = plt.subplots(2, 2, figsize=cm_to_inch(18.5, 13.2))
 
     for ax, (group, panel_title, xlabel) in zip(axes.flat, PANEL_CONFIG):
         group_df = scenario_df[scenario_df["sensitivity_group"] == group]
@@ -367,7 +533,7 @@ def plot_t80_response(summary: pd.DataFrame, scenario: str, output_path: Path) -
             ax.plot(
                 line_df["parameter_value"],
                 line_df["T80_pop"],
-                label=strategy,
+                label=STRATEGY_LABELS[strategy],
                 marker=marker,
                 linestyle=linestyle,
                 markersize=3.4 if marker else 0,
@@ -385,29 +551,55 @@ def plot_t80_response(summary: pd.DataFrame, scenario: str, output_path: Path) -
 
     handles, labels = axes.flat[0].get_legend_handles_labels()
     label_to_handle = dict(zip(labels, handles))
-    ordered_handles = [label_to_handle[s] for s in STRATEGY_ORDER if s in label_to_handle]
-    ordered_labels = [s for s in STRATEGY_ORDER if s in label_to_handle]
+    ordered_labels = [STRATEGY_LABELS[s] for s in STRATEGY_ORDER]
+    ordered_handles = [
+        label_to_handle[label]
+        for label in ordered_labels
+        if label in label_to_handle
+    ]
+    ordered_labels = [label for label in ordered_labels if label in label_to_handle]
+    ordered_handles, ordered_labels = reorder_legend_row_major(
+        ordered_handles,
+        ordered_labels,
+        ncol=5,
+    )
     fig.legend(
         ordered_handles,
         ordered_labels,
-        ncol=4,
+        ncol=5,
         loc="lower center",
         frameon=False,
-        bbox_to_anchor=(0.5, -0.01),
+        bbox_to_anchor=(0.5, 0.0),
         fontsize=FS_LEGEND,
     )
-    fig.subplots_adjust(left=0.08, right=0.98, top=0.96, bottom=0.16, hspace=0.36, wspace=0.23)
+    fig.subplots_adjust(
+        left=0.08,
+        right=0.98,
+        top=0.96,
+        bottom=0.20,
+        hspace=0.54,
+        wspace=0.23,
+    )
     save(fig, output_path)
 
 
-def plot_idw_diagnostics(output_path: Path) -> None:
-    df = pd.read_csv(MAPPING_DIAGNOSTICS_PATH)
+def plot_idw_diagnostics(
+    mapping_diagnostics: pd.DataFrame,
+    output_path: Path,
+) -> None:
+    df = mapping_diagnostics.copy()
     df["theta_W"] = pd.to_numeric(df["theta_W"], errors="coerce")
     df["mean_supply_count"] = pd.to_numeric(df["mean_supply_count"], errors="coerce")
     df["mean_HHI"] = pd.to_numeric(df["mean_HHI"], errors="coerce")
     df = df.dropna(subset=["theta_W", "mean_supply_count", "mean_HHI"]).sort_values("theta_W")
+    expected_theta = EXPECTED_PARAMETER_VALUES["idw_threshold"]
+    observed_theta = tuple(df["theta_W"].tolist())
+    if not np.allclose(observed_theta, expected_theta, rtol=0.0, atol=1e-12):
+        raise ValueError(
+            f"Live IDW diagnostic grid mismatch: {observed_theta}."
+        )
 
-    fig, ax_left = plt.subplots(figsize=cm_to_inch(11.6, 6.5))
+    fig, ax_left = plt.subplots(figsize=cm_to_inch(FIGURE_WIDTH_MEDIUM_CM, 7.4))
     ax_right = ax_left.twinx()
     line_left = ax_left.plot(
         df["theta_W"],
@@ -439,6 +631,161 @@ def plot_idw_diagnostics(output_path: Path) -> None:
     ax_left.grid(True, alpha=0.9)
     lines = line_left + line_right
     ax_left.legend(lines, [line.get_label() for line in lines], frameon=False, loc="center right", fontsize=FS_LEGEND)
+    fig.subplots_adjust(left=0.16, right=0.84, top=0.98, bottom=0.18)
+    save(fig, output_path)
+
+
+def summarize_source_gate_diagnostics(
+    source_gate_diagnostics: pd.DataFrame,
+) -> pd.DataFrame:
+    """Validate and summarize source-connected functional-substation trajectories."""
+    required = {
+        "scenario",
+        "source_gate_threshold",
+        "time_hr",
+        "source_connected_functional_count",
+        "source_connected_functional_share",
+        "n_substations",
+    }
+    missing = required - set(source_gate_diagnostics.columns)
+    if missing:
+        raise ValueError(
+            f"Source-gate diagnostics are missing {sorted(missing)}."
+        )
+
+    df = source_gate_diagnostics.copy()
+    numeric_cols = [
+        "source_gate_threshold",
+        "time_hr",
+        "source_connected_functional_count",
+        "source_connected_functional_share",
+        "n_substations",
+    ]
+    df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
+    if not np.isfinite(df[numeric_cols].to_numpy(dtype=float)).all():
+        raise ValueError("Source-gate diagnostics contain non-finite values.")
+    if set(df["scenario"].astype(str)) != {SENSITIVITY_SCENARIO}:
+        raise ValueError("Source-gate diagnostics must contain only 2pc50.")
+    if df.duplicated(
+        ["source_gate_threshold", "time_hr"],
+        keep=False,
+    ).any():
+        raise ValueError("Source-gate diagnostics contain duplicate time rows.")
+
+    expected_thresholds = EXPECTED_PARAMETER_VALUES["source_gate_threshold"]
+    rows = []
+    observed_thresholds = tuple(sorted(df["source_gate_threshold"].unique()))
+    if not np.allclose(
+        observed_thresholds,
+        expected_thresholds,
+        rtol=0.0,
+        atol=1e-12,
+    ):
+        raise ValueError(
+            f"Source-gate diagnostic grid mismatch: {observed_thresholds}."
+        )
+    for threshold, case in df.groupby("source_gate_threshold", sort=True):
+        case = case.sort_values("time_hr")
+        time = case["time_hr"].to_numpy(dtype=float)
+        if len(time) < 2 or np.any(np.diff(time) <= 0):
+            raise ValueError(
+                f"Source-gate diagnostics require increasing time at "
+                f"tau_g={threshold:g}."
+            )
+        n_substations = case["n_substations"].unique()
+        if len(n_substations) != 1 or n_substations[0] <= 0:
+            raise ValueError("Invalid n_substations in source-gate diagnostics.")
+        count = case[
+            "source_connected_functional_count"
+        ].to_numpy(dtype=float)
+        share = case[
+            "source_connected_functional_share"
+        ].to_numpy(dtype=float)
+        if np.any(count < 0) or np.any(share < 0) or np.any(share > 1):
+            raise ValueError("Source-gate diagnostics are outside physical bounds.")
+        if not np.allclose(
+            count / float(n_substations[0]),
+            share,
+            rtol=0.0,
+            atol=1e-10,
+        ):
+            raise ValueError(
+                "Source-gate count and share diagnostics are inconsistent."
+            )
+        duration = float(time[-1] - time[0])
+        rows.append(
+            {
+                "scenario": SENSITIVITY_SCENARIO,
+                "source_gate_threshold": float(threshold),
+                "time_averaged_source_connected_count": float(
+                    np.trapezoid(count, time) / duration
+                ),
+                "time_averaged_source_connected_share": float(
+                    np.trapezoid(share, time) / duration
+                ),
+                "source_connected_count_24h": float(
+                    np.interp(24.0, time, count)
+                ),
+                "source_connected_share_24h": float(
+                    np.interp(24.0, time, share)
+                ),
+                "n_substations": int(n_substations[0]),
+            }
+        )
+    summary = pd.DataFrame(rows)
+    expected_rows = len(expected_thresholds)
+    if len(summary) != expected_rows:
+        raise ValueError(
+            f"Source-gate mechanism summary must contain {expected_rows} rows; "
+            f"found {len(summary)}."
+        )
+    return summary
+
+
+def plot_source_gate_diagnostics(
+    source_gate_summary: pd.DataFrame,
+    output_path: Path,
+) -> None:
+    """Plot the source-gate mechanism counterpart to the IDW diagnostic."""
+    fig, ax = plt.subplots(figsize=cm_to_inch(FIGURE_WIDTH_MEDIUM_CM, 7.4))
+    line_df = source_gate_summary.sort_values("source_gate_threshold")
+    ax.plot(
+        line_df["source_gate_threshold"],
+        line_df["time_averaged_source_connected_count"],
+        color="#2166ac",
+        marker="o",
+        linestyle="-",
+        linewidth=1.6,
+        markersize=4.0,
+    )
+
+    n_values = source_gate_summary["n_substations"].unique()
+    if len(n_values) != 1:
+        raise ValueError("Source-gate plot requires one common substation count.")
+    n_substations = float(n_values[0])
+    secondary = ax.secondary_yaxis(
+        "right",
+        functions=(
+            lambda count: count / n_substations,
+            lambda share: share * n_substations,
+        ),
+    )
+    ax.set_xlabel(r"Source-gate threshold ($\tau_g$)", fontsize=FS_LABEL)
+    ax.set_ylabel(
+        "Time-averaged source-connected\nfunctional substations (0-480 h)",
+        fontsize=FS_LABEL,
+    )
+    secondary.set_ylabel(
+        "Share of all substations",
+        fontsize=FS_LABEL,
+    )
+    ax.tick_params(axis="both", labelsize=FS_TICK, width=0.6, length=3)
+    secondary.tick_params(axis="y", labelsize=FS_TICK, width=0.6, length=3)
+    thresholds = sorted(source_gate_summary["source_gate_threshold"].unique())
+    ax.set_xticks(thresholds)
+    ax.set_xticklabels([f"{value:.2f}" for value in thresholds])
+    ax.grid(True, alpha=0.9)
+    fig.subplots_adjust(left=0.16, right=0.84, top=0.98, bottom=0.18)
     save(fig, output_path)
 
 
@@ -544,7 +891,7 @@ def plot_table_preview(table_df: pd.DataFrame, output_path: Path) -> None:
             ]
         )
 
-    fig, ax = plt.subplots(figsize=cm_to_inch(19.0, 6.2))
+    fig, ax = plt.subplots(figsize=cm_to_inch(FIGURE_WIDTH_FULL_CM, 6.2))
     ax.axis("off")
     table = ax.table(
         cellText=wrapped_rows,
@@ -607,12 +954,29 @@ def write_table_files(table_df: pd.DataFrame) -> None:
     (TABLE_DIR / "Table_Sensitivity_Summary_2pc50.tex").write_text(latex, encoding="utf-8")
 
 
-def run_sensitivity_analysis_2pc50() -> dict[str, pd.DataFrame]:
-    """Regenerate the validated 2pc50-only sensitivity deliverables."""
+def render_sensitivity_outputs_2pc50(
+    summary: pd.DataFrame,
+    mapping_diagnostics: pd.DataFrame,
+    source_gate_diagnostics: pd.DataFrame,
+) -> dict[str, pd.DataFrame]:
+    """Render validated outputs from the current live 2pc50 experiments."""
     ensure_dirs()
     apply_style()
 
-    summary = read_summary()
+    summary = prepare_summary(summary)
+    mapping_diagnostics = mapping_diagnostics.copy()
+    source_gate_diagnostics = source_gate_diagnostics.copy()
+    source_gate_summary = summarize_source_gate_diagnostics(
+        source_gate_diagnostics
+    )
+    exported_summary = summary.copy()
+    exported_summary["strategy"] = exported_summary["strategy"].map(
+        canonical_strategy_label
+    )
+    exported_summary.to_csv(SUMMARY_PATH, index=False)
+    mapping_diagnostics.to_csv(MAPPING_DIAGNOSTICS_PATH, index=False)
+    source_gate_diagnostics.to_csv(SOURCE_GATE_DIAGNOSTICS_PATH, index=False)
+    source_gate_summary.to_csv(SOURCE_GATE_SUMMARY_PATH, index=False)
     rank_df = compute_rank_stability(summary)
     table_df = build_main_table(summary, rank_df)
 
@@ -621,17 +985,33 @@ def run_sensitivity_analysis_2pc50() -> dict[str, pd.DataFrame]:
         SENSITIVITY_SCENARIO,
         MAIN_DIR / "Fig_Sensitivity_T80_Response_2pc50.png",
     )
-    plot_idw_diagnostics(SUPP_DIR / "Fig_Supp_IDW_Mapping_Diagnostics.png")
+    plot_idw_diagnostics(
+        mapping_diagnostics,
+        SUPP_DIR / "Fig_Supp_IDW_Mapping_Diagnostics.png",
+    )
+    plot_source_gate_diagnostics(
+        source_gate_summary,
+        SUPP_DIR / "Fig_Supp_Source_Gate_Mechanism_Diagnostics.png",
+    )
     plot_rank_stability(rank_df, SUPP_DIR / "Fig_Supp_Rank_Stability_T80.png")
     plot_table_preview(table_df, MAIN_DIR / "Table_Sensitivity_Summary_2pc50.png")
     write_table_files(table_df)
     write_rank_stability_table(rank_df)
 
-    return {"summary": summary, "rank_stability": rank_df, "table": table_df}
+    return {
+        "summary": summary,
+        "rank_stability": rank_df,
+        "table": table_df,
+        "source_gate_diagnostics": source_gate_diagnostics,
+        "source_gate_summary": source_gate_summary,
+    }
 
 
 def main() -> None:
-    run_sensitivity_analysis_2pc50()
+    raise RuntimeError(
+        "Sensitivity experiments are computed by C257H_Project_Main.py. "
+        "This module is now a renderer and requires live DataFrame inputs."
+    )
 
 
 if __name__ == "__main__":

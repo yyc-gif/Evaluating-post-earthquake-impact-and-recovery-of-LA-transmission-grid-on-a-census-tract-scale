@@ -7,6 +7,7 @@ import os
 import geopandas as gpd
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from matplotlib.transforms import Bbox
 import networkx as nx
 import pandas as pd
 import seaborn as sns
@@ -21,19 +22,27 @@ def _node_xy(node):
 # ---------------------------------------------------------------------------
 
 CM_PER_INCH = 2.54
-EXPORT_DPI = 300
+EXPORT_DPI = 600
 EXPORT_PAD_INCHES = 0.04
 
 FS_LABEL = 8.5
 FS_TICK = 7.5
 FS_LEGEND = 7.5
 
-PANEL_MAP_TALL = {"width_cm": 8.9, "height_cm": 11.8}
+FIGURE_WIDTH_SINGLE_CM = 8.9
+FIGURE_WIDTH_MEDIUM_CM = 13.2
+FIGURE_WIDTH_FULL_CM = 18.5
+
+PANEL_MAP_TALL = {"width_cm": FIGURE_WIDTH_SINGLE_CM, "height_cm": 11.8}
 VALIDATION_MAP_LAYOUT_CM = {"width_cm": 13.2, "height_cm": 8.9}
 
 PUBLICATION_RCPARAMS = {
     "font.family": "sans-serif",
-    "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+    "font.sans-serif": ["Arial", "DejaVu Sans"],
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "Arial",
+    "mathtext.it": "Arial:italic",
+    "mathtext.bf": "Arial:bold",
     "axes.labelsize": FS_LABEL,
     "xtick.labelsize": FS_TICK,
     "ytick.labelsize": FS_TICK,
@@ -52,12 +61,15 @@ PUBLICATION_RCPARAMS = {
     "xtick.major.size": 3.0,
     "ytick.major.size": 3.0,
     "axes.titlepad": 4.0,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",
 }
 
 # The legend text in this panel is materially longer than the Stage 2 labels,
 # so it needs a modest compaction to fit as a single row inside the same-width
 # manuscript panel.
-COMPANION_LEGEND_FONT = 6.9
+COMPANION_LEGEND_FONT = 7.0
 COMPANION_LEGEND_HANDLELENGTH = 1.0
 COMPANION_LEGEND_HANDLETEXTPAD = 0.20
 COMPANION_LEGEND_COLUMNSPACING = 0.32
@@ -93,6 +105,21 @@ def format_publication_legend(legend, fontsize: float) -> None:
         frame.set_alpha(0.95)
     for text in legend.get_texts():
         text.set_fontsize(fontsize)
+
+
+def tiered_export_bbox(fig: plt.Figure) -> Bbox:
+    """Keep tight vertical cropping while preserving the assigned width tier."""
+    fig.canvas.draw()
+    tight = fig.get_tightbbox(fig.canvas.get_renderer())
+    target_width = fig.get_figwidth()
+    if tight.width >= target_width:
+        return tight
+    return Bbox.from_bounds(
+        tight.x0 - (target_width - tight.width) / 2.0,
+        tight.y0 - EXPORT_PAD_INCHES,
+        target_width,
+        tight.height + 2.0 * EXPORT_PAD_INCHES,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -1022,13 +1049,19 @@ def visualize_topology(
                 )
             )
 
-        fig.subplots_adjust(left=0.09, right=0.985, top=0.985, bottom=0.19)
+        compact_panel = VALIDATION_MAP_LAYOUT_CM["width_cm"] <= 10.5
+        fig.subplots_adjust(
+            left=0.11 if compact_panel else 0.09,
+            right=0.985,
+            top=0.985,
+            bottom=0.31 if compact_panel else 0.19,
+        )
         if legend_handles:
             legend = ax.legend(
                 handles=legend_handles,
                 loc="upper center",
-                bbox_to_anchor=(0.5, -0.135),
-                ncol=3,
+                bbox_to_anchor=(0.5, -0.245 if compact_panel else -0.135),
+                ncol=2 if compact_panel else 3,
                 frameon=False,
                 fontsize=COMPANION_LEGEND_FONT,
                 borderpad=0.12,
@@ -1041,12 +1074,22 @@ def visualize_topology(
             format_publication_legend(legend, fontsize=COMPANION_LEGEND_FONT)
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        export_bbox = tiered_export_bbox(fig)
         plt.savefig(
             output_path,
             dpi=EXPORT_DPI,
             format="png",
-            bbox_inches="tight",
-            pad_inches=EXPORT_PAD_INCHES,
+            bbox_inches=export_bbox,
+            pad_inches=0,
+            facecolor="white",
+            edgecolor="none",
+        )
+        pdf_path = os.path.splitext(output_path)[0] + ".pdf"
+        plt.savefig(
+            pdf_path,
+            format="pdf",
+            bbox_inches=export_bbox,
+            pad_inches=0,
             facecolor="white",
             edgecolor="none",
         )

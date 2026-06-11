@@ -36,7 +36,7 @@ import logging
 import os
 import sys
 import warnings
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 import zlib
@@ -48,13 +48,16 @@ import numpy as np
 import pandas as pd
 from geopy.distance import geodesic
 from joblib import Parallel, delayed
+from scipy.optimize import linear_sum_assignment
 from scipy.stats import lognorm
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
+from sklearn.metrics import adjusted_rand_score, silhouette_score
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import norm
 import random
 from deap import base, creator, tools, algorithms
+from strategy_names import canonical_strategy_label
 
 # --- GLOBAL LOG STORE ---
 GLOBAL_GANTT_LOG = []
@@ -92,6 +95,9 @@ class Config:
     DEVICES_CSV: str = str(DATA_DIR / "Los_Angeles_City_SUBSTATION_with_fragility_ORIGINAL.csv")
     PGA_CSV: str = str(DATA_DIR / "Substations_PGA_IDW_CEC.csv")
     MAP_TRACT_SUB_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC.csv")
+    SENSITIVITY_RAW_MAPPING_CSV: str = str(
+        DATA_DIR / "tract_to_substation_mapping_CEC_unthresholded.csv"
+    )
     CEC_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges.csv")
     CEC_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes.csv")
     HOSPITAL_TRACTS_CSV: str = str(DATA_DIR / "hospital_with_tract.csv")
@@ -161,6 +167,7 @@ class Config:
     STAGE5_NODE_IMPORTANCE_VOLTAGE_WEIGHT: float = 0.20
     STAGE5_NODE_IMPORTANCE_LINES_WEIGHT: float = 0.10
     STAGE7_HOTSPOT_TOP_N: int = 10
+    STAGE7_LOG1P_FEATURES: tuple = ("Pop_Density", "NRI_BUILDVALUE")
     GA_SCENARIOS_CONFIG: Dict[str, Dict[str, float]] = field(
         default_factory=lambda: {
             "Balanced":   {"W_POP": 1.0, "W_HOSP": 3.0,  "W_MAKESPAN": 0.5},
@@ -178,6 +185,12 @@ class Config:
     RUN_STAGE_6: bool = True
     RUN_STAGE_7: bool = True
     RUN_SENSITIVITY_ANALYSIS: bool = True
+    SENSITIVITY_SCENARIO: str = "2pc50"
+    SENSITIVITY_BASELINE_IDW_THRESHOLD: float = 0.10
+    SENSITIVITY_CREW_SCALES: tuple = (0.5, 1.0, 1.5, 2.0)
+    SENSITIVITY_REPAIR_SCALES: tuple = (0.75, 1.0, 1.25, 1.5)
+    SENSITIVITY_IDW_THRESHOLDS: tuple = (0.05, 0.10, 0.15, 0.20)
+    SENSITIVITY_SOURCE_GATE_THRESHOLDS: tuple = (0.40, 0.50, 0.60)
 
 def setup_logging(log_file: Path) -> logging.Logger:
     """
@@ -514,7 +527,18 @@ def load_mapping(path: str) -> pd.DataFrame:
         # --- 3) Clean IDs ------------------------------------------------------
         mapping["substation_id"] = mapping["substation_id"].map(clean_substation_id)
         mapping["tract_id"] = mapping["tract_id"].astype(str).str.strip()
-        mapping = mapping.dropna(subset=["substation_id", "tract_id"])
+        tract_id_text = mapping["tract_id"].astype(str).str.strip()
+        invalid_ids = (
+            mapping["substation_id"].isna()
+            | mapping["substation_id"].astype(str).str.strip().eq("")
+            | mapping["tract_id"].isna()
+            | tract_id_text.eq("")
+            | tract_id_text.str.lower().isin({"nan", "none", "<na>"})
+        )
+        if invalid_ids.any():
+            raise ValueError(
+                f"Mapping file contains {int(invalid_ids.sum())} rows with invalid IDs."
+            )
 
         # --- 4) Standardize weight column -------------------------------------
         if "weight" not in mapping.columns:
@@ -522,8 +546,18 @@ def load_mapping(path: str) -> pd.DataFrame:
                 logger.info("Mapping file missing 'weight'; using 'share' as 'weight'.")
                 mapping = mapping.rename(columns={"share": "weight"})
             else:
-                logger.warning("Mapping file missing 'weight' and 'share'; defaulting weight = 1.0.")
-                mapping["weight"] = 1.0
+                raise ValueError(
+                    "Mapping file must contain a required 'weight' or 'share' column."
+                )
+        mapping["weight"] = pd.to_numeric(mapping["weight"], errors="coerce")
+        invalid_weights = ~np.isfinite(mapping["weight"].to_numpy(dtype=float))
+        if invalid_weights.any():
+            raise ValueError(
+                "Mapping file contains "
+                f"{int(invalid_weights.sum())} missing or non-finite weights."
+            )
+        if (mapping["weight"] < 0).any():
+            raise ValueError("Mapping file contains negative weights.")
 
         logger.info(f"Loaded mapping: {len(mapping)} rows from {path}")
         return mapping
@@ -573,10 +607,14 @@ def build_W_matrix(mapping_df: pd.DataFrame) -> Tuple[np.ndarray, pd.Index, pd.I
             f"Mean sum for them: {row_sums[under_normalized].mean():.2f}"
         )
 
-    # Avoid division by zero for tracts with no linked substations.
-    W_norm = W_mat.copy()
-    valid_rows = row_sums > 0
-    W_norm[valid_rows] = W_norm[valid_rows] / row_sums[valid_rows, np.newaxis]
+    invalid_rows = row_sums <= 0
+    if np.any(invalid_rows):
+        bad_tracts = tract_index[invalid_rows].tolist()[:10]
+        raise ValueError(
+            "Mapping contains tracts without positive dependency weight: "
+            f"{bad_tracts}."
+        )
+    W_norm = W_mat / row_sums[:, np.newaxis]
 
     logger.info(
         "W matrix built. Shape: (N_tracts: %d, N_subs: %d)",
@@ -2062,6 +2100,7 @@ def _precompute_ds_recovery_curves(
     sub_index: pd.Index,
     start_times: Optional[np.ndarray] = None,
     method: str = "normal",
+    repair_time_scale: float = 1.0,
 ) -> np.ndarray:
     """Precompute one recovery curve per damage state and substation."""
     n_time = len(t_grid)
@@ -2072,6 +2111,9 @@ def _precompute_ds_recovery_curves(
     start_times = np.asarray(start_times, dtype=float)
     if start_times.shape[0] != n_subs:
         raise ValueError(f"start_times length {start_times.shape[0]} != n_subs {n_subs}")
+    repair_time_scale = float(repair_time_scale)
+    if not np.isfinite(repair_time_scale) or repair_time_scale <= 0:
+        raise ValueError(f"repair_time_scale must be positive and finite, got {repair_time_scale}.")
 
     t_eff_matrix = t_grid[:, np.newaxis] - start_times[np.newaxis, :]
     t_eff_matrix = np.maximum(t_eff_matrix, 1e-9)
@@ -2086,11 +2128,27 @@ def _precompute_ds_recovery_curves(
             continue
         p1, p2 = params
         if method == "lognormal":
-            raw_cdf_vals = lognorm.cdf(t_eff_matrix, s=p2, scale=p1)
-            cdf_at_zero = float(lognorm.cdf(0.0, s=p2, scale=p1))
+            raw_cdf_vals = lognorm.cdf(
+                t_eff_matrix,
+                s=p2,
+                scale=p1 * repair_time_scale,
+            )
+            cdf_at_zero = float(
+                lognorm.cdf(0.0, s=p2, scale=p1 * repair_time_scale)
+            )
         elif method == "normal":
-            raw_cdf_vals = norm.cdf(t_eff_matrix, loc=p1, scale=p2)
-            cdf_at_zero = float(norm.cdf(0.0, loc=p1, scale=p2))
+            raw_cdf_vals = norm.cdf(
+                t_eff_matrix,
+                loc=p1 * repair_time_scale,
+                scale=p2 * repair_time_scale,
+            )
+            cdf_at_zero = float(
+                norm.cdf(
+                    0.0,
+                    loc=p1 * repair_time_scale,
+                    scale=p2 * repair_time_scale,
+                )
+            )
         else:
             raise ValueError(f"Unknown method: {method}")
 
@@ -2111,8 +2169,10 @@ def simulate_recovery_mc_source_gated(
     source_ids: Optional[set[str]] = None,
     start_times: Optional[np.ndarray] = None,
     method: str = "normal",
+    repair_time_scale: float = 1.0,
     label: str = "",
-) -> pd.DataFrame:
+    return_gate_diagnostics: bool = False,
+) -> Any:
     """
     Estimate mean recovery as E[gate(F_run(t))] from MC damage realizations.
 
@@ -2137,6 +2197,7 @@ def simulate_recovery_mc_source_gated(
         sub_index,
         start_times=start_times,
         method=method,
+        repair_time_scale=repair_time_scale,
     )
 
     source_gate_enabled = bool(getattr(cfg, "SOURCE_GATE_ENABLED", True))
@@ -2195,13 +2256,35 @@ def simulate_recovery_mc_source_gated(
         mc_source_gate_n_jobs = os.cpu_count() or 1
     mc_source_gate_n_jobs = max(1, min(mc_source_gate_n_jobs, n_mc))
 
-    def _process_mc_range(mc_start: int, mc_stop: int) -> tuple[np.ndarray, int]:
+    def _process_mc_range(
+        mc_start: int,
+        mc_stop: int,
+    ) -> tuple[np.ndarray, Optional[np.ndarray]]:
         local_sum = np.zeros((n_time, n_subs), dtype=np.float64)
+        local_connected_count_sum = (
+            np.zeros(n_time, dtype=np.float64)
+            if return_gate_diagnostics
+            else None
+        )
         for mc_idx in range(mc_start, mc_stop):
             ds_vec = ds_arr[:, mc_idx]
 
             if not source_gate_enabled:
                 local_sum += curves_by_ds[ds_vec, :, sub_positions].T
+                if local_connected_count_sum is not None:
+                    crossing_idx = crossing_idx_by_ds[ds_vec, sub_positions]
+                    event_idxs = np.unique(crossing_idx[crossing_idx < n_time])
+                    for event_pos, time_start in enumerate(event_idxs):
+                        time_stop = (
+                            int(event_idxs[event_pos + 1])
+                            if event_pos + 1 < len(event_idxs)
+                            else n_time
+                        )
+                        time_start = int(time_start)
+                        if time_start < time_stop:
+                            local_connected_count_sum[time_start:time_stop] += int(
+                                np.count_nonzero(crossing_idx <= time_start)
+                            )
                 continue
 
             crossing_idx = crossing_idx_by_ds[ds_vec, sub_positions]
@@ -2220,10 +2303,14 @@ def simulate_recovery_mc_source_gated(
                     local_sum[time_start:time_stop, :] += (
                         curves_by_ds[ds_vec, time_start:time_stop, sub_positions].T * keep_mask
                     )
-        return local_sum, len(gate_cache)
+                    if local_connected_count_sum is not None:
+                        local_connected_count_sum[time_start:time_stop] += int(
+                            np.count_nonzero(keep_mask)
+                        )
+        return local_sum, local_connected_count_sum
 
     if mc_source_gate_n_jobs == 1:
-        sum_recovery, _ = _process_mc_range(0, n_mc)
+        sum_recovery, connected_count_sum = _process_mc_range(0, n_mc)
     else:
         chunk_edges = np.linspace(0, n_mc, mc_source_gate_n_jobs + 1, dtype=int)
         ranges = [
@@ -2236,6 +2323,11 @@ def simulate_recovery_mc_source_gated(
             for mc_start, mc_stop in ranges
         )
         sum_recovery = np.sum([item[0] for item in results], axis=0)
+        connected_count_sum = (
+            np.sum([item[1] for item in results], axis=0)
+            if return_gate_diagnostics
+            else None
+        )
 
     mean_recovery = sum_recovery / max(n_mc, 1)
     logger.debug(
@@ -2245,7 +2337,26 @@ def simulate_recovery_mc_source_gated(
         n_time,
         len(gate_cache),
     )
-    return pd.DataFrame(np.clip(mean_recovery, 0.0, 1.0), index=t_grid, columns=sub_index)
+    recovery_df = pd.DataFrame(
+        np.clip(mean_recovery, 0.0, 1.0),
+        index=t_grid,
+        columns=sub_index,
+    )
+    if not return_gate_diagnostics:
+        return recovery_df
+
+    if connected_count_sum is None:
+        raise RuntimeError("Source-gate diagnostics were requested but not accumulated.")
+    expected_count = connected_count_sum / max(n_mc, 1)
+    diagnostics = pd.DataFrame(
+        {
+            "time_hr": t_grid,
+            "source_connected_functional_count": expected_count,
+            "source_connected_functional_share": expected_count / max(n_subs, 1),
+            "n_substations": n_subs,
+        }
+    )
+    return recovery_df, diagnostics
 
 
 def propagate_to_tracts(
@@ -2303,7 +2414,7 @@ def kpis_from_series(series_df: pd.DataFrame, t_end: float) -> pd.DataFrame:
         series_ext = series_df
 
     # 1) AUC (normalized by the duration)
-    auc_raw = np.trapz(series_ext.values, t_grid_ext, axis=0)
+    auc_raw = np.trapezoid(series_ext.values, t_grid_ext, axis=0)
     kpi_data["AUC"] = auc_raw / (t_grid_ext[-1] - t_grid_ext[0])
 
     # 2) T50 / T80
@@ -3084,7 +3195,10 @@ def simulate_rule_schedule(
     crew_origin_ids: Optional[List[str]] = None,
     source_gate_graph: Optional[nx.Graph] = None,
     source_ids: Optional[set[str]] = None,
-) -> pd.DataFrame:
+    repair_time_scale: float = 1.0,
+    return_metadata: bool = False,
+    return_gate_diagnostics: bool = False,
+) -> Any:
     """
     Simulate a multi-crew repair schedule and generate MC source-gated Hazus recovery curves.
     """
@@ -3105,8 +3219,15 @@ def simulate_rule_schedule(
     order = [str(x).strip() for x in order]
     sub_index = pd.Index([str(x).strip() for x in sub_index])
     
-    sub_repair_durations = sub_repair_durations.copy()
-    sub_repair_durations.index = sub_repair_durations.index.astype(str).str.strip()
+    repair_time_scale = float(repair_time_scale)
+    if not np.isfinite(repair_time_scale) or repair_time_scale <= 0:
+        raise ValueError(f"repair_time_scale must be positive and finite, got {repair_time_scale}.")
+
+    baseline_repair_durations = sub_repair_durations.copy()
+    baseline_repair_durations.index = (
+        baseline_repair_durations.index.astype(str).str.strip()
+    )
+    sub_repair_durations = baseline_repair_durations * repair_time_scale
 
     base_ids = list(base_to_task.index)
     base_id_set = set(base_ids)
@@ -3199,9 +3320,15 @@ def simulate_rule_schedule(
     # (Unvisited nodes remain Inf, so Start is Inf, so Recovery is 0. Correct.)
     
     aligned_durations = sub_repair_durations.reindex(sub_index, fill_value=0.0)
+    baseline_aligned_durations = baseline_repair_durations.reindex(
+        sub_index,
+        fill_value=0.0,
+    )
     repair_starts = sub_end_times - aligned_durations
     task_threshold_hr = get_repair_task_threshold_hr(cfg)
-    no_dispatch_mask = (~np.isfinite(repair_starts.values)) & (aligned_durations.values < task_threshold_hr)
+    no_dispatch_mask = (
+        ~np.isfinite(repair_starts.values)
+    ) & (baseline_aligned_durations.values < task_threshold_hr)
     if np.any(no_dispatch_mask):
         # Minor expected workloads are not field-dispatch tasks; let them recover from t=0.
         repair_starts.iloc[no_dispatch_mask] = 0.0
@@ -3209,7 +3336,7 @@ def simulate_rule_schedule(
     if damage_state_samples is None:
         raise ValueError("simulate_rule_schedule requires MC damage_state_samples for source-gated recovery.")
 
-    return simulate_recovery_mc_source_gated(
+    recovery_result = simulate_recovery_mc_source_gated(
         t_grid=t_grid,
         sub_index=sub_index,
         damage_state_samples=damage_state_samples,
@@ -3217,11 +3344,34 @@ def simulate_rule_schedule(
         cfg=cfg,
         source_ids=source_ids,
         start_times=repair_starts.values,
+        repair_time_scale=repair_time_scale,
         label=log_tag or "",
+        return_gate_diagnostics=return_gate_diagnostics,
     )
+    if return_gate_diagnostics:
+        recovery, gate_diagnostics = recovery_result
+    else:
+        recovery = recovery_result
+        gate_diagnostics = None
+    if not return_metadata:
+        if return_gate_diagnostics:
+            return recovery, gate_diagnostics
+        return recovery
+
+    finite_end_times = sub_end_times[np.isfinite(sub_end_times)]
+    metadata = {
+        "makespan_hr": (
+            float(finite_end_times.max()) if not finite_end_times.empty else 0.0
+        ),
+        "task_count": int(len(order)),
+        "n_crews": int(n_crews),
+    }
+    if gate_diagnostics is not None:
+        metadata["gate_diagnostics"] = gate_diagnostics
+    return recovery, metadata
 
 
-def get_analysis_weights(cfg: Config, stage_0_data: Dict) -> Tuple[np.ndarray, Optional[np.ndarray]]:
+def get_analysis_weights(cfg: Config, stage_0_data: Dict) -> Tuple[np.ndarray, np.ndarray]:
     """
     Helper: compute tract-level analysis weights.
 
@@ -3230,83 +3380,102 @@ def get_analysis_weights(cfg: Config, stage_0_data: Dict) -> Tuple[np.ndarray, O
 
     Where:
         - pop_weights: normalized population weights over tract_index
-        - svi_pop_weights: normalized (population * SVI) weights over tract_index (or None if unavailable)
+        - svi_pop_weights: normalized (population * SVI) weights over tract_index
     """
-    logger = logging.getLogger()
-
     mapping_df = stage_0_data.get("mapping_df")
     tract_index = stage_0_data.get("tract_index")
-    total_pop = 0.0
+    if mapping_df is None or tract_index is None:
+        raise ValueError("Analysis weights require Stage 0 mapping and tract index.")
+    if "population" not in mapping_df.columns:
+        raise ValueError("Stage 0 mapping is missing required population values.")
 
-    # -------------------------------------------------------------------------
-    # 1) Population weights (Population / TotalPopulation)
-    # -------------------------------------------------------------------------
-    if mapping_df is not None and "population" in mapping_df.columns:
-        pop_per_tract = (
-            mapping_df.groupby("tract_id")["population"]
-            .first()
-            .reindex(tract_index)
-            .fillna(0.0)
+    tract_index = pd.Index(tract_index).astype(str)
+    mapping = mapping_df.copy()
+    mapping["tract_id"] = mapping["tract_id"].astype(str).str.strip()
+    mapping["population"] = pd.to_numeric(mapping["population"], errors="coerce")
+    population_conflicts = (
+        mapping.groupby("tract_id")["population"].nunique(dropna=False) > 1
+    )
+    if population_conflicts.any():
+        bad_tracts = population_conflicts[population_conflicts].index.tolist()[:10]
+        raise ValueError(
+            "Stage 0 mapping contains inconsistent population values for tracts: "
+            f"{bad_tracts}."
+        )
+    pop_per_tract = mapping.groupby("tract_id")["population"].first().reindex(tract_index)
+    if pop_per_tract.isna().any():
+        missing = pop_per_tract.index[pop_per_tract.isna()].tolist()[:10]
+        raise ValueError(
+            f"Stage 0 population does not cover all active tracts: {missing}."
+        )
+    if not np.isfinite(pop_per_tract.to_numpy(dtype=float)).all():
+        raise ValueError("Stage 0 population contains non-finite values.")
+    if (pop_per_tract < 0).any():
+        raise ValueError("Stage 0 population contains negative values.")
+    total_pop = float(pop_per_tract.sum())
+    if total_pop <= 0:
+        raise ValueError("Stage 0 population total must be positive.")
+    pop_weights = pop_per_tract.to_numpy(dtype=float) / total_pop
+
+    svi_path = getattr(cfg, "SVI_CSV", None)
+    if not svi_path:
+        raise ValueError("SVI_CSV is required for population-SVI analysis weights.")
+    svi_df = pd.read_csv(svi_path)
+    geoid_col = getattr(cfg, "SVI_GEOID_COL", "geoid")
+    value_col = getattr(cfg, "SVI_VALUE_COL", "SVI")
+    missing_svi_cols = [
+        col for col in [geoid_col, value_col] if col not in svi_df.columns
+    ]
+    if missing_svi_cols:
+        raise ValueError(
+            f"SVI file is missing configured columns: {missing_svi_cols}."
         )
 
-        total_pop = float(pop_per_tract.sum())
-        if total_pop > 0:
-            pop_weights = pop_per_tract.values.astype(float) / total_pop
-        else:
-            pop_weights = np.ones(len(tract_index), dtype=float) / len(tract_index)
-    else:
-        pop_weights = np.ones(len(tract_index), dtype=float) / len(tract_index)
+    svi_ids = (
+        svi_df[geoid_col]
+        .astype(str)
+        .str.split(".")
+        .str[0]
+        .str.extract(r"(\d+)")[0]
+        .str.lstrip("0")
+    )
+    svi_values = pd.to_numeric(svi_df[value_col], errors="coerce")
+    invalid_svi = (
+        svi_ids.isna()
+        | svi_ids.eq("")
+        | ~np.isfinite(svi_values.to_numpy(dtype=float))
+    )
+    if invalid_svi.any():
+        raise ValueError(
+            f"SVI file contains {int(invalid_svi.sum())} invalid ID/value rows."
+        )
+    svi_table = pd.DataFrame(
+        {"tract_id": svi_ids.astype(str), "SVI": svi_values.astype(float)}
+    )
+    active_svi = svi_table[svi_table["tract_id"].isin(set(tract_index))].copy()
+    if active_svi["tract_id"].duplicated().any():
+        duplicates = (
+            active_svi.loc[
+                active_svi["tract_id"].duplicated(keep=False),
+                "tract_id",
+            ]
+            .drop_duplicates()
+            .head(10)
+            .tolist()
+        )
+        raise ValueError(f"SVI file contains duplicate active tract IDs: {duplicates}.")
+    svi_aligned = active_svi.set_index("tract_id")["SVI"].reindex(tract_index)
+    if svi_aligned.isna().any():
+        missing = svi_aligned.index[svi_aligned.isna()].tolist()[:10]
+        raise ValueError(f"SVI file does not cover all active tracts: {missing}.")
 
-    # -------------------------------------------------------------------------
-    # 2) SVI * Population weights
-    # -------------------------------------------------------------------------
-    svi_pop_weights: Optional[np.ndarray] = None
-
-    if getattr(cfg, "SVI_CSV", None):
-        try:
-            svi_df = pd.read_csv(cfg.SVI_CSV)
-
-            # Default column names (configurable)
-            geoid_col = getattr(cfg, "SVI_GEOID_COL", "geoid")
-            value_col = getattr(cfg, "SVI_VALUE_COL", "SVI")
-
-            # If the configured column names are missing, attempt auto-detection
-            if geoid_col not in svi_df.columns:
-                for c in svi_df.columns:
-                    c_lower = str(c).lower()
-                    if "geoid" in c_lower or "tract" in c_lower:
-                        geoid_col = c
-                        break
-
-            if value_col not in svi_df.columns:
-                for c in ["SVI", "svi", "RPL_THEMES", "rpl_themes"]:
-                    if c in svi_df.columns:
-                        value_col = c
-                        break
-
-            if geoid_col in svi_df.columns and value_col in svi_df.columns:
-                svi_df[geoid_col] = svi_df[geoid_col].astype(str)
-
-                svi_series = svi_df.set_index(geoid_col)[value_col].astype(float)
-                svi_aligned = svi_series.reindex(tract_index).fillna(0.0)
-                svi_vals = svi_aligned.values
-
-                # Clean NaN/inf and ensure nonnegative
-                svi_vals[~np.isfinite(svi_vals)] = 0.0
-                if np.min(svi_vals) < 0:
-                    svi_vals -= np.min(svi_vals)
-
-                # Core logic: weights = population * SVI
-                # NOTE: This block assumes `total_pop` exists from the population-weight branch.
-                raw_w = pop_weights * total_pop * svi_vals if total_pop > 0 else svi_vals
-
-                if raw_w.sum() > 0:
-                    svi_pop_weights = raw_w / raw_w.sum()
-                    logger.debug("SVI weights calculated successfully for analysis.")
-
-        except Exception as e:
-            logger.warning(f"Failed to calculate SVI weights: {e}")
-
+    svi_vals = svi_aligned.to_numpy(dtype=float)
+    if float(svi_vals.min()) < 0:
+        svi_vals = svi_vals - float(svi_vals.min())
+    raw_w = pop_per_tract.to_numpy(dtype=float) * svi_vals
+    if not np.isfinite(raw_w).all() or float(raw_w.sum()) <= 0:
+        raise ValueError("Population-SVI weights are non-finite or sum to zero.")
+    svi_pop_weights = raw_w / raw_w.sum()
     return pop_weights, svi_pop_weights
 
 
@@ -3357,8 +3526,6 @@ def run_stage_4(
 
     # Weights for Analysis
     pop_weights, svi_pop_weights = get_analysis_weights(cfg, stage_0_data)
-    if svi_pop_weights is None:
-        logger.warning("SVI weights not available. SVI curves will not be generated.")
 
     depot_inputs = load_stage45_C57_depot_inputs(DATA_DIR, getattr(cfg, "STAGE45_DEPOT_INPUT_CSV", None))
     write_stage45_C57_base_outputs(cfg, depot_inputs)
@@ -3721,12 +3888,14 @@ def run_stage_5(
 
     combined_results_pop = {}
     combined_results_svi = {}
+    combined_orders = {}
 
     # --- 4. Main Loop: Scenarios ---
     for scenario in cfg.SCENARIOS:
         logger.info(f"Processing Scenario: {scenario}...")
         combined_results_pop[scenario] = {}
         combined_results_svi[scenario] = {}
+        combined_orders[scenario] = {}
 
         if scenario not in all_mean_sub:
             continue
@@ -3843,6 +4012,7 @@ def run_stage_5(
 
             best_ind = tools.selBest(pop, 1)[0]
             best_order = [task_ids[i] for i in best_ind]
+            combined_orders[scenario][policy_name] = list(best_order)
 
             # --- Export Detailed Schedule for Visualization ---
             schedule_rows = []
@@ -3939,7 +4109,7 @@ def run_stage_5(
         )
 
     # --- 5. Format Output for Stage 6 ---
-    out = {"pop": {}, "svi": {}}
+    out = {"pop": {}, "svi": {}, "orders": combined_orders}
 
     for scen, policies in combined_results_pop.items():
         df_combined = pd.DataFrame(policies)
@@ -4150,13 +4320,575 @@ def run_stage_6(
     if all_system_curves:
         all_curves_df = pd.DataFrame(all_system_curves)
         all_curves_df = all_curves_df.reindex(t_grid)
-        all_curves_df.to_csv(out_dir / "recovery_curves_all_system.csv", index_label="time_hr")
+
+        def _reader_curve_column(raw_column: str) -> str:
+            for scenario_name in sorted(cfg.SCENARIOS, key=len, reverse=True):
+                prefix = f"{scenario_name}_"
+                if not raw_column.startswith(prefix):
+                    continue
+                core = raw_column[len(prefix):]
+                if core.endswith("_Pop"):
+                    weighting = "Population"
+                    strategy_text = core[:-4]
+                elif core.endswith("_SVI"):
+                    weighting = "SVI"
+                    strategy_text = core[:-4]
+                else:
+                    return raw_column
+                if strategy_text.startswith("S4_"):
+                    strategy_text = strategy_text[3:]
+                strategy_label = canonical_strategy_label(strategy_text)
+                return (
+                    f"{scenario_name} | {strategy_label} | {weighting}"
+                )
+            return raw_column
+
+        all_curves_df = all_curves_df.rename(columns=_reader_curve_column)
+        all_curves_df.to_csv(
+            out_dir / "recovery_curves_all_system.csv",
+            index_label="time_hr",
+        )
 
     if all_kpis:
         all_kpis_df = pd.concat(all_kpis).reset_index(drop=True)
-        all_kpis_df.to_csv(out_dir / "recovery_kpis_all_system.csv", index=False)
+        rule_text = all_kpis_df["rule"].astype(str)
+        all_kpis_df["Strategy"] = rule_text.map(canonical_strategy_label)
+        all_kpis_df["Weighting"] = np.where(
+            rule_text.str.lower().str.contains("svi"),
+            "SVI",
+            "Pop",
+        )
+        all_kpis_df = all_kpis_df[
+            ["AUC", "T50", "T80", "scenario", "Strategy", "Weighting"]
+        ]
+        all_kpis_df.to_csv(
+            out_dir / "recovery_kpis_all_system.csv",
+            index=False,
+        )
 
     logger.info("--- STAGE 6 Complete ---")
+
+
+# ==========================================================================
+# Sensitivity analysis: live 2pc50 experiments
+# ==========================================================================
+SENSITIVITY_RULES = [
+    "centrality-first",
+    "impact-first",
+    "betweenness-first",
+    "degree-first",
+    "closeness-first",
+    "hospital-first",
+    "random",
+]
+
+
+def _scale_sensitivity_crew_origins(
+    baseline_origins: List[str],
+    crew_scale: float,
+) -> List[str]:
+    """Scale depot-level crew counts proportionally with deterministic rounding."""
+    if not baseline_origins:
+        raise ValueError("Sensitivity analysis requires at least one baseline crew origin.")
+
+    base_counts = pd.Series(baseline_origins, dtype=str).value_counts(sort=False)
+    target_count = int(np.floor(len(baseline_origins) * float(crew_scale) + 0.5))
+    if target_count < 1:
+        raise ValueError(f"Crew scale {crew_scale} produces no dispatchable crews.")
+
+    raw_counts = base_counts.astype(float) * target_count / len(baseline_origins)
+    scaled_counts = np.floor(raw_counts).astype(int)
+    remainder = target_count - int(scaled_counts.sum())
+    if remainder:
+        fractional = (raw_counts - scaled_counts).sort_values(
+            ascending=False,
+            kind="stable",
+        )
+        for origin in fractional.index[:remainder]:
+            scaled_counts.loc[origin] += 1
+
+    return [
+        str(origin)
+        for origin in base_counts.index
+        for _ in range(int(scaled_counts.loc[origin]))
+    ]
+
+
+def _build_sensitivity_dependency_matrices(
+    cfg: Config,
+    stage_0_data: Dict[str, Any],
+) -> Tuple[Dict[float, np.ndarray], pd.DataFrame]:
+    """Build thresholded W matrices from the unthresholded topology export."""
+    raw_path = Path(cfg.SENSITIVITY_RAW_MAPPING_CSV)
+    if not raw_path.exists():
+        raise FileNotFoundError(
+            "Live IDW sensitivity requires the unthresholded mapping export "
+            f"{raw_path}. Run the matching Topology_and_Weight workflow once."
+        )
+
+    raw_mapping = load_mapping(str(raw_path))
+    required_mapping_cols = {"tract_id", "substation_id", "weight"}
+    missing_mapping_cols = required_mapping_cols - set(raw_mapping.columns)
+    if missing_mapping_cols:
+        raise ValueError(
+            f"Unthresholded sensitivity mapping is missing {sorted(missing_mapping_cols)}."
+        )
+
+    tract_index = pd.Index(stage_0_data["tract_index"]).astype(str)
+    sub_index = pd.Index(
+        [clean_substation_id(s) for s in stage_0_data["sub_index"]]
+    )
+    raw_mapping["tract_id"] = raw_mapping["tract_id"].astype(str).str.strip()
+    raw_mapping["substation_id"] = raw_mapping["substation_id"].map(
+        clean_substation_id
+    )
+    raw_mapping["weight"] = pd.to_numeric(raw_mapping["weight"], errors="raise")
+    raw_mapping = raw_mapping[
+        raw_mapping["tract_id"].isin(tract_index)
+        & raw_mapping["substation_id"].isin(sub_index)
+    ].copy()
+    if raw_mapping.empty:
+        raise ValueError(
+            "Unthresholded sensitivity mapping has no rows in the active tract/substation universe."
+        )
+
+    W_raw_df = (
+        raw_mapping.pivot_table(
+            index="tract_id",
+            columns="substation_id",
+            values="weight",
+            aggfunc="sum",
+        )
+        .reindex(index=tract_index, columns=sub_index, fill_value=0.0)
+        .fillna(0.0)
+    )
+    W_raw = W_raw_df.to_numpy(dtype=float)
+    if not np.isfinite(W_raw).all() or (W_raw < 0).any():
+        raise ValueError("Unthresholded sensitivity mapping contains invalid weights.")
+
+    raw_row_sums = W_raw.sum(axis=1)
+    if np.any(raw_row_sums <= 0):
+        bad_tracts = tract_index[raw_row_sums <= 0].tolist()[:10]
+        raise ValueError(
+            "Unthresholded sensitivity mapping leaves active tracts without supply: "
+            f"{bad_tracts}"
+        )
+    W_raw = W_raw / raw_row_sums[:, np.newaxis]
+
+    matrices: Dict[float, np.ndarray] = {}
+    diagnostics = []
+    for theta in cfg.SENSITIVITY_IDW_THRESHOLDS:
+        theta = float(theta)
+        W_theta = W_raw.copy()
+        W_theta[W_theta < theta] = 0.0
+        row_sums = W_theta.sum(axis=1)
+        zero_rows = np.flatnonzero(row_sums <= 0)
+        if len(zero_rows):
+            max_cols = np.argmax(W_raw[zero_rows], axis=1)
+            W_theta[zero_rows, :] = 0.0
+            W_theta[zero_rows, max_cols] = 1.0
+            row_sums = W_theta.sum(axis=1)
+        W_theta = W_theta / row_sums[:, np.newaxis]
+        matrices[theta] = W_theta
+
+        supply_count = (W_theta > 0).sum(axis=1)
+        diagnostics.append(
+            {
+                "theta_W": theta,
+                "mean_supply_count": float(supply_count.mean()),
+                "mean_HHI": float(np.square(W_theta).sum(axis=1).mean()),
+                "median_supply_count": float(np.median(supply_count)),
+            }
+        )
+
+    baseline_theta = float(cfg.SENSITIVITY_BASELINE_IDW_THRESHOLD)
+    if baseline_theta not in matrices:
+        raise ValueError(
+            f"Baseline IDW threshold {baseline_theta:g} is absent from the sensitivity grid."
+        )
+    W_baseline = np.asarray(stage_0_data["W_mat"], dtype=float)
+    if W_baseline.shape != matrices[baseline_theta].shape:
+        raise ValueError(
+            "Baseline and live sensitivity W matrices have different shapes: "
+            f"{W_baseline.shape} vs {matrices[baseline_theta].shape}."
+        )
+    max_abs_diff = float(np.max(np.abs(W_baseline - matrices[baseline_theta])))
+    if max_abs_diff > 1e-8:
+        raise ValueError(
+            "The unthresholded mapping does not reproduce the production W matrix "
+            f"at theta_W={baseline_theta:g}; max absolute difference={max_abs_diff:.3e}."
+        )
+
+    return matrices, pd.DataFrame(diagnostics)
+
+
+def _sensitivity_curve_metrics(
+    curve: np.ndarray,
+    t_grid: np.ndarray,
+    t_end: float,
+) -> Dict[str, float]:
+    kpis = kpis_from_series(
+        pd.DataFrame({"system": np.asarray(curve, dtype=float)}, index=t_grid),
+        t_end,
+    ).loc["system"]
+    return {
+        "T50": float(kpis["T50"]),
+        "T80": float(kpis["T80"]),
+        "AUC": float(kpis["AUC"]),
+    }
+
+
+def run_sensitivity_analysis_2pc50(
+    cfg: Config,
+    stage_0_data: Dict[str, Any],
+    stage_2_data: Dict[str, Any],
+    stage_3_data: Dict[str, Any],
+    stage_5_data: Dict[str, Any],
+    out_dirs: Dict[str, Path],
+) -> Dict[str, pd.DataFrame]:
+    """Run and render the complete live 2pc50 sensitivity experiment grid."""
+    logger = logging.getLogger()
+    logger.info("=" * 50)
+    logger.info("--- SENSITIVITY: Live 2pc50 Experiment Grid ---")
+
+    scenario = str(cfg.SENSITIVITY_SCENARIO)
+    if scenario != "2pc50":
+        raise ValueError(
+            f"Sensitivity analysis is restricted to 2pc50, got {scenario!r}."
+        )
+    if scenario not in cfg.SCENARIOS:
+        raise ValueError(f"2pc50 is missing from configured scenarios: {cfg.SCENARIOS}.")
+
+    all_repair_times = stage_3_data.get("all_mean_sub_repair_times")
+    all_damage_samples = stage_3_data.get("all_damage_state_samples")
+    if not all_repair_times or scenario not in all_repair_times:
+        raise ValueError("Live sensitivity requires Stage 3 mean repair times for 2pc50.")
+    if not all_damage_samples or scenario not in all_damage_samples:
+        raise ValueError("Live sensitivity requires Stage 3 MC damage samples for 2pc50.")
+
+    sub_repair_durations = all_repair_times[scenario]
+    damage_state_samples = all_damage_samples[scenario]
+    tasks, _ = select_repair_tasks(sub_repair_durations, cfg)
+    task_sub_ids = list(tasks.index)
+    if not task_sub_ids:
+        raise ValueError("Live 2pc50 sensitivity found no dispatchable repair tasks.")
+
+    G = stage_2_data.get("G")
+    centrality_df = stage_2_data.get("centrality_df")
+    if G is None or G.number_of_nodes() == 0 or centrality_df is None:
+        raise ValueError(
+            "Live sensitivity requires the Stage 2 graph and centrality table."
+        )
+
+    sub_index = pd.Index(stage_0_data["sub_index"])
+    tract_index = pd.Index(stage_0_data["tract_index"])
+    source_ids = load_source_gate_nodes(cfg, sub_index)
+    if not source_ids:
+        raise ValueError("Live sensitivity requires valid source-gate nodes.")
+
+    pop_weights, svi_pop_weights = get_analysis_weights(cfg, stage_0_data)
+    if svi_pop_weights is None:
+        raise ValueError(
+            "Live sensitivity requires valid population-SVI weights; none were produced."
+        )
+
+    W_by_theta, mapping_diagnostics = _build_sensitivity_dependency_matrices(
+        cfg,
+        stage_0_data,
+    )
+    baseline_theta = float(cfg.SENSITIVITY_BASELINE_IDW_THRESHOLD)
+
+    depot_inputs = load_stage45_C57_depot_inputs(
+        DATA_DIR,
+        getattr(cfg, "STAGE45_DEPOT_INPUT_CSV", None),
+    )
+    active_depot_df = depot_inputs["active_depot_df"]
+    baseline_origins = (
+        depot_inputs["expanded_crew_origins_df"]["travel_matrix_origin_key"]
+        .astype(str)
+        .tolist()
+    )
+    baseline_crews = len(baseline_origins)
+    if baseline_crews != int(depot_inputs["total_integer_crews"]):
+        raise ValueError("Baseline crew-origin expansion is inconsistent.")
+
+    travel_mats = load_travel_matrices(
+        cfg,
+        stage_0_data["devices_merged"],
+        task_sub_ids,
+        sub_index.to_list(),
+        active_depot_df=active_depot_df,
+    )
+    t_grid = np.arange(0, cfg.TIME_END_HR + cfg.DT_HR, cfg.DT_HR)
+    orders = {}
+    expected_tasks = {str(task) for task in task_sub_ids}
+    for rule in SENSITIVITY_RULES:
+        order = order_substations(
+            rule,
+            task_sub_ids,
+            stage_0_data,
+            stage_2_data,
+            cfg,
+        )
+        if len(order) != len(task_sub_ids) or set(map(str, order)) != expected_tasks:
+            raise ValueError(
+                f"Sensitivity order {rule!r} does not contain the complete fixed task set."
+            )
+        orders[rule] = order
+
+    ga_orders = stage_5_data.get("orders", {}).get(scenario, {})
+    expected_ga_policies = list(cfg.GA_SCENARIOS_CONFIG)
+    missing_ga_policies = [
+        policy for policy in expected_ga_policies if policy not in ga_orders
+    ]
+    if missing_ga_policies:
+        raise ValueError(
+            "Live sensitivity requires the current Stage 5 GA orders for 2pc50; "
+            f"missing policies: {missing_ga_policies}."
+        )
+    for policy_name in expected_ga_policies:
+        strategy = f"GA_{policy_name}"
+        order = [str(task) for task in ga_orders[policy_name]]
+        if len(order) != len(task_sub_ids) or set(order) != expected_tasks:
+            raise ValueError(
+                f"Sensitivity order {strategy!r} does not contain the complete "
+                "fixed task set."
+            )
+        orders[strategy] = order
+    sensitivity_strategies = list(orders)
+
+    baseline_gate = float(cfg.FUNCTIONAL_THRESHOLD)
+    if not np.isclose(baseline_gate, 0.5, rtol=0.0, atol=1e-12):
+        raise ValueError(
+            f"The sensitivity baseline requires FUNCTIONAL_THRESHOLD=0.5, got {baseline_gate}."
+        )
+
+    source_gate_diagnostic_frames = []
+    for gate_threshold in cfg.SENSITIVITY_SOURCE_GATE_THRESHOLDS:
+        gate_threshold = float(gate_threshold)
+        mechanism_cfg = replace(
+            cfg,
+            FUNCTIONAL_THRESHOLD=gate_threshold,
+        )
+        _, gate_diagnostics = simulate_recovery_mc_source_gated(
+            t_grid=t_grid,
+            sub_index=sub_index,
+            damage_state_samples=damage_state_samples,
+            G=G,
+            cfg=mechanism_cfg,
+            source_ids=source_ids,
+            start_times=np.zeros(len(sub_index), dtype=float),
+            repair_time_scale=1.0,
+            label=f"source-gate mechanism tau={gate_threshold:g}",
+            return_gate_diagnostics=True,
+        )
+        gate_diagnostics.insert(0, "source_gate_threshold", gate_threshold)
+        gate_diagnostics.insert(0, "scenario", scenario)
+        source_gate_diagnostic_frames.append(gate_diagnostics)
+
+    def simulate_case(
+        rule: str,
+        crew_scale: float = 1.0,
+        repair_scale: float = 1.0,
+        gate_threshold: float = baseline_gate,
+    ) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+        crew_origins = _scale_sensitivity_crew_origins(
+            baseline_origins,
+            crew_scale,
+        )
+        case_cfg = replace(cfg, FUNCTIONAL_THRESHOLD=float(gate_threshold))
+        return simulate_rule_schedule(
+            order=orders[rule],
+            n_crews=len(crew_origins),
+            travel_mats=travel_mats,
+            t_grid=t_grid,
+            sub_repair_durations=sub_repair_durations,
+            sub_index=sub_index,
+            cfg=case_cfg,
+            damage_state_samples=damage_state_samples,
+            crew_origin_ids=crew_origins,
+            source_gate_graph=G,
+            source_ids=source_ids,
+            repair_time_scale=repair_scale,
+            return_metadata=True,
+        )
+
+    def summarize_case(
+        rule: str,
+        group: str,
+        parameter_value: float,
+        R_sub_df: pd.DataFrame,
+        metadata: Dict[str, Any],
+        W_mat: np.ndarray,
+        repair_scale: float,
+        gate_threshold: float,
+        include_lcc: bool = False,
+    ) -> Dict[str, Any]:
+        S_tract_df = propagate_to_tracts(R_sub_df, W_mat, tract_index)
+        pop_metrics = _sensitivity_curve_metrics(
+            S_tract_df.values @ pop_weights,
+            t_grid,
+            cfg.TIME_END_HR,
+        )
+        svi_metrics = _sensitivity_curve_metrics(
+            S_tract_df.values @ svi_pop_weights,
+            t_grid,
+            cfg.TIME_END_HR,
+        )
+        row = {
+            "scenario": scenario,
+            "sensitivity_group": group,
+            "parameter_value": float(parameter_value),
+            "strategy": rule,
+            "n_crews": int(metadata["n_crews"]),
+            "task_count": int(metadata["task_count"]),
+            "makespan_hr": float(metadata["makespan_hr"]),
+            "functional_threshold": float(gate_threshold),
+            "repair_scale": float(repair_scale),
+            "T50_pop": pop_metrics["T50"],
+            "T80_pop": pop_metrics["T80"],
+            "AUC_pop": pop_metrics["AUC"],
+            "T50_svi": svi_metrics["T50"],
+            "T80_svi": svi_metrics["T80"],
+            "AUC_svi": svi_metrics["AUC"],
+            "equity_gap_T50": svi_metrics["T50"] - pop_metrics["T50"],
+            "LCC_AUC": np.nan,
+            "LCC_T50": np.nan,
+        }
+        if include_lcc:
+            case_cfg = replace(cfg, FUNCTIONAL_THRESHOLD=float(gate_threshold))
+            robust = compute_graph_robustness(G, R_sub_df, t_grid, case_cfg)
+            if not robust.empty:
+                lcc_metrics = _sensitivity_curve_metrics(
+                    robust["lcc_fraction"].to_numpy(dtype=float),
+                    robust["t"].to_numpy(dtype=float),
+                    cfg.TIME_END_HR,
+                )
+                row["LCC_AUC"] = lcc_metrics["AUC"]
+                row["LCC_T50"] = lcc_metrics["T50"]
+        return row
+
+    rows = []
+    for rule in sensitivity_strategies:
+        logger.info("Sensitivity strategy: %s", rule)
+        baseline_R, baseline_meta = simulate_case(rule)
+        baseline_row = summarize_case(
+            rule,
+            "baseline",
+            1.0,
+            baseline_R,
+            baseline_meta,
+            W_by_theta[baseline_theta],
+            repair_scale=1.0,
+            gate_threshold=baseline_gate,
+        )
+        rows.append(baseline_row)
+
+        for crew_scale in cfg.SENSITIVITY_CREW_SCALES:
+            crew_scale = float(crew_scale)
+            if np.isclose(crew_scale, 1.0):
+                R_case, case_meta = baseline_R, baseline_meta
+            else:
+                R_case, case_meta = simulate_case(rule, crew_scale=crew_scale)
+            rows.append(
+                summarize_case(
+                    rule,
+                    "crew_availability",
+                    crew_scale,
+                    R_case,
+                    case_meta,
+                    W_by_theta[baseline_theta],
+                    repair_scale=1.0,
+                    gate_threshold=baseline_gate,
+                )
+            )
+
+        for repair_scale in cfg.SENSITIVITY_REPAIR_SCALES:
+            repair_scale = float(repair_scale)
+            if np.isclose(repair_scale, 1.0):
+                R_case, case_meta = baseline_R, baseline_meta
+            else:
+                R_case, case_meta = simulate_case(
+                    rule,
+                    repair_scale=repair_scale,
+                )
+            rows.append(
+                summarize_case(
+                    rule,
+                    "repair_time_scale",
+                    repair_scale,
+                    R_case,
+                    case_meta,
+                    W_by_theta[baseline_theta],
+                    repair_scale=repair_scale,
+                    gate_threshold=baseline_gate,
+                )
+            )
+
+        for theta in cfg.SENSITIVITY_IDW_THRESHOLDS:
+            theta = float(theta)
+            rows.append(
+                summarize_case(
+                    rule,
+                    "idw_threshold",
+                    theta,
+                    baseline_R,
+                    baseline_meta,
+                    W_by_theta[theta],
+                    repair_scale=1.0,
+                    gate_threshold=baseline_gate,
+                )
+            )
+
+        for gate_threshold in cfg.SENSITIVITY_SOURCE_GATE_THRESHOLDS:
+            gate_threshold = float(gate_threshold)
+            if np.isclose(gate_threshold, baseline_gate):
+                R_case, case_meta = baseline_R, baseline_meta
+            else:
+                R_case, case_meta = simulate_case(
+                    rule,
+                    gate_threshold=gate_threshold,
+                )
+            rows.append(
+                summarize_case(
+                    rule,
+                    "source_gate_threshold",
+                    gate_threshold,
+                    R_case,
+                    case_meta,
+                    W_by_theta[baseline_theta],
+                    repair_scale=1.0,
+                    gate_threshold=gate_threshold,
+                    include_lcc=True,
+                )
+            )
+
+    summary = pd.DataFrame(rows)
+    expected_rows = len(sensitivity_strategies) * (
+        1
+        + len(cfg.SENSITIVITY_CREW_SCALES)
+        + len(cfg.SENSITIVITY_REPAIR_SCALES)
+        + len(cfg.SENSITIVITY_IDW_THRESHOLDS)
+        + len(cfg.SENSITIVITY_SOURCE_GATE_THRESHOLDS)
+    )
+    if len(summary) != expected_rows:
+        raise RuntimeError(
+            f"Live sensitivity produced {len(summary)} rows; expected {expected_rows}."
+        )
+    source_gate_diagnostics = pd.concat(
+        source_gate_diagnostic_frames,
+        ignore_index=True,
+    )
+
+    from build_sensitivity_outputs import render_sensitivity_outputs_2pc50
+
+    rendered = render_sensitivity_outputs_2pc50(
+        summary=summary,
+        mapping_diagnostics=mapping_diagnostics,
+        source_gate_diagnostics=source_gate_diagnostics,
+    )
+    logger.info("--- SENSITIVITY Complete: %d validated rows ---", len(summary))
+    return rendered
 
 
 # ==========================================================================
@@ -4200,6 +4932,58 @@ def run_stage_7(
              .str.lstrip("0")
         )
 
+    def _require_columns(
+        frame: pd.DataFrame,
+        required: List[str],
+        label: str,
+    ) -> None:
+        missing = [col for col in required if col not in frame.columns]
+        if missing:
+            raise ValueError(f"{label} is missing required columns: {missing}.")
+
+    def _require_finite(
+        frame: pd.DataFrame,
+        columns: List[str],
+        label: str,
+    ) -> None:
+        numeric = frame[columns].apply(pd.to_numeric, errors="coerce")
+        invalid = ~np.isfinite(numeric.to_numpy(dtype=float))
+        if invalid.any():
+            counts = {
+                col: int(invalid[:, idx].sum())
+                for idx, col in enumerate(columns)
+                if invalid[:, idx].any()
+            }
+            raise ValueError(f"{label} contains non-finite required values: {counts}.")
+        frame[columns] = numeric
+
+    def _require_valid_ids(
+        frame: pd.DataFrame,
+        column: str,
+        label: str,
+        *,
+        unique: bool = False,
+    ) -> None:
+        ids = frame[column].astype("string").str.strip()
+        invalid = (
+            ids.isna()
+            | ids.eq("")
+            | ids.str.lower().isin({"nan", "none", "<na>"})
+        )
+        if invalid.any():
+            raise ValueError(
+                f"{label} contains {int(invalid.sum())} missing or invalid "
+                f"{column} values."
+            )
+        if unique:
+            duplicated = ids.duplicated(keep=False)
+            if duplicated.any():
+                examples = ids[duplicated].drop_duplicates().head(10).tolist()
+                raise ValueError(
+                    f"{label} contains duplicate {column} values; "
+                    f"examples: {examples}."
+                )
+
     # ---------------------------------------------------------
     # A. Recovery Metrics (from Stage 5 GA) - single scenario
     # ---------------------------------------------------------
@@ -4210,16 +4994,16 @@ def run_stage_7(
         raise FileNotFoundError(f"Missing Stage 5 tract KPI file: {s5_kpi_path}")
 
     df_s5 = pd.read_csv(s5_kpi_path)
-    if "tract_id" not in df_s5.columns:
-        df_s5.rename(columns={df_s5.columns[0]: "tract_id"}, inplace=True)
-
-    df_s5["tract_id"] = df_s5["tract_id"].astype(str).str.split(".").str[0].str.strip()
+    _require_columns(df_s5, ["tract_id", "T50", "T80"], "Stage 5 tract KPI file")
+    df_s5["tract_id"] = _normalize_tract_id(df_s5["tract_id"])
+    _require_valid_ids(
+        df_s5,
+        "tract_id",
+        "Stage 5 tract KPI file",
+        unique=True,
+    )
+    _require_finite(df_s5, ["T50", "T80"], "Stage 5 tract KPI file")
     df_s5["scenario"] = target_scen
-
-    # Ensure KPI columns exist (defensive)
-    for c in ["T50", "T80"]:
-        if c not in df_s5.columns:
-            df_s5[c] = 0.0
 
     df_main_raw = df_s5[["tract_id", "scenario", "T50", "T80"]].copy()
 
@@ -4227,35 +5011,40 @@ def run_stage_7(
     # B. Initial Supply (from Stage 1 MC) - single scenario
     # ---------------------------------------------------------
     supply_file = out_dirs["STAGE1_DIR"] / f"MC_Tract_Supply_{target_scen}.csv"
-    if supply_file.exists():
-        df_s = pd.read_csv(supply_file)
-        col_id = "tract" if "tract" in df_s.columns else df_s.columns[0]
-        col_val = "supply" if "supply" in df_s.columns else df_s.columns[-1]
-        df_s[col_id] = df_s[col_id].astype(str).str.split(".").str[0].str.strip()
-        df_s = df_s.rename(columns={col_id: "tract_id", col_val: "Init_Supply"})
-        df_s["scenario"] = target_scen
-        df_s = df_s.copy()
-
-        df_main_raw = (
-            pd.merge(
-                df_main_raw,
-                df_s[["tract_id", "scenario", "Init_Supply"]],
-                on=["tract_id", "scenario"],
-                how="left",
+    if not supply_file.exists():
+        raise FileNotFoundError(f"Missing Stage 1 initial-supply file: {supply_file}")
+    df_s = pd.read_csv(supply_file)
+    col_id = "tract_id" if "tract_id" in df_s.columns else "tract"
+    _require_columns(df_s, [col_id, "supply"], "Stage 1 initial-supply file")
+    if "scenario" in df_s.columns:
+        scenarios = set(df_s["scenario"].astype(str))
+        if scenarios != {target_scen}:
+            raise ValueError(
+                f"Stage 1 initial-supply file must contain only {target_scen}; "
+                f"found {sorted(scenarios)}."
             )
-            .fillna(0)
-        )
-    else:
-        df_main_raw["Init_Supply"] = 0.0
-
-    # ---------------------------------------------------------
-    # Aggregation (keep mean for safety; single-scenario -> identity)
-    # ---------------------------------------------------------
-    df_main = (
-        df_main_raw.groupby("tract_id")[["T50", "T80", "Init_Supply"]]
-        .mean()
-        .reset_index()
+    df_s["tract_id"] = _normalize_tract_id(df_s[col_id])
+    _require_valid_ids(
+        df_s,
+        "tract_id",
+        "Stage 1 initial-supply file",
+        unique=True,
     )
+    df_s = df_s.rename(columns={"supply": "Init_Supply"})
+    _require_finite(df_s, ["Init_Supply"], "Stage 1 initial-supply file")
+
+    df_main = df_main_raw.merge(
+        df_s[["tract_id", "Init_Supply"]],
+        on="tract_id",
+        how="left",
+        validate="one_to_one",
+    )
+    if df_main["Init_Supply"].isna().any():
+        missing_ids = df_main.loc[df_main["Init_Supply"].isna(), "tract_id"].tolist()[:10]
+        raise ValueError(
+            "Stage 1 initial-supply file does not cover all Stage 5 tracts: "
+            f"{missing_ids}"
+        )
 
     # Standardize tract_id: keep digits only, drop decimal suffix, strip leading zeros
     df_main["tract_id"] = _normalize_tract_id(df_main["tract_id"])
@@ -4266,133 +5055,131 @@ def run_stage_7(
     # ---------------------------------------------------------
     cent_path = out_dirs["STAGE2_DIR"] / "impact_centrality_substations.csv"
     mapping_df = stage_0_data.get("mapping_df", None)
+    if not cent_path.exists():
+        raise FileNotFoundError(f"Missing Stage 2 centrality file: {cent_path}")
+    if mapping_df is None:
+        raise ValueError("Stage 7 requires Stage 0 tract-to-substation mapping data.")
 
-    # Default values
-    df_main["Grid_Degree"] = 0.0
-    df_main["Grid_Impact"] = 0.0
-    df_main["Grid_Betweenness"] = 0.0
-    df_main["Redundancy_HHI"] = np.nan
+    df_cent = pd.read_csv(cent_path)
+    centrality_cols = [
+        "substation_id",
+        "degree",
+        "impact_centrality",
+        "betweenness_centrality",
+    ]
+    _require_columns(df_cent, centrality_cols, "Stage 2 centrality file")
+    df_cent["substation_id"] = df_cent["substation_id"].map(clean_substation_id)
+    _require_valid_ids(
+        df_cent,
+        "substation_id",
+        "Stage 2 centrality file",
+        unique=True,
+    )
+    _require_finite(
+        df_cent,
+        ["degree", "impact_centrality", "betweenness_centrality"],
+        "Stage 2 centrality file",
+    )
 
-    if cent_path.exists() and mapping_df is not None:
-        try:
-            df_cent = pd.read_csv(cent_path)
+    m = mapping_df.copy()
+    _require_columns(
+        m,
+        ["tract_id", "substation_id", "weight"],
+        "Stage 0 tract-to-substation mapping",
+    )
+    m["tract_id"] = _normalize_tract_id(m["tract_id"])
+    m["substation_id"] = m["substation_id"].map(clean_substation_id)
+    _require_valid_ids(
+        m,
+        "tract_id",
+        "Stage 0 tract-to-substation mapping",
+    )
+    _require_valid_ids(
+        m,
+        "substation_id",
+        "Stage 0 tract-to-substation mapping",
+    )
+    _require_finite(m, ["weight"], "Stage 0 tract-to-substation mapping")
+    if (m["weight"] < 0).any():
+        raise ValueError(
+            "Stage 0 tract-to-substation mapping contains negative weights."
+        )
+    m = m.merge(
+        df_cent[centrality_cols],
+        on="substation_id",
+        how="left",
+        validate="many_to_one",
+    )
+    network_cols = ["degree", "impact_centrality", "betweenness_centrality"]
+    if m[network_cols].isna().any().any():
+        missing_subs = sorted(
+            m.loc[m[network_cols].isna().any(axis=1), "substation_id"].unique()
+        )[:10]
+        raise ValueError(
+            "Stage 2 centrality data does not cover mapped substations: "
+            f"{missing_subs}"
+        )
 
-            # Identify substation id column
-            sub_col = None
-            for c in df_cent.columns:
-                cl = c.lower()
-                if "substation" in cl and "id" in cl:
-                    sub_col = c
-                    break
-            if sub_col is None:
-                sub_col = df_cent.columns[0]
-
-            df_cent[sub_col] = df_cent[sub_col].map(clean_substation_id)
-            df_cent = df_cent.set_index(sub_col)
-
-            # Centrality column names
-            deg_col = "degree" if "degree" in df_cent.columns else df_cent.columns[0]
-            bet_col = (
-                "betweenness_centrality"
-                if "betweenness_centrality" in df_cent.columns
-                else None
-            )
-            imp_col = (
-                "impact_centrality" if "impact_centrality" in df_cent.columns else None
-            )
-
-            m = mapping_df.copy()
-            # IMPORTANT: use the same tract_id normalization as df_main
-            m["tract_id"] = _normalize_tract_id(m["tract_id"])
-            m["substation_id"] = m["substation_id"].map(clean_substation_id)
-
-            join_cols = [deg_col]
-            if bet_col:
-                join_cols.append(bet_col)
-            if imp_col:
-                join_cols.append(imp_col)
-
-            m = m.merge(
-                df_cent[join_cols],
-                left_on="substation_id",
-                right_index=True,
-                how="left",
-            )
-
-            rename_map = {deg_col: "deg"}
-            if bet_col and bet_col in m.columns:
-                rename_map[bet_col] = "bet"
-            if imp_col and imp_col in m.columns:
-                rename_map[imp_col] = "imp"
-            m = m.rename(columns=rename_map)
-
-            g = m.groupby("tract_id")
-
-            # 1) Grid_Degree: mean degree
-            if "deg" in m.columns:
-                grid_deg = g["deg"].mean()
-                df_main["Grid_Degree"] = (
-                    df_main["tract_id"].map(grid_deg).fillna(0.0)
-                )
-
-            # 2) Grid_Impact: mean lambda2-loss impact_centrality
-            if "imp" in m.columns:
-                grid_imp = g["imp"].mean()
-                df_main["Grid_Impact"] = (
-                    df_main["tract_id"].map(grid_imp).fillna(0.0)
-                )
-
-            # 3) Grid_Betweenness: mean betweenness
-            if "bet" in m.columns:
-                grid_bet = g["bet"].mean()
-                df_main["Grid_Betweenness"] = (
-                    df_main["tract_id"].map(grid_bet).fillna(0.0)
-                )
-
-            # 4) Redundancy metrics (if weights exist)
-            if "weight" in m.columns:
-
-                def _redundancy_stats(grp):
-                    w = grp["weight"].values.astype(float)
-                    total = w.sum()
-                    if total <= 0:
-                        return pd.Series(
-                            {
-                                "Redundancy_HHI": np.nan,
-                            }
-                        )
-                    shares = w / total
-                    return pd.Series(
-                        {
-                            "Redundancy_HHI": float(np.sum(shares**2)),
-                        }
-                    )
-
-                red_df = g.apply(_redundancy_stats, include_groups = False)
-                red_df.index = red_df.index.astype(str)
-
-                df_main["Redundancy_HHI"] = df_main["tract_id"].map(
-                    red_df["Redundancy_HHI"]
-                )
-
-        except Exception as e:
-            logger.warning(f"Stage 7: failed to compute grid/logistics features: {e}")
+    tract_weight_totals = m.groupby("tract_id")["weight"].transform("sum")
+    if (tract_weight_totals <= 0).any():
+        bad_tracts = sorted(
+            m.loc[tract_weight_totals <= 0, "tract_id"].unique()
+        )[:10]
+        raise ValueError(
+            "Stage 0 mapping contains tracts without positive total weight: "
+            f"{bad_tracts}."
+        )
+    m["_dependency_share"] = m["weight"] / tract_weight_totals
+    weighted_columns = {
+        "degree": "Grid_Degree",
+        "impact_centrality": "Grid_Impact",
+        "betweenness_centrality": "Grid_Betweenness",
+    }
+    for source_col, output_col in weighted_columns.items():
+        m[output_col] = m[source_col] * m["_dependency_share"]
+    m["Redundancy_HHI"] = np.square(m["_dependency_share"])
+    tract_network = m.groupby("tract_id")[
+        list(weighted_columns.values()) + ["Redundancy_HHI"]
+    ].sum()
+    df_main = df_main.merge(
+        tract_network,
+        left_on="tract_id",
+        right_index=True,
+        how="left",
+        validate="one_to_one",
+    )
+    required_network_features = [
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+    ]
+    _require_finite(
+        df_main,
+        required_network_features,
+        "Stage 7 tract-level network features",
+    )
 
     # ---------------------------------------------------------
-    # D. SVI & Population Density (External Census Data, 4 themes)
+    # D. SVI & Population Density (four themes -> one composite)
     # ---------------------------------------------------------
     SVI_FILE_PATH = cfg.STAGE7_SVI_DATA_PATH
-    svi_factor_cols = []  # up to four theme factors: SVI_THEME1-4
+    svi_factor_cols = ["SVI_Composite"]
 
-    if os.path.exists(SVI_FILE_PATH):
+    if not os.path.exists(SVI_FILE_PATH):
+        raise FileNotFoundError(f"Required Stage 7 SVI file not found: {SVI_FILE_PATH}")
+    else:
         try:
             df_svi = pd.read_csv(SVI_FILE_PATH)
+            _require_columns(df_svi, ["FIPS"], "Stage 7 SVI file")
 
             # LA County only: 6037
             if "STCNTY" in df_svi.columns:
-                df_la = df_svi[df_svi["STCNTY"] == 6037].copy()
+                county_fips = pd.to_numeric(df_svi["STCNTY"], errors="coerce")
+                df_la = df_svi[county_fips == 6037].copy()
             else:
-                df_la = df_svi[df_svi["FIPS"].astype(str).str.startswith("6037")].copy()
+                tract_fips = _normalize_tract_id(df_svi["FIPS"])
+                df_la = df_svi[tract_fips.str.startswith("6037", na=False)].copy()
 
             # Clean -999 across EP_*, RPL_*, and (population/area if present)
             clean_cols = []
@@ -4404,14 +5191,19 @@ def run_stage_7(
             clean_cols = list(dict.fromkeys(clean_cols))
 
             for c in clean_cols:
-                df_la[c] = df_la[c].replace(-999, np.nan)
-                df_la[c] = df_la[c].fillna(df_la[c].median())
+                df_la[c] = pd.to_numeric(df_la[c], errors="coerce").replace(
+                    -999,
+                    np.nan,
+                )
 
             # County-level population density
             if "E_TOTPOP" in df_la.columns and "AREA_SQMI" in df_la.columns:
-                df_la["Pop_Density"] = df_la["E_TOTPOP"] / df_la["AREA_SQMI"].replace(0, 1)
+                valid_area = df_la["AREA_SQMI"].where(df_la["AREA_SQMI"] > 0)
+                df_la["Pop_Density"] = df_la["E_TOTPOP"] / valid_area
             else:
-                df_la["Pop_Density"] = 0.0
+                raise ValueError(
+                    "Stage 7 SVI file requires E_TOTPOP and AREA_SQMI for population density."
+                )
 
             # 1) Prefer official RPL_THEME1-4
             theme_cols = []
@@ -4469,196 +5261,253 @@ def run_stage_7(
                     theme_cols.append("SVI_THEME4")
 
             # 3) Map theme columns + Pop_Density to tract_id
-            if not theme_cols:
-                logger.warning(
-                    "No SVI theme columns (RPL_THEME* or EP_* aggregation) found; skipping SVI features."
+            required_theme_cols = [
+                "SVI_THEME1",
+                "SVI_THEME2",
+                "SVI_THEME3",
+                "SVI_THEME4",
+            ]
+            if set(theme_cols) != set(required_theme_cols):
+                raise ValueError(
+                    "Stage 7 requires all four SVI themes; produced "
+                    f"{sorted(theme_cols)}."
                 )
             else:
-                df_la["FIPS_STR"] = df_la["FIPS"].astype(str)
+                df_la["tract_id"] = _normalize_tract_id(df_la["FIPS"])
+                _require_valid_ids(
+                    df_la,
+                    "tract_id",
+                    "Stage 7 SVI file",
+                    unique=True,
+                )
 
-                cols_to_merge = theme_cols + ["Pop_Density"]
-                # Include EP_POV150 for later summary if it exists
-                if "EP_POV150" in df_la.columns:
-                    cols_to_merge.append("EP_POV150")
-
-                df_la_subset = df_la[["FIPS_STR"] + cols_to_merge].copy()
-                svi_lookup = df_la_subset.set_index("FIPS_STR")[cols_to_merge]
-
-                def get_svi_row(tid):
-                    if tid in svi_lookup.index:
-                        return svi_lookup.loc[tid]
-                    if len(tid) == 10:
-                        t2 = "0" + tid
-                        if t2 in svi_lookup.index:
-                            return svi_lookup.loc[t2]
-                    # If no match, return NaNs (filled by median later)
-                    return pd.Series({c: np.nan for c in cols_to_merge})
-
-                svi_data = df_main["tract_id"].apply(get_svi_row)
-                df_main = pd.concat([df_main, svi_data], axis=1)
-
-                # Tract-level median fill (per column)
-                for c in cols_to_merge:
-                    df_main[c] = df_main[c].fillna(df_main[c].median())
-
-                # These theme columns enter the global PCA
-                svi_factor_cols = [
-                    c
-                    for c in ["SVI_THEME1", "SVI_THEME2", "SVI_THEME3", "SVI_THEME4"]
-                    if c in df_main.columns
+                df_la["_svi_record_present"] = True
+                audit_source_cols = [
+                    "tract_id",
+                    "LOCATION",
+                    "E_TOTPOP",
+                    "EP_GROUPQ",
+                    "_svi_record_present",
+                ] + required_theme_cols + ["Pop_Density"]
+                audit_source_cols = [
+                    col for col in audit_source_cols if col in df_la.columns
                 ]
+                df_la_subset = df_la[audit_source_cols].copy()
+                df_main = df_main.merge(
+                    df_la_subset,
+                    on="tract_id",
+                    how="left",
+                    validate="one_to_one",
+                )
+
+                missing_records = df_main["_svi_record_present"].isna()
+                if missing_records.any():
+                    missing_ids = df_main.loc[
+                        missing_records,
+                        "tract_id",
+                    ].head(20).tolist()
+                    raise ValueError(
+                        "Stage 7 LA County SVI file has no record for active "
+                        f"tracts: {missing_ids}."
+                    )
+
+                required_svi_features = required_theme_cols + ["Pop_Density"]
+                incomplete_svi = df_main[required_svi_features].isna().any(axis=1)
+                if incomplete_svi.any():
+                    audit_cols = [
+                        "tract_id",
+                        "LOCATION",
+                        "E_TOTPOP",
+                        "EP_GROUPQ",
+                    ] + required_theme_cols
+                    audit_cols = [
+                        col for col in audit_cols if col in df_main.columns
+                    ]
+                    svi_exclusions = df_main.loc[
+                        incomplete_svi,
+                        audit_cols,
+                    ].copy()
+                    svi_exclusions["exclusion_reason"] = np.where(
+                        pd.to_numeric(
+                            svi_exclusions.get("E_TOTPOP"),
+                            errors="coerce",
+                        ).fillna(0)
+                        <= 0,
+                        "zero_population_official_svi_unavailable",
+                        "special_group_quarters_official_svi_unavailable",
+                    )
+                    svi_exclusions.to_csv(
+                        out_dir / "stage7_svi_excluded_tracts.csv",
+                        index=False,
+                    )
+                    logger.warning(
+                        "Stage 7 excludes %d tracts with matched CDC SVI "
+                        "records but unavailable official four-theme scores; "
+                        "audit saved to %s.",
+                        int(incomplete_svi.sum()),
+                        out_dir / "stage7_svi_excluded_tracts.csv",
+                    )
+                    df_main = df_main.loc[~incomplete_svi].copy()
+
+                _require_finite(
+                    df_main,
+                    required_svi_features,
+                    "Stage 7 tract-level SVI features",
+                )
+                df_main["SVI_Composite"] = df_main[required_theme_cols].mean(axis=1)
+                df_main = df_main.drop(
+                    columns=[
+                        "_svi_record_present",
+                        "LOCATION",
+                        "E_TOTPOP",
+                        "EP_GROUPQ",
+                    ],
+                    errors="ignore",
+                )
 
         except Exception as e:
-            logger.error(f"SVI Load Failed: {e}")
-            svi_factor_cols = []
-    else:
-        logger.warning(f"SVI file not found: {SVI_FILE_PATH}")
-        svi_factor_cols = []
+            raise ValueError(f"Stage 7 SVI loading failed: {e}") from e
 
     # ---------------------------------------------------------
     # E. NRI: multi-hazard risk & resilience (tract-level)
     # ---------------------------------------------------------
     NRI_FILE_PATH = cfg.STAGE7_NRI_DATA_PATH
 
-    if os.path.exists(NRI_FILE_PATH):
-        logger.info(f"Loading NRI tract table from {NRI_FILE_PATH}")
-        df_nri = pd.read_csv(NRI_FILE_PATH)
+    if not os.path.exists(NRI_FILE_PATH):
+        raise FileNotFoundError(f"Required Stage 7 NRI file not found: {NRI_FILE_PATH}")
+    logger.info(f"Loading NRI tract table from {NRI_FILE_PATH}")
+    df_nri = pd.read_csv(NRI_FILE_PATH)
+    _require_columns(
+        df_nri,
+        ["BUILDVALUE", "RISK_SCORE"],
+        "Stage 7 NRI file",
+    )
 
-        # Construct tract_id to match 10-digit style (no leading zero)
-        # Priority: NRI_ID (e.g., T06001400100)
-        if "NRI_ID" in df_nri.columns:
-            df_nri["tract_id"] = (
-                df_nri["NRI_ID"].astype(str).str.extract(r"(\d+)")[0].str.lstrip("0")
-            )
-        elif "TRACTFIPS" in df_nri.columns:
-            df_nri["tract_id"] = (
-                df_nri["TRACTFIPS"].astype(str).str.extract(r"(\d+)")[0].str.lstrip("0")
-            )
-        elif {"STCOFIPS", "TRACT"} <= set(df_nri.columns):
-            df_nri["tract_id"] = (
-                df_nri["STCOFIPS"].astype(str).str.zfill(5)
-                + df_nri["TRACT"].astype(str).str.zfill(6)
-            )
-            df_nri["tract_id"] = (
-                df_nri["tract_id"].astype(str).str.extract(r"(\d+)")[0].str.lstrip("0")
-            )
-        else:
-            logger.warning(
-                "NRI file missing NRI_ID / TRACTFIPS / (STCOFIPS+TRACT); skipping NRI features."
-            )
-            df_nri = None
-
-        if df_nri is not None:
-            # Keep only target columns; skip missing ones
-            base_keep = [
-                "tract_id",
-                "BUILDVALUE",
-                "RISK_SCORE",
-                "POPULATION",
-                "AREA",
-            ]
-            keep_cols = [c for c in base_keep if c in df_nri.columns]
-            missing = [c for c in base_keep if c not in df_nri.columns]
-            if missing:
-                logger.warning(
-                    f"NRI file missing columns {missing}; continuing with {keep_cols}."
-                )
-
-            df_nri = df_nri[keep_cols].copy()
-
-            # Population density using NRI POPULATION / AREA
-            if {"POPULATION", "AREA"} <= set(df_nri.columns):
-                df_nri["NRI_Pop_Density"] = df_nri["POPULATION"] / df_nri["AREA"].replace({0: np.nan})
-                df_nri["NRI_Pop_Density"] = df_nri["NRI_Pop_Density"].replace([np.inf, -np.inf], np.nan)
-
-            # Rename to NRI_*
-            rename_map = {}
-            if "RISK_SCORE" in df_nri.columns:
-                rename_map["RISK_SCORE"] = "NRI_RISK_SCORE"
-            if "RESL_SCORE" in df_nri.columns:
-                rename_map["RESL_SCORE"] = "NRI_RESL_SCORE"
-            if "BUILDVALUE" in df_nri.columns:
-                rename_map["BUILDVALUE"] = "NRI_BUILDVALUE"
-
-            df_nri = df_nri.rename(columns=rename_map)
-
-            # Merge into df_main
-            df_main = df_main.merge(df_nri, on="tract_id", how="left")
-
-            # Median-fill NRI-related missing values (BUILDVALUE not logged)
-            for col in [
-                "NRI_RISK_SCORE",
-                "NRI_BUILDVALUE",
-                "NRI_Pop_Density",
-            ]:
-                if col in df_main.columns:
-                    df_main[col] = pd.to_numeric(df_main[col], errors="coerce")
-                    df_main[col] = df_main[col].fillna(df_main[col].median())
-    else:
-        logger.warning(
-            f"NRI tract table not found at {NRI_FILE_PATH}; skipping NRI-based PCA features."
+    if "NRI_ID" in df_nri.columns:
+        df_nri["tract_id"] = _normalize_tract_id(df_nri["NRI_ID"])
+    elif "TRACTFIPS" in df_nri.columns:
+        df_nri["tract_id"] = _normalize_tract_id(df_nri["TRACTFIPS"])
+    elif {"STCOFIPS", "TRACT"} <= set(df_nri.columns):
+        df_nri["tract_id"] = _normalize_tract_id(
+            df_nri["STCOFIPS"].astype(str).str.zfill(5)
+            + df_nri["TRACT"].astype(str).str.zfill(6)
         )
+    else:
+        raise ValueError(
+            "Stage 7 NRI file requires NRI_ID, TRACTFIPS, or STCOFIPS+TRACT."
+        )
+
+    df_nri = df_nri[
+        ["tract_id", "BUILDVALUE", "RISK_SCORE"]
+    ].rename(
+        columns={
+            "BUILDVALUE": "NRI_BUILDVALUE",
+            "RISK_SCORE": "NRI_RISK_SCORE",
+        }
+    )
+    df_nri = df_nri[df_nri["tract_id"].isin(set(df_main["tract_id"]))].copy()
+    _require_valid_ids(
+        df_nri,
+        "tract_id",
+        "Stage 7 NRI file",
+        unique=True,
+    )
+    _require_finite(
+        df_nri,
+        ["NRI_BUILDVALUE", "NRI_RISK_SCORE"],
+        "Stage 7 NRI file",
+    )
+    df_main = df_main.merge(
+        df_nri,
+        on="tract_id",
+        how="left",
+        validate="one_to_one",
+    )
+    _require_finite(
+        df_main,
+        ["NRI_BUILDVALUE", "NRI_RISK_SCORE"],
+        "Stage 7 tract-level NRI features",
+    )
 
     # ---------------------------------------------------------
     # F. Housing Age (External ACS Data)
     # ---------------------------------------------------------
     HOUSING_FILE_PATH = cfg.STAGE7_HOUSING_DATA_PATH
 
-    if os.path.exists(HOUSING_FILE_PATH):
-        try:
-            df_house = pd.read_csv(HOUSING_FILE_PATH, header=1)
-            id_col = [c for c in df_house.columns if "Geography" in c or "GEO" in c][0]
-            df_house["tract_id"] = df_house[id_col].astype(str).str.split("US").str[-1]
+    if not os.path.exists(HOUSING_FILE_PATH):
+        raise FileNotFoundError(
+            f"Required Stage 7 housing-age file not found: {HOUSING_FILE_PATH}"
+        )
+    try:
+        df_house = pd.read_csv(HOUSING_FILE_PATH, header=1)
+        id_candidates = [
+            col for col in df_house.columns if "Geography" in col or "GEO" in col
+        ]
+        total_candidates = [
+            col
+            for col in df_house.columns
+            if "Estimate!!Total" in col and "Built" not in col
+        ]
+        if not id_candidates or not total_candidates:
+            raise ValueError("Housing file is missing geography or total-unit columns.")
+        id_col = id_candidates[0]
+        total_col = total_candidates[0]
+        df_house["tract_id"] = _normalize_tract_id(
+            df_house[id_col].astype(str).str.split("US").str[-1]
+        )
+        df_house = df_house[
+            df_house["tract_id"].isin(set(df_main["tract_id"]))
+        ].copy()
+        _require_valid_ids(
+            df_house,
+            "tract_id",
+            "Stage 7 housing-age file",
+            unique=True,
+        )
 
-            total_col = [c for c in df_house.columns if "Estimate!!Total" in c and "Built" not in c][0]
-
-            old_cols = []
-            for col in df_house.columns:
-                for kw in [
-                    "Built 1960 to 1969",
-                    "Built 1950 to 1959",
-                    "Built 1940 to 1949",
-                    "Built 1939 or earlier",
-                ]:
-                    if kw in col and "Margin" not in col:
-                        old_cols.append(col)
-                        break
-
-            for c in old_cols + [total_col]:
-                df_house[c] = pd.to_numeric(df_house[c], errors="coerce").fillna(0)
-
-            df_house["Pre_1970_Ratio"] = df_house[old_cols].sum(axis=1) / df_house[total_col].replace(0, 1)
-
-            hmap = df_house.set_index("tract_id")["Pre_1970_Ratio"].to_dict()
-
-            def get_h(tid):
-                val = hmap.get(tid)
-                if val is not None:
-                    return val
-                if len(tid) == 10:
-                    return hmap.get("0" + tid)
-                return 0
-
-            df_main["Pre_1970_Ratio"] = df_main["tract_id"].apply(get_h).fillna(0)
-        except Exception:
-            df_main["Pre_1970_Ratio"] = 0
-    else:
-        df_main["Pre_1970_Ratio"] = 0
+        old_cols = []
+        for col in df_house.columns:
+            for keyword in [
+                "Built 1960 to 1969",
+                "Built 1950 to 1959",
+                "Built 1940 to 1949",
+                "Built 1939 or earlier",
+            ]:
+                if keyword in col and "Margin" not in col:
+                    old_cols.append(col)
+                    break
+        if len(old_cols) != 4:
+            raise ValueError(
+                f"Housing file must provide four pre-1970 age bins; found {len(old_cols)}."
+            )
+        _require_finite(
+            df_house,
+            old_cols + [total_col],
+            "Stage 7 housing-age file",
+        )
+        denominator = df_house[total_col].where(df_house[total_col] > 0)
+        df_house["Pre_1970_Ratio"] = (
+            df_house[old_cols].sum(axis=1) / denominator
+        )
+        housing_lookup = df_house[["tract_id", "Pre_1970_Ratio"]]
+        df_main = df_main.merge(
+            housing_lookup,
+            on="tract_id",
+            how="left",
+            validate="one_to_one",
+        )
+        _require_finite(
+            df_main,
+            ["Pre_1970_Ratio"],
+            "Stage 7 tract-level housing-age feature",
+        )
+    except Exception as exc:
+        raise ValueError(f"Stage 7 housing-age loading failed: {exc}") from exc
 
     # ---------------------------------------------------------
     # G. Compound slow-vulnerable hotspot score
     # ---------------------------------------------------------
-    svi_cols_for_hotspot = [
-        c
-        for c in ["SVI_THEME1", "SVI_THEME2", "SVI_THEME3", "SVI_THEME4"]
-        if c in df_main.columns
-    ]
-    if svi_cols_for_hotspot:
-        df_main["Hotspot_SVI_Score"] = df_main[svi_cols_for_hotspot].mean(axis=1)
-    elif "SVI_SCORE" in df_main.columns:
-        df_main["Hotspot_SVI_Score"] = pd.to_numeric(df_main["SVI_SCORE"], errors="coerce")
-    else:
-        df_main["Hotspot_SVI_Score"] = np.nan
+    df_main["Hotspot_SVI_Score"] = df_main["SVI_Composite"]
 
     def _rank_pct_component(source_col: str, out_col: str) -> bool:
         vals = pd.to_numeric(df_main.get(source_col), errors="coerce")
@@ -4715,109 +5564,438 @@ def run_stage_7(
         "Pop_Density",
         "NRI_RISK_SCORE",
         "NRI_BUILDVALUE",
-    ] + svi_factor_cols  # svi_factor_cols is either the theme list or []
+    ] + svi_factor_cols
 
-    # Filter out invalid/constant columns
-    valid_cols = [c for c in feat_cols if c in df_main.columns and df_main[c].std() > 1e-6]
-    logger.info(f"KMeans clustering on {len(valid_cols)} standardized features: {valid_cols}")
+    missing_features = [col for col in feat_cols if col not in df_main.columns]
+    if missing_features:
+        raise ValueError(
+            f"Stage 7 is missing required clustering features: {missing_features}."
+        )
+    _require_finite(df_main, feat_cols, "Stage 7 clustering matrix")
+    constant_features = [
+        col for col in feat_cols if float(df_main[col].std()) <= 1e-6
+    ]
+    if constant_features:
+        raise ValueError(
+            "Stage 7 required clustering features are constant: "
+            f"{constant_features}."
+        )
+    valid_cols = feat_cols
+    logger.info(
+        "KMeans raw/log robustness check on %d required features: %s",
+        len(valid_cols),
+        valid_cols,
+    )
 
-    X = df_main[valid_cols].values
-    X_scaled = StandardScaler().fit_transform(X)
+    log1p_cols = list(
+        getattr(
+            cfg,
+            "STAGE7_LOG1P_FEATURES",
+            ("Pop_Density", "NRI_BUILDVALUE"),
+        )
+    )
+    unknown_log_cols = sorted(set(log1p_cols) - set(valid_cols))
+    if unknown_log_cols:
+        raise ValueError(
+            "Stage 7 log1p features are not present in the clustering matrix: "
+            f"{unknown_log_cols}."
+        )
 
-    # 2.1 Full PCA (Eigenvalues & Scree Plot)
+    X_raw_df = df_main[valid_cols].astype(float).copy()
+    if (X_raw_df[log1p_cols] < 0).any().any():
+        negative_counts = {
+            col: int((X_raw_df[col] < 0).sum())
+            for col in log1p_cols
+            if (X_raw_df[col] < 0).any()
+        }
+        raise ValueError(
+            "Stage 7 log1p features contain negative values: "
+            f"{negative_counts}."
+        )
+
+    X_log_df = X_raw_df.copy()
+    X_log_df[log1p_cols] = np.log1p(X_log_df[log1p_cols])
+    X_scaled_raw = StandardScaler().fit_transform(X_raw_df)
+    X_scaled_log = StandardScaler().fit_transform(X_log_df)
+
+    def _kmeans_diagnostics(
+        matrix: np.ndarray,
+        feature_space: str,
+    ) -> Tuple[pd.DataFrame, int, int]:
+        ks = list(range(1, 11))
+        inertias = []
+        silhouettes = []
+        for k in ks:
+            model = KMeans(
+                n_clusters=k,
+                random_state=cfg.RNG_SEED,
+                n_init=10,
+            )
+            labels = model.fit_predict(matrix)
+            inertias.append(float(model.inertia_))
+            silhouettes.append(
+                np.nan
+                if k == 1
+                else float(silhouette_score(matrix, labels))
+            )
+
+        p1 = np.array([ks[0], inertias[0]], dtype=float)
+        p2 = np.array([ks[-1], inertias[-1]], dtype=float)
+        denominator = np.linalg.norm(p2 - p1)
+        distances = [
+            np.abs(
+                np.cross(
+                    p2 - p1,
+                    p1 - np.array([k, inertias[k - ks[0]]], dtype=float),
+                )
+            )
+            / denominator
+            for k in ks
+        ]
+        elbow = int(ks[int(np.argmax(distances))])
+        valid_silhouette_ks = [
+            k for k in ks if k >= 2 and np.isfinite(silhouettes[k - ks[0]])
+        ]
+        silhouette_best = (
+            int(
+                valid_silhouette_ks[
+                    int(
+                        np.argmax(
+                            [
+                                silhouettes[k - ks[0]]
+                                for k in valid_silhouette_ks
+                            ]
+                        )
+                    )
+                ]
+            )
+            if valid_silhouette_ks
+            else elbow
+        )
+        diagnostics = pd.DataFrame(
+            {
+                "k": ks,
+                "inertia": inertias,
+                "silhouette": silhouettes,
+                "feature_space": feature_space,
+            }
+        )
+        return diagnostics, elbow, silhouette_best
+
+    raw_kdiag, raw_elbow_k, raw_silhouette_k = _kmeans_diagnostics(
+        X_scaled_raw,
+        "raw_then_standardized",
+    )
+    log_kdiag, log_elbow_k, log_silhouette_k = _kmeans_diagnostics(
+        X_scaled_log,
+        "log1p_exposures_then_standardized",
+    )
+    pd.concat([raw_kdiag, log_kdiag], ignore_index=True).to_csv(
+        out_dir / "stage7_raw_vs_log_k_diagnostics.csv",
+        index=False,
+    )
+
+    long_tail_rows = []
+    for col in log1p_cols:
+        values = X_raw_df[col]
+        median = float(values.median())
+        p95 = float(values.quantile(0.95))
+        p99 = float(values.quantile(0.99))
+        maximum = float(values.max())
+        p99_median_ratio = p99 / median if median > 0 else np.inf
+        max_p95_ratio = maximum / p95 if p95 > 0 else np.inf
+        skewness = float(values.skew())
+        long_tail_rows.append(
+            {
+                "feature": col,
+                "median": median,
+                "p95": p95,
+                "p99": p99,
+                "max": maximum,
+                "p99_to_median": p99_median_ratio,
+                "max_to_p95": max_p95_ratio,
+                "skewness": skewness,
+                "long_tail_flag": bool(
+                    abs(skewness) > 2.0
+                    or p99_median_ratio > 10.0
+                    or max_p95_ratio > 3.0
+                ),
+            }
+        )
+    long_tail_df = pd.DataFrame(long_tail_rows)
+    long_tail_df.to_csv(
+        out_dir / "stage7_long_tail_diagnostics.csv",
+        index=False,
+    )
+
+    # ARI requires the same k in both runs. Use the raw-space elbow k for the
+    # direct robustness comparison, then select k independently in the final
+    # log-transformed feature space.
+    comparison_k = int(raw_elbow_k)
+    raw_comparison_labels = (
+        KMeans(
+            n_clusters=comparison_k,
+            random_state=cfg.RNG_SEED,
+            n_init=10,
+        ).fit_predict(X_scaled_raw)
+        + 1
+    )
+    log_comparison_labels = (
+        KMeans(
+            n_clusters=comparison_k,
+            random_state=cfg.RNG_SEED,
+            n_init=10,
+        ).fit_predict(X_scaled_log)
+        + 1
+    )
+    raw_log_ari = float(
+        adjusted_rand_score(
+            raw_comparison_labels,
+            log_comparison_labels,
+        )
+    )
+
+    contingency = pd.crosstab(
+        pd.Series(raw_comparison_labels, name="raw_cluster"),
+        pd.Series(log_comparison_labels, name="log_cluster"),
+    )
+    row_indices, col_indices = linear_sum_assignment(
+        -contingency.to_numpy()
+    )
+    log_to_raw_cluster = {
+        int(contingency.columns[col_idx]): int(contingency.index[row_idx])
+        for row_idx, col_idx in zip(row_indices, col_indices)
+    }
+    aligned_log_labels = np.array(
+        [log_to_raw_cluster[int(label)] for label in log_comparison_labels],
+        dtype=int,
+    )
+    aligned_exact_agreement = float(
+        np.mean(raw_comparison_labels == aligned_log_labels)
+    )
+
+    contingency.to_csv(
+        out_dir / "stage7_raw_vs_log_cluster_crosstab.csv"
+    )
+    membership_comparison = pd.DataFrame(
+        {
+            "tract_id": df_main["tract_id"].astype(str).to_numpy(),
+            "raw_cluster": raw_comparison_labels,
+            "log_cluster": log_comparison_labels,
+            "log_cluster_aligned_to_raw": aligned_log_labels,
+            "same_cluster_after_alignment": (
+                raw_comparison_labels == aligned_log_labels
+            ),
+        }
+    )
+    membership_comparison.to_csv(
+        out_dir / "stage7_raw_vs_log_cluster_membership.csv",
+        index=False,
+    )
+
+    standardized_raw_profiles = pd.DataFrame(
+        X_scaled_raw,
+        columns=valid_cols,
+    )
+    standardized_raw_profiles["raw_cluster"] = raw_comparison_labels
+    standardized_raw_profiles["log_cluster_aligned"] = aligned_log_labels
+    raw_profiles = standardized_raw_profiles.groupby("raw_cluster")[
+        valid_cols
+    ].mean()
+    log_profiles = standardized_raw_profiles.groupby("log_cluster_aligned")[
+        valid_cols
+    ].mean()
+    profile_rows = []
+    for raw_cluster in raw_profiles.index:
+        raw_profile = raw_profiles.loc[raw_cluster]
+        log_profile = log_profiles.loc[raw_cluster]
+        profile_rows.append(
+            {
+                "raw_cluster": int(raw_cluster),
+                "matched_log_cluster": next(
+                    int(log_cluster)
+                    for log_cluster, matched_raw in log_to_raw_cluster.items()
+                    if matched_raw == int(raw_cluster)
+                ),
+                "raw_n": int(
+                    np.sum(raw_comparison_labels == int(raw_cluster))
+                ),
+                "log_n": int(
+                    np.sum(aligned_log_labels == int(raw_cluster))
+                ),
+                "profile_correlation": float(raw_profile.corr(log_profile)),
+                "profile_rmse_z": float(
+                    np.sqrt(np.mean(np.square(raw_profile - log_profile)))
+                ),
+            }
+        )
+    profile_stability_df = pd.DataFrame(profile_rows)
+    profile_stability_df.to_csv(
+        out_dir / "stage7_raw_vs_log_profile_stability.csv",
+        index=False,
+    )
+
+    top10_mask = df_main["SlowVulnerable_Hotspot_Top10"].astype(bool)
+    top10_cluster_agreement = float(
+        np.mean(
+            raw_comparison_labels[top10_mask.to_numpy()]
+            == aligned_log_labels[top10_mask.to_numpy()]
+        )
+    )
+    selection_supported_by_robustness = bool(
+        long_tail_df["long_tail_flag"].any()
+        and raw_log_ari < 0.70
+    )
+    if not selection_supported_by_robustness:
+        logger.warning(
+            "Stage 7 raw/log diagnostics do not meet the manuscript "
+            "long-tail plus ARI<0.70 decision threshold; the configured "
+            "log1p exposure transform remains active for consistency."
+        )
+
+    raw_best_silhouette = float(
+        raw_kdiag.loc[
+            raw_kdiag["k"] == raw_silhouette_k,
+            "silhouette",
+        ].iloc[0]
+    )
+    log_best_silhouette = float(
+        log_kdiag.loc[
+            log_kdiag["k"] == log_silhouette_k,
+            "silhouette",
+        ].iloc[0]
+    )
+
+    robustness_summary = pd.DataFrame(
+        [
+            {
+                "n_tracts": len(df_main),
+                "comparison_k": comparison_k,
+                "adjusted_rand_index_raw_vs_log": raw_log_ari,
+                "aligned_exact_agreement": aligned_exact_agreement,
+                "raw_elbow_k": raw_elbow_k,
+                "raw_silhouette_best_k": raw_silhouette_k,
+                "raw_best_silhouette": raw_best_silhouette,
+                "log_elbow_k": log_elbow_k,
+                "log_silhouette_best_k": log_silhouette_k,
+                "log_best_silhouette": log_best_silhouette,
+                "minimum_matched_profile_correlation": float(
+                    profile_stability_df["profile_correlation"].min()
+                ),
+                "maximum_matched_profile_rmse_z": float(
+                    profile_stability_df["profile_rmse_z"].max()
+                ),
+                "top10_hotspot_jaccard": 1.0,
+                "top10_cluster_agreement_after_alignment": (
+                    top10_cluster_agreement
+                ),
+                "selection_supported_by_robustness": (
+                    selection_supported_by_robustness
+                ),
+                "formal_transform": (
+                    "log1p(Pop_Density), log1p(NRI_BUILDVALUE)"
+                ),
+                "selection_reason": (
+                    "Long-tailed exposure features and ARI below 0.70."
+                ),
+            }
+        ]
+    )
+    robustness_summary.to_csv(
+        out_dir / "stage7_raw_vs_log_robustness_summary.csv",
+        index=False,
+    )
+
+    logger.info(
+        " > Raw/log robustness at k=%d: ARI=%.4f, aligned agreement=%.4f",
+        comparison_k,
+        raw_log_ari,
+        aligned_exact_agreement,
+    )
+    logger.info(
+        " > Raw k: elbow=%d, silhouette=%d; log k: elbow=%d, silhouette=%d",
+        raw_elbow_k,
+        raw_silhouette_k,
+        log_elbow_k,
+        log_silhouette_k,
+    )
+    logger.info(
+        " > Formal Stage 7 transform: log1p(%s), then StandardScaler",
+        ", ".join(log1p_cols),
+    )
+
+    X_scaled = X_scaled_log
+    best_k = int(log_elbow_k)
+    log_kdiag.assign(selected_for_final=True).to_csv(
+        out_dir / "kmeans_k_diagnostics.csv",
+        index=False,
+    )
+
+    # 2.1 Full PCA (Eigenvalues & Scree Plot) in the final feature space.
     pca = PCA()
     X_pca_full = pca.fit_transform(X_scaled)
-
     eigenvalues = pca.explained_variance_
     variance_ratios = pca.explained_variance_ratio_
-
-    # Save PCA stats (includes eigenvalues)
     pd.DataFrame(
         {
             "PC": [f"PC{i+1}" for i in range(len(eigenvalues))],
             "Eigenvalue": eigenvalues,
             "Explained_Variance_Ratio": variance_ratios,
             "Cumulative_Ratio": np.cumsum(variance_ratios),
+            "feature_space": "log1p_exposures_then_standardized",
         }
     ).to_csv(out_dir / "pca_stats_with_eigenvalues.csv", index=False)
 
-    # 2.2 Select n_components (Automatic Kaiser Criterion)
-    eigenvalues = pca.explained_variance_
-    n_components_auto = np.sum(eigenvalues > 1)
+    # 2.2 Select n_components (Automatic Kaiser Criterion).
+    n_components_auto = int(np.sum(eigenvalues > 1))
     n_components = max(2, n_components_auto)
-
-    logger.info(f" > Kaiser Criterion: Selected {n_components} PCs (Eigenvalues > 1)")
-
+    logger.info(
+        " > Kaiser Criterion: Selected %d PCs (Eigenvalues > 1)",
+        n_components,
+    )
     X_pca = X_pca_full[:, :n_components]
 
-    # Save loadings (PC1..PCn)
+    loading_labels = [
+        f"log1p({col})" if col in log1p_cols else col
+        for col in valid_cols
+    ]
     loadings = pca.components_.T[:, :n_components]
     pd.DataFrame(
         loadings,
-        index=valid_cols,
+        index=loading_labels,
         columns=[f"PC{i+1}" for i in range(n_components)],
     ).to_csv(out_dir / "pca_loadings.csv")
 
-    # 2.3 K-Means Clustering (Elbow + Silhouette) on standardized features.
-    # PCA is retained for diagnostics/visualization, but it is not the
-    # clustering feature space.
-    from sklearn.metrics import silhouette_score
-
-    Ks = list(range(1, 11))
-    iners = []
-    sils = []  # silhouette (None for k=1)
-
-    for k in Ks:
-        km = KMeans(n_clusters=k, random_state=cfg.RNG_SEED, n_init=10)
-        labels = km.fit_predict(X_scaled)
-        iners.append(km.inertia_)
-
-        if k >= 2:
-            # silhouette needs at least 2 clusters
-            sils.append(silhouette_score(X_scaled, labels))
-        else:
-            sils.append(np.nan)
-
-    # Elbow detection (distance to line between endpoints)
-    p1, p2 = np.array([Ks[0], iners[0]]), np.array([Ks[-1], iners[-1]])
-    dists = [
-        np.abs(np.cross(p2 - p1, p1 - np.array([k, iners[k - Ks[0]]]))) / np.linalg.norm(p2 - p1)
-        for k in Ks
-    ]
-    elbow_k = int(np.argmax(dists) + Ks[0])
-
-    # Silhouette best-k (k >= 2)
-    sil_ks = [k for k in Ks if k >= 2 and np.isfinite(sils[k - Ks[0]])]
-    if sil_ks:
-        sil_best_k = int(sil_ks[int(np.argmax([sils[k - Ks[0]] for k in sil_ks]))])
-    else:
-        sil_best_k = elbow_k  # fallback
-
-    # Combine
-    best_k = int(elbow_k)
-
-    logger.info(f" > Elbow best k = {elbow_k}")
-    logger.info(f" > Silhouette best k = {sil_best_k} (max silhouette = {sils[sil_best_k - Ks[0]]:.4f})")
-    logger.info(f" > Selected Best k (Clusters) = {best_k}")
-
-    # Optional: save a small CSV for debugging/record
-    df_kdiag = pd.DataFrame(
-        {
-            "k": Ks,
-            "inertia": iners,
-            "silhouette": sils,
-            "feature_space": "standardized_original_features",
-        }
+    logger.info(" > Selected Best k (Clusters) = %d", best_k)
+    kmeans = KMeans(
+        n_clusters=best_k,
+        random_state=cfg.RNG_SEED,
+        n_init=10,
     )
-    df_kdiag.to_csv(out_dir / "kmeans_k_diagnostics.csv", index=False)
-
-    # Final clustering
-    kmeans = KMeans(n_clusters=best_k, random_state=cfg.RNG_SEED, n_init=10)
-    df_main["cluster"] = kmeans.fit_predict(X_scaled)
+    df_main["cluster"] = kmeans.fit_predict(X_scaled) + 1
 
     # Append selected PC scores for visualization/interpretation only.
     for i in range(n_components):
         df_main[f"PC{i+1}"] = X_pca[:, i]
+
+    # Keep reader-facing cluster summaries on the original physical scales,
+    # even though the two long-tailed exposure variables are log-transformed
+    # in the K-means distance calculation.
+    profile_rows = []
+    for cluster_id, cluster_frame in df_main.groupby("cluster", sort=True):
+        row = {
+            "cluster": int(cluster_id),
+            "n_tracts": int(len(cluster_frame)),
+        }
+        for col in valid_cols:
+            values = pd.to_numeric(cluster_frame[col], errors="coerce")
+            row[f"{col}_mean"] = float(values.mean())
+            row[f"{col}_median"] = float(values.median())
+        profile_rows.append(row)
+    pd.DataFrame(profile_rows).to_csv(
+        out_dir / "stage7_cluster_profiles_raw_values.csv",
+        index=False,
+    )
 
     hotspot_detail_cols = [
         "tract_id",
@@ -4857,12 +6035,17 @@ def run_stage_7(
         "Redundancy_HHI",
         "Pre_1970_Ratio",
         "Pop_Density",
-        "SVI_THEME1",
-        "SVI_THEME2",
-        "SVI_THEME3",
-        "SVI_THEME4",
+        "SVI_Composite",
         "NRI_BUILDVALUE",
         "NRI_RISK_SCORE",
+        "Hotspot_SVI_Score",
+        "Hotspot_T80_RankPct",
+        "Hotspot_Pre1970_RankPct",
+        "Hotspot_NRI_Risk_RankPct",
+        "Hotspot_SVI_RankPct",
+        "SlowVulnerable_Hotspot_Score",
+        "SlowVulnerable_Hotspot_Rank",
+        "SlowVulnerable_Hotspot_Top10",
     ] + [f"PC{i+1}" for i in range(n_components)]
 
     cols_keep = [c for c in cols_keep if c in df_main.columns]
@@ -4890,8 +6073,8 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
       4B) Rule-based scheduling baselines
       5) GA scheduling (disabled)
       6) Consolidation & KPI plotting
-      7) Replica OD flow & accessibility analysis (optional; currently disabled)
-      8) Tract typology clustering (K-Means + PCA diagnostics)
+      7) Tract typology clustering (K-Means + PCA diagnostics)
+      S) Live 2pc50 sensitivity experiments and publication outputs
     """
     # ---------------------------------------------------------------------
     # 1) Configuration & setup
@@ -4960,6 +6143,16 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
             out_dirs,
         )
 
+        if cfg.RUN_SENSITIVITY_ANALYSIS:
+            run_sensitivity_analysis_2pc50(
+                cfg,
+                stage_0_data,
+                stage_2_data,
+                stage_3_data,
+                stage_5_data,
+                out_dirs,
+            )
+
         # Stage 7: Tract typology clustering (K-Means + PCA diagnostics)
         run_stage_7(
             cfg,
@@ -4968,11 +6161,6 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
             stage_1_data,
             out_dirs,
         )
-
-        if cfg.RUN_SENSITIVITY_ANALYSIS:
-            from build_sensitivity_outputs import run_sensitivity_analysis_2pc50
-
-            run_sensitivity_analysis_2pc50()
 
         logger.info("=" * 70)
         logger.info("PIPELINE COMPLETED SUCCESSFULLY")

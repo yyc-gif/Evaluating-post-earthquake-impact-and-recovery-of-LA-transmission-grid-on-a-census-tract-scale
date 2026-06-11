@@ -15,6 +15,9 @@ EXPANDED_PATHS = base.Paths(
     TRANSMISSION_LINES_SHP=str(DATA_DIR / "TransmissionLine_CEC.shp"),
     CITY_TRACTS_LIST_CSV=str(DATA_DIR / "Tracts_Within_Expanded_Area.csv"),
     OUTPUT_MAPPING_CSV=str(DATA_DIR / "tract_to_substation_mapping_CEC_expanded.csv"),
+    OUTPUT_UNTHRESHOLDED_MAPPING_CSV=str(
+        DATA_DIR / "tract_to_substation_mapping_CEC_expanded_unthresholded.csv"
+    ),
     OUTPUT_GRAPH_EDGES_CSV=str(DATA_DIR / "substation_graph_CEC_edges_expanded.csv"),
     OUTPUT_GRAPH_NODES_CSV=str(DATA_DIR / "substation_graph_CEC_nodes_expanded.csv"),
     OUTPUT_PLOT_PNG=str(DATA_DIR / "topology_final_validation_expanded.png"),

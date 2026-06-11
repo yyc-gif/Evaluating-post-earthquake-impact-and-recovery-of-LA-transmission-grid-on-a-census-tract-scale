@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import sys
+import re
+import tempfile
 from pathlib import Path
 
 import geopandas as gpd
@@ -14,7 +16,9 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_ROOT / "Data"
 BASE_VISUALIZER_PATH = PROJECT_ROOT / "Project_Visualizer.py"
 
-EXPANDED_BOUNDARY_PATH = PROJECT_ROOT / "Stage 2 Output_expanded" / "_visualizer_expanded_boundary.geojson"
+EXPANDED_BOUNDARY_PATH = (
+    Path(tempfile.gettempdir()) / "la_grid_visualizer_expanded_boundary.geojson"
+)
 STAGE_DIR_REPLACEMENTS = {
     "Stage 1 Output": "Stage 1 Output_expanded",
     "Stage 2 Output": "Stage 2 Output_expanded",
@@ -30,7 +34,7 @@ def _load_visualizer_namespace() -> dict:
     """Load the shared visualizer source and rewire stage-directory literals to expanded outputs."""
     source = BASE_VISUALIZER_PATH.read_text(encoding="utf-8")
     for old, new in STAGE_DIR_REPLACEMENTS.items():
-        source = source.replace(old, new)
+        source = re.sub(rf"{re.escape(old)}(?!_expanded)", new, source)
     if "_expanded_expanded" in source:
         raise RuntimeError(
             "Expanded visualizer path rewrite produced '_expanded_expanded'; "
@@ -119,7 +123,13 @@ def ensure_expanded_boundary_geojson() -> Path:
         geometry=[boundary_geom],
         crs=selected.crs,
     )
-    boundary.to_file(EXPANDED_BOUNDARY_PATH, driver="GeoJSON")
+    # Writing this one-feature cache through GDAL can fail on Windows when the
+    # project path is long. GeoPandas produces the same GeoJSON payload here,
+    # while the standard file writer avoids that datasource-creation failure.
+    EXPANDED_BOUNDARY_PATH.write_text(
+        boundary.to_json(drop_id=True),
+        encoding="utf-8",
+    )
     return EXPANDED_BOUNDARY_PATH
 
 
@@ -136,7 +146,7 @@ def _vis_stage3_expanded(namespace: dict, gdf) -> None:
 def _vis_stage7_cluster_top10_impact_degree_km_expanded(
     namespace: dict,
     gdf,
-    cluster_id: int = 0,
+    cluster_id: int = 1,
     top_n: int = 10,
     impact_mode: str = "lambda2",
 ) -> None:
@@ -189,6 +199,7 @@ def configure_namespace(namespace: dict) -> None:
     pretty_names["NRI_RISK_SCORE"] = "NRI risk score"
     pretty_names["NRI_BUILDVALUE"] = "NRI building value"
     pretty_names["SVI_SCORE"] = "SVI score"
+    pretty_names["SVI_Composite"] = "SVI composite"
 
     namespace["_orig_vis_stage2"] = namespace["vis_stage2"]
     namespace["_orig_vis_stage3"] = namespace["vis_stage3"]
@@ -201,7 +212,7 @@ def configure_namespace(namespace: dict) -> None:
     namespace["vis_stage3"] = lambda gdf: _vis_stage3_expanded(namespace, gdf)
     namespace["vis_stage7"] = lambda gdf: _vis_stage7_expanded(namespace, gdf)
     namespace["vis_stage7_cluster_top10_impact_degree_km"] = (
-        lambda gdf, cluster_id=0, top_n=10, impact_mode="lambda2":
+        lambda gdf, cluster_id=1, top_n=10, impact_mode="lambda2":
         _vis_stage7_cluster_top10_impact_degree_km_expanded(
             namespace,
             gdf,

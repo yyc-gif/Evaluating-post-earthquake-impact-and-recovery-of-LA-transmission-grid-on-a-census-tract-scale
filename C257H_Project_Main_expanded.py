@@ -29,6 +29,9 @@ class ExpandedConfig(base.Config):
     DEVICES_CSV: str = str(DATA_DIR / "working_area_substations_with_fragility.csv")
     PGA_CSV: str = str(DATA_DIR / "Substations_PGA_IDW_CEC_expanded.csv")
     MAP_TRACT_SUB_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC_expanded.csv")
+    SENSITIVITY_RAW_MAPPING_CSV: str = str(
+        DATA_DIR / "tract_to_substation_mapping_CEC_expanded_unthresholded.csv"
+    )
     CEC_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges_expanded.csv")
     CEC_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes_expanded.csv")
     SOURCE_NODES_CSV: str = str(DATA_DIR / "source_nodes_core_expanded.csv")

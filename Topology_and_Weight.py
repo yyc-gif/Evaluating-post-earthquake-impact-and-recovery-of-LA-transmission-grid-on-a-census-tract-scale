@@ -60,6 +60,9 @@ class Paths:
     # Output paths (Data/)
     # --------------------
     OUTPUT_MAPPING_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC.csv")
+    OUTPUT_UNTHRESHOLDED_MAPPING_CSV: str = str(
+        DATA_DIR / "tract_to_substation_mapping_CEC_unthresholded.csv"
+    )
     OUTPUT_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges.csv")
     OUTPUT_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes.csv")
     OUTPUT_PLOT_PNG: Optional[str] = str(DATA_DIR / "topology_final_validation.png")
@@ -2648,15 +2651,22 @@ def main(paths: Optional[Paths] = None):
             cfg.OUTPUT_GRAPH_EDGES_CSV,
         )
 
-        # 6) Build W matrix
-        W = build_W_matrix(
+        # 6) Build and export the unthresholded W matrix for sensitivity analysis.
+        W_raw = build_W_matrix(
             subs,
             tracts,
             dist_ss,
         )
+        export_mapping_from_W(
+            W_raw,
+            tracts,
+            subs,
+            cfg.OUTPUT_UNTHRESHOLDED_MAPPING_CSV,
+            graph_nodes_csv=cfg.OUTPUT_GRAPH_NODES_CSV,
+        )
 
         # 6b) Apply per-row minimum effective weight threshold + renormalize
-        W = apply_min_weight_threshold(W, min_weight=cfg.MIN_EFFECTIVE_WEIGHT)
+        W = apply_min_weight_threshold(W_raw, min_weight=cfg.MIN_EFFECTIVE_WEIGHT)
 
         # 7) Export mapping (keeping â€œeach sub appears at least onceâ€ logic)
         export_mapping_from_W(
