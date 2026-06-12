@@ -1843,17 +1843,17 @@ def build_figure() -> tuple[Path, Path]:
         )
 
     # 5. Three-column recovery sequence based on the actual curve and scheduling outputs.
-    baseline_ax = data_inset(ax, (3.2, 6.9, 15.0, 9.8))
+    baseline_ax = data_inset(ax, (3.2, 7.05, 15.0, 9.8))
     plot_baseline_curve(baseline_ax, data)
-    step_label(ax, 10.7, 5.22, "Unconstrained baseline", size=4.55, color=C["ink"])
-    dispatch_ax = data_inset(ax, (20.5, 12.0, 15.0, 4.8))
+    step_label(ax, 10.7, 5.32, "Unconstrained baseline", size=4.55, color=C["ink"])
+    dispatch_ax = data_inset(ax, (20.5, 12.15, 15.0, 4.8))
     plot_dispatch_map(dispatch_ax, data)
-    gantt_ax = data_inset(ax, (20.5, 6.9, 15.0, 4.55))
+    gantt_ax = data_inset(ax, (20.5, 7.05, 15.0, 4.55))
     plot_gantt(gantt_ax, data)
-    step_label(ax, 28.0, 5.22, "Crew/yard scheduling +\npriority strategies", size=4.45, color=C["ink"])
-    strategy_ax = data_inset(ax, (37.8, 6.9, 16.0, 9.8))
+    step_label(ax, 28.0, 5.32, "Crew/yard scheduling +\npriority strategies", size=4.45, color=C["ink"])
+    strategy_ax = data_inset(ax, (37.8, 7.05, 16.0, 9.8))
     plot_strategy_curves(strategy_ax, data)
-    step_label(ax, 45.8, 5.22, "Logistics-aware recovery", size=4.55, color=C["ink"])
+    step_label(ax, 45.8, 5.32, "Logistics-aware recovery", size=4.55, color=C["ink"])
     mini_arrow(ax, 18.4, 11.5, 20.2, 11.5, lw=0.48)
     mini_arrow(ax, 35.7, 11.5, 37.5, 11.5, lw=0.48)
 
@@ -1911,13 +1911,15 @@ def build_figure() -> tuple[Path, Path]:
     mini_arrow(ax, recovery[0] + recovery[2], recovery[1] + recovery[3] / 2, outputs[0], outputs[1] + outputs[3] / 2, lw=edge_lw)
 
     pdf_path = OUT_DIR / f"{BASE_NAME}.pdf"
+    svg_path = OUT_DIR / f"{BASE_NAME}.svg"
     png_path = OUT_DIR / f"{BASE_NAME}_600dpi.png"
 
     export_bbox = fixed_width_export_bbox(fig)
     fig.savefig(pdf_path, format="pdf", bbox_inches=export_bbox, pad_inches=0)
+    fig.savefig(svg_path, format="svg", bbox_inches=export_bbox, pad_inches=0)
     fig.savefig(png_path, format="png", dpi=600, bbox_inches=export_bbox, pad_inches=0)
     plt.close(fig)
-    return pdf_path, png_path
+    return pdf_path, svg_path, png_path
 
 
 if __name__ == "__main__":
