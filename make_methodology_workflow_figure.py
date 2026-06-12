@@ -1658,9 +1658,9 @@ def plot_sensitivity_summary(ax: plt.Axes, data: dict[str, object]) -> None:
     value_by_key = dict(zip(sens["match_key"], sens[value_col]))
     labels_and_keys = [
         ("crew availability", "crew availability"),
-        ("repair time", "repair time scale"),
-        ("IDW", "idw threshold"),
-        ("source gate", "source gate threshold"),
+        ("repair-time scale", "repair time scale"),
+        ("IDW threshold", "idw threshold"),
+        ("source-gate threshold", "source gate threshold"),
     ]
     labels = [label for label, _ in labels_and_keys]
     vals = np.asarray([value_by_key.get(key, 0.0) for _, key in labels_and_keys], dtype=float)
@@ -1679,15 +1679,17 @@ def plot_sensitivity_summary(ax: plt.Axes, data: dict[str, object]) -> None:
         va="center",
         weight="bold",
     )
-    ax.plot([0.54, 0.54], [0.36, 3.30], color=C["panel_border"], lw=0.55)
+    bar_x = 0.76
+    bar_w = 0.21
+    ax.plot([bar_x, bar_x], [0.36, 3.30], color=C["panel_border"], lw=0.55)
     for idx, (label, value, color) in enumerate(zip(labels, vals, colors)):
         y = 3.05 - idx * 0.72
-        bar_len = 0.43 * float(value) / vmax
-        ax.text(0.01, y, label, fontsize=5.9, color=C["ink"], ha="left", va="center")
+        bar_len = bar_w * float(value) / vmax
+        ax.text(0.01, y, label, fontsize=5.55, color=C["ink"], ha="left", va="center")
         ax.add_patch(
             patches.Rectangle(
-                (0.54, y - 0.12),
-                0.43,
+                (bar_x, y - 0.12),
+                bar_w,
                 0.24,
                 facecolor="#EEF1F3",
                 edgecolor="none",
@@ -1695,7 +1697,7 @@ def plot_sensitivity_summary(ax: plt.Axes, data: dict[str, object]) -> None:
         )
         ax.add_patch(
             patches.Rectangle(
-                (0.54, y - 0.12),
+                (bar_x, y - 0.12),
                 bar_len,
                 0.24,
                 facecolor=color,
@@ -1759,12 +1761,18 @@ def build_figure() -> tuple[Path, Path]:
     plot_inputs_map(inputs_map, data)
     input_labels = [
         ("Transmission + substations", C["grid"], "o"),
-        ("PGA fields", C["hazard"], "o"),
-        ("Roads + yards", C["logistics"], "*"),
+        ("Scenario PGA fields", C["hazard"], "o"),
+        ("Roads + repair yards", C["logistics"], "*"),
         ("Hospitals", C["critical"], "P"),
         ("Tract vulnerability", C["community"], "s"),
     ]
-    input_positions = [(54.5, 62.85), (76.0, 62.85), (88.2, 62.85), (59.7, 60.65), (76.0, 60.65)]
+    input_positions = [
+        (54.5, 62.85),
+        (75.3, 62.85),
+        (54.5, 60.65),
+        (75.3, 60.65),
+        (86.6, 60.65),
+    ]
     for (label, color, marker), (legend_x, yy) in zip(input_labels, input_positions):
         ax.scatter([legend_x], [yy], s=18, c=color, marker=marker, edgecolor="white", linewidth=0.2, zorder=6)
         ax.text(legend_x + 0.75, yy, label, fontsize=WF_TEXT, color=C["ink"], ha="left", va="center")
@@ -1774,7 +1782,7 @@ def build_figure() -> tuple[Path, Path]:
     plot_topology_map(topology_ax, data)
     matrix_ax = data_inset(ax, (39.6, 45.0, 16.2, 8.8))
     plot_dependency_matrix(matrix_ax, data)
-    step_label(ax, 20.2, 43.35, "LA direct-link topology\nand source substations", size=5.2, color=C["ink"])
+    step_label(ax, 20.2, 43.78, "LA direct-link topology\nand source substations", size=5.15, color=C["ink"])
     ax.text(
         35.5,
         45.1,
@@ -1787,7 +1795,7 @@ def build_figure() -> tuple[Path, Path]:
         linespacing=0.95,
         bbox={"facecolor": "#F3F7FA", "edgecolor": C["grid_light"], "linewidth": 0.45, "pad": 0.25},
     )
-    step_label(ax, 47.7, 43.35, "Tract\u2013substation\ndependency weights", size=5.2, color=C["ink"])
+    step_label(ax, 47.7, 43.78, "Tract\u2013substation\ndependency weights", size=5.15, color=C["ink"])
 
     # 3. Actual PGA, fragility parameters, MC damage shares, functionality, and repair durations.
     pga_ax = data_inset(ax, (63.0, 44.5, 15.8, 10.1))
@@ -1796,9 +1804,9 @@ def build_figure() -> tuple[Path, Path]:
     plot_actual_fragility(frag_ax, data)
     damage_ax = data_inset(ax, (89.5, 44.0, 27.5, 11.2))
     plot_damage_outputs(damage_ax, data)
-    step_label(ax, 70.9, 43.35, "Scenario PGA at\nsubstations", size=5.0, color=C["ink"])
-    step_label(ax, 84.2, 43.35, "Fragility functions", size=5.0, color=C["ink"])
-    step_label(ax, 103.25, 43.35, "Damage-state outputs", size=5.2, color=C["ink"])
+    step_label(ax, 70.9, 43.78, "Scenario PGA at\nsubstations", size=5.0, color=C["ink"])
+    step_label(ax, 84.2, 43.78, "Fragility functions", size=5.0, color=C["ink"])
+    step_label(ax, 103.25, 43.78, "Damage-conditioned outputs", size=5.15, color=C["ink"])
 
     # 4. Central mechanism, redrawn from the actual damage, topology, weight, and tract-service products.
     x_positions = [3.0, 22.5, 42.0, 62.5, 88.3]
@@ -1835,30 +1843,30 @@ def build_figure() -> tuple[Path, Path]:
         )
 
     # 5. Three-column recovery sequence based on the actual curve and scheduling outputs.
-    baseline_ax = data_inset(ax, (3.2, 6.4, 15.0, 10.2))
+    baseline_ax = data_inset(ax, (3.2, 6.9, 15.0, 9.8))
     plot_baseline_curve(baseline_ax, data)
-    step_label(ax, 10.7, 4.55, "Unconstrained baseline", size=5.0, color=C["ink"])
-    dispatch_ax = data_inset(ax, (20.5, 11.6, 15.0, 5.0))
+    step_label(ax, 10.7, 5.08, "Unconstrained baseline", size=5.0, color=C["ink"])
+    dispatch_ax = data_inset(ax, (20.5, 12.0, 15.0, 4.8))
     plot_dispatch_map(dispatch_ax, data)
-    gantt_ax = data_inset(ax, (20.5, 6.4, 15.0, 4.7))
+    gantt_ax = data_inset(ax, (20.5, 6.9, 15.0, 4.55))
     plot_gantt(gantt_ax, data)
-    step_label(ax, 28.0, 4.55, "Crew/yard scheduling +\npriority strategies", size=4.8, color=C["ink"])
-    strategy_ax = data_inset(ax, (37.8, 6.4, 16.0, 10.2))
+    step_label(ax, 28.0, 5.08, "Crew/yard scheduling +\npriority strategies", size=4.8, color=C["ink"])
+    strategy_ax = data_inset(ax, (37.8, 6.9, 16.0, 9.8))
     plot_strategy_curves(strategy_ax, data)
-    step_label(ax, 45.8, 4.55, "Logistics-aware recovery", size=5.0, color=C["ink"])
+    step_label(ax, 45.8, 5.08, "Logistics-aware recovery", size=5.0, color=C["ink"])
     mini_arrow(ax, 18.4, 11.5, 20.2, 11.5, lw=0.48)
     mini_arrow(ax, 35.7, 11.5, 37.5, 11.5, lw=0.48)
 
     # 6. Three clearly separated outputs based on the actual analysis products.
     weighted_ax = data_inset(ax, (61.2, 6.5, 16.8, 10.1))
     plot_weighted_recovery(weighted_ax, data)
-    step_label(ax, 69.6, 4.55, "Population- and\nSVI-weighted recovery", size=4.9, color=C["ink"])
+    step_label(ax, 69.6, 5.08, "Population- and\nSVI-weighted recovery", size=4.9, color=C["ink"])
     sensitivity_ax = data_inset(ax, (80.0, 6.5, 17.8, 10.1))
     plot_sensitivity_summary(sensitivity_ax, data)
-    step_label(ax, 88.9, 4.55, "Sensitivity analysis", size=4.9, color=C["ink"])
+    step_label(ax, 88.9, 5.08, "Sensitivity analysis", size=4.9, color=C["ink"])
     typology_ax = data_inset(ax, (99.6, 6.1, 17.3, 10.8))
     plot_typology_map(typology_ax, data)
-    step_label(ax, 108.25, 4.55, "Recovery-vulnerability\ntypology / hotspots", size=4.8, color=C["ink"])
+    step_label(ax, 108.25, 5.08, "Recovery-vulnerability\ntypology / hotspots", size=4.8, color=C["ink"])
 
     # Computational dependencies only.
     edge_lw = 0.42
@@ -1883,7 +1891,7 @@ def build_figure() -> tuple[Path, Path]:
     ax.text(
         103.0,
         41.25,
-        "damage states and residual functionality",
+        "damage-conditioned component states",
         fontsize=WF_TEXT,
         color=C["hazard"],
         ha="center",
