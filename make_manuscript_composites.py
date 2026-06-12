@@ -15,6 +15,9 @@ import matplotlib as mpl
 
 mpl.use("Agg")
 
+from matplotlib import colors as mcolors
+from matplotlib.lines import Line2D
+from matplotlib.patches import Patch
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
@@ -38,6 +41,21 @@ RC = {
     "ps.fonttype": 42,
     "savefig.facecolor": "white",
 }
+
+STAGE7_CLUSTER_COLORS = {
+    "C1": "#607D9E",
+    "C2": "#B99B4A",
+    "C3": "#5E8B61",
+    "C4": "#86AFC0",
+    "C5": "#92607F",
+    "C6": "#B97070",
+}
+STAGE7_NA_COLOR = "#D9D9D9"
+STAGE7_HOTSPOT_COLOR = "#222222"
+STAGE7_HOTSPOT_CMAP = mcolors.LinearSegmentedColormap.from_list(
+    "stage7_hotspot_score",
+    ["#2C7BB6", "#ABD9E9", "#FFFFBF", "#F46D43", "#8B1E3F"],
+)
 
 
 @dataclass(frozen=True)
@@ -110,6 +128,80 @@ def prepare_panel(relative_path: str) -> PanelAsset:
     return asset
 
 
+def _save_prepared_asset(
+    *,
+    cache_key: str,
+    relative_path: str,
+    image: Image.Image,
+    suffix: str,
+    dpi_x: float,
+    dpi_y: float,
+) -> PanelAsset:
+    PREP_DIR.mkdir(parents=True, exist_ok=True)
+    source_name = Path(relative_path)
+    source_key = hashlib.sha1(cache_key.encode("utf-8")).hexdigest()[:8]
+    prepared_name = f"{source_name.stem}_{suffix}_{source_key}{source_name.suffix}"
+    prepared_path = PREP_DIR / prepared_name
+    image.save(prepared_path, dpi=(dpi_x, dpi_y))
+
+    width_cm = image.width / dpi_x * CM_PER_INCH
+    height_cm = image.height / dpi_y * CM_PER_INCH
+    asset = PanelAsset(
+        relative_path=cache_key,
+        prepared_path=prepared_path,
+        image=np.asarray(image),
+        width_cm=width_cm,
+        height_cm=height_cm,
+    )
+    _PANEL_CACHE[cache_key] = asset
+    return asset
+
+
+def prepare_map_body_panel(
+    relative_path: str,
+    *,
+    suffix: str,
+    ignore_right_after: float | None = None,
+    ignore_bottom_after: float = 0.83,
+    crop_padding_px: int = 18,
+) -> PanelAsset:
+    """Crop a Stage 7 map to its map body so legends can be rebuilt uniformly."""
+    cache_key = f"{relative_path}|{suffix}|body"
+    cached = _PANEL_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    source_path = ROOT / relative_path
+    source = Image.open(source_path)
+    dpi = source.info.get("dpi", (EXPORT_DPI, EXPORT_DPI))
+    dpi_x = float(dpi[0]) if dpi and dpi[0] else float(EXPORT_DPI)
+    dpi_y = float(dpi[1]) if dpi and dpi[1] else float(EXPORT_DPI)
+    rgb = np.asarray(source.convert("RGB"))
+    h, w, _ = rgb.shape
+
+    content = np.any(rgb < 245, axis=2)
+    content[int(h * ignore_bottom_after) :, :] = False
+    if ignore_right_after is not None:
+        content[:, int(w * ignore_right_after) :] = False
+    rows, columns = np.where(content)
+    if not rows.size:
+        return prepare_panel(relative_path)
+
+    left = max(0, int(columns.min()) - crop_padding_px)
+    right = min(w, int(columns.max()) + crop_padding_px + 1)
+    top = max(0, int(rows.min()) - crop_padding_px)
+    bottom = min(h, int(rows.max()) + crop_padding_px + 1)
+    cropped = source.convert("RGB").crop((left, top, right, bottom))
+    return _save_prepared_asset(
+        cache_key=cache_key,
+        relative_path=relative_path,
+        image=cropped,
+        suffix=suffix,
+        dpi_x=dpi_x,
+        dpi_y=dpi_y,
+    )
+
+
 def place_asset(
     fig: plt.Figure,
     asset: PanelAsset,
@@ -158,6 +250,17 @@ def panel_label(
         fontweight="bold",
         color="#111111",
     )
+
+
+def _format_composite_legend(legend) -> None:
+    if legend is None:
+        return
+    legend.get_frame().set_linewidth(0.0)
+    for text in legend.get_texts():
+        text.set_fontsize(7.5)
+    title = legend.get_title()
+    if title is not None:
+        title.set_fontsize(7.5)
 
 
 def save_pair(fig: plt.Figure, stem: str) -> None:
@@ -307,27 +410,34 @@ def make_recovery_composite() -> None:
 def make_typology_composite() -> None:
     kde = prepare_panel("Stage 7 Output_expanded/vis_stage7_kde_profiles.png")
     heatmap = prepare_panel("Stage 7 Output_expanded/vis_stage7_heatmap.png")
-    cluster_map = prepare_panel(
-        "Stage 7 Output_expanded/vis_stage7_map_clusters.png"
+    cluster_map = prepare_map_body_panel(
+        "Stage 7 Output_expanded/vis_stage7_map_clusters.png",
+        suffix="mapbody",
     )
-    hotspot_map = prepare_panel(
-        "Stage 7 Output_expanded/vis_stage7_map_hotspot_score.png"
+    hotspot_map = prepare_map_body_panel(
+        "Stage 7 Output_expanded/vis_stage7_map_hotspot_score.png",
+        suffix="mapbody",
+        ignore_right_after=0.86,
     )
 
     row_gap_cm = 0.55
-    bottom_gap_cm = 0.35
-    # The hotspot panel includes a vertical colorbar, so its full image needs
-    # a modest width boost for the two map bodies to read at similar scale.
-    hotspot_to_cluster_width = 1.22
+    bottom_gap_cm = 0.55
+    legend_height_cm = 0.95
+    cbar_pad_cm = 0.22
+    cbar_width_cm = 0.30
+    cbar_text_allowance_cm = 0.90
     kde_width_cm = native_width(kde)
     heatmap_width_cm = native_width(heatmap)
-    cluster_width_cm = (
-        FULL_ROW_WIDTH_CM - bottom_gap_cm
-    ) / (1.0 + hotspot_to_cluster_width)
-    hotspot_width_cm = cluster_width_cm * hotspot_to_cluster_width
-    cluster_height_cm = cluster_width_cm / cluster_map.aspect
-    hotspot_height_cm = hotspot_width_cm / hotspot_map.aspect
-    bottom_height_cm = max(cluster_height_cm, hotspot_height_cm)
+    map_body_height_cm = (
+        FULL_ROW_WIDTH_CM
+        - bottom_gap_cm
+        - cbar_pad_cm
+        - cbar_width_cm
+        - cbar_text_allowance_cm
+    ) / (cluster_map.aspect + hotspot_map.aspect)
+    cluster_width_cm = map_body_height_cm * cluster_map.aspect
+    hotspot_width_cm = map_body_height_cm * hotspot_map.aspect
+    bottom_height_cm = map_body_height_cm + legend_height_cm
     scales = [
         kde_width_cm / kde.width_cm,
         heatmap_width_cm / heatmap.width_cm,
@@ -337,8 +447,8 @@ def make_typology_composite() -> None:
     heights_cm = [
         kde_width_cm / kde.aspect,
         heatmap_width_cm / heatmap.aspect,
-        cluster_height_cm,
-        hotspot_height_cm,
+        map_body_height_cm,
+        map_body_height_cm,
     ]
     figure_height_cm = heights_cm[0] + heights_cm[1] + bottom_height_cm + 2.0 * row_gap_cm + 0.70
 
@@ -353,8 +463,8 @@ def make_typology_composite() -> None:
             + hotspot_width_cm / 2.0
         )
         bottom_row_bottom_cm = 0.25
-        cluster_bottom_cm = bottom_row_bottom_cm + (bottom_height_cm - cluster_height_cm) / 2.0
-        hotspot_bottom_cm = bottom_row_bottom_cm + (bottom_height_cm - hotspot_height_cm) / 2.0
+        legend_bottom_cm = bottom_row_bottom_cm + 0.05
+        map_bottom_cm = bottom_row_bottom_cm + legend_height_cm
         heatmap_bottom_cm = bottom_row_bottom_cm + bottom_height_cm + row_gap_cm
         kde_bottom_cm = heatmap_bottom_cm + heights_cm[1] + row_gap_cm
 
@@ -379,7 +489,7 @@ def make_typology_composite() -> None:
             cluster_map,
             figure_height_cm=figure_height_cm,
             center_x_cm=left_center_cm,
-            bottom_cm=cluster_bottom_cm,
+            bottom_cm=map_bottom_cm,
             width_cm=cluster_width_cm,
         )
         place_asset(
@@ -387,15 +497,101 @@ def make_typology_composite() -> None:
             hotspot_map,
             figure_height_cm=figure_height_cm,
             center_x_cm=right_center_cm,
-            bottom_cm=hotspot_bottom_cm,
+            bottom_cm=map_bottom_cm,
             width_cm=hotspot_width_cm,
+        )
+
+        cluster_handles = [
+            Patch(facecolor=STAGE7_CLUSTER_COLORS[f"C{i}"], edgecolor="none", label=f"C{i}")
+            for i in range(1, 7)
+        ]
+        cluster_handles.append(Patch(facecolor=STAGE7_NA_COLOR, edgecolor="none", label="N/A"))
+        cluster_handles.append(
+            Line2D(
+                [0],
+                [0],
+                color=STAGE7_HOTSPOT_COLOR,
+                linewidth=1.2,
+                label="Top-10 hotspots",
+            )
+        )
+        cluster_legend = fig.legend(
+            handles=cluster_handles,
+            loc="lower center",
+            bbox_to_anchor=(
+                left_center_cm / FIGURE_WIDTH_CM,
+                (legend_bottom_cm + 0.04) / figure_height_cm,
+            ),
+            bbox_transform=fig.transFigure,
+            frameon=False,
+            ncol=4,
+            columnspacing=0.70,
+            handlelength=0.82,
+            handletextpad=0.28,
+            borderpad=0.0,
+            labelspacing=0.18,
+        )
+        _format_composite_legend(cluster_legend)
+
+        hotspot_handles = [
+            Patch(facecolor=STAGE7_NA_COLOR, edgecolor="none", label="N/A"),
+            Line2D(
+                [0],
+                [0],
+                color=STAGE7_HOTSPOT_COLOR,
+                linewidth=1.2,
+                label="Top-10 hotspot boundary",
+            ),
+        ]
+        hotspot_legend = fig.legend(
+            handles=hotspot_handles,
+            loc="lower center",
+            bbox_to_anchor=(
+                right_center_cm / FIGURE_WIDTH_CM,
+                (legend_bottom_cm + 0.04) / figure_height_cm,
+            ),
+            bbox_transform=fig.transFigure,
+            frameon=False,
+            ncol=2,
+            columnspacing=0.95,
+            handlelength=1.20,
+            handletextpad=0.35,
+            borderpad=0.0,
+        )
+        _format_composite_legend(hotspot_legend)
+
+        cbar_left_cm = (
+            right_center_cm
+            + hotspot_width_cm / 2.0
+            + cbar_pad_cm
+        )
+        cax = fig.add_axes(
+            (
+                cbar_left_cm / FIGURE_WIDTH_CM,
+                map_bottom_cm / figure_height_cm,
+                cbar_width_cm / FIGURE_WIDTH_CM,
+                map_body_height_cm / figure_height_cm,
+            )
+        )
+        sm = mpl.cm.ScalarMappable(
+            cmap=STAGE7_HOTSPOT_CMAP,
+            norm=mcolors.Normalize(vmin=0.0, vmax=4.0),
+        )
+        sm.set_array([])
+        cbar = fig.colorbar(sm, cax=cax, ticks=np.arange(0.0, 4.1, 1.0))
+        cbar.ax.tick_params(labelsize=7.5, width=0.6, length=2.5)
+        cbar.outline.set_linewidth(0.5)
+        cbar.set_label(
+            "Recovery-vulnerability hotspot score (0-4)",
+            fontsize=7.5,
+            labelpad=6,
         )
 
         label_specs = [
             ("A", 0.10, kde_bottom_cm + heights_cm[0] - 0.04),
             ("B", 0.10, heatmap_bottom_cm + heights_cm[1] - 0.04),
-            ("C", FULL_ROW_MARGIN_CM - 0.08, bottom_row_bottom_cm + bottom_height_cm - 0.04),
-            ("D", FULL_ROW_MARGIN_CM + cluster_width_cm + bottom_gap_cm - 0.08, bottom_row_bottom_cm + bottom_height_cm - 0.04),
+            ("C", FULL_ROW_MARGIN_CM - 0.08, map_bottom_cm + map_body_height_cm - 0.04),
+            ("D", FULL_ROW_MARGIN_CM + cluster_width_cm + bottom_gap_cm - 0.08, map_bottom_cm + map_body_height_cm - 0.04),
         ]
         for label, x_cm, y_cm in label_specs:
             panel_label(fig, figure_height_cm=figure_height_cm, x_cm=x_cm, y_cm=y_cm, label=label)
