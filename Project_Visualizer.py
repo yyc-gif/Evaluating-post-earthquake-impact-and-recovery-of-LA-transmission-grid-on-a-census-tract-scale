@@ -5663,6 +5663,42 @@ def vis_stage7(gdf):
         ax.set_xlabel("")
 
         save_plot(fig, stage_dir, "vis_stage7_heatmap.png")
+
+        fig_compact, ax_compact = plt.subplots(
+            figsize=get_figsize("PANEL_HALF", width_cm=8.9, height_cm=8.4)
+        )
+        sns.heatmap(
+            grp_z.T,
+            cmap="coolwarm",
+            center=0.0,
+            annot=grp_z.shape[0] <= 8,
+            annot_kws={"fontsize": FS_TICK},
+            fmt=".1f",
+            cbar_kws={"label": "Profile z-score"},
+            ax=ax_compact,
+        )
+        ax_compact.set_xticklabels(
+            [f"C{int(c)}" for c in grp_z.index.tolist()],
+            rotation=0,
+            ha="center",
+        )
+        ax_compact.set_yticklabels(
+            [
+                textwrap.fill(PRETTY_VAR_NAMES.get(str(f), str(f)), width=20)
+                for f in grp_z.T.index.tolist()
+            ],
+            rotation=0,
+        )
+        mesh_compact = ax_compact.collections[0]
+        style_colorbar_with_endpoints(
+            mesh_compact.colorbar,
+            float(mesh_compact.norm.vmin),
+            float(mesh_compact.norm.vmax),
+            include_zero=True,
+        )
+        style_axis(ax_compact, xlabel="", ylabel="Feature")
+        fig_compact.subplots_adjust(left=0.42, right=0.88, top=0.96, bottom=0.10)
+        save_plot(fig_compact, stage_dir, "vis_stage7_heatmap_halfpanel.png")
     except Exception as e:
         print(f"  [Stage 7] Heatmap failed: {e}")
 
@@ -5811,6 +5847,115 @@ def vis_stage7(gdf):
 
     plt.tight_layout(rect=(0.02, 0.13, 0.995, 0.985), h_pad=0.72, w_pad=0.75)
     save_plot(fig, stage_dir, "vis_stage7_kde_profiles.png")
+
+    # Half-width companion for manuscript 2x2 composites. This keeps the same
+    # data and typography hierarchy, but lays the six profiles out at their
+    # final half-page physical size instead of shrinking the full-width panel.
+    compact_cols = 2
+    compact_rows = math.ceil(len(feat_cols) / compact_cols)
+    compact_height_cm = max(12.2, 3.05 * compact_rows + 3.4)
+    fig_compact, axes_compact = plt.subplots(
+        compact_rows,
+        compact_cols,
+        figsize=get_figsize("PANEL_HALF", width_cm=8.9, height_cm=compact_height_cm),
+    )
+    axes_compact = np.atleast_1d(axes_compact).flatten()
+
+    compact_last_used = -1
+    for idx, col in enumerate(feat_cols):
+        compact_last_used = idx
+        ax = axes_compact[idx]
+        x_col = f"{col}__log1p" if col in log1p_cols else col
+        panel_title = PRETTY_VAR_NAMES.get(col, col)
+        if col in log1p_cols:
+            panel_title = f"{panel_title}\n(log axis)"
+
+        kde_kwargs = {
+            "data": df_plot,
+            "x": x_col,
+            "hue": "cluster_label",
+            "hue_order": clusters_label_order,
+            "common_norm": False,
+            "fill": False,
+            "linewidth": 1.05,
+            "palette": cluster_label_palette,
+            "ax": ax,
+            "warn_singular": False,
+        }
+        if col in bounded_cols:
+            sns.kdeplot(
+                **kde_kwargs,
+                cut=0,
+                clip=(0, 1),
+                bw_adjust=0.7,
+                gridsize=256,
+            )
+            ax.set_xlim(-0.02, 1.02)
+        else:
+            sns.kdeplot(**kde_kwargs, bw_adjust=1.0)
+
+        for cluster in clusters_order:
+            subset = pd.to_numeric(
+                df_plot.loc[df_plot["cluster"] == cluster, x_col],
+                errors="coerce",
+            ).dropna()
+            if subset.empty:
+                continue
+            ax.axvline(
+                float(np.median(subset)),
+                color=cluster_color_map.get(cluster, "black"),
+                linestyle="--",
+                linewidth=0.65,
+                alpha=0.85,
+            )
+
+        style_axis(
+            ax,
+            title=panel_title,
+            xlabel="",
+            ylabel="Density",
+            title_size=FS_TITLE,
+            title_weight="semibold",
+        )
+        if col in log1p_cols:
+            tick_positions, tick_labels = _compact_log_tick_spec(col)
+            if tick_positions is not None:
+                ax.set_xticks(tick_positions)
+                ax.set_xticklabels(tick_labels)
+        sns.despine(ax=ax)
+        if ax.get_legend() is not None:
+            ax.get_legend().remove()
+
+    for idx in range(compact_last_used + 1, len(axes_compact)):
+        fig_compact.delaxes(axes_compact[idx])
+
+    compact_handles = [
+        Line2D(
+            [0], [0],
+            color=cluster_color_map.get(cluster, "black"),
+            lw=1.6,
+            label=f"{_stage7_cluster_display_label(cluster)} (n={cluster_counts.get(cluster, 0)})",
+        )
+        for cluster in clusters_order
+    ]
+    compact_ref = Line2D([0], [0], color="black", lw=1.0, linestyle="--", label="Cluster median")
+    compact_legend = fig_compact.legend(
+        handles=[*compact_handles, compact_ref],
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.016),
+        frameon=False,
+        ncol=2,
+        columnspacing=0.8,
+        handletextpad=0.35,
+        handlelength=1.25,
+        borderaxespad=0.0,
+    )
+    format_legend(compact_legend)
+    for text in compact_legend.get_texts():
+        text.set_fontsize(FS_LEGEND)
+
+    plt.tight_layout(rect=(0.04, 0.16, 0.995, 0.985), h_pad=0.70, w_pad=0.68)
+    save_plot(fig_compact, stage_dir, "vis_stage7_kde_profiles_halfpanel.png")
 
 # ==============================================================================
 # ▶️ Main

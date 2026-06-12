@@ -305,8 +305,8 @@ def make_recovery_composite() -> None:
 
 
 def make_typology_composite() -> None:
-    kde = prepare_panel("Stage 7 Output_expanded/vis_stage7_kde_profiles.png")
-    heatmap = prepare_panel("Stage 7 Output_expanded/vis_stage7_heatmap.png")
+    kde = prepare_panel("Stage 7 Output_expanded/vis_stage7_kde_profiles_halfpanel.png")
+    heatmap = prepare_panel("Stage 7 Output_expanded/vis_stage7_heatmap_halfpanel.png")
     cluster_map = prepare_panel(
         "Stage 7 Output_expanded/vis_stage7_map_clusters.png"
     )
@@ -314,11 +314,13 @@ def make_typology_composite() -> None:
         "Stage 7 Output_expanded/vis_stage7_map_hotspot_score.png"
     )
 
-    row_gap_cm = 0.48
-    kde_width_cm = native_width(kde)
-    heatmap_width_cm = native_width(heatmap)
-    cluster_width_cm = native_width(cluster_map)
-    hotspot_width_cm = native_width(hotspot_map)
+    row_gap_cm = 0.55
+    column_gap_cm = 0.55
+    column_width_cm = (FULL_ROW_WIDTH_CM - column_gap_cm) / 2.0
+    kde_width_cm = min(kde.width_cm, column_width_cm)
+    heatmap_width_cm = min(heatmap.width_cm, column_width_cm)
+    cluster_width_cm = column_width_cm
+    hotspot_width_cm = column_width_cm
     scales = [
         kde_width_cm / kde.width_cm,
         heatmap_width_cm / heatmap.width_cm,
@@ -331,58 +333,58 @@ def make_typology_composite() -> None:
         cluster_width_cm / cluster_map.aspect,
         hotspot_width_cm / hotspot_map.aspect,
     ]
-    figure_height_cm = sum(heights_cm) + 3.0 * row_gap_cm + 0.70
+    top_row_height_cm = max(heights_cm[0], heights_cm[1])
+    bottom_row_height_cm = max(heights_cm[2], heights_cm[3])
+    figure_height_cm = top_row_height_cm + bottom_row_height_cm + row_gap_cm + 0.70
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(figure_height_cm)))
-        center_x = FIGURE_WIDTH_CM / 2.0
-        row_bottoms: list[float] = []
-        bottom_cm = 0.25
-        for height in reversed(heights_cm):
-            row_bottoms.insert(0, bottom_cm)
-            bottom_cm += height + row_gap_cm
+        left_center_cm = FULL_ROW_MARGIN_CM + column_width_cm / 2.0
+        right_center_cm = left_center_cm + column_width_cm + column_gap_cm
+        bottom_row_bottom_cm = 0.25
+        top_row_bottom_cm = bottom_row_bottom_cm + bottom_row_height_cm + row_gap_cm
 
         place_asset(
             fig,
             kde,
             figure_height_cm=figure_height_cm,
-            center_x_cm=center_x,
-            bottom_cm=row_bottoms[0],
+            center_x_cm=left_center_cm,
+            bottom_cm=top_row_bottom_cm + top_row_height_cm - heights_cm[0],
             width_cm=kde_width_cm,
         )
         place_asset(
             fig,
             heatmap,
             figure_height_cm=figure_height_cm,
-            center_x_cm=center_x,
-            bottom_cm=row_bottoms[1],
+            center_x_cm=right_center_cm,
+            bottom_cm=top_row_bottom_cm + top_row_height_cm - heights_cm[1],
             width_cm=heatmap_width_cm,
         )
         place_asset(
             fig,
             cluster_map,
             figure_height_cm=figure_height_cm,
-            center_x_cm=center_x,
-            bottom_cm=row_bottoms[2],
+            center_x_cm=left_center_cm,
+            bottom_cm=bottom_row_bottom_cm + bottom_row_height_cm - heights_cm[2],
             width_cm=cluster_width_cm,
         )
         place_asset(
             fig,
             hotspot_map,
             figure_height_cm=figure_height_cm,
-            center_x_cm=center_x,
-            bottom_cm=row_bottoms[3],
+            center_x_cm=right_center_cm,
+            bottom_cm=bottom_row_bottom_cm + bottom_row_height_cm - heights_cm[3],
             width_cm=hotspot_width_cm,
         )
 
-        for label, row_bottom, height in zip("ABCD", row_bottoms, heights_cm):
-            panel_label(
-                fig,
-                figure_height_cm=figure_height_cm,
-                x_cm=0.10,
-                y_cm=row_bottom + height - 0.08,
-                label=label,
-            )
+        label_specs = [
+            ("A", FULL_ROW_MARGIN_CM - 0.08, top_row_bottom_cm + top_row_height_cm - 0.04),
+            ("B", FULL_ROW_MARGIN_CM + column_width_cm + column_gap_cm - 0.08, top_row_bottom_cm + top_row_height_cm - 0.04),
+            ("C", FULL_ROW_MARGIN_CM - 0.08, bottom_row_bottom_cm + bottom_row_height_cm - 0.04),
+            ("D", FULL_ROW_MARGIN_CM + column_width_cm + column_gap_cm - 0.08, bottom_row_bottom_cm + bottom_row_height_cm - 0.04),
+        ]
+        for label, x_cm, y_cm in label_specs:
+            panel_label(fig, figure_height_cm=figure_height_cm, x_cm=x_cm, y_cm=y_cm, label=label)
         print(
             "Typology panel scales: "
             + ", ".join(f"{label}={scale:.3f}" for label, scale in zip("ABCD", scales))
