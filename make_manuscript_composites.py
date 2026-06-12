@@ -23,6 +23,8 @@ from PIL import Image
 CM_PER_INCH = 2.54
 EXPORT_DPI = 600
 FIGURE_WIDTH_CM = 18.5
+FULL_ROW_MARGIN_CM = 0.25
+FULL_ROW_WIDTH_CM = FIGURE_WIDTH_CM - 2.0 * FULL_ROW_MARGIN_CM
 
 ROOT = Path(__file__).resolve().parent
 MANUSCRIPT_DIR = ROOT / "Manuscript_Figures"
@@ -179,60 +181,52 @@ def make_t80_composite() -> None:
         "Stage 3 Output_expanded/vis_stage3_map_T80_2pc50.png"
     )
 
-    side_margin_cm = 0.55
-    gap_cm = 0.60
-    scale = (
-        FIGURE_WIDTH_CM - 2.0 * side_margin_cm - gap_cm
-    ) / (histogram.width_cm + map_panel.width_cm)
-    hist_width_cm = histogram.width_cm * scale
-    map_width_cm = map_panel.width_cm * scale
-    hist_height_cm = histogram.height_cm * scale
-    map_height_cm = map_panel.height_cm * scale
-    figure_height_cm = max(hist_height_cm, map_height_cm) + 1.05
+    gap_cm = 0.50
+    row_width_cm = FULL_ROW_WIDTH_CM
+    hist_scale = row_width_cm / histogram.width_cm
+    map_scale = row_width_cm / map_panel.width_cm
+    hist_width_cm = row_width_cm
+    map_width_cm = row_width_cm
+    hist_height_cm = histogram.height_cm * hist_scale
+    map_height_cm = map_panel.height_cm * map_scale
+    figure_height_cm = hist_height_cm + map_height_cm + gap_cm + 0.70
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(figure_height_cm)))
-        row_bottom_cm = 0.35
-        hist_center = side_margin_cm + hist_width_cm / 2.0
-        map_center = (
-            side_margin_cm
-            + hist_width_cm
-            + gap_cm
-            + map_width_cm / 2.0
-        )
+        center_x = FIGURE_WIDTH_CM / 2.0
+        bottom_b_cm = 0.25
+        bottom_a_cm = bottom_b_cm + map_height_cm + gap_cm
         place_asset(
             fig,
             histogram,
             figure_height_cm=figure_height_cm,
-            center_x_cm=hist_center,
-            bottom_cm=row_bottom_cm
-            + (max(hist_height_cm, map_height_cm) - hist_height_cm) / 2.0,
+            center_x_cm=center_x,
+            bottom_cm=bottom_a_cm,
             width_cm=hist_width_cm,
         )
         place_asset(
             fig,
             map_panel,
             figure_height_cm=figure_height_cm,
-            center_x_cm=map_center,
-            bottom_cm=row_bottom_cm
-            + (max(hist_height_cm, map_height_cm) - map_height_cm) / 2.0,
+            center_x_cm=center_x,
+            bottom_cm=bottom_b_cm,
             width_cm=map_width_cm,
         )
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
             x_cm=0.12,
-            y_cm=figure_height_cm - 0.10,
+            y_cm=bottom_a_cm + hist_height_cm - 0.08,
             label="A",
         )
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
-            x_cm=side_margin_cm + hist_width_cm + gap_cm - 0.18,
-            y_cm=figure_height_cm - 0.10,
+            x_cm=0.12,
+            y_cm=bottom_b_cm + map_height_cm - 0.08,
             label="B",
         )
-        print(f"T80 panel scale: A={scale:.3f}, B={scale:.3f}")
+        print(f"T80 panel scales: A={hist_scale:.3f}, B={map_scale:.3f}")
         save_pair(fig, "t80_distribution_and_spatial_pattern_composite")
 
 
@@ -248,17 +242,16 @@ def make_recovery_composite() -> None:
     )
     panels = [recovery, dumbbell, topology_dual]
 
-    side_margin_cm = 0.45
-    gap_cm = 0.55
-    available_width_cm = FIGURE_WIDTH_CM - 2.0 * side_margin_cm
-    scale = min(available_width_cm / panel.width_cm for panel in panels)
+    gap_cm = 0.48
+    available_width_cm = FULL_ROW_WIDTH_CM
+    scale = min(1.0, *(available_width_cm / panel.width_cm for panel in panels))
     widths_cm = [panel.width_cm * scale for panel in panels]
     heights_cm = [panel.height_cm * scale for panel in panels]
     figure_height_cm = sum(heights_cm) + 2.0 * gap_cm + 0.80
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(figure_height_cm)))
-        top_cm = figure_height_cm - 0.30
+        top_cm = figure_height_cm - 0.25
         row_tops: list[float] = []
         for panel, width, height in zip(panels, widths_cm, heights_cm):
             row_tops.append(top_cm)
@@ -318,43 +311,42 @@ def make_typology_composite() -> None:
         "Stage 7 Output_expanded/vis_stage7_map_hotspot_score.png"
     )
 
-    side_margin_cm = 0.45
-    gap_cm = 0.55
-    available_width_cm = FIGURE_WIDTH_CM - 2.0 * side_margin_cm - gap_cm
-    top_scale = available_width_cm / (kde.width_cm + heatmap.width_cm)
-    bottom_scale = available_width_cm / (
-        cluster_map.width_cm + hotspot_map.width_cm
-    )
+    row_gap_cm = 0.48
+    available_width_cm = FULL_ROW_WIDTH_CM
+    bottom_gap_cm = 0.35
+    bottom_panel_width_cm = (
+        FIGURE_WIDTH_CM - 2.0 * FULL_ROW_MARGIN_CM - bottom_gap_cm
+    ) / 2.0
+    kde_scale = min(1.0, available_width_cm / kde.width_cm)
+    heatmap_scale = min(1.35, available_width_cm / heatmap.width_cm)
+    cluster_scale = bottom_panel_width_cm / cluster_map.width_cm
+    hotspot_scale = bottom_panel_width_cm / hotspot_map.width_cm
 
-    kde_width_cm = kde.width_cm * top_scale
-    heatmap_width_cm = heatmap.width_cm * top_scale
-    cluster_width_cm = cluster_map.width_cm * bottom_scale
-    hotspot_width_cm = hotspot_map.width_cm * bottom_scale
-    top_height_cm = max(
-        kde.height_cm * top_scale,
-        heatmap.height_cm * top_scale,
-    )
+    kde_width_cm = kde.width_cm * kde_scale
+    heatmap_width_cm = heatmap.width_cm * heatmap_scale
+    cluster_width_cm = cluster_map.width_cm * cluster_scale
+    hotspot_width_cm = hotspot_map.width_cm * hotspot_scale
+    top_heights_cm = [
+        kde.height_cm * kde_scale,
+        heatmap.height_cm * heatmap_scale,
+    ]
     bottom_height_cm = max(
-        cluster_map.height_cm * bottom_scale,
-        hotspot_map.height_cm * bottom_scale,
+        cluster_map.height_cm * cluster_scale,
+        hotspot_map.height_cm * hotspot_scale,
     )
-    row_gap_cm = 0.65
-    figure_height_cm = top_height_cm + bottom_height_cm + row_gap_cm + 0.75
+    figure_height_cm = sum(top_heights_cm) + bottom_height_cm + 2.0 * row_gap_cm + 0.70
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(figure_height_cm)))
+        center_x = FIGURE_WIDTH_CM / 2.0
         bottom_row_y_cm = 0.25
-        top_row_y_cm = bottom_row_y_cm + bottom_height_cm + row_gap_cm
-
-        kde_center = side_margin_cm + kde_width_cm / 2.0
-        heatmap_center = (
-            side_margin_cm + kde_width_cm + gap_cm + heatmap_width_cm / 2.0
-        )
-        cluster_center = side_margin_cm + cluster_width_cm / 2.0
+        heatmap_y_cm = bottom_row_y_cm + bottom_height_cm + row_gap_cm
+        kde_y_cm = heatmap_y_cm + top_heights_cm[1] + row_gap_cm
+        cluster_center = FULL_ROW_MARGIN_CM + cluster_width_cm / 2.0
         hotspot_center = (
-            side_margin_cm
+            FULL_ROW_MARGIN_CM
             + cluster_width_cm
-            + gap_cm
+            + bottom_gap_cm
             + hotspot_width_cm / 2.0
         )
 
@@ -362,18 +354,16 @@ def make_typology_composite() -> None:
             fig,
             kde,
             figure_height_cm=figure_height_cm,
-            center_x_cm=kde_center,
-            bottom_cm=top_row_y_cm
-            + (top_height_cm - kde.height_cm * top_scale) / 2.0,
+            center_x_cm=center_x,
+            bottom_cm=kde_y_cm,
             width_cm=kde_width_cm,
         )
         place_asset(
             fig,
             heatmap,
             figure_height_cm=figure_height_cm,
-            center_x_cm=heatmap_center,
-            bottom_cm=top_row_y_cm
-            + (top_height_cm - heatmap.height_cm * top_scale) / 2.0,
+            center_x_cm=center_x,
+            bottom_cm=heatmap_y_cm,
             width_cm=heatmap_width_cm,
         )
         place_asset(
@@ -382,7 +372,7 @@ def make_typology_composite() -> None:
             figure_height_cm=figure_height_cm,
             center_x_cm=cluster_center,
             bottom_cm=bottom_row_y_cm
-            + (bottom_height_cm - cluster_map.height_cm * bottom_scale) / 2.0,
+            + (bottom_height_cm - cluster_map.height_cm * cluster_scale) / 2.0,
             width_cm=cluster_width_cm,
         )
         place_asset(
@@ -391,43 +381,42 @@ def make_typology_composite() -> None:
             figure_height_cm=figure_height_cm,
             center_x_cm=hotspot_center,
             bottom_cm=bottom_row_y_cm
-            + (bottom_height_cm - hotspot_map.height_cm * bottom_scale) / 2.0,
+            + (bottom_height_cm - hotspot_map.height_cm * hotspot_scale) / 2.0,
             width_cm=hotspot_width_cm,
         )
 
-        top_label_y = figure_height_cm - 0.10
-        bottom_label_y = bottom_row_y_cm + bottom_height_cm + 0.12
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
             x_cm=0.10,
-            y_cm=top_label_y,
+            y_cm=kde_y_cm + top_heights_cm[0] - 0.08,
             label="A",
         )
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
-            x_cm=side_margin_cm + kde_width_cm + gap_cm - 0.18,
-            y_cm=top_label_y,
+            x_cm=0.10,
+            y_cm=heatmap_y_cm + top_heights_cm[1] - 0.08,
             label="B",
         )
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
             x_cm=0.10,
-            y_cm=bottom_label_y,
+            y_cm=bottom_row_y_cm + bottom_height_cm - 0.08,
             label="C",
         )
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
-            x_cm=side_margin_cm + cluster_width_cm + gap_cm - 0.18,
-            y_cm=bottom_label_y,
+            x_cm=FULL_ROW_MARGIN_CM + cluster_width_cm + bottom_gap_cm - 0.10,
+            y_cm=bottom_row_y_cm + bottom_height_cm - 0.08,
             label="D",
         )
         print(
             "Typology panel scales: "
-            f"A/B={top_scale:.3f}, C/D={bottom_scale:.3f}"
+            f"A={kde_scale:.3f}, B={heatmap_scale:.3f}, "
+            f"C={cluster_scale:.3f}, D={hotspot_scale:.3f}"
         )
         save_pair(fig, "recovery_vulnerability_typology_composite")
 
@@ -443,13 +432,12 @@ def make_topology_composite() -> None:
     )
     panels = [direct_links, topology, robustness]
 
-    side_margin_cm = 0.45
-    gap_cm = 0.55
-    available_width_cm = FIGURE_WIDTH_CM - 2.0 * side_margin_cm
-    common_scale = min(available_width_cm / panel.width_cm for panel in panels)
-    widths_cm = [panel.width_cm * common_scale for panel in panels]
-    heights_cm = [panel.height_cm * common_scale for panel in panels]
-    figure_height_cm = sum(heights_cm) + 2.0 * gap_cm + 0.75
+    gap_cm = 0.48
+    available_width_cm = FULL_ROW_WIDTH_CM
+    scales = [available_width_cm / panel.width_cm for panel in panels]
+    widths_cm = [panel.width_cm * scale for panel, scale in zip(panels, scales)]
+    heights_cm = [panel.height_cm * scale for panel, scale in zip(panels, scales)]
+    figure_height_cm = sum(heights_cm) + 2.0 * gap_cm + 0.70
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(figure_height_cm)))
@@ -479,7 +467,7 @@ def make_topology_composite() -> None:
         print(
             "Topology panel scales: "
             + ", ".join(
-                f"{label}={common_scale:.3f}" for label in "ABC"
+                f"{label}={scale:.3f}" for label, scale in zip("ABC", scales)
             )
         )
         save_pair(fig, "topology_abstraction_and_robustness_composite")
