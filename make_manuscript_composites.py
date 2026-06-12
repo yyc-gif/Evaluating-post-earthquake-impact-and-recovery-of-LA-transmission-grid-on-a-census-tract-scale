@@ -14,6 +14,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
+from matplotlib.patches import Patch
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import numpy as np
 import pandas as pd
@@ -49,12 +50,13 @@ CLUSTER_COLORS = {
     "5": "#92607f",
     "6": "#b97070",
 }
+NA_TRACT_COLOR = "#555555"
 
 RC = {
     "font.family": "sans-serif",
     "font.sans-serif": ["Arial", "DejaVu Sans"],
     "font.size": 8.0,
-    "axes.titlesize": 8.5,
+    "axes.titlesize": 8.0,
     "axes.labelsize": 8.0,
     "xtick.labelsize": 7.0,
     "ytick.labelsize": 7.0,
@@ -91,6 +93,20 @@ def load_tracts() -> gpd.GeoDataFrame:
     return tracts
 
 
+def internal_na_tracts(
+    mapped: gpd.GeoDataFrame,
+    value_column: str,
+) -> gpd.GeoDataFrame:
+    valid = mapped[mapped[value_column].notna()]
+    missing = mapped[mapped[value_column].isna()].copy()
+    if valid.empty or missing.empty:
+        return missing
+
+    study_hull = valid.geometry.union_all().convex_hull
+    representative_points = missing.geometry.representative_point()
+    return missing.loc[representative_points.within(study_hull)]
+
+
 def style_axis(ax: plt.Axes, grid: bool = True) -> None:
     ax.tick_params(direction="out", color="#4d4d4d")
     for spine in ax.spines.values():
@@ -109,7 +125,7 @@ def panel_label(ax: plt.Axes, label: str, x: float = -0.10, y: float = 1.02) -> 
         transform=ax.transAxes,
         ha="left",
         va="bottom",
-        fontsize=10.0,
+        fontsize=9.0,
         fontweight="bold",
         color="#111111",
         clip_on=False,
@@ -132,14 +148,14 @@ def make_t80_composite(tracts: gpd.GeoDataFrame) -> None:
     kpis["tract_id"] = normalize_tract_id(kpis["tract_id"])
     kpis["T80"] = pd.to_numeric(kpis["T80"], errors="coerce")
     values = kpis["T80"].dropna()
-    mapped = tracts.merge(kpis[["tract_id", "T80"]], on="tract_id", how="inner")
+    mapped = tracts.merge(kpis[["tract_id", "T80"]], on="tract_id", how="left")
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(7.35)))
         gs = fig.add_gridspec(
             1,
             2,
-            width_ratios=[0.92, 1.18],
+            width_ratios=[0.62, 1.38],
             left=0.070,
             right=0.955,
             bottom=0.16,
@@ -155,15 +171,15 @@ def make_t80_composite(tracts: gpd.GeoDataFrame) -> None:
             bins=bins,
             color="#86a5cf",
             edgecolor="white",
-            linewidth=0.25,
-            alpha=0.82,
+            linewidth=0.18,
+            alpha=0.42,
         )
         kde_ax = ax_hist.twinx()
         sns.kdeplot(
             x=values,
             ax=kde_ax,
             color="#315f9b",
-            linewidth=1.4,
+            linewidth=0.72,
             bw_adjust=0.22,
             cut=0,
         )
@@ -172,61 +188,77 @@ def make_t80_composite(tracts: gpd.GeoDataFrame) -> None:
         kde_ax.spines["right"].set_visible(False)
         kde_ax.spines["top"].set_visible(False)
         kde_ax.spines["left"].set_visible(False)
-        ax_hist.set_title("2pc50 T80 distribution", fontweight="bold", pad=4)
+        ax_hist.set_title("T80 distribution", fontweight="bold", pad=3)
         ax_hist.set_xlabel("T80 (hr)")
         ax_hist.set_ylabel("Count")
         style_axis(ax_hist)
 
-        mapped.plot(
+        internal_na_tracts(mapped, "T80").plot(
+            ax=ax_map,
+            color=NA_TRACT_COLOR,
+            edgecolor="#eeeeee",
+            linewidth=0.06,
+        )
+        mapped[mapped["T80"].notna()].plot(
             column="T80",
             ax=ax_map,
             cmap=TIME_CMAP,
-            linewidth=0.18,
-            edgecolor="white",
+            linewidth=0.07,
+            edgecolor="#f4f4f4",
             vmin=float(values.min()),
             vmax=float(values.max()),
         )
-        ax_map.set_title("2pc50 tract-level T80", fontweight="bold", pad=4)
+        set_map_extent(
+            ax_map,
+            tuple(mapped.loc[mapped["T80"].notna()].total_bounds),
+        )
+        ax_map.set_title("Tract-level T80", fontweight="bold", pad=3)
         ax_map.set_axis_off()
         ax_map.set_aspect("equal")
         norm = mpl.colors.Normalize(vmin=float(values.min()), vmax=float(values.max()))
         sm = mpl.cm.ScalarMappable(norm=norm, cmap=TIME_CMAP)
-        cbar = fig.colorbar(sm, ax=ax_map, fraction=0.040, pad=0.018)
-        cbar.set_label("T80 (hr)", fontsize=8.0)
-        cbar.ax.tick_params(labelsize=7.0, width=0.5, length=2.5)
+        cbar = fig.colorbar(
+            sm,
+            ax=ax_map,
+            fraction=0.028,
+            pad=0.008,
+            shrink=0.80,
+        )
+        cbar.set_label("T80 (hr)", fontsize=7.2)
+        cbar.ax.tick_params(labelsize=6.4, width=0.45, length=2.2)
         cbar.outline.set_linewidth(0.5)
 
-        panel_label(ax_hist, "A", x=-0.12, y=1.025)
-        panel_label(ax_map, "B", x=-0.055, y=1.025)
+        panel_label(ax_hist, "A", x=-0.14, y=1.02)
+        panel_label(ax_map, "B", x=-0.045, y=1.02)
         save_pair(fig, "t80_distribution_and_spatial_pattern_composite")
 
 
 RECOVERY_STYLES = {
-    "S3_Mean": ("Theoretical limit", "#111111", "--", 1.55),
-    "Impact λ2 first": ("Impact λ2 first", "#e41a1c", "-.", 1.05),
-    "Betweenness first": ("Betweenness first", "#e6ab02", "-.", 1.05),
-    "Impact population first": ("Impact (population) first", "#ff7f00", ":", 1.10),
-    "Degree first": ("Degree first", "#4daf4a", "--", 1.05),
-    "Closeness first": ("Closeness first", "#377eb8", "--", 1.05),
-    "Hospital first": ("Hospital first", "#666666", ":", 1.05),
-    "Random": ("Random baseline", "#c9c9c9", "-", 1.20),
-    "GA-Balanced": ("GA (balanced)", "#6a51a3", "-", 1.15),
-    "GA-HospitalFirst": ("GA (hospital-first)", "#dd3497", "-", 1.15),
-    "GA-Efficiency": ("GA (efficiency)", "#1b9e77", "-", 1.15),
+    "S3_Mean": ("Theoretical limit", "#111111", "--", 1.50),
+    "Impact λ2 first": (r"Impact $\lambda_2$ first", "#e41a1c", "-.", 0.82),
+    "Betweenness first": ("Betweenness first", "#e6ab02", "-.", 0.82),
+    "Impact population first": ("Population impact first", "#ff7f00", ":", 0.82),
+    "Degree first": ("Degree first", "#4daf4a", "--", 0.82),
+    "Closeness first": ("Closeness first", "#377eb8", "--", 0.82),
+    "Hospital first": ("Hospital first", "#666666", ":", 0.82),
+    "Random": ("Random baseline", "#d0d0d0", "-", 1.05),
+    "GA-Balanced": ("GA balanced", "#6a51a3", "-", 0.86),
+    "GA-HospitalFirst": ("GA hospital-first", "#dd3497", "-", 0.86),
+    "GA-Efficiency": ("GA efficiency", "#1b9e77", "-", 0.86),
 }
 
 GRAPH_STYLES = {
-    "S3_Mean": ("Theoretical limit", "#111111", "--", 1.35),
-    "centrality-first": ("Impact λ2 first", "#e41a1c", "-.", 0.95),
-    "betweenness-first": ("Betweenness first", "#e6ab02", "-.", 0.95),
-    "impact-first": ("Impact (population) first", "#ff7f00", ":", 0.95),
-    "degree-first": ("Degree first", "#4daf4a", "--", 0.95),
-    "closeness-first": ("Closeness first", "#377eb8", "--", 0.95),
-    "hospital-first": ("Hospital first", "#666666", ":", 0.95),
-    "random": ("Random baseline", "#c9c9c9", "-", 1.05),
-    "GA-Balanced": ("GA (balanced)", "#6a51a3", "-", 1.0),
-    "GA-HospFirst": ("GA (hospital-first)", "#dd3497", "-", 1.0),
-    "GA-Efficiency": ("GA (efficiency)", "#1b9e77", "-", 1.0),
+    "S3_Mean": ("Theoretical limit", "#111111", "--", 1.25),
+    "centrality-first": (r"Impact $\lambda_2$ first", "#e41a1c", "-.", 0.78),
+    "betweenness-first": ("Betweenness first", "#e6ab02", "-.", 0.78),
+    "impact-first": ("Population impact first", "#ff7f00", ":", 0.78),
+    "degree-first": ("Degree first", "#4daf4a", "--", 0.78),
+    "closeness-first": ("Closeness first", "#377eb8", "--", 0.78),
+    "hospital-first": ("Hospital first", "#666666", ":", 0.78),
+    "random": ("Random baseline", "#d0d0d0", "-", 0.95),
+    "GA-Balanced": ("GA balanced", "#6a51a3", "-", 0.82),
+    "GA-HospFirst": ("GA hospital-first", "#dd3497", "-", 0.82),
+    "GA-Efficiency": ("GA efficiency", "#1b9e77", "-", 0.82),
 }
 
 
@@ -251,35 +283,22 @@ def plot_recovery_curves(ax: plt.Axes, curves: pd.DataFrame) -> None:
         )
     ax.set_xlim(0, 115)
     ax.set_ylim(-0.02, 1.04)
-    ax.set_title("2pc50: population-weighted recovery", fontweight="bold", pad=4)
+    ax.set_title("Population-weighted recovery", fontweight="bold", pad=3)
     ax.set_xlabel("Time (hours)")
     ax.set_ylabel("Functionality")
     style_axis(ax)
-    legend = ax.legend(
-        loc="lower right",
-        frameon=False,
-        ncol=1,
-        fontsize=6.3,
-        handlelength=2.1,
-        labelspacing=0.24,
-        borderaxespad=0.45,
-    )
-    for line in legend.get_lines():
-        line.set_linewidth(1.35)
-
-
 DISPLAY_STRATEGIES = {
-    "GA-HospitalFirst": "GA hospital-first",
-    "GA-Efficiency": "GA efficiency",
-    "GA-Balanced": "GA balanced",
-    "Random": "Random baseline",
-    "Impact population first": "Impact population first",
-    "Hospital first": "Hospital priority",
+    "Theoretical limit": "Theoretical limit",
+    "Impact λ2 first": r"Impact $\lambda_2$ first",
+    "Betweenness first": "Betweenness first",
+    "Impact population first": "Population impact",
     "Degree first": "Degree first",
     "Closeness first": "Closeness first",
-    "Impact λ2 first": "Impact (λ2) first",
-    "Betweenness first": "Betweenness first",
-    "Theoretical limit": "Theoretical limit",
+    "Hospital first": "Hospital first",
+    "Random": "Random baseline",
+    "GA-Balanced": "GA balanced",
+    "GA-HospitalFirst": "GA hospital-first",
+    "GA-Efficiency": "GA efficiency",
 }
 STRATEGY_ORDER = list(DISPLAY_STRATEGIES)
 
@@ -293,9 +312,15 @@ def plot_t80_dumbbell(ax: plt.Axes, kpis: pd.DataFrame) -> None:
     y = np.arange(len(wide)) + 1
     pop = wide["Pop"].to_numpy(float)
     svi = wide["SVI"].to_numpy(float)
-    ax.hlines(y, np.minimum(pop, svi), np.maximum(pop, svi), color="#9e9e9e", lw=1.0)
-    ax.scatter(pop, y, s=30, color="#1f77b4", edgecolor="white", lw=0.35, zorder=3)
-    ax.scatter(svi, y, s=30, color="#ff7f0e", edgecolor="white", lw=0.35, zorder=3)
+    ax.hlines(
+        y,
+        np.minimum(pop, svi),
+        np.maximum(pop, svi),
+        color="#c7c7c7",
+        lw=0.65,
+    )
+    ax.scatter(pop, y, s=24, color="#1f77b4", edgecolor="white", lw=0.3, zorder=3)
+    ax.scatter(svi, y, s=24, color="#ff7f0e", edgecolor="white", lw=0.3, zorder=3)
     ax.set_yticks(y)
     ax.set_yticklabels(
         [DISPLAY_STRATEGIES[strategy] for strategy in wide.index],
@@ -305,12 +330,7 @@ def plot_t80_dumbbell(ax: plt.Axes, kpis: pd.DataFrame) -> None:
     all_values = np.r_[pop, svi]
     pad = max(1.0, (all_values.max() - all_values.min()) * 0.08)
     ax.set_xlim(max(0, all_values.min() - pad), all_values.max() + pad)
-    ax.set_title(
-        "2pc50 recovery-time comparison",
-        fontweight="bold",
-        pad=4,
-        loc="left",
-    )
+    ax.set_title("T80 comparison", fontweight="bold", pad=3, loc="left")
     ax.set_xlabel("Recovery time T80 (hours)")
     style_axis(ax)
     ax.grid(axis="y", visible=False)
@@ -320,12 +340,11 @@ def plot_t80_dumbbell(ax: plt.Axes, kpis: pd.DataFrame) -> None:
     ]
     ax.legend(
         handles=handles,
-        loc="lower right",
-        bbox_to_anchor=(1.0, 1.015),
+        loc="upper right",
         frameon=False,
         ncol=2,
-        fontsize=7.0,
-        borderaxespad=0,
+        fontsize=6.5,
+        borderaxespad=0.35,
         handletextpad=0.35,
         columnspacing=0.9,
     )
@@ -375,7 +394,7 @@ def plot_graph_metric(ax: plt.Axes, metric: str, title: str, ylabel: str) -> Non
     ax.set_xlim(0, 96)
     if metric == "lcc_fraction":
         ax.set_ylim(-0.02, 1.04)
-    ax.set_title(title, fontweight="bold", pad=4)
+    ax.set_title(title, fontweight="bold", pad=3)
     ax.set_xlabel("Time (hours)")
     ax.set_ylabel(ylabel)
     style_axis(ax)
@@ -387,16 +406,16 @@ def make_recovery_composite() -> None:
     kpis["T80"] = pd.to_numeric(kpis["T80"], errors="coerce")
 
     with mpl.rc_context(RC):
-        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(18.4)))
+        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(17.8)))
         gs = fig.add_gridspec(
             3,
             2,
-            height_ratios=[0.92, 1.12, 1.06],
+            height_ratios=[1.00, 1.02, 0.93],
             left=0.17,
             right=0.985,
-            bottom=0.14,
+            bottom=0.105,
             top=0.97,
-            hspace=0.43,
+            hspace=0.39,
             wspace=0.31,
         )
         ax_a = fig.add_subplot(gs[0, :])
@@ -406,39 +425,40 @@ def make_recovery_composite() -> None:
 
         plot_recovery_curves(ax_a, curves)
         plot_t80_dumbbell(ax_b, kpis)
-        plot_graph_metric(ax_c, "lcc_fraction", "2pc50: connectivity", "Giant component fraction")
-        plot_graph_metric(ax_d, "avg_degree", "2pc50: average degree", "Average degree (k)")
+        plot_graph_metric(ax_c, "lcc_fraction", "Connectivity", "Giant component fraction")
+        plot_graph_metric(ax_d, "avg_degree", "Average degree", "Average degree (k)")
 
-        panel_label(ax_a, "A", x=-0.13, y=1.015)
-        panel_label(ax_b, "B", x=-0.13, y=1.015)
-        panel_label(ax_c, "C", x=-0.19, y=1.015)
-        panel_label(ax_d, "D", x=-0.18, y=1.015)
+        panel_label(ax_a, "A", x=-0.12, y=1.01)
+        panel_label(ax_b, "B", x=-0.12, y=1.01)
+        panel_label(ax_c, "C", x=-0.17, y=1.01)
+        panel_label(ax_d, "D", x=-0.16, y=1.01)
 
-        handles, labels = ax_c.get_legend_handles_labels()
+        handles, labels = ax_a.get_legend_handles_labels()
         legend = fig.legend(
             handles,
             labels,
             loc="lower center",
-            bbox_to_anchor=(0.55, 0.022),
-            ncol=4,
+            bbox_to_anchor=(0.55, 0.012),
+            ncol=6,
             frameon=False,
-            fontsize=6.8,
-            handlelength=2.0,
-            columnspacing=1.1,
-            labelspacing=0.35,
+            fontsize=6.2,
+            handlelength=1.65,
+            columnspacing=0.75,
+            labelspacing=0.24,
+            handletextpad=0.35,
         )
         for line in legend.get_lines():
-            line.set_linewidth(1.2)
+            line.set_linewidth(1.05)
         save_pair(fig, "recovery_strategy_and_topology_composite")
 
 
 FEATURES = [
-    ("T80", "Recovery time (T80)"),
+    ("T80", "T80"),
     ("Pre_1970_Ratio", "Pre-1970 housing"),
     ("Pop_Density", "Population density"),
-    ("NRI_RISK_SCORE", "NRI risk score"),
+    ("NRI_RISK_SCORE", "NRI risk"),
     ("NRI_BUILDVALUE", "Building value"),
-    ("SVI_Composite", "SVI composite"),
+    ("SVI_Composite", "SVI"),
 ]
 
 
@@ -479,7 +499,7 @@ def plot_kde_block(
                 x=x_values,
                 ax=ax,
                 color=CLUSTER_COLORS.get(cluster, "#555555"),
-                linewidth=1.05,
+                linewidth=0.68,
                 common_norm=False,
                 fill=False,
                 warn_singular=False,
@@ -490,22 +510,21 @@ def plot_kde_block(
                 float(np.median(x_values)),
                 color=CLUSTER_COLORS.get(cluster, "#555555"),
                 linestyle="--",
-                linewidth=0.65,
-                alpha=0.8,
+                linewidth=0.36,
+                alpha=0.48,
             )
-        title = f"{label}\n(log scale)" if feature in log_features else label
-        ax.set_title(title, fontsize=6.8, fontweight="normal", pad=2)
+        ax.set_title(label, fontsize=6.6, fontweight="normal", pad=2)
         ax.set_xlabel("")
         ax.set_ylabel("Density" if index % 3 == 0 else "", fontsize=6.8)
         ax.tick_params(labelsize=6.4, length=2.2)
         style_axis(ax)
         sns.despine(ax=ax)
         if feature == "Pop_Density":
-            ax.set_xticks(np.log1p([0, 10_000, 100_000]))
-            ax.set_xticklabels(["0", "10k", "100k"])
+            ax.set_xticks(np.log1p([0, 100_000]))
+            ax.set_xticklabels(["0", "100k"])
         elif feature == "NRI_BUILDVALUE":
-            ax.set_xticks(np.log1p([1e6, 1e8, 1e9]))
-            ax.set_xticklabels(["1M", "100M", "1B"])
+            ax.set_xticks(np.log1p([1e6, 1e9]))
+            ax.set_xticklabels(["1M", "1B"])
 
     legend_ax = fig.add_subplot(inner[2, :])
     legend_ax.axis("off")
@@ -514,20 +533,20 @@ def plot_kde_block(
             [],
             [],
             color=CLUSTER_COLORS[str(cluster)],
-            lw=1.5,
+            lw=1.15,
             label=f"C{cluster} (n={int(cluster_counts.get(str(cluster), 0))})",
         )
         for cluster in range(1, 7)
     ]
     handles.append(
-        Line2D([], [], color="#222222", lw=0.9, ls="--", label="cluster median")
+        Line2D([], [], color="#777777", lw=0.7, ls="--", label="Cluster median")
     )
     legend_ax.legend(
         handles=handles,
         loc="center",
         frameon=False,
         ncol=4,
-        fontsize=6.5,
+        fontsize=6.1,
         handlelength=1.25,
         columnspacing=0.8,
         labelspacing=0.25,
@@ -555,10 +574,10 @@ def plot_cluster_heatmap(ax: plt.Axes, data: pd.DataFrame) -> None:
         center=0,
         annot=True,
         fmt=".1f",
-        annot_kws={"fontsize": 6.3},
-        linewidths=0.35,
+        annot_kws={"fontsize": 5.7},
+        linewidths=0.22,
         linecolor="white",
-        cbar_kws={"label": "Profile z-score", "shrink": 0.82, "pad": 0.035},
+        cbar_kws={"label": "Profile z-score", "shrink": 0.68, "pad": 0.025},
     )
     ax.set_xticklabels(
         [f"C{cluster}" for cluster in zscore.index],
@@ -568,15 +587,15 @@ def plot_cluster_heatmap(ax: plt.Axes, data: pd.DataFrame) -> None:
     ax.set_yticklabels(
         display_names,
         rotation=0,
-        fontsize=6.3,
+        fontsize=5.9,
         linespacing=0.92,
     )
     ax.set_xlabel("")
     ax.set_ylabel("")
     ax.tick_params(length=0, pad=2.5)
     colorbar = ax.collections[0].colorbar
-    colorbar.ax.tick_params(labelsize=6.5, length=2)
-    colorbar.set_label("Profile z-score", fontsize=7.0)
+    colorbar.ax.tick_params(labelsize=6.0, length=2)
+    colorbar.set_label("Profile z-score", fontsize=6.5)
     colorbar.outline.set_linewidth(0.4)
 
 
@@ -595,26 +614,40 @@ def plot_cluster_map(
     mapped: gpd.GeoDataFrame,
     bounds: tuple[float, float, float, float],
 ) -> None:
+    na_tracts = internal_na_tracts(mapped, "cluster")
+    if not na_tracts.empty:
+        na_tracts.plot(
+            ax=ax,
+            color=NA_TRACT_COLOR,
+            edgecolor="#666666",
+            linewidth=0.04,
+            zorder=0,
+        )
     for cluster in sorted(mapped["cluster"].dropna().unique(), key=int):
         subset = mapped[mapped["cluster"].eq(cluster)]
         subset.plot(
             ax=ax,
             color=CLUSTER_COLORS.get(cluster, "#999999"),
-            edgecolor="white",
-            linewidth=0.10,
+            edgecolor="#f1f1f1",
+            linewidth=0.04,
         )
     top10 = mapped[mapped["SlowVulnerable_Hotspot_Top10"].fillna(False).astype(bool)]
     if not top10.empty:
-        top10.boundary.plot(ax=ax, color="#222222", linewidth=0.65)
+        top10.boundary.plot(ax=ax, color="#222222", linewidth=0.48)
     set_map_extent(ax, bounds)
     ax.set_axis_off()
     ax.legend(
         handles=[
+            Patch(
+                facecolor=NA_TRACT_COLOR,
+                edgecolor="none",
+                label="NA tracts",
+            ),
             Line2D(
                 [],
                 [],
                 color="#222222",
-                lw=0.8,
+                lw=0.65,
                 label="Top-10 hotspot boundary",
             )
         ],
@@ -624,10 +657,12 @@ def plot_cluster_map(
         facecolor="white",
         framealpha=0.88,
         edgecolor="none",
-        ncol=1,
-        fontsize=6.5,
-        handlelength=1.4,
+        ncol=2,
+        fontsize=5.9,
+        handlelength=1.1,
         handletextpad=0.25,
+        columnspacing=0.65,
+        borderpad=0.25,
     )
 
 
@@ -640,39 +675,48 @@ def plot_hotspot_map(
     score = pd.to_numeric(mapped["SlowVulnerable_Hotspot_Score"], errors="coerce")
     vmin = float(score.min())
     vmax = float(score.max())
-    mapped.plot(
+    na_tracts = internal_na_tracts(mapped, "SlowVulnerable_Hotspot_Score")
+    if not na_tracts.empty:
+        na_tracts.plot(
+            ax=ax,
+            color=NA_TRACT_COLOR,
+            edgecolor="#666666",
+            linewidth=0.04,
+            zorder=0,
+        )
+    mapped[score.notna()].plot(
         column="SlowVulnerable_Hotspot_Score",
         ax=ax,
         cmap=HOTSPOT_CMAP,
         vmin=vmin,
         vmax=vmax,
-        edgecolor="white",
-        linewidth=0.10,
+        edgecolor="#f1f1f1",
+        linewidth=0.04,
     )
     top10 = mapped[mapped["SlowVulnerable_Hotspot_Top10"].fillna(False).astype(bool)]
     if not top10.empty:
-        top10.boundary.plot(ax=ax, color="#222222", linewidth=0.65)
+        top10.boundary.plot(ax=ax, color="#222222", linewidth=0.48)
     set_map_extent(ax, bounds)
     ax.set_axis_off()
     sm = mpl.cm.ScalarMappable(norm=mpl.colors.Normalize(vmin=vmin, vmax=vmax), cmap=HOTSPOT_CMAP)
     cax = inset_axes(
         ax,
-        width="58%",
-        height="4.5%",
+        width="52%",
+        height="3.8%",
         loc="lower center",
         bbox_to_anchor=(0.0, -0.015, 1.0, 1.0),
         bbox_transform=ax.transAxes,
         borderpad=0,
     )
     cbar = fig.colorbar(sm, cax=cax, orientation="horizontal")
-    cbar.set_label("Recovery-vulnerability hotspot score", fontsize=7.0)
-    cbar.ax.tick_params(labelsize=6.5, length=2, pad=1)
+    cbar.set_label("Recovery-vulnerability hotspot score", fontsize=6.5)
+    cbar.ax.tick_params(labelsize=6.0, length=2, pad=1)
     cbar.outline.set_linewidth(0.4)
 
 
 def make_stage7_composite(tracts: gpd.GeoDataFrame) -> None:
     data = stage7_data()
-    mapped = tracts.merge(data, on="tract_id", how="inner")
+    mapped = tracts.merge(data, on="tract_id", how="left")
     cluster_counts = data["cluster"].value_counts().sort_index(key=lambda index: index.astype(int))
 
     with mpl.rc_context(RC):
@@ -690,8 +734,8 @@ def make_stage7_composite(tracts: gpd.GeoDataFrame) -> None:
         top = outer[0].subgridspec(
             1,
             2,
-            width_ratios=[1.05, 0.95],
-            wspace=0.29,
+            width_ratios=[0.95, 1.05],
+            wspace=0.27,
         )
         bottom = outer[1].subgridspec(
             1,
@@ -706,7 +750,7 @@ def make_stage7_composite(tracts: gpd.GeoDataFrame) -> None:
         ax_hotspots = fig.add_subplot(bottom[0, 1])
 
         plot_cluster_heatmap(ax_heat, data)
-        map_bounds = tuple(mapped.total_bounds)
+        map_bounds = tuple(mapped.loc[mapped["cluster"].notna()].total_bounds)
         plot_cluster_map(ax_clusters, mapped, map_bounds)
         plot_hotspot_map(fig, ax_hotspots, mapped, map_bounds)
 

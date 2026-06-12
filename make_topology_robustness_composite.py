@@ -228,30 +228,30 @@ def render_panel_b(temp_root: Path) -> Path:
             ax=ax,
             facecolor="none",
             edgecolor="#bdbdbd",
-            linewidth=1.0,
+            linewidth=0.65,
             zorder=0,
         )
         if not cec_lines.empty:
             cec_lines.plot(
                 ax=ax,
-                color="#737373",
-                linewidth=0.65,
-                alpha=0.92,
+                color="#8a8a8a",
+                linewidth=0.38,
+                alpha=0.58,
                 zorder=1,
             )
         edges_gdf.plot(
             ax=ax,
             color="#1f77b4",
-            linewidth=0.58,
-            alpha=0.50,
+            linewidth=0.45,
+            alpha=0.55,
             zorder=2,
         )
         nodes_gdf.plot(
             ax=ax,
             marker="x",
             color="#e6550d",
-            markersize=24,
-            linewidth=0.9,
+            markersize=14,
+            linewidth=0.65,
             zorder=3,
         )
 
@@ -268,15 +268,15 @@ def render_panel_b(temp_root: Path) -> Path:
             spine.set_linewidth(0.6)
 
         legend_handles = [
-            Line2D([0], [0], color="#737373", linewidth=0.8, label="CEC transmission lines"),
-            Line2D([0], [0], color="#1f77b4", linewidth=0.8, alpha=0.65, label="Simplified topology"),
+            Line2D([0], [0], color="#8a8a8a", linewidth=0.55, label="CEC transmission lines"),
+            Line2D([0], [0], color="#1f77b4", linewidth=0.65, alpha=0.70, label="Simplified topology"),
             Line2D(
                 [0],
                 [0],
                 marker="x",
                 linestyle="None",
                 color="#e6550d",
-                markersize=4.6,
+                markersize=3.8,
                 label="CEC substations",
             ),
         ]
@@ -287,7 +287,7 @@ def render_panel_b(temp_root: Path) -> Path:
             bbox_to_anchor=(0.5, -0.185),
             ncol=2,
             frameon=False,
-            fontsize=6.7,
+            fontsize=6.3,
             handlelength=1.25,
             handletextpad=0.3,
             columnspacing=0.7,
@@ -376,18 +376,18 @@ def render_panel_c(temp_root: Path) -> Path:
                 pd.to_numeric(data["lcc_fraction"], errors="coerce"),
                 color=color,
                 linestyle=linestyle,
-                linewidth=1.0,
+                linewidth=0.82,
                 marker=marker,
-                markersize=3.2,
-                markeredgewidth=0.35,
-                markevery=1,
+                markersize=2.8,
+                markeredgewidth=0.30,
+                markevery=4,
                 label=label,
             )
         ax.set_xlim(-1, 92)
         ax.set_ylim(-0.02, 1.03)
         ax.set_xlabel("Number of substations removed")
         ax.set_ylabel("Largest connected component fraction")
-        ax.grid(True, color="#d9d9d9", alpha=0.72, linewidth=0.45)
+        ax.grid(True, color="#d9d9d9", alpha=0.50, linewidth=0.32)
         ax.set_axisbelow(True)
         for spine in ax.spines.values():
             spine.set_color("#bdbdbd")
@@ -397,22 +397,18 @@ def render_panel_c(temp_root: Path) -> Path:
         legend = ax.legend(
             handles,
             labels,
-            loc="upper right",
-            bbox_to_anchor=(0.995, 0.985),
-            ncol=2,
-            frameon=True,
-            facecolor="white",
-            edgecolor="#d0d0d0",
-            framealpha=0.94,
-            fontsize=6.8,
+            loc="lower center",
+            bbox_to_anchor=(0.5, 1.01),
+            ncol=5,
+            frameon=False,
+            fontsize=6.4,
             handlelength=1.55,
-            handletextpad=0.4,
-            columnspacing=0.8,
-            labelspacing=0.25,
-            borderpad=0.35,
+            handletextpad=0.3,
+            columnspacing=0.65,
+            labelspacing=0.20,
+            borderpad=0.15,
         )
-        legend.get_frame().set_linewidth(0.45)
-        fig.subplots_adjust(left=0.105, right=0.985, top=0.975, bottom=0.18)
+        fig.subplots_adjust(left=0.105, right=0.985, top=0.84, bottom=0.18)
         fig.savefig(
             output_png,
             dpi=EXPORT_DPI,
@@ -499,7 +495,7 @@ def main() -> None:
                     key.upper(),
                     ha="left",
                     va="bottom",
-                    fontsize=9.5,
+                    fontsize=9.0,
                     fontweight="bold",
                     color="#111111",
                 )

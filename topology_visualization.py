@@ -935,21 +935,26 @@ def visualize_topology(
 
         background_lines = background_lines.to_crs(epsg=4326)
 
+        compact_composite = (
+            VALIDATION_MAP_LAYOUT_CM["width_cm"] <= 10.5
+            and COMPACT_COMPOSITE_LAYOUT
+        )
+
         if city_wgs is not None and not city_wgs.empty:
             city_wgs.plot(
                 ax=ax,
                 facecolor="none",
                 edgecolor="#bdbdbd",
-                linewidth=1.2,
+                linewidth=0.65 if compact_composite else 1.2,
                 zorder=0,
             )
 
         background_lines.plot(
             ax=ax,
             color="#7a7a7a",
-            linewidth=0.78,
+            linewidth=0.42 if compact_composite else 0.78,
             linestyle="--",
-            alpha=0.38,
+            alpha=0.28 if compact_composite else 0.38,
             zorder=1,
         )
 
@@ -973,9 +978,9 @@ def visualize_topology(
                 ).plot(
                     ax=ax,
                     color="#1f77b4",
-                    linewidth=1.35,
+                    linewidth=0.82 if compact_composite else 1.35,
                     linestyle="-",
-                    alpha=0.9,
+                    alpha=0.82 if compact_composite else 0.9,
                     zorder=2,
                     label="Direct substation links",
                 )
@@ -989,9 +994,9 @@ def visualize_topology(
             subs_wgs[subs_wgs["id"].isin(main_ids)].plot(
                 ax=ax,
                 color="#e6550d",
-                markersize=18,
+                markersize=10 if compact_composite else 18,
                 edgecolor="white",
-                linewidth=0.8,
+                linewidth=0.45 if compact_composite else 0.8,
                 zorder=3,
                 label=f"Main Grid ({len(main_ids)} substations)",
             )
@@ -1000,10 +1005,10 @@ def visualize_topology(
             subs_wgs[subs_wgs["id"].isin(island_ids)].plot(
                 ax=ax,
                 color="#b2182b",
-                markersize=30,
+                markersize=18 if compact_composite else 30,
                 marker="X",
                 edgecolor="white",
-                linewidth=0.8,
+                linewidth=0.5 if compact_composite else 0.8,
                 zorder=4,
                 label=f"Disconnected ({len(island_ids)})",
             )
@@ -1022,15 +1027,15 @@ def visualize_topology(
             Line2D(
                 [0], [0],
                 color="#7a7a7a",
-                linewidth=0.78,
+                linewidth=0.48 if compact_composite else 0.78,
                 linestyle="--",
-                alpha=0.38,
+                alpha=0.32 if compact_composite else 0.38,
                 label="CEC transmission lines",
             ),
             Line2D(
                 [0], [0],
                 color="#1f77b4",
-                linewidth=1.35,
+                linewidth=0.78 if compact_composite else 1.35,
                 linestyle="-",
                 alpha=0.9,
                 label="Direct substation links",
@@ -1045,13 +1050,12 @@ def visualize_topology(
                     linestyle="None",
                     markerfacecolor="#e6550d",
                     markeredgecolor="white",
-                    markersize=5.0,
+                markersize=3.8 if compact_composite else 5.0,
                     label=f"Main Grid ({len(main_ids)} substations)",
                 )
             )
 
         compact_panel = VALIDATION_MAP_LAYOUT_CM["width_cm"] <= 10.5
-        compact_composite = compact_panel and COMPACT_COMPOSITE_LAYOUT
         fig.subplots_adjust(
             left=0.11 if compact_panel else 0.09,
             right=0.985,
@@ -1068,7 +1072,7 @@ def visualize_topology(
                 ),
                 ncol=2 if compact_panel else 3,
                 frameon=False,
-                fontsize=COMPANION_LEGEND_FONT,
+                fontsize=6.3 if compact_composite else COMPANION_LEGEND_FONT,
                 borderpad=0.12,
                 labelspacing=0.18,
                 handletextpad=COMPANION_LEGEND_HANDLETEXTPAD,
@@ -1076,7 +1080,10 @@ def visualize_topology(
                 columnspacing=0.45,
                 handlelength=COMPANION_LEGEND_HANDLELENGTH,
             )
-            format_publication_legend(legend, fontsize=COMPANION_LEGEND_FONT)
+            format_publication_legend(
+                legend,
+                fontsize=6.3 if compact_composite else COMPANION_LEGEND_FONT,
+            )
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         export_bbox = tiered_export_bbox(fig)
