@@ -2414,7 +2414,8 @@ def kpis_from_series(series_df: pd.DataFrame, t_end: float) -> pd.DataFrame:
         series_ext = series_df
 
     # 1) AUC (normalized by the duration)
-    auc_raw = np.trapezoid(series_ext.values, t_grid_ext, axis=0)
+    trapezoid = getattr(np, "trapezoid", np.trapz)
+    auc_raw = trapezoid(series_ext.values, t_grid_ext, axis=0)
     kpi_data["AUC"] = auc_raw / (t_grid_ext[-1] - t_grid_ext[0])
 
     # 2) T50 / T80

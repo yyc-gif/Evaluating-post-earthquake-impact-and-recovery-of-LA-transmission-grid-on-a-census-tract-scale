@@ -718,10 +718,10 @@ def summarize_source_gate_diagnostics(
                 "scenario": SENSITIVITY_SCENARIO,
                 "source_gate_threshold": float(threshold),
                 "time_averaged_source_connected_count": float(
-                    np.trapezoid(count, time) / duration
+                    getattr(np, "trapezoid", np.trapz)(count, time) / duration
                 ),
                 "time_averaged_source_connected_share": float(
-                    np.trapezoid(share, time) / duration
+                    getattr(np, "trapezoid", np.trapz)(share, time) / duration
                 ),
                 "source_connected_count_24h": float(
                     np.interp(24.0, time, count)
