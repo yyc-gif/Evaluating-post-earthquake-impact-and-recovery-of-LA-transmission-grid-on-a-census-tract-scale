@@ -1707,19 +1707,30 @@ def plot_sensitivity_summary(ax: plt.Axes, data: dict[str, object]) -> None:
 
 
 def plot_typology_map(ax: plt.Axes, data: dict[str, object]) -> None:
-    typ = data["tracts"].merge(data["clusters"][["tract_id", "cluster"]], on="tract_id", how="inner")
+    typ = data["tracts"].merge(data["clusters"][["tract_id", "cluster"]], on="tract_id", how="left")
     typ.plot(
+        ax=ax,
+        facecolor="#C8C8C8",
+        edgecolor="#E0E0E0",
+        linewidth=0.045,
+        zorder=0,
+    )
+    clustered = typ.dropna(subset=["cluster"])
+    clustered.plot(
         ax=ax,
         column="cluster",
         cmap=matplotlib.colors.ListedColormap(CLUSTER_COLORS),
         vmin=0,
         vmax=2,
-        edgecolor="white",
-        linewidth=0.055,
+        edgecolor="#F5F5F5",
+        linewidth=0.045,
         zorder=1,
     )
+    missing = typ[typ["cluster"].isna()]
+    if not missing.empty:
+        missing.plot(ax=ax, facecolor="#B8B8B8", edgecolor="#8E8E8E", linewidth=0.055, zorder=2)
     hot_ids = set(data["hotspots"]["tract_id"])
-    hot = typ[typ["tract_id"].isin(hot_ids)]
+    hot = clustered[clustered["tract_id"].isin(hot_ids)]
     if not hot.empty:
         hot.boundary.plot(ax=ax, color="#8C1740", linewidth=0.85, zorder=3)
     geo_setup(ax, data["bounds"])
@@ -1845,28 +1856,28 @@ def build_figure() -> tuple[Path, Path]:
     # 5. Three-column recovery sequence based on the actual curve and scheduling outputs.
     baseline_ax = data_inset(ax, (3.2, 7.05, 15.0, 9.8))
     plot_baseline_curve(baseline_ax, data)
-    step_label(ax, 10.7, 5.32, "Unconstrained baseline", size=4.55, color=C["ink"])
+    step_label(ax, 10.7, 5.22, "Unconstrained\nbaseline", size=4.15, color=C["ink"])
     dispatch_ax = data_inset(ax, (20.5, 12.15, 15.0, 4.8))
     plot_dispatch_map(dispatch_ax, data)
     gantt_ax = data_inset(ax, (20.5, 7.05, 15.0, 4.55))
     plot_gantt(gantt_ax, data)
-    step_label(ax, 28.0, 5.32, "Crew/yard scheduling +\npriority strategies", size=4.45, color=C["ink"])
+    step_label(ax, 28.0, 5.22, "Crew/yard scheduling\n+ priority strategies", size=4.05, color=C["ink"])
     strategy_ax = data_inset(ax, (37.8, 7.05, 16.0, 9.8))
     plot_strategy_curves(strategy_ax, data)
-    step_label(ax, 45.8, 5.32, "Logistics-aware recovery", size=4.55, color=C["ink"])
+    step_label(ax, 45.8, 5.22, "Logistics-aware\nrecovery", size=4.15, color=C["ink"])
     mini_arrow(ax, 18.4, 11.5, 20.2, 11.5, lw=0.48)
     mini_arrow(ax, 35.7, 11.5, 37.5, 11.5, lw=0.48)
 
     # 6. Three clearly separated outputs based on the actual analysis products.
     weighted_ax = data_inset(ax, (61.2, 6.5, 16.8, 10.1))
     plot_weighted_recovery(weighted_ax, data)
-    step_label(ax, 69.6, 5.08, "Population- and\nSVI-weighted recovery", size=4.9, color=C["ink"])
+    step_label(ax, 69.6, 5.02, "Population- and\nSVI-weighted recovery", size=4.25, color=C["ink"])
     sensitivity_ax = data_inset(ax, (80.0, 6.5, 17.8, 10.1))
     plot_sensitivity_summary(sensitivity_ax, data)
-    step_label(ax, 88.9, 5.08, "Sensitivity analysis", size=4.9, color=C["ink"])
+    step_label(ax, 88.9, 5.02, "Sensitivity analysis", size=4.25, color=C["ink"])
     typology_ax = data_inset(ax, (99.6, 6.1, 17.3, 10.8))
     plot_typology_map(typology_ax, data)
-    step_label(ax, 108.25, 5.08, "Recovery-vulnerability\ntypology / hotspots", size=4.8, color=C["ink"])
+    step_label(ax, 108.25, 5.02, "Recovery-vulnerability\ntypology / hotspots", size=4.15, color=C["ink"])
 
     # Computational dependencies only.
     edge_lw = 0.42
@@ -1917,6 +1928,8 @@ def build_figure() -> tuple[Path, Path]:
     export_bbox = fixed_width_export_bbox(fig)
     fig.savefig(pdf_path, format="pdf", bbox_inches=export_bbox, pad_inches=0)
     fig.savefig(svg_path, format="svg", bbox_inches=export_bbox, pad_inches=0)
+    svg_text = "\n".join(line.rstrip() for line in svg_path.read_text(encoding="utf-8").splitlines()) + "\n"
+    svg_path.write_text(svg_text, encoding="utf-8")
     fig.savefig(png_path, format="png", dpi=600, bbox_inches=export_bbox, pad_inches=0)
     plt.close(fig)
     return pdf_path, svg_path, png_path
