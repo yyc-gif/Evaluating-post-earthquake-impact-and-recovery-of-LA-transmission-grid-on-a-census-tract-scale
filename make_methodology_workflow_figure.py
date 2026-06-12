@@ -1445,34 +1445,37 @@ def plot_damage_outputs(ax: plt.Axes, data: dict[str, object]) -> None:
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    ax.text(0.25, 0.99, "Residual\nfunctionality", fontsize=WF_TEXT, color=C["muted"], ha="center", va="top", linespacing=0.92)
-    for i, row in summary.iterrows():
+    label_fs = 5.45
+    title_fs = 5.65
+    ax.text(0.27, 0.96, "Residual\nfunctionality", fontsize=title_fs, color=C["muted"], ha="center", va="top", linespacing=0.95)
+    residual = summary.sort_values("damage_state").reset_index(drop=True)
+    for i, row in residual.iterrows():
         ds_id = int(row["damage_state"])
-        yy = 0.65 - i * 0.10
-        ax.text(0.02, yy + 0.022, f"DS{ds_id}", fontsize=WF_TEXT, color=C["muted"], ha="left", va="center")
-        ax.add_patch(patches.Rectangle((0.17, yy), 0.30, 0.052, facecolor="#EEF1F3", edgecolor="none"))
+        yy = 0.66 - i * 0.115
+        ax.text(0.03, yy + 0.022, f"DS{ds_id}", fontsize=label_fs, color=C["muted"], ha="left", va="center")
+        ax.add_patch(patches.Rectangle((0.19, yy), 0.30, 0.046, facecolor="#EEF1F3", edgecolor="none"))
         ax.add_patch(
             patches.Rectangle(
-                (0.17, yy),
+                (0.19, yy),
                 0.30 * float(row["residual_functionality"]),
-                0.052,
+                0.046,
                 facecolor=C["recovery"],
                 edgecolor="none",
             )
         )
-    durations = summary[summary["damage_state"] > 0].copy()
+    durations = summary[summary["damage_state"] > 0].sort_values("damage_state", ascending=False).copy()
     max_duration = max(1.0, float(durations["repair_q75"].max()))
-    ax.text(0.76, 0.99, "Repair-duration\nsamples", fontsize=WF_TEXT, color=C["muted"], ha="center", va="top", linespacing=0.92)
+    ax.text(0.78, 0.96, "Repair-duration\nsamples", fontsize=title_fs, color=C["muted"], ha="center", va="top", linespacing=0.95)
     for i, row in durations.reset_index(drop=True).iterrows():
-        yy = 0.24 + i * 0.105
-        ax.text(0.58, yy + 0.022, f"DS{int(row['damage_state'])}", fontsize=WF_TEXT, color=C["muted"], ha="left", va="center")
+        yy = 0.63 - i * 0.13
+        ax.text(0.58, yy + 0.022, f"DS{int(row['damage_state'])}", fontsize=label_fs, color=C["muted"], ha="left", va="center")
         q25 = 0.24 * float(row["repair_q25"]) / max_duration
         median = 0.24 * float(row["repair_duration"]) / max_duration
         q75 = 0.24 * float(row["repair_q75"]) / max_duration
-        ax.add_patch(patches.Rectangle((0.72, yy), median, 0.052, facecolor=C["logistics"], edgecolor="none"))
-        ax.plot([0.72 + q25, 0.72 + q75], [yy + 0.026, yy + 0.026], color=C["ink"], lw=0.45)
-        ax.plot([0.72 + q25, 0.72 + q25], [yy + 0.014, yy + 0.038], color=C["ink"], lw=0.35)
-        ax.plot([0.72 + q75, 0.72 + q75], [yy + 0.014, yy + 0.038], color=C["ink"], lw=0.35)
+        ax.add_patch(patches.Rectangle((0.72, yy), median, 0.046, facecolor=C["logistics"], edgecolor="none"))
+        ax.plot([0.72 + q25, 0.72 + q75], [yy + 0.023, yy + 0.023], color=C["ink"], lw=0.42)
+        ax.plot([0.72 + q25, 0.72 + q25], [yy + 0.012, yy + 0.034], color=C["ink"], lw=0.32)
+        ax.plot([0.72 + q75, 0.72 + q75], [yy + 0.012, yy + 0.034], color=C["ink"], lw=0.32)
 
 
 def source_gated_ids(data: dict[str, object], threshold: float = 0.5) -> set[str]:
@@ -1789,16 +1792,16 @@ def build_figure() -> tuple[Path, Path]:
         ax.text(legend_x + 0.75, yy, label, fontsize=WF_TEXT, color=C["ink"], ha="left", va="center")
 
     # 2. Actual direct-link topology and actual tract-substation weights.
-    topology_ax = data_inset(ax, (3.0, 45.0, 34.5, 9.6))
+    topology_ax = data_inset(ax, (3.4, 46.15, 33.0, 8.2))
     plot_topology_map(topology_ax, data)
-    matrix_ax = data_inset(ax, (39.6, 45.0, 16.2, 8.8))
+    matrix_ax = data_inset(ax, (39.8, 46.05, 16.0, 7.8))
     plot_dependency_matrix(matrix_ax, data)
-    step_label(ax, 20.2, 43.78, "LA direct-link topology\nand source substations", size=5.15, color=C["ink"])
+    step_label(ax, 20.2, 43.50, "LA direct-link topology\nand source substations", size=4.2, color=C["ink"])
     ax.text(
-        35.5,
-        45.1,
+        35.0,
+        45.20,
         "connectivity /\ncriticality",
-        fontsize=WF_TEXT,
+        fontsize=5.0,
         color="#547A98",
         ha="right",
         va="bottom",
@@ -1806,18 +1809,18 @@ def build_figure() -> tuple[Path, Path]:
         linespacing=0.95,
         bbox={"facecolor": "#F7FAFC", "edgecolor": "#D7E4EC", "linewidth": 0.35, "pad": 0.25},
     )
-    step_label(ax, 47.7, 43.50, "Tract\u2013substation\ndependency weights", size=5.05, color=C["ink"])
+    step_label(ax, 47.8, 43.50, "Tract\u2013substation\ndependency weights", size=4.2, color=C["ink"])
 
     # 3. Actual PGA, fragility parameters, MC damage shares, functionality, and repair durations.
     pga_ax = data_inset(ax, (63.0, 44.5, 15.8, 10.1))
     plot_pga_map(pga_ax, data)
     frag_ax = data_inset(ax, (80.0, 46.0, 8.0, 7.3))
     plot_actual_fragility(frag_ax, data)
-    damage_ax = data_inset(ax, (89.5, 44.0, 27.5, 11.2))
+    damage_ax = data_inset(ax, (90.0, 44.45, 26.6, 10.55))
     plot_damage_outputs(damage_ax, data)
-    step_label(ax, 70.9, 43.78, "Scenario PGA at\nsubstations", size=5.0, color=C["ink"])
-    step_label(ax, 84.2, 43.78, "Fragility functions", size=5.0, color=C["ink"])
-    step_label(ax, 103.25, 43.78, "Damage-conditioned outputs", size=5.15, color=C["ink"])
+    step_label(ax, 70.9, 43.55, "Scenario PGA at\nsubstations", size=4.35, color=C["ink"])
+    step_label(ax, 84.2, 43.55, "Fragility functions", size=4.35, color=C["ink"])
+    step_label(ax, 103.25, 43.55, "Damage-conditioned outputs", size=4.55, color=C["ink"])
 
     # 4. Central mechanism, redrawn from the actual damage, topology, weight, and tract-service products.
     x_positions = [3.0, 22.5, 42.0, 62.5, 88.3]
@@ -1893,7 +1896,7 @@ def build_figure() -> tuple[Path, Path]:
         18.0,
         41.25,
         "topology and dependency weights",
-        fontsize=WF_TEXT,
+        fontsize=5.9,
         color=C["grid"],
         ha="center",
         weight="bold",
@@ -1903,7 +1906,7 @@ def build_figure() -> tuple[Path, Path]:
         103.0,
         41.25,
         "damage-conditioned component states",
-        fontsize=WF_TEXT,
+        fontsize=5.9,
         color=C["hazard"],
         ha="center",
         weight="bold",
