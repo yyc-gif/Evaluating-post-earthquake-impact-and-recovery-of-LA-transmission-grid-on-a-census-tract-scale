@@ -3890,7 +3890,7 @@ def vis_stage6(
         fig, axes = plt.subplots(
             1,
             2,
-            figsize=get_figsize("COMPOSITE_FULL_DEFAULT"),
+            figsize=get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=9.6),
         )
         has_any = False
         x_candidates = []
@@ -4096,7 +4096,7 @@ def vis_stage6(
             h = list(all_dict.values())
             l = list(all_dict.keys())
 
-        ncol = 2
+        ncol = 3
         nrows = int(np.ceil(len(l) / ncol))
         display_order = [
             row * ncol + col
@@ -4107,8 +4107,8 @@ def vis_stage6(
         h = [h[idx] for idx in display_order]
         l = [l[idx] for idx in display_order]
 
-        plt.tight_layout()
-        plt.subplots_adjust(bottom=0.30, wspace=0.24)
+        plt.tight_layout(rect=(0.03, 0.34, 0.995, 0.94))
+        plt.subplots_adjust(bottom=0.36, wspace=0.24)
 
         if h:
             legend = fig.legend(
@@ -4117,7 +4117,7 @@ def vis_stage6(
                 bbox_to_anchor=(0.5, 0.02),
                 ncol=ncol,
                 frameon=False,
-                columnspacing=1.6,
+                columnspacing=1.1,
                 handlelength=2.0,
                 labelspacing=0.45,
             )
