@@ -1620,6 +1620,37 @@ def plot_gantt(ax: plt.Axes, data: dict[str, object]) -> None:
 
 def plot_strategy_curves(ax: plt.Axes, data: dict[str, object]) -> None:
     recovery = data["recovery"]
+    strategy_cols = [
+        col
+        for col in recovery.columns
+        if col.startswith("Northridge |") and col.endswith("| Population") and "S3_Mean" not in col
+    ]
+    if strategy_cols:
+        palette = [
+            C["hazard"],
+            C["logistics"],
+            "#E1B94B",
+            C["community"],
+            C["grid"],
+            C["critical"],
+            "#9DA4AA",
+            C["purple"],
+            "#D85AA5",
+            C["recovery"],
+        ]
+        for idx, col in enumerate(strategy_cols):
+            color = palette[idx % len(palette)]
+            lw = 1.05 if "Impact" in col else 0.72
+            alpha = 0.92 if "Impact" in col else 0.64
+            if "Random" in col:
+                color, lw, alpha = "#A8AEB4", 0.75, 0.62
+            ax.plot(recovery["time_hr"], recovery[col], lw=lw, color=color, alpha=alpha)
+        ax.set_xlim(0, 50)
+        ax.set_ylim(0.3, 1.02)
+        ax.set_xticks([])
+        ax.set_yticks([])
+        quiet_axes(ax)
+        return
     cols = [
         ("Northridge | Impact λ2 first | Population", C["hazard"]),
         ("Northridge | Betweenness first | Population", "#E1B94B"),
@@ -1637,6 +1668,31 @@ def plot_strategy_curves(ax: plt.Axes, data: dict[str, object]) -> None:
 
 def plot_weighted_recovery(ax: plt.Axes, data: dict[str, object]) -> None:
     recovery = data["recovery"]
+    pop_cols = [
+        col
+        for col in recovery.columns
+        if col.startswith("Northridge |") and col.endswith("| Population") and "S3_Mean" not in col
+    ]
+    svi_cols = [
+        col
+        for col in recovery.columns
+        if col.startswith("Northridge |") and col.endswith("| SVI") and "S3_Mean" not in col
+    ]
+    if pop_cols or svi_cols:
+        for col in pop_cols:
+            ax.plot(recovery["time_hr"], recovery[col], color=C["grid"], lw=0.62, alpha=0.42)
+        for col in svi_cols:
+            ax.plot(recovery["time_hr"], recovery[col], color=C["community"], lw=0.62, alpha=0.42)
+        if "Northridge | Impact λ2 first | Population" in recovery:
+            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | Population"], color=C["grid"], lw=1.08, alpha=0.92)
+        if "Northridge | Impact λ2 first | SVI" in recovery:
+            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | SVI"], color=C["community"], lw=1.08, alpha=0.92)
+        ax.set_xlim(0, 50)
+        ax.set_ylim(0.3, 1.02)
+        ax.set_xticks([])
+        ax.set_yticks([])
+        quiet_axes(ax)
+        return
     ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | Population"], color=C["grid"], lw=1.1)
     ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | SVI"], color=C["community"], lw=1.1)
     ax.set_xlim(0, 50)
@@ -1812,15 +1868,15 @@ def build_figure() -> tuple[Path, Path]:
     step_label(ax, 47.8, 43.50, "Tract\u2013substation\ndependency weights", size=4.2, color=C["ink"])
 
     # 3. Actual PGA, fragility parameters, MC damage shares, functionality, and repair durations.
-    pga_ax = data_inset(ax, (63.0, 44.5, 15.8, 10.1))
+    pga_ax = data_inset(ax, (63.3, 45.15, 15.3, 9.0))
     plot_pga_map(pga_ax, data)
-    frag_ax = data_inset(ax, (80.0, 46.0, 8.0, 7.3))
+    frag_ax = data_inset(ax, (80.35, 46.35, 7.6, 6.7))
     plot_actual_fragility(frag_ax, data)
-    damage_ax = data_inset(ax, (90.0, 44.45, 26.6, 10.55))
+    damage_ax = data_inset(ax, (90.25, 45.05, 26.1, 9.75))
     plot_damage_outputs(damage_ax, data)
-    step_label(ax, 70.9, 43.55, "Scenario PGA at\nsubstations", size=4.35, color=C["ink"])
-    step_label(ax, 84.2, 43.55, "Fragility functions", size=4.35, color=C["ink"])
-    step_label(ax, 103.25, 43.55, "Damage-conditioned outputs", size=4.55, color=C["ink"])
+    step_label(ax, 70.9, 43.45, "Scenario PGA at\nsubstations", size=3.65, color=C["ink"])
+    step_label(ax, 84.2, 43.45, "Fragility functions", size=3.65, color=C["ink"])
+    step_label(ax, 103.25, 43.45, "Damage-conditioned outputs", size=3.85, color=C["ink"])
 
     # 4. Central mechanism, redrawn from the actual damage, topology, weight, and tract-service products.
     x_positions = [3.0, 22.5, 42.0, 62.5, 88.3]
@@ -1895,8 +1951,8 @@ def build_figure() -> tuple[Path, Path]:
     ax.text(
         18.0,
         41.25,
-        "topology and dependency weights",
-        fontsize=5.9,
+        "source topology + tract\u2013substation weights",
+        fontsize=5.45,
         color=C["grid"],
         ha="center",
         weight="bold",
@@ -1905,8 +1961,8 @@ def build_figure() -> tuple[Path, Path]:
     ax.text(
         103.0,
         41.25,
-        "damage-conditioned component states",
-        fontsize=5.9,
+        "damage states + functionality + repair durations",
+        fontsize=5.45,
         color=C["hazard"],
         ha="center",
         weight="bold",
