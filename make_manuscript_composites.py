@@ -315,12 +315,19 @@ def make_typology_composite() -> None:
     )
 
     row_gap_cm = 0.55
-    column_gap_cm = 0.55
-    column_width_cm = (FULL_ROW_WIDTH_CM - column_gap_cm) / 2.0
+    bottom_gap_cm = 0.35
+    # The hotspot panel includes a vertical colorbar, so its full image needs
+    # a modest width boost for the two map bodies to read at similar scale.
+    hotspot_to_cluster_width = 1.22
     kde_width_cm = native_width(kde)
     heatmap_width_cm = native_width(heatmap)
-    cluster_width_cm = column_width_cm
-    hotspot_width_cm = column_width_cm
+    cluster_width_cm = (
+        FULL_ROW_WIDTH_CM - bottom_gap_cm
+    ) / (1.0 + hotspot_to_cluster_width)
+    hotspot_width_cm = cluster_width_cm * hotspot_to_cluster_width
+    cluster_height_cm = cluster_width_cm / cluster_map.aspect
+    hotspot_height_cm = hotspot_width_cm / hotspot_map.aspect
+    bottom_height_cm = max(cluster_height_cm, hotspot_height_cm)
     scales = [
         kde_width_cm / kde.width_cm,
         heatmap_width_cm / heatmap.width_cm,
@@ -330,19 +337,25 @@ def make_typology_composite() -> None:
     heights_cm = [
         kde_width_cm / kde.aspect,
         heatmap_width_cm / heatmap.aspect,
-        cluster_width_cm / cluster_map.aspect,
-        hotspot_width_cm / hotspot_map.aspect,
+        cluster_height_cm,
+        hotspot_height_cm,
     ]
-    bottom_row_height_cm = max(heights_cm[2], heights_cm[3])
-    figure_height_cm = heights_cm[0] + heights_cm[1] + bottom_row_height_cm + 2.0 * row_gap_cm + 0.70
+    figure_height_cm = heights_cm[0] + heights_cm[1] + bottom_height_cm + 2.0 * row_gap_cm + 0.70
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(figure_height_cm)))
         center_x = FIGURE_WIDTH_CM / 2.0
-        left_center_cm = FULL_ROW_MARGIN_CM + column_width_cm / 2.0
-        right_center_cm = left_center_cm + column_width_cm + column_gap_cm
+        left_center_cm = FULL_ROW_MARGIN_CM + cluster_width_cm / 2.0
+        right_center_cm = (
+            FULL_ROW_MARGIN_CM
+            + cluster_width_cm
+            + bottom_gap_cm
+            + hotspot_width_cm / 2.0
+        )
         bottom_row_bottom_cm = 0.25
-        heatmap_bottom_cm = bottom_row_bottom_cm + bottom_row_height_cm + row_gap_cm
+        cluster_bottom_cm = bottom_row_bottom_cm + (bottom_height_cm - cluster_height_cm) / 2.0
+        hotspot_bottom_cm = bottom_row_bottom_cm + (bottom_height_cm - hotspot_height_cm) / 2.0
+        heatmap_bottom_cm = bottom_row_bottom_cm + bottom_height_cm + row_gap_cm
         kde_bottom_cm = heatmap_bottom_cm + heights_cm[1] + row_gap_cm
 
         place_asset(
@@ -366,7 +379,7 @@ def make_typology_composite() -> None:
             cluster_map,
             figure_height_cm=figure_height_cm,
             center_x_cm=left_center_cm,
-            bottom_cm=bottom_row_bottom_cm + bottom_row_height_cm - heights_cm[2],
+            bottom_cm=cluster_bottom_cm,
             width_cm=cluster_width_cm,
         )
         place_asset(
@@ -374,15 +387,15 @@ def make_typology_composite() -> None:
             hotspot_map,
             figure_height_cm=figure_height_cm,
             center_x_cm=right_center_cm,
-            bottom_cm=bottom_row_bottom_cm + bottom_row_height_cm - heights_cm[3],
+            bottom_cm=hotspot_bottom_cm,
             width_cm=hotspot_width_cm,
         )
 
         label_specs = [
             ("A", 0.10, kde_bottom_cm + heights_cm[0] - 0.04),
             ("B", 0.10, heatmap_bottom_cm + heights_cm[1] - 0.04),
-            ("C", FULL_ROW_MARGIN_CM - 0.08, bottom_row_bottom_cm + bottom_row_height_cm - 0.04),
-            ("D", FULL_ROW_MARGIN_CM + column_width_cm + column_gap_cm - 0.08, bottom_row_bottom_cm + bottom_row_height_cm - 0.04),
+            ("C", FULL_ROW_MARGIN_CM - 0.08, bottom_row_bottom_cm + bottom_height_cm - 0.04),
+            ("D", FULL_ROW_MARGIN_CM + cluster_width_cm + bottom_gap_cm - 0.08, bottom_row_bottom_cm + bottom_height_cm - 0.04),
         ]
         for label, x_cm, y_cm in label_specs:
             panel_label(fig, figure_height_cm=figure_height_cm, x_cm=x_cm, y_cm=y_cm, label=label)
