@@ -1657,10 +1657,10 @@ def plot_sensitivity_summary(ax: plt.Axes, data: dict[str, object]) -> None:
     sens[value_col] = pd.to_numeric(sens[value_col], errors="coerce").fillna(0.0)
     value_by_key = dict(zip(sens["match_key"], sens[value_col]))
     labels_and_keys = [
-        ("Crew availability", "crew availability"),
-        ("Repair-time scale", "repair time scale"),
-        ("IDW threshold", "idw threshold"),
-        ("Source-gate threshold", "source gate threshold"),
+        ("crew availability", "crew availability"),
+        ("repair time", "repair time scale"),
+        ("IDW", "idw threshold"),
+        ("source gate", "source gate threshold"),
     ]
     labels = [label for label, _ in labels_and_keys]
     vals = np.asarray([value_by_key.get(key, 0.0) for _, key in labels_and_keys], dtype=float)
@@ -1669,15 +1669,35 @@ def plot_sensitivity_summary(ax: plt.Axes, data: dict[str, object]) -> None:
     ax.set_ylim(0, 4)
     ax.axis("off")
     vmax = max(1.0, float(np.nanmax(vals)))
+    ax.text(
+        0.01,
+        3.78,
+        "sensitivity drivers",
+        fontsize=6.0,
+        color=C["muted"],
+        ha="left",
+        va="center",
+        weight="bold",
+    )
+    ax.plot([0.54, 0.54], [0.36, 3.30], color=C["panel_border"], lw=0.55)
     for idx, (label, value, color) in enumerate(zip(labels, vals, colors)):
-        y = 3.12 - idx * 0.82
-        ax.text(0.01, y, label, fontsize=WF_TEXT, color=C["ink"], ha="left", va="center")
-        ax.add_patch(patches.Rectangle((0.82, y - 0.15), 0.16, 0.30, facecolor="#EEF1F3", edgecolor="none"))
+        y = 3.05 - idx * 0.72
+        bar_len = 0.43 * float(value) / vmax
+        ax.text(0.01, y, label, fontsize=5.9, color=C["ink"], ha="left", va="center")
         ax.add_patch(
             patches.Rectangle(
-                (0.82, y - 0.15),
-                0.16 * float(value) / vmax,
-                0.30,
+                (0.54, y - 0.12),
+                0.43,
+                0.24,
+                facecolor="#EEF1F3",
+                edgecolor="none",
+            )
+        )
+        ax.add_patch(
+            patches.Rectangle(
+                (0.54, y - 0.12),
+                bar_len,
+                0.24,
                 facecolor=color,
                 edgecolor="none",
             )
@@ -1738,13 +1758,13 @@ def build_figure() -> tuple[Path, Path]:
     inputs_map = data_inset(ax, (23.2, 59.9, 30.0, 4.55))
     plot_inputs_map(inputs_map, data)
     input_labels = [
-        ("Transmission lines\nand substations", C["grid"], "o"),
-        ("Scenario PGA fields", C["hazard"], "o"),
-        ("Roads and repair yards", C["logistics"], "*"),
+        ("Transmission + substations", C["grid"], "o"),
+        ("PGA fields", C["hazard"], "o"),
+        ("Roads + yards", C["logistics"], "*"),
         ("Hospitals", C["critical"], "P"),
         ("Tract vulnerability", C["community"], "s"),
     ]
-    input_positions = [(51.5, 62.85), (72.0, 62.85), (88.0, 62.85), (60.0, 60.7), (78.0, 60.7)]
+    input_positions = [(54.5, 62.85), (76.0, 62.85), (88.2, 62.85), (59.7, 60.65), (76.0, 60.65)]
     for (label, color, marker), (legend_x, yy) in zip(input_labels, input_positions):
         ax.scatter([legend_x], [yy], s=18, c=color, marker=marker, edgecolor="white", linewidth=0.2, zorder=6)
         ax.text(legend_x + 0.75, yy, label, fontsize=WF_TEXT, color=C["ink"], ha="left", va="center")
@@ -1817,28 +1837,28 @@ def build_figure() -> tuple[Path, Path]:
     # 5. Three-column recovery sequence based on the actual curve and scheduling outputs.
     baseline_ax = data_inset(ax, (3.2, 6.4, 15.0, 10.2))
     plot_baseline_curve(baseline_ax, data)
-    step_label(ax, 10.7, 3.95, "Unconstrained baseline", size=5.0, color=C["ink"])
+    step_label(ax, 10.7, 4.55, "Unconstrained baseline", size=5.0, color=C["ink"])
     dispatch_ax = data_inset(ax, (20.5, 11.6, 15.0, 5.0))
     plot_dispatch_map(dispatch_ax, data)
     gantt_ax = data_inset(ax, (20.5, 6.4, 15.0, 4.7))
     plot_gantt(gantt_ax, data)
-    step_label(ax, 28.0, 3.95, "Crew/yard scheduling +\npriority strategies", size=4.8, color=C["ink"])
+    step_label(ax, 28.0, 4.55, "Crew/yard scheduling +\npriority strategies", size=4.8, color=C["ink"])
     strategy_ax = data_inset(ax, (37.8, 6.4, 16.0, 10.2))
     plot_strategy_curves(strategy_ax, data)
-    step_label(ax, 45.8, 3.95, "Logistics-aware recovery", size=5.0, color=C["ink"])
+    step_label(ax, 45.8, 4.55, "Logistics-aware recovery", size=5.0, color=C["ink"])
     mini_arrow(ax, 18.4, 11.5, 20.2, 11.5, lw=0.48)
     mini_arrow(ax, 35.7, 11.5, 37.5, 11.5, lw=0.48)
 
     # 6. Three clearly separated outputs based on the actual analysis products.
     weighted_ax = data_inset(ax, (61.2, 6.5, 16.8, 10.1))
     plot_weighted_recovery(weighted_ax, data)
-    step_label(ax, 69.6, 3.9, "Population- and SVI-weighted\nrecovery", size=4.9, color=C["ink"])
+    step_label(ax, 69.6, 4.55, "Population- and\nSVI-weighted recovery", size=4.9, color=C["ink"])
     sensitivity_ax = data_inset(ax, (80.0, 6.5, 17.8, 10.1))
     plot_sensitivity_summary(sensitivity_ax, data)
-    step_label(ax, 88.9, 3.9, "Sensitivity analysis", size=4.9, color=C["ink"])
+    step_label(ax, 88.9, 4.55, "Sensitivity analysis", size=4.9, color=C["ink"])
     typology_ax = data_inset(ax, (99.6, 6.1, 17.3, 10.8))
     plot_typology_map(typology_ax, data)
-    step_label(ax, 108.25, 3.9, "Recovery-vulnerability\ntypology / hotspots", size=4.8, color=C["ink"])
+    step_label(ax, 108.25, 4.55, "Recovery-vulnerability\ntypology / hotspots", size=4.8, color=C["ink"])
 
     # Computational dependencies only.
     edge_lw = 0.42
