@@ -3361,8 +3361,8 @@ def _stage6_plot_single_scenario_recovery_curve(
         title=f"{scenario_name}: {title_suffix}",
         xlabel="Time (hours)",
         ylabel=y_label,
-        title_size=FS_LABEL,
-        title_weight="normal",
+        title_size=FS_TITLE,
+        title_weight="semibold",
     )
     ax.set_xlim(0, limit_t)
     ax.set_ylim(-0.02, 1.05)
@@ -5627,6 +5627,7 @@ def vis_stage7(gdf):
             cmap="coolwarm",
             center=0.0,
             annot=grp_z.shape[0] <= 8,
+            annot_kws={"fontsize": FS_TICK},
             fmt=".1f",
             cbar_kws={"label": "Profile z-score"},
             ax=ax,
@@ -5760,8 +5761,8 @@ def vis_stage7(gdf):
             title=panel_title,
             xlabel="",
             ylabel="Density",
-            title_size=FS_LABEL,
-            title_weight="normal",
+            title_size=FS_TITLE,
+            title_weight="semibold",
         )
         if col in log1p_cols:
             tick_positions, tick_labels = _compact_log_tick_spec(col)
