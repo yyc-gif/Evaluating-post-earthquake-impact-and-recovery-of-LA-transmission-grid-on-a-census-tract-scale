@@ -1767,9 +1767,9 @@ def build_figure() -> tuple[Path, Path]:
         ("Tract vulnerability", C["community"], "s"),
     ]
     input_positions = [
-        (54.5, 62.85),
-        (75.3, 62.85),
-        (54.5, 60.65),
+        (54.2, 62.85),
+        (82.0, 62.85),
+        (54.2, 60.65),
         (75.3, 60.65),
         (86.6, 60.65),
     ]
@@ -1788,14 +1788,14 @@ def build_figure() -> tuple[Path, Path]:
         45.1,
         "connectivity /\ncriticality",
         fontsize=WF_TEXT,
-        color=C["grid"],
+        color="#547A98",
         ha="right",
         va="bottom",
-        weight="bold",
+        weight="semibold",
         linespacing=0.95,
-        bbox={"facecolor": "#F3F7FA", "edgecolor": C["grid_light"], "linewidth": 0.45, "pad": 0.25},
+        bbox={"facecolor": "#F7FAFC", "edgecolor": "#D7E4EC", "linewidth": 0.35, "pad": 0.25},
     )
-    step_label(ax, 47.7, 43.78, "Tract\u2013substation\ndependency weights", size=5.15, color=C["ink"])
+    step_label(ax, 47.7, 43.50, "Tract\u2013substation\ndependency weights", size=5.05, color=C["ink"])
 
     # 3. Actual PGA, fragility parameters, MC damage shares, functionality, and repair durations.
     pga_ax = data_inset(ax, (63.0, 44.5, 15.8, 10.1))
@@ -1845,15 +1845,15 @@ def build_figure() -> tuple[Path, Path]:
     # 5. Three-column recovery sequence based on the actual curve and scheduling outputs.
     baseline_ax = data_inset(ax, (3.2, 6.9, 15.0, 9.8))
     plot_baseline_curve(baseline_ax, data)
-    step_label(ax, 10.7, 5.08, "Unconstrained baseline", size=5.0, color=C["ink"])
+    step_label(ax, 10.7, 5.22, "Unconstrained baseline", size=4.55, color=C["ink"])
     dispatch_ax = data_inset(ax, (20.5, 12.0, 15.0, 4.8))
     plot_dispatch_map(dispatch_ax, data)
     gantt_ax = data_inset(ax, (20.5, 6.9, 15.0, 4.55))
     plot_gantt(gantt_ax, data)
-    step_label(ax, 28.0, 5.08, "Crew/yard scheduling +\npriority strategies", size=4.8, color=C["ink"])
+    step_label(ax, 28.0, 5.22, "Crew/yard scheduling +\npriority strategies", size=4.45, color=C["ink"])
     strategy_ax = data_inset(ax, (37.8, 6.9, 16.0, 9.8))
     plot_strategy_curves(strategy_ax, data)
-    step_label(ax, 45.8, 5.08, "Logistics-aware recovery", size=5.0, color=C["ink"])
+    step_label(ax, 45.8, 5.22, "Logistics-aware recovery", size=4.55, color=C["ink"])
     mini_arrow(ax, 18.4, 11.5, 20.2, 11.5, lw=0.48)
     mini_arrow(ax, 35.7, 11.5, 37.5, 11.5, lw=0.48)
 
