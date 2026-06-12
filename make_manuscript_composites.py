@@ -541,12 +541,12 @@ def plot_cluster_heatmap(ax: plt.Axes, data: pd.DataFrame) -> None:
     grouped = data.groupby("cluster")[features].mean().sort_index(key=lambda index: index.astype(int))
     zscore = (grouped - grouped.mean()) / grouped.std().replace(0, 1)
     display_names = [
-        "Recovery time",
-        "Pre-1970 housing",
-        "Population density",
+        "Recovery\ntime",
+        "Pre-1970\nhousing",
+        "Population\ndensity",
         "NRI risk",
-        "Building value",
-        "SVI composite",
+        "Building\nvalue",
+        "SVI\ncomposite",
     ]
     sns.heatmap(
         zscore.T,
@@ -565,10 +565,15 @@ def plot_cluster_heatmap(ax: plt.Axes, data: pd.DataFrame) -> None:
         rotation=0,
         fontsize=6.8,
     )
-    ax.set_yticklabels(display_names, rotation=0, fontsize=6.5)
+    ax.set_yticklabels(
+        display_names,
+        rotation=0,
+        fontsize=6.3,
+        linespacing=0.92,
+    )
     ax.set_xlabel("")
     ax.set_ylabel("")
-    ax.tick_params(length=0)
+    ax.tick_params(length=0, pad=2.5)
     colorbar = ax.collections[0].colorbar
     colorbar.ax.tick_params(labelsize=6.5, length=2)
     colorbar.set_label("Profile z-score", fontsize=7.0)
@@ -671,34 +676,44 @@ def make_stage7_composite(tracts: gpd.GeoDataFrame) -> None:
     cluster_counts = data["cluster"].value_counts().sort_index(key=lambda index: index.astype(int))
 
     with mpl.rc_context(RC):
-        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(14.6)))
+        fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(14.8)))
         outer = fig.add_gridspec(
             2,
-            2,
-            width_ratios=[1.12, 0.88],
-            height_ratios=[1.20, 0.86],
+            1,
+            height_ratios=[1.18, 0.88],
             left=0.055,
             right=0.965,
             bottom=0.055,
             top=0.94,
-            hspace=0.16,
-            wspace=0.25,
+            hspace=0.17,
+        )
+        top = outer[0].subgridspec(
+            1,
+            2,
+            width_ratios=[1.05, 0.95],
+            wspace=0.29,
+        )
+        bottom = outer[1].subgridspec(
+            1,
+            2,
+            width_ratios=[1.0, 1.0],
+            wspace=0.16,
         )
 
-        kde_axes = plot_kde_block(fig, outer[0, 0], data, cluster_counts)
-        ax_heat = fig.add_subplot(outer[0, 1])
-        ax_clusters = fig.add_subplot(outer[1, 0])
-        ax_hotspots = fig.add_subplot(outer[1, 1])
+        kde_axes = plot_kde_block(fig, top[0, 0], data, cluster_counts)
+        ax_heat = fig.add_subplot(top[0, 1])
+        ax_clusters = fig.add_subplot(bottom[0, 0])
+        ax_hotspots = fig.add_subplot(bottom[0, 1])
 
         plot_cluster_heatmap(ax_heat, data)
         map_bounds = tuple(mapped.total_bounds)
         plot_cluster_map(ax_clusters, mapped, map_bounds)
         plot_hotspot_map(fig, ax_hotspots, mapped, map_bounds)
 
-        panel_label(kde_axes[0], "A", x=-0.23, y=1.035)
-        panel_label(ax_heat, "B", x=-0.20, y=1.015)
-        panel_label(ax_clusters, "C", x=-0.055, y=1.015)
-        panel_label(ax_hotspots, "D", x=-0.06, y=1.015)
+        panel_label(kde_axes[0], "A", x=-0.18, y=1.035)
+        panel_label(ax_heat, "B", x=-0.12, y=1.015)
+        panel_label(ax_clusters, "C", x=-0.035, y=1.015)
+        panel_label(ax_hotspots, "D", x=-0.035, y=1.015)
         save_pair(fig, "recovery_vulnerability_typology_composite")
 
 
