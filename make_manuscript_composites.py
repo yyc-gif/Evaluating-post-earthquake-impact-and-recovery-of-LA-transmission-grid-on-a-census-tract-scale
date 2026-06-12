@@ -433,15 +433,13 @@ def make_typology_composite() -> None:
 
 
 def make_topology_composite() -> None:
-    archive_dir = "Manuscript_Figures/composite_source_archive_20260609"
-    direct_links = prepare_panel(
-        f"{archive_dir}/topology_final_validation_expanded.png"
-    )
+    direct_links = prepare_panel("Data/topology_final_validation_expanded.png")
     topology = prepare_panel(
-        f"{archive_dir}/vis_stage2_topology_with_tracts_latlon.png"
+        "Stage 2 Output_expanded/vis_stage2_topology_with_tracts_latlon.png"
     )
     robustness = prepare_panel(
-        f"{archive_dir}/vis_stage2_percolation_compare_targeted_attacks.png"
+        "Stage 2 Output_expanded/"
+        "vis_stage2_percolation_compare_targeted_attacks.png"
     )
     panels = [direct_links, topology, robustness]
 

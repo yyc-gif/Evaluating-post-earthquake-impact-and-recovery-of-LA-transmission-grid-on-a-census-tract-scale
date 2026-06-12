@@ -66,13 +66,12 @@ PUBLICATION_RCPARAMS = {
     "svg.fonttype": "none",
 }
 
-# The legend text in this panel is materially longer than the Stage 2 labels,
-# so it needs a modest compaction to fit as a single row inside the same-width
-# manuscript panel.
-COMPANION_LEGEND_FONT = 7.0
-COMPANION_LEGEND_HANDLELENGTH = 1.0
-COMPANION_LEGEND_HANDLETEXTPAD = 0.20
-COMPANION_LEGEND_COLUMNSPACING = 0.32
+# Keep the direct-link validation panel on the same legend geometry as the
+# Stage 2 topology panel so the composite does not look stitched together.
+COMPANION_LEGEND_FONT = FS_LEGEND
+COMPANION_LEGEND_HANDLELENGTH = 1.35
+COMPANION_LEGEND_HANDLETEXTPAD = 0.28
+COMPANION_LEGEND_COLUMNSPACING = 0.55
 COMPACT_COMPOSITE_LAYOUT = False
 
 
@@ -978,9 +977,9 @@ def visualize_topology(
                 ).plot(
                     ax=ax,
                     color="#1f77b4",
-                    linewidth=0.82 if compact_composite else 1.35,
+                    linewidth=0.70 if compact_composite else 0.86,
                     linestyle="-",
-                    alpha=0.82 if compact_composite else 0.9,
+                    alpha=0.78 if compact_composite else 0.84,
                     zorder=2,
                     label="Direct substation links",
                 )
@@ -1035,9 +1034,9 @@ def visualize_topology(
             Line2D(
                 [0], [0],
                 color="#1f77b4",
-                linewidth=0.78 if compact_composite else 1.35,
+                linewidth=0.70 if compact_composite else 0.86,
                 linestyle="-",
-                alpha=0.9,
+                alpha=0.84,
                 label="Direct substation links",
             ),
         ]
@@ -1050,7 +1049,7 @@ def visualize_topology(
                     linestyle="None",
                     markerfacecolor="#e6550d",
                     markeredgecolor="white",
-                markersize=3.8 if compact_composite else 5.0,
+                    markersize=3.8 if compact_composite else 5.0,
                     label=f"Main Grid ({len(main_ids)} substations)",
                 )
             )
@@ -1077,7 +1076,7 @@ def visualize_topology(
                 labelspacing=0.18,
                 handletextpad=COMPANION_LEGEND_HANDLETEXTPAD,
                 borderaxespad=0.0,
-                columnspacing=0.45,
+                columnspacing=COMPANION_LEGEND_COLUMNSPACING,
                 handlelength=COMPANION_LEGEND_HANDLELENGTH,
             )
             format_publication_legend(
