@@ -261,12 +261,13 @@ def make_t80_composite() -> None:
         "Stage 3 Output_expanded/vis_stage3_map_T80_2pc50.png"
     )
 
-    gap_cm = 0.45
-    map_width_cm = native_width(map_panel)
-    hist_width_cm = min(
-        histogram.width_cm,
-        FULL_ROW_WIDTH_CM - map_width_cm - gap_cm,
+    gap_cm = 0.35
+    shared_scale = min(
+        1.0,
+        (FULL_ROW_WIDTH_CM - gap_cm) / (histogram.width_cm + map_panel.width_cm),
     )
+    hist_width_cm = histogram.width_cm * shared_scale
+    map_width_cm = map_panel.width_cm * shared_scale
     hist_scale = hist_width_cm / histogram.width_cm
     map_scale = map_width_cm / map_panel.width_cm
     hist_height_cm = hist_width_cm / histogram.aspect
