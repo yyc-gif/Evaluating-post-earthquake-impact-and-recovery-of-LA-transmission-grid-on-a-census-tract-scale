@@ -128,41 +128,12 @@ def prepare_panel(relative_path: str) -> PanelAsset:
     return asset
 
 
-def _save_prepared_asset(
-    *,
-    cache_key: str,
-    relative_path: str,
-    image: Image.Image,
-    suffix: str,
-    dpi_x: float,
-    dpi_y: float,
-) -> PanelAsset:
-    PREP_DIR.mkdir(parents=True, exist_ok=True)
-    source_name = Path(relative_path)
-    source_key = hashlib.sha1(cache_key.encode("utf-8")).hexdigest()[:8]
-    prepared_name = f"{source_name.stem}_{suffix}_{source_key}{source_name.suffix}"
-    prepared_path = PREP_DIR / prepared_name
-    image.save(prepared_path, dpi=(dpi_x, dpi_y))
-
-    width_cm = image.width / dpi_x * CM_PER_INCH
-    height_cm = image.height / dpi_y * CM_PER_INCH
-    asset = PanelAsset(
-        relative_path=cache_key,
-        prepared_path=prepared_path,
-        image=np.asarray(image),
-        width_cm=width_cm,
-        height_cm=height_cm,
-    )
-    _PANEL_CACHE[cache_key] = asset
-    return asset
-
-
 def prepare_map_body_panel(
     relative_path: str,
     *,
     suffix: str,
     ignore_right_after: float | None = None,
-    ignore_bottom_after: float = 0.83,
+    ignore_bottom_after: float = 0.88,
     crop_padding_px: int = 18,
 ) -> PanelAsset:
     """Crop a Stage 7 map to its map body so legends can be rebuilt uniformly."""
@@ -192,14 +163,15 @@ def prepare_map_body_panel(
     top = max(0, int(rows.min()) - crop_padding_px)
     bottom = min(h, int(rows.max()) + crop_padding_px + 1)
     cropped = source.convert("RGB").crop((left, top, right, bottom))
-    return _save_prepared_asset(
-        cache_key=cache_key,
-        relative_path=relative_path,
-        image=cropped,
-        suffix=suffix,
-        dpi_x=dpi_x,
-        dpi_y=dpi_y,
+    asset = PanelAsset(
+        relative_path=cache_key,
+        prepared_path=source_path,
+        image=np.asarray(cropped),
+        width_cm=cropped.width / dpi_x * CM_PER_INCH,
+        height_cm=cropped.height / dpi_y * CM_PER_INCH,
     )
+    _PANEL_CACHE[cache_key] = asset
+    return asset
 
 
 def place_asset(
@@ -289,48 +261,59 @@ def make_t80_composite() -> None:
         "Stage 3 Output_expanded/vis_stage3_map_T80_2pc50.png"
     )
 
-    gap_cm = 0.50
-    hist_width_cm = native_width(histogram)
+    gap_cm = 0.45
     map_width_cm = native_width(map_panel)
+    hist_width_cm = min(
+        histogram.width_cm,
+        FULL_ROW_WIDTH_CM - map_width_cm - gap_cm,
+    )
     hist_scale = hist_width_cm / histogram.width_cm
     map_scale = map_width_cm / map_panel.width_cm
     hist_height_cm = hist_width_cm / histogram.aspect
     map_height_cm = map_width_cm / map_panel.aspect
-    figure_height_cm = hist_height_cm + map_height_cm + gap_cm + 0.70
+    content_height_cm = max(hist_height_cm, map_height_cm)
+    figure_height_cm = content_height_cm + 0.60
 
     with mpl.rc_context(RC):
         fig = plt.figure(figsize=(cm(FIGURE_WIDTH_CM), cm(figure_height_cm)))
-        center_x = FIGURE_WIDTH_CM / 2.0
-        bottom_b_cm = 0.25
-        bottom_a_cm = bottom_b_cm + map_height_cm + gap_cm
+        bottom_cm = 0.28
+        left_x_cm = FULL_ROW_MARGIN_CM + hist_width_cm / 2.0
+        right_x_cm = (
+            FULL_ROW_MARGIN_CM
+            + hist_width_cm
+            + gap_cm
+            + map_width_cm / 2.0
+        )
+        hist_bottom_cm = bottom_cm + (content_height_cm - hist_height_cm) / 2.0
+        map_bottom_cm = bottom_cm + (content_height_cm - map_height_cm) / 2.0
         place_asset(
             fig,
             histogram,
             figure_height_cm=figure_height_cm,
-            center_x_cm=center_x,
-            bottom_cm=bottom_a_cm,
+            center_x_cm=left_x_cm,
+            bottom_cm=hist_bottom_cm,
             width_cm=hist_width_cm,
         )
         place_asset(
             fig,
             map_panel,
             figure_height_cm=figure_height_cm,
-            center_x_cm=center_x,
-            bottom_cm=bottom_b_cm,
+            center_x_cm=right_x_cm,
+            bottom_cm=map_bottom_cm,
             width_cm=map_width_cm,
         )
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
             x_cm=0.12,
-            y_cm=bottom_a_cm + hist_height_cm - 0.08,
+            y_cm=hist_bottom_cm + hist_height_cm - 0.08,
             label="A",
         )
         panel_label(
             fig,
             figure_height_cm=figure_height_cm,
-            x_cm=0.12,
-            y_cm=bottom_b_cm + map_height_cm - 0.08,
+            x_cm=FULL_ROW_MARGIN_CM + hist_width_cm + gap_cm - 0.03,
+            y_cm=map_bottom_cm + map_height_cm - 0.08,
             label="B",
         )
         print(f"T80 panel scales: A={hist_scale:.3f}, B={map_scale:.3f}")
