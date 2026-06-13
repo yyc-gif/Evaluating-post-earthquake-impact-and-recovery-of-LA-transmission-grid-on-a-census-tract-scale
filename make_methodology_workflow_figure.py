@@ -1049,16 +1049,25 @@ def flow_box(
 
 
 def step_label(ax: plt.Axes, x: float, y: float, text: str, color: str = C["muted"], size: float = WF_TEXT, weight: str = "normal") -> None:
-    ax.text(x, y, text, ha="center", va="center", color=color, fontsize=max(size, WF_TEXT), weight=weight)
+    ax.text(x, y, text, ha="center", va="center", color=color, fontsize=max(size, 4.9), weight=weight)
 
 
-def mini_arrow(ax: plt.Axes, x0: float, y0: float, x1: float, y1: float, color: str = "#707A83", lw: float = 0.65) -> None:
+def mini_arrow(
+    ax: plt.Axes,
+    x0: float,
+    y0: float,
+    x1: float,
+    y1: float,
+    color: str = "#59636F",
+    lw: float = 0.72,
+    mutation_scale: float = 7.2,
+) -> None:
     ax.add_patch(
         patches.FancyArrowPatch(
             (x0, y0),
             (x1, y1),
             arrowstyle="-|>",
-            mutation_scale=5.4,
+            mutation_scale=mutation_scale,
             linewidth=lw,
             color=color,
             shrinkA=1.5,
@@ -1067,7 +1076,13 @@ def mini_arrow(ax: plt.Axes, x0: float, y0: float, x1: float, y1: float, color: 
     )
 
 
-def orth_arrow(ax: plt.Axes, points: list[tuple[float, float]], color: str = "#707A83", lw: float = 0.65) -> None:
+def orth_arrow(
+    ax: plt.Axes,
+    points: list[tuple[float, float]],
+    color: str = "#59636F",
+    lw: float = 0.72,
+    mutation_scale: float = 7.2,
+) -> None:
     for p0, p1 in zip(points[:-2], points[1:-1]):
         ax.plot([p0[0], p1[0]], [p0[1], p1[1]], color=color, lw=lw, solid_capstyle="round")
     ax.add_patch(
@@ -1075,7 +1090,7 @@ def orth_arrow(ax: plt.Axes, points: list[tuple[float, float]], color: str = "#7
             points[-2],
             points[-1],
             arrowstyle="-|>",
-            mutation_scale=5.4,
+            mutation_scale=mutation_scale,
             linewidth=lw,
             color=color,
             shrinkA=0.0,
@@ -1640,13 +1655,13 @@ def plot_strategy_curves(ax: plt.Axes, data: dict[str, object]) -> None:
         ]
         for idx, col in enumerate(strategy_cols):
             color = palette[idx % len(palette)]
-            lw = 1.10 if "Impact" in col else 0.86
-            alpha = 0.94 if "Impact" in col else 0.82
+            lw = 0.62
+            alpha = 0.78
             if "Random" in col:
-                color, lw, alpha = "#A8AEB4", 0.86, 0.74
+                color, lw, alpha = "#A8AEB4", 0.58, 0.64
             ax.plot(recovery["time_hr"], recovery[col], lw=lw, color=color, alpha=alpha)
-        ax.set_xlim(8, 40)
-        ax.set_ylim(0.42, 0.92)
+        ax.set_xlim(34.3, 38.8)
+        ax.set_ylim(0.80, 0.965)
         ax.set_xticks([])
         ax.set_yticks([])
         quiet_axes(ax)
@@ -1680,15 +1695,15 @@ def plot_weighted_recovery(ax: plt.Axes, data: dict[str, object]) -> None:
     ]
     if pop_cols or svi_cols:
         for col in pop_cols:
-            ax.plot(recovery["time_hr"], recovery[col], color=C["grid"], lw=0.78, alpha=0.56)
+            ax.plot(recovery["time_hr"], recovery[col], color=C["grid"], lw=0.50, alpha=0.44)
         for col in svi_cols:
-            ax.plot(recovery["time_hr"], recovery[col], color=C["community"], lw=0.78, alpha=0.56)
+            ax.plot(recovery["time_hr"], recovery[col], color=C["community"], lw=0.50, alpha=0.44)
         if "Northridge | Impact λ2 first | Population" in recovery:
-            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | Population"], color=C["grid"], lw=1.12, alpha=0.94)
+            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | Population"], color=C["grid"], lw=0.82, alpha=0.88)
         if "Northridge | Impact λ2 first | SVI" in recovery:
-            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | SVI"], color=C["community"], lw=1.12, alpha=0.94)
-        ax.set_xlim(8, 40)
-        ax.set_ylim(0.42, 0.92)
+            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | SVI"], color=C["community"], lw=0.82, alpha=0.88)
+        ax.set_xlim(34.3, 38.8)
+        ax.set_ylim(0.80, 0.965)
         ax.set_xticks([])
         ax.set_yticks([])
         quiet_axes(ax)
@@ -1891,7 +1906,7 @@ def build_figure() -> tuple[Path, Path]:
     plot_topology_map(gated_ax, data, gated_ids=source_gated_ids(data))
     weights_ax = data_inset(ax, (x_positions[3] + 0.35, panel_y + 0.4, panel_widths[3] - 0.7, panel_h - 0.8))
     plot_dependency_matrix(weights_ax, data, compact=True)
-    service_ax = data_inset(ax, (85.8, panel_y - 0.60, 31.4, panel_h + 1.2))
+    service_ax = data_inset(ax, (86.2, panel_y - 0.25, 30.6, panel_h))
     plot_service_map(service_ax, data)
     translation_labels = [
         "Damage states",
@@ -1939,32 +1954,34 @@ def build_figure() -> tuple[Path, Path]:
     step_label(ax, 108.1, 4.62, "Recovery-vulnerability\ntypology / hotspots", size=3.9, color=C["ink"])
 
     # Computational dependencies only.
-    edge_lw = 0.42
+    edge_lw = 0.78
     split_x = inputs[0] + inputs[2] / 2
     split_y = 58.25
     ax.plot([split_x, split_x], [inputs[1], split_y], color="#707A83", lw=edge_lw)
     orth_arrow(ax, [(split_x, split_y), (network[0] + network[2] / 2, split_y), (network[0] + network[2] / 2, network[1] + network[3])], lw=edge_lw)
     orth_arrow(ax, [(split_x, split_y), (seismic[0] + seismic[2] / 2, split_y), (seismic[0] + seismic[2] / 2, seismic[1] + seismic[3])], lw=edge_lw)
-    mini_arrow(ax, network[0] + network[2] / 2, network[1], network[0] + network[2] / 2, translation[1] + translation[3], lw=edge_lw)
-    mini_arrow(ax, seismic[0] + seismic[2] / 2, seismic[1], seismic[0] + seismic[2] / 2, translation[1] + translation[3], lw=edge_lw)
-    label_box_style = {"facecolor": C["paper"], "edgecolor": "none", "pad": 0.10}
+    mini_arrow(ax, network[0] + network[2] / 2, network[1], network[0] + network[2] / 2, translation[1] + translation[3] - 0.22, lw=edge_lw)
+    mini_arrow(ax, seismic[0] + seismic[2] / 2, seismic[1], seismic[0] + seismic[2] / 2, translation[1] + translation[3] - 0.22, lw=edge_lw)
+    label_box_style = {"facecolor": "#F7F5FA", "edgecolor": "none", "pad": 0.10}
     ax.text(
-        18.0,
-        41.25,
+        30.0,
+        38.15,
         "source topology + tract\u2013substation weights",
-        fontsize=5.45,
+        fontsize=5.25,
         color=C["grid"],
         ha="center",
+        va="center",
         weight="bold",
         bbox=label_box_style,
     )
     ax.text(
-        103.0,
-        41.25,
+        91.5,
+        38.15,
         "damage states + functionality + repair durations",
-        fontsize=5.45,
+        fontsize=5.25,
         color=C["hazard"],
         ha="center",
+        va="center",
         weight="bold",
         bbox=label_box_style,
     )
