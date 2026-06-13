@@ -1868,18 +1868,6 @@ def build_figure() -> tuple[Path, Path]:
     matrix_ax = data_inset(ax, (39.8, 46.05, 16.0, 7.8))
     plot_dependency_matrix(matrix_ax, data)
     step_label(ax, 20.2, 43.50, "LA direct-link topology\nand source substations", size=4.2, color=C["ink"])
-    ax.text(
-        35.0,
-        45.20,
-        "connectivity /\ncriticality",
-        fontsize=5.0,
-        color="#547A98",
-        ha="right",
-        va="bottom",
-        weight="semibold",
-        linespacing=0.95,
-        bbox={"facecolor": "#F7FAFC", "edgecolor": "#D7E4EC", "linewidth": 0.35, "pad": 0.25},
-    )
     step_label(ax, 47.8, 43.50, "Tract\u2013substation\ndependency weights", size=4.2, color=C["ink"])
 
     # 3. Actual PGA, fragility parameters, MC damage shares, functionality, and repair durations.
