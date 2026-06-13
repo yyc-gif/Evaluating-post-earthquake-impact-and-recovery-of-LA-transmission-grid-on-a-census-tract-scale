@@ -1640,13 +1640,13 @@ def plot_strategy_curves(ax: plt.Axes, data: dict[str, object]) -> None:
         ]
         for idx, col in enumerate(strategy_cols):
             color = palette[idx % len(palette)]
-            lw = 1.05 if "Impact" in col else 0.72
-            alpha = 0.92 if "Impact" in col else 0.64
+            lw = 1.10 if "Impact" in col else 0.86
+            alpha = 0.94 if "Impact" in col else 0.82
             if "Random" in col:
-                color, lw, alpha = "#A8AEB4", 0.75, 0.62
+                color, lw, alpha = "#A8AEB4", 0.86, 0.74
             ax.plot(recovery["time_hr"], recovery[col], lw=lw, color=color, alpha=alpha)
-        ax.set_xlim(0, 50)
-        ax.set_ylim(0.3, 1.02)
+        ax.set_xlim(8, 40)
+        ax.set_ylim(0.42, 0.92)
         ax.set_xticks([])
         ax.set_yticks([])
         quiet_axes(ax)
@@ -1680,15 +1680,15 @@ def plot_weighted_recovery(ax: plt.Axes, data: dict[str, object]) -> None:
     ]
     if pop_cols or svi_cols:
         for col in pop_cols:
-            ax.plot(recovery["time_hr"], recovery[col], color=C["grid"], lw=0.62, alpha=0.42)
+            ax.plot(recovery["time_hr"], recovery[col], color=C["grid"], lw=0.78, alpha=0.56)
         for col in svi_cols:
-            ax.plot(recovery["time_hr"], recovery[col], color=C["community"], lw=0.62, alpha=0.42)
+            ax.plot(recovery["time_hr"], recovery[col], color=C["community"], lw=0.78, alpha=0.56)
         if "Northridge | Impact λ2 first | Population" in recovery:
-            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | Population"], color=C["grid"], lw=1.08, alpha=0.92)
+            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | Population"], color=C["grid"], lw=1.12, alpha=0.94)
         if "Northridge | Impact λ2 first | SVI" in recovery:
-            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | SVI"], color=C["community"], lw=1.08, alpha=0.92)
-        ax.set_xlim(0, 50)
-        ax.set_ylim(0.3, 1.02)
+            ax.plot(recovery["time_hr"], recovery["Northridge | Impact λ2 first | SVI"], color=C["community"], lw=1.12, alpha=0.94)
+        ax.set_xlim(8, 40)
+        ax.set_ylim(0.42, 0.92)
         ax.set_xticks([])
         ax.set_yticks([])
         quiet_axes(ax)
