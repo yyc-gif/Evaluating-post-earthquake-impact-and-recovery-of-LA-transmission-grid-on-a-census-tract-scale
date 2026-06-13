@@ -1934,9 +1934,9 @@ def build_figure() -> tuple[Path, Path]:
     sensitivity_ax = data_inset(ax, (80.0, 6.5, 17.8, 10.1))
     plot_sensitivity_summary(sensitivity_ax, data)
     step_label(ax, 88.9, 5.02, "Sensitivity analysis", size=4.25, color=C["ink"])
-    typology_ax = data_inset(ax, (99.6, 6.1, 17.3, 10.8))
+    typology_ax = data_inset(ax, (99.3, 8.25, 17.6, 8.1))
     plot_typology_map(typology_ax, data)
-    step_label(ax, 108.25, 5.02, "Recovery-vulnerability\ntypology / hotspots", size=4.15, color=C["ink"])
+    step_label(ax, 108.1, 4.62, "Recovery-vulnerability\ntypology / hotspots", size=3.9, color=C["ink"])
 
     # Computational dependencies only.
     edge_lw = 0.42
