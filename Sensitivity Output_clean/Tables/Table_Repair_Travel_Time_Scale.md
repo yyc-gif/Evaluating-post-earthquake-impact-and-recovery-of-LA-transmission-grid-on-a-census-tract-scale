@@ -1,4 +1,4 @@
-﻿| Quantity | Median (hr) | 90th percentile (hr) | Max (hr) |
+| Quantity | Median (hr) | 90th percentile (hr) | Max (hr) |
 |---|---:|---:|---:|
 | Repair duration, DS1 | 1.00 | 1.64 | 3.11 |
 | Repair duration, DS2 | 6.03 | 9.94 | 17.39 |

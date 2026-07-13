@@ -134,7 +134,7 @@ GROUP_LABELS = {
 EXPECTED_PARAMETER_VALUES = {
     "crew_availability": (0.5, 1.0, 1.5, 2.0),
     "repair_time_scale": (0.75, 1.0, 1.25, 1.5),
-    "idw_threshold": (0.05, 0.10, 0.15, 0.20),
+    "idw_threshold": (0.01, 0.02, 0.03, 0.05),
     "source_gate_threshold": (0.40, 0.50, 0.60),
 }
 
@@ -149,7 +149,7 @@ PARAMETER_TABLE_META = {
     ),
     "idw_threshold": (
         "IDW threshold theta_W",
-        "(0.05)\u2013(0.20)",
+        "(0.01)\u2013(0.05)",
     ),
     "source_gate_threshold": (
         "Source-gate threshold tau_g",

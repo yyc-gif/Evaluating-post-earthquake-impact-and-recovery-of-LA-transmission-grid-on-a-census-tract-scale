@@ -186,10 +186,10 @@ class Config:
     RUN_STAGE_7: bool = True
     RUN_SENSITIVITY_ANALYSIS: bool = True
     SENSITIVITY_SCENARIO: str = "2pc50"
-    SENSITIVITY_BASELINE_IDW_THRESHOLD: float = 0.10
+    SENSITIVITY_BASELINE_IDW_THRESHOLD: float = 0.03
     SENSITIVITY_CREW_SCALES: tuple = (0.5, 1.0, 1.5, 2.0)
     SENSITIVITY_REPAIR_SCALES: tuple = (0.75, 1.0, 1.25, 1.5)
-    SENSITIVITY_IDW_THRESHOLDS: tuple = (0.05, 0.10, 0.15, 0.20)
+    SENSITIVITY_IDW_THRESHOLDS: tuple = (0.01, 0.02, 0.03, 0.05)
     SENSITIVITY_SOURCE_GATE_THRESHOLDS: tuple = (0.40, 0.50, 0.60)
 
 def setup_logging(log_file: Path) -> logging.Logger:
@@ -3152,7 +3152,36 @@ def export_repair_travel_time_scale_table(
         encoding="utf-8",
     )
 
-    latex = supp_table.to_latex(index=False, escape=True)
+    def _latex_escape(value: Any) -> str:
+        text = str(value)
+        replacements = {
+            "\\": r"\textbackslash{}",
+            "&": r"\&",
+            "%": r"\%",
+            "$": r"\$",
+            "#": r"\#",
+            "_": r"\_",
+            "{": r"\{",
+            "}": r"\}",
+            "~": r"\textasciitilde{}",
+            "^": r"\textasciicircum{}",
+        }
+        for old, new in replacements.items():
+            text = text.replace(old, new)
+        return text
+
+    latex_lines = [
+        r"\begin{tabular}{lrrr}",
+        r"\toprule",
+        r"Quantity & Median (hr) & 90th percentile (hr) & Max (hr) \\",
+        r"\midrule",
+    ]
+    for row in supp_table.itertuples(index=False):
+        latex_lines.append(
+            " & ".join(_latex_escape(value) for value in row) + r" \\"
+        )
+    latex_lines.extend([r"\bottomrule", r"\end{tabular}"])
+    latex = "\n".join(latex_lines) + "\n"
     (supp_dir / "Table_Repair_Travel_Time_Scale.tex").write_text(latex, encoding="utf-8")
 
     logging.getLogger().info("Repair/travel time scale table saved to %s", scale_path)
