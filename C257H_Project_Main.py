@@ -161,7 +161,7 @@ class Config:
     GA_N_GEN: int = 100
     GA_CXPB: float = 0.8
     GA_MUTPB: float = 0.2
-    STAGE5_NODE_IMPORTANCE_ALPHA: float = 1.0
+    STAGE5_NODE_IMPORTANCE_ETA: float = 0.20
     STAGE5_NODE_IMPORTANCE_LINES_SCALE: float = 12.0
     STAGE5_NODE_IMPORTANCE_ROLE_WEIGHT: float = 0.70
     STAGE5_NODE_IMPORTANCE_VOLTAGE_WEIGHT: float = 0.20
@@ -2699,6 +2699,7 @@ def run_stage_3(
     return {
         "all_damage_probs": all_damage_probs,
         "all_damage_state_samples": all_damage_state_samples,
+        "all_mc_repair_times": stage_1_data.get("all_mc_repair_times", {}),
         "all_mean_sub_repair_times": all_mean_sub_repair_times,
         "all_mean_sub_init_func0": all_mean_sub_init_func0,
         "all_mean_tract_series": all_mean_tract_series,
@@ -3047,6 +3048,115 @@ def load_travel_matrices(
         "base_to_task": base_to_task.fillna(np.inf),
         "task_to_task": task_to_task.fillna(np.inf),
     }
+
+
+def export_repair_travel_time_scale_table(
+    cfg: Config,
+    stage_3_data: Dict[str, Any],
+    out_dir: Path,
+) -> pd.DataFrame:
+    """Export scale-check statistics comparing repair durations and travel times."""
+    rows: List[Dict[str, Any]] = []
+
+    repair_samples_by_scenario = stage_3_data.get("all_mc_repair_times", {}) or {}
+    damage_samples_by_scenario = stage_3_data.get("all_damage_state_samples", {}) or {}
+
+    def _summarize(quantity: str, values: np.ndarray, source: str) -> None:
+        arr = np.asarray(values, dtype=float)
+        arr = arr[np.isfinite(arr)]
+        if arr.size == 0:
+            rows.append(
+                {
+                    "quantity": quantity,
+                    "unit": "hours",
+                    "n": 0,
+                    "median": np.nan,
+                    "p90": np.nan,
+                    "max": np.nan,
+                    "source": source,
+                }
+            )
+            return
+        rows.append(
+            {
+                "quantity": quantity,
+                "unit": "hours",
+                "n": int(arr.size),
+                "median": float(np.median(arr)),
+                "p90": float(np.quantile(arr, 0.90)),
+                "max": float(np.max(arr)),
+                "source": source,
+            }
+        )
+
+    for ds in range(1, 5):
+        ds_values = []
+        for scenario, repair_samples in repair_samples_by_scenario.items():
+            damage_samples = damage_samples_by_scenario.get(scenario)
+            if damage_samples is None:
+                continue
+            repair_arr = np.asarray(repair_samples, dtype=float)
+            damage_arr = np.asarray(damage_samples)
+            if repair_arr.shape != damage_arr.shape:
+                continue
+            ds_values.append(repair_arr[damage_arr == ds])
+        if ds_values:
+            values = np.concatenate(ds_values)
+        else:
+            mean_hr, std_hr = REPAIR_PARAM_NORMAL_HR[ds]
+            values = np.array([mean_hr, mean_hr + norm.ppf(0.90) * std_hr])
+        _summarize(
+            f"Repair duration, DS{ds}",
+            values,
+            "MC repair-time samples from Stage 1/3",
+        )
+
+    base_to_task_path = Path(cfg.TRAVEL_BASE_TO_TASK_CSV)
+    if base_to_task_path.exists():
+        base_to_task = pd.read_csv(base_to_task_path, index_col=0)
+        base_values = pd.to_numeric(base_to_task.stack(), errors="coerce").to_numpy(dtype=float)
+        _summarize(
+            "Yard-to-task travel time",
+            base_values,
+            "Road-network base-to-task travel matrix",
+        )
+
+    task_to_task_path = Path(cfg.TRAVEL_TASK_TO_TASK_CSV)
+    if task_to_task_path.exists():
+        task_to_task = pd.read_csv(task_to_task_path, index_col=0)
+        task_values = pd.to_numeric(task_to_task.stack(), errors="coerce").to_numpy(dtype=float)
+        task_values = task_values[task_values > 0.0]
+        _summarize(
+            "Task-to-task travel time",
+            task_values,
+            "Road-network task-to-task travel matrix, excluding same-node diagonal",
+        )
+
+    scale_df = pd.DataFrame(rows)
+    scale_path = out_dir / "repair_travel_time_scale_table.csv"
+    scale_df.to_csv(scale_path, index=False)
+
+    supp_dir = Path(OUTPUT_ROOT) / "Sensitivity Output_clean" / "Tables"
+    supp_dir.mkdir(parents=True, exist_ok=True)
+    supp_table = scale_df[["quantity", "median", "p90", "max"]].copy()
+    supp_table.columns = ["Quantity", "Median (hr)", "90th percentile (hr)", "Max (hr)"]
+    for col in ["Median (hr)", "90th percentile (hr)", "Max (hr)"]:
+        supp_table[col] = supp_table[col].map(lambda v: "" if pd.isna(v) else f"{float(v):.2f}")
+    supp_table.to_csv(supp_dir / "Table_Repair_Travel_Time_Scale.csv", index=False)
+
+    md_lines = ["| Quantity | Median (hr) | 90th percentile (hr) | Max (hr) |", "|---|---:|---:|---:|"]
+    for row in supp_table.itertuples(index=False):
+        md_lines.append(f"| {row[0]} | {row[1]} | {row[2]} | {row[3]} |")
+    (supp_dir / "Table_Repair_Travel_Time_Scale.md").write_text(
+        "\n".join(md_lines) + "\n",
+        encoding="utf-8",
+    )
+
+    latex = supp_table.to_latex(index=False, escape=True)
+    (supp_dir / "Table_Repair_Travel_Time_Scale.tex").write_text(latex, encoding="utf-8")
+
+    logging.getLogger().info("Repair/travel time scale table saved to %s", scale_path)
+    return scale_df
 
 
 def order_substations(
@@ -3709,6 +3819,8 @@ def run_stage_4(
     else:
         logger.warning("No Gantt data found for Stage 4.")
 
+    export_repair_travel_time_scale_table(cfg, stage_3_data, out_dir)
+
     logger.info("--- STAGE 4 Complete ---")
     return {"results": stage_4_data}
 
@@ -3857,7 +3969,21 @@ def run_stage_5(
         w_role = float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_ROLE_WEIGHT", 0.70))
         w_voltage = float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_VOLTAGE_WEIGHT", 0.20))
         w_lines = float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_LINES_WEIGHT", 0.10))
-        node_score = w_role * role_score.values + w_voltage * voltage_score.values + w_lines * lines_score
+        importance_weight_sum = w_role + w_voltage + w_lines
+        if (
+            not np.isfinite(importance_weight_sum)
+            or importance_weight_sum <= 0.0
+            or min(w_role, w_voltage, w_lines) < 0.0
+        ):
+            raise ValueError(
+                "Stage 5 node-importance weights must be finite, nonnegative, "
+                f"and have positive sum; got role={w_role}, voltage={w_voltage}, lines={w_lines}."
+            )
+        node_score = (
+            w_role * role_score.values
+            + w_voltage * voltage_score.values
+            + w_lines * lines_score
+        ) / importance_weight_sum
 
         return pd.DataFrame(
             {
@@ -3956,23 +4082,34 @@ def run_stage_5(
             W_POP, W_HOSP, W_MAKESPAN = weights["W_POP"], weights["W_HOSP"], weights["W_MAKESPAN"]
             W_SVI = getattr(cfg, "W_SVI", 0.0) if has_svi else 0.0
 
-            task_vals_base = W_POP * pop_n + W_HOSP * hosp_n + W_SVI * svi_n
-            positive_base = task_vals_base[task_vals_base > 0]
-            s_ref = float(np.median(positive_base)) if len(positive_base) else 0.0
-            node_importance_bonus = (
-                float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_ALPHA", 1.0))
-                * s_ref
-                * task_importance["node_importance_score"].values
+            service_weight_sum = float(W_POP + W_HOSP + W_SVI)
+            if not np.isfinite(service_weight_sum) or service_weight_sum <= 0.0:
+                raise ValueError(
+                    f"GA policy {policy_name} has invalid service-priority weights: "
+                    f"W_POP={W_POP}, W_HOSP={W_HOSP}, W_SVI={W_SVI}."
+                )
+            service_priority = (
+                W_POP * pop_n + W_HOSP * hosp_n + W_SVI * svi_n
+            ) / service_weight_sum
+            network_importance = task_importance["node_importance_score"].values
+            eta = float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_ETA", 0.20))
+            if not np.isfinite(eta) or eta < 0.0 or eta > 1.0:
+                raise ValueError(f"STAGE5_NODE_IMPORTANCE_ETA must be in [0, 1], got {eta}.")
+            task_vals = (
+                (1.0 - eta) * service_priority
+                + eta * network_importance
             )
-            task_vals = task_vals_base + node_importance_bonus
             component_df = pd.DataFrame(
                 {
                     "substation_id": [clean_substation_id(t) for t in task_ids],
-                    "sub_value_base": task_vals_base,
-                    "node_importance_score": task_importance["node_importance_score"].values,
-                    "node_importance_s_ref": s_ref,
-                    "node_importance_bonus": node_importance_bonus,
-                    "sub_value_final": task_vals,
+                    "population_priority_score": pop_n,
+                    "hospital_priority_score": hosp_n,
+                    "svi_priority_score": svi_n,
+                    "service_priority_weight_sum": service_weight_sum,
+                    "service_priority_score": service_priority,
+                    "network_importance_score": network_importance,
+                    "network_importance_eta": eta,
+                    "task_priority_value": task_vals,
                     "importance_role_score": task_importance["importance_role_score"].values,
                     "importance_voltage_score": task_importance["importance_voltage_score"].values,
                     "importance_lines_score": task_importance["importance_lines_score"].values,
