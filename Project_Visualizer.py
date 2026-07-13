@@ -3101,7 +3101,6 @@ STAGE6_RECOVERY_STYLE_CONFIG = {
     },
 }
 
-STAGE6_RECOVERY_STYLE_CONFIG["S3_Mean"]["label"] = "_nolegend_"
 for _strategy_key, _strategy_label in STAGE6_LEGEND_LABELS.items():
     STAGE6_RECOVERY_STYLE_CONFIG[_strategy_key]["label"] = _strategy_label
 
@@ -3205,7 +3204,7 @@ def _stage6_parse_curve_column(column_name: str):
         }.get(weight_label)
         if weight_type is None:
             return None
-        if strategy_label == "Theoretical limit":
+        if strategy_label in {"S3_Mean", "Theoretical limit"}:
             key = "S3_Mean"
         else:
             key = canonical_strategy_key(strategy_label)
@@ -3876,7 +3875,7 @@ def vis_stage6(
         },
     }
 
-    stage6_topology_baseline_label = "_nolegend_"
+    stage6_topology_baseline_label = "Theoretical limit"
     stage6_topology_baseline_style = _stage6_line_style("S3_Mean", role="topology")
     for _stage6_rule in ["centrality-first", "betweenness-first", "impact-first", "degree-first", "closeness-first", "hospital-first", "random"]:
         style_map[_stage6_rule]["label"] = STAGE6_LEGEND_LABELS[
@@ -4082,7 +4081,7 @@ def vis_stage6(
         all_dict = dict(zip(l1 + l2, h1 + h2))
 
         # Use the Stage 6 topology legend order, then append any unexpected labels.
-        legend_order = list(STAGE6_TOPOLOGY_LEGEND_ORDER) + [
+        legend_order = ["Theoretical limit", *STAGE6_TOPOLOGY_LEGEND_ORDER] + [
             x for x in ga_labels if x not in STAGE6_TOPOLOGY_LEGEND_ORDER
         ]
 

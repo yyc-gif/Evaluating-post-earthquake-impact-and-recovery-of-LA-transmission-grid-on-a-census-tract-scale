@@ -3846,7 +3846,13 @@ def run_stage_5(
             .fillna(0.0)
         )
         lines_scale = float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_LINES_SCALE", 12.0))
-        lines_score = pd.to_numeric(base_attr["LINES"], errors="coerce").fillna(0.0) / lines_scale
+        if not np.isfinite(lines_scale) or lines_scale <= 0:
+            raise ValueError(
+                "STAGE5_NODE_IMPORTANCE_LINES_SCALE must be positive and finite; "
+                f"got {lines_scale}."
+            )
+        raw_lines = pd.to_numeric(base_attr["LINES"], errors="coerce").fillna(0.0)
+        lines_score = (raw_lines / lines_scale).clip(lower=0.0, upper=1.0)
 
         w_role = float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_ROLE_WEIGHT", 0.70))
         w_voltage = float(getattr(cfg, "STAGE5_NODE_IMPORTANCE_VOLTAGE_WEIGHT", 0.20))
@@ -3975,6 +3981,9 @@ def run_stage_5(
             )
             component_df.to_csv(out_dir_s5 / f"ga_sub_value_components_{scenario}_{policy_name}.csv", index=False)
             T_MAX = float(cfg.TIME_END_HR) + float(cfg.GA_EXTRA_EVAL_HR)
+            task_value_total = float(np.sum(np.clip(task_vals, 0.0, None)))
+            task_value_total = max(task_value_total, 1e-12)
+            objective_denominator = max(T_MAX * task_value_total, 1e-12)
 
             def eval_sched(ind):
                 clocks = np.zeros(n_c57_crews)
@@ -3989,8 +3998,12 @@ def run_stage_5(
                     clocks[c], locs[c], end_times[int(t_idx)] = end, int(t_idx), end
 
                 valid = end_times < T_MAX
-                score = np.sum(task_vals[valid] * (T_MAX - end_times[valid]))
-                score -= W_MAKESPAN * np.max(clocks)
+                time_credit = np.clip(T_MAX - end_times[valid], 0.0, T_MAX)
+                completion_benefit = (
+                    np.sum(task_vals[valid] * time_credit) / objective_denominator
+                )
+                makespan_penalty = np.max(clocks) / max(T_MAX, 1e-12)
+                score = completion_benefit - W_MAKESPAN * makespan_penalty
                 return (score,)
 
             toolbox.register("evaluate", eval_sched)
