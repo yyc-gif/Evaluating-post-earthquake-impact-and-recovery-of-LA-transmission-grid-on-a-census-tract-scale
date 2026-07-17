@@ -63,12 +63,18 @@ def stage7_cluster_labels() -> list[str]:
     """Return cluster labels present in the current Stage 7 output."""
     cluster_path = ROOT / "Stage 7 Output_expanded" / "clusters_labels_final.csv"
     if not cluster_path.exists():
-        return [f"C{i}" for i in range(1, 7)]
+        raise FileNotFoundError(
+            "Stage 7 cluster labels are required for the Fig. 6 composite: "
+            f"{cluster_path}"
+        )
 
     df = pd.read_csv(cluster_path, usecols=["cluster"])
     clusters = pd.to_numeric(df["cluster"], errors="coerce").dropna().astype(int)
     labels = [f"C{i}" for i in sorted(clusters.unique())]
-    return [label for label in labels if label in STAGE7_CLUSTER_COLORS]
+    labels = [label for label in labels if label in STAGE7_CLUSTER_COLORS]
+    if not labels:
+        raise ValueError(f"No valid Stage 7 cluster labels found in {cluster_path}")
+    return labels
 
 
 @dataclass(frozen=True)
