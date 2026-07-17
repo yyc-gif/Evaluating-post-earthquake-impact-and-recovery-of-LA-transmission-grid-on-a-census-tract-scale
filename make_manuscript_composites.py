@@ -20,6 +20,7 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from PIL import Image
 
 
@@ -56,6 +57,18 @@ STAGE7_HOTSPOT_CMAP = mcolors.LinearSegmentedColormap.from_list(
     "stage7_hotspot_score",
     ["#2C7BB6", "#ABD9E9", "#FFFFBF", "#F46D43", "#8B1E3F"],
 )
+
+
+def stage7_cluster_labels() -> list[str]:
+    """Return cluster labels present in the current Stage 7 output."""
+    cluster_path = ROOT / "Stage 7 Output_expanded" / "clusters_labels_final.csv"
+    if not cluster_path.exists():
+        return [f"C{i}" for i in range(1, 7)]
+
+    df = pd.read_csv(cluster_path, usecols=["cluster"])
+    clusters = pd.to_numeric(df["cluster"], errors="coerce").dropna().astype(int)
+    labels = [f"C{i}" for i in sorted(clusters.unique())]
+    return [label for label in labels if label in STAGE7_CLUSTER_COLORS]
 
 
 @dataclass(frozen=True)
@@ -486,8 +499,8 @@ def make_typology_composite() -> None:
         )
 
         cluster_handles = [
-            Patch(facecolor=STAGE7_CLUSTER_COLORS[f"C{i}"], edgecolor="none", label=f"C{i}")
-            for i in range(1, 7)
+            Patch(facecolor=STAGE7_CLUSTER_COLORS[label], edgecolor="none", label=label)
+            for label in stage7_cluster_labels()
         ]
         cluster_handles.append(Patch(facecolor=STAGE7_NA_COLOR, edgecolor="none", label="N/A"))
         cluster_handles.append(
