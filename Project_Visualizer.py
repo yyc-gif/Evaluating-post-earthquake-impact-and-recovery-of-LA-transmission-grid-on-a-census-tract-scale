@@ -3353,8 +3353,16 @@ def _stage6_plot_single_scenario_recovery_curve(
 
     limit_t = _stage6_adaptive_xlim(plotted_series, time_grid)
 
-    y_label = "Functionality" if weight_type == "Population" else "SVI-weighted recovery"
-    title_suffix = "population-weighted recovery" if weight_type == "Population" else "SVI-weighted recovery"
+    y_label = (
+        r"Service availability, $F_{\mathrm{pop}}(t)$"
+        if weight_type == "Population"
+        else r"Service availability, $F_{\mathrm{SVI}}(t)$"
+    )
+    title_suffix = (
+        "population-weighted service availability"
+        if weight_type == "Population"
+        else "SVI-weighted service availability"
+    )
     style_axis(
         ax,
         title=f"{scenario_name}: {title_suffix}",
