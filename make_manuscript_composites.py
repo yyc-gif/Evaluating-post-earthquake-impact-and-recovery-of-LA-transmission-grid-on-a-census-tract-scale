@@ -8,7 +8,6 @@ physical scaling, and adds consistently sized panel letters.
 from __future__ import annotations
 
 from dataclasses import dataclass
-import hashlib
 from pathlib import Path
 
 import matplotlib as mpl
@@ -31,8 +30,7 @@ FULL_ROW_MARGIN_CM = 0.25
 FULL_ROW_WIDTH_CM = FIGURE_WIDTH_CM - 2.0 * FULL_ROW_MARGIN_CM
 
 ROOT = Path(__file__).resolve().parent
-MANUSCRIPT_DIR = ROOT / "Manuscript_Figures"
-PREP_DIR = MANUSCRIPT_DIR / "composite_ready_panels"
+BUILD_DIR = ROOT / "build" / "figures"
 
 RC = {
     "font.family": "sans-serif",
@@ -80,7 +78,6 @@ def stage7_cluster_labels() -> list[str]:
 @dataclass(frozen=True)
 class PanelAsset:
     relative_path: str
-    prepared_path: Path
     image: np.ndarray
     width_cm: float
     height_cm: float
@@ -127,18 +124,10 @@ def prepare_panel(relative_path: str) -> PanelAsset:
     dpi_y = float(dpi[1]) if dpi and dpi[1] else float(EXPORT_DPI)
     cropped = _crop_exterior_white(source)
 
-    PREP_DIR.mkdir(parents=True, exist_ok=True)
-    source_name = Path(relative_path)
-    source_key = hashlib.sha1(relative_path.encode("utf-8")).hexdigest()[:8]
-    prepared_name = f"{source_name.stem}_{source_key}{source_name.suffix}"
-    prepared_path = PREP_DIR / prepared_name
-    cropped.save(prepared_path, dpi=(dpi_x, dpi_y))
-
     width_cm = cropped.width / dpi_x * CM_PER_INCH
     height_cm = cropped.height / dpi_y * CM_PER_INCH
     asset = PanelAsset(
         relative_path=relative_path,
-        prepared_path=prepared_path,
         image=np.asarray(cropped),
         width_cm=width_cm,
         height_cm=height_cm,
@@ -184,7 +173,6 @@ def prepare_map_body_panel(
     cropped = source.convert("RGB").crop((left, top, right, bottom))
     asset = PanelAsset(
         relative_path=cache_key,
-        prepared_path=source_path,
         image=np.asarray(cropped),
         width_cm=cropped.width / dpi_x * CM_PER_INCH,
         height_cm=cropped.height / dpi_y * CM_PER_INCH,
@@ -254,22 +242,18 @@ def _format_composite_legend(legend) -> None:
         title.set_fontsize(7.5)
 
 
-def save_pair(fig: plt.Figure, stem: str) -> None:
-    MANUSCRIPT_DIR.mkdir(parents=True, exist_ok=True)
+def save_reproduction_figure(fig: plt.Figure, figure_number: int) -> None:
+    """Save one numbered reproduction figure outside the frozen submission package."""
+    BUILD_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = BUILD_DIR / f"Figure_{figure_number}.png"
     fig.savefig(
-        MANUSCRIPT_DIR / f"{stem}.png",
+        output_path,
         dpi=EXPORT_DPI,
         bbox_inches=None,
         pad_inches=0,
     )
-    fig.savefig(
-        MANUSCRIPT_DIR / f"{stem}.pdf",
-        format="pdf",
-        bbox_inches=None,
-        pad_inches=0,
-    )
     plt.close(fig)
-    print(f"Saved {stem}.png and {stem}.pdf")
+    print(f"Saved {output_path.relative_to(ROOT)}")
 
 
 def make_t80_composite() -> None:
@@ -337,7 +321,7 @@ def make_t80_composite() -> None:
             label="B",
         )
         print(f"T80 panel scales: A={hist_scale:.3f}, B={map_scale:.3f}")
-        save_pair(fig, "t80_distribution_and_spatial_pattern_composite")
+        save_reproduction_figure(fig, 3)
 
 
 def make_recovery_composite() -> None:
@@ -407,7 +391,7 @@ def make_recovery_composite() -> None:
             "Recovery panel scales: "
             + ", ".join(f"{label}={scale:.3f}" for label, scale in zip("ABC", scales))
         )
-        save_pair(fig, "recovery_strategy_and_topology_composite")
+        save_reproduction_figure(fig, 5)
 
 
 def make_typology_composite() -> None:
@@ -602,7 +586,7 @@ def make_typology_composite() -> None:
             "Typology panel scales: "
             + ", ".join(f"{label}={scale:.3f}" for label, scale in zip("ABCD", scales))
         )
-        save_pair(fig, "recovery_vulnerability_typology_composite")
+        save_reproduction_figure(fig, 6)
 
 
 def make_topology_composite() -> None:
@@ -653,14 +637,14 @@ def make_topology_composite() -> None:
                 f"{label}={scale:.3f}" for label, scale in zip("ABC", scales)
             )
         )
-        save_pair(fig, "topology_abstraction_and_robustness_composite")
+        save_reproduction_figure(fig, 2)
 
 
 def main() -> None:
+    make_topology_composite()
     make_t80_composite()
     make_recovery_composite()
     make_typology_composite()
-    make_topology_composite()
 
 
 if __name__ == "__main__":

@@ -1,7 +1,6 @@
 ﻿"""Weight-matrix and CSV export helpers for the topology workflow."""
 
 import logging
-import os
 from pathlib import Path
 from typing import Optional
 

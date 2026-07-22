@@ -11,12 +11,11 @@ __pycache__/
 # Logs and transient run metadata
 *.log
 /tmp/
+/build/
 
 # Local manuscript copies and downloaded reference PDFs
 /LA Grid Paper*.pdf
 /literaturefolder/
-/Manuscript_Figures/composite_ready_panels/
-/Manuscript_Figures/composite_source_archive_*/
 
 # One-off mechanism experiments (not part of the manuscript workflow)
 /Mechanism_Check_Output/
@@ -69,6 +68,8 @@ Stage 2 Output*/zoom_suspicious_*.png
 /Stage 3 Output_expanded/tract_step_recovery_mean_*.csv.gz
 /Stage 4 Output_expanded/rule_graphrobustness_*.csv
 /Stage 5 Output_expanded/ga_graphrobustness_*.csv
+!/Stage 4 Output_expanded/rule_graphrobustness_2pc50_*.csv
+!/Stage 5 Output_expanded/ga_graphrobustness_2pc50_*.csv
 
 # OS/editor noise
 .DS_Store

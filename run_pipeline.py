@@ -11,11 +11,11 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent
 
 STEPS = (
-    ("topology", "Build topology and tract dependencies", "Topology_and_Weight_expanded.py"),
-    ("pga", "Interpolate scenario PGA values", "IDW_expanded.py"),
-    ("travel", "Build road travel-time matrices", "build_travel_matrices_osm_expanded.py"),
-    ("analysis", "Run damage, recovery, scheduling, GA, and clustering", "C257H_Project_Main_expanded.py"),
-    ("figures", "Generate stage figures", "Project_Visualizer_expanded.py"),
+    ("topology", "Build topology and tract dependencies", "Topology_and_Weight.py"),
+    ("pga", "Interpolate scenario PGA values", "IDW.py"),
+    ("travel", "Build road travel-time matrices", "build_travel_matrices_osm.py"),
+    ("analysis", "Run damage, recovery, scheduling, GA, and clustering", "C257H_Project_Main.py"),
+    ("figures", "Generate stage figures", "Project_Visualizer.py"),
     ("composites", "Assemble manuscript figures", "make_manuscript_composites.py"),
 )
 

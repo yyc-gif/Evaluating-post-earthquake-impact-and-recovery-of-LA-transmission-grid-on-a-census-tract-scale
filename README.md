@@ -52,19 +52,16 @@ The ordered steps are `topology`, `pga`, `travel`, `analysis`, `figures`, and
 
 ## Workflow Files
 
-The five `*_expanded.py` files contain the manuscript configuration and remain
-available for stage-by-stage execution:
+The repository contains one manuscript workflow. Its stages can also be run
+individually:
 
 ```bash
-python Topology_and_Weight_expanded.py
-python IDW_expanded.py
-python build_travel_matrices_osm_expanded.py
-python C257H_Project_Main_expanded.py
-python Project_Visualizer_expanded.py
+python Topology_and_Weight.py
+python IDW.py
+python build_travel_matrices_osm.py
+python C257H_Project_Main.py
+python Project_Visualizer.py
 ```
-
-Files without `_expanded` are shared implementations used by these entry
-points; they are not a second workflow.
 
 The stages perform the following tasks:
 
@@ -75,7 +72,8 @@ The stages perform the following tasks:
    tract clustering analyses.
 5. Regenerate stage-level visualizations and final manuscript composites.
 
-Final manuscript composites are regenerated separately with:
+Numbered reproduction figures are generated in the ignored `build/figures/`
+directory with:
 
 ```bash
 python make_manuscript_composites.py
@@ -91,22 +89,23 @@ python make_manuscript_composites.py
 - `C257H_Project_Main.py`: damage, service, recovery, scheduling, GA, metrics,
   sensitivity, and clustering calculations.
 - `Project_Visualizer.py`: stage-level maps and plots.
-- `*_expanded.py`: manuscript configuration wrappers and official entry points.
 - `strategy_names.py`: canonical strategy IDs and display labels.
 - `build_sensitivity_outputs.py`: Figure 7 and sensitivity-table outputs.
-- `make_manuscript_composites.py`: final manuscript figure assembly.
+- `make_manuscript_composites.py`: assembles numbered reproduction figures in
+  `build/figures/` without overwriting the frozen submission files.
 - `Data/`: required inputs and processed topology/mapping files.
 - `Stage 1 Output_expanded/` through `Stage 7 Output_expanded/`: retained
   numerical results used to check the manuscript findings.
 - `Sensitivity Output_clean/Tables/`: retained sensitivity summaries.
-- `Manuscript_Figures/`: source-quality final manuscript figures.
-- `Submission_Package/`: the manuscript, Figures 1-7, and supplementary PDF
-  prepared for journal submission.
+- `Submission_Package/`: the single authoritative, frozen location for the
+  manuscript, Figures 1-7, and the supplementary PDF prepared for submission.
 
-Stage-level plots, Gantt images, row-level Monte Carlo records, graph-robustness
-intermediates, caches, logs, one-off mechanism experiments, and audit/debug
-files are reproducible and intentionally excluded from version control. The
-final paper figures remain available in `Submission_Package/`.
+Stage-level plots, Gantt images, row-level Monte Carlo records, caches, logs,
+one-off mechanism experiments, and audit/debug files are reproducible and
+intentionally excluded from version control. The 2pc50 graph-robustness
+trajectories are retained because they are direct numerical inputs to Figure 5;
+other graph-robustness intermediates remain excluded. The final paper figures
+are available in `Submission_Package/`.
 
 ## Main Data Sources
 

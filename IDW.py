@@ -20,10 +20,10 @@ DATA_DIR = BASE_DIR / "Data"
 GRID_DIR: str = str(DATA_DIR / "MS_048_CA_pt01_MMI_GM_datafiles")
 
 # 1) Substation file
-SUB_CSV = os.path.join(DATA_DIR, "Los_Angeles_City_SUBSTATION_with_fragility_29.csv")
+SUB_CSV = os.path.join(DATA_DIR, "working_area_substations_with_fragility.csv")
 
 # 2) Output file
-FINAL_OUTPUT_CSV = os.path.join(DATA_DIR, "Substations_PGA_IDW_CEC.csv")
+FINAL_OUTPUT_CSV = os.path.join(DATA_DIR, "Substations_PGA_IDW_CEC_expanded.csv")
 
 # 3) Scenarios: (type, path, column_name_for_csv)
 SCENARIOS = {
@@ -458,7 +458,4 @@ def main(cfg: IDWConfig | None = None) -> None:
 
 
 if __name__ == "__main__":
-    raise SystemExit(
-        "IDW.py is the shared implementation; "
-        "run IDW_expanded.py for the manuscript workflow."
-    )
+    main()

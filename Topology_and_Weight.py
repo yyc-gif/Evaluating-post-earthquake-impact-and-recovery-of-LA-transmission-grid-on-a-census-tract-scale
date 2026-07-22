@@ -51,42 +51,42 @@ class Paths:
     # --------------------
     # Input paths (Data/)
     # --------------------
-    DEVICES_CSV: str = str(DATA_DIR / "Los_Angeles_City_SUBSTATION_with_fragility_29.csv")
+    DEVICES_CSV: str = str(DATA_DIR / "working_area_substations_with_fragility.csv")
     LA_TRACTS_SHP: str = str(DATA_DIR / "LA_Tracts_With_Population.shp")
     TRANSMISSION_LINES_SHP: str = str(DATA_DIR / "TransmissionLine_CEC.shp")
-    CITY_TRACTS_LIST_CSV: str = str(DATA_DIR / "Tracts_Within_Los_Angeles.csv")
+    CITY_TRACTS_LIST_CSV: str = str(DATA_DIR / "Tracts_Within_Expanded_Area.csv")
 
     # --------------------
     # Output paths (Data/)
     # --------------------
-    OUTPUT_MAPPING_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC.csv")
+    OUTPUT_MAPPING_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC_expanded.csv")
     OUTPUT_UNTHRESHOLDED_MAPPING_CSV: str = str(
-        DATA_DIR / "tract_to_substation_mapping_CEC_unthresholded.csv"
+        DATA_DIR / "tract_to_substation_mapping_CEC_expanded_unthresholded.csv"
     )
-    OUTPUT_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges.csv")
-    OUTPUT_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes.csv")
-    OUTPUT_PLOT_PNG: Optional[str] = str(DATA_DIR / "topology_final_validation.png")
-    OUTPUT_INTERACTIVE_HTML: str = str(DATA_DIR / "topology_interactive_validation.html")
-    OUTPUT_SUPPRESSED_THRESHOLD_CSV: str = str(DATA_DIR / "substations_suppressed_by_threshold.csv")
-    OUTPUT_LINE_SPLIT_AUDIT_CSV: str = str(DATA_DIR / "transmission_line_substation_split_audit.csv")
-    OUTPUT_DIRECT_LINK_PROJECTION_ANCHOR_AUDIT_CSV: str = str(DATA_DIR / "direct_link_projection_anchor_audit.csv")
-    OUTPUT_DIRECT_LINK_PROJECTION_ANCHOR_DEBUG_CSV: str = str(DATA_DIR / "direct_link_projection_anchor_debug.csv")
+    OUTPUT_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges_expanded.csv")
+    OUTPUT_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes_expanded.csv")
+    OUTPUT_PLOT_PNG: Optional[str] = str(DATA_DIR / "topology_final_validation_expanded.png")
+    OUTPUT_INTERACTIVE_HTML: str = str(DATA_DIR / "topology_interactive_validation_expanded.html")
+    OUTPUT_SUPPRESSED_THRESHOLD_CSV: str = str(DATA_DIR / "substations_suppressed_by_threshold_expanded.csv")
+    OUTPUT_LINE_SPLIT_AUDIT_CSV: str = str(DATA_DIR / "transmission_line_substation_split_audit_expanded.csv")
+    OUTPUT_DIRECT_LINK_PROJECTION_ANCHOR_AUDIT_CSV: str = str(DATA_DIR / "direct_link_projection_anchor_audit_expanded.csv")
+    OUTPUT_DIRECT_LINK_PROJECTION_ANCHOR_DEBUG_CSV: str = str(DATA_DIR / "direct_link_projection_anchor_debug_expanded.csv")
 
     # --------------------
     # Core parameters
     # --------------------
     BBOX_PAD_KM: float = 50.0
     LINE_SNAP_TOLERANCE_M: float = 150.0  # Active primary endpoint-to-substation snap tier.
-    LINE_SNAP_SECONDARY_TOLERANCE_M: float = 300.0  # Active guarded secondary consideration tier.
+    LINE_SNAP_SECONDARY_TOLERANCE_M: float = 375.0  # Active guarded secondary consideration tier.
     LINE_SNAP_SECONDARY_RATIO_MAX: float = 0.75  # Active secondary nearest/second-nearest ratio guard.
     LINE_SNAP_SECONDARY_MARGIN_M: float = 75.0  # Active secondary nearest/second-nearest distance margin.
-    LINE_SNAP_SECONDARY_OUTER_START_M: Optional[float] = None  # Optional stricter secondary shell start.
-    LINE_SNAP_SECONDARY_OUTER_MARGIN_M: Optional[float] = None  # Optional stricter outer-shell margin.
-    LINE_SNAP_SECONDARY_OUTER_RATIO_MAX: Optional[float] = None  # Optional stricter outer-shell ratio.
-    MAX_SUBSTATION_TO_GRAPH_SNAP_DIST_M: float = 100.0
-    ENABLE_PROTECTED_JUNCTION_CLUSTER_SNAP: bool = False
+    LINE_SNAP_SECONDARY_OUTER_START_M: Optional[float] = 300.0  # Stricter secondary shell start.
+    LINE_SNAP_SECONDARY_OUTER_MARGIN_M: Optional[float] = 300.0  # Stricter outer-shell margin.
+    LINE_SNAP_SECONDARY_OUTER_RATIO_MAX: Optional[float] = 0.55  # Stricter outer-shell ratio.
+    MAX_SUBSTATION_TO_GRAPH_SNAP_DIST_M: float = 250.0
+    ENABLE_PROTECTED_JUNCTION_CLUSTER_SNAP: bool = True
     ENABLE_SUBSTATION_LINE_SPLIT: bool = True
-    LINE_SPLIT_TOLERANCE_M: float = 100.0
+    LINE_SPLIT_TOLERANCE_M: float = 10.0
     LINE_SPLIT_MIN_ENDPOINT_DIST_M: float = 25.0
     LINE_SPLIT_MIN_SEGMENT_LENGTH_M: float = 10.0
     ENABLE_SUBSTATION_PROJECTION_CONNECTORS: bool = True
@@ -2685,9 +2685,6 @@ def main(paths: Optional[Paths] = None):
 
 
 if __name__ == "__main__":
-    raise SystemExit(
-        "Topology_and_Weight.py is the shared implementation; "
-        "run Topology_and_Weight_expanded.py for the manuscript workflow."
-    )
+    main()
 
 

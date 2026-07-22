@@ -5,7 +5,7 @@ Description:
     This script precomputes travel time matrices using an OSMnx road network graph.
     It replaces Euclidean/Geodesic distance estimates with real-world road network travel times.
 
-Outputs (saved to 'Stage 4 Output'):
+Outputs (saved to 'Stage 4 Output_expanded'):
     1. travel_base_to_task.csv: Travel times from Crew Bases to Substations.
     2. travel_task_to_task.csv: Travel times between all pairs of Substations.
 
@@ -32,12 +32,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "Data"
 GRAPHML_PATH = str(DATA_DIR / "la_drive.graphml")
-SUBS_CSV = str(DATA_DIR / "Los_Angeles_City_SUBSTATION_with_fragility_29.csv")
+SUBS_CSV = str(DATA_DIR / "working_area_substations_with_fragility.csv")
 DEPOT_INPUT_CSV = str(DATA_DIR / "stage45_depot_inputs_final_origin_proxy.csv")
 
 # --- Output Settings ---
 OUTPUT_ROOT = str(BASE_DIR)
-STAGE4_DIR = "Stage 4 Output"
+STAGE4_DIR = "Stage 4 Output_expanded"
 TRAVEL_BASE_TO_TASK_CSV = "travel_base_to_task.csv"
 TRAVEL_TASK_TO_TASK_CSV = "travel_task_to_task.csv"
 
@@ -51,12 +51,9 @@ LAT_COL = "LATITUDE"
 # Substation IDs to include (None = Process all substations in CSV)
 # Keep the travel task universe aligned with the tract-analysis baseline by
 # default, rather than the broader raw inventory.
-MAPPING_CSV = str(DATA_DIR / "tract_to_substation_mapping_CEC.csv")
+MAPPING_CSV = str(DATA_DIR / "tract_to_substation_mapping_CEC_expanded.csv")
 LIMIT_TO_SUB_IDS: Optional[List[str]] = None
-SUBS_COORD_FALLBACK_CSVS: Tuple[str, ...] = (
-    str(DATA_DIR / "Los_Angeles_City_SUBSTATION_with_fragility_ORIGINAL.csv"),
-    str(DATA_DIR / "Substations_PGA_IDW_CEC.csv"),
-)
+SUBS_COORD_FALLBACK_CSVS: Tuple[str, ...] = ()
 
 # Max travel time in seconds (e.g., 6 hours).
 # Dijkstra will stop searching beyond this limit to save time.
@@ -626,7 +623,4 @@ def main(cfg: Optional[TravelMatrixConfig] = None):
         raise e
 
 if __name__ == "__main__":
-    raise SystemExit(
-        "build_travel_matrices_osm.py is the shared implementation; "
-        "run build_travel_matrices_osm_expanded.py for the manuscript workflow."
-    )
+    main()

@@ -10,7 +10,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib import colors
 from matplotlib.transforms import Bbox
 from strategy_names import (
     CANONICAL_STRATEGY_LABELS,
@@ -980,10 +979,11 @@ def render_sensitivity_outputs_2pc50(
     rank_df = compute_rank_stability(summary)
     table_df = build_main_table(summary, rank_df)
 
+    figure7_source = MAIN_DIR / "Fig_Sensitivity_T80_Response_2pc50.png"
     plot_t80_response(
         summary,
         SENSITIVITY_SCENARIO,
-        MAIN_DIR / "Fig_Sensitivity_T80_Response_2pc50.png",
+        figure7_source,
     )
     plot_idw_diagnostics(
         mapping_diagnostics,

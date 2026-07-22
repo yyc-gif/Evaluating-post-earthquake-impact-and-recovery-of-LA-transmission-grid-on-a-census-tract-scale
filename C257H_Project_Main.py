@@ -81,7 +81,7 @@ OUTPUT_ROOT = str(DEFAULT_OUTPUT_ROOT)
 
 # === Enforce stepwise I/O helpers =============================================
 def stage_dir(stage: str) -> str:
-    return os.path.join(OUTPUT_ROOT, f"Stage {stage} Output")
+    return os.path.join(OUTPUT_ROOT, f"Stage {stage} Output_expanded")
 
 def stage_file(stage: str, filename: str) -> str:
     return os.path.join(stage_dir(stage), filename)
@@ -92,16 +92,16 @@ class Config:
     """Configuration dataclass for the entire pipeline."""
 
     # =========================================================================
-    DEVICES_CSV: str = str(DATA_DIR / "Los_Angeles_City_SUBSTATION_with_fragility_ORIGINAL.csv")
-    PGA_CSV: str = str(DATA_DIR / "Substations_PGA_IDW_CEC.csv")
-    MAP_TRACT_SUB_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC.csv")
+    DEVICES_CSV: str = str(DATA_DIR / "working_area_substations_with_fragility.csv")
+    PGA_CSV: str = str(DATA_DIR / "Substations_PGA_IDW_CEC_expanded.csv")
+    MAP_TRACT_SUB_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC_expanded.csv")
     SENSITIVITY_RAW_MAPPING_CSV: str = str(
-        DATA_DIR / "tract_to_substation_mapping_CEC_unthresholded.csv"
+        DATA_DIR / "tract_to_substation_mapping_CEC_expanded_unthresholded.csv"
     )
-    CEC_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges.csv")
-    CEC_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes.csv")
-    HOSPITAL_TRACTS_CSV: str = str(DATA_DIR / "hospital_with_tract.csv")
-    SOURCE_NODES_CSV: str = str(DATA_DIR / "source_nodes_core.csv")
+    CEC_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges_expanded.csv")
+    CEC_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes_expanded.csv")
+    HOSPITAL_TRACTS_CSV: str = str(DATA_DIR / "hospital_with_tract_expanded.csv")
+    SOURCE_NODES_CSV: str = str(DATA_DIR / "source_nodes_core_expanded.csv")
     STAGE7_SVI_DATA_PATH: str = str(DATA_DIR / "California.csv")
     STAGE7_NRI_DATA_PATH: str = str(DATA_DIR / "NRI_Table_CensusTracts_California.csv")
     STAGE7_HOUSING_DATA_PATH: str = str(DATA_DIR / "ACSDT5Y2022.B25034-Data.csv")
@@ -130,13 +130,13 @@ class Config:
     # =========================================================================
     # OUTPUT DIRS (Relative to output root; follow the staged workflow naming)
     # =========================================================================
-    STAGE1_DIR: str = "Stage 1 Output"
-    STAGE2_DIR: str = "Stage 2 Output"
-    STAGE3_DIR: str = "Stage 3 Output"
-    STAGE4_DIR: str = "Stage 4 Output"
-    STAGE5_DIR: str = "Stage 5 Output"
-    STAGE6_DIR: str = "Stage 6 Output"
-    STAGE7_DIR: str = "Stage 7 Output"
+    STAGE1_DIR: str = "Stage 1 Output_expanded"
+    STAGE2_DIR: str = "Stage 2 Output_expanded"
+    STAGE3_DIR: str = "Stage 3 Output_expanded"
+    STAGE4_DIR: str = "Stage 4 Output_expanded"
+    STAGE5_DIR: str = "Stage 5 Output_expanded"
+    STAGE6_DIR: str = "Stage 6 Output_expanded"
+    STAGE7_DIR: str = "Stage 7 Output_expanded"
     SCHEDULE_DIR: str = "schedules"  # Subdirectory for GA runs
 
     # =========================================================================
@@ -150,7 +150,8 @@ class Config:
     FUNCTIONAL_THRESHOLD: float = 0.5  # Substation functional if value >= threshold
     SOURCE_GATE_ENABLED: bool = True  # Require functional substations to connect to an active source island
     MC_SOURCE_GATE_N_JOBS: int = 8
-    REPAIR_TASK_MIN_MEAN_HR: Optional[float] = None  # None = DS1 mean repair time threshold
+    REPAIR_TASK_MIN_MEAN_HR: Optional[float] = 1.0
+    PIPELINE_LOG_FILENAME: str = "pipeline_run_expanded.log"
     GA_EXTRA_EVAL_HR: float = 24.0     # Extra horizon used in GA evaluation
     RNG_SEED: int = 42
     MUTUAL_AID_DELAY_HR: float = 8.0
@@ -3342,8 +3343,6 @@ def simulate_rule_schedule(
     """
     Simulate a multi-crew repair schedule and generate MC source-gated Hazus recovery curves.
     """
-    logger = logging.getLogger()
-
     # --- 1. Load and Fix Matrices ---
     base_to_task = travel_mats["base_to_task"].copy()
     task_to_task = travel_mats["task_to_task"].copy()
@@ -6358,11 +6357,8 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
 
 
 def main() -> None:
-    """Direct users to the manuscript configuration entry point."""
-    raise SystemExit(
-        "C257H_Project_Main.py is the shared implementation; "
-        "run C257H_Project_Main_expanded.py for the manuscript workflow."
-    )
+    """Run the manuscript analysis with the repository's official configuration."""
+    run_pipeline(Config())
 
 
 if __name__ == "__main__":
