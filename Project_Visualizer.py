@@ -1,22 +1,26 @@
+import builtins
+import glob
+import math
 import os
 import re
-import builtins
+import sys
+import textwrap
+
 import geopandas as gpd
 import matplotlib.colors as mcolors
+import matplotlib.lines as mlines
+import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import sys
-import textwrap
 from matplotlib.lines import Line2D
 from matplotlib.ticker import MaxNLocator
 from matplotlib.transforms import Bbox
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 - registers 3D projection
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from pathlib import Path
-import math
 from strategy_names import (
     CANONICAL_STRATEGY_DISPLAY_ORDER,
     CANONICAL_STRATEGY_LABELS,
@@ -2901,8 +2905,6 @@ def vis_stage4():
 # ==============================================================================
 # 5️⃣ Stage 5: GA Optimization Visualization
 # ==============================================================================
-import glob  # Add this at the top of your file
-
 def vis_stage5():
     """
     Visualize Stage 5 GA results:
@@ -2978,9 +2980,6 @@ def vis_stage5():
 # ==============================================================================
 # 6️⃣ Stage 6: Equity Analysis (KPI Comparison)
 # ==============================================================================
-
-import matplotlib.patches as mpatches
-import matplotlib.lines as mlines
 
 STAGE6_SHARED_LINE_STYLES = {
     "S3_Mean": {"color": "black", "ls": "--", "lw_recovery": 1.45, "lw_topology": 1.32, "alpha_recovery": 0.98, "alpha_topology": 0.92, "zorder": 11},

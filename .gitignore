@@ -11,6 +11,20 @@ __pycache__/
 # Logs and transient run metadata
 *.log
 
+# Local manuscript copies and downloaded reference PDFs
+/LA Grid Paper*.pdf
+/literaturefolder/
+/Manuscript_Figures/composite_ready_panels/
+/Manuscript_Figures/composite_source_archive_*/
+
+# One-off mechanism experiments (not part of the manuscript workflow)
+/Mechanism_Check_Output/
+/run_hospital_weight_mechanism_check.py
+Stage 5 Output*/hospital_score_*.csv
+Stage 5 Output*/hospital_weight_*.csv
+Stage 5 Output*/hospitalfirst_*mechanism*.csv
+Stage 5 Output*/hospitalfirst_early_priority_capture_*.csv
+
 # Non-core diagnostics and sensitivity runs
 Sensitivity Output*/
 *audit*.csv
@@ -27,6 +41,11 @@ Stage 2 Output*/current_*.csv
 Stage 2 Output*/degree_*blocker*.csv
 Stage 2 Output*/direct_link_*probe*.csv
 Stage 2 Output*/endpoint_merge*.csv
+Stage 2 Output*/graph_degree_distribution.csv
+Stage 2 Output*/graph_edge_length_distribution.csv
+Stage 2 Output*/graph_hub_sanity_rank.csv
+Stage 2 Output*/graph_node_degree_rank.csv
+Stage 2 Output*/graph_top_links_sanity.csv
 Stage 2 Output*/line_split_*probe*.csv
 Stage 2 Output*/low_voltage_high_degree_stations.csv
 Stage 2 Output*/path_proximity_*probe*.csv

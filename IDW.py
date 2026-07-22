@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from pyproj import Transformer
 from pathlib import Path
+from scipy.spatial import cKDTree
 
 # GIS: lon/lat (EPSG:4326) -> meters (EPSG:3310, CA Albers)
 TARGET_CRS = "EPSG:3310"
@@ -143,8 +144,6 @@ def covjson_values_are_ln_g(cov: dict, param_key: str) -> bool:
     return False
 
 # ================= IDW core =================
-from scipy.spatial import cKDTree  # Make sure to import this at the top
-
 def idw_core(
     lon_pts: np.ndarray,
     lat_pts: np.ndarray,
