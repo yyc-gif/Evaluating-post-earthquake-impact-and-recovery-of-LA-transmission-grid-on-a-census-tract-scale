@@ -2606,7 +2606,7 @@ def main(paths: Optional[Paths] = None):
             connectivity_diag["unsnapped_count"],
         )
 
-        # 3) Extract â€œdirect adjacencyâ€ links between substations
+        # 3) Extract direct adjacency links between substations.
         direct_links = compute_direct_links(
             dist_ss,
             sub_node_map,
@@ -2668,7 +2668,7 @@ def main(paths: Optional[Paths] = None):
         # 6b) Apply per-row minimum effective weight threshold + renormalize
         W = apply_min_weight_threshold(W_raw, min_weight=cfg.MIN_EFFECTIVE_WEIGHT)
 
-        # 7) Export mapping (keeping â€œeach sub appears at least onceâ€ logic)
+        # 7) Export mapping while ensuring each substation appears at least once.
         export_mapping_from_W(
             W,
             tracts,
@@ -2685,6 +2685,9 @@ def main(paths: Optional[Paths] = None):
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(
+        "Topology_and_Weight.py is the shared implementation; "
+        "run Topology_and_Weight_expanded.py for the manuscript workflow."
+    )
 
 

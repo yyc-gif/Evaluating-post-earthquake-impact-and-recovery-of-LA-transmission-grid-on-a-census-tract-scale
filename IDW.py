@@ -458,4 +458,7 @@ def main(cfg: IDWConfig | None = None) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(
+        "IDW.py is the shared implementation; "
+        "run IDW_expanded.py for the manuscript workflow."
+    )

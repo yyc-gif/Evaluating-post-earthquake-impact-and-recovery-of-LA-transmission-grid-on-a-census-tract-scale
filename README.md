@@ -2,7 +2,7 @@
 
 **Authors:** Yinchen Yi and Yutong Li
 
-This repository contains the scripts, required data, and generated results for a
+This repository contains the scripts, required data, and retained results for a
 census-tract-scale study of post-earthquake electric-power service disruption
 and restoration in the Los Angeles study area. The model combines a reduced
 transmission/substation topology, scenario-based substation damage, tract-to-
@@ -32,13 +32,28 @@ For geospatial packages, a Conda environment may be easier on Windows. The
 versions in `requirements.txt` record the environment used for the manuscript
 results.
 
-## Official Workflow
+## Quick Start
 
-The five `*_expanded.py` files are the manuscript entry points. The files
-without `_expanded` are their shared implementations and must remain beside
-them; they are not duplicate obsolete workflows.
+The complete manuscript workflow has one public entry point:
 
-Run the pipeline from the repository root in this order:
+```bash
+python run_pipeline.py
+```
+
+The workflow is computationally intensive. To resume at a later step, use:
+
+```bash
+python run_pipeline.py --from-step analysis
+python run_pipeline.py --from-step figures --through-step composites
+```
+
+The ordered steps are `topology`, `pga`, `travel`, `analysis`, `figures`, and
+`composites`. The integrated analysis step includes the sensitivity runs.
+
+## Workflow Files
+
+The five `*_expanded.py` files contain the manuscript configuration and remain
+available for stage-by-stage execution:
 
 ```bash
 python Topology_and_Weight_expanded.py
@@ -48,6 +63,9 @@ python C257H_Project_Main_expanded.py
 python Project_Visualizer_expanded.py
 ```
 
+Files without `_expanded` are shared implementations used by these entry
+points; they are not a second workflow.
+
 The stages perform the following tasks:
 
 1. Build and validate the reduced substation topology and tract dependency map.
@@ -55,7 +73,7 @@ The stages perform the following tasks:
 3. Build crew-base-to-task and task-to-task road travel-time matrices.
 4. Run damage, source-gated recovery, restoration scheduling, sensitivity, and
    tract clustering analyses.
-5. Regenerate stage-level visualizations.
+5. Regenerate stage-level visualizations and final manuscript composites.
 
 Final manuscript composites are regenerated separately with:
 
@@ -63,8 +81,9 @@ Final manuscript composites are regenerated separately with:
 python make_manuscript_composites.py
 ```
 
-## Repository Contents
+## Repository Layout
 
+- `run_pipeline.py`: single entry point for the complete workflow.
 - `Topology_and_Weight.py`, `topology_outputs.py`, and
   `topology_visualization.py`: topology construction, export, and validation.
 - `IDW.py`: PGA interpolation.
@@ -75,17 +94,19 @@ python make_manuscript_composites.py
 - `*_expanded.py`: manuscript configuration wrappers and official entry points.
 - `strategy_names.py`: canonical strategy IDs and display labels.
 - `build_sensitivity_outputs.py`: Figure 7 and sensitivity-table outputs.
-- `make_methodology_workflow_figure.py` and
-  `make_manuscript_composites.py`: final manuscript figure assembly.
+- `make_manuscript_composites.py`: final manuscript figure assembly.
 - `Data/`: required inputs and processed topology/mapping files.
 - `Stage 1 Output_expanded/` through `Stage 7 Output_expanded/`: retained
-  numerical and graphical results from the manuscript workflow.
-- `Sensitivity Output_clean/`: retained sensitivity figures and tables.
-- `Manuscript_Figures/`: final composite manuscript figures.
+  numerical results used to check the manuscript findings.
+- `Sensitivity Output_clean/Tables/`: retained sensitivity summaries.
+- `Manuscript_Figures/`: source-quality final manuscript figures.
+- `Submission_Package/`: the manuscript, Figures 1-7, and supplementary PDF
+  prepared for journal submission.
 
-Generated caches, logs, one-off mechanism experiments, audit/debug files,
-downloaded literature PDFs, and intermediate composite panels are intentionally
-excluded from version control.
+Stage-level plots, Gantt images, row-level Monte Carlo records, graph-robustness
+intermediates, caches, logs, one-off mechanism experiments, and audit/debug
+files are reproducible and intentionally excluded from version control. The
+final paper figures remain available in `Submission_Package/`.
 
 ## Main Data Sources
 

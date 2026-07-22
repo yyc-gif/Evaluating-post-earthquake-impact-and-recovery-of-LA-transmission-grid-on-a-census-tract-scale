@@ -6247,11 +6247,11 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
 
     Stages:
       0) Data loading & W-matrix construction
-      2) Monte Carlo fragility sampling
+      1) Monte Carlo fragility sampling
       2.5) Static criticality & topology analysis
       3) Dynamic step-recovery simulation
       4B) Rule-based scheduling baselines
-      5) GA scheduling (disabled)
+      5) GA scheduling
       6) Consolidation & KPI plotting
       7) Tract typology clustering (K-Means + PCA diagnostics)
       S) Live 2pc50 sensitivity experiments and publication outputs
@@ -6358,8 +6358,11 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
 
 
 def main() -> None:
-    """Run the integrated earthquake-impact pipeline with the default config."""
-    run_pipeline(Config())
+    """Direct users to the manuscript configuration entry point."""
+    raise SystemExit(
+        "C257H_Project_Main.py is the shared implementation; "
+        "run C257H_Project_Main_expanded.py for the manuscript workflow."
+    )
 
 
 if __name__ == "__main__":

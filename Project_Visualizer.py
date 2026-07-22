@@ -5967,25 +5967,7 @@ def vis_stage7(gdf):
 # ▶️ Main
 # ==============================================================================
 if __name__ == "__main__":
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    if hasattr(sys.stderr, "reconfigure"):
-        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
-    print("=========================================")
-    print("   ENHANCED VISUALIZATION GENERATOR      ")
-    print("=========================================")
-    
-    # Load GIS Data
-    print("Loading shapefile for mapping...")
-    gdf_la = load_shapefile()
-    
-    vis_stage1(gdf_la)
-    vis_stage2()
-    vis_stage3(gdf_la)
-    vis_stage4()
-    vis_stage5()
-    vis_stage6()
-    vis_stage7_cluster_top10_impact_degree_km(gdf_la, cluster_id=1, top_n=10, impact_mode="lambda2")
-    vis_stage7(gdf_la)
-        
-    print("\n✅ All Enhanced Visualizations Completed!")
+    raise SystemExit(
+        "Project_Visualizer.py is the shared implementation; "
+        "run Project_Visualizer_expanded.py for the manuscript workflow."
+    )

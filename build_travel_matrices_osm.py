@@ -626,4 +626,7 @@ def main(cfg: Optional[TravelMatrixConfig] = None):
         raise e
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(
+        "build_travel_matrices_osm.py is the shared implementation; "
+        "run build_travel_matrices_osm_expanded.py for the manuscript workflow."
+    )

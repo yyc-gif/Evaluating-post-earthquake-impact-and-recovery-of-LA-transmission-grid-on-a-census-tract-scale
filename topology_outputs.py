@@ -29,7 +29,7 @@ def build_W_matrix(
             d_total = access_dist + network_shortest_path(access_sub, target_sub)
         (If target == access_sub, enforce a finite distance at least equal to access_dist.)
       - Apply inverse-distance weighting on all finite d_total:
-            w_j âˆ 1 / d_total^IDW_POWER
+            w_j is proportional to 1 / d_total^IDW_POWER
       - Normalize each row to sum to 1.
       - If no substations are reachable (all inf), fall back to the nearest Euclidean substation with weight 1.
     """
@@ -84,7 +84,7 @@ def build_W_matrix(
             w_row = np.zeros(n_sub)
             w_row[nearest_idx] = 1.0
         else:
-            # 3) IDW on all finite distances: w âˆ 1 / d^p
+            # 3) IDW on all finite distances: w is proportional to 1 / d^p.
             d_subset = d_total_km[valid_idx]
 
             # Avoid 0 distance => infinite weight

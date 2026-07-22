@@ -10,6 +10,7 @@ __pycache__/
 
 # Logs and transient run metadata
 *.log
+/tmp/
 
 # Local manuscript copies and downloaded reference PDFs
 /LA Grid Paper*.pdf
@@ -34,6 +35,12 @@ Sensitivity Output*/
 !Data/sensitivity_mapping_diagnostics.csv
 !Sensitivity Output_clean/
 !Sensitivity Output_clean/**
+/Sensitivity Output_clean/Main/*.pdf
+/Sensitivity Output_clean/Main/*.png
+/Sensitivity Output_clean/Supplementary/*.pdf
+/Sensitivity Output_clean/Supplementary/*.png
+/Sensitivity Output_clean/Tables/*.md
+/Sensitivity Output_clean/Tables/*.tex
 Data/substations_suppressed_by_threshold*.csv
 Stage 2 Output*/_visualizer_*_boundary.geojson
 Stage 2 Output*/bullis_neighbors*.csv
@@ -54,6 +61,14 @@ Stage 2 Output*/split_*diagnostics.csv
 Stage 2 Output*/substation_line_split_*probe*.csv
 Stage 2 Output*/suspicious_*.csv
 Stage 2 Output*/zoom_suspicious_*.png
+
+# Reproducible stage visualizations and large intermediate records
+/Stage * Output_expanded/vis_*.pdf
+/Stage * Output_expanded/vis_*.png
+/Stage 1 Output_expanded/MC_Device_Damage_Records_*.csv.gz
+/Stage 3 Output_expanded/tract_step_recovery_mean_*.csv.gz
+/Stage 4 Output_expanded/rule_graphrobustness_*.csv
+/Stage 5 Output_expanded/ga_graphrobustness_*.csv
 
 # OS/editor noise
 .DS_Store
