@@ -1,8 +1,10 @@
-"""Assemble manuscript composites from complete generated source figures.
+"""Stage final figures and assemble composites when source panels are present.
 
 The source figures are never redrawn or overwritten. This script only trims
 exterior white margin, preserves each panel's aspect ratio, applies controlled
-physical scaling, and adds consistently sized panel letters.
+physical scaling, and adds consistently sized panel letters. If generated
+source panels are unavailable, the retained final figure is copied to the
+build directory instead.
 """
 
 from __future__ import annotations
@@ -641,32 +643,39 @@ def make_topology_composite() -> None:
         save_reproduction_figure(fig, 2)
 
 
-def stage_unchanged_numbered_figures() -> None:
-    """Copy existing non-composite figure sources into the build directory."""
-    source_to_destination = {
-        ROOT / "Submission_Package" / "Figure_1.pdf": BUILD_DIR / "Figure_1.pdf",
-        ROOT / "Stage 4 Output_expanded" / "vis_stage4_crew_bases_map.png": BUILD_DIR / "Figure_4.png",
-        ROOT
-        / "Sensitivity Output_clean"
-        / "Main"
-        / "Fig_Sensitivity_T80_Response_2pc50.png": BUILD_DIR / "Figure_7.png",
-    }
+def stage_retained_figure(figure_number: int) -> None:
+    """Copy one retained final figure into the build directory."""
+    suffix = ".pdf" if figure_number == 1 else ".png"
+    source = ROOT / "Submission_Package" / f"Figure_{figure_number}{suffix}"
+    destination = BUILD_DIR / source.name
     BUILD_DIR.mkdir(parents=True, exist_ok=True)
-    for source, destination in source_to_destination.items():
-        if not source.exists():
-            raise FileNotFoundError(
-                f"Required source for {destination.name} is missing: {source}"
-            )
-        shutil.copy2(source, destination)
-        print(f"Staged {destination.relative_to(ROOT)} from {source.relative_to(ROOT)}")
+    if not source.exists():
+        raise FileNotFoundError(f"Retained Figure {figure_number} is missing: {source}")
+    shutil.copy2(source, destination)
+    print(f"Staged {destination.relative_to(ROOT)} from {source.relative_to(ROOT)}")
+
+
+def stage_unchanged_numbered_figures() -> None:
+    """Copy retained figures that are not assembled by this script."""
+    for figure_number in (1, 4, 7):
+        stage_retained_figure(figure_number)
+
+
+def assemble_or_stage(figure_number: int, builder) -> None:
+    """Assemble a figure or stage its retained version when panels are absent."""
+    try:
+        builder()
+    except FileNotFoundError as exc:
+        print(f"Figure {figure_number} source panel unavailable: {exc}")
+        stage_retained_figure(figure_number)
 
 
 def main() -> None:
     stage_unchanged_numbered_figures()
-    make_topology_composite()
-    make_t80_composite()
-    make_recovery_composite()
-    make_typology_composite()
+    assemble_or_stage(2, make_topology_composite)
+    assemble_or_stage(3, make_t80_composite)
+    assemble_or_stage(5, make_recovery_composite)
+    assemble_or_stage(6, make_typology_composite)
 
 
 if __name__ == "__main__":

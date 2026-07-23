@@ -13,12 +13,11 @@ __pycache__/
 /tmp/
 /build/
 
-# Local manuscript copies and downloaded reference PDFs
+# Local manuscript copies, supplementary material, and downloaded reference PDFs
 /LA Grid Paper*.pdf
 /literaturefolder/
-# The frozen manuscript remains tracked pending explicit maintainer approval.
-# This rule prevents accidental re-addition after a future untracking commit.
 /Submission_Package/Manuscript_IJDRR.docx
+/Submission_Package/Supplementary_Material.pdf
 
 # One-off mechanism experiments (not part of the manuscript workflow)
 /Mechanism_Check_Output/
