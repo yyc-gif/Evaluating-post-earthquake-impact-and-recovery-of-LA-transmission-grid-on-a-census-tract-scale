@@ -3,6 +3,10 @@
 Large files in this directory are managed with Git LFS. Run `git lfs pull`
 after cloning the repository.
 
+See `docs/DATA_SOURCES.md` for provider URLs, terms, and redistribution notes.
+Third-party files and derivatives are not automatically covered by the
+repository's MIT License.
+
 ## Source Inputs
 
 - `LA_Tracts_With_Population.*`: census-tract geometry and population data.
@@ -41,5 +45,6 @@ after cloning the repository.
   `sensitivity_mapping_diagnostics.csv`: sensitivity-analysis source tables.
 
 The repository intentionally excludes unused alternate hazard layers, old
-city-only outputs, audit packages, and files that can be regenerated directly
-from the official workflow.
+city-only outputs, and most files that can be regenerated directly from the
+official workflow. A small number of retained topology and sensitivity audit
+tables provide provenance for manuscript validation but are not runtime inputs.
