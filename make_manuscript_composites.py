@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import shutil
 
 import matplotlib as mpl
 
@@ -640,7 +641,28 @@ def make_topology_composite() -> None:
         save_reproduction_figure(fig, 2)
 
 
+def stage_unchanged_numbered_figures() -> None:
+    """Copy existing non-composite figure sources into the build directory."""
+    source_to_destination = {
+        ROOT / "Submission_Package" / "Figure_1.pdf": BUILD_DIR / "Figure_1.pdf",
+        ROOT / "Stage 4 Output_expanded" / "vis_stage4_crew_bases_map.png": BUILD_DIR / "Figure_4.png",
+        ROOT
+        / "Sensitivity Output_clean"
+        / "Main"
+        / "Fig_Sensitivity_T80_Response_2pc50.png": BUILD_DIR / "Figure_7.png",
+    }
+    BUILD_DIR.mkdir(parents=True, exist_ok=True)
+    for source, destination in source_to_destination.items():
+        if not source.exists():
+            raise FileNotFoundError(
+                f"Required source for {destination.name} is missing: {source}"
+            )
+        shutil.copy2(source, destination)
+        print(f"Staged {destination.relative_to(ROOT)} from {source.relative_to(ROOT)}")
+
+
 def main() -> None:
+    stage_unchanged_numbered_figures()
     make_topology_composite()
     make_t80_composite()
     make_recovery_composite()

@@ -1,136 +1,150 @@
-# Evaluating Post-Earthquake Impact and Recovery of the LA Transmission Grid
+# From Substation Damage to Community Recovery: Tract-Level Assessment of Post-Earthquake Power-Service Restoration in Los Angeles
 
-**Authors:** Yinchen Yi and Yutong Li
+This repository is the paper companion for a census-tract-scale study of
+post-earthquake electric-power service disruption and restoration in the Los
+Angeles study area. It contains the analysis scripts, documented inputs,
+retained numerical results, and frozen paper assets used for the manuscript.
 
-This repository contains the scripts, required data, and retained results for a
-census-tract-scale study of post-earthquake electric-power service disruption
-and restoration in the Los Angeles study area. The model combines a reduced
-transmission/substation topology, scenario-based substation damage, tract-to-
-substation dependency weights, active-source connectivity, road-network travel
-times, and rule-based or genetic-algorithm restoration schedules.
+## Associated Publication
 
-> **Model scope:** Network robustness and service propagation are represented
-> with graph-connectivity proxies. The workflow is not an AC/DC power-flow,
-> voltage-stability, or generation-dispatch model.
+**Title:** *From Substation Damage to Community Recovery: Tract-Level
+Assessment of Post-Earthquake Power-Service Restoration in Los Angeles*
 
-Large data and result files are stored with Git LFS. After cloning, retrieve
-them before running the workflow:
+**Authors:** Yinchen Yi, Yutong Li, and Marta C. González
+
+The associated article has not yet received final journal bibliographic
+metadata or a DOI. When citing this repository, please cite both the archived
+software release and the associated article once its publication details are
+available.
+
+## Repository Maintainers
+
+Repository maintainers: Yinchen Yi and Yutong Li
+
+The publication author list and the repository maintainer list describe
+different roles and should not be treated as interchangeable.
+
+## Model Scope
+
+The workflow combines a reduced transmission/substation topology,
+scenario-based substation damage, tract-to-substation dependency weights,
+active-source connectivity, road-network travel times, and rule-based or
+genetic-algorithm restoration schedules.
+
+The following scope limitations are central to interpreting the results:
+
+- This is a graph-connectivity and service-propagation framework.
+- It is not an AC/DC power-flow, voltage-stability, or generation-dispatch
+  model.
+- Tract service availability is a modeled proxy derived from tract-substation
+  dependency weights and source-gated substation functionality.
+- The travel network represents static pre-event road conditions and does not
+  model earthquake-induced road disruption or time-varying congestion.
+- Results depend on the fragility, source-gate, repair-duration, tract-mapping,
+  crew, and scheduling assumptions documented in the manuscript.
+- Recovery curves represent modeled power-service restoration rather than only
+  physical repair completion.
+
+## Repository Contents
+
+- `run_pipeline.py`: stable entry point for the ordered manuscript workflow.
+- `Topology_and_Weight.py`, `topology_outputs.py`, and
+  `topology_visualization.py`: topology construction, export, and validation.
+- `IDW.py`: scenario PGA interpolation to substations.
+- `build_travel_matrices_osm.py`: road-network travel-time matrices.
+- `C257H_Project_Main.py`: damage, service, recovery, scheduling, GA,
+  sensitivity, metrics, and clustering analyses.
+- `Project_Visualizer.py`: stage-level maps and plots.
+- `make_manuscript_composites.py`: assembles or stages Figures 1-7 in
+  `build/figures/` without writing to the frozen submission directory.
+- `build_sensitivity_outputs.py`: sensitivity plots and tables used by the
+  analysis stage.
+- `Data/`: source-like study inputs and derived workflow inputs.
+- `Stage 1 Output_expanded/` through `Stage 7 Output_expanded/`: retained
+  numerical outputs supporting the manuscript findings.
+- `Sensitivity Output_clean/Tables/`: retained sensitivity summaries.
+- `Submission_Package/`: frozen manuscript-submission snapshot containing
+  Figures 1-7, the supplementary PDF, and the currently retained editable
+  manuscript file. Automated scripts do not overwrite this directory.
+- `docs/DATA_SOURCES.md`: data provenance, terms, and redistribution notes.
+- `REPRODUCIBILITY.md`: detailed reproduction procedure and expected outputs.
+- `RELEASE_CHECKLIST.md`: steps for freezing and archiving a citable release.
+
+Stage-level plots, row-level Monte Carlo records, caches, logs, one-off
+mechanism experiments, and audit/debug outputs are excluded where they can be
+regenerated. The 2pc50 graph-robustness trajectories are retained because they
+are direct numerical inputs to Figure 5.
+
+## Installation
+
+The recorded environment uses Python 3.12. Large inputs and results are stored
+with Git LFS.
 
 ```bash
+git clone https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale.git
+cd Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale
+git lfs install
 git lfs pull
-```
-
-## Environment
-
-The project was run with Python 3.12. Install the recorded dependencies with:
-
-```bash
+python -m venv .venv
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-For geospatial packages, a Conda environment may be easier on Windows. The
-versions in `requirements.txt` record the environment used for the manuscript
-results.
+Geospatial packages may be easier to install in a Conda environment on
+Windows. The pinned versions in `requirements.txt` record the manuscript
+environment.
 
 ## Quick Start
 
-The complete manuscript workflow has one public entry point:
+Inspect the available workflow bounds:
+
+```bash
+python run_pipeline.py --help
+```
+
+Run the complete workflow:
 
 ```bash
 python run_pipeline.py
 ```
 
-The workflow is computationally intensive. To resume at a later step, use:
+The complete workflow is computationally intensive. Runtime depends strongly
+on hardware and has not been re-timed for this publication-repository cleanup.
+
+## Reproducing Manuscript Results
+
+The six ordered workflow steps are:
+
+1. `topology`
+2. `pga`
+3. `travel`
+4. `analysis`
+5. `figures`
+6. `composites`
+
+Run a contiguous portion of the workflow with, for example:
 
 ```bash
 python run_pipeline.py --from-step analysis
-python run_pipeline.py --from-step figures --through-step composites
+python run_pipeline.py --from-step analysis --through-step composites
 ```
 
-The ordered steps are `topology`, `pga`, `travel`, `analysis`, `figures`, and
-`composites`. The integrated analysis step includes the sensitivity runs.
+The final command stages reproduction versions of Figures 1-7 in the ignored
+`build/figures/` directory. It does not overwrite the frozen files in
+`Submission_Package/`. Detailed output mappings, reproducibility caveats, and
+comparison instructions are provided in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+Starting directly at `figures` or `composites` assumes that required analysis
+and sensitivity source outputs already exist from an earlier run.
 
-## Workflow Files
+## Data Sources and Licensing
 
-The repository contains one manuscript workflow. Its stages can also be run
-individually:
+Major inputs include OpenStreetMap, California Energy Commission, California
+Geological Survey, USGS, FEMA, U.S. Census Bureau, CDC/ATSDR, HIFLD, and City
+of Los Angeles products. A repository copy or derivative does not change the
+original provider's ownership, license, attribution, or redistribution terms.
 
-```bash
-python Topology_and_Weight.py
-python IDW.py
-python build_travel_matrices_osm.py
-python C257H_Project_Main.py
-python Project_Visualizer.py
-```
-
-The stages perform the following tasks:
-
-1. Build and validate the reduced substation topology and tract dependency map.
-2. Interpolate scenario PGA fields to substations.
-3. Build crew-base-to-task and task-to-task road travel-time matrices.
-4. Run damage, source-gated recovery, restoration scheduling, sensitivity, and
-   tract clustering analyses.
-5. Regenerate stage-level visualizations and final manuscript composites.
-
-Numbered reproduction figures are generated in the ignored `build/figures/`
-directory with:
-
-```bash
-python make_manuscript_composites.py
-```
-
-## Repository Layout
-
-- `run_pipeline.py`: single entry point for the complete workflow.
-- `Topology_and_Weight.py`, `topology_outputs.py`, and
-  `topology_visualization.py`: topology construction, export, and validation.
-- `IDW.py`: PGA interpolation.
-- `build_travel_matrices_osm.py`: OSM travel-time matrix construction.
-- `C257H_Project_Main.py`: damage, service, recovery, scheduling, GA, metrics,
-  sensitivity, and clustering calculations.
-- `Project_Visualizer.py`: stage-level maps and plots.
-- `strategy_names.py`: canonical strategy IDs and display labels.
-- `build_sensitivity_outputs.py`: Figure 7 and sensitivity-table outputs.
-- `make_manuscript_composites.py`: assembles numbered reproduction figures in
-  `build/figures/` without overwriting the frozen submission files.
-- `Data/`: required inputs and processed topology/mapping files.
-- `Stage 1 Output_expanded/` through `Stage 7 Output_expanded/`: retained
-  numerical results used to check the manuscript findings.
-- `Sensitivity Output_clean/Tables/`: retained sensitivity summaries.
-- `Submission_Package/`: the single authoritative, frozen location for the
-  manuscript, Figures 1-7, and the supplementary PDF prepared for submission.
-
-Stage-level plots, Gantt images, row-level Monte Carlo records, caches, logs,
-one-off mechanism experiments, and audit/debug files are reproducible and
-intentionally excluded from version control. The 2pc50 graph-robustness
-trajectories are retained because they are direct numerical inputs to Figure 5;
-other graph-robustness intermediates remain excluded. The final paper figures
-are available in `Submission_Package/`.
-
-## Main Data Sources
-
-- [OpenStreetMap road network](https://www.openstreetmap.org/)
-- [California Energy Commission transmission lines](https://gis.data.ca.gov/datasets/CAEnergy::california-electric-transmission-lines-1/about)
-- [California Energy Commission substations](https://hub.arcgis.com/datasets/c2d4e65fe7b84c67a94e98ff9555c3ac_0)
-- [California Geological Survey Map Sheet 48](https://www.conservation.ca.gov/cgs/publications/ms48)
-- [USGS ShakeMap](https://earthquake.usgs.gov/data/shakemap/)
-- [FEMA National Risk Index](https://www.fema.gov/flood-maps/products-tools/national-risk-index)
-- [US Census TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-- [US Census ACS](https://api.census.gov/data.html)
-- [CDC/ATSDR Social Vulnerability Index](https://www.atsdr.cdc.gov/place-health/php/svi/index.html)
-- [HIFLD electric substations](https://catalog.data.gov/dataset/electric-substations)
-- [City of Los Angeles GeoHub](https://geohub.lacity.org/)
-
-## Important Limitations
-
-- Tract service availability depends on the tract-substation weighting model
-  and its distance-decay and threshold assumptions.
-- Recovery curves represent modeled service restoration, not only physical
-  repair completion.
-- Travel times use a static pre-event road network and simplified crew/task
-  abstractions.
-- Results depend on fragility, restoration-time, active-source, and repair-task
-  assumptions documented in the associated manuscript.
+See [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) and
+[Data/README.md](Data/README.md) before reusing or redistributing any data.
 
 ## Selected Methodological References
 
@@ -149,3 +163,26 @@ are available in `Submission_Package/`.
   (2013). Integrating restoration and scheduling decisions for disrupted
   interdependent infrastructure systems. *Annals of Operations Research*,
   203(1), 279-294. <https://doi.org/10.1007/s10479-011-0959-3>
+
+## Citation
+
+Citation metadata are provided in [CITATION.cff](CITATION.cff). The file lists
+the repository software contributors separately from the three authors of the
+preferred article citation. Journal, DOI, volume, issue, and page metadata will
+be added only after they are formally assigned.
+
+## License
+
+Original code in this repository is released under the
+[MIT License](LICENSE).
+
+The MIT License applies only to original repository code. It does not
+automatically cover third-party government, OpenStreetMap, Census, USGS, FEMA,
+CEC, CDC/ATSDR, HIFLD, or City of Los Angeles data. Those materials remain
+subject to their original providers' licenses, attribution requirements, and
+terms of use.
+
+## Contact
+
+For reproducibility questions or repository issues, please open an issue in
+the [GitHub repository](https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/issues).

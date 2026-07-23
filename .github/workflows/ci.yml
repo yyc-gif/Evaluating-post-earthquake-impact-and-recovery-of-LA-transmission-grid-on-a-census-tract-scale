@@ -1,0 +1,40 @@
+name: Publication repository checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lightweight-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile Python sources
+        run: >-
+          python -m compileall -q
+          run_pipeline.py
+          Topology_and_Weight.py
+          topology_outputs.py
+          topology_visualization.py
+          IDW.py
+          build_travel_matrices_osm.py
+          C257H_Project_Main.py
+          build_sensitivity_outputs.py
+          strategy_names.py
+          Project_Visualizer.py
+          make_manuscript_composites.py
+
+      - name: Check workflow command-line interface
+        run: python run_pipeline.py --help
