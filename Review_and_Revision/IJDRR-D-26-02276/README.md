@@ -8,9 +8,13 @@ Formal IJDRR outcome: **Reject with transfer offer**, not major revision.
 
 ## Start here
 
-Read [BLOCKER_RESOLUTION.md](03_Blocker_Resolution_20260913/BLOCKER_RESOLUTION.md) first. The latest fixed-sample checks retain Hospital-first's population-service advantage, with no identifiable systematic makespan difference. Two alternative mappings retain the aggregate advantage but change some tract-level winners and losers.
+Read [PROVENANCE_DECISION.md](04_Provenance_Decision_20260913/PROVENANCE_DECISION.md) first. The targeted historical search is complete: the hour-scale parameters have no recovered empirical basis, and the historical 486-to-92 selection rule was not recovered. The replacement selection rule produces **310 facilities, with 83 retained from the old 92, 227 additions, and nine exclusions**. Its list is compared in `STATION_SELECTION_COMPARISON.csv`.
 
-**Current decision: STOP expansion; do not run revised 29 crews yet.** The hour-scale repair parameters and the reasons for selecting 92 facilities from the recovered 486-candidate inventory remain unresolved. Positive-conditioned and clipped-normal implementations are compared as candidates, not promoted as empirically validated corrections.
+**Latest decision: keep recovery-simulation STOP.** Work durations may be used only as explicit, uncalibrated action-duration scenarios; the station change requires rebuilding topology, dependency, and downstream inputs/results. The next recommended computation is a topology/dependency dry build, with no recovery sampling or optimization. This round performed only source checks and list comparison.
+
+The previous [BLOCKER_RESOLUTION.md](03_Blocker_Resolution_20260913/BLOCKER_RESOLUTION.md) contains the frozen fixed-sample checks: Hospital-first retains a population-service advantage under that model, with no identifiable systematic makespan difference. Its two alternative mappings retain the aggregate advantage but change some tract-level winners and losers. Those results do not automatically transfer to a 310-facility model.
+
+**Previous blocker-stage decision: STOP expansion.** Positive-conditioned and clipped-normal implementations were compared as candidates, not promoted as empirically validated corrections. The latest provenance report resolves how to proceed without claiming those missing empirical/selection records were recovered.
 
 The frozen previous-round [CORE_REVISION_FINDINGS.md](02_Paired_Pilot_20260912/CORE_REVISION_FINDINGS.md) records:
 
@@ -24,7 +28,12 @@ That previous pilot triggered the predeclared stop condition. The new blocker ro
 
 ## Directory contents
 
-### 03_Blocker_Resolution_20260913 — latest
+### 04_Provenance_Decision_20260913 — latest
+
+- `PROVENANCE_DECISION.md`: first parameter appearances, action-scope/travel evidence, QGIS/Git selection gaps, replacement R1 rule, decisions, and minimum next-computation gates. Includes executable list-verification code.
+- `STATION_SELECTION_COMPARISON.csv`: 487 comparison-relevant records with raw fields and explicit eligibility, old/new membership, city-filter exception, source, and key-station flags. No model output is included.
+
+### 03_Blocker_Resolution_20260913
 
 - `BLOCKER_RESOLUTION.md`: repair-time source evidence, explicit MODEL_EVENT_DEFINITION, network selection provenance, before/after findings, manuscript revision notes, and Go/Stop decision.
 - `CORRECTED_PAIRED_RESULTS.csv`: 256 rows, two distribution candidates × 32 realizations × four strategies; explicit candidate status and duration coupling.
