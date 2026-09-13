@@ -8,17 +8,30 @@ Formal IJDRR outcome: **Reject with transfer offer**, not major revision.
 
 ## Start here
 
-Read [CORE_REVISION_FINDINGS.md](02_Paired_Pilot_20260912/CORE_REVISION_FINDINGS.md) first. It records:
+Read [BLOCKER_RESOLUTION.md](03_Blocker_Resolution_20260913/BLOCKER_RESOLUTION.md) first. The latest fixed-sample checks retain Hospital-first's population-service advantage, with no identifiable systematic makespan difference. Two alternative mappings retain the aggregate advantage but change some tract-level winners and losers.
 
-- the corrected repair-duration, completion-event, and information-set definitions;
+**Current decision: STOP expansion; do not run revised 29 crews yet.** The hour-scale repair parameters and the reasons for selecting 92 facilities from the recovered 486-candidate inventory remain unresolved. Positive-conditioned and clipped-normal implementations are compared as candidates, not promoted as empirically validated corrections.
+
+The frozen previous-round [CORE_REVISION_FINDINGS.md](02_Paired_Pilot_20260912/CORE_REVISION_FINDINGS.md) records:
+
+- the candidate repair-duration, completion-event, and information-set definitions;
 - the 32-realization paired pilot design and limitations;
 - the main numerical findings and stopping decision;
 - tract distributional effects, GA checks, resource-regime bounds, and mapping priorities;
 - what must be resolved before expanding the Monte Carlo study.
 
-The decisive current finding is that Hospital-first retains a population-service advantage over GA-Efficiency, but the old average GA-Efficiency makespan advantage does **not** persist in the corrected pilot. This triggered the predeclared stop condition, so no larger Monte Carlo, additional crew scenarios, mapping variants, or new GA runs were launched.
+That previous pilot triggered the predeclared stop condition. The new blocker round uses the same 32 realization IDs and four fixed strategies; its mapping checks only postprocess saved station trajectories. No additional crew scenarios, Monte Carlo expansion, or new GA runs have been launched.
 
 ## Directory contents
+
+### 03_Blocker_Resolution_20260913 — latest
+
+- `BLOCKER_RESOLUTION.md`: repair-time source evidence, explicit MODEL_EVENT_DEFINITION, network selection provenance, before/after findings, manuscript revision notes, and Go/Stop decision.
+- `CORRECTED_PAIRED_RESULTS.csv`: 256 rows, two distribution candidates × 32 realizations × four strategies; explicit candidate status and duration coupling.
+- `BEFORE_AFTER_COMPARISON.csv`: paired strategy differences and community count changes; aggregate mean-tract classification rows are clearly labeled.
+- `MAPPING_SENSITIVITY_SUMMARY.csv`: two alternative mappings evaluated on frozen station trajectories.
+- `BLOCKER_PAIRED_EVENT_DATA.npz`: paired event/tract arrays, mapping matrices, and compact analysis metadata.
+- `blocker_fixed32.py`: repository-portable bounded driver; no new sampling or GA calls. The archived driver and outputs remain unchanged.
 
 ### 01_Reviewer_and_Decision
 
@@ -27,7 +40,7 @@ The decisive current finding is that Hospital-first retains a population-service
 
 ### 02_Paired_Pilot_20260912
 
-- `CORE_REVISION_FINDINGS.md`: authoritative technical handoff and revision decision.
+- `CORE_REVISION_FINDINGS.md`: frozen previous-round technical findings; use the blocker report for the latest decision.
 - `PAIRED_PILOT_RESULTS.csv`: 32 realization IDs × 4 fixed strategies. The paired columns are **strategy minus Hospital-first**.
 - `TRACT_DISTRIBUTIONAL_EFFECTS.csv`: one row per tract. The principal difference is **Hospital-first minus GA-Efficiency**; negative values mean lower modeled cumulative service deficit under Hospital-first.
 - `PAIRED_EVENT_DATA.npz`: compact realization-level damage, duration, dispatch, completion, gate, service trajectory, and tract result arrays needed to reproduce the paired analysis.
