@@ -2173,6 +2173,7 @@ def simulate_recovery_mc_source_gated(
     repair_time_scale: float = 1.0,
     label: str = "",
     return_gate_diagnostics: bool = False,
+    effective_state_export_hook: Any = None,
 ) -> Any:
     """
     Estimate mean recovery as E[gate(F_run(t))] from MC damage realizations.
@@ -2181,6 +2182,13 @@ def simulate_recovery_mc_source_gated(
     realization and each recovery time step before averaging.
     """
     logger = logging.getLogger()
+    if effective_state_export_hook is not None:
+        hook_enabled = getattr(effective_state_export_hook, "enabled", None)
+        if hook_enabled is not False:
+            raise RuntimeError(
+                "Dynamic effective-state producer is not implemented; "
+                "an enabled or invalid export hook cannot be wired yet."
+            )
     sub_index = pd.Index([clean_substation_id(s) for s in sub_index], name="substation_id")
     ds_arr = np.asarray(damage_state_samples, dtype=np.int8)
     n_subs = len(sub_index)
@@ -2301,6 +2309,12 @@ def simulate_recovery_mc_source_gated(
                 functional_mask = crossing_idx <= time_start
                 keep_mask = _keep_mask_for_functional(functional_mask)
                 if np.any(keep_mask):
+                    # R1_DYNAMIC_EXPORT_SEAM:
+                    # A future producer may call the Round 17 hook only after a
+                    # complete one-realization post-gate T x 310 state and its
+                    # authoritative identified mask have been materialized, and
+                    # before local_sum accumulation. No such producer exists here;
+                    # this path must not export an interval slice or an MC mean.
                     local_sum[time_start:time_stop, :] += (
                         curves_by_ds[ds_vec, time_start:time_stop, sub_positions].T * keep_mask
                     )
