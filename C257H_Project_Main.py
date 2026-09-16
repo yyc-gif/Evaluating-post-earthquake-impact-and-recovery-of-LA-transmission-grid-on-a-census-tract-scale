@@ -2174,6 +2174,7 @@ def simulate_recovery_mc_source_gated(
     label: str = "",
     return_gate_diagnostics: bool = False,
     effective_state_export_hook: Any = None,
+    r1_producer_instrumentation: Any = None,
 ) -> Any:
     """
     Estimate mean recovery as E[gate(F_run(t))] from MC damage realizations.
@@ -2260,10 +2261,23 @@ def simulate_recovery_mc_source_gated(
             crossing_idx_by_ds[ds, has_crossing] = np.argmax(crosses[:, has_crossing], axis=0)
 
     sub_positions = np.arange(n_subs)
-    mc_source_gate_n_jobs = int(getattr(cfg, "MC_SOURCE_GATE_N_JOBS", 1) or 1)
+    configured_mc_source_gate_n_jobs = int(
+        getattr(cfg, "MC_SOURCE_GATE_N_JOBS", 1) or 1
+    )
+    mc_source_gate_n_jobs = configured_mc_source_gate_n_jobs
     if mc_source_gate_n_jobs < 0:
         mc_source_gate_n_jobs = os.cpu_count() or 1
     mc_source_gate_n_jobs = max(1, min(mc_source_gate_n_jobs, n_mc))
+    instrumentation_enabled = bool(
+        r1_producer_instrumentation is not None
+        and getattr(r1_producer_instrumentation, "enabled", False)
+    )
+    if instrumentation_enabled:
+        r1_producer_instrumentation.validate_run_context(
+            substation_ids=columns_norm,
+            source_time=t_grid,
+            mc_source_gate_n_jobs=configured_mc_source_gate_n_jobs,
+        )
 
     def _process_mc_range(
         mc_start: int,
@@ -2277,9 +2291,23 @@ def simulate_recovery_mc_source_gated(
         )
         for mc_idx in range(mc_start, mc_stop):
             ds_vec = ds_arr[:, mc_idx]
+            instrumentation_session = (
+                r1_producer_instrumentation.start_realization(mc_idx)
+                if instrumentation_enabled
+                else None
+            )
 
             if not source_gate_enabled:
-                local_sum += curves_by_ds[ds_vec, :, sub_positions].T
+                if instrumentation_enabled:
+                    legacy_segment = curves_by_ds[ds_vec, :, sub_positions].T
+                    instrumentation_session.observe_precomputed_segment(
+                        time_start=0,
+                        time_stop=n_time,
+                        caller_owned_segment=legacy_segment,
+                    )
+                    local_sum += legacy_segment
+                else:
+                    local_sum += curves_by_ds[ds_vec, :, sub_positions].T
                 if local_connected_count_sum is not None:
                     crossing_idx = crossing_idx_by_ds[ds_vec, sub_positions]
                     event_idxs = np.unique(crossing_idx[crossing_idx < n_time])
@@ -2294,12 +2322,25 @@ def simulate_recovery_mc_source_gated(
                             local_connected_count_sum[time_start:time_stop] += int(
                                 np.count_nonzero(crossing_idx <= time_start)
                             )
+                if instrumentation_enabled:
+                    instrumentation_session.finalize()
                 continue
 
             crossing_idx = crossing_idx_by_ds[ds_vec, sub_positions]
             event_idxs = np.unique(crossing_idx[crossing_idx < n_time])
             if len(event_idxs) == 0:
+                if instrumentation_enabled:
+                    instrumentation_session.observe_explicit_zero_segment(
+                        time_start=0,
+                        time_stop=n_time,
+                    )
+                    instrumentation_session.finalize()
                 continue
+            if instrumentation_enabled and int(event_idxs[0]) > 0:
+                instrumentation_session.observe_explicit_zero_segment(
+                    time_start=0,
+                    time_stop=int(event_idxs[0]),
+                )
 
             for event_pos, time_start in enumerate(event_idxs):
                 time_stop = int(event_idxs[event_pos + 1]) if event_pos + 1 < len(event_idxs) else n_time
@@ -2309,19 +2350,40 @@ def simulate_recovery_mc_source_gated(
                 functional_mask = crossing_idx <= time_start
                 keep_mask = _keep_mask_for_functional(functional_mask)
                 if np.any(keep_mask):
-                    # R1_DYNAMIC_EXPORT_SEAM:
-                    # A future producer may call the Round 17 hook only after a
-                    # complete one-realization post-gate T x 310 state and its
-                    # authoritative identified mask have been materialized, and
-                    # before local_sum accumulation. No such producer exists here;
-                    # this path must not export an interval slice or an MC mean.
-                    local_sum[time_start:time_stop, :] += (
-                        curves_by_ds[ds_vec, time_start:time_stop, sub_positions].T * keep_mask
-                    )
+                    if instrumentation_enabled:
+                        legacy_segment = (
+                            curves_by_ds[
+                                ds_vec,
+                                time_start:time_stop,
+                                sub_positions,
+                            ].T
+                            * keep_mask
+                        )
+                        instrumentation_session.observe_precomputed_segment(
+                            time_start=time_start,
+                            time_stop=time_stop,
+                            caller_owned_segment=legacy_segment,
+                        )
+                        local_sum[time_start:time_stop, :] += legacy_segment
+                    else:
+                        # R1_DYNAMIC_EXPORT_SEAM:
+                        # The disabled path retains the original scientific
+                        # expression and accumulation order. Export remains
+                        # fail-closed and disconnected from this producer seam.
+                        local_sum[time_start:time_stop, :] += (
+                            curves_by_ds[ds_vec, time_start:time_stop, sub_positions].T * keep_mask
+                        )
                     if local_connected_count_sum is not None:
                         local_connected_count_sum[time_start:time_stop] += int(
                             np.count_nonzero(keep_mask)
                         )
+                elif instrumentation_enabled:
+                    instrumentation_session.observe_explicit_zero_segment(
+                        time_start=time_start,
+                        time_stop=time_stop,
+                    )
+            if instrumentation_enabled:
+                instrumentation_session.finalize()
         return local_sum, local_connected_count_sum
 
     if mc_source_gate_n_jobs == 1:
