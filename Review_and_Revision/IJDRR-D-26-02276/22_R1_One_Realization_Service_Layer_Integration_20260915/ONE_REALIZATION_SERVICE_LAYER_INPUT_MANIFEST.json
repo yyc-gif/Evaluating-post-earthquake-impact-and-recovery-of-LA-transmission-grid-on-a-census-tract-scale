@@ -1,0 +1,60 @@
+{
+  "attachment_counts": {
+    "A_DIRECT_IDENTITY_ATTACHMENT": 113,
+    "B_NAMED_SYSTEM_UPSTREAM_PROXY": 71,
+    "C_UNRESOLVED_ATTACHMENT": 12
+  },
+  "attachment_ledger_sha256": "b1a7ad8e6f162bed06fb88694a0393aa0d1fc7d4ef515ba628ede242e809ed9e",
+  "dimensions": {
+    "r1_stations": 310,
+    "service_nodes": 196,
+    "time": 8,
+    "tracts": 817
+  },
+  "exporter_sha256": "79ddac0980e4553b15d881471a414c8215fdd71ce49f5065fab0085bda0dc59b",
+  "forbidden_metrics": [
+    "T50",
+    "T80",
+    "T90",
+    "AUC",
+    "cumulative_deficit",
+    "outage_hours",
+    "recovery_time"
+  ],
+  "main_model_sha256": "90743cde45fe14de9e113ad39111c2a8507dd90099002a1eae06832aba208145",
+  "production_interface_sha256": "d32189231cceb0a13833fd608a08ca823d10dab07c8a8f92e2db9d97d5517514",
+  "r1_id_hash": "d29ba6b34f362c8c00c3fdd4bc5f8b518f3022022fc68c8e1444a4635ab9e3f5",
+  "r1_scientific_executions_authorized": 0,
+  "round21_commit": "1376688671b4a81b6b61543eed82d22063c84265",
+  "round21_evidence_sha256": "5cfcd01fc2aa5853833a3083acee3b4b466c7974f8bfd9df3b5a7e06611b046e",
+  "round21_manifest_sha256": "d7a99586bab333139008469f135b297a95334a288191966572dec6d55782111a",
+  "schema": "ONE_REALIZATION_SERVICE_LAYER_INTEGRATION_V1",
+  "scientific_status": "TEST_ONLY_NOT_A_PAPER_RESULT",
+  "service_id_hash": "1c2533ea1ba4efd7894910e49c322654c90ec0eca6047908249a4c6e1b5d2f46",
+  "service_nodes_file_sha256": "ccf9e08b40a0df1326e7eb9f62addd92d9fa348f65a43dd4afc6a743845f2080",
+  "source_time": [
+    0.0,
+    1.0,
+    3.0,
+    6.0,
+    12.0,
+    24.0,
+    48.0,
+    72.0
+  ],
+  "source_time_unit": "hours_since_event",
+  "tolerance": 1e-12,
+  "tract_metadata_sha256": "4658c4f439a1ae41d77a5d5d14e6a8cbb950f1f71f123f2edd9190fa7a992f8b",
+  "tract_population_hash": "e2af72b613cec85e35834aca4785b782c433d981b4969fd87c761cccb7b529e8",
+  "upstream_cells": 2480,
+  "upstream_identified_cells": 2448,
+  "upstream_identity": {
+    "realization_id": "mc_000000",
+    "scenario_id": "INTEGRATION_TEST_R1",
+    "strategy_id": "INTEGRATION_ZERO_START",
+    "trajectory_scope": "realization"
+  },
+  "upstream_missing_cells": 32,
+  "w1_serialization_tolerance": 5e-12,
+  "w1_sha256": "a21b583338a4583e2362aba70667ac8c443abe0cf3a732b98f022175cf4f6221"
+}
