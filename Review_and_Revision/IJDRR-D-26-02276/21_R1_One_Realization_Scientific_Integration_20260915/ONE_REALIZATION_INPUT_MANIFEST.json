@@ -1,0 +1,137 @@
+{
+  "approved_scientific_executions": 2,
+  "authoritative_mask": {
+    "id_value_sha256": "15ac5a7fefea7fa8333d0d24cd8ad4ce236ec518e1bacad0ba5bb01399db339e",
+    "identified": 306,
+    "scope": "STATION_STATIC_WITHIN_TRAJECTORY",
+    "unidentified": 4,
+    "unidentified_ids": [
+      "301479",
+      "303265",
+      "304137",
+      "305021"
+    ]
+  },
+  "deterministic_damage_realization": {
+    "candidate_count": 282,
+    "label": "TEST_ONLY_DETERMINISTIC_DAMAGE_REALIZATION",
+    "n_mc": 1,
+    "selected": [
+      {
+        "damage_state": 1,
+        "station_id": "300008",
+        "station_name": "NOLA"
+      },
+      {
+        "damage_state": 2,
+        "station_id": "300105",
+        "station_name": "WALNUT"
+      },
+      {
+        "damage_state": 3,
+        "station_id": "300144",
+        "station_name": "STATION 11"
+      },
+      {
+        "damage_state": 4,
+        "station_id": "300167",
+        "station_name": "UNKNOWN300167"
+      }
+    ],
+    "selection_rule": "registered_compatible AND component=1 AND not reference source; numeric R1 ID ascending; first four assigned DS1,DS2,DS3,DS4",
+    "shape": [
+      310,
+      1
+    ],
+    "vector_sha256": "a322a8ba6013d82f313778180939b0f18217dcea243690bd90f29e54bd736e93"
+  },
+  "execution_definition": "same deterministic realization once OFF and once ON",
+  "frozen_artifact_hashes": {
+    "authoritative_mask_ledger": "a60ec21fd8cc5b940eca86c20ae28d09cf015db83b4dc3985efb044edf59c384",
+    "graph_checkpoint": "e2dd039ec40336ea800adc29aa6cf790ae3d89553c1491c149096b3be6377090",
+    "main_model": "90743cde45fe14de9e113ad39111c2a8507dd90099002a1eae06832aba208145",
+    "round18_materializer": "ce95b971cadac9bc6f07d24832fcd8d817904395abfa2b447b86c4f3774da77d",
+    "round19_observer": "ac0c395e95d81975e80830cae63e67bd2b161eec8141e61a3fa9301e14b3ac9c",
+    "round20_controller": "b88e49aa2f7cda0af775e838dd692906e8806a36a6ee378672a5230333cc0069",
+    "source_role_ledger": "71f0cd829bcfea7587ba7d4c7446169393abf5b538c8129de89c8e87af461cdb",
+    "station_connection_ledger": "10733873ff9aad1de4518faa687fa198e53059dcd093b7c4f1968d912f60c16b",
+    "test_driver": "8cfcd850b10822e65e5fd46840f214160ce533b3538832b490ff66899a0912f7"
+  },
+  "functional_threshold": 0.5,
+  "graph": {
+    "artifact": "Review_and_Revision/IJDRR-D-26-02276/06_R1_310_LocalClosure_20260914/R1_310_EDGES.csv",
+    "component_sizes": [
+      302,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "edges": 1040,
+    "load_semantics": "read_only_deserialization_of_frozen_facility_edge_checkpoint",
+    "nodes": 310,
+    "sha256": "e2dd039ec40336ea800adc29aa6cf790ae3d89553c1491c149096b3be6377090"
+  },
+  "main_model_commit": "c358b660caa6cc6327f8485892e4b7e080d6b37a",
+  "main_model_sha256": "90743cde45fe14de9e113ad39111c2a8507dd90099002a1eae06832aba208145",
+  "mc_source_gate_n_jobs": 1,
+  "ordered_r1_ids": {
+    "count": 310,
+    "newline_terminated_sha256": "d29ba6b34f362c8c00c3fdd4bc5f8b518f3022022fc68c8e1444a4635ab9e3f5"
+  },
+  "reference_source_scenario": {
+    "count": 21,
+    "ids": [
+      "300232",
+      "301318",
+      "302376",
+      "302865",
+      "303473",
+      "303547",
+      "306001",
+      "306365",
+      "306450",
+      "306473",
+      "306489",
+      "307039",
+      "307373",
+      "307512",
+      "307693",
+      "308540",
+      "308581",
+      "309553",
+      "309569",
+      "309703",
+      "310199"
+    ],
+    "label": "reference source-availability scenario",
+    "newline_terminated_sha256": "c104dbbb15c710a4e72ca04992be6eb7b8dffd5f655c67b3e5ca4dfca827e7b3"
+  },
+  "repair": {
+    "method": "normal",
+    "repair_time_scale": 1.0
+  },
+  "scenario_id": "INTEGRATION_TEST_R1",
+  "schema": "ONE_REALIZATION_SCIENTIFIC_INTEGRATION_V1",
+  "scientific_status": "TEST_ONLY_NOT_A_PAPER_RESULT",
+  "source_gate_enabled": true,
+  "strategy_id": "INTEGRATION_ZERO_START",
+  "timing": {
+    "source_time_unit": "hours_since_event",
+    "start_times_definition": "integration-test-only simultaneous start condition",
+    "start_times_sha256": "e1db3510a166f35ebf57e9311b4c8e3bdc42694cdd5b1389085f3b157d2f4367",
+    "t_grid": [
+      0.0,
+      1.0,
+      3.0,
+      6.0,
+      12.0,
+      24.0,
+      48.0,
+      72.0
+    ]
+  }
+}
