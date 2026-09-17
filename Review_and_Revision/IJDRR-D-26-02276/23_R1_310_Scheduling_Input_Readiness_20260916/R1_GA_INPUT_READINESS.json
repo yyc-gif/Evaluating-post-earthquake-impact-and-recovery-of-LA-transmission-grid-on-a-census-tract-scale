@@ -1,0 +1,200 @@
+{
+  "schema": "R1_ARCHB_GA_INPUT_READINESS_V1",
+  "primary_scheduling_asset_domain": "D302",
+  "chromosome_dimension": 302,
+  "chromosome_membership_hash": "190ba996ea9c8b33eddc3ea16af0d885746e2af72818b18a5f27ebb147c70997",
+  "membership_exact": true,
+  "duplicates": 0,
+  "missing_ids": 0,
+  "sequence_semantics": "ex-ante full permutation; filter DS0 without re-ranking",
+  "service_priority_formula": "(W_POP*pop + W_HOSP*hosp + W_SVI*sovi)/(W_POP+W_HOSP+W_SVI)",
+  "policy_coefficients": {
+    "Balanced": {
+      "W_POP": 1.0,
+      "W_HOSP": 3.0,
+      "W_SVI": 1.0,
+      "W_MAKESPAN": 0.5
+    },
+    "HospFirst": {
+      "W_POP": 1.0,
+      "W_HOSP": 20.0,
+      "W_SVI": 1.0,
+      "W_MAKESPAN": 0.1
+    },
+    "Efficiency": {
+      "W_POP": 1.0,
+      "W_HOSP": 1.0,
+      "W_SVI": 1.0,
+      "W_MAKESPAN": 2.0
+    }
+  },
+  "coefficient_classification": "policy-design / optimization objective coefficients; not empirical",
+  "network_importance_decision": "DROP",
+  "network_importance_reason": "subjective separate construct with weak provenance; revised focus is Architecture B service priority plus makespan",
+  "legacy_network_importance_audit": {
+    "eta": 0.2,
+    "role": 0.7,
+    "voltage": 0.2,
+    "line_count": 0.1,
+    "classification": "legacy design assumptions; unused"
+  },
+  "expected_workload_formula": "E[T_i]=sum_d P(DS_i=d)*E[T_d|T_d>0], d=1..4",
+  "positive_conditioned_duration_means_hr": {
+    "1": 1.027623931339495,
+    "2": 6.16574358803697,
+    "3": 12.017751356168503,
+    "4": 36.05325406850551
+  },
+  "hazard_probability_vector_status": "formula frozen; numeric vector waits for explicit pilot hazard selection",
+  "service_component_values_finite": true,
+  "policy_input_definition_ready": {
+    "Balanced": true,
+    "HospFirst": true,
+    "Efficiency": true
+  },
+  "ga_optimization_run": false,
+  "ga_sequence_generated": false,
+  "hospital_first_sequence_hash": "0fe713a254af2a7922e7a246e272368caedf5ec1b4e1fb65e1aef47a066973ab",
+  "hospital_first_sequence_length": 302,
+  "unassigned_class_C_priority_mass": {
+    "population_priority_mass": 145897.58333330028,
+    "hospital_priority_mass": 0.666666666666,
+    "sovi_weighted_priority_mass": 9848051.565813225,
+    "official_candidate_mass": 32.783333333327,
+    "service_node_count": 12
+  },
+  "strict_SCE_hospital_tract_count": 47,
+  "strict_SCE_retained_hospital_record_count": 53,
+  "sovi_field": "NRI-derived SOVI_SCORE",
+  "sovi_missing_count": 0,
+  "sovi_min": 1.809999943,
+  "sovi_shift": 0.0,
+  "duration_pairing_fixture": {
+    "realization_id": 7,
+    "DS": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "same_realization_exact_repeat": true,
+    "different_strategy_same_stored_vector": true,
+    "DS0_no_task_no_duration": true,
+    "all_task_durations_positive": true,
+    "duration_vector_sha256": "b0ca0c882974577d70c1ce800c43f6c668a12137b16a2aceec78481ca36ba096"
+  },
+  "input_ready": true,
+  "execution_engine_ready": false,
+  "future_first_pilot_crew_scenario": "C57_REFERENCE",
+  "pilot_authorized": false,
+  "domain_comparison": [
+    {
+      "domain": "D310",
+      "station_count": 310,
+      "source_count": 21,
+      "attachment_target_count": 117,
+      "road_access_ready_count": 309,
+      "owner_composition": {
+        "LADWP": 35,
+        "Other": 17,
+        "SCE": 234,
+        "Unknown": 24
+      },
+      "excluded_IDs": [],
+      "all_assets_have_defined_effective_state": false
+    },
+    {
+      "domain": "D306",
+      "station_count": 306,
+      "source_count": 21,
+      "attachment_target_count": 117,
+      "road_access_ready_count": 305,
+      "owner_composition": {
+        "LADWP": 34,
+        "Other": 17,
+        "SCE": 233,
+        "Unknown": 22
+      },
+      "excluded_IDs": [
+        301479,
+        303265,
+        304137,
+        305021
+      ],
+      "all_assets_have_defined_effective_state": true
+    },
+    {
+      "domain": "D304",
+      "station_count": 304,
+      "source_count": 21,
+      "attachment_target_count": 117,
+      "road_access_ready_count": 303,
+      "owner_composition": {
+        "LADWP": 34,
+        "Other": 16,
+        "SCE": 232,
+        "Unknown": 22
+      },
+      "excluded_IDs": [
+        301479,
+        303265,
+        304137,
+        305021,
+        306980,
+        309598
+      ],
+      "all_assets_have_defined_effective_state": true
+    },
+    {
+      "domain": "D302",
+      "station_count": 302,
+      "source_count": 20,
+      "attachment_target_count": 117,
+      "road_access_ready_count": 302,
+      "owner_composition": {
+        "LADWP": 34,
+        "Other": 16,
+        "SCE": 230,
+        "Unknown": 22
+      },
+      "excluded_IDs": [
+        301479,
+        303265,
+        303547,
+        304137,
+        305021,
+        306980,
+        307683,
+        309598
+      ],
+      "all_assets_have_defined_effective_state": true
+    }
+  ],
+  "travel": {
+    "base_to_task_shape": [
+      11,
+      302
+    ],
+    "task_to_task_shape": [
+      302,
+      302
+    ],
+    "all_finite": true,
+    "diagonal_zero": true,
+    "fallback_count": 0,
+    "base_matrix_sha256": "16177e57cd7e77ea2075e347318c3b7698937af6b0b7dc702f18b9da65662690",
+    "task_matrix_sha256": "68c03537853bad92544f13688ade89247e135e829b989c71c96be2f8ef45a6de"
+  },
+  "input_hashes": {
+    "station_connection": "10733873ff9aad1de4518faa687fa198e53059dcd093b7c4f1968d912f60c16b",
+    "station_qa": "f7e9aca84e08f2e44ead96dedde40797e950d86efd017c47222700a71704c6bb",
+    "road_access_round6": "5d2c7e6feb4fd1decd2500de7f2071aa8f0fc5d86e300d6416ee597d2584e354",
+    "service_nodes": "ccf9e08b40a0df1326e7eb9f62addd92d9fa348f65a43dd4afc6a743845f2080",
+    "attachment": "b1a7ad8e6f162bed06fb88694a0393aa0d1fc7d4ef515ba628ede242e809ed9e",
+    "w1": "a21b583338a4583e2362aba70667ac8c443abe0cf3a732b98f022175cf4f6221",
+    "tract_metadata": "4658c4f439a1ae41d77a5d5d14e6a8cbb950f1f71f123f2edd9190fa7a992f8b",
+    "crew_C57": "ec76a253b0a5a3c817532730ac990734175328e8f8b0857f7ad62e162dff31b4",
+    "road_graph": "6bdde162da4945b4710f5f9708c9f07e6d1b18488ba23b79c2de725c858d251b"
+  }
+}
