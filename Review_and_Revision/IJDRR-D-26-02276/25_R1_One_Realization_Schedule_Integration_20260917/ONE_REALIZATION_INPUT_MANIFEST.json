@@ -1,0 +1,862 @@
+{
+  "schema": "R25_ONE_REALIZATION_SCHEDULE_INTEGRATION_V1",
+  "scientific_status": "TEST_ONLY_NOT_A_PAPER_RESULT",
+  "scientific_execution_count_authorized": 1,
+  "pre_scientific_attempts": [
+    {
+      "status": "FAILED_BEFORE_SCIENTIFIC_EXECUTION",
+      "reason": "runner import path omitted repository root; strategy_names was not importable",
+      "scientific_calls_completed": 0,
+      "resolution": "module loader now temporarily exposes only the imported file's parent directory"
+    }
+  ],
+  "scenario_id": "R25_TEST_ONLY_DETERMINISTIC_REALIZATION",
+  "strategy_id": "HOSPITAL_FIRST_FROZEN_R23",
+  "realization_id": "r25_test_000000",
+  "task_selection_rule": "sort SHA256('R25_INTEGRATION|' + R1_ID); first 80",
+  "duration_rule": "SHA256('R25_DURATION|' + R1_ID) open-unit mapping; positive-conditioned Normal inverse CDF",
+  "duration_parameters": {
+    "1": {
+      "mean_hr": 1.0,
+      "sd_hr": 0.5
+    },
+    "2": {
+      "mean_hr": 6.0,
+      "sd_hr": 3.0
+    },
+    "3": {
+      "mean_hr": 12.0,
+      "sd_hr": 4.0
+    },
+    "4": {
+      "mean_hr": 36.0,
+      "sd_hr": 12.0
+    }
+  },
+  "requested_event_horizon": "max_completion",
+  "dimensions": {
+    "full_r1": 310,
+    "D302": 302,
+    "tasks": 80,
+    "crews": 57,
+    "service_nodes": 196,
+    "tracts": 817
+  },
+  "damage_counts": {
+    "0": 222,
+    "1": 20,
+    "2": 20,
+    "3": 20,
+    "4": 20
+  },
+  "damage_vector_sha256": "ee1298c321f3e0ab9152ec4889008b5975cec137a4c41e30a473002c1c82620f",
+  "duration_vector_sha256": "2e21c1dcb51035517ddde4d8d7b5d2dca53f80ad612c7ba9a257de794a3b6f4e",
+  "selected_task_ids_sha256": "4826baada555663e3c943b22911af4212b01429baf77db9bfd820fa1cc1f3613",
+  "selected_tasks": [
+    {
+      "selection_rank": 1,
+      "R1_station_id": "307087",
+      "selection_hash_sha256": "0081e42c41d99ff966beb3c438e18c37759ba0c9d18f2df103e40a5099fb3b6d",
+      "damage_state": 1,
+      "duration_hash_sha256": "b37b413c8046149e63f66de6dab1ca2047470cb0b51d489a44d444a1d59155d2",
+      "duration_u_open01": 0.7010994694431009,
+      "realized_duration_hr": 1.2736293538123364
+    },
+    {
+      "selection_rank": 2,
+      "R1_station_id": "306001",
+      "selection_hash_sha256": "00dacaa657e060421c1d89ddb7c48ddcba5d100dad4c030d36efc607d47f67bb",
+      "damage_state": 2,
+      "duration_hash_sha256": "5d0cdb0e9744ac20baeda5ecdc2e41b8b88aea04e586b7dd0de77007eacf40f2",
+      "duration_u_open01": 0.3634774122831625,
+      "realized_duration_hr": 5.067458339989386
+    },
+    {
+      "selection_rank": 3,
+      "R1_station_id": "307439",
+      "selection_hash_sha256": "00f3fea25bf53c83e508a3cc402dc280574fe5c15114282df082a58ea32c3a6e",
+      "damage_state": 3,
+      "duration_hash_sha256": "d66a8f4f9ba915cb8085a094064c9957fbf61f4221629d9b008a6c7afad12361",
+      "duration_u_open01": 0.8375634736400211,
+      "realized_duration_hr": 15.941543972086363
+    },
+    {
+      "selection_rank": 4,
+      "R1_station_id": "308535",
+      "selection_hash_sha256": "0111ccc0259784de95e01f60082b7921d8d929343e47492889b500f9448b4971",
+      "damage_state": 4,
+      "duration_hash_sha256": "621069f618d02fb14d70f9c6f759416546c2e792de3890bd17fa08b5a85e0316",
+      "duration_u_open01": 0.38306295641160726,
+      "realized_duration_hr": 32.456821034421544
+    },
+    {
+      "selection_rank": 5,
+      "R1_station_id": "301543",
+      "selection_hash_sha256": "025bd093b5b83aa219f22816887d2ccf7ad31d9f5b2fa7b313e227ad0cbbbc4d",
+      "damage_state": 1,
+      "duration_hash_sha256": "2a04ee87acbfd0c04a350e16ca59212d1630fd5840f41686241201c3e4ea4c57",
+      "duration_u_open01": 0.16413775265095798,
+      "realized_duration_hr": 0.5482941739740187
+    },
+    {
+      "selection_rank": 6,
+      "R1_station_id": "308793",
+      "selection_hash_sha256": "03383a4c572f83f0b4d39359d05b7af4e80c5f16e86b7e58783fdb3d11becddb",
+      "damage_state": 2,
+      "duration_hash_sha256": "48cb382d49082df26945d115aa794df0a7367913a5a58b03075803c37511b648",
+      "duration_u_open01": 0.28435088258359603,
+      "realized_duration_hr": 4.4322489121295074
+    },
+    {
+      "selection_rank": 7,
+      "R1_station_id": "308225",
+      "selection_hash_sha256": "03e5d5eb3bcac8f30813232a71aec568bff4e715e408997d23965695948a8ab7",
+      "damage_state": 3,
+      "duration_hash_sha256": "7221b5e79d84e66be9503d5cb53e2f52452a3b86f7d7e5c21d2b034e5d376763",
+      "duration_u_open01": 0.4458268824069084,
+      "realized_duration_hr": 11.462721924217226
+    },
+    {
+      "selection_rank": 8,
+      "R1_station_id": "308289",
+      "selection_hash_sha256": "04d3bbb6126035b9ea5bd9f36021d2673fa2a72c660349fc449b76b25a8f4237",
+      "damage_state": 4,
+      "duration_hash_sha256": "a6a2379462309fcd9fc25046b1a9146589e6a8c53a4f777a3473d1b8e59905e0",
+      "duration_u_open01": 0.6509127366318261,
+      "realized_duration_hr": 40.66871513301042
+    },
+    {
+      "selection_rank": 9,
+      "R1_station_id": "302941",
+      "selection_hash_sha256": "05119b46c63aed5fd2d6c393175539d65d4e1e6e69242d9dff083459f64ada96",
+      "damage_state": 1,
+      "duration_hash_sha256": "b87e36c1ab77016331358185f8ea00fa513c67074d75b141327c13f1ebbde619",
+      "duration_u_open01": 0.7206758711649535,
+      "realized_duration_hr": 1.301928336973731
+    },
+    {
+      "selection_rank": 10,
+      "R1_station_id": "307693",
+      "selection_hash_sha256": "058523fefac74a375fa4a934d6aa2a3906cc19987849762615e3f53b89f1a13c",
+      "damage_state": 2,
+      "duration_hash_sha256": "a25bc5b4f99724ed13151132da168e468c3cdd5a71b741af17cf9538fc9faddf",
+      "duration_u_open01": 0.6342128340562253,
+      "realized_duration_hr": 7.095725396711339
+    },
+    {
+      "selection_rank": 11,
+      "R1_station_id": "302865",
+      "selection_hash_sha256": "05bae52c7e85dfea6c70a24e788d43428b69be5e8a073a95ee56ef386a1a7268",
+      "damage_state": 3,
+      "duration_hash_sha256": "befe94869edfe0f928da3a43d14ac53e766e229a0409bb047780f6c4e00a3c7f",
+      "duration_u_open01": 0.7460720852531035,
+      "realized_duration_hr": 14.653001109381789
+    },
+    {
+      "selection_rank": 12,
+      "R1_station_id": "303540",
+      "selection_hash_sha256": "063b7218d943d5b25118202ff54532bae77457689e35f19cdb2477d7d572c774",
+      "damage_state": 4,
+      "duration_hash_sha256": "1fe98518bbb29730eb87bb9ebc420032b4f6e6e3ea8eaacaff3da370126a0ee4",
+      "duration_u_open01": 0.12465698102796306,
+      "realized_duration_hr": 22.244578906689433
+    },
+    {
+      "selection_rank": 13,
+      "R1_station_id": "310167",
+      "selection_hash_sha256": "09538922e8daeda13f96538237652f17f9a8471951e823a09265bb597defd8da",
+      "damage_state": 1,
+      "duration_hash_sha256": "d09a037fcc9f4f8177812d460c4973f52c330159d787d84f8f2abf0bf10519f4",
+      "duration_u_open01": 0.814850062085154,
+      "realized_duration_hr": 1.4558985808352944
+    },
+    {
+      "selection_rank": 14,
+      "R1_station_id": "305984",
+      "selection_hash_sha256": "0a4e760a4162854c28b8820ba45d19d82441ffdf0f259c089264e5e16ffaed5e",
+      "damage_state": 2,
+      "duration_hash_sha256": "f204f3994d9e103f06a2e2ab7be53cb7ae66cc2b4a6acc0de8695363df30bc7d",
+      "duration_u_open01": 0.9453880547786115,
+      "realized_duration_hr": 10.839075607028267
+    },
+    {
+      "selection_rank": 15,
+      "R1_station_id": "302239",
+      "selection_hash_sha256": "0ab20244253a33bfb195d39cc7b44344d93c433e18690e9c26ca1f219ab08425",
+      "damage_state": 3,
+      "duration_hash_sha256": "bd8fdf3c853aa6299068953f0cd5b9e82bba75d2928a13a96dd915f0fc4b4411",
+      "duration_u_open01": 0.7404765627627322,
+      "realized_duration_hr": 14.583587064276717
+    },
+    {
+      "selection_rank": 16,
+      "R1_station_id": "307559",
+      "selection_hash_sha256": "0adaef76f983f9c7d7a63f32bc054dcbc80805ae7886cbec1d4bc147ae6511b0",
+      "damage_state": 4,
+      "duration_hash_sha256": "80bf6c0466b1159dcd14cafbe0cca24c42e0046a7e8f8a0a856cbeb7eaf3d479",
+      "duration_u_open01": 0.5029208670372934,
+      "realized_duration_hr": 36.10804335021452
+    },
+    {
+      "selection_rank": 17,
+      "R1_station_id": "304354",
+      "selection_hash_sha256": "0b45b4f01ef295b87b80dc8260c738e11d3dc01b0f939fc120f0353225ffe87b",
+      "damage_state": 1,
+      "duration_hash_sha256": "d692c19b81cfa899c819781430a6476db734837c5baf26ea223561e722da7541",
+      "duration_u_open01": 0.838176823106379,
+      "realized_duration_hr": 1.501062363741442
+    },
+    {
+      "selection_rank": 18,
+      "R1_station_id": "309382",
+      "selection_hash_sha256": "0d30ebd96e470effea863df10ec9606ec628dacb1b2caf82140e57f86173a598",
+      "damage_state": 2,
+      "duration_hash_sha256": "649eb66689ddb822f232079720a1cdf1b5c42274a34a8725dc72dc0634064bea",
+      "duration_u_open01": 0.39304676059133825,
+      "realized_duration_hr": 5.2930723532107695
+    },
+    {
+      "selection_rank": 19,
+      "R1_station_id": "302164",
+      "selection_hash_sha256": "0e847cd9398f85b44007104d336e887d59a3ccaa86eadcd8688fd706880bf9fc",
+      "damage_state": 3,
+      "duration_hash_sha256": "bd37412f3972be38cbc3dbce0bc0593b006ab9b9563c1ef5672e733732f39a65",
+      "duration_u_open01": 0.739124368695637,
+      "realized_duration_hr": 14.566929579983011
+    },
+    {
+      "selection_rank": 20,
+      "R1_station_id": "301541",
+      "selection_hash_sha256": "0ead55a4055cadd852253d916ca48032e00a4be1481771b0561255122f69458f",
+      "damage_state": 4,
+      "duration_hash_sha256": "f494fa1d1a6d0e9eaa07a9e48fb4c43209de6c4cf0da431e4a4a857103547423",
+      "duration_u_open01": 0.9553982087185668,
+      "realized_duration_hr": 56.40304749435389
+    },
+    {
+      "selection_rank": 21,
+      "R1_station_id": "307594",
+      "selection_hash_sha256": "0f10f97c3389dfe65b0e608dc485205d311b17f73aa5a135fa5e3a5c7493062e",
+      "damage_state": 1,
+      "duration_hash_sha256": "8cacb27263e49ca4764ddeae4afa6e24208693bb6223681d6fa4127e89172bea",
+      "duration_u_open01": 0.5495101479790656,
+      "realized_duration_hr": 1.0751789231578164
+    },
+    {
+      "selection_rank": 22,
+      "R1_station_id": "301340",
+      "selection_hash_sha256": "0fde9eeecd9df989fcb81f14a91f3f55cf6ae8ea188fbcf222d08f76d7ab6bde",
+      "damage_state": 2,
+      "duration_hash_sha256": "ac745aaedfdae13f129ffc5a905b7e8e8a361040b2b916fb81ea7a3f2df584ca",
+      "duration_u_open01": 0.6736504246654067,
+      "realized_duration_hr": 7.412120269300562
+    },
+    {
+      "selection_rank": 23,
+      "R1_station_id": "304040",
+      "selection_hash_sha256": "110c539d92a60c69652857da6ef3261d5bbfacbc243f2f5171d13eb7ab7d4b8a",
+      "damage_state": 3,
+      "duration_hash_sha256": "493ef281416aca0eb3ea09d43d2128937b8c63212cf9a7e453244351f572e25c",
+      "duration_u_open01": 0.28611674934056025,
+      "realized_duration_hr": 9.752263121541123
+    },
+    {
+      "selection_rank": 24,
+      "R1_station_id": "304533",
+      "selection_hash_sha256": "11c5c99df107bf37313f717cc314194cfa46b58a803f05b68f02ddd57b262249",
+      "damage_state": 4,
+      "duration_hash_sha256": "41cb3c26f9a4ebf979c57d860991463726063f369d802cb6b78f447842d6ff65",
+      "duration_u_open01": 0.2570073695329886,
+      "realized_duration_hr": 28.206100679001
+    },
+    {
+      "selection_rank": 25,
+      "R1_station_id": "306091",
+      "selection_hash_sha256": "1231cc9824f31361d66f0e4549ca5a17e80fea2174dd45e9b7bc18fcd9b40c50",
+      "damage_state": 1,
+      "duration_hash_sha256": "00e0e5a9eccacfce487f716c8d08646a814537e67b57530d5b407a6cfa8b79e1",
+      "duration_u_open01": 0.0034316577773936237,
+      "realized_duration_hr": 0.02929034561251387
+    },
+    {
+      "selection_rank": 26,
+      "R1_station_id": "309722",
+      "selection_hash_sha256": "13827e883b74358b1085ae0163e4f9f6ac8a41a1b7a91e0038b222b62f62ecc4",
+      "damage_state": 2,
+      "duration_hash_sha256": "010b449c38806177489a9a6474196ae1db96cfde4fb5dabcd69726ff722c5da6",
+      "duration_u_open01": 0.004078186168500439,
+      "realized_duration_hr": 0.2067094788841759
+    },
+    {
+      "selection_rank": 27,
+      "R1_station_id": "307785",
+      "selection_hash_sha256": "138fafa66e358ed5aadb14ac5af15823cbb3690e5525b1bfbadb48fbbc194d12",
+      "damage_state": 3,
+      "duration_hash_sha256": "9fb4a491cef23c75e7afc5d7902f05ced6e5e974b148d76ec675fbddda62f896",
+      "duration_u_open01": 0.623850141141653,
+      "realized_duration_hr": 13.267786041253945
+    },
+    {
+      "selection_rank": 28,
+      "R1_station_id": "306694",
+      "selection_hash_sha256": "149673e0bf54d338670c0d7df08c264d846a64893a983577acf302d556b4d33b",
+      "damage_state": 4,
+      "duration_hash_sha256": "5efb3e9c047b25fa1aee4285f5c04d4161782f551b5a29b9bbccbf2b606f6886",
+      "duration_u_open01": 0.37102118786831945,
+      "realized_duration_hr": 32.07715191517381
+    },
+    {
+      "selection_rank": 29,
+      "R1_station_id": "306370",
+      "selection_hash_sha256": "14f76cc62aabf26b5410d7a6c929cf39901214bf4245f9a6aa97083f8f9f142f",
+      "damage_state": 1,
+      "duration_hash_sha256": "c0d51e26ac09033e0f3c61ffa2778419bd5287c449567273cf268af386b57ef6",
+      "duration_u_open01": 0.7532519192136853,
+      "realized_duration_hr": 1.3513288788743834
+    },
+    {
+      "selection_rank": 30,
+      "R1_station_id": "303971",
+      "selection_hash_sha256": "16d3b903596f5826f8b55f3d38690dcf02819852614a67c55dbd573ed471d873",
+      "damage_state": 2,
+      "duration_hash_sha256": "0842ca1383df5dfea03d9ae70099d54eb2d4da750fec25e7d37ca5449527a0d3",
+      "duration_u_open01": 0.032269124760089224,
+      "realized_duration_hr": 1.1860419408423102
+    },
+    {
+      "selection_rank": 31,
+      "R1_station_id": "308991",
+      "selection_hash_sha256": "179e62d423516e5f9e0e65f937527a5f582f0ea98050052d46ac47cb101d76ec",
+      "damage_state": 3,
+      "duration_hash_sha256": "23081f8e2de8865a2e54e8829ca9b6fbe0039c8d68501f1df4e6674c2b548418",
+      "duration_u_open01": 0.1368427011601928,
+      "realized_duration_hr": 7.64274681195954
+    },
+    {
+      "selection_rank": 32,
+      "R1_station_id": "308436",
+      "selection_hash_sha256": "180753cbc21ec5deaaa2b45059ab8168b2eb28dd50551b6c2335165ec9d70312",
+      "damage_state": 4,
+      "duration_hash_sha256": "a0a83b74f32e0e16b0e89ae5d7b5f6161d5ac62faf8780c75c1bbc797a6142c8",
+      "duration_u_open01": 0.6275670204660673,
+      "realized_duration_hr": 39.92094468952537
+    },
+    {
+      "selection_rank": 33,
+      "R1_station_id": "303473",
+      "selection_hash_sha256": "19094217d756e28e9a4384e5928c99a8fee97ba82ee98118598f99cd867bc711",
+      "damage_state": 1,
+      "duration_hash_sha256": "7659950905dc73d48ff31210386d45a2f9376c1ac56fd175e97c2f95d1bf6f54",
+      "duration_u_open01": 0.4623044154194405,
+      "realized_duration_hr": 0.9680652397537048
+    },
+    {
+      "selection_rank": 34,
+      "R1_station_id": "307373",
+      "selection_hash_sha256": "1a7bf743d98665e9ed148f7e9b68f39554e21ba55b4d32f9d410bb57288cb93d",
+      "damage_state": 2,
+      "duration_hash_sha256": "473580d63f4ed0786d77d9685bc43e9d816ed20846c970fc536360e44bc49774",
+      "duration_u_open01": 0.27816014509817966,
+      "realized_duration_hr": 4.379857147387176
+    },
+    {
+      "selection_rank": 35,
+      "R1_station_id": "307128",
+      "selection_hash_sha256": "1a8d888cf0dd86e54e5ee91646cf310e236aeb6e46a501da80cf35c631db5219",
+      "damage_state": 3,
+      "duration_hash_sha256": "0d3eb43098ba6b287dca8eaf52196e0b60f941a1b0a1872dc4c35dd4075ca25e",
+      "duration_u_open01": 0.05173803507271095,
+      "realized_duration_hr": 5.534924331161663
+    },
+    {
+      "selection_rank": 36,
+      "R1_station_id": "307794",
+      "selection_hash_sha256": "1afc7a41843888907b881c79dce4de1ef4c04a0fa5ad300a2f578f2742b425ca",
+      "damage_state": 4,
+      "duration_hash_sha256": "5e3549faf9a78aef9678ce9a5d46bbf09b2927183724b8cf60544211c6e7af9b",
+      "duration_u_open01": 0.36800062539410144,
+      "realized_duration_hr": 31.9813113207351
+    },
+    {
+      "selection_rank": 37,
+      "R1_station_id": "309501",
+      "selection_hash_sha256": "1c2912a6cf5410d95fa2ae1894f3c04411fe323a947743b5ffff712d1e6c9af1",
+      "damage_state": 1,
+      "duration_hash_sha256": "fd3f539d3926d104dc5591c6dc1303382187eb7db81d6f08667649f3612da5f5",
+      "duration_u_open01": 0.989247537502844,
+      "realized_duration_hr": 2.15385128439223
+    },
+    {
+      "selection_rank": 38,
+      "R1_station_id": "303858",
+      "selection_hash_sha256": "1ca8f07abd0b20a2a60224bdb6dd00e3c94c754f30712ee64d067afe8c9b82b2",
+      "damage_state": 2,
+      "duration_hash_sha256": "fa1669056954ba23e5d9e789cf0f361568e081cdb737d28c2f193d87e5d29b7e",
+      "duration_u_open01": 0.9769044531070276,
+      "realized_duration_hr": 12.010035845109238
+    },
+    {
+      "selection_rank": 39,
+      "R1_station_id": "307456",
+      "selection_hash_sha256": "1cd092c6061ffa648f79bc21841262ddc879057340725dd47be79fcfc136dfb1",
+      "damage_state": 3,
+      "duration_hash_sha256": "422204d292731ae88b18ef1309be28fce6c8cefe767f731193cad877e0fa303e",
+      "duration_u_open01": 0.25833158627433445,
+      "realized_duration_hr": 9.418384704379838
+    },
+    {
+      "selection_rank": 40,
+      "R1_station_id": "301327",
+      "selection_hash_sha256": "1df1f43e8c67f685fa566fca8103f7201fa41591289eba0528926032f086925d",
+      "damage_state": 4,
+      "duration_hash_sha256": "f680722e1c29b85b0b52f5768986e8af425278a6a9b0787be6cb7c133249e38f",
+      "duration_u_open01": 0.9628974306653281,
+      "realized_duration_hr": 57.431576739821395
+    },
+    {
+      "selection_rank": 41,
+      "R1_station_id": "301215",
+      "selection_hash_sha256": "1e75f616e4316805128535a7883e724f03a802d8f5741fdc5ce8269e91c2b175",
+      "damage_state": 1,
+      "duration_hash_sha256": "1e93bca95e08be6c9a4227ad90a1e6ea51eb086521b6a3cfbd9dc9638a02cdfa",
+      "duration_u_open01": 0.11944178709930761,
+      "realized_duration_hr": 0.4586585596921188
+    },
+    {
+      "selection_rank": 42,
+      "R1_station_id": "310504",
+      "selection_hash_sha256": "1f38c7b7842519b7fdd4ee2df0684755a1aa7078bdf9afe14f1ddb50aa8ed242",
+      "damage_state": 2,
+      "duration_hash_sha256": "2dfd1555bc1a1638d9978048e7b101054dcd8c5298f7a3c72d1e0bf6318b4492",
+      "duration_u_open01": 0.17964299529203517,
+      "realized_duration_hr": 3.4569397682230525
+    },
+    {
+      "selection_rank": 43,
+      "R1_station_id": "308716",
+      "selection_hash_sha256": "1fbed723e555778899e1a090abdadacde2b6a44d169340473ed95da6388657f4",
+      "damage_state": 3,
+      "duration_hash_sha256": "e5f41fbf6c41685bea3da8e66629b12fd8c014deb3442eacd0fbc9fb6c03ae2a",
+      "duration_u_open01": 0.8982562868443488,
+      "realized_duration_hr": 17.0898060769849
+    },
+    {
+      "selection_rank": 44,
+      "R1_station_id": "300792",
+      "selection_hash_sha256": "20f3237745b84731d4b8904c6cbb2a8544d9ba1a0ce9353f28c401d465ab2591",
+      "damage_state": 4,
+      "duration_hash_sha256": "093b23c423f3e452b821249fd46cc47aa02c28de92ae488c4a62bcb700723d1c",
+      "duration_u_open01": 0.03605865038475959,
+      "realized_duration_hr": 14.613829889366485
+    },
+    {
+      "selection_rank": 45,
+      "R1_station_id": "304662",
+      "selection_hash_sha256": "223ec0b2951dfaf2c1273d72477f92ff2cfdfcb688956f948a2c340c2937cb43",
+      "damage_state": 1,
+      "duration_hash_sha256": "942ac4c03c287b7852bd208ca1c089ef862e666859e7399dbcb14a900fb875d4",
+      "duration_u_open01": 0.578777596409198,
+      "realized_duration_hr": 1.1116647452832524
+    },
+    {
+      "selection_rank": 46,
+      "R1_station_id": "302233",
+      "selection_hash_sha256": "22e429f82541a8f00a95d65eb4325c6617e85b23a1eafea46f571cf6d7e8d489",
+      "damage_state": 2,
+      "duration_hash_sha256": "7f6b77314df11eaa84cd6718d1f1bad7c270c50dc27db9f8ceedef4e1dd89d18",
+      "duration_u_open01": 0.49773354486200505,
+      "realized_duration_hr": 6.068889499688873
+    },
+    {
+      "selection_rank": 47,
+      "R1_station_id": "310379",
+      "selection_hash_sha256": "2300be6dea1b07f9f238e90fbea6c8d5eba10e791b8842bd6b200ee8b3de726e",
+      "damage_state": 3,
+      "duration_hash_sha256": "81e0e9607c8669c7854686de0c8eb47158b3946532e2ce3f7bda5f7dc728898c",
+      "duration_u_open01": 0.5073381290972293,
+      "realized_duration_hr": 12.080249295791226
+    },
+    {
+      "selection_rank": 48,
+      "R1_station_id": "301842",
+      "selection_hash_sha256": "25afbff2171c4c12db68d1b28e9b23232fbdccab5fa3eb04a447607a8040b150",
+      "damage_state": 4,
+      "duration_hash_sha256": "7b3834ff2ceceb699ae4a5600550ba82d8cef16175db83bdd2c43ae5e497a7b7",
+      "duration_u_open01": 0.48132640104170193,
+      "realized_duration_hr": 35.45918410883117
+    },
+    {
+      "selection_rank": 49,
+      "R1_station_id": "303783",
+      "selection_hash_sha256": "25eb1ba805f95e069ee243ab095feb0fdd07e2d66afab82a6a3dffa97ea93932",
+      "damage_state": 1,
+      "duration_hash_sha256": "042614c7461a1b1d8e1d082dce068a76c1516664abdebce9072e1693965145f9",
+      "duration_u_open01": 0.01620607247432597,
+      "realized_duration_hr": 0.11634112330672886
+    },
+    {
+      "selection_rank": 50,
+      "R1_station_id": "308216",
+      "selection_hash_sha256": "264cfb534ad66e166af6e7a0011ffbe19acbbc3482564d6543e23da1ab9e77b6",
+      "damage_state": 2,
+      "duration_hash_sha256": "bb1e7392d8ba45aaf42b72032e649f1ce7275232cb72c502c9820e5e484c28cc",
+      "duration_u_open01": 0.7309334023964108,
+      "realized_duration_hr": 7.9028745399318
+    },
+    {
+      "selection_rank": 51,
+      "R1_station_id": "306947",
+      "selection_hash_sha256": "288d20934f3cc187f8204ce3451f769755a03f1dd8c13a0c08b98732ab8b1f6a",
+      "damage_state": 3,
+      "duration_hash_sha256": "e69fb378d31f6a47c1fbdebf8a6de00ddb3dfafadb7b8f96b513a19f4082d42e",
+      "duration_u_open01": 0.9008743448240445,
+      "realized_duration_hr": 17.149269484228622
+    },
+    {
+      "selection_rank": 52,
+      "R1_station_id": "301331",
+      "selection_hash_sha256": "2af0881004940d95b5fd3cd6d5fc276ebf72ca176dd6636a28ace5473ec812b4",
+      "damage_state": 4,
+      "duration_hash_sha256": "1bf6b0c14bdd9a622be141b5b5a9c6ddd87d2f646a7440cf406adea48ff180dd",
+      "duration_u_open01": 0.10923294753216908,
+      "realized_duration_hr": 21.309408939355066
+    },
+    {
+      "selection_rank": 53,
+      "R1_station_id": "308540",
+      "selection_hash_sha256": "2c43a859cfb14fa1414c3f39516717c2d254ee98d3351ace004fabaab85ee075",
+      "damage_state": 1,
+      "duration_hash_sha256": "dba1bd0e090f979626474bb10897f5c5ddc2e10269c63dbda49ab5ee8bc1b2ed",
+      "duration_u_open01": 0.8579366835847949,
+      "realized_duration_hr": 1.5427924148579584
+    },
+    {
+      "selection_rank": 54,
+      "R1_station_id": "300170",
+      "selection_hash_sha256": "2ca77ba9993c00c96ed43dee0d6d03b86424a0baf678b5b5f5a586787d07b2be",
+      "damage_state": 2,
+      "duration_hash_sha256": "c80f53331392704626d321b351f03dbb4ff7e63fe32b83535e41e2861cb97a2c",
+      "duration_u_open01": 0.7814838409136173,
+      "realized_duration_hr": 8.382544508195593
+    },
+    {
+      "selection_rank": 55,
+      "R1_station_id": "300232",
+      "selection_hash_sha256": "2d56f5bb85ad49250885a734ebb1c42974f0d9a356ad82171ce0a5b1d35c326f",
+      "damage_state": 3,
+      "duration_hash_sha256": "ec9def23260fb4163fff257af387500edf3588cd9a0da77b7bb35e6551141607",
+      "duration_u_open01": 0.924284883576603,
+      "realized_duration_hr": 17.7408603231637
+    },
+    {
+      "selection_rank": 56,
+      "R1_station_id": "303695",
+      "selection_hash_sha256": "2e1c2e1452ca56ce2c66e0c2646a03c1192633d2cf317653f6a44cc185d05aa9",
+      "damage_state": 4,
+      "duration_hash_sha256": "3772c0b568061a5759c0bde1c3f43571076380070fcc78d87721b6b1077d4ac3",
+      "duration_u_open01": 0.2165947382818775,
+      "realized_duration_hr": 26.638239191991683
+    },
+    {
+      "selection_rank": 57,
+      "R1_station_id": "301416",
+      "selection_hash_sha256": "2eb23df20b7e78f10085d4d99db6129ff8c0af5cf5e0a8e1aad5e0d57f7a4751",
+      "damage_state": 1,
+      "duration_hash_sha256": "2951535348f68edacc655962d6192da6a20479f1816abe49fbbc33be5dbfb32f",
+      "duration_u_open01": 0.16139717849088184,
+      "realized_duration_hr": 0.5432227716698774
+    },
+    {
+      "selection_rank": 58,
+      "R1_station_id": "307232",
+      "selection_hash_sha256": "2ecba50e00aa5fc9e769c7b74dcf9e07fc9a338d7abedfc481ba3e60883b6edd",
+      "damage_state": 2,
+      "duration_hash_sha256": "662b381ae875d58f34a5e65b45af1a4adfd2e0b7808edb27f40ce1a1261eec44",
+      "duration_u_open01": 0.39909697205481304,
+      "realized_duration_hr": 5.338705789842772
+    },
+    {
+      "selection_rank": 59,
+      "R1_station_id": "307472",
+      "selection_hash_sha256": "2fc44145645d37cb5d2baf7cbf4aaea6636bf1b0fc2f25473e215a21c8947168",
+      "damage_state": 3,
+      "duration_hash_sha256": "c9f4975ec7284ad181e5fe5ed107e6bb82f02bc771b2b84bdfd58d0a87b27b09",
+      "duration_u_open01": 0.7888884168998241,
+      "realized_duration_hr": 15.214225626849137
+    },
+    {
+      "selection_rank": 60,
+      "R1_station_id": "309898",
+      "selection_hash_sha256": "3093b9e17d829de46e0477149ce094eeecdaa63299e9f044b2f985fb8b8a140e",
+      "damage_state": 4,
+      "duration_hash_sha256": "a9e95b5f17bda0a30538ea8a6ef4aeed8158abf8578dadbc1bf7a89a2801f735",
+      "duration_u_open01": 0.6637169940147403,
+      "realized_duration_hr": 41.08648125837023
+    },
+    {
+      "selection_rank": 61,
+      "R1_station_id": "310163",
+      "selection_hash_sha256": "3515923f3fe01e049533b9848d8509d47231b3614823fee2c45a8f14020901d7",
+      "damage_state": 1,
+      "duration_hash_sha256": "47815153f8ae59576403285b7d211f744d10797a8d7029fbbd63aba8f8b60c85",
+      "duration_u_open01": 0.2793169813164068,
+      "realized_duration_hr": 0.7316140834092675
+    },
+    {
+      "selection_rank": 62,
+      "R1_station_id": "300353",
+      "selection_hash_sha256": "352b4a66be913b30f65deb34d811441d7eda86ca476bab6d4a5014a6dda6e1e9",
+      "damage_state": 2,
+      "duration_hash_sha256": "0c78262e1d1857fc405099d0af87f08dc353777a9774644934e1378ec7ea3bdf",
+      "duration_u_open01": 0.048708330400672906,
+      "realized_duration_hr": 1.580439705090864
+    },
+    {
+      "selection_rank": 63,
+      "R1_station_id": "306489",
+      "selection_hash_sha256": "35d05c0969cf9d6ec4e6847f733a47f7304c50c45a2e69daffadc4be694dd47b",
+      "damage_state": 3,
+      "duration_hash_sha256": "7b61231c171b41b62e1672f1613bee1313a1aa51eaaed5552915eba1b55ae8ad",
+      "duration_u_open01": 0.48195094524190285,
+      "realized_duration_hr": 11.825987719718213
+    },
+    {
+      "selection_rank": 64,
+      "R1_station_id": "302078",
+      "selection_hash_sha256": "36d5a53dbca65a7a35973906eeec47a8a91972098fd70f0660f60e63703ada02",
+      "damage_state": 4,
+      "duration_hash_sha256": "7a64e2aa51ac6c62a0b7dd841e986f27c866a26c0608fd676fd2a8017985629b",
+      "duration_u_open01": 0.4781018892114603,
+      "realized_duration_hr": 35.36220607569445
+    },
+    {
+      "selection_rank": 65,
+      "R1_station_id": "301517",
+      "selection_hash_sha256": "3a1c11bf64c2318f73748d0757835374f2720890505f4f74503b93c9fbbd9b01",
+      "damage_state": 1,
+      "duration_hash_sha256": "800b97c857d551f9f707026965dab847aa58e02be65a0128e6dc463635fe707e",
+      "duration_u_open01": 0.5001768936270612,
+      "realized_duration_hr": 1.014475212259915
+    },
+    {
+      "selection_rank": 66,
+      "R1_station_id": "305680",
+      "selection_hash_sha256": "3a9268601a31dd80660c724246db8263b20c382aee4a710e75e9a21b54a37235",
+      "damage_state": 2,
+      "duration_hash_sha256": "621c314507b91f02de0f37fa24945959e89ed7b7917a1efb203f9824eb38fcec",
+      "duration_u_open01": 0.38324268279368257,
+      "realized_duration_hr": 5.218771774370846
+    },
+    {
+      "selection_rank": 67,
+      "R1_station_id": "306300",
+      "selection_hash_sha256": "3c30664356a0be304b9f6fe05d50757812f4ca5c3a0f3649b89cf5b8fdb7b0a2",
+      "damage_state": 3,
+      "duration_hash_sha256": "094d3e725e61603f41c5e07c6b50c48a02545a028159694d346852219d7c1b4e",
+      "duration_u_open01": 0.0363348988743204,
+      "realized_duration_hr": 4.884774141976584
+    },
+    {
+      "selection_rank": 68,
+      "R1_station_id": "308367",
+      "selection_hash_sha256": "3cc5e5513f9261ffef98595d1837210791ec0ceb5889a52abdba50e9bd6df064",
+      "damage_state": 4,
+      "duration_hash_sha256": "8d94ef41ecb0961f84801aa16995a6f32ad6546eb550a4da1713256f1206224c",
+      "duration_u_open01": 0.5530538116406113,
+      "realized_duration_hr": 37.618879322251146
+    },
+    {
+      "selection_rank": 69,
+      "R1_station_id": "302381",
+      "selection_hash_sha256": "3d66bead6babd2250421b8f0c68360eded9d2abf093ea72471a37d2b1bf19b64",
+      "damage_state": 1,
+      "duration_hash_sha256": "a6571c29b2d198a45dd7891e8f5424c1b1ebbc57448fedb2601c2920b29dd24d",
+      "duration_u_open01": 0.6497666932871823,
+      "realized_duration_hr": 1.2031440652921206
+    },
+    {
+      "selection_rank": 70,
+      "R1_station_id": "300916",
+      "selection_hash_sha256": "3d92d7da5ffcba92b4d07fe6f702c5b0ffbb524ba3eb809f37218c57281069de",
+      "damage_state": 2,
+      "duration_hash_sha256": "2a8fec3566a6b2466a9d571fddbfce55299e39f68fb6435cf58d7564a6bf803c",
+      "duration_u_open01": 0.1662585859654893,
+      "realized_duration_hr": 3.313122458303709
+    },
+    {
+      "selection_rank": 71,
+      "R1_station_id": "302875",
+      "selection_hash_sha256": "3e3197765846d921047bf93e575a30c1813c1b6b5d4d7a8e43642def934696c3",
+      "damage_state": 3,
+      "duration_hash_sha256": "5aae2e194b554ad216d69a0b0e8731c70d92957396403955a19135c8e0ceb61e",
+      "duration_u_open01": 0.3542202769998159,
+      "realized_duration_hr": 10.51356421669831
+    },
+    {
+      "selection_rank": 72,
+      "R1_station_id": "303500",
+      "selection_hash_sha256": "3edae8ef4aebb77f23dd219410531064ecb214c148d04260429efae247212cbe",
+      "damage_state": 4,
+      "duration_hash_sha256": "5054a28f0442667e4706f8d97a7b25dae82652e3dcf1cedf8c5074c08f5295d3",
+      "duration_u_open01": 0.31379142753235956,
+      "realized_duration_hr": 30.20974114323365
+    },
+    {
+      "selection_rank": 73,
+      "R1_station_id": "301108",
+      "selection_hash_sha256": "3fe3bddab0fca225370ca8b8b843399247a61bea9f73d65a51ec3295b4e5753f",
+      "damage_state": 1,
+      "duration_hash_sha256": "757990f2de3b613102dbfe09a9843ead839fc4472d2a6137c5f42c43f4c6b591",
+      "duration_u_open01": 0.4588862030925447,
+      "realized_duration_hr": 0.9638688878684898
+    },
+    {
+      "selection_rank": 74,
+      "R1_station_id": "309783",
+      "selection_hash_sha256": "4055f886b6243f7b793c8a824d2751839f71663f2672f2f300402ff845b42219",
+      "damage_state": 2,
+      "duration_hash_sha256": "ce18b87bcb6dc50382ecde3731e34a8d46a0ba7b839b5c2dbc11dc138b0c1cd6",
+      "duration_u_open01": 0.8050647070153253,
+      "realized_duration_hr": 8.628160341906561
+    },
+    {
+      "selection_rank": 75,
+      "R1_station_id": "302922",
+      "selection_hash_sha256": "40f37720b90ccd34f91cf8249a07d223dd2b27bbd3e7299e31ed5348cb896fd3",
+      "damage_state": 3,
+      "duration_hash_sha256": "1a5da1dae24f0d127be0a9a7fd4f13841a1634d376a16118aa6d8a29b0797b2f",
+      "duration_u_open01": 0.1029912146935283,
+      "realized_duration_hr": 6.968137299548944
+    },
+    {
+      "selection_rank": 76,
+      "R1_station_id": "306794",
+      "selection_hash_sha256": "417576c583cdd5216d30150792f4dc55b49709217a5f30bb151892ee7968f19c",
+      "damage_state": 4,
+      "duration_hash_sha256": "31b24a99e32947db96ea6a590bbf7f4c14a01ee50ee7c943f11a273b4f59bfb4",
+      "duration_u_open01": 0.19412676102652882,
+      "realized_duration_hr": 25.69392912748021
+    },
+    {
+      "selection_rank": 77,
+      "R1_station_id": "303246",
+      "selection_hash_sha256": "430d680077106f97d086ffe10b6f94b0b9f9458c9caf5047c4896753ba72cb9e",
+      "damage_state": 1,
+      "duration_hash_sha256": "b83a006426680cacabec6341187957b93ff6a7d82bf942b90c3df10729df637c",
+      "duration_u_open01": 0.7196350330836199,
+      "realized_duration_hr": 1.3003999626794431
+    },
+    {
+      "selection_rank": 78,
+      "R1_station_id": "302798",
+      "selection_hash_sha256": "43f2db7dcef01ab87d16b707b7364022c5db895181c5cc45e287dcaf709a1414",
+      "damage_state": 2,
+      "duration_hash_sha256": "9d79a469854136a7fb555c5a6fe92b149937c020b3beb02391e4c5014945343a",
+      "duration_u_open01": 0.6151373632067177,
+      "realized_duration_hr": 6.9471644371722885
+    },
+    {
+      "selection_rank": 79,
+      "R1_station_id": "301100",
+      "selection_hash_sha256": "43f9f5e5ff7ab92c34424505b274768a7b4c6b1aacb0f5d9ef1f455cca275083",
+      "damage_state": 3,
+      "duration_hash_sha256": "1b0d3d5edec1f54c8e240a64bb8ff2d6bbfdf79cc8a0e658b483f49a4c5a3d91",
+      "duration_u_open01": 0.1056707722298212,
+      "realized_duration_hr": 7.026786391280371
+    },
+    {
+      "selection_rank": 80,
+      "R1_station_id": "300704",
+      "selection_hash_sha256": "456ec5c506daa940de01146622c60b449aed978de111c670e236b48555b031c1",
+      "damage_state": 4,
+      "duration_hash_sha256": "82cc088b6942c5d99edd7b9aec28c09491006ed5401c1b3decdc9779eff20d48",
+      "duration_u_open01": 0.5109258022651019,
+      "realized_duration_hr": 36.348550623042605
+    }
+  ],
+  "full_r1_id_sha256": "d29ba6b34f362c8c00c3fdd4bc5f8b518f3022022fc68c8e1444a4635ab9e3f5",
+  "D302_id_sha256": "190ba996ea9c8b33eddc3ea16af0d885746e2af72818b18a5f27ebb147c70997",
+  "hospital_first_sequence_sha256": "0fe713a254af2a7922e7a246e272368caedf5ec1b4e1fb65e1aef47a066973ab",
+  "source_ids": [
+    "300232",
+    "301318",
+    "302376",
+    "302865",
+    "303473",
+    "303547",
+    "306001",
+    "306365",
+    "306450",
+    "306473",
+    "306489",
+    "307039",
+    "307373",
+    "307512",
+    "307693",
+    "308540",
+    "308581",
+    "309553",
+    "309569",
+    "309703",
+    "310199"
+  ],
+  "source_id_sha256": "c104dbbb15c710a4e72ca04992be6eb7b8dffd5f655c67b3e5ca4dfca827e7b3",
+  "functional_threshold": 0.5,
+  "authoritative_mask": {
+    "identified": 306,
+    "unidentified": 4,
+    "unidentified_ids": [
+      "301479",
+      "303265",
+      "304137",
+      "305021"
+    ]
+  },
+  "out_of_domain_semantics": {
+    "unresolved_registration": "numeric inert zero plus state_identified=False; no task",
+    "identified_source_less": "fixed raw=1, identified=True, source gate yields zero",
+    "component2": "fixed raw=1, identified=True, no task"
+  },
+  "graph": {
+    "nodes": 310,
+    "edges": 1040,
+    "component_sizes": [
+      302,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "runner_code_sha256": "182b92c6d16b90937ba0a358ba1de0426cf979f14d4d7d1d0338828e5745659c",
+  "input_hashes": {
+    "main_model": "90743cde45fe14de9e113ad39111c2a8507dd90099002a1eae06832aba208145",
+    "graph_checkpoint": "e2dd039ec40336ea800adc29aa6cf790ae3d89553c1491c149096b3be6377090",
+    "station_qa": "f7e9aca84e08f2e44ead96dedde40797e950d86efd017c47222700a71704c6bb",
+    "task_domain": "bcd8f493078f51365e9e7a9cafd63d0ec3d5738f358f901f6a841a1d5276fa83",
+    "priority_components": "53c7687c2ca7a4c87b1e5a53946fe67c7f5e05188f40003a3f1fe6371218a1f6",
+    "base_to_task": "16177e57cd7e77ea2075e347318c3b7698937af6b0b7dc702f18b9da65662690",
+    "task_to_task": "68c03537853bad92544f13688ade89247e135e829b989c71c96be2f8ef45a6de",
+    "crew_rosters": "4940f0c15e56c884ae2f3fd7717cd93f12e2f37de2bb936a27a8b752df5f3f11",
+    "scheduler": "8096fa7ad72d5f7a5cb9c6f186d65adef2ab8f7fc336938f0dba396ed31ee43f",
+    "exporter": "79ddac0980e4553b15d881471a414c8215fdd71ce49f5065fab0085bda0dc59b",
+    "service_interface": "d32189231cceb0a13833fd608a08ca823d10dab07c8a8f92e2db9d97d5517514",
+    "service_nodes": "ccf9e08b40a0df1326e7eb9f62addd92d9fa348f65a43dd4afc6a743845f2080",
+    "attachment_ledger": "b1a7ad8e6f162bed06fb88694a0393aa0d1fc7d4ef515ba628ede242e809ed9e",
+    "w1": "a21b583338a4583e2362aba70667ac8c443abe0cf3a732b98f022175cf4f6221",
+    "tract_metadata": "4658c4f439a1ae41d77a5d5d14e6a8cbb950f1f71f123f2edd9190fa7a992f8b"
+  },
+  "forbidden_outputs": [
+    "T50",
+    "T80",
+    "T90",
+    "AUC",
+    "cumulative_service_deficit",
+    "strategy_comparison",
+    "equity_analysis",
+    "hospital_outcomes"
+  ]
+}
