@@ -1,0 +1,185 @@
+# Responses to the editor and reviewers
+
+Manuscript originally submitted as IJDRR-D-26-02276
+
+Revised title: Distributional consequences of postearthquake restoration sequences under uncertain task workloads in Los Angeles
+
+## Response to the editorial decision and overall revision
+
+The original decision was rejection with a separate transfer offer, not an invitation to revise at IJDRR. We have prepared a substantially rewritten manuscript for resubmission and address all original comments below. Section numbers refer to the accompanying clean revised manuscript; S1–S5 refer to its supplementary material. The original manuscript, results, and correspondence remain preserved.
+
+The revised study is a conditional restoration-decision comparison with two targeted assumption contrasts. It no longer claims a new GA methodology, validated delivered-power prediction, or equity-optimal planning. The outcome domain is 817 strictly classified SCE tracts, linked through official candidate evidence to a regional 302-asset task domain. Fifty-seven crews form a pooled resource scenario. Damage and positive task durations vary across 32 stored physical realizations, paired across all policies. Completion releases a crew and restores raw asset functionality; source connectivity remains a separate condition.
+
+We corrected candidate retention for Balanced and HospFirst by recovering deterministic initializers that reached the highest recorded scores under their original ex-ante objectives. We did not launch new GA searches or select candidates using community outcomes. Efficiency retains its finite-budget search sequence. These changes alter the old ranking narrative: the two recovered sequences offer small population-burden reductions relative to Hospital-first, rather than the former large disadvantages. A lower Gini for Efficiency still accompanies higher absolute burdens in every vulnerability quartile. Two limited contrasts preserve overall effect directions under A/B candidate-influence changes but reveal group sensitivity, and show that longer severe-damage durations amplify Efficiency's community cost.
+
+The rewritten manuscript presents these results as distributional consequences of fixed modeled decisions. It does not equate small differences with meaningful superiority, intervals including zero with equivalence, or lower inequality with social welfare improvement. The following replies distinguish actual new evidence from issues addressed by narrowing scope.
+
+## Reviewer 1
+
+### Overall assessment
+
+[[COMMENT:R1:0]]
+
+Response: We retained the connection between infrastructure restoration and community consequences but narrowed what that connection can support. The title, abstract, research questions, methods, and conclusions now consistently describe a conditional service-access comparison. The original IDW outcome mapping has been replaced by official SCE candidate relationships with explicit unresolved mass. The simulation uses realization-specific task eligibility and stored positive durations rather than mean-duration scheduling followed by another repair clock. We added absolute vulnerability-group burdens, tract-level paired effects, Gini, and two focused assumption contrasts. These strengthen specific comparisons while leaving power-flow and actual feeder/outage validation outside the study. Locations: Abstract; Sections 1.2, 2.1–2.7, 3, 4.3, and 5; Tables 1–3; Figures 1–4.
+
+### Comment 1
+
+[[COMMENT:R1:1]]
+
+Response: We replaced the primary IDW dependency with an independently evidenced candidate set from official SCE circuit/tract intersections and substation records. The 817 strictly classified SCE tracts have 196 candidates: 113 physical-identity attachments, 71 named-system upstream proxies, and twelve unresolved candidates. Equal baseline weights represent candidate uncertainty, not customer-load shares. No nearest filling or missing-mass renormalization is used.
+
+We then evaluated the same fixed policies at relative Class B influences 0.5, 1, and 2, preserving the official candidates, attachments, Class C mass, and each tract's total resolved mass. Population-burden effect directions persist, but group relationships are not invariant: Efficiency's own mean signed Q4−Q1 gap changes from +0.495 to −3.540 h across the endpoints. This is limited evaluation robustness, not proof of feeder wiring or actual service shares. It also does not establish that Class B facilities' own distribution damage can be ignored. Locations: Sections 2.1–2.2, 2.7, 3.3, and 4.2–4.3; Figure 4; Supplement S1.1 and S4.1. Evidence: PAIRED_EFFECTS.csv, condition AB_lambda_0.5/AB_lambda_2; group and tract effect tables.
+
+### Comment 2
+
+[[COMMENT:R1:2]]
+
+Response: This issue is addressed explicitly through scope limitation, not claimed physical validation. Section 2.4 defines effective state as raw functionality retained only in functional components containing an active reference source. This can be an upstream-availability proxy when unmodeled electrical constraints are nonbinding, but we have not established that condition for the real system. The manuscript no longer calls the result actual delivered electricity or observed customer outage. Section 4.3 states that omitted capacity, power balance, generation adequacy, voltage, protection, switching, and load shedding can affect relative policy comparisons; using a common proxy does not remove this risk. We added no invented capacity inputs or power-flow model. Locations: Abstract; Sections 2.1, 2.4, 4.3, and 5. Remaining limitation: conclusions are conditional on the frozen reference source-connectivity representation.
+
+### Comment 3
+
+[[COMMENT:R1:3]]
+
+Response: We replaced mean-duration task selection with DS>0 eligibility in each physical realization. One positive realized duration is stored for each damaged task and reused across all four policies. The queue is the full ex-ante sequence with DS0 removed; duration affects completion and later crew release but not priority order. Completion restores raw functionality directly, without a second continuous CDF. Thirty-two damage/duration pairs, not 128 independent physical samples, underlie the baseline comparison.
+
+Paired intervals and ranking frequencies now quantify realization variation. Balanced is lowest in population burden in 68.75% of baseline realizations; Hospital-first in 6.25%, HospFirst in 25%, and Efficiency in none. The DS4-only duration contrast changes the Efficiency–HF population-burden difference by +11.169 h [9.303,12.880], demonstrating model-assumption sensitivity beyond within-distribution randomness. Locations: Sections 2.3–2.7, 3.1, and 3.3; Tables 2–3; Supplement S1.3/S3. Evidence: REALIZATION_STRATEGY_METRICS.csv and PAIRED_EFFECTS.csv. Remaining limitation: 32 existing samples under a fixed PGA field are not independent validation or comprehensive seismic uncertainty.
+
+### Comment 4
+
+[[COMMENT:R1:4]]
+
+Response: We agree that historical restoration milestones cannot validate the tract model. The rewritten manuscript no longer uses historical curves as validation and consistently names the durations uncalibrated scenario-based on-site restoration actions. Travel is separate; mobilization, material wait, permanent reconstruction, distribution feeders, and emergency operating procedures are not represented. The DS4×2 contrast asks whether the same fixed decisions change performance under relatively longer severe-damage actions; it does not establish a more realistic duration. Efficiency's population excess increases from 15.076 to 26.245 h, whereas the two weighted-priority advantages remain small. Locations: Sections 2.3, 2.7, 3.3, and 4.3; Table 3. This is a focused assumption comparison plus scope clarification, not predictive restoration validation.
+
+### Comment 5
+
+[[COMMENT:R1:5]]
+
+Response: We removed the claim that SVI-weighted T80 establishes equity and removed clustering and composite hotspot analysis from the revised scientific argument. The vulnerability variable is correctly named NRI-derived SOVI_SCORE. We now report population-weighted normalized burden for fixed Q1–Q4 groups, signed and absolute Q4−Q1 gaps, population-weighted Gini, and tract-level paired changes. Absolute levels accompany the inequality statistics.
+
+Efficiency illustrates why this matters: its lower Gini (0.1765 versus 0.2187) accompanies higher mean burden in all four groups, with Q4 +21.526 h relative to HF. Conversely, Balanced improves all four means but widens the absolute gap because Q4 already has lower modeled baseline burden. Twelve completely unresolved tracts retain NA outcomes rather than zero or near-zero classification. Locations: Sections 2.6, 3.2, and 4.1/4.3; Figures 2–3; Supplement S3. Remaining limitation: distributional metrics do not establish causal equity or constitute equity optimization.
+
+### Comment 6
+
+[[COMMENT:R1:6]]
+
+Response: The manuscript and supplement now disclose population size 100, 100 fixed generations, ordered crossover probability 0.8, inversion mutation probability 0.2, tournament size three, seeds 42–51 for each objective, and the 504 h surrogate horizon. Figure S1 shows the retained generation-best records and seed variability. We do not claim proven convergence or global optimality. Weight 20 is explicitly a hospital-dominant policy-design coefficient, not empirical calibration.
+
+Candidate provenance also required correction. The original output retained the best final-generation member, although 28/30 histories contained a higher earlier score. Balanced/HospFirst deterministic priority initializers are reconstructible and attain their recorded maxima. We now use these candidates, not presumed unsaved intermediate sequences. An independent best-so-far archive/incumbent comparison prevents returning a known worse candidate without changing search replacement or RNG. No new GA was run. Locations: Section 2.5; Supplement S2, Table S3 and Figure S1. Remaining limitation: unknown intermediate chromosomes are not recovered and initialization gains are not attributed to genetic evolution.
+
+### Comment 7
+
+[[COMMENT:R1:7]]
+
+Response: We no longer retain the old explanation that HF simply outperforms GA-HospitalFirst. Under the identical HospFirst surrogate and expected-workload decoder, the restored candidate scores 0.916459946176 and HF 0.916319981609. Corrected physical reevaluation gives population burden −0.166 h [−0.257,−0.064] relative to HF, but hospital-tract burden −0.022 h [−0.104,0.066] and T80 −0.197 h [−0.735,0.204]. The overall advantage is small and neither hospital advantage nor equivalence is established.
+
+We separate candidate-retention quality from the mismatch between an additive completion surrogate and source-gated community outcomes. Efficiency remains an example of higher own-objective fitness with higher community burden; scores are never compared across different objectives. Locations: Sections 2.5, 3.1, and 4.1; Table 2; Supplement Table S3. We did not alter the objective to make a comparator win, and removed the superseded HF-superiority narrative.
+
+## Reviewer 2
+
+### Overall assessment
+
+[[COMMENT:R2:0]]
+
+Response: We rewrote the full paper around a decision question rather than a catalogue of methods. A substantive Introduction now motivates why system completion, absolute community burden, and relative inequality can conflict. Section 1.1 gives a focused literature comparison and Section 1.2 states three questions that the retained experiments answer. Conventional implementation details have moved to the supplement; internal software interfaces and verification counts are not presented as contributions.
+
+The Results follow three findings: modest aggregate differences with distinct group consequences; the non-equivalence of improving Q4, reducing overall burden, and shrinking gaps; and targeted assumptions that preserve some overall directions but alter group relationships or amplify costs. The model uses a larger retained inventory and a clearly separated task/outcome domain, without claiming a full electrical model. Locations: Title, Abstract, Sections 1–5, Tables 1–3, Figures 1–4. We have narrowed the interpretation to conditional distributional consequences, not proposed-method performance or optimized equitable planning.
+
+### Comment 1
+
+[[COMMENT:R2:1]]
+
+Response: The Introduction is now a substantive motivation followed by a distinct related-research subsection and explicit research questions. It explains the practical distinction between finishing repairs and allocating burdens during recovery before introducing the model. Section 1.1 discusses established logistics, service-access, power-flow, and equity-optimization work; Section 1.2 defines the conditional questions this study can answer. The revision does not merely move the old encyclopedic review intact. Remaining scope is stated at the start rather than deferred entirely to limitations. Locations: Sections 1, 1.1, and 1.2.
+
+### Comment 2
+
+[[COMMENT:R2:2]]
+
+Response: We removed the broad claim that linking physical damage, operations, and tract consequences is itself a largely unfilled methodological gap. The revised review recognizes Los Angeles restoration scheduling (Çağnan et al., 2006; Xu et al., 2007), access-based resilience (Logan and Guikema, 2020), census-tract power-flow risk assessment (Cheng et al., 2024), and explicit equity-oriented optimization (Toplu-Tutay et al., 2024; Jiang et al., 2025). The narrower contribution is an evaluated comparison showing which burden criteria align or conflict under paired task uncertainty and two stated assumption changes. Locations: Section 1.1, final two paragraphs; Section 1.2; Sections 3–4. We do not claim to be the first study of community consequences or to improve these prior algorithms.
+
+### Comment 3
+
+[[COMMENT:R2:3]]
+
+Response: Main Methods retain only the domains, candidate mapping, realization information set, event dispatch, source proxy, sequence provenance, burden estimands, and paired design needed to interpret the findings. Fragility parameter tables, RNG details, search diagnostics, probability cleanup, and integral-reconstruction details appear in S1–S5. The updated Table 1 summarizes adopted assumptions and their limits. Internal adapter/exporter contracts, hash checks, round-trip counts, percolation, and clustering are absent from the scientific methods narrative. Locations: Section 2 and Supplement S1–S5. The conventional scheduler and GA are no longer claimed as methodological innovations.
+
+### Comment 4
+
+[[COMMENT:R2:4]]
+
+Response: We replaced the old questions with comparisons whose answers are quantitatively developed. The two weighted-priority sequences reduce mean population burden by only 0.295/0.166 h, yet HospFirst shifts burden from Q4 toward Q1. Efficiency's smaller Gini accompanies worse means in every group. The A/B contrast preserves overall directions while changing one signed group-gap relationship; DS4×2 increases Efficiency's excess population burden by a paired 11.169 h. These distinguish criteria and identify an assumption-dependent cost rather than merely ranking methods. Locations: Section 1.2 and Results 3.1–3.3; Figures 2–4; Conclusion. The answers remain conditional, not universal rules about hospital priority or real communities.
+
+### Comment 5
+
+[[COMMENT:R2:5]]
+
+Response: We retained the useful purpose of Table 1 as a concise parameter/source guide and rebuilt it around the actual final study. It now separates the fixed hazard field, 302 task assets, 57 pooled crews, event-completion durations, official candidates, unresolved mass, four fixed sequences, paired sample design, and the two executed contrasts. Removed rows include the old IDW cutoff, continuous recovery clock, and clustering settings. The table labels which entries are scenario assumptions rather than calibrated quantities. Location: Table 1 in Section 2.1.
+
+### Comment 6
+
+[[COMMENT:R2:6]]
+
+Response: We removed identifying the most critical substations as a separate aim and removed centrality-based priority comparisons from the revised analysis. No top-ten criticality or hotspot ranking is rebuilt. Supplement S4.2 retains only a limited integral decomposition where it helps account for the reported policy burden contrast. It explicitly does not infer that the corresponding facilities are real-world critical nodes or that their own completion times alone caused the change. Locations: Sections 1.2 and 4.2; Supplement S4.2. This keeps the focus on distributional consequences of decisions rather than asset-ranking methodology.
+
+### Comment 7
+
+[[COMMENT:R2:7]]
+
+Response: The normalized percolation curve and its meshing discussion have been removed because they are not needed to answer the revised research questions. We have not reconstructed them for this response. The network description now states only the relevant adjacency, task-component, and functional source-connectivity semantics, with the limits of electrical interpretation. Locations: Sections 2.1 and 2.4. There is consequently no new percolation normalization claim or unexplained redundantly-meshed terminology.
+
+### Comment 8
+
+[[COMMENT:R2:8]]
+
+Response: The affected legacy prose was replaced by a clear event-scheduling description rather than retained with isolated typographical edits. Section 2.4 now states that the next fixed-list task is assigned to the earliest available crew, travel uses the origin or previous task in the correct direction, and completion determines the next release. We checked terminology for sequencing and crew travel throughout the revised text. Location: Section 2.4, second and third paragraphs.
+
+### Comment 9
+
+[[COMMENT:R2:9]]
+
+Response: GA is now described as a transparent finite-budget search comparator, not the contribution or a black-box source of optimal policies. The surrogate, expected workload, search operators, budget, seeds, initializers, incumbent comparison, and historical output-retention issue are disclosed. Two adopted candidates actually come from deterministic initialization and are named accordingly; only Efficiency retains the selected search sequence. No claim is made that GA is necessary or superior to other methods. Locations: Section 2.5; Supplement S2, Table S3 and Figure S1. The retained search adds a comparator with a different surrogate emphasis, but the scientific contribution is the resulting conditional burden comparison. Remaining limitation: neither convergence to a global optimum nor algorithmic superiority is established.
+
+### Comment 10
+
+[[COMMENT:R2:10]]
+
+Response: We considered refocusing on a composite vulnerability score but did not adopt it. The vulnerability measure is an existing NRI-derived score, not a new contribution, and an ad hoc composite hotspot would distract from the decision question. Instead we use fixed vulnerability quartiles to show absolute modeled burdens and paired changes, with a signed gap and Gini as complementary descriptions. The old clustering and composite hotspot analysis are removed. Locations: Sections 1.2, 2.6, 3.2, and 4.3. We acknowledge that tract vulnerability does not measure individual hardship or establish causal social effects.
+
+### Comment 11
+
+[[COMMENT:R2:11]]
+
+Response: The old 92-node/318-edge model no longer supplies the revised results. The current manuscript distinguishes a 310-record retained inventory, 306 state-identified records, a 302-asset primary scheduling component, 196 SCE candidate service nodes, and 817 outcome tracts. The eight excluded task records and reasons are listed in S1.1; all 117 distinct resolved upstream attachment targets are in the task component. We do not imply that 310 is a count of every real Los Angeles electrical asset. Locations: Section 2.1; Table 1; Supplement S1.1. This separates geographic inventory coverage, network representation, repair eligibility, and reported community scope instead of using one reduced count for all four.
+
+### Comment 12
+
+[[COMMENT:R2:12]]
+
+Response: The revised findings emphasize conflicts among decision criteria rather than familiar statements that order matters. In this model, Balanced improves all four group means yet increases the absolute high–low gap; Efficiency lowers Gini while worsening every group mean; and severe-damage duration changes increase its relative community cost without a corresponding clear increase in average logistics benefit. Mapping influence leaves overall effect directions intact but alters group-level relationships. Locations: Results 3.2–3.3 and Discussion 4.1–4.2; Figures 2 and 4. These are documented conditional examples, not claims that such relations universally hold.
+
+### Comment 13
+
+[[COMMENT:R2:13]]
+
+Response: Resource constraints are now stated concretely: 57 initially available pooled crews at eleven origin proxies, one task per crew at a time, no preemption, and release at completion. The earliest-release rule and directed travel determine which crew is next available, while the next task remains the next item in the fixed queue. C57 is a scenario resource budget, not verified utility staffing, and there is no utility-specific task restriction. Results report makespan and total travel beside community burden. Locations: Sections 2.4, 3.1, and 4.3; Tables 1–3; Supplement S1.3. This explains how logistics constrain the comparison, without claiming a novel scheduling method or an unperformed crew-number sensitivity.
+
+### Comment 14
+
+[[COMMENT:R2:14]]
+
+Response: We now directly report who has lower or higher burden and the measured logistics differences, while narrowing the equity-planning claim. Under the ±1 h classification of 32-realization mean effects, Balanced improves 110 tracts containing 13.02% of the study population and worsens nine containing 1.10%; HospFirst improves 61 containing 7.37% and worsens three containing 0.33%. All these worsened tracts are in Q1. Efficiency worsens 663 tracts containing 80.07%, despite lower Gini. The twelve unresolved tracts remain separate. Realization-first population shares are also shown and are not confused with these mean-effect classifications.
+
+The four sequences are not an isolated equity intervention or an optimized frontier. We therefore removed claims of the benefits of an equity-optimal plan. Locations: Sections 2.6, 3.2–3.3, and 4.1/4.3; Figures 2–4; Supplement Table S5. Remaining limitation: this answers distributional consequences of fixed policy bundles, not the optimal cost of reducing inequity.
+
+### Comment 15
+
+[[COMMENT:R2:15]]
+
+Response: We removed the quoted generalization. The new evidence shows why it was too broad: doubling only severe-damage task durations changes relative policy costs, increasing Efficiency's excess population burden by 11.169 h, rather than merely controlling a common absolute time scale. Conversely, A/B candidate weighting has small overall effects but changes some group relationships. These are the two actual tested contrasts; no conclusion about generic topology-related assumptions or all restoration assumptions is drawn. Locations: Section 3.3, Discussion 4.2, and Conclusion; Figure 4 and Table 3. This connects assumptions to decision consequences instead of judging the methods in the abstract.
+
+### Comment 16
+
+[[COMMENT:R2:16]]
+
+Response: The title, abstract, research questions, Results, and Conclusion now center on how restoration sequences redistribute modeled burdens. We report population and group levels, paired tract effects, uncertainty, and logistics costs, rather than presenting interface tests or method rankings as findings. The three main conclusions are small overall differences with different distributional effects; the non-equivalence of Q4 improvement, lower total burden, and equalization; and assumption-dependent amplification or group sensitivity. Locations: Abstract; Sections 1.2, 3, 4.1–4.3, and 5; Figures 2–4.
+
+We also state what these findings do not imply: no real-community causal attribution, delivered-power validation, fairness optimization, or Pareto frontier. The contribution is a conditional decision comparison with measured distributional consequences, and the remaining physical, data, and social limitations are explicit rather than treated as resolved by software reproducibility.
