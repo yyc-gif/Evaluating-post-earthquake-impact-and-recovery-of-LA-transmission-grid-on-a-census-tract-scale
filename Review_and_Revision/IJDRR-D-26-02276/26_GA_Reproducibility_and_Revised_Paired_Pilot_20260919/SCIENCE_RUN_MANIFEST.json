@@ -1,0 +1,122 @@
+{
+  "schema": "R26_GA_REPRODUCIBILITY_REVISED_PAIRED_PILOT_V1",
+  "scientific_revision_decision": "CORE FINDINGS CHANGED — REFRAME REQUIRED",
+  "hazard": "2pc50",
+  "domain": "D302",
+  "crew_scenario": "C57_REFERENCE",
+  "strategies": [
+    "Hospital-first",
+    "GA-Balanced",
+    "GA-HospFirst",
+    "GA-Efficiency"
+  ],
+  "physical_realizations": 32,
+  "strategy_realization_executions": 128,
+  "master_seed": 42,
+  "ga_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "ga_runs": 30,
+  "bootstrap_seed": 20260919,
+  "bootstrap_resamples": 10000,
+  "ga_configuration": {
+    "population": 100,
+    "generations": 100,
+    "ordered_crossover_probability": 0.8,
+    "inversion_mutation_probability": 0.2,
+    "tournament_size": 3,
+    "stopping": "fixed generation budget",
+    "Tmax_hr": 504.0,
+    "network_importance": "DROP",
+    "coefficients": {
+      "GA-Balanced": {
+        "W_POP": 1.0,
+        "W_HOSP": 3.0,
+        "W_SVI": 1.0,
+        "W_MAKESPAN": 0.5
+      },
+      "GA-HospFirst": {
+        "W_POP": 1.0,
+        "W_HOSP": 20.0,
+        "W_SVI": 1.0,
+        "W_MAKESPAN": 0.1
+      },
+      "GA-Efficiency": {
+        "W_POP": 1.0,
+        "W_HOSP": 1.0,
+        "W_SVI": 1.0,
+        "W_MAKESPAN": 2.0
+      }
+    },
+    "coefficient_class": "policy-design / optimization objective coefficients"
+  },
+  "damage_probability_file_sha256": "e492c60f97e23ec9f9001497a2f0b0ce4954d2c6698ecf2512f321827e3bbdd0",
+  "stage1_clipped_station_count": 5,
+  "quartile_boundaries": [
+    1.809999943,
+    52.63999939,
+    75.34999847,
+    88.38999939,
+    99.83999634
+  ],
+  "near_zero_threshold_hr": 1.0,
+  "input_hashes": {
+    "main_model": "90743cde45fe14de9e113ad39111c2a8507dd90099002a1eae06832aba208145",
+    "r1_readiness": "4959a8e5e7f5a6e54089e56bdd119de00a3d5db5b1c820873284cbe4ba45203d",
+    "station_qa": "f7e9aca84e08f2e44ead96dedde40797e950d86efd017c47222700a71704c6bb",
+    "graph": "e2dd039ec40336ea800adc29aa6cf790ae3d89553c1491c149096b3be6377090",
+    "task_domain": "bcd8f493078f51365e9e7a9cafd63d0ec3d5738f358f901f6a841a1d5276fa83",
+    "priority": "53c7687c2ca7a4c87b1e5a53946fe67c7f5e05188f40003a3f1fe6371218a1f6",
+    "ga_readiness": "164f68a6fe35331269226792a3e7da4f050777c91fa9682032be66c3232fec72",
+    "base_travel": "16177e57cd7e77ea2075e347318c3b7698937af6b0b7dc702f18b9da65662690",
+    "task_travel": "68c03537853bad92544f13688ade89247e135e829b989c71c96be2f8ef45a6de",
+    "crew_roster": "4940f0c15e56c884ae2f3fd7717cd93f12e2f37de2bb936a27a8b752df5f3f11",
+    "scheduler": "8096fa7ad72d5f7a5cb9c6f186d65adef2ab8f7fc336938f0dba396ed31ee43f",
+    "revised_runner": "f8ee9c6a1f4217deb044f6eff194311b09e76af3cd6fbc6999ab4ab0fe747cfe",
+    "exporter": "79ddac0980e4553b15d881471a414c8215fdd71ce49f5065fab0085bda0dc59b",
+    "service_interface": "d32189231cceb0a13833fd608a08ca823d10dab07c8a8f92e2db9d97d5517514",
+    "service_nodes": "ccf9e08b40a0df1326e7eb9f62addd92d9fa348f65a43dd4afc6a743845f2080",
+    "attachments": "b1a7ad8e6f162bed06fb88694a0393aa0d1fc7d4ef515ba628ede242e809ed9e",
+    "w1": "a21b583338a4583e2362aba70667ac8c443abe0cf3a732b98f022175cf4f6221",
+    "tract_metadata": "4658c4f439a1ae41d77a5d5d14e6a8cbb950f1f71f123f2edd9190fa7a992f8b"
+  },
+  "output_hashes": {
+    "damage_probabilities": "e492c60f97e23ec9f9001497a2f0b0ce4954d2c6698ecf2512f321827e3bbdd0",
+    "ga_convergence": "bd18f5649cd9f2c404f2ed4c7feb2557aa400a06e446af3983e0dc88d6855fb1",
+    "ga_sequences": "0e94e13c38ad2e46f15b0cdf3268ebb3829ee5bdb30c9a43773715bdb0f63c48",
+    "ga_report": "57f3d517e83b841c1e8faeb0ce0f613cc9857a946a91c7891e7f5948724711a5",
+    "pilot_report": "f20886cd18769d307abfde1a43cc1a029852c75e0f9f7316b93a294f1bb3e5f5",
+    "summary": "cf26264a3084bb5af65ccac75f4d24f0779d9b2400702145ef0a612bc9f4ff39",
+    "tract_burden": "405e88945cebf9bd1b8b3bc893bf7fe1f843e051f5fdcf45f6d39ce320b5b29d",
+    "distribution": "4fe1b71720ebacdd239be95c9548c6c7ae36b238f772fe1ed421802ddcb8b1f3",
+    "pairwise": "2dcf282218cad0cc2c4e6485eb0037c22e51b09d586964f3197e9d12922398ed",
+    "reviewers": "ee07021c677f08162459d24e5f69a2d34f853887a77517688ee8e8f4a2ef91b6",
+    "evidence": "e2f21cea4b5b49aaf6b2274737edeaf96ca2bb96719c3b74e217eaa83e180eef"
+  },
+  "runner_sha256": "6b2b749444e6d772bf0c030c8d30a897be13bb8c29d2e0e37644817ab28b5865",
+  "forbidden_analyses_not_run": [
+    "C29",
+    "C114",
+    "repair_multiplier_sensitivity",
+    "source_sensitivity",
+    "mapping_sensitivity",
+    "legacy_Stage4",
+    "legacy_Stage5"
+  ],
+  "paired_evidence_stability": "STABLE_ENOUGH_FOR_DIRECT_MANUSCRIPT_REWRITE",
+  "reporting_interpretation_corrections": [
+    "Hospital-first objective fitness correctly recognized as higher than canonical GA-HospFirst",
+    "signed Q4-Q1 direction separated from absolute disparity magnitude",
+    "paired median differences serialized explicitly"
+  ],
+  "additional_scientific_executions_for_reporting_corrections": 0
+}
