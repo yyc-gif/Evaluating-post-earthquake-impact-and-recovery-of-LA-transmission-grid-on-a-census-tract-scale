@@ -1,0 +1,10 @@
+{
+  "original_manifest_sha256": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4",
+  "original_driver_sha256": "5ca48a8630bef00691f1e27f5f64d27d76d3b654ac4600c42acbf9f4765a31cc",
+  "corrected_driver_sha256": "d72a0c4f49f45678450ef9567888be4f07e487ec1263d4b1c228323d6dfde128",
+  "change": "NPZ numpy.str_ IDs converted explicitly to native Python str; identical values/order and all scientific inputs",
+  "failure_phase": "scheduler _validate_inputs / _string_ids, before scheduling or state calculation",
+  "scientific_outputs_before_fix": 0,
+  "failed_attempts": 1,
+  "original_traceback": "Traceback (most recent call last):\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\Targeted_Methodological_Strengthening_20260919\\run_targeted_strengthening.py\", line 184, in execute\n    result=mods['revised_runner'].run_revised_realization(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\25B_R1_One_Realization_Schedule_Integration_Repair_20260917\\R1_REVISED_REALIZATION_RUNNER.py\", line 244, in run_revised_realization\n    schedule = scheduler_callable(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\24_R1_Event_Based_Scheduler_20260917\\r1_event_based_scheduler.py\", line 197, in execute_event_based_schedule\n    domain, priority, damage, duration, base, task, crew = _validate_inputs(\n                                                           ^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\24_R1_Event_Based_Scheduler_20260917\\r1_event_based_scheduler.py\", line 96, in _validate_inputs\n    domain = _string_ids(domain_ids, \"domain_ids\")\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\24_R1_Event_Based_Scheduler_20260917\\r1_event_based_scheduler.py\", line 55, in _string_ids\n    raise TypeError(f\"{name} must contain nonempty, whitespace-stable string IDs\")\nTypeError: domain_ids must contain nonempty, whitespace-stable string IDs\n"
+}

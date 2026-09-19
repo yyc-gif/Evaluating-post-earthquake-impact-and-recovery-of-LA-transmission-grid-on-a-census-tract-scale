@@ -240,13 +240,36 @@ def inversion_mutation(individual: tuple[int, ...], rng: random.Random) -> tuple
 
 
 def run_ga(policy: str, seed: int, decoder: SurrogateDecoder, priority: np.ndarray,
-           workload: np.ndarray, generations: int = GA_GENERATIONS) -> tuple[pd.DataFrame, tuple[int, ...], SurrogateResult]:
+           workload: np.ndarray, generations: int = GA_GENERATIONS, *,
+           incumbents: Mapping[str, tuple[int, ...]] | None = None) -> tuple[pd.DataFrame, tuple[int, ...], SurrogateResult]:
+    """Return the best observed candidate, including explicit external incumbents.
+
+    The archive never participates in selection/replacement and consumes no RNG.
+    Historical Round26 outputs remain last-generation results; they are not rewritten.
+    """
     rng = random.Random(seed)
     n = len(priority)
     population = [tuple(rng.sample(range(n), n)) for _ in range(GA_POPULATION - 2)]
     population.append(tuple(np.argsort(-priority, kind="stable").tolist()))
     population.append(tuple(np.argsort(workload, kind="stable").tolist()))
     records = []
+    archive_sequence = None
+    archive_score = None
+    archive_origin = None
+
+    def observe_candidate(sequence, score, origin):
+        nonlocal archive_sequence, archive_score, archive_origin
+        key = (score.fitness, tuple(-value for value in sequence))
+        if archive_score is None or key > (archive_score.fitness, tuple(-value for value in archive_sequence)):
+            archive_sequence, archive_score, archive_origin = tuple(sequence), score, origin
+
+    incumbent_scores = {}
+    for name, sequence in sorted((incumbents or {}).items()):
+        if len(sequence) != n or set(sequence) != set(range(n)):
+            raise ValueError(f"Invalid incumbent permutation: {name}")
+        score = decoder.evaluate(sequence)
+        incumbent_scores[name] = score.fitness
+        observe_candidate(sequence, score, f"incumbent:{name}")
 
     def evaluate_population(pop):
         return [decoder.evaluate(individual) for individual in pop]
@@ -255,6 +278,7 @@ def run_ga(policy: str, seed: int, decoder: SurrogateDecoder, priority: np.ndarr
     for generation in range(generations + 1):
         best_index = max(range(len(population)), key=lambda index: (scores[index].fitness, tuple(-v for v in population[index])))
         best = scores[best_index]
+        observe_candidate(population[best_index], best, f"generation:{generation}")
         records.append({
             "policy": policy,
             "seed": seed,
@@ -263,6 +287,9 @@ def run_ga(policy: str, seed: int, decoder: SurrogateDecoder, priority: np.ndarr
             "generation_mean_fitness": float(np.mean([score.fitness for score in scores])),
             "generation_best_completion_benefit": best.completion_benefit,
             "generation_best_makespan_hr": best.makespan_hr,
+            "best_so_far_fitness": archive_score.fitness,
+            "best_so_far_origin": archive_origin,
+            "best_explicit_incumbent_fitness": max(incumbent_scores.values(), default=math.nan),
         })
         if generation == generations:
             break
@@ -283,8 +310,7 @@ def run_ga(policy: str, seed: int, decoder: SurrogateDecoder, priority: np.ndarr
             offspring.extend((first, second))
         population = offspring
         scores = evaluate_population(population)
-    final_index = max(range(len(population)), key=lambda index: (scores[index].fitness, tuple(-v for v in population[index])))
-    return pd.DataFrame(records), population[final_index], scores[final_index]
+    return pd.DataFrame(records), archive_sequence, archive_score
 
 
 def sample_physical_realization(probabilities: np.ndarray, realization_id: int) -> tuple[np.ndarray, np.ndarray]:
@@ -523,7 +549,10 @@ def main() -> None:
         decoder = SurrogateDecoder(base.to_numpy(dtype=float), task.to_numpy(dtype=float), crew_origins,
                                    expected_workload, service_priority, weights["W_MAKESPAN"])
         for seed in GA_SEEDS:
-            curve, sequence, result = run_ga(policy, seed, decoder, service_priority, expected_workload)
+            curve, sequence, result = run_ga(
+                policy, seed, decoder, service_priority, expected_workload,
+                incumbents={"Hospital-first": tuple(domain_ids.index(value) for value in hospital_sequence)},
+            )
             sequence_ids = tuple(domain_ids[index] for index in sequence)
             if len(sequence_ids) != 302 or set(sequence_ids) != set(domain_ids):
                 raise RuntimeError("GA chromosome is not a D302 permutation")

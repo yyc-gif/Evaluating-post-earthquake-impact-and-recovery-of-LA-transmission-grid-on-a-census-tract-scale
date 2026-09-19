@@ -1,0 +1,772 @@
+{"key": "baseline/r00/GA-Balanced", "status": "started", "ordinal": 1, "time_unix": 1789855591.1007519, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r00/GA-Balanced", "status": "failure", "traceback": "Traceback (most recent call last):\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\Targeted_Methodological_Strengthening_20260919\\run_targeted_strengthening.py\", line 184, in execute\n    result=mods['revised_runner'].run_revised_realization(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\25B_R1_One_Realization_Schedule_Integration_Repair_20260917\\R1_REVISED_REALIZATION_RUNNER.py\", line 244, in run_revised_realization\n    schedule = scheduler_callable(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\24_R1_Event_Based_Scheduler_20260917\\r1_event_based_scheduler.py\", line 197, in execute_event_based_schedule\n    domain, priority, damage, duration, base, task, crew = _validate_inputs(\n                                                           ^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\24_R1_Event_Based_Scheduler_20260917\\r1_event_based_scheduler.py\", line 96, in _validate_inputs\n    domain = _string_ids(domain_ids, \"domain_ids\")\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"R:\\Review_and_Revision\\IJDRR-D-26-02276\\24_R1_Event_Based_Scheduler_20260917\\r1_event_based_scheduler.py\", line 55, in _string_ids\n    raise TypeError(f\"{name} must contain nonempty, whitespace-stable string IDs\")\nTypeError: domain_ids must contain nonempty, whitespace-stable string IDs\n"}
+{"key": "baseline/r00/GA-Balanced", "status": "pre_scientific_validation_failed", "scientific_outputs": 0, "time_unix": 1789855635.492484}
+{"key": "baseline/r00/GA-Balanced", "status": "started", "ordinal": 1, "time_unix": 1789855642.4363086, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r00/GA-Balanced", "status": "scientific_returned", "seconds": 3.3770394999992277}
+{"key": "baseline/r00/GA-Balanced", "status": "checkpoint_saved", "ordinal": 1, "seconds": 3.4516392000005, "evidence_sha256": "df383df8b21028a8dda55151bb4e8cfefd0e69d1d6ac14c9986e5c4afb3e6a9e"}
+{"key": "baseline/r00/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r00/GA-HospFirst", "status": "started", "ordinal": 2, "time_unix": 1789855645.9243429, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r00/GA-HospFirst", "status": "scientific_returned", "seconds": 4.890386099999887}
+{"key": "baseline/r00/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 2, "seconds": 4.956992600000376, "evidence_sha256": "69f451afe545cd6f9d41960f768d35d2a39b8517f489d4f5398881c75540b9f9"}
+{"key": "baseline/r00/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r01/GA-Balanced", "status": "started", "ordinal": 3, "time_unix": 1789855650.9022102, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r01/GA-Balanced", "status": "scientific_returned", "seconds": 4.877009300002101}
+{"key": "baseline/r01/GA-Balanced", "status": "checkpoint_saved", "ordinal": 3, "seconds": 4.95203599999877, "evidence_sha256": "9330524afa0c89cb8218b468778dcfe9f9a211f5279eed2e35ee795f6f82d2cb"}
+{"key": "baseline/r01/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r01/GA-HospFirst", "status": "started", "ordinal": 4, "time_unix": 1789855655.9035134, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r01/GA-HospFirst", "status": "scientific_returned", "seconds": 4.819428800001333}
+{"key": "baseline/r01/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 4, "seconds": 4.89154630000121, "evidence_sha256": "d57d12285e1608f9874b4cba59a20be9f4d7550a4e838b6dbc28f0351fd4359e"}
+{"key": "baseline/r01/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r02/GA-Balanced", "status": "started", "ordinal": 5, "time_unix": 1789855660.828785, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r02/GA-Balanced", "status": "scientific_returned", "seconds": 5.005298699998093}
+{"key": "baseline/r02/GA-Balanced", "status": "checkpoint_saved", "ordinal": 5, "seconds": 5.074039099999936, "evidence_sha256": "defffc71d2905c3f7428e61915cbefd4becc542db8b5da76ac92b24012968108"}
+{"key": "baseline/r02/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r02/GA-HospFirst", "status": "started", "ordinal": 6, "time_unix": 1789855665.9278858, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r02/GA-HospFirst", "status": "scientific_returned", "seconds": 4.905899800000043}
+{"key": "baseline/r02/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 6, "seconds": 4.972527000001719, "evidence_sha256": "5cdd44c8f654d8beac81dd9a9d3618fabb150515b6623d983125277e8f6eb934"}
+{"key": "baseline/r02/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r03/GA-Balanced", "status": "started", "ordinal": 7, "time_unix": 1789855670.9264286, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r03/GA-Balanced", "status": "scientific_returned", "seconds": 4.846597100000508}
+{"key": "baseline/r03/GA-Balanced", "status": "checkpoint_saved", "ordinal": 7, "seconds": 4.9137694999990345, "evidence_sha256": "3d019c627d7e6f73e1d4a184136e088b657b8f83271aea9f77094ab62fa000fc"}
+{"key": "baseline/r03/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r03/GA-HospFirst", "status": "started", "ordinal": 8, "time_unix": 1789855675.867083, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r03/GA-HospFirst", "status": "scientific_returned", "seconds": 4.958477100000891}
+{"key": "baseline/r03/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 8, "seconds": 5.026806499998202, "evidence_sha256": "50a2c4dadff9228ca32f2e07b351f49296af5ba6cd3d09e01d8d2d9cf7d3adf6"}
+{"key": "baseline/r03/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r04/GA-Balanced", "status": "started", "ordinal": 9, "time_unix": 1789855680.9201484, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r04/GA-Balanced", "status": "scientific_returned", "seconds": 4.884717199998704}
+{"key": "baseline/r04/GA-Balanced", "status": "checkpoint_saved", "ordinal": 9, "seconds": 4.96077940000032, "evidence_sha256": "547e68703e15e2dd82657aea8403076b14722398a43c3c196fdb771b8408662f"}
+{"key": "baseline/r04/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r04/GA-HospFirst", "status": "started", "ordinal": 10, "time_unix": 1789855685.920618, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r04/GA-HospFirst", "status": "scientific_returned", "seconds": 4.9261560999984795}
+{"key": "baseline/r04/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 10, "seconds": 4.994738499997766, "evidence_sha256": "2ee7e46e8f2abc25567709b077605188cf422f7d6da6628d9138b03173e13ada"}
+{"key": "baseline/r04/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r05/GA-Balanced", "status": "started", "ordinal": 11, "time_unix": 1789855690.9395916, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r05/GA-Balanced", "status": "scientific_returned", "seconds": 4.795871900001657}
+{"key": "baseline/r05/GA-Balanced", "status": "checkpoint_saved", "ordinal": 11, "seconds": 4.864737100000639, "evidence_sha256": "4c4c2d1b7aba75e8267ca1bd370a0e446cc7d5f0197ea9e54d22217d015b8a1a"}
+{"key": "baseline/r05/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r05/GA-HospFirst", "status": "started", "ordinal": 12, "time_unix": 1789855695.8406525, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r05/GA-HospFirst", "status": "scientific_returned", "seconds": 4.834764800001722}
+{"key": "baseline/r05/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 12, "seconds": 4.9030386000013095, "evidence_sha256": "0527f935e2ca2304c17505bae84da392712cf7c6586a36234644c1bf9b62f1e4"}
+{"key": "baseline/r05/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r06/GA-Balanced", "status": "started", "ordinal": 13, "time_unix": 1789855700.7699785, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r06/GA-Balanced", "status": "scientific_returned", "seconds": 4.829527300000336}
+{"key": "baseline/r06/GA-Balanced", "status": "checkpoint_saved", "ordinal": 13, "seconds": 4.9024114000021655, "evidence_sha256": "68d37b94a37c05df88a43b383212e4a50a021ec6a16ec59da67850480af08755"}
+{"key": "baseline/r06/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r06/GA-HospFirst", "status": "started", "ordinal": 14, "time_unix": 1789855705.7063854, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r06/GA-HospFirst", "status": "scientific_returned", "seconds": 4.869385599999077}
+{"key": "baseline/r06/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 14, "seconds": 4.934906900001806, "evidence_sha256": "302ce3ab53d7a21317007e43b5a4858e1aeae8cd9ca66cc41c06727499e2d00a"}
+{"key": "baseline/r06/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r07/GA-Balanced", "status": "started", "ordinal": 15, "time_unix": 1789855710.6695178, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r07/GA-Balanced", "status": "scientific_returned", "seconds": 4.87503370000195}
+{"key": "baseline/r07/GA-Balanced", "status": "checkpoint_saved", "ordinal": 15, "seconds": 4.945064300001832, "evidence_sha256": "9f98ecbb51a5f600a50939b6cd86ec601a6abca08184110ade7a0281acdca423"}
+{"key": "baseline/r07/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r07/GA-HospFirst", "status": "started", "ordinal": 16, "time_unix": 1789855715.648791, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r07/GA-HospFirst", "status": "scientific_returned", "seconds": 4.7714009000010265}
+{"key": "baseline/r07/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 16, "seconds": 4.838149999999587, "evidence_sha256": "e795fea453e3297a0912f1b12d26901a26e1c44bbf089dde5c34f08ce19a6eaa"}
+{"key": "baseline/r07/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r08/GA-Balanced", "status": "started", "ordinal": 17, "time_unix": 1789855720.5044389, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r08/GA-Balanced", "status": "scientific_returned", "seconds": 4.884876500000246}
+{"key": "baseline/r08/GA-Balanced", "status": "checkpoint_saved", "ordinal": 17, "seconds": 4.954594499999075, "evidence_sha256": "88d970bb1cb772cf08c60d134a992c9d94d1324c5215327a2ed05596a7c4c1e4"}
+{"key": "baseline/r08/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r08/GA-HospFirst", "status": "started", "ordinal": 18, "time_unix": 1789855725.486905, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r08/GA-HospFirst", "status": "scientific_returned", "seconds": 4.809610800002702}
+{"key": "baseline/r08/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 18, "seconds": 4.875427000002674, "evidence_sha256": "be09d0e429f011e5122b91b8bb41c6ad574f0ef142fd3c84eb5fd2450ee67d3b"}
+{"key": "baseline/r08/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r09/GA-Balanced", "status": "started", "ordinal": 19, "time_unix": 1789855730.4046564, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r09/GA-Balanced", "status": "scientific_returned", "seconds": 4.893032299998595}
+{"key": "baseline/r09/GA-Balanced", "status": "checkpoint_saved", "ordinal": 19, "seconds": 4.962802499998361, "evidence_sha256": "84ae4d477d871a9c84da78398c436c698bf82f64ec1c8cd4805e26a63ae84476"}
+{"key": "baseline/r09/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r09/GA-HospFirst", "status": "started", "ordinal": 20, "time_unix": 1789855735.3982356, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r09/GA-HospFirst", "status": "scientific_returned", "seconds": 4.8962730999992345}
+{"key": "baseline/r09/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 20, "seconds": 4.965759999999136, "evidence_sha256": "a11bfe7b7beb64785fcefc9782d144ef4eeed0ebd79c39bac32e175d7b14b167"}
+{"key": "baseline/r09/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r10/GA-Balanced", "status": "started", "ordinal": 21, "time_unix": 1789855740.3872697, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r10/GA-Balanced", "status": "scientific_returned", "seconds": 4.7694712999982585}
+{"key": "baseline/r10/GA-Balanced", "status": "checkpoint_saved", "ordinal": 21, "seconds": 4.835038900000654, "evidence_sha256": "d3fa7bc544558c5a80ef057d632511daab0af9afe205d325f339dbadc0081c1c"}
+{"key": "baseline/r10/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r10/GA-HospFirst", "status": "started", "ordinal": 22, "time_unix": 1789855745.2395601, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r10/GA-HospFirst", "status": "scientific_returned", "seconds": 4.840372900001967}
+{"key": "baseline/r10/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 22, "seconds": 4.909927400000015, "evidence_sha256": "0d3f7fd12243489f60c9589e04568bd649a25b7effd383f71e2c496e2edfb979"}
+{"key": "baseline/r10/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r11/GA-Balanced", "status": "started", "ordinal": 23, "time_unix": 1789855750.180304, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r11/GA-Balanced", "status": "scientific_returned", "seconds": 4.751913500000228}
+{"key": "baseline/r11/GA-Balanced", "status": "checkpoint_saved", "ordinal": 23, "seconds": 4.820021799998358, "evidence_sha256": "4a4cab40307f53a82a4fc229aa97d043e62ab8300dc6b524f1c30a79b4509a58"}
+{"key": "baseline/r11/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r11/GA-HospFirst", "status": "started", "ordinal": 24, "time_unix": 1789855755.0302584, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r11/GA-HospFirst", "status": "scientific_returned", "seconds": 4.795996299999388}
+{"key": "baseline/r11/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 24, "seconds": 4.864643799999612, "evidence_sha256": "2faba85dc06072f0427bec850c68d0b74a5b48dd6e3d3cc8e080ee6ee7dbda1a"}
+{"key": "baseline/r11/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r12/GA-Balanced", "status": "started", "ordinal": 25, "time_unix": 1789855759.9207144, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r12/GA-Balanced", "status": "scientific_returned", "seconds": 4.715486200002488}
+{"key": "baseline/r12/GA-Balanced", "status": "checkpoint_saved", "ordinal": 25, "seconds": 4.782723399999668, "evidence_sha256": "b9b18de667f4c19e8ae280d2b583af7ff1518b3740a4d5d4a1c9461c8e49d6e1"}
+{"key": "baseline/r12/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r12/GA-HospFirst", "status": "started", "ordinal": 26, "time_unix": 1789855764.7323446, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r12/GA-HospFirst", "status": "scientific_returned", "seconds": 4.797237699996913}
+{"key": "baseline/r12/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 26, "seconds": 4.865556899996591, "evidence_sha256": "c69b52f70911dff5eccead8bdf913bb4eb31a098a7b0fafa3a88eb7df97fde34"}
+{"key": "baseline/r12/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r13/GA-Balanced", "status": "started", "ordinal": 27, "time_unix": 1789855769.6255274, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r13/GA-Balanced", "status": "scientific_returned", "seconds": 4.724847400000726}
+{"key": "baseline/r13/GA-Balanced", "status": "checkpoint_saved", "ordinal": 27, "seconds": 4.793557000000874, "evidence_sha256": "8465701a4f73aeaee83f927b9ebd9b1712964616f8f5aba0de42d3b1f728a77f"}
+{"key": "baseline/r13/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r13/GA-HospFirst", "status": "started", "ordinal": 28, "time_unix": 1789855774.456266, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r13/GA-HospFirst", "status": "scientific_returned", "seconds": 4.984458999999333}
+{"key": "baseline/r13/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 28, "seconds": 5.05235950000133, "evidence_sha256": "cad43f142e8e02b601963e93b1edf059421ebe9fb91dfb797ab331c78098030d"}
+{"key": "baseline/r13/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r14/GA-Balanced", "status": "started", "ordinal": 29, "time_unix": 1789855779.5354116, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r14/GA-Balanced", "status": "scientific_returned", "seconds": 4.983045000000857}
+{"key": "baseline/r14/GA-Balanced", "status": "checkpoint_saved", "ordinal": 29, "seconds": 5.057082500003162, "evidence_sha256": "0d9c18e5958210216a36526769e949d26dcfc577203ed2748113ac444ff21d7a"}
+{"key": "baseline/r14/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r14/GA-HospFirst", "status": "started", "ordinal": 30, "time_unix": 1789855784.6196594, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r14/GA-HospFirst", "status": "scientific_returned", "seconds": 5.196904500000528}
+{"key": "baseline/r14/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 30, "seconds": 5.280852800002322, "evidence_sha256": "cc0702f71a00ee4ff303ad666afad5398de97d18d765cab268faacd08fff80d8"}
+{"key": "baseline/r14/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r15/GA-Balanced", "status": "started", "ordinal": 31, "time_unix": 1789855789.9401627, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r15/GA-Balanced", "status": "scientific_returned", "seconds": 5.29839709999942}
+{"key": "baseline/r15/GA-Balanced", "status": "checkpoint_saved", "ordinal": 31, "seconds": 5.375390699999116, "evidence_sha256": "7f6eacbe9d2203f1f9f0024f7ac0c3f9339dcc7b7381a2cf12b34a88326595e4"}
+{"key": "baseline/r15/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r15/GA-HospFirst", "status": "started", "ordinal": 32, "time_unix": 1789855795.3417332, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r15/GA-HospFirst", "status": "scientific_returned", "seconds": 5.212223300000915}
+{"key": "baseline/r15/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 32, "seconds": 5.287896199999523, "evidence_sha256": "9fddd223a434f763078bb8ba346319ee174ff15f9cad0411eb877fbc7970ec26"}
+{"key": "baseline/r15/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r16/GA-Balanced", "status": "started", "ordinal": 33, "time_unix": 1789855800.6626892, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r16/GA-Balanced", "status": "scientific_returned", "seconds": 5.130627899998217}
+{"key": "baseline/r16/GA-Balanced", "status": "checkpoint_saved", "ordinal": 33, "seconds": 5.204972399998951, "evidence_sha256": "7c151ce114f862c181da23008d125616d9b6b6fffa547f6f9179138cb23df278"}
+{"key": "baseline/r16/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r16/GA-HospFirst", "status": "started", "ordinal": 34, "time_unix": 1789855805.9048846, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r16/GA-HospFirst", "status": "scientific_returned", "seconds": 5.084501499997714}
+{"key": "baseline/r16/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 34, "seconds": 5.161787000000913, "evidence_sha256": "c36a881757c8551f1e07bf2856bd7353dc0e811af079262f8c17b29cae38549a"}
+{"key": "baseline/r16/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r17/GA-Balanced", "status": "started", "ordinal": 35, "time_unix": 1789855811.0940573, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r17/GA-Balanced", "status": "scientific_returned", "seconds": 5.261797999999544}
+{"key": "baseline/r17/GA-Balanced", "status": "checkpoint_saved", "ordinal": 35, "seconds": 5.339121100001648, "evidence_sha256": "fa628c81ad285431fd6dbef51dd0c005aa5362b6768f9a1d677020f440e55dd1"}
+{"key": "baseline/r17/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r17/GA-HospFirst", "status": "started", "ordinal": 36, "time_unix": 1789855816.4636118, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r17/GA-HospFirst", "status": "scientific_returned", "seconds": 4.9933373000021675}
+{"key": "baseline/r17/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 36, "seconds": 5.066785899998649, "evidence_sha256": "8dbe2125758e884b5502e5f731556b222fc66d6d2aef0962ecda3c79818f835d"}
+{"key": "baseline/r17/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r18/GA-Balanced", "status": "started", "ordinal": 37, "time_unix": 1789855821.5653634, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r18/GA-Balanced", "status": "scientific_returned", "seconds": 4.877315000001545}
+{"key": "baseline/r18/GA-Balanced", "status": "checkpoint_saved", "ordinal": 37, "seconds": 4.94492540000283, "evidence_sha256": "943ee0d194272be8535a31f0acf0394eacbd0eed1b2f2a8d6715031beaf8975a"}
+{"key": "baseline/r18/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r18/GA-HospFirst", "status": "started", "ordinal": 38, "time_unix": 1789855826.5383723, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r18/GA-HospFirst", "status": "scientific_returned", "seconds": 4.917425100000401}
+{"key": "baseline/r18/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 38, "seconds": 4.980101400000422, "evidence_sha256": "7e60f4ea4e22fcc5397d65ae4e40478ffd6f5a3998b3e297b784eadc46fc1ca8"}
+{"key": "baseline/r18/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r19/GA-Balanced", "status": "started", "ordinal": 39, "time_unix": 1789855831.5511029, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r19/GA-Balanced", "status": "scientific_returned", "seconds": 4.880569999997533}
+{"key": "baseline/r19/GA-Balanced", "status": "checkpoint_saved", "ordinal": 39, "seconds": 4.949042699998245, "evidence_sha256": "09cfd6d4bd75512cca8e2470315d0b25654b161ba93affb5e784fe9cc1bf024a"}
+{"key": "baseline/r19/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r19/GA-HospFirst", "status": "started", "ordinal": 40, "time_unix": 1789855836.523883, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r19/GA-HospFirst", "status": "scientific_returned", "seconds": 4.813398400001461}
+{"key": "baseline/r19/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 40, "seconds": 4.881219800001418, "evidence_sha256": "fd304647f6902c38238d6b0e1eed07fdf50487871a8c3a13ec1938231b96be4a"}
+{"key": "baseline/r19/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r20/GA-Balanced", "status": "started", "ordinal": 41, "time_unix": 1789855841.4396884, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r20/GA-Balanced", "status": "scientific_returned", "seconds": 4.881158000000141}
+{"key": "baseline/r20/GA-Balanced", "status": "checkpoint_saved", "ordinal": 41, "seconds": 4.954590900000767, "evidence_sha256": "8aef756f1056b5b9da7634d5a7365ae66c27347c79d6889808ed353720634336"}
+{"key": "baseline/r20/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r20/GA-HospFirst", "status": "started", "ordinal": 42, "time_unix": 1789855846.4242127, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r20/GA-HospFirst", "status": "scientific_returned", "seconds": 4.927293400000053}
+{"key": "baseline/r20/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 42, "seconds": 4.994657200000802, "evidence_sha256": "bc64654c7fe92d443690f5aa2b62aeac6851ec099f597313c6ca991e2dd42fa8"}
+{"key": "baseline/r20/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r21/GA-Balanced", "status": "started", "ordinal": 43, "time_unix": 1789855851.4382794, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r21/GA-Balanced", "status": "scientific_returned", "seconds": 4.865053800000169}
+{"key": "baseline/r21/GA-Balanced", "status": "checkpoint_saved", "ordinal": 43, "seconds": 4.93589620000057, "evidence_sha256": "cbc6485766611f8cb09ba6c512ad2a2794f7b902a13441752cc0953377fafcee"}
+{"key": "baseline/r21/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r21/GA-HospFirst", "status": "started", "ordinal": 44, "time_unix": 1789855856.410554, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r21/GA-HospFirst", "status": "scientific_returned", "seconds": 4.950613700002577}
+{"key": "baseline/r21/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 44, "seconds": 5.019990200002212, "evidence_sha256": "c3b44adc00aa20503d9213020633e438dd852e33befe29b5699505179bc2b91b"}
+{"key": "baseline/r21/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r22/GA-Balanced", "status": "started", "ordinal": 45, "time_unix": 1789855861.4541163, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r22/GA-Balanced", "status": "scientific_returned", "seconds": 4.858476999997947}
+{"key": "baseline/r22/GA-Balanced", "status": "checkpoint_saved", "ordinal": 45, "seconds": 4.931593499997689, "evidence_sha256": "e5b29970971d29f30bb4b04a762fd504a8ce659861ed8287db81c11f3a330456"}
+{"key": "baseline/r22/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r22/GA-HospFirst", "status": "started", "ordinal": 46, "time_unix": 1789855866.42156, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r22/GA-HospFirst", "status": "scientific_returned", "seconds": 4.981759999998758}
+{"key": "baseline/r22/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 46, "seconds": 5.05353230000037, "evidence_sha256": "66ed5445a27cf0140d4c0e6043e4476b7faa1bcea766094fbf99db7cb21e600f"}
+{"key": "baseline/r22/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r23/GA-Balanced", "status": "started", "ordinal": 47, "time_unix": 1789855871.4995167, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r23/GA-Balanced", "status": "scientific_returned", "seconds": 4.999821299999894}
+{"key": "baseline/r23/GA-Balanced", "status": "checkpoint_saved", "ordinal": 47, "seconds": 5.072409600001265, "evidence_sha256": "10d9a2ad417e4c3de8fe25d12ffe94abaf3171f7a95b2074abf479db8dc11aa5"}
+{"key": "baseline/r23/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r23/GA-HospFirst", "status": "started", "ordinal": 48, "time_unix": 1789855876.6116698, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r23/GA-HospFirst", "status": "scientific_returned", "seconds": 5.083079400003044}
+{"key": "baseline/r23/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 48, "seconds": 5.155374100002518, "evidence_sha256": "8ac084c6bfe790d64e99e88b7d1a8f7c2982627dba6603a85b1e999fa1c53686"}
+{"key": "baseline/r23/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r24/GA-Balanced", "status": "started", "ordinal": 49, "time_unix": 1789855881.7960348, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r24/GA-Balanced", "status": "scientific_returned", "seconds": 5.056500600003346}
+{"key": "baseline/r24/GA-Balanced", "status": "checkpoint_saved", "ordinal": 49, "seconds": 5.126689300002909, "evidence_sha256": "21b64ed1811f650ac826115ba6f16db24338b84c7d68ed8946eaad6b35f15f29"}
+{"key": "baseline/r24/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r24/GA-HospFirst", "status": "started", "ordinal": 50, "time_unix": 1789855886.9573317, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r24/GA-HospFirst", "status": "scientific_returned", "seconds": 5.142809500001022}
+{"key": "baseline/r24/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 50, "seconds": 5.219479399998818, "evidence_sha256": "d3b95d9c7ed969442da71ff90ef10d70625d5f3e1a77a775636f6ed30edde2c9"}
+{"key": "baseline/r24/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r25/GA-Balanced", "status": "started", "ordinal": 51, "time_unix": 1789855892.2054434, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r25/GA-Balanced", "status": "scientific_returned", "seconds": 4.774211300002207}
+{"key": "baseline/r25/GA-Balanced", "status": "checkpoint_saved", "ordinal": 51, "seconds": 4.843618900002184, "evidence_sha256": "7aec57509e89f73b2bdc233f355fb11d8d4d62aba15eef86ed226b3fa12a631a"}
+{"key": "baseline/r25/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r25/GA-HospFirst", "status": "started", "ordinal": 52, "time_unix": 1789855897.0696592, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r25/GA-HospFirst", "status": "scientific_returned", "seconds": 4.807634800003143}
+{"key": "baseline/r25/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 52, "seconds": 4.883920500000386, "evidence_sha256": "7190acd9fd8771b77b30a86b055d65a44a78acd625ad2334d8adfc741218f01a"}
+{"key": "baseline/r25/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r26/GA-Balanced", "status": "started", "ordinal": 53, "time_unix": 1789855901.9873312, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r26/GA-Balanced", "status": "scientific_returned", "seconds": 4.8438688999995065}
+{"key": "baseline/r26/GA-Balanced", "status": "checkpoint_saved", "ordinal": 53, "seconds": 4.914293499998166, "evidence_sha256": "c0c61d549db5385cc1904e80edf5a5874b76efbba3d491aea0a963b70ad2c667"}
+{"key": "baseline/r26/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r26/GA-HospFirst", "status": "started", "ordinal": 54, "time_unix": 1789855906.9400403, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r26/GA-HospFirst", "status": "scientific_returned", "seconds": 4.81983389999732}
+{"key": "baseline/r26/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 54, "seconds": 4.888787500000035, "evidence_sha256": "ac0a7662390024c77a156194af0d8a66ba83a72b1e0662d5b6b0dcc082645aa3"}
+{"key": "baseline/r26/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r27/GA-Balanced", "status": "started", "ordinal": 55, "time_unix": 1789855911.848069, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r27/GA-Balanced", "status": "scientific_returned", "seconds": 4.866216700000223}
+{"key": "baseline/r27/GA-Balanced", "status": "checkpoint_saved", "ordinal": 55, "seconds": 4.935368899998139, "evidence_sha256": "c88b7c9e699f1d4dc0738f4861c97eb3650b9646138f983ac2832b3d462ef111"}
+{"key": "baseline/r27/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r27/GA-HospFirst", "status": "started", "ordinal": 56, "time_unix": 1789855916.8204339, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r27/GA-HospFirst", "status": "scientific_returned", "seconds": 4.875381199999538}
+{"key": "baseline/r27/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 56, "seconds": 4.943631400001323, "evidence_sha256": "79e6c25a2c116ee13c932b5db6e16f5daa06150ce3c924ffc10c9839fea8abdf"}
+{"key": "baseline/r27/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r28/GA-Balanced", "status": "started", "ordinal": 57, "time_unix": 1789855921.7882442, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r28/GA-Balanced", "status": "scientific_returned", "seconds": 4.764839100000245}
+{"key": "baseline/r28/GA-Balanced", "status": "checkpoint_saved", "ordinal": 57, "seconds": 4.834071400000539, "evidence_sha256": "6e37353a9b503f4389b1bb219d4a58d19bb753d88c881d4ebafba363e19d586f"}
+{"key": "baseline/r28/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r28/GA-HospFirst", "status": "started", "ordinal": 58, "time_unix": 1789855926.650969, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r28/GA-HospFirst", "status": "scientific_returned", "seconds": 4.867717899996933}
+{"key": "baseline/r28/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 58, "seconds": 4.936740599998302, "evidence_sha256": "ec91c2e96e9cfcace40132d17afeb0df95439310cd3c061116be16b6a45de4be"}
+{"key": "baseline/r28/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r29/GA-Balanced", "status": "started", "ordinal": 59, "time_unix": 1789855931.6208582, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r29/GA-Balanced", "status": "scientific_returned", "seconds": 4.691927399999258}
+{"key": "baseline/r29/GA-Balanced", "status": "checkpoint_saved", "ordinal": 59, "seconds": 4.760787499999424, "evidence_sha256": "1cd439a3bc113414827ab93c39baa3ed00617b694ea5edabb4bc89a5b0d78180"}
+{"key": "baseline/r29/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r29/GA-HospFirst", "status": "started", "ordinal": 60, "time_unix": 1789855936.4141426, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r29/GA-HospFirst", "status": "scientific_returned", "seconds": 4.7683560000004945}
+{"key": "baseline/r29/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 60, "seconds": 4.83789600000091, "evidence_sha256": "4e80f6b83d0b1064e58c061ad3334e1717f4218eeba6c466a0a0c7585cdfc94a"}
+{"key": "baseline/r29/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r30/GA-Balanced", "status": "started", "ordinal": 61, "time_unix": 1789855941.272396, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r30/GA-Balanced", "status": "scientific_returned", "seconds": 4.780380899999727}
+{"key": "baseline/r30/GA-Balanced", "status": "checkpoint_saved", "ordinal": 61, "seconds": 4.850454399998853, "evidence_sha256": "cdc9d8173599428dfabbfd41133ccb3b9b5325eefe8125e11667d4cfba643952"}
+{"key": "baseline/r30/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r30/GA-HospFirst", "status": "started", "ordinal": 62, "time_unix": 1789855946.1606958, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r30/GA-HospFirst", "status": "scientific_returned", "seconds": 4.8337666999977955}
+{"key": "baseline/r30/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 62, "seconds": 4.902580300000409, "evidence_sha256": "594f95d80ab0c367f47c3d2ecee2de2438e659c4e1ba350d4fcf68ee12326fcb"}
+{"key": "baseline/r30/GA-HospFirst", "status": "invariants_passed"}
+{"key": "baseline/r31/GA-Balanced", "status": "started", "ordinal": 63, "time_unix": 1789855951.0856345, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r31/GA-Balanced", "status": "scientific_returned", "seconds": 4.789463599998271}
+{"key": "baseline/r31/GA-Balanced", "status": "checkpoint_saved", "ordinal": 63, "seconds": 4.856519099997968, "evidence_sha256": "43b75286e43b3e2ddff0f8c4809eda6e14200feb1dbb0164273f61e5187ef71c"}
+{"key": "baseline/r31/GA-Balanced", "status": "invariants_passed"}
+{"key": "baseline/r31/GA-HospFirst", "status": "started", "ordinal": 64, "time_unix": 1789855955.970899, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "baseline/r31/GA-HospFirst", "status": "scientific_returned", "seconds": 4.7712428999984695}
+{"key": "baseline/r31/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 64, "seconds": 4.838373799997498, "evidence_sha256": "a79d94ed000b6387152b61d73edf35797f9921856d105be5a706f79eb383c453"}
+{"key": "baseline/r31/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r00/Hospital-first", "status": "started", "ordinal": 65, "time_unix": 1789855960.8400137, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r00/Hospital-first", "status": "scientific_returned", "seconds": 4.732870600000751}
+{"key": "DS4x2/r00/Hospital-first", "status": "checkpoint_saved", "ordinal": 65, "seconds": 4.80368129999988, "evidence_sha256": "570d14f090c0798f8275db08d81f764157af1022c0d150a32411b734ca930a7d"}
+{"key": "DS4x2/r00/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r00/GA-Balanced", "status": "started", "ordinal": 66, "time_unix": 1789855965.6742942, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r00/GA-Balanced", "status": "scientific_returned", "seconds": 4.796386499998334}
+{"key": "DS4x2/r00/GA-Balanced", "status": "checkpoint_saved", "ordinal": 66, "seconds": 4.866943900000479, "evidence_sha256": "86ba66f8fe616ad955a51e6f2b46b85974495919417d5b01d2ca0b0e17e1ab96"}
+{"key": "DS4x2/r00/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r00/GA-HospFirst", "status": "started", "ordinal": 67, "time_unix": 1789855970.5630362, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r00/GA-HospFirst", "status": "scientific_returned", "seconds": 4.843184000001202}
+{"key": "DS4x2/r00/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 67, "seconds": 4.91351030000078, "evidence_sha256": "be3e6c0ae7b02d9bea9b8d98d417db506300cbb533801ff0c8d04a7a057e1e0e"}
+{"key": "DS4x2/r00/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r00/GA-Efficiency", "status": "started", "ordinal": 68, "time_unix": 1789855975.504592, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r00/GA-Efficiency", "status": "scientific_returned", "seconds": 4.781308399997215}
+{"key": "DS4x2/r00/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 68, "seconds": 4.851492799996777, "evidence_sha256": "89871c650f40dced16246230b68fa5ba067d22c9b573b4e05fb09cb3e84549be"}
+{"key": "DS4x2/r00/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r01/Hospital-first", "status": "started", "ordinal": 69, "time_unix": 1789855980.3939755, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r01/Hospital-first", "status": "scientific_returned", "seconds": 4.846202100001392}
+{"key": "DS4x2/r01/Hospital-first", "status": "checkpoint_saved", "ordinal": 69, "seconds": 4.9145122000009, "evidence_sha256": "51752d04d415fe51808fc362cf8a20f1e014fd670fcdf3d009e7dfda35d43a36"}
+{"key": "DS4x2/r01/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r01/GA-Balanced", "status": "started", "ordinal": 70, "time_unix": 1789855985.3371007, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r01/GA-Balanced", "status": "scientific_returned", "seconds": 4.750674200000503}
+{"key": "DS4x2/r01/GA-Balanced", "status": "checkpoint_saved", "ordinal": 70, "seconds": 4.819358900000225, "evidence_sha256": "1d1fdb3e8c618af8ba9bbb6452ef09bd48abca104ff347d091470a25f86d4dfe"}
+{"key": "DS4x2/r01/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r01/GA-HospFirst", "status": "started", "ordinal": 71, "time_unix": 1789855990.1813085, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r01/GA-HospFirst", "status": "scientific_returned", "seconds": 4.759955800000171}
+{"key": "DS4x2/r01/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 71, "seconds": 4.828732500001934, "evidence_sha256": "64c3f396543d0309d166ad31cfcaab3c99d9666054e0e9e54a9cadcaf7c3ccf2"}
+{"key": "DS4x2/r01/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r01/GA-Efficiency", "status": "started", "ordinal": 72, "time_unix": 1789855995.0436606, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r01/GA-Efficiency", "status": "scientific_returned", "seconds": 4.758662500000355}
+{"key": "DS4x2/r01/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 72, "seconds": 4.827714799997921, "evidence_sha256": "08d1b70cd136b744a39f0e9119a4a9a7515ad12118bac43a1b4baf814d6c9e49"}
+{"key": "DS4x2/r01/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r02/Hospital-first", "status": "started", "ordinal": 73, "time_unix": 1789855999.9056475, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r02/Hospital-first", "status": "scientific_returned", "seconds": 4.7490102000010666}
+{"key": "DS4x2/r02/Hospital-first", "status": "checkpoint_saved", "ordinal": 73, "seconds": 4.817995100002008, "evidence_sha256": "1e0a3b994a9012e7fe67945264b88c3d292706c8015ab563fdd610ec85e6e244"}
+{"key": "DS4x2/r02/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r02/GA-Balanced", "status": "started", "ordinal": 74, "time_unix": 1789856004.747516, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r02/GA-Balanced", "status": "scientific_returned", "seconds": 4.759895099999994}
+{"key": "DS4x2/r02/GA-Balanced", "status": "checkpoint_saved", "ordinal": 74, "seconds": 4.83222620000015, "evidence_sha256": "f04a3cf3d74fcdcc3b1bba5dea18d3b8c7003125ef5c16b48ebe4dd6e0902517"}
+{"key": "DS4x2/r02/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r02/GA-HospFirst", "status": "started", "ordinal": 75, "time_unix": 1789856009.6058009, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r02/GA-HospFirst", "status": "scientific_returned", "seconds": 4.699039399998583}
+{"key": "DS4x2/r02/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 75, "seconds": 4.767208000001119, "evidence_sha256": "a5659ae438ee40e1abdd5cdea6a7dab05a975856fe2213de762865c361aa9b68"}
+{"key": "DS4x2/r02/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r02/GA-Efficiency", "status": "started", "ordinal": 76, "time_unix": 1789856014.3974473, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r02/GA-Efficiency", "status": "scientific_returned", "seconds": 4.745136200002889}
+{"key": "DS4x2/r02/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 76, "seconds": 4.814710200000263, "evidence_sha256": "76b4d6c55b2586066a19d4c115e0b09c64c7a24d7a892bd3829c555d5821d1a6"}
+{"key": "DS4x2/r02/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r03/Hospital-first", "status": "started", "ordinal": 77, "time_unix": 1789856019.2438242, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r03/Hospital-first", "status": "scientific_returned", "seconds": 4.710941400000593}
+{"key": "DS4x2/r03/Hospital-first", "status": "checkpoint_saved", "ordinal": 77, "seconds": 4.778498100000434, "evidence_sha256": "4a9228a5506bbb85bb7e7d618123fd493256d5774f173afb05d5b6e91f355554"}
+{"key": "DS4x2/r03/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r03/GA-Balanced", "status": "started", "ordinal": 78, "time_unix": 1789856024.0535803, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r03/GA-Balanced", "status": "scientific_returned", "seconds": 4.725895999999921}
+{"key": "DS4x2/r03/GA-Balanced", "status": "checkpoint_saved", "ordinal": 78, "seconds": 4.793654900000547, "evidence_sha256": "56107cde5f6b9f54e8161e7301267023e235382935362cb0cf43d15f49eb48ee"}
+{"key": "DS4x2/r03/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r03/GA-HospFirst", "status": "started", "ordinal": 79, "time_unix": 1789856028.879283, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r03/GA-HospFirst", "status": "scientific_returned", "seconds": 4.757540299997345}
+{"key": "DS4x2/r03/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 79, "seconds": 4.826369299997168, "evidence_sha256": "32b476a2d9ada485508376ebcf5abff88b06946692d1a5076feab1c7d36a1434"}
+{"key": "DS4x2/r03/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r03/GA-Efficiency", "status": "started", "ordinal": 80, "time_unix": 1789856033.726499, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r03/GA-Efficiency", "status": "scientific_returned", "seconds": 4.747590399998444}
+{"key": "DS4x2/r03/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 80, "seconds": 4.82435809999879, "evidence_sha256": "d216bb26e4e0b22e84dab33abc18595d3284aedaa7074e8b25d3271072a7ec27"}
+{"key": "DS4x2/r03/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r04/Hospital-first", "status": "started", "ordinal": 81, "time_unix": 1789856038.5864353, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r04/Hospital-first", "status": "scientific_returned", "seconds": 4.773668699999689}
+{"key": "DS4x2/r04/Hospital-first", "status": "checkpoint_saved", "ordinal": 81, "seconds": 4.842215700002271, "evidence_sha256": "9faf9a1328cde7fb616b121ae7916cc36f4d143cbdeb15ee1f8f7e4aa8eedfe2"}
+{"key": "DS4x2/r04/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r04/GA-Balanced", "status": "started", "ordinal": 82, "time_unix": 1789856043.463077, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r04/GA-Balanced", "status": "scientific_returned", "seconds": 4.797921099998348}
+{"key": "DS4x2/r04/GA-Balanced", "status": "checkpoint_saved", "ordinal": 82, "seconds": 4.867217099999834, "evidence_sha256": "06e0df5bf132d908a9e77619c6e23a3bdc8776af2fa6469973a587d3c9cc1306"}
+{"key": "DS4x2/r04/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r04/GA-HospFirst", "status": "started", "ordinal": 83, "time_unix": 1789856048.3567586, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r04/GA-HospFirst", "status": "scientific_returned", "seconds": 4.815390699997806}
+{"key": "DS4x2/r04/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 83, "seconds": 4.88416099999813, "evidence_sha256": "0b6b262b85109db23a0fc8c299f7ddd0ffd2d504532dc54bbcc5144d7469220a"}
+{"key": "DS4x2/r04/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r04/GA-Efficiency", "status": "started", "ordinal": 84, "time_unix": 1789856053.265394, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r04/GA-Efficiency", "status": "scientific_returned", "seconds": 4.824399499997526}
+{"key": "DS4x2/r04/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 84, "seconds": 4.901629199997842, "evidence_sha256": "f0120d345e2edc6083a460c7d40a73412d939d94ab317eb94d70dc652e9a762e"}
+{"key": "DS4x2/r04/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r05/Hospital-first", "status": "started", "ordinal": 85, "time_unix": 1789856058.2064536, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r05/Hospital-first", "status": "scientific_returned", "seconds": 4.801349099998333}
+{"key": "DS4x2/r05/Hospital-first", "status": "checkpoint_saved", "ordinal": 85, "seconds": 4.872607099998277, "evidence_sha256": "3a2d318fcf38e2817d306c46166f65f105d010ec9248e1cfd8af8e4960fbc49d"}
+{"key": "DS4x2/r05/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r05/GA-Balanced", "status": "started", "ordinal": 86, "time_unix": 1789856063.1181073, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r05/GA-Balanced", "status": "scientific_returned", "seconds": 4.777232399999775}
+{"key": "DS4x2/r05/GA-Balanced", "status": "checkpoint_saved", "ordinal": 86, "seconds": 4.8446186000001035, "evidence_sha256": "21966342a65325c54d6af4646e5b221036eb313c60b1b85e4844fd52a71eed1b"}
+{"key": "DS4x2/r05/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r05/GA-HospFirst", "status": "started", "ordinal": 87, "time_unix": 1789856067.9804215, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r05/GA-HospFirst", "status": "scientific_returned", "seconds": 4.8188155999996525}
+{"key": "DS4x2/r05/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 87, "seconds": 4.887688999999227, "evidence_sha256": "2cb0cae11091eba6514c5a8d08106118ceb436141a688110eaa78c9afe16fa1d"}
+{"key": "DS4x2/r05/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r05/GA-Efficiency", "status": "started", "ordinal": 88, "time_unix": 1789856072.901392, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r05/GA-Efficiency", "status": "scientific_returned", "seconds": 4.816741599999659}
+{"key": "DS4x2/r05/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 88, "seconds": 4.885090700001456, "evidence_sha256": "e850663e7281e943c6ed61774e069fb2852cef89d990421c8ed757154e2eb33f"}
+{"key": "DS4x2/r05/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r06/Hospital-first", "status": "started", "ordinal": 89, "time_unix": 1789856077.8166528, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r06/Hospital-first", "status": "scientific_returned", "seconds": 4.786094200000662}
+{"key": "DS4x2/r06/Hospital-first", "status": "checkpoint_saved", "ordinal": 89, "seconds": 4.8551857999991626, "evidence_sha256": "ad12fae62b4185049299814cd4413b69d0594a5d2e82edd904f2a71b512ab302"}
+{"key": "DS4x2/r06/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r06/GA-Balanced", "status": "started", "ordinal": 90, "time_unix": 1789856082.707554, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r06/GA-Balanced", "status": "scientific_returned", "seconds": 4.810316899998725}
+{"key": "DS4x2/r06/GA-Balanced", "status": "checkpoint_saved", "ordinal": 90, "seconds": 4.8808179999978165, "evidence_sha256": "a21e58bfd2984b58bf99fb3f99bc3687ad240f0b6ab515f70b3ae2be071c887f"}
+{"key": "DS4x2/r06/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r06/GA-HospFirst", "status": "started", "ordinal": 91, "time_unix": 1789856087.6170866, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r06/GA-HospFirst", "status": "scientific_returned", "seconds": 4.804419700001745}
+{"key": "DS4x2/r06/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 91, "seconds": 4.880996900003083, "evidence_sha256": "15baa826274f3228a16aa7f5e93e0623d60fb5f75b87fbcf43f75f9417af0b59"}
+{"key": "DS4x2/r06/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r06/GA-Efficiency", "status": "started", "ordinal": 92, "time_unix": 1789856092.5271175, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r06/GA-Efficiency", "status": "scientific_returned", "seconds": 4.751182699998026}
+{"key": "DS4x2/r06/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 92, "seconds": 4.817629699999088, "evidence_sha256": "11d689726b81eea47e134c54bc25d00a4061ec28a6da0c5b2cd09c5237e67556"}
+{"key": "DS4x2/r06/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r07/Hospital-first", "status": "started", "ordinal": 93, "time_unix": 1789856097.3625994, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r07/Hospital-first", "status": "scientific_returned", "seconds": 4.762397800001054}
+{"key": "DS4x2/r07/Hospital-first", "status": "checkpoint_saved", "ordinal": 93, "seconds": 4.831504300000233, "evidence_sha256": "7cf89d1f622973d3e834eec6937b8bfdadfc2f4d0db0d252cbc64f6f63bdb44c"}
+{"key": "DS4x2/r07/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r07/GA-Balanced", "status": "started", "ordinal": 94, "time_unix": 1789856102.2240276, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r07/GA-Balanced", "status": "scientific_returned", "seconds": 4.69171869999991}
+{"key": "DS4x2/r07/GA-Balanced", "status": "checkpoint_saved", "ordinal": 94, "seconds": 4.759714200001326, "evidence_sha256": "4737051fc81cf65e0efd85718d17fa49bc933a2fcdda85b2fe4ef0d4ea775612"}
+{"key": "DS4x2/r07/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r07/GA-HospFirst", "status": "started", "ordinal": 95, "time_unix": 1789856107.0117414, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r07/GA-HospFirst", "status": "scientific_returned", "seconds": 4.709358100000827}
+{"key": "DS4x2/r07/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 95, "seconds": 4.78229139999894, "evidence_sha256": "56ce562d6805d50c104e56615a91edcadcda7d49d8d9f36b767bb5b12ca35d45"}
+{"key": "DS4x2/r07/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r07/GA-Efficiency", "status": "started", "ordinal": 96, "time_unix": 1789856111.820935, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r07/GA-Efficiency", "status": "scientific_returned", "seconds": 4.752211700000771}
+{"key": "DS4x2/r07/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 96, "seconds": 4.822318000002269, "evidence_sha256": "e15d6bb37098d90efd44c690798e41324231862dd6157ecf0eaf573f810a282a"}
+{"key": "DS4x2/r07/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r08/Hospital-first", "status": "started", "ordinal": 97, "time_unix": 1789856116.6825454, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r08/Hospital-first", "status": "scientific_returned", "seconds": 4.792298199998186}
+{"key": "DS4x2/r08/Hospital-first", "status": "checkpoint_saved", "ordinal": 97, "seconds": 4.861939999998867, "evidence_sha256": "552f643284037208c764a3ddd983a1ef812a05e14e2d7226990e92a3fe7f842c"}
+{"key": "DS4x2/r08/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r08/GA-Balanced", "status": "started", "ordinal": 98, "time_unix": 1789856121.5745115, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r08/GA-Balanced", "status": "scientific_returned", "seconds": 4.763705499997741}
+{"key": "DS4x2/r08/GA-Balanced", "status": "checkpoint_saved", "ordinal": 98, "seconds": 4.832001700000546, "evidence_sha256": "1ee8d2fbb2f83b7d7fdfc0e91c3edd8cb83ea3c9e5e2f7af3870eccbea8346d6"}
+{"key": "DS4x2/r08/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r08/GA-HospFirst", "status": "started", "ordinal": 99, "time_unix": 1789856126.4367645, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r08/GA-HospFirst", "status": "scientific_returned", "seconds": 4.809419799999887}
+{"key": "DS4x2/r08/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 99, "seconds": 4.8801084000006085, "evidence_sha256": "44d429ac7920008393507c4f649028cea4fd37585cb76b8385e81a3afbf1ab70"}
+{"key": "DS4x2/r08/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r08/GA-Efficiency", "status": "started", "ordinal": 100, "time_unix": 1789856131.3427851, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r08/GA-Efficiency", "status": "scientific_returned", "seconds": 4.8101744999985385}
+{"key": "DS4x2/r08/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 100, "seconds": 4.887233400000696, "evidence_sha256": "a4dfe9f223142f50bf92710c79d85b7bbe3502069fa1481dd87e32f89aa4df16"}
+{"key": "DS4x2/r08/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r09/Hospital-first", "status": "started", "ordinal": 101, "time_unix": 1789856136.2610343, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r09/Hospital-first", "status": "scientific_returned", "seconds": 4.896300499996869}
+{"key": "DS4x2/r09/Hospital-first", "status": "checkpoint_saved", "ordinal": 101, "seconds": 4.965898099999322, "evidence_sha256": "e95d634b69900479fbccff8776eac9c578ccb824fe277b88459188a7e3434f2c"}
+{"key": "DS4x2/r09/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r09/GA-Balanced", "status": "started", "ordinal": 102, "time_unix": 1789856141.2546885, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r09/GA-Balanced", "status": "scientific_returned", "seconds": 4.816601899998204}
+{"key": "DS4x2/r09/GA-Balanced", "status": "checkpoint_saved", "ordinal": 102, "seconds": 4.886650599997665, "evidence_sha256": "364763c265ed92f490f5ed8cc7ebb72fbd729b6684750e9db6b782743ae50b62"}
+{"key": "DS4x2/r09/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r09/GA-HospFirst", "status": "started", "ordinal": 103, "time_unix": 1789856146.1763196, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r09/GA-HospFirst", "status": "scientific_returned", "seconds": 4.778887899999972}
+{"key": "DS4x2/r09/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 103, "seconds": 4.847891099998378, "evidence_sha256": "e332322754a715868361f7e1c7b6d4c8e47139d6f6f60c3528030f313a748fde"}
+{"key": "DS4x2/r09/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r09/GA-Efficiency", "status": "started", "ordinal": 104, "time_unix": 1789856151.05459, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r09/GA-Efficiency", "status": "scientific_returned", "seconds": 4.795184300000983}
+{"key": "DS4x2/r09/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 104, "seconds": 4.865122900002461, "evidence_sha256": "8190c8cdc8ef18fcb3c4164d5dfdf695761533b6efd0caa2c3814a6a68332008"}
+{"key": "DS4x2/r09/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r10/Hospital-first", "status": "started", "ordinal": 105, "time_unix": 1789856155.9483798, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r10/Hospital-first", "status": "scientific_returned", "seconds": 4.791063499997108}
+{"key": "DS4x2/r10/Hospital-first", "status": "checkpoint_saved", "ordinal": 105, "seconds": 4.859381599999324, "evidence_sha256": "62a02c5e1f2fbb00acaa11f0c65d93309c40e4a9cb948526f566caa620c5ba91"}
+{"key": "DS4x2/r10/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r10/GA-Balanced", "status": "started", "ordinal": 106, "time_unix": 1789856160.8229976, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r10/GA-Balanced", "status": "scientific_returned", "seconds": 4.712299999999232}
+{"key": "DS4x2/r10/GA-Balanced", "status": "checkpoint_saved", "ordinal": 106, "seconds": 4.78182150000066, "evidence_sha256": "2da8bfa9037e697d7c44df5c420c935cd6a134f9af0f9c98406bbaf6f31024e0"}
+{"key": "DS4x2/r10/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r10/GA-HospFirst", "status": "started", "ordinal": 107, "time_unix": 1789856165.649716, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r10/GA-HospFirst", "status": "scientific_returned", "seconds": 4.788999099997454}
+{"key": "DS4x2/r10/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 107, "seconds": 4.8578747999999905, "evidence_sha256": "4b7b31b62b01fc9f78a18394ab1148eafe48564bcbf8b57b98837479b5050e05"}
+{"key": "DS4x2/r10/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r10/GA-Efficiency", "status": "started", "ordinal": 108, "time_unix": 1789856170.535809, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r10/GA-Efficiency", "status": "scientific_returned", "seconds": 4.803261900000507}
+{"key": "DS4x2/r10/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 108, "seconds": 4.872264099998574, "evidence_sha256": "bed30b4255dfe0b1b68e386e44515164c28686b9b1e0999d3d34599f693cb0ac"}
+{"key": "DS4x2/r10/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r11/Hospital-first", "status": "started", "ordinal": 109, "time_unix": 1789856175.4336402, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r11/Hospital-first", "status": "scientific_returned", "seconds": 4.716071700000612}
+{"key": "DS4x2/r11/Hospital-first", "status": "checkpoint_saved", "ordinal": 109, "seconds": 4.786576900001819, "evidence_sha256": "992c1d857a9ba76de0b6e60b54cf3dd80fbb9e9bc67df1c362708b3da65215b6"}
+{"key": "DS4x2/r11/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r11/GA-Balanced", "status": "started", "ordinal": 110, "time_unix": 1789856180.248207, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r11/GA-Balanced", "status": "scientific_returned", "seconds": 4.784446099998604}
+{"key": "DS4x2/r11/GA-Balanced", "status": "checkpoint_saved", "ordinal": 110, "seconds": 4.85451589999866, "evidence_sha256": "162aa8ed2aa61c14378c7dd4cb7b13a951fff13f33d8159a8d58a6f68b713b73"}
+{"key": "DS4x2/r11/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r11/GA-HospFirst", "status": "started", "ordinal": 111, "time_unix": 1789856185.1268055, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r11/GA-HospFirst", "status": "scientific_returned", "seconds": 4.783602999999857}
+{"key": "DS4x2/r11/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 111, "seconds": 4.852605399999447, "evidence_sha256": "cfc1d494ed31394723c299ed9721c515665f6ad62bde6b20ef992ab135f0dd42"}
+{"key": "DS4x2/r11/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r11/GA-Efficiency", "status": "started", "ordinal": 112, "time_unix": 1789856190.0034173, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r11/GA-Efficiency", "status": "scientific_returned", "seconds": 4.598396099998354}
+{"key": "DS4x2/r11/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 112, "seconds": 4.670120099999622, "evidence_sha256": "68956097cb382d2556512ecc8a542ce48070649e74792ef43774859e754add9a"}
+{"key": "DS4x2/r11/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r12/Hospital-first", "status": "started", "ordinal": 113, "time_unix": 1789856194.7165997, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r12/Hospital-first", "status": "scientific_returned", "seconds": 5.0273182000019005}
+{"key": "DS4x2/r12/Hospital-first", "status": "checkpoint_saved", "ordinal": 113, "seconds": 5.1002862000023015, "evidence_sha256": "560e5ae22cf2e1fba0570c2e82bee53815c91fa8cf9d8f0c87e7d7e923b27227"}
+{"key": "DS4x2/r12/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r12/GA-Balanced", "status": "started", "ordinal": 114, "time_unix": 1789856199.8450785, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r12/GA-Balanced", "status": "scientific_returned", "seconds": 4.777853399999003}
+{"key": "DS4x2/r12/GA-Balanced", "status": "checkpoint_saved", "ordinal": 114, "seconds": 4.84670769999866, "evidence_sha256": "b13efd8af3a171ecd364246bee79958466543929d6f2d94e99d09b9e26325ccd"}
+{"key": "DS4x2/r12/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r12/GA-HospFirst", "status": "started", "ordinal": 115, "time_unix": 1789856204.720342, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r12/GA-HospFirst", "status": "scientific_returned", "seconds": 4.6408478999983345}
+{"key": "DS4x2/r12/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 115, "seconds": 4.710336899999675, "evidence_sha256": "55e635729f5ae8c4f3dd98a626a7ac93f4f5a1143e296bae2e37d03a4c65e62d"}
+{"key": "DS4x2/r12/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r12/GA-Efficiency", "status": "started", "ordinal": 116, "time_unix": 1789856209.4603755, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r12/GA-Efficiency", "status": "scientific_returned", "seconds": 4.7466394000002765}
+{"key": "DS4x2/r12/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 116, "seconds": 4.813072500000999, "evidence_sha256": "21699e2eb4a23a730dc293c088c5984a54525245c2ef3a416efb44dd25adfd1a"}
+{"key": "DS4x2/r12/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r13/Hospital-first", "status": "started", "ordinal": 117, "time_unix": 1789856214.3021615, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r13/Hospital-first", "status": "scientific_returned", "seconds": 4.764826999999059}
+{"key": "DS4x2/r13/Hospital-first", "status": "checkpoint_saved", "ordinal": 117, "seconds": 4.832233500001166, "evidence_sha256": "861839774f20b19ff0435583d6dfcaa78c79c8010a0d53bd1aa188b4505ae104"}
+{"key": "DS4x2/r13/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r13/GA-Balanced", "status": "started", "ordinal": 118, "time_unix": 1789856219.1628764, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r13/GA-Balanced", "status": "scientific_returned", "seconds": 4.710386200000357}
+{"key": "DS4x2/r13/GA-Balanced", "status": "checkpoint_saved", "ordinal": 118, "seconds": 4.788653100000374, "evidence_sha256": "c00e7b679177baeef7e3c081712f4bc6617e6cd3d34b38b6df6793c037bd7b59"}
+{"key": "DS4x2/r13/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r13/GA-HospFirst", "status": "started", "ordinal": 119, "time_unix": 1789856223.9835746, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r13/GA-HospFirst", "status": "scientific_returned", "seconds": 4.749025199998869}
+{"key": "DS4x2/r13/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 119, "seconds": 4.8178928999986965, "evidence_sha256": "5e38716c2b88d0134057e960c19e4da36dcee0300367cb4c726cbaf5caf27e21"}
+{"key": "DS4x2/r13/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r13/GA-Efficiency", "status": "started", "ordinal": 120, "time_unix": 1789856228.8303387, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r13/GA-Efficiency", "status": "scientific_returned", "seconds": 4.782211400000961}
+{"key": "DS4x2/r13/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 120, "seconds": 4.8509363000011945, "evidence_sha256": "820bb75cd298031f01a375379d027a4ed2ebcff9af05e7c788cdcaec2b477756"}
+{"key": "DS4x2/r13/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r14/Hospital-first", "status": "started", "ordinal": 121, "time_unix": 1789856233.7101862, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r14/Hospital-first", "status": "scientific_returned", "seconds": 4.660919999998441}
+{"key": "DS4x2/r14/Hospital-first", "status": "checkpoint_saved", "ordinal": 121, "seconds": 4.727858099999139, "evidence_sha256": "6438eb836351066dd848ae1e280cf2a4edda7aa508580e4c44937716eb55831e"}
+{"key": "DS4x2/r14/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r14/GA-Balanced", "status": "started", "ordinal": 122, "time_unix": 1789856238.4658408, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r14/GA-Balanced", "status": "scientific_returned", "seconds": 4.755322799999703}
+{"key": "DS4x2/r14/GA-Balanced", "status": "checkpoint_saved", "ordinal": 122, "seconds": 4.825950499998726, "evidence_sha256": "8731dfcf4b320718a37f9fda59d5b2d219bf050e8a9346b634996974b0e7ddd4"}
+{"key": "DS4x2/r14/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r14/GA-HospFirst", "status": "started", "ordinal": 123, "time_unix": 1789856243.320861, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r14/GA-HospFirst", "status": "scientific_returned", "seconds": 4.729855199999292}
+{"key": "DS4x2/r14/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 123, "seconds": 4.797795000002225, "evidence_sha256": "5e6190fdd470f0612660e0bcffa03d32c8a28c0684abe22b91a5e2e5101e8a36"}
+{"key": "DS4x2/r14/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r14/GA-Efficiency", "status": "started", "ordinal": 124, "time_unix": 1789856248.1461763, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r14/GA-Efficiency", "status": "scientific_returned", "seconds": 4.640189400000963}
+{"key": "DS4x2/r14/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 124, "seconds": 4.7082193000023835, "evidence_sha256": "45b7fbd14aacc4787b9ecbe380a67732c670e2ba7ce1ac39d9ef8ef36df91a4b"}
+{"key": "DS4x2/r14/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r15/Hospital-first", "status": "started", "ordinal": 125, "time_unix": 1789856252.8823507, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r15/Hospital-first", "status": "scientific_returned", "seconds": 4.808323500001279}
+{"key": "DS4x2/r15/Hospital-first", "status": "checkpoint_saved", "ordinal": 125, "seconds": 4.876201300001412, "evidence_sha256": "1b6a48d40a4ff256b6e9ae3c5c77fb49645b9876729e05ed484572bcc4783805"}
+{"key": "DS4x2/r15/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r15/GA-Balanced", "status": "started", "ordinal": 126, "time_unix": 1789856257.786449, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r15/GA-Balanced", "status": "scientific_returned", "seconds": 4.729539999996632}
+{"key": "DS4x2/r15/GA-Balanced", "status": "checkpoint_saved", "ordinal": 126, "seconds": 4.8002280999971845, "evidence_sha256": "d6a059887900a8bb5330d66e98c20eee79a2b75cbb549501877555a749685818"}
+{"key": "DS4x2/r15/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r15/GA-HospFirst", "status": "started", "ordinal": 127, "time_unix": 1789856262.6148272, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r15/GA-HospFirst", "status": "scientific_returned", "seconds": 4.714660300000105}
+{"key": "DS4x2/r15/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 127, "seconds": 4.78546439999991, "evidence_sha256": "830b9c99c9b6a3aa1f4eba40d13d11f22d09836b72e99d39bc09e31550d25a0e"}
+{"key": "DS4x2/r15/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r15/GA-Efficiency", "status": "started", "ordinal": 128, "time_unix": 1789856267.4294126, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r15/GA-Efficiency", "status": "scientific_returned", "seconds": 4.677108300002146}
+{"key": "DS4x2/r15/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 128, "seconds": 4.745342600002914, "evidence_sha256": "879a8c91739ff2dd8e9bb4edf746bf3b3b50822d6d6875184a96a5cb08296afe"}
+{"key": "DS4x2/r15/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r16/Hospital-first", "status": "started", "ordinal": 129, "time_unix": 1789856272.2029898, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r16/Hospital-first", "status": "scientific_returned", "seconds": 4.721111599999858}
+{"key": "DS4x2/r16/Hospital-first", "status": "checkpoint_saved", "ordinal": 129, "seconds": 4.787908199999947, "evidence_sha256": "002ad5143ab914e9a434b3ae2ccfec1bb431729e7353f135993cafb9123abd15"}
+{"key": "DS4x2/r16/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r16/GA-Balanced", "status": "started", "ordinal": 130, "time_unix": 1789856277.020446, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r16/GA-Balanced", "status": "scientific_returned", "seconds": 4.691128099999332}
+{"key": "DS4x2/r16/GA-Balanced", "status": "checkpoint_saved", "ordinal": 130, "seconds": 4.757294799997908, "evidence_sha256": "32ce9e4591348451b5b3c3d0dd61b4a238658940cc9512caf12fb19f68dc83f2"}
+{"key": "DS4x2/r16/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r16/GA-HospFirst", "status": "started", "ordinal": 131, "time_unix": 1789856281.7922418, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r16/GA-HospFirst", "status": "scientific_returned", "seconds": 4.658534399997734}
+{"key": "DS4x2/r16/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 131, "seconds": 4.724687999998423, "evidence_sha256": "c75bf526931474d6dd5f90c6b8339b132310dfc860f489daa444afe4c88eddfa"}
+{"key": "DS4x2/r16/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r16/GA-Efficiency", "status": "started", "ordinal": 132, "time_unix": 1789856286.5577123, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r16/GA-Efficiency", "status": "scientific_returned", "seconds": 4.7531896000000415}
+{"key": "DS4x2/r16/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 132, "seconds": 4.820839099997102, "evidence_sha256": "be00ae868a5bc256268a9a21c06501f2b75743d7e5543c4f9235b450c0b93cbb"}
+{"key": "DS4x2/r16/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r17/Hospital-first", "status": "started", "ordinal": 133, "time_unix": 1789856291.4072292, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r17/Hospital-first", "status": "scientific_returned", "seconds": 4.733334900000045}
+{"key": "DS4x2/r17/Hospital-first", "status": "checkpoint_saved", "ordinal": 133, "seconds": 4.801681100001588, "evidence_sha256": "8ea12c89db1548c98cd65b63d4238c3a279174e9c3de47ea2c57657970a7a203"}
+{"key": "DS4x2/r17/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r17/GA-Balanced", "status": "started", "ordinal": 134, "time_unix": 1789856296.237384, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r17/GA-Balanced", "status": "scientific_returned", "seconds": 4.768334799999138}
+{"key": "DS4x2/r17/GA-Balanced", "status": "checkpoint_saved", "ordinal": 134, "seconds": 4.836208599997917, "evidence_sha256": "868258e3d4d445bbf1a5c503dc486f1b20f36ec7ea3e364a79ef6a30a93ab2e2"}
+{"key": "DS4x2/r17/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r17/GA-HospFirst", "status": "started", "ordinal": 135, "time_unix": 1789856301.102817, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r17/GA-HospFirst", "status": "scientific_returned", "seconds": 4.76558870000008}
+{"key": "DS4x2/r17/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 135, "seconds": 4.833649399999558, "evidence_sha256": "fa7f4b9d87a4a0d1b77cb14a25ee6daa5e630a884796d9f72ebe32512c641ce2"}
+{"key": "DS4x2/r17/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r17/GA-Efficiency", "status": "started", "ordinal": 136, "time_unix": 1789856305.9650886, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r17/GA-Efficiency", "status": "scientific_returned", "seconds": 4.794355299996823}
+{"key": "DS4x2/r17/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 136, "seconds": 4.864542299997993, "evidence_sha256": "ed66fdbb104bca81330ec95db812e8c124116f2b494ae23a9dcdcb7bafd57fbb"}
+{"key": "DS4x2/r17/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r18/Hospital-first", "status": "started", "ordinal": 137, "time_unix": 1789856310.8577132, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r18/Hospital-first", "status": "scientific_returned", "seconds": 4.784142799999245}
+{"key": "DS4x2/r18/Hospital-first", "status": "checkpoint_saved", "ordinal": 137, "seconds": 4.85286300000007, "evidence_sha256": "6906d22efeaa0ac39c3b12e00b262504a9007f0bc5b29f38568a577a11a729c4"}
+{"key": "DS4x2/r18/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r18/GA-Balanced", "status": "started", "ordinal": 138, "time_unix": 1789856315.7387633, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r18/GA-Balanced", "status": "scientific_returned", "seconds": 4.733035000001109}
+{"key": "DS4x2/r18/GA-Balanced", "status": "checkpoint_saved", "ordinal": 138, "seconds": 4.806831700003386, "evidence_sha256": "020c7ef68205f2719a8d0bf1a0e39a8abd012678d05edb26d1f6e6bb628532a5"}
+{"key": "DS4x2/r18/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r18/GA-HospFirst", "status": "started", "ordinal": 139, "time_unix": 1789856320.5759494, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r18/GA-HospFirst", "status": "scientific_returned", "seconds": 4.6851950000018405}
+{"key": "DS4x2/r18/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 139, "seconds": 4.764701200001582, "evidence_sha256": "7dcfc274eb19f6bf7942f71f0229e55e2b0b015fa31e53e5f5cea401088a67dc"}
+{"key": "DS4x2/r18/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r18/GA-Efficiency", "status": "started", "ordinal": 140, "time_unix": 1789856325.3725648, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r18/GA-Efficiency", "status": "scientific_returned", "seconds": 4.727724000000308}
+{"key": "DS4x2/r18/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 140, "seconds": 4.794817599999078, "evidence_sha256": "2beb42028763624702c78aa5b56845104a16e540370d68d8ef98fdac0f4da8af"}
+{"key": "DS4x2/r18/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r19/Hospital-first", "status": "started", "ordinal": 141, "time_unix": 1789856330.195911, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r19/Hospital-first", "status": "scientific_returned", "seconds": 4.704620100001193}
+{"key": "DS4x2/r19/Hospital-first", "status": "checkpoint_saved", "ordinal": 141, "seconds": 4.772439899999881, "evidence_sha256": "148c0b5f803435305b64df1afd105bf4c3d7a78484fcbccc6c4b7aca4f304e1c"}
+{"key": "DS4x2/r19/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r19/GA-Balanced", "status": "started", "ordinal": 142, "time_unix": 1789856335.000715, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r19/GA-Balanced", "status": "scientific_returned", "seconds": 4.975003100000322}
+{"key": "DS4x2/r19/GA-Balanced", "status": "checkpoint_saved", "ordinal": 142, "seconds": 5.0482152000004135, "evidence_sha256": "abe2d3c3e8e0831b809918ceb0e07cdffb22d9951cbf2d060348fff5beeb4f0a"}
+{"key": "DS4x2/r19/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r19/GA-HospFirst", "status": "started", "ordinal": 143, "time_unix": 1789856340.0645387, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r19/GA-HospFirst", "status": "scientific_returned", "seconds": 4.913406299998314}
+{"key": "DS4x2/r19/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 143, "seconds": 4.987749299998541, "evidence_sha256": "87423554cf431bd603ebcfeb0c651b07f3bf2bfca874198bcd0acdd368f0a0d5"}
+{"key": "DS4x2/r19/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r19/GA-Efficiency", "status": "started", "ordinal": 144, "time_unix": 1789856345.0958748, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r19/GA-Efficiency", "status": "scientific_returned", "seconds": 5.012864200001786}
+{"key": "DS4x2/r19/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 144, "seconds": 5.083576000000903, "evidence_sha256": "bdc9adfe427ba7816c0885e280074d0e75a5e72d5d452aeedcb7346de5407914"}
+{"key": "DS4x2/r19/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r20/Hospital-first", "status": "started", "ordinal": 145, "time_unix": 1789856350.194592, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r20/Hospital-first", "status": "scientific_returned", "seconds": 4.979144900000392}
+{"key": "DS4x2/r20/Hospital-first", "status": "checkpoint_saved", "ordinal": 145, "seconds": 5.046718099998543, "evidence_sha256": "8b9d447b362e99726eac6b59214d44f587fff15259adf3d82f13219a444bee72"}
+{"key": "DS4x2/r20/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r20/GA-Balanced", "status": "started", "ordinal": 146, "time_unix": 1789856355.2806633, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r20/GA-Balanced", "status": "scientific_returned", "seconds": 4.813285500000347}
+{"key": "DS4x2/r20/GA-Balanced", "status": "checkpoint_saved", "ordinal": 146, "seconds": 4.886107999998785, "evidence_sha256": "91ce4b68d6d7e3dfa625129e0ff6e21228ddc7be86d75e1879be2c72d30fc698"}
+{"key": "DS4x2/r20/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r20/GA-HospFirst", "status": "started", "ordinal": 147, "time_unix": 1789856360.199663, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r20/GA-HospFirst", "status": "scientific_returned", "seconds": 4.964033699998254}
+{"key": "DS4x2/r20/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 147, "seconds": 5.036653599996498, "evidence_sha256": "aca2b98a6d3e9a0a5cdde749729c70959c390f033f180c223c70edf4b2917701"}
+{"key": "DS4x2/r20/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r20/GA-Efficiency", "status": "started", "ordinal": 148, "time_unix": 1789856365.2680311, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r20/GA-Efficiency", "status": "scientific_returned", "seconds": 4.968983800001297}
+{"key": "DS4x2/r20/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 148, "seconds": 5.038814399998955, "evidence_sha256": "143e608cb6530019cc2351679b6a933ff67d426ddec8776448a8614e5f2c10fc"}
+{"key": "DS4x2/r20/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r21/Hospital-first", "status": "started", "ordinal": 149, "time_unix": 1789856370.3246777, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r21/Hospital-first", "status": "scientific_returned", "seconds": 4.894722700002603}
+{"key": "DS4x2/r21/Hospital-first", "status": "checkpoint_saved", "ordinal": 149, "seconds": 4.967477199999848, "evidence_sha256": "38acb04d0668acf311cd6493870e38fb6e822452022e6ddce647a95823e4a435"}
+{"key": "DS4x2/r21/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r21/GA-Balanced", "status": "started", "ordinal": 150, "time_unix": 1789856375.3339255, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r21/GA-Balanced", "status": "scientific_returned", "seconds": 4.996767100001307}
+{"key": "DS4x2/r21/GA-Balanced", "status": "checkpoint_saved", "ordinal": 150, "seconds": 5.065662900000461, "evidence_sha256": "79693e995731ed12651a5ba9ad4ac92e8ec9c797d3f427d0f278dbf4c0df18a0"}
+{"key": "DS4x2/r21/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r21/GA-HospFirst", "status": "started", "ordinal": 151, "time_unix": 1789856380.4233513, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r21/GA-HospFirst", "status": "scientific_returned", "seconds": 5.016746299999795}
+{"key": "DS4x2/r21/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 151, "seconds": 5.096242700001312, "evidence_sha256": "13a1c78e66df2b2e901b730fca9af5ddf05ea0af20413a2d091b20dbc6e5934e"}
+{"key": "DS4x2/r21/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r21/GA-Efficiency", "status": "started", "ordinal": 152, "time_unix": 1789856385.5555348, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r21/GA-Efficiency", "status": "scientific_returned", "seconds": 5.0773353000004136}
+{"key": "DS4x2/r21/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 152, "seconds": 5.147485500001494, "evidence_sha256": "62359eab4fc6a687e48841de68a19e4e496caa55d07ed5b9673ecb9320fe9cb3"}
+{"key": "DS4x2/r21/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r22/Hospital-first", "status": "started", "ordinal": 153, "time_unix": 1789856390.73612, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r22/Hospital-first", "status": "scientific_returned", "seconds": 4.8784591000003275}
+{"key": "DS4x2/r22/Hospital-first", "status": "checkpoint_saved", "ordinal": 153, "seconds": 4.948986799998238, "evidence_sha256": "03904cc388299d47be20ec005deb822531182dff6c69b1d2763d4b3ef9ad80dd"}
+{"key": "DS4x2/r22/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r22/GA-Balanced", "status": "started", "ordinal": 154, "time_unix": 1789856395.7017837, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r22/GA-Balanced", "status": "scientific_returned", "seconds": 4.75932830000238}
+{"key": "DS4x2/r22/GA-Balanced", "status": "checkpoint_saved", "ordinal": 154, "seconds": 4.829659099999844, "evidence_sha256": "949f92cb918014d3406fcc69389e16399aaab541ba212998fd20e8792763ce24"}
+{"key": "DS4x2/r22/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r22/GA-HospFirst", "status": "started", "ordinal": 155, "time_unix": 1789856400.5670848, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r22/GA-HospFirst", "status": "scientific_returned", "seconds": 4.876395600000251}
+{"key": "DS4x2/r22/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 155, "seconds": 4.951195800000278, "evidence_sha256": "f54559302b9a16e373e2f72ce85478319f402617ddf2e54e086237defa1d255a"}
+{"key": "DS4x2/r22/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r22/GA-Efficiency", "status": "started", "ordinal": 156, "time_unix": 1789856405.5404499, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r22/GA-Efficiency", "status": "scientific_returned", "seconds": 4.984287100000074}
+{"key": "DS4x2/r22/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 156, "seconds": 5.059295299997757, "evidence_sha256": "8b466c9c93cf3ffc25b831f4d81f3f834020c69bbd9c8259d2e55f2968d56cbc"}
+{"key": "DS4x2/r22/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r23/Hospital-first", "status": "started", "ordinal": 157, "time_unix": 1789856410.6343415, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r23/Hospital-first", "status": "scientific_returned", "seconds": 4.974181500001578}
+{"key": "DS4x2/r23/Hospital-first", "status": "checkpoint_saved", "ordinal": 157, "seconds": 5.046066499999142, "evidence_sha256": "bed8b1c2ab509d949287d89cc864ccf055f6e43215f2c6da1dd0ebfb89878f73"}
+{"key": "DS4x2/r23/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r23/GA-Balanced", "status": "started", "ordinal": 158, "time_unix": 1789856415.7162442, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r23/GA-Balanced", "status": "scientific_returned", "seconds": 4.980384200000117}
+{"key": "DS4x2/r23/GA-Balanced", "status": "checkpoint_saved", "ordinal": 158, "seconds": 5.052130699998088, "evidence_sha256": "fa1172bc18b38a7a205de5b1ffc705197d7369d72f8f137c8885ea0d34a27977"}
+{"key": "DS4x2/r23/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r23/GA-HospFirst", "status": "started", "ordinal": 159, "time_unix": 1789856420.7995918, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r23/GA-HospFirst", "status": "scientific_returned", "seconds": 4.855832999997801}
+{"key": "DS4x2/r23/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 159, "seconds": 4.9287606999969285, "evidence_sha256": "3f687f7f8effed15d4a96c3659ee8f859a756262db64da8d261deeca00ff1640"}
+{"key": "DS4x2/r23/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r23/GA-Efficiency", "status": "started", "ordinal": 160, "time_unix": 1789856425.7568343, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r23/GA-Efficiency", "status": "scientific_returned", "seconds": 4.91627630000221}
+{"key": "DS4x2/r23/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 160, "seconds": 4.988823300001968, "evidence_sha256": "beff2f7473052378a5337d09a021ffed5cdfb4109425da07b2d77f2685b05b79"}
+{"key": "DS4x2/r23/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r24/Hospital-first", "status": "started", "ordinal": 161, "time_unix": 1789856430.7788923, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r24/Hospital-first", "status": "scientific_returned", "seconds": 4.981061100002989}
+{"key": "DS4x2/r24/Hospital-first", "status": "checkpoint_saved", "ordinal": 161, "seconds": 5.05763350000052, "evidence_sha256": "94038996241aa7dd76e49361255791743c1ccbd0736f8f2cd2d62220d8112e12"}
+{"key": "DS4x2/r24/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r24/GA-Balanced", "status": "started", "ordinal": 162, "time_unix": 1789856435.8589401, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r24/GA-Balanced", "status": "scientific_returned", "seconds": 4.909459399998013}
+{"key": "DS4x2/r24/GA-Balanced", "status": "checkpoint_saved", "ordinal": 162, "seconds": 4.9876890999985335, "evidence_sha256": "1365ab77e4af9fad6ef98046744275a84f183c2939127a2ffce934c8f5719117"}
+{"key": "DS4x2/r24/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r24/GA-HospFirst", "status": "started", "ordinal": 163, "time_unix": 1789856440.884973, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r24/GA-HospFirst", "status": "scientific_returned", "seconds": 4.956747300002462}
+{"key": "DS4x2/r24/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 163, "seconds": 5.025881800000207, "evidence_sha256": "61ff3933237947f6cac0ec97a2af1eb63ab4c0f3e639e8e491b297f86a19524b"}
+{"key": "DS4x2/r24/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r24/GA-Efficiency", "status": "started", "ordinal": 164, "time_unix": 1789856445.9325612, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r24/GA-Efficiency", "status": "scientific_returned", "seconds": 4.995620200003032}
+{"key": "DS4x2/r24/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 164, "seconds": 5.070764200001577, "evidence_sha256": "7a75fffb85eb81d1f4a5452bc96a2fcb2b16defe7ad0c9f2ee527d8b7c41c3da"}
+{"key": "DS4x2/r24/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r25/Hospital-first", "status": "started", "ordinal": 165, "time_unix": 1789856451.0345387, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r25/Hospital-first", "status": "scientific_returned", "seconds": 4.9120182000006025}
+{"key": "DS4x2/r25/Hospital-first", "status": "checkpoint_saved", "ordinal": 165, "seconds": 4.981032499999856, "evidence_sha256": "787f65b6b4e6169e99c24dc0092d5656585caffc9eb314340a5a3c453eaa135d"}
+{"key": "DS4x2/r25/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r25/GA-Balanced", "status": "started", "ordinal": 166, "time_unix": 1789856456.0424943, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r25/GA-Balanced", "status": "scientific_returned", "seconds": 5.014540700001817}
+{"key": "DS4x2/r25/GA-Balanced", "status": "checkpoint_saved", "ordinal": 166, "seconds": 5.09136639999997, "evidence_sha256": "51f6acadfe1a293704c95e3f4271a38a79155b3fb97fce716fdb6216cf4d7e30"}
+{"key": "DS4x2/r25/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r25/GA-HospFirst", "status": "started", "ordinal": 167, "time_unix": 1789856461.172706, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r25/GA-HospFirst", "status": "scientific_returned", "seconds": 4.970355000001291}
+{"key": "DS4x2/r25/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 167, "seconds": 5.04060980000213, "evidence_sha256": "f7d0f4f3d76a1b0c71f8aaa600ac8ddd39526302176e92e204347f9a18578919"}
+{"key": "DS4x2/r25/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r25/GA-Efficiency", "status": "started", "ordinal": 168, "time_unix": 1789856466.2329912, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r25/GA-Efficiency", "status": "scientific_returned", "seconds": 4.920825099998183}
+{"key": "DS4x2/r25/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 168, "seconds": 4.994844400000147, "evidence_sha256": "af57aeeb78d33dcc15653d72b2f92277e61cb36ddc652dcdfcee067d20a491ca"}
+{"key": "DS4x2/r25/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r26/Hospital-first", "status": "started", "ordinal": 169, "time_unix": 1789856471.2692597, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r26/Hospital-first", "status": "scientific_returned", "seconds": 4.88506690000213}
+{"key": "DS4x2/r26/Hospital-first", "status": "checkpoint_saved", "ordinal": 169, "seconds": 4.953698600002099, "evidence_sha256": "9dccee0a3f002c8f66d38edc6540345812887aa9712a87ed200e039abbdab547"}
+{"key": "DS4x2/r26/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r26/GA-Balanced", "status": "started", "ordinal": 170, "time_unix": 1789856476.2540145, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r26/GA-Balanced", "status": "scientific_returned", "seconds": 4.922276500001317}
+{"key": "DS4x2/r26/GA-Balanced", "status": "checkpoint_saved", "ordinal": 170, "seconds": 4.995402100001229, "evidence_sha256": "9f012d6efd04b999e35f833e29bca5e5ff1c03b4815de151f8474539e8283ab7"}
+{"key": "DS4x2/r26/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r26/GA-HospFirst", "status": "started", "ordinal": 171, "time_unix": 1789856481.2716126, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r26/GA-HospFirst", "status": "scientific_returned", "seconds": 4.933820799997193}
+{"key": "DS4x2/r26/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 171, "seconds": 5.003877699997247, "evidence_sha256": "a5aec7f8d922b7e1e33824adae8b2fa2198a90ee21fa176b5f30a371a1c36960"}
+{"key": "DS4x2/r26/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r26/GA-Efficiency", "status": "started", "ordinal": 172, "time_unix": 1789856486.3094082, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r26/GA-Efficiency", "status": "scientific_returned", "seconds": 4.936391200000799}
+{"key": "DS4x2/r26/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 172, "seconds": 5.007282899998245, "evidence_sha256": "c4c1d75e2579dc7f40cbed850cd6b97d8606ca843c29ed075d0282aa2c8ce8b4"}
+{"key": "DS4x2/r26/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r27/Hospital-first", "status": "started", "ordinal": 173, "time_unix": 1789856491.341626, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r27/Hospital-first", "status": "scientific_returned", "seconds": 4.877391300000454}
+{"key": "DS4x2/r27/Hospital-first", "status": "checkpoint_saved", "ordinal": 173, "seconds": 4.949371400001837, "evidence_sha256": "b5aab77405b518b6b16e9894928773ccd77dd90aea903494059fba41c6850e5f"}
+{"key": "DS4x2/r27/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r27/GA-Balanced", "status": "started", "ordinal": 174, "time_unix": 1789856496.3331254, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r27/GA-Balanced", "status": "scientific_returned", "seconds": 4.913985999999568}
+{"key": "DS4x2/r27/GA-Balanced", "status": "checkpoint_saved", "ordinal": 174, "seconds": 4.991579900000943, "evidence_sha256": "6af8c801d3e456f1d16653c5b7d864071b2189ef17c1737179b0631fe3740c52"}
+{"key": "DS4x2/r27/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r27/GA-HospFirst", "status": "started", "ordinal": 175, "time_unix": 1789856501.3499458, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r27/GA-HospFirst", "status": "scientific_returned", "seconds": 4.906938799998898}
+{"key": "DS4x2/r27/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 175, "seconds": 4.976882900002238, "evidence_sha256": "1ef4443791ccd812ee99a3fb2cab595698fe8b51c726d4420efeb412467e280f"}
+{"key": "DS4x2/r27/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r27/GA-Efficiency", "status": "started", "ordinal": 176, "time_unix": 1789856506.3546185, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r27/GA-Efficiency", "status": "scientific_returned", "seconds": 4.898253999999724}
+{"key": "DS4x2/r27/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 176, "seconds": 4.979004000000714, "evidence_sha256": "94547d536a6d63054dddbd8ad6bdf054666eb30aa8d236aec43c1bc2db932c0e"}
+{"key": "DS4x2/r27/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r28/Hospital-first", "status": "started", "ordinal": 177, "time_unix": 1789856511.380303, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r28/Hospital-first", "status": "scientific_returned", "seconds": 4.829850400001305}
+{"key": "DS4x2/r28/Hospital-first", "status": "checkpoint_saved", "ordinal": 177, "seconds": 4.897281800000201, "evidence_sha256": "3743886038ea0c9d1779d52d890184405e8d5bd0a4e6ab3b7fead5933092350d"}
+{"key": "DS4x2/r28/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r28/GA-Balanced", "status": "started", "ordinal": 178, "time_unix": 1789856516.2962546, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r28/GA-Balanced", "status": "scientific_returned", "seconds": 4.942340100002184}
+{"key": "DS4x2/r28/GA-Balanced", "status": "checkpoint_saved", "ordinal": 178, "seconds": 5.011694900000293, "evidence_sha256": "1b46cc51937f5cdf35ce6006507c7c63e11a44788cb4a12f0ea86091a2023243"}
+{"key": "DS4x2/r28/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r28/GA-HospFirst", "status": "started", "ordinal": 179, "time_unix": 1789856521.3429587, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r28/GA-HospFirst", "status": "scientific_returned", "seconds": 5.021227299999737}
+{"key": "DS4x2/r28/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 179, "seconds": 5.098334599999362, "evidence_sha256": "6d03732c17aba175dc88b8c59e8672208e7f4c70c4598c06a88ff3fe5bdc1aa9"}
+{"key": "DS4x2/r28/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r28/GA-Efficiency", "status": "started", "ordinal": 180, "time_unix": 1789856526.4779701, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r28/GA-Efficiency", "status": "scientific_returned", "seconds": 5.1362606000002415}
+{"key": "DS4x2/r28/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 180, "seconds": 5.2069626999982574, "evidence_sha256": "2fcddc2d764033ca97671f617a6035456aa82c54603572768ba5935bc26452b9"}
+{"key": "DS4x2/r28/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r29/Hospital-first", "status": "started", "ordinal": 181, "time_unix": 1789856531.7002304, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r29/Hospital-first", "status": "scientific_returned", "seconds": 4.960356300001877}
+{"key": "DS4x2/r29/Hospital-first", "status": "checkpoint_saved", "ordinal": 181, "seconds": 5.035743799999182, "evidence_sha256": "269ed772662a8022381a8e169bc6082614e30dbc9be6a1bba3c9c498245a0923"}
+{"key": "DS4x2/r29/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r29/GA-Balanced", "status": "started", "ordinal": 182, "time_unix": 1789856536.768256, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r29/GA-Balanced", "status": "scientific_returned", "seconds": 4.902236600002652}
+{"key": "DS4x2/r29/GA-Balanced", "status": "checkpoint_saved", "ordinal": 182, "seconds": 4.974207200000819, "evidence_sha256": "56315c75d3aa0927e5c8cbb9e7d31317fedcb0a4904e1fb2da19a60282bf9f74"}
+{"key": "DS4x2/r29/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r29/GA-HospFirst", "status": "started", "ordinal": 183, "time_unix": 1789856541.7718456, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r29/GA-HospFirst", "status": "scientific_returned", "seconds": 4.891871000003448}
+{"key": "DS4x2/r29/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 183, "seconds": 4.966818200002308, "evidence_sha256": "8f27bd02651f68495985534d304718b38dc224e6a19fb42242a7cc840036bb47"}
+{"key": "DS4x2/r29/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r29/GA-Efficiency", "status": "started", "ordinal": 184, "time_unix": 1789856546.7743766, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r29/GA-Efficiency", "status": "scientific_returned", "seconds": 4.819660199998907}
+{"key": "DS4x2/r29/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 184, "seconds": 4.895592200002284, "evidence_sha256": "951770c29488f245c6344800898f20e79f8c9a4f175d9dec764085a7519cfbae"}
+{"key": "DS4x2/r29/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r30/Hospital-first", "status": "started", "ordinal": 185, "time_unix": 1789856551.6974838, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r30/Hospital-first", "status": "scientific_returned", "seconds": 4.9388238999999885}
+{"key": "DS4x2/r30/Hospital-first", "status": "checkpoint_saved", "ordinal": 185, "seconds": 5.016389399999753, "evidence_sha256": "b88125b7a009f6ad8cd847036d9b8bc36806553ddb22397bec80b564e68ed1b9"}
+{"key": "DS4x2/r30/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r30/GA-Balanced", "status": "started", "ordinal": 186, "time_unix": 1789856556.751046, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r30/GA-Balanced", "status": "scientific_returned", "seconds": 4.855937999996968}
+{"key": "DS4x2/r30/GA-Balanced", "status": "checkpoint_saved", "ordinal": 186, "seconds": 4.9264643999995315, "evidence_sha256": "028eabc24146f1cb99f32a5d0e1dae5dac5510a5d0165b4fc40440c878480516"}
+{"key": "DS4x2/r30/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r30/GA-HospFirst", "status": "started", "ordinal": 187, "time_unix": 1789856561.7106996, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r30/GA-HospFirst", "status": "scientific_returned", "seconds": 4.960015499997098}
+{"key": "DS4x2/r30/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 187, "seconds": 5.031950199998391, "evidence_sha256": "43172f9763384bf8b518e7dedcf3cab9548f9bd134cd90699ac2cf24e67ef798"}
+{"key": "DS4x2/r30/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r30/GA-Efficiency", "status": "started", "ordinal": 188, "time_unix": 1789856566.7584734, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r30/GA-Efficiency", "status": "scientific_returned", "seconds": 5.0017770000013115}
+{"key": "DS4x2/r30/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 188, "seconds": 5.073490800001309, "evidence_sha256": "a2e28056f41b8338e34bee85ace4b5aab786fc1a2f9e05f252feb0571adf90bd"}
+{"key": "DS4x2/r30/GA-Efficiency", "status": "invariants_passed"}
+{"key": "DS4x2/r31/Hospital-first", "status": "started", "ordinal": 189, "time_unix": 1789856571.8741143, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r31/Hospital-first", "status": "scientific_returned", "seconds": 4.85558250000031}
+{"key": "DS4x2/r31/Hospital-first", "status": "checkpoint_saved", "ordinal": 189, "seconds": 4.926959100001113, "evidence_sha256": "8812f31e87ef2bde676466df636350158525b8fe1d0b4d4e30883ca73ffae030"}
+{"key": "DS4x2/r31/Hospital-first", "status": "invariants_passed"}
+{"key": "DS4x2/r31/GA-Balanced", "status": "started", "ordinal": 190, "time_unix": 1789856576.8303607, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r31/GA-Balanced", "status": "scientific_returned", "seconds": 5.1748407000013685}
+{"key": "DS4x2/r31/GA-Balanced", "status": "checkpoint_saved", "ordinal": 190, "seconds": 5.25472660000014, "evidence_sha256": "03461cea6697bbc83813481680262c73259b39831b81541465faf5118ef468c4"}
+{"key": "DS4x2/r31/GA-Balanced", "status": "invariants_passed"}
+{"key": "DS4x2/r31/GA-HospFirst", "status": "started", "ordinal": 191, "time_unix": 1789856582.1168625, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r31/GA-HospFirst", "status": "scientific_returned", "seconds": 5.030330200002936}
+{"key": "DS4x2/r31/GA-HospFirst", "status": "checkpoint_saved", "ordinal": 191, "seconds": 5.095623000001069, "evidence_sha256": "d3a199e13af3fec005322bf8bb78154ac40a7a28044dd76421fbe56d00af011f"}
+{"key": "DS4x2/r31/GA-HospFirst", "status": "invariants_passed"}
+{"key": "DS4x2/r31/GA-Efficiency", "status": "started", "ordinal": 192, "time_unix": 1789856587.2322495, "manifest_hash": "8332ef20f6484237023da71d8433039f3ff357d5843d444291dcd8d8cc2951e4"}
+{"key": "DS4x2/r31/GA-Efficiency", "status": "scientific_returned", "seconds": 5.007201799999166}
+{"key": "DS4x2/r31/GA-Efficiency", "status": "checkpoint_saved", "ordinal": 192, "seconds": 5.079837900000712, "evidence_sha256": "5e6d9273e3d75001026ab107854cc47d708dc57828a862edfab6adf9b4d63a35"}
+{"key": "DS4x2/r31/GA-Efficiency", "status": "invariants_passed"}
+{"status": "all_science_complete", "scientific_executions": 192, "new_GA_searches": 0, "new_draws": 0, "frozen_inputs_unchanged": true}
