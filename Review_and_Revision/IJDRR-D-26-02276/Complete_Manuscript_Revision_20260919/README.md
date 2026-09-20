@@ -4,10 +4,12 @@ Scientific result basis: **87110dad035ddb6eb694235330cd2547d9ba5588**.
 
 This package rewrites the complete paper as a conditional restoration-decision study with two targeted assumption contrasts. It preserves the original manuscript, original result files, and candidate history. It does not perform new GA searches, physical sampling, scheduling, source gating, or service propagation.
 
+Status: complete revision draft for coauthor review, not an independently accepted or submission-ready final manuscript. The follow-up to b95ef8a adds the retained historical/new inventory selection chain and graph construction account, a data-version table with unresolved dates stated explicitly, and a positive literature-grounded contribution paragraph with corresponding R2 #2/#11 replies. Scientific results, figures, policy sequences, and experiments remain unchanged. Authors and coauthors should next confirm the research positioning, literature distinctions, authorship and declarations before target-journal formatting.
+
 ## Editable documents
 
 - `REVISED_MANUSCRIPT.docx`: complete clean article, including title, abstract, introduction, methods, results, discussion, conclusion, declarations, references, four main figures, and Tables 1–3 (Table 2 has two parts).
-- `SUPPLEMENTARY_MATERIAL.docx`: five supplementary sections, Tables S1–S5 (S3 has two parts), and Figures S1–S2.
+- `SUPPLEMENTARY_MATERIAL.docx`: five supplementary sections, Tables S1–S6 (S3 has two parts), and Figures S1–S2; Table S6 distinguishes retained versions from unresolved source dates.
 - `RESPONSE_TO_REVIEWERS.docx`: editorial response, both overall assessments, all seven Reviewer 1 comments and all sixteen Reviewer 2 comments. Original comment wording is quoted; response locations use stable manuscript section/table/figure labels.
 - `CLAIM_EVIDENCE_CROSSWALK.docx`: one-page original/superseded claim → revised claim → evidence table.
 

@@ -1,6 +1,6 @@
 """Editable manuscript package from frozen results; document work only."""
 from pathlib import Path
-import re, shutil, json
+import re, shutil, json, sys
 import pandas as pd
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
@@ -99,6 +99,19 @@ for s,l in zip(STR[1:],LAB[1:]):
 table('STABLE5','Table S5. Baseline population classification under two averaging operations.',
  ['Sequence','Mean-effect improved','Mean-effect worsened','Realization-first improved','Realization-first worsened'],rows,
  'All percentages use 3,572,152 people. Mean-effect classification applies ±1 h to each tract’s 32-realization mean; realization-first classifies each draw then averages shares. Unresolved is 1.45% in both. The ±1 h threshold is not a significance test.',[1.3,1.35,1.35,1.4,1.4])
+
+table('STABLE6','Table S6. Retained data versions, fields, and date limitations.',
+ ['Input','Retained version or field','Date interpretation / remaining gap'],[
+ ['Tract boundaries','Tracts_Within_Expanded_Area.csv; GEOID and wkt_geom','Specific Census/TIGER geometry release year cannot be established from retained records. The fixed study-area union contains 2,315 tracts; the outcome domain contains 817.'],
+ ['Tract population','population field in the retained tract file and frozen coverage table','Estimate year, original Census table, and original variable code cannot be established. NRI’s separate 2020 population field was not substituted.'],
+ ['Social vulnerability','FEMA NRI v1.19.0, March 2023; California tract-table derivative, SOVI_SCORE','Version confirmed by the retained NRI data dictionary. NRI-derived score; not described as a CDC SVI release.'],
+ ['Hospital records','hospital_with_tract_expanded.csv; facility IDs and FACILITY_STATUS_DATE; 53 records in 47 strict-SCE tracts','Unified directory release/extraction date cannot be established. Individual status dates include 2026-03-07; this is not a date for the entire directory.'],
+ ['Seismic intensity','CGS Map Sheet 48 retained CA_pt01_GM_maps.csv; PGA-2pc50 (g)','Exact retained grid release year cannot be established. The column defines 2% exceedance in 50 years, not a data-vintage year.'],
+ ['Station inventory','CEC/HIFLD merged inventory; selected-record SOURCEDATE: 2015 (277), 2016 (10), 2018 (10), 2019 (13); CEC crosswalk package July 2022','Selected source dates span 2015-06-04 to 2019-01-28. Crosswalk package date does not update every station’s operating status.'],
+ ['Transmission lines','Retained CEC shapefile: 6,839 features; 6,822 Last_Edi_1 dates in 2016; 17 placeholder dates','Latest nonplaceholder feature edit: 2016-09-06. Metadata synchronization in 2023 and wrapper creation in 2024 are not line-update years.'],
+ ['SCE candidate evidence','Official planning GIS retained 2026-09-14; provider date 2026-08-15','Retrieval/provider dates do not validate every candidate geometry or establish actual load shares.'],
+ ['Directed roads','Retained la_drive.graphml; created 2025-04-16 with OSMnx 2.0.2','Extraction date; not a postearthquake road-condition assessment. Explicit facility-access proxies remain assumptions.']],
+ 'Dates refer to the retained experimental inputs. Unknown dates remain unknown; no later online release replaces these data. See S1.1 for inventory selection and S1.3 for access/resource assumptions.',[1.05,2.65,3.1])
 
 FIGS={
  'FIG1':('Figure_1_Study_design','Figure 1. Conditional study design. The same physical realizations feed four fixed sequences. The A/B influence comparison is an offline change of evaluation weights; the DS4 comparison reschedules the same tasks with relatively longer severe-damage actions. Neither adds physical draws or optimizes a new policy.'),
@@ -262,7 +275,9 @@ def build(name):
     (ROOT/(name+'.md')).write_text(finished,encoding='utf-8')
     print(name, 'paragraphs',len(doc.paragraphs),'tables',len(doc.tables))
 
-for name in NAMES:build(name)
+targets=sys.argv[1:] or NAMES
+if any(name not in NAMES for name in targets):raise ValueError('Unknown document target')
+for name in targets:build(name)
 stats=ROOT/'Supplementary_tables';stats.mkdir(exist_ok=True)
 for f in ['METRIC_DISTRIBUTIONS.csv','PAIRED_EFFECTS.csv','METRIC_RANK_FREQUENCIES.csv']:
     if (SRC/f).exists():shutil.copyfile(SRC/f,stats/f)
