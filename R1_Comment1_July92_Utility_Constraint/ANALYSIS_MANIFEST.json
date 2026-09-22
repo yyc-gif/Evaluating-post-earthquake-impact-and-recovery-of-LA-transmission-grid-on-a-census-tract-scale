@@ -1,0 +1,49 @@
+{
+  "analysis_scope": "Reviewer 1 Comment #1, frozen July 92-station mapping only",
+  "edge_count": 318,
+  "idw_power": 2.0,
+  "input_sha256": {
+    "Data\\Tracts_Within_Expanded_Area.csv": "b81268b48d77758f9d23fac4335c06024059a711f3c1453be2d0b9ecd1aa3a9e",
+    "Data\\substation_graph_CEC_edges_expanded.csv": "1a3073240a6dca3e902e0bf5c2b975c67ff100892d85f007270e9855250bd225",
+    "Data\\substation_graph_CEC_nodes_expanded.csv": "cf01e03faba73891179b17af277d997ce239d69207af00416733d15154e5d647",
+    "Data\\tract_to_substation_mapping_CEC_expanded.csv": "04b3f83a7be7a0a60fbfb6968b5bcee5a6e722722155f351712508f2c438fd93",
+    "Data\\working_area_substations_with_fragility.csv": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00"
+  },
+  "mapping_names": [
+    "JULY_BASELINE_92",
+    "JULY_UTILITY_CONSTRAINED_92"
+  ],
+  "minimum_weight_cutoff": 0.03,
+  "output_sha256": {
+    "JULY_UTILITY_CONSTRAINED_92.csv": "ee31969141015479334ffaa0bae2ce117a85d34d12333986654f5433ff8eb7b9",
+    "MAPPING_STRUCTURE_SENSITIVITY_SUMMARY.csv": "5061c6d90e0c4c80c25fc4bb0912d43ffb5dbdbf1222f86000f6c7d6a3b1a466",
+    "MAPPING_STRUCTURE_SENSITIVITY_TRACTS.csv": "4c9fed19d1561759edff15702daed6d448155ca3604bd8d920fb6c7d7f7ddbe1",
+    "OUTCOME_SENSITIVITY_AVAILABILITY.csv": "e9d725fc948d69d16e5718c6b6a25d3afcd11f02d883f5f88e79b444b15850ef",
+    "SCE_CANDIDATE_BENCHMARK_SUMMARY.csv": "726fa00fdbd2f4f1839a7ea73a9a068956a8fe5211679eb2f3664a08812946a9",
+    "SCE_CANDIDATE_BENCHMARK_TRACTS.csv": "0c12248701afa6181b94d31b9871ff4cad65f680b7bf5888f69eb8fd13b5bbef"
+  },
+  "production_default_mapping_modified": false,
+  "retained_external_evidence_sha256": {
+    "87110da:Review_and_Revision/IJDRR-D-26-02276/08_UtilitySpecific_SetC_20260914/TRACT_UTILITY_DOMAIN.csv": "5b1f34ad22bb822a35a53f4f2f61b340871c17e93745afd8e713c1025acc14c1",
+    "87110da:Review_and_Revision/IJDRR-D-26-02276/09_MappingArchitecture_20260914/EVIDENCE_TIER_COVERAGE.csv": "1ab24b07b2f5cd7ecf97be280432c07f67e60afd769968b7efc60b21cdfa07c2"
+  },
+  "scientific_pipeline_executions": 0,
+  "station_count": 92,
+  "station_owner_counts": {
+    "LADWP": 30,
+    "Other": 3,
+    "SCE": 58,
+    "UNSPECIFIED": 1
+  },
+  "strict_sce_benchmark_tracts_representable_in_July92": 342,
+  "strict_sce_crosswalked_evidence_tracts": 794,
+  "submitted_baseline_reconstruction_cells_over_1e_12": 0,
+  "submitted_baseline_reconstruction_max_abs_error": 3.3306690738754696e-16,
+  "tract_count": 2315,
+  "unique_official_candidate_ids_representable_in_July92": 28,
+  "utility_domain_counts": {
+    "LADWP": 848,
+    "SCE": 817,
+    "other / ambiguous": 650
+  }
+}
