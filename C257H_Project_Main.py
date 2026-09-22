@@ -58,6 +58,7 @@ from scipy.stats import norm
 import random
 from deap import base, creator, tools, algorithms
 from strategy_names import canonical_strategy_label
+from r1_realization_scheduling import draw_positive_normal
 
 # --- GLOBAL LOG STORE ---
 GLOBAL_GANTT_LOG = []
@@ -806,8 +807,6 @@ def damage_to_functionality_and_repair(
 
     # 2) Repair time samples (hr)
     repair_time_samples = np.zeros_like(ds_samples, dtype=float)
-    min_repair_time = 0
-
     for ds in range(1, 5):
         mask = (ds_samples == ds)
         n = int(mask.sum())
@@ -819,12 +818,14 @@ def damage_to_functionality_and_repair(
             mean_hr = float(mean_hr)
             std_hr  = float(std_hr)
 
-            if std_hr <= 1e-9:
-                samples = np.full(n, mean_hr, dtype=float)
-            else:
-                samples = rng.normal(loc=mean_hr, scale=std_hr, size=n)
+            samples = draw_positive_normal(
+                rng,
+                mean_hr=mean_hr,
+                std_hr=std_hr,
+                size=n,
+            )
 
-            repair_time_samples[mask] = np.maximum(samples, min_repair_time)
+            repair_time_samples[mask] = samples
 
         except Exception:
             raise ValueError(f"Invalid repair parameters for DS {ds}: mean={mean_hr}, std={std_hr}")
