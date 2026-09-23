@@ -130,14 +130,39 @@ def tract_effects(tracts, population, quartile, *, reference_strategy):
         for strategy in p.columns:
             if strategy==reference_strategy:continue
             delta=p[strategy]-p[reference_strategy]
+            valid=delta.notna().groupby(level='tract_id').sum()
+            direction=(delta.lt(0)&delta.notna()).groupby(level='tract_id').sum()/valid.replace(0,np.nan)
             for scope,series in [('per_realization',delta),('mean_paired_effect',delta.groupby(level='tract_id').mean())]:
                 # Explicit NA retains unresolved; direction denominator is valid paired realizations.
                 z=pd.DataFrame({'delta_burden_hr':series});z['classification']='near-zero'
                 z.loc[series < -1,'classification']='improved';z.loc[series > 1,'classification']='worsened';z.loc[series.isna(),'classification']='unresolved'
                 z=z.reset_index();z['population']=z.tract_id.map(population);z['quartile']=z.tract_id.map(quartile)
+                z['paired_valid_n']=z.tract_id.map(valid)
+                z['paired_probability_delta_below_zero']=z.tract_id.map(direction)
                 z=z.assign(mapping=m,gate=g,strategy=strategy,reference=reference_strategy,classification_scope=scope)
                 result.append(z)
     return pd.concat(result,ignore_index=True)
+
+def classification_population_summary(effects):
+    """Mean-effect classification and average per-realization classification differ.
+
+    Population fractions use every tract in the stated mapping domain, including
+    unresolved. No tract is silently removed from the denominator.
+    """
+    keys=['mapping','gate','strategy','reference','classification_scope']
+    records=[]
+    for identity,g in effects.groupby(keys):
+        scopes=[('all',g)]+[(str(q),z) for q,z in g.groupby('quartile',dropna=False)]
+        for quartile,z in scopes:
+            units=list(z.groupby('realization_id')) if identity[-1]=='per_realization' else [('mean',z)]
+            for unit,x in units:
+                denominator=float(x.population.sum())
+                for label in ['improved','near-zero','worsened','unresolved']:
+                    chosen=x[x.classification.eq(label)]
+                    records.append(dict(zip(keys,identity),quartile=quartile,unit=unit,classification=label,tract_count=len(chosen),population=float(chosen.population.sum()),domain_population=denominator,population_fraction=float(chosen.population.sum())/denominator if denominator>0 else np.nan))
+    out=pd.DataFrame(records)
+    group=keys+['quartile','classification']
+    return out.groupby(group,dropna=False)[['tract_count','population','domain_population','population_fraction']].mean().reset_index()
 
 def paired_assumption_effects(summaries,metric,*,reference_mapping='M1_UTILITY_003',reference_gate='G1_BASELINE_050',bootstrap_resamples=10000):
     """Same strategy/realization, varying evaluation assumptions only.

@@ -4,7 +4,25 @@ from pathlib import Path
 import numpy as np,pandas as pd,networkx as nx
 from r1_mapping import ROOT
 from r1_topology_robustness import characterize_topology,dynamic_redundancy,source_loss_contributions
-from r1_mapping_gate_robustness import mapping_cases,evaluate_saved_trajectory,paired_effects,paired_assumption_effects,tract_effects
+from r1_mapping_gate_robustness import mapping_cases,evaluate_saved_trajectory,paired_effects,paired_assumption_effects,tract_effects,classification_population_summary
+
+def validate_paired_archives(index,index_directory):
+    """Require caller-recorded DS/duration and frozen context identities before evaluation.
+
+    Physical hash covers ordered IDs, DS and durations; context hash covers the
+    graph, sources, travel, crews and physical horizon convention. Neither
+    includes the strategy or mapping. They must be written by the physical runner.
+    """
+    identities={};contexts=set()
+    for row in index.itertuples():
+        with np.load(index_directory/row.npz_file,allow_pickle=False) as z:
+            md=json.loads(str(z['metadata_json']))
+        if str(md['realization_id'])!=row.realization_id or str(md['strategy_id'])!=row.strategy_id:raise ValueError('Archive identity mismatch')
+        for key in ['physical_input_hash','frozen_context_hash']:
+            h=md.get(key)
+            if not isinstance(h,str) or len(h)!=64 or any(c not in '0123456789abcdef' for c in h):raise ValueError('Missing canonical SHA256: '+key)
+        identities.setdefault(row.realization_id,set()).add(md['physical_input_hash']);contexts.add(md['frozen_context_hash'])
+    if any(len(v)!=1 for v in identities.values()) or len(contexts)!=1:raise ValueError('Physical pairing or frozen context differs')
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--index',required=True,help='CSV: realization_id,strategy_id,npz_file; paths relative to index');parser.add_argument('--output',required=True);parser.add_argument('--reference-strategy',required=True);args=parser.parse_args()
@@ -12,6 +30,7 @@ def main():
     if index.duplicated(['realization_id','strategy_id']).any():raise ValueError('Duplicate archive keys')
     sets=index.groupby('realization_id').strategy_id.agg(lambda x:tuple(sorted(x)))
     if len(set(sets))!=1:raise ValueError('Incomplete paired strategy archive')
+    validate_paired_archives(index,index_path.parent)
     output=Path(args.output);output.mkdir(exist_ok=False,parents=True)
     edges=pd.read_csv(ROOT/'Data/substation_graph_CEC_edges_expanded.csv',dtype={'u':str,'v':str});g=nx.from_pandas_edgelist(edges,'u','v')
     source=pd.read_csv(ROOT/'Data/source_nodes_core_expanded.csv',dtype={'ID':str});sources=source.loc[source.level.eq('Core'),'ID'].tolist()
@@ -39,7 +58,9 @@ def main():
         np.savez_compressed(output/(row.realization_id+'__'+row.strategy_id+'.npz'),**arrays)
     a=pd.concat(summary,ignore_index=True);b=pd.concat(tract,ignore_index=True)
     a.to_csv(output/'SUMMARY.csv',index=False);b.to_parquet(output/'TRACT_BURDEN.parquet',index=False)
-    tract_effects(b,meta.population,meta.SOVI_quartile,reference_strategy=args.reference_strategy).to_parquet(output/'TRACT_EFFECTS.parquet',index=False)
+    effects=tract_effects(b,meta.population,meta.SOVI_quartile,reference_strategy=args.reference_strategy)
+    effects.to_parquet(output/'TRACT_EFFECTS.parquet',index=False)
+    classification_population_summary(effects).to_csv(output/'CLASSIFICATION_POPULATION.csv',index=False)
     metrics=[c for c in a if c.endswith('_hr') or c=='burden_gini']
     pd.concat([paired_effects(a,m,reference_strategy=args.reference_strategy).assign(metric=m) for m in metrics]).to_csv(output/'PAIRED_STRATEGY_EFFECTS.csv',index=False)
     pd.concat([paired_assumption_effects(a,m) for m in metrics]).to_csv(output/'PAIRED_ASSUMPTION_EFFECTS.csv',index=False)

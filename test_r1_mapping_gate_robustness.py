@@ -1,4 +1,6 @@
 import unittest
+import tempfile
+from pathlib import Path
 import numpy as np,pandas as pd,networkx as nx
 from r1_mapping_gate_robustness import *
 from r1_source_gate import gate_callback
@@ -41,4 +43,31 @@ class RobustnessTests(unittest.TestCase):
     def test_identity_no_gate(self):
         f=self.f.copy();f[:]=1
         pd.testing.assert_frame_equal(evaluate_source_gate(f,self.g,['S']).e,evaluate_source_gate(f,self.g,['S'],mode='no_gate').e)
+    def test_paired_offline_tables_and_archive_guard(self):
+        from r1_source_gate import save_gate_trace
+        from evaluate_mapping_gate_archive import validate_paired_archives
+        summaries=[];tracts=[]
+        for rid in ['r0','r1']:
+            for strategy in ['reference','alternative']:
+                raw=self.f.copy()
+                if strategy=='alternative':raw.loc[0,'A']=1
+                a,b,_=evaluate_saved_trajectory(raw,self.g,['S'],{'M1_UTILITY_003':self.w},self.pop,self.q,set(),realization_id=rid,strategy_id=strategy)
+                summaries.append(a);tracts.append(b)
+        a=pd.concat(summaries);b=pd.concat(tracts)
+        effects=tract_effects(b,self.pop,self.q,reference_strategy='reference')
+        self.assertTrue(effects.loc[effects.tract_id.eq('u'),'paired_probability_delta_below_zero'].isna().all())
+        totals=classification_population_summary(effects)
+        unresolved=totals[totals.quartile.eq('all')&totals.classification.eq('unresolved')]
+        self.assertTrue(unresolved.population.eq(3).all())
+        self.assertTrue(unresolved.population_fraction.eq(.5).all())
+        self.assertFalse(paired_effects(a,'population_T80_hr',reference_strategy='reference',bootstrap_resamples=20).empty)
+        self.assertFalse(paired_assumption_effects(a,'population_T80_hr',bootstrap_resamples=20).empty)
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);trace=evaluate_source_gate(self.f,self.g,['S'])
+            for strategy in ['reference','alternative']:
+                save_gate_trace(trace,root/(strategy+'.npz'),realization_id='r0',strategy_id=strategy,physical_input_hash='a'*64,frozen_context_hash='b'*64)
+            index=pd.DataFrame({'realization_id':['r0','r0'],'strategy_id':['reference','alternative'],'npz_file':['reference.npz','alternative.npz']})
+            validate_paired_archives(index,root)
+            save_gate_trace(trace,root/'alternative.npz',realization_id='r0',strategy_id='alternative',physical_input_hash='c'*64,frozen_context_hash='b'*64)
+            with self.assertRaisesRegex(ValueError,'pairing'):validate_paired_archives(index,root)
 if __name__=='__main__':unittest.main()

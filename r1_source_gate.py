@@ -70,8 +70,8 @@ def gate_callback(graph, source_ids, *, threshold=.5):
     return lambda raw:evaluate_source_gate(raw,graph,source_ids,threshold=threshold)
 
 
-def save_gate_trace(trace, path, *, realization_id, strategy_id):
+def save_gate_trace(trace, path, *, realization_id, strategy_id, physical_input_hash=None, frozen_context_hash=None):
     payload={k:getattr(trace,k).to_numpy() for k in ['f','F','C','e','L_self','L_threshold','L_source','L_total']}
     payload.update(station_ids=np.array(trace.f.columns,dtype=str),event_time_hr=np.array(trace.f.index,float),
-        metadata_json=np.array(json.dumps(dict(realization_id=str(realization_id),strategy_id=str(strategy_id),threshold=trace.threshold,source_ids=trace.source_ids,mode=trace.mode))))
+        metadata_json=np.array(json.dumps(dict(realization_id=str(realization_id),strategy_id=str(strategy_id),threshold=trace.threshold,source_ids=trace.source_ids,mode=trace.mode,physical_input_hash=physical_input_hash,frozen_context_hash=frozen_context_hash))))
     np.savez_compressed(Path(path),**payload)
