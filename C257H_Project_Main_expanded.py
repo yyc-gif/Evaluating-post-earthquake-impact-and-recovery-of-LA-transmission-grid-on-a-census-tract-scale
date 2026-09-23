@@ -28,9 +28,11 @@ class ExpandedConfig(base.Config):
     """Expanded-area pipeline configuration overriding the base city-scale file layout."""
     DEVICES_CSV: str = str(DATA_DIR / "working_area_substations_with_fragility.csv")
     PGA_CSV: str = str(DATA_DIR / "Substations_PGA_IDW_CEC_expanded.csv")
-    MAP_TRACT_SUB_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC_expanded.csv")
+    MAP_TRACT_SUB_CSV: str = str(DATA_DIR / "JULY_UTILITY_CONSTRAINED_92.csv")
+    JULY_BASELINE_MAPPING_CSV: str = str(DATA_DIR / "tract_to_substation_mapping_CEC_expanded.csv")
+    MAPPING_METHOD: str = "JULY_UTILITY_CONSTRAINED_92"
     SENSITIVITY_RAW_MAPPING_CSV: str = str(
-        DATA_DIR / "tract_to_substation_mapping_CEC_expanded_unthresholded.csv"
+        DATA_DIR / "JULY_UTILITY_CONSTRAINED_92_UNTHRESHOLDED.csv"
     )
     CEC_GRAPH_EDGES_CSV: str = str(DATA_DIR / "substation_graph_CEC_edges_expanded.csv")
     CEC_GRAPH_NODES_CSV: str = str(DATA_DIR / "substation_graph_CEC_nodes_expanded.csv")
