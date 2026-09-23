@@ -27,6 +27,7 @@ class RealizationStrategyResult:
     raw_functionality:pd.DataFrame
     effective_functionality:pd.DataFrame
     crew_final_available_hr:np.ndarray
+    gate_trace:object=None
 
 def _ids(values):
     x=pd.Index([str(v).strip() for v in values],dtype='object')
@@ -109,8 +110,11 @@ def simulate_paired_realization_strategies(*,realization:RealizationInputs,strat
     for name,seq in strategy_sequences.items():
         events,completion,clocks,queue=execute_realization_schedule(full_priority_sequence=seq,damage_state=ds,realized_duration_hr=duration,crew_origin_ids=crew_origin_ids,base_to_task_hr=base_to_task_hr,task_to_task_hr=task_to_task_hr)
         raw=evaluate_completion_step_functionality(damage_state=ds,completion_time_hr=completion,time_hr=time_hr,initial_functionality_by_ds=initial_functionality_by_ds)
-        effective=source_gate(raw.copy(deep=True))
+        gate_output=source_gate(raw.copy(deep=True))
+        from r1_source_gate import GateTrace
+        trace=gate_output if isinstance(gate_output,GateTrace) else None
+        effective=trace.e if trace is not None else gate_output
         if not isinstance(effective,pd.DataFrame) or effective.shape!=raw.shape: raise ValueError('source_gate returned incompatible output.')
-        results[str(name)]=RealizationStrategyResult(realization.realization_id,str(name),queue,events,completion,raw,effective.copy(deep=True),clocks)
+        results[str(name)]=RealizationStrategyResult(realization.realization_id,str(name),queue,events,completion,raw,effective.copy(deep=True),clocks,trace)
     if not realization.damage_state.equals(ds) or not realization.realized_duration_hr.equals(duration): raise RuntimeError('Shared realization was mutated.')
     return results
