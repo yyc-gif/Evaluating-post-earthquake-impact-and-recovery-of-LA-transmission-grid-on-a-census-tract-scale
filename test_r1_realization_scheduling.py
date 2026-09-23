@@ -21,7 +21,7 @@ class T(unittest.TestCase):
     if 'B' in fun and 'A' in keep:keep.add('B')
     o.loc[t,[s for s in o.columns if s not in keep]]=0.
    return o
-  x=simulate_paired_realization_strategies(realization=physical,strategy_sequences={'A':['S','A','B','C'],'B':['S','B','A','C']},crew_origin_ids=['Y'],base_to_task_hr=self.base,task_to_task_hr=self.travel,time_hr=[0.,3.,6.,10.,13.],source_gate=gate)
+  x=simulate_paired_realization_strategies(realization=physical,strategy_sequences={'A':['S','A','B','C'],'B':['S','B','A','C']},crew_origin_ids=['Y'],base_to_task_hr=self.base,task_to_task_hr=self.travel,time_hr=[0.,3.,6.,10.,15.],source_gate=gate)
   self.assertEqual(x['A'].filtered_task_sequence,('A','B'));self.assertEqual(x['B'].filtered_task_sequence,('B','A'));self.assertEqual(x['A'].task_events.realized_duration_hr.sum(),7.);self.assertEqual(x['B'].task_events.realized_duration_hr.sum(),7.);self.assertEqual(x['A'].raw_functionality.loc[10.,'B'],1.);self.assertEqual(x['A'].effective_functionality.loc[0.,'B'],0.)
  def test_positive_repeat(self):
   a=draw_positive_normal(np.random.default_rng(42),mean_hr=1.,std_hr=3.,size=500);b=draw_positive_normal(np.random.default_rng(42),mean_hr=1.,std_hr=3.,size=500);self.assertTrue(np.all(a>0));np.testing.assert_array_equal(a,b)

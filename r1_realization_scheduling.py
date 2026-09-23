@@ -109,7 +109,9 @@ def simulate_paired_realization_strategies(*,realization:RealizationInputs,strat
     ds=realization.damage_state.copy(deep=True); duration=realization.realized_duration_hr.copy(deep=True); results={}
     for name,seq in strategy_sequences.items():
         events,completion,clocks,queue=execute_realization_schedule(full_priority_sequence=seq,damage_state=ds,realized_duration_hr=duration,crew_origin_ids=crew_origin_ids,base_to_task_hr=base_to_task_hr,task_to_task_hr=task_to_task_hr)
-        raw=evaluate_completion_step_functionality(damage_state=ds,completion_time_hr=completion,time_hr=time_hr,initial_functionality_by_ds=initial_functionality_by_ds)
+        if float(np.max(time_hr)) < float(clocks.max()): raise ValueError('Horizon ends before schedule completion.')
+        event_times=np.unique(np.concatenate([np.asarray(time_hr,float),completion.dropna().to_numpy(float)]))
+        raw=evaluate_completion_step_functionality(damage_state=ds,completion_time_hr=completion,time_hr=event_times,initial_functionality_by_ds=initial_functionality_by_ds)
         gate_output=source_gate(raw.copy(deep=True))
         from r1_source_gate import GateTrace
         trace=gate_output if isinstance(gate_output,GateTrace) else None

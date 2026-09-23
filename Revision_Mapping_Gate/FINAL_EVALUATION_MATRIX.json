@@ -1,0 +1,40 @@
+{
+  "physical_matrix_status": "NOT_FROZEN_ON_THIS_BRANCH",
+  "large_run_authorized": false,
+  "physical_realizations_added_for_evaluation": 0,
+  "production_mapping": "M1_UTILITY_003",
+  "production_gate": "G1_BASELINE_050",
+  "mapping_cases": {
+    "M0_JULY_003": "2315 tracts; submitted cutoff .03",
+    "M1_UTILITY_003": "2315 tracts; revised default cutoff .03",
+    "M0_JULY_NO_CUTOFF": "2315 tracts; baseline eligibility",
+    "M0_JULY_001": "2315 tracts; baseline eligibility cutoff .01",
+    "M1_UTILITY_NO_CUTOFF": "2315 tracts; revised eligibility",
+    "M1_UTILITY_001": "2315 tracts; revised eligibility cutoff .01",
+    "M3_SCE_SUPPORTED": "337 external subset; literal W_July(.03) restriction; 320 represented, 17 unresolved"
+  },
+  "gate_cases": {
+    "G0_NO_GATE": "e=f",
+    "G1_BASELINE_050": "threshold .5, frozen14 sources",
+    "G2_RELAXED_005": "threshold .05: DS2 .09 admitted; DS3 .04 and DS4 .03 excluded",
+    "G3_STRICT_075": "threshold .75: DS1 .5 excluded until completion"
+  },
+  "threshold_basis": "July residual states 1,.5,.09,.04,.03; design stress values, not calibrated operating thresholds; recompute functional subgraph with unchanged connectivity algorithm",
+  "evaluation_count_per_saved_station_trajectory": 28,
+  "common_subset_summary_views": 12,
+  "common_subset_note": "Three mappings x four gates on identical320 positive-supported tracts; no new physical execution",
+  "planning_decisions_not_frozen": [
+    "final hazard/scenario list",
+    "realization count and planning/evaluation sample split",
+    "final strategy sequences",
+    "resource regime matrix"
+  ],
+  "no_policy_reoptimization_for_evaluation": true,
+  "event_integration": "previous/left-rectangle over all completion events; legacy continuous-curve integration remains linear",
+  "raw_archive_command": "python evaluate_mapping_gate_archive.py --index SAVED_EVENT_INDEX.csv --output NEW_OUTPUT_DIRECTORY --reference-strategy Hospital-first",
+  "evidence_file": "SCE_CANDIDATES_FROZEN.csv",
+  "evidence_sha256": "f5234c1d4c8bf88f817368818bf89014ee3b6121b16462bdcc89f3b2a935bac7",
+  "evidence_origin": "R1_Comment1_2_External_Evidence_20260922/SCE_TRACT_INVENTORY_COVERAGE.csv; new20260922 snapshot; not old342 benchmark",
+  "tests": "14 relevant tests passed, including synthetic direct evaluator; no optimization search executed",
+  "implementation_correction": "Previous event integration used trapezoidal interpolation. Revised completion-step evaluator now includes completion events and uses exact piecewise-constant integration; legacy linear default preserved. One old test had truncated horizon13 before completion15 and was corrected to15."
+}

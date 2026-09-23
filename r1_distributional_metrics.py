@@ -17,7 +17,7 @@ def assign_fixed_vulnerability_quartiles(vulnerability:pd.Series)->pd.Series:
     return result.reindex(ids)
 
 
-def compute_tract_burden(known_available:pd.DataFrame,resolved_mass:pd.Series|None=None)->pd.DataFrame:
+def compute_tract_burden(known_available:pd.DataFrame,resolved_mass:pd.Series|None=None, *, interpolation:str='linear')->pd.DataFrame:
     """Integrate represented service deficit; all-unresolved tracts remain NA.
 
     `known_available` is service mass supported by represented candidates, not
@@ -25,6 +25,7 @@ def compute_tract_burden(known_available:pd.DataFrame,resolved_mass:pd.Series|No
     that can be represented by the mapping. The normalized result has hours as
     units: integral(resolved-known)/resolved.
     """
+    if interpolation not in {'linear','previous'}: raise ValueError('Unknown trajectory interpolation.')
     if not isinstance(known_available,pd.DataFrame) or known_available.empty: raise ValueError('known_available must be a nonempty DataFrame.')
     times=pd.to_numeric(pd.Index(known_available.index),errors='raise').to_numpy(float)
     if not np.isfinite(times).all() or np.any(np.diff(times)<=0): raise ValueError('Trajectory time must be finite and strictly increasing.')
@@ -43,7 +44,8 @@ def compute_tract_burden(known_available:pd.DataFrame,resolved_mass:pd.Series|No
         x=series.to_numpy(float)
         if not np.isfinite(x).all(): raise ValueError(f'Resolved tract {tract} contains missing service values.')
         if (x<-1e-12).any() or (x>mass+1e-12).any(): raise ValueError(f'Tract {tract} service lies outside [0,resolved_mass].')
-        burden=float(np.trapezoid(np.clip(mass-x,0.,None),times))
+        deficit=np.clip(mass-x,0.,None)
+        burden=float(np.sum(deficit[:-1]*np.diff(times)) if interpolation=='previous' else np.sum((deficit[:-1]+deficit[1:])*.5*np.diff(times)))
         rows.append({'tract_id':tract,'resolved_mass':mass,'restoration_burden_mass_hr':burden,'normalized_burden_hr':burden/mass,'status':'resolved'})
     return pd.DataFrame(rows).set_index('tract_id')
 

@@ -102,13 +102,16 @@ def evaluate_direct_population_burden(*,sequence,realization:RealizationInputs,c
     """Decode schedule -> completion state -> source gate -> tract burden."""
     events,completion,clocks,_=execute_realization_schedule(full_priority_sequence=sequence,damage_state=realization.damage_state,realized_duration_hr=realization.realized_duration_hr,crew_origin_ids=crew_origin_ids,base_to_task_hr=base_to_task_hr,task_to_task_hr=task_to_task_hr)
     if len(clocks) and float(np.max(clocks))>float(np.max(np.asarray(time_hr,float))):raise ValueError('Direct-objective horizon ends before schedule completion.')
-    raw=evaluate_completion_step_functionality(damage_state=realization.damage_state,completion_time_hr=completion,time_hr=time_hr);effective=source_gate(raw.copy(deep=True))
+    event_times=np.unique(np.concatenate([np.asarray(time_hr,float),completion.dropna().to_numpy(float)]))
+    raw=evaluate_completion_step_functionality(damage_state=realization.damage_state,completion_time_hr=completion,time_hr=event_times);effective=source_gate(raw.copy(deep=True))
+    from r1_source_gate import GateTrace
+    if isinstance(effective,GateTrace): effective=effective.e
     W=np.asarray(tract_weight_matrix,float);tids=pd.Index([str(x) for x in tract_ids]);sids=pd.Index(realization.damage_state.index.astype(str))
     if W.shape!=(len(tids),len(sids)):raise ValueError('tract_weight_matrix shape mismatch.')
     if not np.isfinite(W).all() or (W<0).any():raise ValueError('Tract weights must be finite and nonnegative.')
     resolved=pd.Series(W.sum(axis=1),index=tids);known=pd.DataFrame(effective.to_numpy(float)@W.T,index=effective.index,columns=tids)
     for tract in tids[resolved<=1e-15]:known[tract]=np.nan
-    burden=compute_tract_burden(known,resolved);pop=pd.to_numeric(tract_population,errors='raise');pop.index=pop.index.astype(str);pop=pop.reindex(tids)
+    burden=compute_tract_burden(known,resolved,interpolation='previous');pop=pd.to_numeric(tract_population,errors='raise');pop.index=pop.index.astype(str);pop=pop.reindex(tids)
     valid=burden.status.eq('resolved');weights=pop*burden.resolved_mass;denom=float(weights[valid].sum())
     if pop.isna().any() or denom<=0:raise ValueError('Population coverage/denominator invalid.')
     population_burden=float((pop[valid]*burden.restoration_burden_mass_hr[valid]).sum()/denom)
