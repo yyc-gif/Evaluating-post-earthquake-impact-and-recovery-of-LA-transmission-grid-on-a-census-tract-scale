@@ -10,6 +10,26 @@ def characterize_topology(graph, active_sources):
     if len(graph)==0:
         return pd.DataFrame(index=pd.Index([],name='station_id'),columns=['reachable_active_sources','minimum_edge_source_cut','minimum_node_source_cut','single_path','single_upstream_station'])
     bridges=list(nx.bridges(graph));arts=list(nx.articulation_points(graph))
+    bridge_dependence={s:[] for s in graph};node_dependence={s:[] for s in graph}
+    reachable_before={s:bool(set(nx.node_connected_component(graph,s))&sources) for s in graph}
+    for u,v in bridges:
+        z=graph.copy();z.remove_edge(u,v)
+        for component in nx.connected_components(z):
+            if not (set(component)&sources):
+                for s in component:
+                    if reachable_before[s]:bridge_dependence[s].append('|'.join(sorted([u,v])))
+    for node in arts:
+        z=graph.copy();z.remove_node(node)
+        for component in nx.connected_components(z):
+            if not (set(component)&sources):
+                for s in component:
+                    if reachable_before[s]:node_dependence[s].append(node)
+    # Reuse the same auxiliary network across non-source stations in a component.
+    # This changes construction cost only, not capacities or path definitions.
+    from networkx.algorithms.connectivity import build_auxiliary_node_connectivity
+    from networkx.algorithms.connectivity.cuts import minimum_st_node_cut
+    from networkx.algorithms.flow import build_residual_network
+    auxiliary_cache={}
     for station in graph:
         component=set(nx.node_connected_component(graph,station));reachable=sources & component
         # Root source has a zero-edge local supply path. Report remote redundancy
@@ -23,17 +43,15 @@ def characterize_topology(graph, active_sources):
         for source in remote:flow.add_edge(source,sink,capacity=len(graph)+1);h.add_edge(source,sink)
         if remote:
             edge_cut=int(nx.minimum_cut_value(flow,station,sink,capacity='capacity'))
-            node_cut=nx.minimum_node_cut(h,station,sink)
+            key=(frozenset(component),frozenset(remote))
+            if key not in auxiliary_cache:
+                auxiliary=build_auxiliary_node_connectivity(h)
+                auxiliary_cache[key]=(auxiliary,build_residual_network(auxiliary,'capacity'))
+            auxiliary,residual=auxiliary_cache[key]
+            node_cut=minimum_st_node_cut(h,station,sink,auxiliary=auxiliary,residual=residual)
             node_paths=len(node_cut)  # independent original nodes incl. distinct terminal sources
         else:edge_cut=0;node_cut=set();node_paths=0
-        dependent_bridges=[];dependent_nodes=[]
-        for u,v in bridges:
-            z=graph.copy();z.remove_edge(u,v)
-            if reachable and not (set(nx.node_connected_component(z,station))&sources):dependent_bridges.append('|'.join(sorted([u,v])))
-        for node in arts:
-            if node==station:continue
-            z=graph.copy();z.remove_node(node)
-            if reachable and not (set(nx.node_connected_component(z,station))&sources):dependent_nodes.append(node)
+        dependent_bridges=bridge_dependence[station];dependent_nodes=node_dependence[station]
         rows.append(dict(station_id=station,local_active_source=station in sources,reachable_active_sources=len(reachable),
             reachable_active_source_ids=';'.join(sorted(reachable)),edge_disjoint_remote_source_paths=edge_cut,
             node_disjoint_distinct_remote_source_paths=node_paths,minimum_edge_source_cut=np.nan if station in sources else edge_cut,

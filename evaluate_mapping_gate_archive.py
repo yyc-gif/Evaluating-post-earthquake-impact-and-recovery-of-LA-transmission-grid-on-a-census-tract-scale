@@ -15,6 +15,7 @@ def validate_paired_archives(index,index_directory):
     """
     identities={};contexts=set()
     for row in index.itertuples():
+        print('Validate archive:',row.realization_id,row.strategy_id,flush=True)
         with np.load(index_directory/row.npz_file,allow_pickle=False) as z:
             md=json.loads(str(z['metadata_json']))
         if str(md['realization_id'])!=row.realization_id or str(md['strategy_id'])!=row.strategy_id:raise ValueError('Archive identity mismatch')
@@ -24,20 +25,21 @@ def validate_paired_archives(index,index_directory):
         identities.setdefault(row.realization_id,set()).add(md['physical_input_hash']);contexts.add(md['frozen_context_hash'])
     if any(len(v)!=1 for v in identities.values()) or len(contexts)!=1:raise ValueError('Physical pairing or frozen context differs')
 
-def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--index',required=True,help='CSV: realization_id,strategy_id,npz_file; paths relative to index');parser.add_argument('--output',required=True);parser.add_argument('--reference-strategy',required=True);args=parser.parse_args()
+def main(argv=None):
+    parser=argparse.ArgumentParser();parser.add_argument('--index',required=True,help='CSV: realization_id,strategy_id,npz_file; paths relative to index');parser.add_argument('--output',required=True);parser.add_argument('--reference-strategy',required=True);parser.add_argument('--resume',action='store_true');args=parser.parse_args(argv)
     index_path=Path(args.index).resolve();index=pd.read_csv(index_path,dtype=str)
     if index.duplicated(['realization_id','strategy_id']).any():raise ValueError('Duplicate archive keys')
     sets=index.groupby('realization_id').strategy_id.agg(lambda x:tuple(sorted(x)))
     if len(set(sets))!=1:raise ValueError('Incomplete paired strategy archive')
     validate_paired_archives(index,index_path.parent)
-    output=Path(args.output);output.mkdir(exist_ok=False,parents=True)
+    output=Path(args.output);output.mkdir(exist_ok=args.resume,parents=True)
     edges=pd.read_csv(ROOT/'Data/substation_graph_CEC_edges_expanded.csv',dtype={'u':str,'v':str});g=nx.from_pandas_edgelist(edges,'u','v')
     source=pd.read_csv(ROOT/'Data/source_nodes_core_expanded.csv',dtype={'ID':str});sources=source.loc[source.level.eq('Core'),'ID'].tolist()
     meta=pd.read_csv(ROOT/'R1_Comment1_July92_Utility_Constraint/MAPPING_STRUCTURE_SENSITIVITY_TRACTS.csv',dtype={'tract_id':str}).set_index('tract_id')
     maps,_=mapping_cases();summary=[];tract=[]
     topology=characterize_topology(g,sources);topology.to_csv(output/'STATIC_TOPOLOGY.csv')
     for row in index.itertuples():
+        print('Evaluate archive:',row.realization_id,row.strategy_id,flush=True)
         with np.load(index_path.parent/row.npz_file,allow_pickle=False) as z:
             raw=pd.DataFrame(z['f'],index=z['event_time_hr'],columns=z['station_ids'].astype(str))
             md=json.loads(str(z['metadata_json']))
@@ -45,7 +47,9 @@ def main():
         a,b,traces=evaluate_saved_trajectory(raw,g,sources,maps,meta.population,meta.SOVI_quartile,set(meta.index[meta.hospital_tract]),realization_id=row.realization_id,strategy_id=row.strategy_id)
         summary.append(a);tract.append(b)
         baseline_trace=traces['G1_BASELINE_050']
-        dynamic_redundancy(baseline_trace,g).to_parquet(output/(row.realization_id+'__'+row.strategy_id+'__DYNAMIC_TOPOLOGY.parquet'),index=False)
+        dynamic_path=output/(row.realization_id+'__'+row.strategy_id+'__DYNAMIC_TOPOLOGY.parquet')
+        if not (args.resume and dynamic_path.exists()):
+            dynamic_redundancy(baseline_trace,g).to_parquet(dynamic_path,index=False)
         contributions=[]
         for gate,trace in traces.items():
             if gate=='G0_NO_GATE':continue

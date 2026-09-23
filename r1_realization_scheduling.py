@@ -79,7 +79,7 @@ def execute_realization_schedule(*,full_priority_sequence:Sequence[object],damag
     base=base_to_task_hr.copy(); task=task_to_task_hr.copy()
     base.index=base.index.astype(str).str.strip(); base.columns=base.columns.astype(str).str.strip(); task.index=task.index.astype(str).str.strip(); task.columns=task.columns.astype(str).str.strip()
     if not set(origins).issubset(base.index) or set(base.columns)!=set(ids) or set(task.index)!=set(ids) or set(task.columns)!=set(ids): raise ValueError('Travel matrices do not cover explicit IDs.')
-    base=base.reindex(index=pd.Index(origins),columns=ids); task=task.reindex(index=ids,columns=ids)
+    base=base.reindex(index=pd.Index(list(dict.fromkeys(origins))),columns=ids); task=task.reindex(index=ids,columns=ids)
     for matrix in (base,task):
         x=matrix.to_numpy(float)
         if not np.isfinite(x).all() or (x<0).any(): raise ValueError('Travel must be finite and nonnegative; no fallback is used.')

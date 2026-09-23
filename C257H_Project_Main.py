@@ -242,7 +242,7 @@ def make_out_dirs(cfg: Config) -> Dict[str, Path]:
     logger = logging.getLogger()
 
     # Select output root.
-    root = Path(DEFAULT_OUTPUT_ROOT)
+    root = Path(getattr(cfg, 'OUTPUT_DIRECTORY', DEFAULT_OUTPUT_ROOT))
     root.mkdir(parents=True, exist_ok=True)
 
     # Synchronize global OUTPUT_ROOT used by stage_dir()/stage_file().
@@ -1200,6 +1200,8 @@ def _process_mc_chunk(
 
 def run_stage_1(cfg: Config, stage_0_data: Dict, out_dirs: Dict) -> Dict:
     """Orchestrate Stage 1 Monte Carlo fragility sampling (Joblib parallel)."""
+    if getattr(cfg, "REVISION_EVENT_PATH", False):
+        return run_stage_1_revision(cfg, stage_0_data, out_dirs)
     if not cfg.RUN_STAGE_1:
         logging.info("--- STAGE 1: Skipped ---")
         return {}
@@ -2573,6 +2575,8 @@ def run_stage_3(
     3. Applies the active-source island gate per realization and timestep.
     4. Averages the gated realizations into the substation recovery series.
     """
+    if getattr(cfg, "REVISION_EVENT_PATH", False):
+        return run_stage_3_revision(cfg, stage_1_data, stage_0_data, stage_2_data, out_dirs)
     if not cfg.RUN_STAGE_3:
         logging.info("--- STAGE 3: Skipped ---")
         return {}
@@ -3631,6 +3635,8 @@ def run_stage_4(
     Stage 4: Rule-based scheduling baselines (e.g., Centrality, Impact, Random).
     Uses MC source-gated Hazus restoration after scheduled repair starts.
     """
+    if getattr(cfg, "REVISION_EVENT_PATH", False):
+        return run_stage_4_revision(cfg, stage_3_data, stage_0_data, stage_2_data, out_dirs)
     if not cfg.RUN_STAGE_4:
         logging.info("--- STAGE 4: Skipped ---")
         return {}
@@ -3868,6 +3874,8 @@ def run_stage_5(
     Stage 5: Genetic Algorithm (GA) optimization (Multi-Policy).
     Uses MC source-gated Hazus restoration after scheduled repair starts.
     """
+    if getattr(cfg, "REVISION_EVENT_PATH", False):
+        return run_stage_5_revision(cfg, stage_0_data, stage_3_data, out_dirs)
     if not cfg.RUN_STAGE_5:
         logging.info("--- STAGE 5 (GA): Skipped ---")
         return {}
@@ -4331,6 +4339,8 @@ def run_stage_6(
       - recovery_curves_all_system.csv
       - recovery_kpis_all_system.csv
     """
+    if getattr(cfg, "REVISION_EVENT_PATH", False):
+        return run_stage_6_revision(cfg, stage_0_data, stage_3_data, stage_4_data, stage_5_data, out_dirs)
     if not cfg.RUN_STAGE_6:
         logging.info("--- STAGE 6: Skipped ---")
         return
@@ -5756,7 +5766,10 @@ def run_stage_7(
     constant_features = [
         col for col in feat_cols if float(df_main[col].std()) <= 1e-6
     ]
-    if constant_features:
+    if constant_features and getattr(cfg, 'REVISION_EVENT_PATH', False):
+        pd.DataFrame({'constant_feature':constant_features,'handling':'retained; StandardScaler maps constant column to zero; no typology discrimination'}).to_csv(out_dir/'REVISION_CONSTANT_FEATURES.csv',index=False)
+        logger.warning('Revision constant features retained with zero standardized variation: %s', constant_features)
+    elif constant_features:
         raise ValueError(
             "Stage 7 required clustering features are constant: "
             f"{constant_features}."
@@ -6242,6 +6255,320 @@ def run_stage_7(
 # [PART 9] Main Execution Pipeline
 # =============================================================================
 # Contains: run_pipeline()/main() orchestration functions and entry point
+
+# Revised implementations are branches of the original stage entry points.
+# Legacy bodies above remain available with REVISION_EVENT_PATH=False.
+def _revision_context(cfg, stage_0_data):
+    import hashlib, json
+    from r1_source_gate import gate_callback
+    ids = pd.Index(stage_0_data["sub_index"].astype(str))
+    G = build_base_graph(cfg, stage_0_data["devices_merged"], ids)
+    sources = load_source_gate_nodes(cfg, ids)
+    if len(ids) != 92 or G.number_of_edges() != 318 or len(sources) != 14:
+        raise ValueError("Revised July entry requires 92 stations / 318 retained edges / 14 sources")
+    depot = load_stage45_C57_depot_inputs(DATA_DIR, cfg.STAGE45_DEPOT_INPUT_CSV)
+    origins = depot["expanded_crew_origins_df"]["travel_matrix_origin_key"].astype(str).tolist()
+    if len(origins) != 57:
+        raise ValueError("This execution uses the existing C57 roster")
+    # Read retained road travel directly: never invoke the legacy fallback generator.
+    base_matrix = pd.read_csv(cfg.TRAVEL_BASE_TO_TASK_CSV, index_col=0)
+    task_matrix = pd.read_csv(cfg.TRAVEL_TASK_TO_TASK_CSV, index_col=0)
+    for matrix in [base_matrix, task_matrix]:
+        matrix.index = matrix.index.astype(str); matrix.columns = matrix.columns.astype(str)
+        if not np.isfinite(matrix.to_numpy(float)).all() or (matrix.to_numpy(float) < 0).any():
+            raise ValueError("Retained travel has invalid cells; no fallback")
+    if set(base_matrix.columns) != set(ids) or set(task_matrix.columns) != set(ids) or set(task_matrix.index) != set(ids) or not set(origins) <= set(base_matrix.index):
+        raise ValueError("Retained travel identity differs")
+    if not np.equal(np.diag(task_matrix.loc[ids, ids]), 0).all():
+        raise ValueError("Travel diagonal must be zero")
+    files = [cfg.DEVICES_CSV, cfg.PGA_CSV, cfg.CEC_GRAPH_EDGES_CSV, cfg.CEC_GRAPH_NODES_CSV,
+             cfg.SOURCE_NODES_CSV, cfg.TRAVEL_BASE_TO_TASK_CSV, cfg.TRAVEL_TASK_TO_TASK_CSV, cfg.STAGE45_DEPOT_INPUT_CSV]
+    hashes = {str(Path(p).relative_to(PROJECT_ROOT)): hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
+    context = dict(files=hashes, crew_origins=origins, horizon_hr=cfg.TIME_END_HR,
+                   interpretation="completion-event; common fixed horizon; no second recovery clock")
+    context_hash = hashlib.sha256(json.dumps(context, sort_keys=True).encode()).hexdigest()
+    return dict(ids=ids, G=G, sources=sources, origins=origins, base=base_matrix.loc[:, ids],
+                task=task_matrix.loc[ids, ids], gate=gate_callback(G, sources, threshold=cfg.FUNCTIONAL_THRESHOLD),
+                hash=context_hash, provenance=context)
+
+
+def _revision_physical_hash(realization):
+    import hashlib
+    h = hashlib.sha256()
+    h.update(("\n".join(realization.damage_state.index.astype(str))+"\n").encode())
+    h.update(realization.damage_state.to_numpy(dtype="<i8").tobytes())
+    h.update(realization.realized_duration_hr.to_numpy(dtype="<f8").tobytes())
+    return h.hexdigest()
+
+
+def run_stage_1_revision(cfg, stage_0_data, out_dirs):
+    """Existing fragility/duration functions; separate planning and evaluation streams."""
+    import json
+    from r1_realization_scheduling import RealizationInputs
+    if not cfg.RUN_STAGE_1: raise ValueError("Revised path needs retained Stage 1 physical inputs")
+    context = _revision_context(cfg, stage_0_data)
+    ids = context["ids"]; devices = stage_0_data["devices_merged"].copy()
+    physical = {}; input_rows = []
+    for scenario_index, scenario in enumerate(cfg.SCENARIOS):
+        path = out_dirs["STAGE1_DIR"] / f"physical_inputs_{scenario}.npz"
+        if path.exists():
+            with np.load(path, allow_pickle=False) as z:
+                if not np.array_equal(z["station_ids"], ids.to_numpy(str)) or str(z["context_hash"]) != context["hash"]:
+                    raise ValueError("Cannot resume with changed physical context")
+                stored = {k: z[k].copy() for k in ["planning_ds", "planning_duration", "evaluation_ds", "evaluation_duration"]}
+            if stored["planning_ds"].shape[1] != cfg.REVISION_PLANNING_N or stored["evaluation_ds"].shape[1] != cfg.N_MC:
+                raise ValueError("Cannot change sample allocation when resuming")
+        else:
+            stored = {}
+            d = devices.copy()
+            if "2pc" not in str(scenario).lower():
+                for ds in range(1,5):
+                    d[f"mu_DS{ds}"] = d[f"mu_DS{ds}_old"]
+                    d[f"beta_DS{ds}"] = d[f"beta_DS{ds}_old"]
+            for split_code, (split, count) in enumerate([("planning", cfg.REVISION_PLANNING_N), ("evaluation", cfg.N_MC)]):
+                ds_columns=[]; durations=[]
+                for r in range(count):
+                    rng = np.random.default_rng(np.random.SeedSequence([cfg.RNG_SEED, scenario_index, split_code, r]))
+                    ds = sample_damage_states(d[f"pga_{scenario}"], d, 1, rng)
+                    _, duration = damage_to_functionality_and_repair(ds, rng, cfg)
+                    ds_columns.append(ds[:,0]); durations.append(duration[:,0])
+                stored[split+"_ds"] = np.stack(ds_columns, axis=1)
+                stored[split+"_duration"] = np.stack(durations, axis=1)
+            np.savez_compressed(path, **stored, station_ids=ids.to_numpy(str), context_hash=np.array(context["hash"]))
+        splits = {}
+        for split in ["planning", "evaluation"]:
+            splits[split] = []
+            for r in range(stored[split+"_ds"].shape[1]):
+                rid=f"{scenario}__{split}_{r:04d}"
+                real=RealizationInputs(rid, pd.Series(stored[split+"_ds"][:,r],index=ids),
+                                      pd.Series(stored[split+"_duration"][:,r],index=ids))
+                splits[split].append(real)
+                input_rows.append(dict(scenario=scenario,split=split,realization_id=rid,
+                                       physical_input_hash=_revision_physical_hash(real),
+                                       task_count=int((real.damage_state>0).sum()),
+                                       **{f"DS{k}":int((real.damage_state==k).sum()) for k in range(5)}))
+        physical[scenario]=splits
+        # Stage 7's initial disruption must use evaluation samples only.
+        from r1_realization_scheduling import INITIAL_BY_DS
+        frames=[]; records=[]
+        for r,real in enumerate(splits["evaluation"]):
+            raw=pd.DataFrame([[INITIAL_BY_DS[int(v)] for v in real.damage_state]],index=[0.],columns=ids)
+            frames.append(context["gate"](raw).e.iloc[0].to_numpy())
+            records.append(pd.DataFrame(dict(substation_id=ids,mc_id=r,damage_state=real.damage_state.to_numpy(),
+                                            repair_time_hr=real.realized_duration_hr.to_numpy())))
+        init=np.mean(frames,axis=0)
+        pd.DataFrame(dict(tract_id=stage_0_data["tract_index"],scenario=scenario,
+                          supply=stage_0_data["W_mat"] @ init)).to_csv(out_dirs["STAGE1_DIR"]/f"MC_Tract_Supply_{scenario}.csv",index=False)
+        pd.DataFrame(dict(substation_id=ids,scenario=scenario,
+                          avg_damage_state=stored["evaluation_ds"].mean(axis=1))).to_csv(out_dirs["STAGE1_DIR"]/f"MC_Device_Damage_AvgDS_{scenario}.csv",index=False)
+        pd.concat(records).to_csv(out_dirs["STAGE1_DIR"]/f"MC_Device_Damage_Records_{scenario}.csv.gz",index=False)
+    pd.DataFrame(input_rows).to_csv(out_dirs["STAGE1_DIR"]/"PHYSICAL_SAMPLE_MANIFEST.csv",index=False)
+    return dict(physical=physical, context=context)
+
+
+def _revision_event_kpis(frame):
+    """First crossing and exact left-rectangle AUC for completion-step trajectories."""
+    t=frame.index.to_numpy(float); x=frame.to_numpy(float)
+    result={}
+    for label,target in [("T50",.5),("T80",.8),("T90",.9)]:
+        hit=x>=target
+        result[label]=np.where(hit.any(axis=0),t[np.argmax(hit,axis=0)],np.nan)
+    result["AUC"]=np.sum(x[:-1]*np.diff(t)[:,None],axis=0)/(t[-1]-t[0])
+    result["Burden_hr"]=np.sum((1-x[:-1])*np.diff(t)[:,None],axis=0)
+    return pd.DataFrame(result,index=frame.columns).rename_axis("tract_id")
+
+
+def _revision_retain(cfg, stage_0_data, context, real, strategy, raw, events, out_dirs, stage):
+    """Save complete once-produced task/state archives; return tract event series."""
+    from r1_source_gate import save_gate_trace
+    import json
+    trace=context["gate"](raw)
+    folder=Path(OUTPUT_ROOT)/"Event_Archives";folder.mkdir(exist_ok=True)
+    stem=real.realization_id+"__"+strategy
+    path=folder/(stem+".npz")
+    save_gate_trace(trace,path,realization_id=real.realization_id,strategy_id=strategy,
+                    physical_input_hash=_revision_physical_hash(real),frozen_context_hash=context["hash"])
+    events.to_csv(folder/(stem+"__TASK_EVENTS.csv"),index=False)
+    record=dict(realization_id=real.realization_id,strategy_id=strategy,npz_file="Event_Archives/"+path.name)
+    index_path=Path(OUTPUT_ROOT)/"SAVED_EVENT_INDEX.csv"
+    existing=pd.read_csv(index_path,dtype=str) if index_path.exists() else pd.DataFrame(columns=record)
+    existing=existing[~(existing.realization_id.eq(record["realization_id"])&existing.strategy_id.eq(strategy))]
+    pd.concat([existing,pd.DataFrame([record])],ignore_index=True).to_csv(index_path,index=False)
+    return propagate_to_tracts(trace.e,stage_0_data["W_mat"],stage_0_data["tract_index"])
+
+
+def _revision_existing(real, strategy, context):
+    import json
+    path=Path(OUTPUT_ROOT)/"Event_Archives"/(real.realization_id+"__"+strategy+".npz")
+    if not path.exists(): return None
+    with np.load(path,allow_pickle=False) as z:
+        md=json.loads(str(z["metadata_json"]))
+        if md["physical_input_hash"]!=_revision_physical_hash(real) or md["frozen_context_hash"]!=context["hash"]:
+            raise ValueError("Saved trajectory differs from frozen physical inputs")
+        raw=pd.DataFrame(z["f"],index=z["event_time_hr"],columns=z["station_ids"].astype(str))
+    events=pd.read_csv(path.with_name(path.stem+"__TASK_EVENTS.csv"),dtype={"task_id":str,"previous_task_id":str,"crew_origin_id":str},float_precision='round_trip')
+    if 'previous_task_id' in events:
+        events['previous_task_id']=events['previous_task_id'].str.replace(r'^(\d+)\.0$',r'\1',regex=True)
+    return raw, events
+
+
+def _revision_mean_output(frames, out_dir, scenario, strategy):
+    times=np.unique(np.concatenate([f.index.to_numpy(float) for f in frames]))
+    mean=sum(f.reindex(times,method="ffill") for f in frames)/len(frames)
+    mean.to_parquet(out_dir/f"tract_event_mean_{scenario}_{strategy}.parquet")
+    _revision_event_kpis(mean).to_csv(out_dir/f"tract_kpis_{scenario}_{strategy}.csv")
+    return mean
+
+
+def run_stage_3_revision(cfg, stage_1_data, stage_0_data, stage_2_data, out_dirs):
+    from r1_realization_scheduling import evaluate_completion_step_functionality
+    if not cfg.RUN_STAGE_3: raise ValueError("Revised Stage 3 required")
+    context=stage_1_data["context"]; means={}
+    for scenario,splits in stage_1_data["physical"].items():
+        frames=[]
+        for real in splits["evaluation"]:
+            old=_revision_existing(real,"unconstrained",context)
+            if old is None:
+                completion=real.realized_duration_hr.where(real.damage_state>0)
+                times=np.unique(np.r_[0.,completion.dropna(),cfg.TIME_END_HR])
+                if completion.max()>cfg.TIME_END_HR:raise ValueError("Unconstrained completion beyond declared horizon")
+                raw=evaluate_completion_step_functionality(damage_state=real.damage_state,completion_time_hr=completion,time_hr=times)
+                ids=real.damage_state.index[real.damage_state>0]
+                events=pd.DataFrame(dict(task_id=ids,damage_state=real.damage_state.loc[ids].to_numpy(),
+                                        arrival_hr=0.,realized_duration_hr=real.realized_duration_hr.loc[ids].to_numpy(),
+                                        completion_hr=completion.loc[ids].to_numpy(),travel_hr=0.,crew_index=np.nan))
+            else:raw,events=old
+            frames.append(_revision_retain(cfg,stage_0_data,context,real,"unconstrained",raw,events,out_dirs,"3"))
+        means[scenario]=_revision_mean_output(frames,out_dirs["STAGE3_DIR"],scenario,"unconstrained")
+        _revision_event_kpis(means[scenario]).to_csv(out_dirs["STAGE3_DIR"]/f"tract_kpis_{scenario}.csv")
+    return dict(**stage_1_data,all_mean_tract_series=means,stage_2_data=stage_2_data)
+
+
+def _revision_execute_sequences(cfg,stage_0_data,stage_3_data,out_dirs,sequences,stage):
+    from r1_realization_scheduling import simulate_paired_realization_strategies
+    context=stage_3_data["context"]; result={}
+    for scenario,splits in stage_3_data["physical"].items():
+        per_strategy={}
+        for strategy,sequence in sequences[scenario].items():
+            frames=[]
+            for real in splits["evaluation"]:
+                old=_revision_existing(real,strategy,context)
+                if old is None:
+                    run=simulate_paired_realization_strategies(realization=real,strategy_sequences={strategy:sequence},
+                          crew_origin_ids=context["origins"],base_to_task_hr=context["base"],task_to_task_hr=context["task"],
+                          time_hr=[0.,cfg.TIME_END_HR],source_gate=context["gate"])[strategy]
+                    raw,events=run.raw_functionality,run.task_events
+                    events["full_priority_rank"]=events.task_id.map({s:i+1 for i,s in enumerate(sequence)})
+                    logging.info("Revised Stage %s: %s %s tasks=%d",stage,real.realization_id,strategy,len(events))
+                else:raw,events=old
+                frames.append(_revision_retain(cfg,stage_0_data,context,real,strategy,raw,events,out_dirs,stage))
+            per_strategy[strategy]=_revision_mean_output(frames,out_dirs["STAGE"+stage+"_DIR"],scenario,strategy)
+        result[scenario]=per_strategy
+    return dict(tract_means=result,sequences=sequences)
+
+
+def run_stage_4_revision(cfg,stage_3_data,stage_0_data,stage_2_data,out_dirs):
+    if not cfg.RUN_STAGE_4: return {}
+    rules=["centrality-first","impact-first","betweenness-first","degree-first","closeness-first","hospital-first","random"]
+    sequences={s:{rule:order_substations(rule,stage_0_data["sub_index"].tolist(),stage_0_data,stage_2_data,cfg)
+                  for rule in rules} for s in cfg.SCENARIOS}
+    import json
+    sequence_file=out_dirs["STAGE4_DIR"]/"FULL_RULE_SEQUENCES.json"
+    if sequence_file.exists() and json.loads(sequence_file.read_text(encoding='utf-8')) != sequences:
+        raise ValueError('Rule sequences changed; cannot reuse prior strategy archives')
+    sequence_file.write_text(json.dumps(sequences,indent=2),encoding="utf-8")
+    stage_3_data["rule_sequences"]=sequences
+    return _revision_execute_sequences(cfg,stage_0_data,stage_3_data,out_dirs,sequences,"4")
+
+
+def run_stage_5_revision(cfg,stage_0_data,stage_3_data,out_dirs):
+    import json
+    from r1_ga_revision import RevisedGAConfig,run_multiseed_revised_ga,evaluate_direct_population_burden
+    if not cfg.RUN_STAGE_5:return {}
+    context=stage_3_data["context"]; sequences={};diagnostics=[]
+    population=stage_0_data["mapping_df"].groupby("tract_id").population.first()
+    for scenario,splits in stage_3_data["physical"].items():
+        freeze=out_dirs["STAGE5_DIR"]/f"DIRECT_CANDIDATE_{scenario}.json"
+        def score(sequence):
+            # No evaluation realization is referenced by this objective.
+            values=[evaluate_direct_population_burden(sequence=sequence,realization=real,
+                    crew_origin_ids=context["origins"],base_to_task_hr=context["base"],task_to_task_hr=context["task"],
+                    time_hr=[0.,cfg.TIME_END_HR],source_gate=context["gate"],tract_weight_matrix=stage_0_data["W_mat"],
+                    tract_ids=stage_0_data["tract_index"],tract_population=population)["population_burden_hr"]
+                    for real in splits["planning"]]
+            return -float(np.mean(values))
+        if freeze.exists():
+            candidate=json.loads(freeze.read_text(encoding="utf-8"))
+            if candidate["context_hash"]!=context["hash"] or candidate["planning_hashes"]!=[_revision_physical_hash(r) for r in splits["planning"]]:
+                raise ValueError("Cannot resume GA candidate on changed planning inputs")
+        else:
+            incumbents=stage_3_data["rule_sequences"][scenario]
+            config=RevisedGAConfig(population_size=cfg.GA_POP_SIZE,generations=cfg.GA_N_GEN,
+                                  crossover_probability=cfg.GA_CXPB,mutation_probability=cfg.GA_MUTPB,tournament_size=3)
+            logging.info("Stage 5 DIRECT planning only: %d samples, population %d, generations %d, seeds %s",len(splits["planning"]),cfg.GA_POP_SIZE,cfg.GA_N_GEN,cfg.REVISION_GA_SEEDS)
+            runs=run_multiseed_revised_ga(items=context["ids"],objective=score,incumbents=incumbents,seeds=cfg.REVISION_GA_SEEDS,config=config)
+            best=min(runs.values(),key=lambda r:(-r.best_fitness,r.seed))
+            for seed,r in runs.items():
+                r.history.assign(seed=seed,scenario=scenario).to_csv(out_dirs["STAGE5_DIR"]/f"GA_HISTORY_{scenario}_{seed}.csv",index=False)
+                diagnostics.append(dict(scenario=scenario,seed=seed,fitness=r.best_fitness,source=r.candidate_source,
+                                        best_generation=r.best_generation,improved_incumbent=r.search_improved_incumbent))
+            candidate=dict(sequence=list(best.best_sequence),fitness=best.best_fitness,source=best.candidate_source,
+                           seed=best.seed,context_hash=context["hash"],planning_hashes=[_revision_physical_hash(r) for r in splits["planning"]],
+                           objective="negative mean direct population-times-resolved-mass burden, planning only",
+                           sample_status="TRIAL_NOT_FINAL",population=cfg.GA_POP_SIZE,generations=cfg.GA_N_GEN)
+            freeze.write_text(json.dumps(candidate,indent=2),encoding="utf-8")
+            pd.DataFrame([dict(rule=k,planning_direct_burden_hr=-score(v)) for k,v in incumbents.items()]).to_csv(out_dirs["STAGE5_DIR"]/f"INCUMBENT_DIRECT_SCORES_{scenario}.csv",index=False)
+        sequences[scenario]={"direct-community":candidate["sequence"]}
+    if diagnostics:pd.DataFrame(diagnostics).to_csv(out_dirs["STAGE5_DIR"]/"GA_DIAGNOSTICS.csv",index=False)
+    result=_revision_execute_sequences(cfg,stage_0_data,stage_3_data,out_dirs,sequences,"5")
+    for scenario in cfg.SCENARIOS:
+        # Existing Stage 7 consumes this explicit direct-community evaluation mean.
+        _revision_event_kpis(result["tract_means"][scenario]["direct-community"]).to_csv(out_dirs["STAGE5_DIR"]/f"tract_kpis_{scenario}.csv")
+    return result
+
+
+def run_stage_6_revision(cfg,stage_0_data,stage_3_data,stage_4_data,stage_5_data,out_dirs):
+    """Preserve recovery curves, metrics and geography using exact event series."""
+    import matplotlib.pyplot as plt
+    import geopandas as gpd
+    out=out_dirs["STAGE6_DIR"];pop,svi=get_analysis_weights(cfg,stage_0_data)
+    geometry=pd.read_csv(DATA_DIR/"Tracts_Within_Expanded_Area.csv",dtype={"GEOID":str})
+    geo=gpd.GeoDataFrame(geometry[["GEOID"]].copy(),geometry=gpd.GeoSeries.from_wkt(geometry.wkt_geom,crs=4326)).to_crs(3310)
+    all_rows=[]
+    for scenario in cfg.SCENARIOS:
+        frames={"unconstrained":stage_3_data["all_mean_tract_series"][scenario],
+                **stage_4_data["tract_means"][scenario],**stage_5_data["tract_means"][scenario]}
+        fig,ax=plt.subplots(figsize=(10,6))
+        for strategy,frame in frames.items():
+            curve=frame.to_numpy()@pop
+            ax.step(frame.index,curve,where="post",label=strategy)
+            kpi=_revision_event_kpis(pd.DataFrame({"system":curve},index=frame.index)).iloc[0].to_dict()
+            all_rows.append(dict(scenario=scenario,strategy=strategy,weighting="population",**kpi))
+            pd.DataFrame(dict(time_hr=frame.index,population_availability=curve,
+                              svi_population_availability=frame.to_numpy()@svi if svi is not None else np.nan)).to_csv(out/f"RECOVERY_CURVE_{scenario}_{strategy}.csv",index=False)
+            if svi is not None:
+                sk=_revision_event_kpis(pd.DataFrame({"system":frame.to_numpy()@svi},index=frame.index)).iloc[0].to_dict()
+                all_rows.append(dict(scenario=scenario,strategy=strategy,weighting="SVI_population",**sk))
+        ax.set(xlabel="Hours",ylabel="Modeled population-weighted availability",title=f"{scenario} / C57 / small trial, not final inference")
+        ax.set_xlim(0,max(float(f.index[f.mean(axis=1)<.999].max()) if (f.mean(axis=1)<.999).any() else 1 for f in frames.values())*1.1)
+        ax.legend(fontsize=8);fig.tight_layout();fig.savefig(out/f"RECOVERY_CURVES_{scenario}.png",dpi=180);plt.close(fig)
+        spatial=geo.copy()
+        for strategy,frame in frames.items():
+            k=_revision_event_kpis(frame)
+            spatial[strategy+"_burden_hr"]=spatial.GEOID.str.lstrip('0').map(k.Burden_hr.rename(index=lambda s:str(s).lstrip('0')))
+            if spatial[strategy+"_burden_hr"].isna().any():raise ValueError('Spatial tract identity missing')
+        spatial.to_file(out/f"TRACT_SPATIAL_RESULTS_{scenario}.geojson",driver="GeoJSON")
+        fig,axs=plt.subplots(1,3,figsize=(15,6))
+        columns=["unconstrained_burden_hr","hospital-first_burden_hr","direct-community_burden_hr"]
+        vmax=max(spatial[c].max() for c in columns)
+        for ax,col in zip(axs,columns):
+            spatial.plot(column=col,ax=ax,legend=True,vmin=0,vmax=vmax,cmap="viridis")
+            ax.set_title(col.replace("_burden_hr","")+" / trial");ax.set_axis_off()
+        fig.suptitle("Cumulative modeled service deficit (hours); shared color scale")
+        fig.tight_layout();fig.savefig(out/f"SPATIAL_BURDEN_{scenario}.png",dpi=180);plt.close(fig)
+    pd.DataFrame(all_rows).to_csv(out/"TRIAL_SYSTEM_KPIS.csv",index=False)
+    return dict(status="trial",metrics=all_rows)
+
 def run_pipeline(cfg: Optional[Config] = None) -> None:
     """
     Orchestrate the end-to-end pipeline.
@@ -6261,6 +6588,20 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
     # 1) Configuration & setup
     # ---------------------------------------------------------------------
     cfg = cfg if cfg is not None else Config()
+    if getattr(cfg, 'REVISION_EVENT_PATH', False):
+        if not (getattr(cfg, 'REVISION_TRIAL', False) or getattr(cfg, 'REVISION_FINAL_MATRIX_FROZEN', False)):
+            raise ValueError('Final revised experiment matrix is not frozen; use explicit --revised-trial')
+        import json
+        manifest_path = Path(OUTPUT_ROOT) / 'TRIAL_EXECUTION_MANIFEST.json'
+        manifest = dict(status='SMALL_REAL_DATA_TRIAL_NOT_FINAL_SCIENCE',scenarios=list(cfg.SCENARIOS),
+                        evaluation_n=cfg.N_MC,planning_n=cfg.REVISION_PLANNING_N,master_seed=cfg.RNG_SEED,
+                        seed_stream='SeedSequence(master,scenario_index,split_code,realization_index)',
+                        crews=57,stations=92,edges=318,tracts=2315,sources=14,
+                        ga_population=cfg.GA_POP_SIZE,ga_generations=cfg.GA_N_GEN,ga_seeds=list(cfg.REVISION_GA_SEEDS),
+                        horizon_hr=cfg.TIME_END_HR,mapping=cfg.MAP_TRACT_SUB_CSV,functional_threshold=cfg.FUNCTIONAL_THRESHOLD)
+        if manifest_path.exists() and json.loads(manifest_path.read_text(encoding='utf-8')) != manifest:
+            raise ValueError('Run manifest changed; cannot resume')
+        manifest_path.write_text(json.dumps(manifest,indent=2),encoding='utf-8')
 
     root_override = Path(OUTPUT_ROOT)
     root_override.mkdir(parents=True, exist_ok=True)
@@ -6342,6 +6683,18 @@ def run_pipeline(cfg: Optional[Config] = None) -> None:
             stage_1_data,
             out_dirs,
         )
+
+        if getattr(cfg, 'REVISION_EVENT_PATH', False) and getattr(cfg, 'REVISION_OFFLINE_EVALUATION', False):
+            from evaluate_mapping_gate_archive import main as evaluate_archive
+            evaluation_dir=Path(OUTPUT_ROOT)/'Offline_Mapping_Gate'
+            # The final paired table is written last; an interrupted evaluation
+            # resumes retained dynamic topology without resampling or dispatching.
+            if not (evaluation_dir/'PAIRED_ASSUMPTION_EFFECTS.csv').exists():
+                arguments=['--index',str(Path(OUTPUT_ROOT)/'SAVED_EVENT_INDEX.csv'),
+                           '--output',str(evaluation_dir),'--reference-strategy','hospital-first']
+                if evaluation_dir.exists():arguments.append('--resume')
+                evaluate_archive(arguments)
+            logger.info('Revised offline mapping/gate evaluation retained at %s',evaluation_dir)
 
         logger.info("=" * 70)
         logger.info("PIPELINE COMPLETED SUCCESSFULLY")
