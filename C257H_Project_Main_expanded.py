@@ -74,7 +74,7 @@ def main() -> None:
     parser.add_argument('--revised-final', action='store_true',
                         help='Formal July92 execution from the committed matrix.')
     parser.add_argument('--matrix', type=Path)
-    parser.add_argument('--phase', choices=('samples', 'planning', 'samples-and-planning'),
+    parser.add_argument('--phase', choices=('samples', 'planning', 'samples-and-planning', 'schedule-prepass'),
                         default='samples-and-planning')
     parser.add_argument('--output', type=Path)
     parser.add_argument('--resume', action='store_true', help='Reuse retained physical samples and completed stage archives; no resampling.')
@@ -95,8 +95,9 @@ def main() -> None:
             print(json.dumps(result, indent=2, sort_keys=True))
             return
         executable_sha = require_dry_validation(matrix, PROJECT_ROOT, output)
-        identity_path = output / ('GA_EXECUTION_IDENTITY.json' if args.phase == 'planning'
-                                  else 'FORMAL_EXECUTION_IDENTITY.json')
+        identity_path = output / ('GA_EXECUTION_IDENTITY.json' if args.phase == 'planning' else
+                                  'SCHEDULE_EXECUTION_IDENTITY.json' if args.phase == 'schedule-prepass' else
+                                  'FORMAL_EXECUTION_IDENTITY.json')
         identity = {'matrix_id': matrix['matrix_id'], 'matrix_sha256': matrix_sha,
                     'executable_code_commit_sha': executable_sha,
                     'status': 'FORMAL_FROZEN_MATRIX_V1'}
@@ -104,10 +105,13 @@ def main() -> None:
             raise ValueError('Formal executable identity changed on resume')
         if not identity_path.exists():
             identity_path.write_text(json.dumps(identity, indent=2, sort_keys=True)+'\n', encoding='utf-8')
+        cfg.REVISION_EXECUTABLE_SHA = executable_sha
         if args.phase in ('samples', 'samples-and-planning'):
             base.run_formal_samples(cfg)
         if args.phase in ('planning', 'samples-and-planning'):
             base.run_formal_ga_planning(cfg)
+        if args.phase == 'schedule-prepass':
+            print(json.dumps(base.run_formal_schedule_prepass(cfg), indent=2, sort_keys=True))
         return
     if args.legacy:
         cfg.REVISION_EVENT_PATH = False

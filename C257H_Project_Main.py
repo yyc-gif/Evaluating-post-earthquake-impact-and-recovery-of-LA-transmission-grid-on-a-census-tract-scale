@@ -6760,6 +6760,141 @@ def run_formal_ga_planning(cfg):
     return run_stage_5_revision(cfg,stage0,stage1,out_dirs)
 
 
+def run_formal_schedule_prepass(cfg):
+    """Freeze all completion clocks before choosing the common evaluation horizon.
+
+    This is the original expanded entry's formal Stage 4 schedule pass.  It
+    reads frozen physical samples and ex-ante sequences, and evaluates no
+    source/tract recovery until one shared H_eval has been determined.
+    """
+    import hashlib, json, math, os, tempfile
+    from r1_formal_archive import sha256_file
+    from r1_formal_schedule import FormalScheduleDecoder
+    if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
+        raise ValueError("Formal schedule prepass requires the frozen matrix")
+    out_dirs = make_out_dirs(cfg)
+    stage0 = run_stage_0(cfg)
+    stage1 = run_stage_1_revision(cfg, stage0, out_dirs)  # retained NPZ only
+    context = stage1["context"]
+    sequence_path = out_dirs["STAGE4_DIR"] / "FULL_RULE_SEQUENCES.json"
+    direct_path = out_dirs["STAGE5_DIR"] / "FINAL_DIRECT_COMMUNITY_SEQUENCE.json"
+    if not sequence_path.is_file() or not direct_path.is_file():
+        raise ValueError("Freeze all rule and direct-community sequences before formal scheduling")
+    rules_by_hazard = json.loads(sequence_path.read_text(encoding="utf-8"))
+    frozen_direct = json.loads(direct_path.read_text(encoding="utf-8"))
+    if frozen_direct["status"] != "FORMAL_FROZEN_MATRIX_V1":
+        raise ValueError("Direct-community sequence is not formal/frozen")
+    from r1_final_matrix import HAZARDS, SCHEDULED, _sha
+    rules = rules_by_hazard["2pc50"]
+    if set(rules) != set(SCHEDULED[:-1]):
+        raise ValueError("Formal deterministic rule set differs from matrix")
+    sequences = dict(rules, **{"direct-community": frozen_direct["ordered_station_ids"]})
+    decoder = FormalScheduleDecoder(context)
+    order = {name: decoder.order(seq) for name, seq in sequences.items()}
+    index_path = out_dirs["STAGE1_DIR"] / "PHYSICAL_INPUTS_FROZEN.json"
+    physical_manifest = json.loads(index_path.read_text(encoding="utf-8"))
+    matrix_sha = _sha(PROJECT_ROOT / "FINAL_EXPERIMENT_MATRIX.json")
+    executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
+    if not executable_sha:
+        raise ValueError("Formal schedule prepass lacks executable commit identity")
+    output = Path(cfg.OUTPUT_DIRECTORY) / "Formal_Schedule_Prepass"
+    output.mkdir(parents=True, exist_ok=True)
+    cases = [("C57_D1", 1.0, 1.0)]
+    cases += [(f"C{count}_D1", scale, 1.0)
+              for count, scale in [(29, 0.5), (86, 1.5), (114, 2.0)]]
+    cases += [("C57_D075", 1.0, 0.75), ("C57_D125", 1.0, 1.25),
+              ("C57_D150", 1.0, 1.5)]
+    planned_shards = 0
+    global_max = 0.0
+    for hazard in HAZARDS:
+        realizations = stage1["physical"][hazard]["evaluation"]
+        if len(realizations) != 1000:
+            raise ValueError("Formal schedule prepass requires 1000 samples per hazard")
+        for case_name, crew_scale, duration_scale in (cases if hazard == "2pc50" else cases[:1]):
+            origins = (context["origins"] if crew_scale == 1.0 else
+                       _scale_sensitivity_crew_origins(context["origins"], crew_scale))
+            required_count = {0.5: 29, 1.0: 57, 1.5: 86, 2.0: 114}[crew_scale]
+            if len(origins) != required_count:
+                raise ValueError("Crew OFAT roster differs from frozen matrix")
+            origin_index = decoder.origins(origins)
+            roster_hash = hashlib.sha256(("\n".join(origins) + "\n").encode()).hexdigest()
+            for strategy in SCHEDULED:
+                planned_shards += 1
+                stem = f"{hazard}__{case_name}__{strategy}"
+                npz_path, json_path = output / (stem + ".npz"), output / (stem + ".json")
+                physical_hashes = [physical_manifest["sample_hashes"][real.realization_id]
+                                   for real in realizations]
+                identity = dict(matrix_id=cfg.REVISION_MATRIX_ID,
+                                matrix_sha256=matrix_sha, executable_code_commit_sha=executable_sha,
+                                hazard=hazard, split="evaluation", resource_case=case_name,
+                                crew_scale=crew_scale, duration_scale=duration_scale, strategy=strategy,
+                                sequence_sha256=hashlib.sha256(("\n".join(sequences[strategy])+"\n").encode()).hexdigest(),
+                                crew_roster_sha256=roster_hash,
+                                physical_hashes_sha256=hashlib.sha256(("\n".join(physical_hashes)+"\n").encode()).hexdigest(),
+                                frozen_physical_manifest_sha256=sha256_file(index_path),
+                                frozen_context_hash=context["hash"])
+                if npz_path.exists() or json_path.exists():
+                    if not npz_path.exists() or not json_path.exists():
+                        raise ValueError("Partial formal schedule shard exists")
+                    saved = json.loads(json_path.read_text(encoding="utf-8"))
+                    if saved["status"] != "FORMAL_FROZEN_MATRIX_V1" or saved["identity"] != identity:
+                        raise ValueError("Formal schedule shard identity changed on resume")
+                    if sha256_file(npz_path) != saved["npz_sha256"] or saved["schedule_count"] != 1000:
+                        raise ValueError("Formal schedule shard bytes changed on resume")
+                    global_max = max(global_max, float(saved["maximum_completion_hr"]))
+                    continue
+                names = ("completion", "arrival", "travel", "crew", "previous", "dispatch")
+                stack = {name: [] for name in names}
+                case_max = 0.0
+                for real in realizations:
+                    ds = real.damage_state.reindex(decoder.ids).to_numpy(np.int64)
+                    duration = real.realized_duration_hr.reindex(decoder.ids).to_numpy(float) * duration_scale
+                    output_arrays = decoder.decode(order=order[strategy], damage=ds,
+                                                   duration=duration, origins=origin_index)
+                    for name, value in zip(names, output_arrays[:6]):
+                        stack[name].append(value)
+                    finite = output_arrays[0][np.isfinite(output_arrays[0])]
+                    if finite.size:
+                        case_max = max(case_max, float(np.max(finite)))
+                arrays = {name: np.stack(values, axis=0) for name, values in stack.items()}
+                arrays["station_ids"] = np.asarray(decoder.ids, dtype=str)
+                arrays["physical_hashes"] = np.asarray(physical_hashes, dtype=str)
+                fd, temp_name = tempfile.mkstemp(prefix=stem+".", suffix=".npz", dir=output)
+                os.close(fd)
+                temp = Path(temp_name)
+                try:
+                    np.savez_compressed(temp, **arrays)
+                    os.replace(temp, npz_path)
+                finally:
+                    temp.unlink(missing_ok=True)
+                record = dict(status="FORMAL_FROZEN_MATRIX_V1", identity=identity,
+                              schedule_count=1000, maximum_completion_hr=case_max,
+                              npz_sha256=sha256_file(npz_path))
+                fd, temp_name = tempfile.mkstemp(prefix=stem+".", suffix=".json", dir=output)
+                os.close(fd)
+                temp = Path(temp_name)
+                try:
+                    temp.write_text(json.dumps(record, indent=2, sort_keys=True)+"\n", encoding="utf-8")
+                    os.replace(temp, json_path)
+                finally:
+                    temp.unlink(missing_ok=True)
+                global_max = max(global_max, case_max)
+                logging.info("Formal schedule prepass %d/80: %s max_completion=%.6f", planned_shards, stem, case_max)
+    if planned_shards != 80:
+        raise ValueError("Formal baseline+OFAT schedule shard count is not 80")
+    horizon = max(480, math.ceil(global_max))
+    record = dict(matrix_id=cfg.REVISION_MATRIX_ID, status="FORMAL_FROZEN_MATRIX_V1",
+                  executable_code_commit_sha=executable_sha, schedule_shards=80,
+                  scheduled_trajectories=80000, baseline_scheduled_trajectories=32000,
+                  additional_OFAT_trajectories=48000,
+                  maximum_completion_hr=global_max, H_eval_hr=horizon)
+    horizon_path = output / "EVALUATION_HORIZON.json"
+    if horizon_path.exists() and json.loads(horizon_path.read_text(encoding="utf-8")) != record:
+        raise ValueError("Global formal evaluation horizon changed on resume")
+    horizon_path.write_text(json.dumps(record, indent=2, sort_keys=True)+"\n", encoding="utf-8")
+    return record
+
+
 def run_pipeline(cfg: Optional[Config] = None) -> None:
     """
     Orchestrate the end-to-end pipeline.
