@@ -7046,6 +7046,24 @@ def run_formal_trajectory_archives(cfg):
     return counts
 
 
+def run_formal_offline_evaluation(cfg):
+    """Original expanded entry's read-only Stage 6 input from formal states."""
+    from r1_final_matrix import _sha
+    from r1_formal_offline import evaluate_all_frozen_archives
+    if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
+        raise ValueError("Frozen-matrix configuration is required for formal offline evaluation")
+    executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
+    if not executable_sha:
+        raise ValueError("Offline evaluation lacks executable commit identity")
+    stage0 = run_stage_0(cfg)
+    context = _revision_context(cfg, stage0)
+    return evaluate_all_frozen_archives(
+        output_root=Path(cfg.OUTPUT_DIRECTORY), context=context,
+        matrix_id=cfg.REVISION_MATRIX_ID,
+        matrix_sha256=_sha(PROJECT_ROOT / "FINAL_EXPERIMENT_MATRIX.json"),
+        offline_code_sha=executable_sha)
+
+
 def run_pipeline(cfg: Optional[Config] = None) -> None:
     """
     Orchestrate the end-to-end pipeline.
