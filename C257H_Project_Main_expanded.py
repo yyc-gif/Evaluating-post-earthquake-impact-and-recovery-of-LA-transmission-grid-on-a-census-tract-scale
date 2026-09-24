@@ -95,7 +95,8 @@ def main() -> None:
             print(json.dumps(result, indent=2, sort_keys=True))
             return
         executable_sha = require_dry_validation(matrix, PROJECT_ROOT, output)
-        identity_path = output / 'FORMAL_EXECUTION_IDENTITY.json'
+        identity_path = output / ('GA_EXECUTION_IDENTITY.json' if args.phase == 'planning'
+                                  else 'FORMAL_EXECUTION_IDENTITY.json')
         identity = {'matrix_id': matrix['matrix_id'], 'matrix_sha256': matrix_sha,
                     'executable_code_commit_sha': executable_sha,
                     'status': 'FORMAL_FROZEN_MATRIX_V1'}

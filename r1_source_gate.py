@@ -44,15 +44,23 @@ def evaluate_source_gate(raw, graph, source_ids, *, threshold=.5, mode='source_g
         raise ValueError('Raw state outside [0,1]')
     if np.any(known != known[0]):
         raise ValueError('Identified station domain must be static within trajectory')
-    F=known & (x>=threshold); C=np.zeros_like(F); cache={}
-    for i in range(len(x)):
-        key=F[i].tobytes()
-        if key not in cache:
-            nodes=set(raw.columns[F[i]]); active=set(sources)&nodes; keep=set()
-            for component in nx.connected_components(graph.subgraph(nodes)):
-                if component & active: keep.update(component)
-            cache[key]=np.array([s in keep for s in raw.columns])
-        C[i]=cache[key]
+    F=known & (x>=threshold); C=np.zeros_like(F)
+    if np.all(~F[:-1] | F[1:]):
+        # Completion-only trajectories add functional stations monotonically.
+        # An incremental union-find computes the *same* connected components
+        # as the original induced-subgraph traversal, without rebuilding the
+        # graph at every event. Nonmonotone input retains the original path.
+        C=_connected_monotone(F,graph,list(raw.columns),sources)
+    else:
+        cache={}
+        for i in range(len(x)):
+            key=F[i].tobytes()
+            if key not in cache:
+                nodes=set(raw.columns[F[i]]); active=set(sources)&nodes; keep=set()
+                for component in nx.connected_components(graph.subgraph(nodes)):
+                    if component & active: keep.update(component)
+                cache[key]=np.array([s in keep for s in raw.columns])
+            C[i]=cache[key]
     if mode=='no_gate':
         # Identity-gate accounting, not a claim of physical connectivity.
         F=known.copy(); C=known.copy()
@@ -63,6 +71,33 @@ def evaluate_source_gate(raw, graph, source_ids, *, threshold=.5, mode='source_g
     np.testing.assert_allclose(arrays['L_self']+arrays['L_threshold']+arrays['L_source'],arrays['L_total'],rtol=0,atol=1e-12,equal_nan=True)
     frames={k:pd.DataFrame(v,index=raw.index.copy(),columns=raw.columns.copy()) for k,v in arrays.items()}
     return GateTrace(**frames,threshold=float(threshold),source_ids=sources,mode=mode)
+
+
+def _connected_monotone(functional,graph,station_ids,sources):
+    """Incremental induced-component reachability; topology semantics unchanged."""
+    n=len(station_ids); index={station:i for i,station in enumerate(station_ids)}
+    adjacency=[[] for _ in range(n)]
+    for a,b in graph.edges():
+        i=index[a];j=index[b];adjacency[i].append(j);adjacency[j].append(i)
+    parent=list(range(n));size=[1]*n;active=np.zeros(n,dtype=bool)
+    source_idx=[index[s] for s in sources];out=np.zeros_like(functional)
+    def find(i):
+        while parent[i]!=i:
+            parent[i]=parent[parent[i]];i=parent[i]
+        return i
+    def union(i,j):
+        a=find(i);b=find(j)
+        if a==b:return
+        if size[a]<size[b]:a,b=b,a
+        parent[b]=a;size[a]+=size[b]
+    for t,row in enumerate(functional):
+        for i in np.flatnonzero(row & ~active):
+            active[i]=True
+            for j in adjacency[i]:
+                if active[j]:union(i,j)
+        connected_roots={find(i) for i in source_idx if active[i]}
+        out[t]=[bool(active[i] and find(i) in connected_roots) for i in range(n)]
+    return out
 
 
 def gate_callback(graph, source_ids, *, threshold=.5):

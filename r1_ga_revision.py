@@ -121,3 +121,40 @@ def direct_population_burden_objective(**fixed_inputs):
     """Maximization-form objective: negative direct population burden."""
     def objective(sequence):return -evaluate_direct_population_burden(sequence=sequence,**fixed_inputs)['population_burden_hr']
     return objective
+
+
+def evaluate_direct_population_burden_aggregate(*,sequence,realization:RealizationInputs,
+        crew_origin_ids,base_to_task_hr,task_to_task_hr,horizon_hr:float,source_gate,
+        station_population_mass:np.ndarray,population_resolved_mass:float)->float:
+    """Exact direct objective without materializing all tract metrics.
+
+    For fixed W, sum_r pop_r*(W_r @ (1-e)) equals
+    (W.T @ pop) @ (1-e). The same production scheduler, raw-state evaluator,
+    and source-gate callback are used; only the linear tract aggregation is
+    moved before event integration. Full per-tract outputs still use the
+    original evaluator after planning.
+    """
+    from r1_source_gate import GateTrace
+    weight=np.asarray(station_population_mass,float)
+    mass=float(population_resolved_mass)
+    if weight.shape!=(len(realization.damage_state),) or not np.isfinite(weight).all() or (weight<0).any() or not np.isfinite(mass) or mass<=0:
+        raise ValueError('Invalid fixed population/resolved-mass weights')
+    if not np.isclose(weight.sum(),mass,rtol=0,atol=1e-8):
+        raise ValueError('Station weights do not equal represented population mass')
+    events,completion,clocks,_=execute_realization_schedule(
+        full_priority_sequence=sequence,damage_state=realization.damage_state,
+        realized_duration_hr=realization.realized_duration_hr,
+        crew_origin_ids=crew_origin_ids,base_to_task_hr=base_to_task_hr,
+        task_to_task_hr=task_to_task_hr)
+    horizon=float(horizon_hr)
+    if not np.isfinite(horizon) or horizon<=0 or (len(clocks) and float(clocks.max())>horizon):
+        raise ValueError('Fixed planning horizon ends before schedule completion')
+    times=np.unique(np.r_[0.,horizon,completion.dropna().to_numpy(float)])
+    raw=evaluate_completion_step_functionality(
+        damage_state=realization.damage_state,completion_time_hr=completion,time_hr=times)
+    gated=source_gate(raw.copy(deep=True))
+    effective=gated.e if isinstance(gated,GateTrace) else gated
+    values=effective.to_numpy(float)
+    if values.shape!=(len(times),len(weight)) or not np.isfinite(values).all():
+        raise ValueError('Production gate returned invalid planning state')
+    return float(np.sum((mass-values[:-1]@weight)*np.diff(times))/mass)

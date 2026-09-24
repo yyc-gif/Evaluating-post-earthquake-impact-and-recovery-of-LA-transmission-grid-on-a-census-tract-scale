@@ -6389,7 +6389,8 @@ def run_stage_1_revision(cfg, stage_0_data, out_dirs):
         frozen=dict(matrix_id=cfg.REVISION_MATRIX_ID,files_sha256=file_hashes,
                     planning_count=cfg.REVISION_PLANNING_N,evaluation_count=len(cfg.SCENARIOS)*cfg.N_MC,
                     sample_hashes=manifest_df.set_index("realization_id").physical_input_hash.to_dict(),
-                    executable_code_commit_sha=subprocess.check_output(["git","rev-parse","HEAD"],cwd=PROJECT_ROOT,text=True).strip())
+                    executable_code_commit_sha=(frozen_before["executable_code_commit_sha"] if frozen_before is not None else
+                        subprocess.check_output(["git","rev-parse","HEAD"],cwd=PROJECT_ROOT,text=True).strip()))
         if frozen_before is not None and frozen_before!=frozen:
             raise ValueError("Frozen physical manifest changed on resume")
         if frozen_before is None:
@@ -6564,7 +6565,8 @@ def run_stage_5_revision(cfg,stage_0_data,stage_3_data,out_dirs):
 def _run_stage_5_formal_planning(cfg,stage_0_data,stage_3_data,out_dirs):
     """Stage 5 direct search on frozen 2pc50 planning inputs only; no evaluation."""
     import hashlib, json, subprocess
-    from r1_ga_revision import RevisedGAConfig,run_revised_permutation_ga,evaluate_direct_population_burden
+    from r1_ga_revision import RevisedGAConfig,run_revised_permutation_ga,evaluate_direct_population_burden_aggregate
+    from r1_ga_exact_kernel import ExactDirectPlanningKernel
 
     scenario=cfg.REVISION_PLANNING_HAZARD
     context=stage_3_data["context"]
@@ -6577,6 +6579,9 @@ def _run_stage_5_formal_planning(cfg,stage_0_data,stage_3_data,out_dirs):
         raise ValueError("Seven deterministic incumbents are required")
     horizon=float(cfg.REVISION_H_PLAN)
     population=stage_0_data["mapping_df"].groupby("tract_id").population.first()
+    population=population.reindex(stage_0_data["tract_index"]).to_numpy(float)
+    station_mass=stage_0_data["W_mat"].T@population
+    resolved_population_mass=float(station_mass.sum())
     planning_hashes=[_revision_physical_hash(real) for real in planning]
     config=RevisedGAConfig(population_size=cfg.GA_POP_SIZE,generations=cfg.GA_N_GEN,
                            crossover_probability=cfg.GA_CXPB,mutation_probability=cfg.GA_MUTPB,
@@ -6597,18 +6602,39 @@ def _run_stage_5_formal_planning(cfg,stage_0_data,stage_3_data,out_dirs):
             raise ValueError("Frozen direct-community sequence has changed inputs")
         return final
 
-    def score(sequence):
-        values=[evaluate_direct_population_burden(sequence=sequence,realization=real,
+    kernel=ExactDirectPlanningKernel(planning=planning,context=context,
+                                     station_population_mass=station_mass,horizon_hr=horizon)
+
+    def score_full_python(sequence):
+        values=[evaluate_direct_population_burden_aggregate(sequence=sequence,realization=real,
                 crew_origin_ids=context["origins"],base_to_task_hr=context["base"],task_to_task_hr=context["task"],
-                time_hr=[0.,horizon],source_gate=context["gate"],tract_weight_matrix=stage_0_data["W_mat"],
-                tract_ids=stage_0_data["tract_index"],tract_population=population)["population_burden_hr"]
+                horizon_hr=horizon,source_gate=context["gate"],station_population_mass=station_mass,
+                population_resolved_mass=resolved_population_mass)
                 for real in planning]
         return -float(np.mean(values))
 
     incumbent_path=output/"INCUMBENT_DIRECT_SCORES_2pc50.csv"
-    incumbent_scores={name:score(seq) for name,seq in sequences.items()}
-    pd.DataFrame([dict(rule=name,planning_fitness=fitness,planning_burden_hr=-fitness)
-                  for name,fitness in incumbent_scores.items()]).to_csv(incumbent_path,index=False)
+    if incumbent_path.exists():
+        old_scores=pd.read_csv(incumbent_path).set_index("rule").planning_fitness.to_dict()
+        if set(old_scores)!=set(sequences):
+            raise ValueError("Saved full-path incumbent scores are incomplete")
+        reference_source="saved full Python direct objective before acceleration"
+    else:
+        old_scores={name:score_full_python(seq) for name,seq in sequences.items()}
+        pd.DataFrame([dict(rule=name,planning_fitness=fitness,planning_burden_hr=-fitness)
+                      for name,fitness in old_scores.items()]).to_csv(incumbent_path,index=False)
+        reference_source="full Python direct objective on the same frozen planning inputs"
+    compiled_scores={name:kernel.score(seq) for name,seq in sequences.items()}
+    deltas={name:compiled_scores[name]-old_scores[name] for name in sequences}
+    parity=dict(status="EXACT_OBJECTIVE_NUMERIC_PARITY",matrix_id=cfg.REVISION_MATRIX_ID,
+                reference_source=reference_source,planning_sample_hashes=planning_hashes,
+                incumbent_count=len(sequences),max_absolute_fitness_difference=max(abs(x) for x in deltas.values()),
+                tolerance=1e-9,per_incumbent_difference=deltas)
+    if parity["max_absolute_fitness_difference"]>parity["tolerance"]:
+        raise ValueError("Compiled planning objective differs from the direct Python production chain")
+    (output/"EXACT_OBJECTIVE_EQUIVALENCE.json").write_text(json.dumps(parity,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+
+    score=kernel.score
     results=[]
     for seed in cfg.REVISION_GA_SEEDS:
         path=output/f"GA_SEED_2pc50_{seed}.json"
