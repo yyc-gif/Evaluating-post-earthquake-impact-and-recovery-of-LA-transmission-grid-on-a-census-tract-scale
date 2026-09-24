@@ -6303,20 +6303,29 @@ def _revision_physical_hash(realization):
 
 def run_stage_1_revision(cfg, stage_0_data, out_dirs):
     """Existing fragility/duration functions; separate planning and evaluation streams."""
-    import json
+    import hashlib, json, subprocess
     from r1_realization_scheduling import RealizationInputs
     if not cfg.RUN_STAGE_1: raise ValueError("Revised path needs retained Stage 1 physical inputs")
     context = _revision_context(cfg, stage_0_data)
     ids = context["ids"]; devices = stage_0_data["devices_merged"].copy()
     physical = {}; input_rows = []
+    is_formal = bool(getattr(cfg, "REVISION_FORMAL", False))
+    frozen_path = out_dirs["STAGE1_DIR"] / "PHYSICAL_INPUTS_FROZEN.json"
+    frozen_before = json.loads(frozen_path.read_text(encoding="utf-8")) if frozen_path.exists() else None
     for scenario_index, scenario in enumerate(cfg.SCENARIOS):
+        planning_count = cfg.REVISION_PLANNING_N if not is_formal or scenario == cfg.REVISION_PLANNING_HAZARD else 0
         path = out_dirs["STAGE1_DIR"] / f"physical_inputs_{scenario}.npz"
+        if frozen_before is not None:
+            if scenario not in frozen_before["files_sha256"] or not path.exists():
+                raise ValueError("A frozen physical input file is missing")
+            if hashlib.sha256(path.read_bytes()).hexdigest() != frozen_before["files_sha256"][scenario]:
+                raise ValueError("Frozen physical input bytes changed; no resampling")
         if path.exists():
             with np.load(path, allow_pickle=False) as z:
                 if not np.array_equal(z["station_ids"], ids.to_numpy(str)) or str(z["context_hash"]) != context["hash"]:
                     raise ValueError("Cannot resume with changed physical context")
                 stored = {k: z[k].copy() for k in ["planning_ds", "planning_duration", "evaluation_ds", "evaluation_duration"]}
-            if stored["planning_ds"].shape[1] != cfg.REVISION_PLANNING_N or stored["evaluation_ds"].shape[1] != cfg.N_MC:
+            if stored["planning_ds"].shape[1] != planning_count or stored["evaluation_ds"].shape[1] != cfg.N_MC:
                 raise ValueError("Cannot change sample allocation when resuming")
         else:
             stored = {}
@@ -6325,15 +6334,15 @@ def run_stage_1_revision(cfg, stage_0_data, out_dirs):
                 for ds in range(1,5):
                     d[f"mu_DS{ds}"] = d[f"mu_DS{ds}_old"]
                     d[f"beta_DS{ds}"] = d[f"beta_DS{ds}_old"]
-            for split_code, (split, count) in enumerate([("planning", cfg.REVISION_PLANNING_N), ("evaluation", cfg.N_MC)]):
+            for split_code, (split, count) in enumerate([("planning", planning_count), ("evaluation", cfg.N_MC)]):
                 ds_columns=[]; durations=[]
                 for r in range(count):
                     rng = np.random.default_rng(np.random.SeedSequence([cfg.RNG_SEED, scenario_index, split_code, r]))
                     ds = sample_damage_states(d[f"pga_{scenario}"], d, 1, rng)
                     _, duration = damage_to_functionality_and_repair(ds, rng, cfg)
                     ds_columns.append(ds[:,0]); durations.append(duration[:,0])
-                stored[split+"_ds"] = np.stack(ds_columns, axis=1)
-                stored[split+"_duration"] = np.stack(durations, axis=1)
+                stored[split+"_ds"] = np.stack(ds_columns, axis=1) if count else np.empty((len(ids),0),dtype=np.int64)
+                stored[split+"_duration"] = np.stack(durations, axis=1) if count else np.empty((len(ids),0),dtype=np.float64)
             np.savez_compressed(path, **stored, station_ids=ids.to_numpy(str), context_hash=np.array(context["hash"]))
         splits = {}
         for split in ["planning", "evaluation"]:
@@ -6345,9 +6354,14 @@ def run_stage_1_revision(cfg, stage_0_data, out_dirs):
                 splits[split].append(real)
                 input_rows.append(dict(scenario=scenario,split=split,realization_id=rid,
                                        physical_input_hash=_revision_physical_hash(real),
+                                       ordered_station_id_hash=hashlib.sha256(("\n".join(ids.astype(str))+"\n").encode()).hexdigest(),
+                                       DS_hash=hashlib.sha256(real.damage_state.to_numpy(dtype="<i8").tobytes()).hexdigest(),
+                                       duration_hash=hashlib.sha256(real.realized_duration_hr.to_numpy(dtype="<f8").tobytes()).hexdigest(),
                                        task_count=int((real.damage_state>0).sum()),
                                        **{f"DS{k}":int((real.damage_state==k).sum()) for k in range(5)}))
         physical[scenario]=splits
+        if is_formal:
+            continue  # Stage 7/source trajectories belong to evaluation, not sample generation.
         # Stage 7's initial disruption must use evaluation samples only.
         from r1_realization_scheduling import INITIAL_BY_DS
         frames=[]; records=[]
@@ -6362,7 +6376,25 @@ def run_stage_1_revision(cfg, stage_0_data, out_dirs):
         pd.DataFrame(dict(substation_id=ids,scenario=scenario,
                           avg_damage_state=stored["evaluation_ds"].mean(axis=1))).to_csv(out_dirs["STAGE1_DIR"]/f"MC_Device_Damage_AvgDS_{scenario}.csv",index=False)
         pd.concat(records).to_csv(out_dirs["STAGE1_DIR"]/f"MC_Device_Damage_Records_{scenario}.csv.gz",index=False)
-    pd.DataFrame(input_rows).to_csv(out_dirs["STAGE1_DIR"]/"PHYSICAL_SAMPLE_MANIFEST.csv",index=False)
+    manifest_df=pd.DataFrame(input_rows)
+    if is_formal:
+        if len(manifest_df)!=len(cfg.SCENARIOS)*cfg.N_MC+cfg.REVISION_PLANNING_N:
+            raise ValueError("Formal physical sample count differs from frozen matrix")
+        planning=set(manifest_df.loc[manifest_df.split.eq("planning"),"physical_input_hash"])
+        evaluation=set(manifest_df.loc[manifest_df.split.eq("evaluation"),"physical_input_hash"])
+        if planning & evaluation:
+            raise ValueError("Planning and evaluation physical input hashes overlap")
+        file_hashes={scenario:hashlib.sha256((out_dirs["STAGE1_DIR"]/f"physical_inputs_{scenario}.npz").read_bytes()).hexdigest()
+                     for scenario in cfg.SCENARIOS}
+        frozen=dict(matrix_id=cfg.REVISION_MATRIX_ID,files_sha256=file_hashes,
+                    planning_count=cfg.REVISION_PLANNING_N,evaluation_count=len(cfg.SCENARIOS)*cfg.N_MC,
+                    sample_hashes=manifest_df.set_index("realization_id").physical_input_hash.to_dict(),
+                    executable_code_commit_sha=subprocess.check_output(["git","rev-parse","HEAD"],cwd=PROJECT_ROOT,text=True).strip())
+        if frozen_before is not None and frozen_before!=frozen:
+            raise ValueError("Frozen physical manifest changed on resume")
+        if frozen_before is None:
+            frozen_path.write_text(json.dumps(frozen,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+    manifest_df.to_csv(out_dirs["STAGE1_DIR"]/"PHYSICAL_SAMPLE_MANIFEST.csv",index=False)
     return dict(physical=physical, context=context)
 
 
@@ -6485,6 +6517,8 @@ def run_stage_5_revision(cfg,stage_0_data,stage_3_data,out_dirs):
     import json
     from r1_ga_revision import RevisedGAConfig,run_multiseed_revised_ga,evaluate_direct_population_burden
     if not cfg.RUN_STAGE_5:return {}
+    if getattr(cfg,"REVISION_FORMAL",False):
+        return _run_stage_5_formal_planning(cfg,stage_0_data,stage_3_data,out_dirs)
     context=stage_3_data["context"]; sequences={};diagnostics=[]
     population=stage_0_data["mapping_df"].groupby("tract_id").population.first()
     for scenario,splits in stage_3_data["physical"].items():
@@ -6525,6 +6559,88 @@ def run_stage_5_revision(cfg,stage_0_data,stage_3_data,out_dirs):
         # Existing Stage 7 consumes this explicit direct-community evaluation mean.
         _revision_event_kpis(result["tract_means"][scenario]["direct-community"]).to_csv(out_dirs["STAGE5_DIR"]/f"tract_kpis_{scenario}.csv")
     return result
+
+
+def _run_stage_5_formal_planning(cfg,stage_0_data,stage_3_data,out_dirs):
+    """Stage 5 direct search on frozen 2pc50 planning inputs only; no evaluation."""
+    import hashlib, json, subprocess
+    from r1_ga_revision import RevisedGAConfig,run_revised_permutation_ga,evaluate_direct_population_burden
+
+    scenario=cfg.REVISION_PLANNING_HAZARD
+    context=stage_3_data["context"]
+    planning=stage_3_data["physical"][scenario]["planning"]
+    if len(planning)!=cfg.REVISION_PLANNING_N or any(stage_3_data["physical"][s]["planning"] for s in cfg.SCENARIOS if s!=scenario):
+        raise ValueError("Formal GA planning must contain exactly 64 independent 2pc50 samples")
+    sequences=stage_3_data["rule_sequences"][scenario]
+    if set(sequences)!={"hospital-first","impact-first","degree-first","closeness-first",
+                        "betweenness-first","centrality-first","random"}:
+        raise ValueError("Seven deterministic incumbents are required")
+    horizon=float(cfg.REVISION_H_PLAN)
+    population=stage_0_data["mapping_df"].groupby("tract_id").population.first()
+    planning_hashes=[_revision_physical_hash(real) for real in planning]
+    config=RevisedGAConfig(population_size=cfg.GA_POP_SIZE,generations=cfg.GA_N_GEN,
+                           crossover_probability=cfg.GA_CXPB,mutation_probability=cfg.GA_MUTPB,
+                           tournament_size=cfg.REVISION_GA_TOURNAMENT_SIZE)
+    config_record=dict(population=config.population_size,generations=config.generations,
+                       crossover_probability=config.crossover_probability,
+                       mutation_probability=config.mutation_probability,
+                       tournament_size=config.tournament_size,seeds=list(cfg.REVISION_GA_SEEDS),
+                       objective="negative mean direct population-times-resolved-mass burden",
+                       H_plan_hr=horizon,mapping_id=cfg.MAPPING_METHOD,threshold=cfg.FUNCTIONAL_THRESHOLD)
+    config_hash=hashlib.sha256(json.dumps(config_record,sort_keys=True).encode()).hexdigest()
+    code_sha=subprocess.check_output(["git","rev-parse","HEAD"],cwd=PROJECT_ROOT,text=True).strip()
+    output=out_dirs["STAGE5_DIR"]
+    final_path=output/"FINAL_DIRECT_COMMUNITY_SEQUENCE.json"
+    if final_path.exists():
+        final=json.loads(final_path.read_text(encoding="utf-8"))
+        if final["planning_sample_hashes"]!=planning_hashes or final["GA_config_hash"]!=config_hash or final["executable_code_commit_sha"]!=code_sha:
+            raise ValueError("Frozen direct-community sequence has changed inputs")
+        return final
+
+    def score(sequence):
+        values=[evaluate_direct_population_burden(sequence=sequence,realization=real,
+                crew_origin_ids=context["origins"],base_to_task_hr=context["base"],task_to_task_hr=context["task"],
+                time_hr=[0.,horizon],source_gate=context["gate"],tract_weight_matrix=stage_0_data["W_mat"],
+                tract_ids=stage_0_data["tract_index"],tract_population=population)["population_burden_hr"]
+                for real in planning]
+        return -float(np.mean(values))
+
+    incumbent_path=output/"INCUMBENT_DIRECT_SCORES_2pc50.csv"
+    incumbent_scores={name:score(seq) for name,seq in sequences.items()}
+    pd.DataFrame([dict(rule=name,planning_fitness=fitness,planning_burden_hr=-fitness)
+                  for name,fitness in incumbent_scores.items()]).to_csv(incumbent_path,index=False)
+    results=[]
+    for seed in cfg.REVISION_GA_SEEDS:
+        path=output/f"GA_SEED_2pc50_{seed}.json"
+        history_path=output/f"GA_HISTORY_2pc50_{seed}.csv"
+        if path.exists():
+            result=json.loads(path.read_text(encoding="utf-8"))
+            if result["GA_config_hash"]!=config_hash or result["planning_sample_hashes"]!=planning_hashes or not history_path.exists():
+                raise ValueError(f"GA seed {seed} archive identity changed")
+        else:
+            run=run_revised_permutation_ga(items=context["ids"],objective=score,
+                    incumbents=sequences,seed=seed,config=config)
+            run.history.assign(seed=seed,scenario=scenario).to_csv(history_path,index=False)
+            result=dict(seed=seed,ordered_station_ids=list(run.best_sequence),fitness=run.best_fitness,
+                        incumbent_fitness=run.incumbent_best_fitness,best_generation=run.best_generation,
+                        candidate_source=run.candidate_source,search_improved_incumbent=run.search_improved_incumbent,
+                        GA_config_hash=config_hash,planning_sample_hashes=planning_hashes)
+            path.write_text(json.dumps(result,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+        results.append(result)
+    best=min(results,key=lambda r:(-r["fitness"],r["seed"]))
+    final=dict(matrix_id=cfg.REVISION_MATRIX_ID,status="FORMAL_FROZEN_MATRIX_V1",
+               ordered_station_ids=best["ordered_station_ids"],chosen_seed=best["seed"],
+               candidate_source=best["candidate_source"],fitness=best["fitness"],
+               incumbent_fitness=best["incumbent_fitness"],
+               improvement_over_incumbent=best["fitness"]-best["incumbent_fitness"],
+               planning_sample_hashes=planning_hashes,GA_config_hash=config_hash,
+               executable_code_commit_sha=code_sha,H_plan_hr=horizon)
+    if len(final["ordered_station_ids"])!=92 or set(final["ordered_station_ids"])!=set(context["ids"]):
+        raise ValueError("Final direct-community chromosome is not the full July92 permutation")
+    final_path.write_text(json.dumps(final,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+    pd.DataFrame([{k:v for k,v in row.items() if k not in {"ordered_station_ids","planning_sample_hashes"}}
+                  for row in results]).to_csv(output/"GA_FIVE_SEED_CONVERGENCE.csv",index=False)
+    return final
 
 
 def run_stage_6_revision(cfg,stage_0_data,stage_3_data,stage_4_data,stage_5_data,out_dirs):
@@ -6568,6 +6684,55 @@ def run_stage_6_revision(cfg,stage_0_data,stage_3_data,stage_4_data,stage_5_data
         fig.tight_layout();fig.savefig(out/f"SPATIAL_BURDEN_{scenario}.png",dpi=180);plt.close(fig)
     pd.DataFrame(all_rows).to_csv(out/"TRIAL_SYSTEM_KPIS.csv",index=False)
     return dict(status="trial",metrics=all_rows)
+
+def run_formal_samples(cfg):
+    """Original Stage 0/1 entry, stopped after frozen physical sample creation."""
+    if not getattr(cfg,"REVISION_FORMAL",False) or getattr(cfg,"REVISION_TRIAL",False):
+        raise ValueError("Formal sample phase requires frozen-matrix configuration")
+    out_dirs=make_out_dirs(cfg)
+    stage0=run_stage_0(cfg)
+    return run_stage_1_revision(cfg,stage0,out_dirs)
+
+
+def run_formal_ga_planning(cfg):
+    """Original Stage 5 direct evaluator on planning inputs, before evaluation."""
+    import json
+    if not getattr(cfg,"REVISION_FORMAL",False) or getattr(cfg,"REVISION_TRIAL",False):
+        raise ValueError("Formal GA phase requires frozen-matrix configuration")
+    out_dirs=make_out_dirs(cfg)
+    if not (out_dirs["STAGE1_DIR"]/"PHYSICAL_INPUTS_FROZEN.json").exists():
+        raise ValueError("Physical inputs must be frozen before GA planning")
+    stage0=run_stage_0(cfg)
+    stage1=run_stage_1_revision(cfg,stage0,out_dirs)  # frozen files only on resume
+    stage2=run_stage_2(cfg,stage0,out_dirs)
+    scenario=cfg.REVISION_PLANNING_HAZARD
+    rules=["centrality-first","impact-first","betweenness-first","degree-first",
+           "closeness-first","hospital-first","random"]
+    sequences={scenario:{rule:order_substations(rule,stage0["sub_index"].tolist(),stage0,stage2,cfg)
+                         for rule in rules}}
+    rules_path=out_dirs["STAGE4_DIR"]/"FULL_RULE_SEQUENCES.json"
+    if rules_path.exists() and json.loads(rules_path.read_text(encoding="utf-8"))!=sequences:
+        raise ValueError("Deterministic rule sequences changed on resume")
+    if not rules_path.exists():
+        rules_path.write_text(json.dumps(sequences,indent=2)+"\n",encoding="utf-8")
+    context=stage1["context"]
+    largest_travel=float(max(context["base"].to_numpy(float).max(),context["task"].to_numpy(float).max()))
+    planning=stage1["physical"][scenario]["planning"]
+    bound=max(float(cfg.TIME_END_HR),max(float(real.realized_duration_hr.sum())+
+             int((real.damage_state>0).sum())*largest_travel for real in planning))
+    horizon_record=dict(matrix_id=cfg.REVISION_MATRIX_ID,H_plan_hr=bound,
+                        formula="max(480, max_planning(sum positive duration + task_count*largest directed travel))",
+                        largest_directed_travel_hr=largest_travel,
+                        planning_sample_hashes=[_revision_physical_hash(r) for r in planning])
+    horizon_path=out_dirs["STAGE5_DIR"]/"PLANNING_HORIZON.json"
+    if horizon_path.exists() and json.loads(horizon_path.read_text(encoding="utf-8"))!=horizon_record:
+        raise ValueError("Pre-search planning horizon changed on resume")
+    if not horizon_path.exists():
+        horizon_path.write_text(json.dumps(horizon_record,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+    cfg.REVISION_H_PLAN=bound
+    stage1["rule_sequences"]=sequences
+    return run_stage_5_revision(cfg,stage0,stage1,out_dirs)
+
 
 def run_pipeline(cfg: Optional[Config] = None) -> None:
     """

@@ -2,6 +2,7 @@
 
 import os
 import argparse
+import json
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -68,11 +69,45 @@ def main() -> None:
     """Run the integrated earthquake-impact pipeline with the expanded study-area config."""
     parser = argparse.ArgumentParser()
     parser.add_argument('--revised-trial', action='store_true')
+    parser.add_argument('--validate-final-matrix', action='store_true',
+                        help='Read-only frozen-matrix/input validation; no DS, duration, schedule or GA.')
+    parser.add_argument('--revised-final', action='store_true',
+                        help='Formal July92 execution from the committed matrix.')
+    parser.add_argument('--matrix', type=Path)
+    parser.add_argument('--phase', choices=('samples', 'planning', 'samples-and-planning'),
+                        default='samples-and-planning')
     parser.add_argument('--output', type=Path)
     parser.add_argument('--resume', action='store_true', help='Reuse retained physical samples and completed stage archives; no resampling.')
     parser.add_argument('--legacy', action='store_true', help='Explicit July reproduction path; retains all original stages.')
     args = parser.parse_args()
     cfg = ExpandedConfig()
+    if args.validate_final_matrix or args.revised_final:
+        if args.legacy or args.revised_trial or args.matrix is None or args.output is None:
+            parser.error('Formal validation/execution requires --matrix and --output, without --legacy or --revised-trial')
+        from r1_final_matrix import (configure_formal, load_frozen_matrix,
+                                      require_dry_validation, validate_final_inputs)
+        matrix, matrix_sha = load_frozen_matrix(args.matrix, PROJECT_ROOT)
+        output = args.output.resolve()
+        configure_formal(cfg, matrix, output)
+        base.OUTPUT_ROOT = str(output)
+        if args.validate_final_matrix:
+            result = validate_final_inputs(matrix, cfg, PROJECT_ROOT, output)
+            print(json.dumps(result, indent=2, sort_keys=True))
+            return
+        executable_sha = require_dry_validation(matrix, PROJECT_ROOT, output)
+        identity_path = output / 'FORMAL_EXECUTION_IDENTITY.json'
+        identity = {'matrix_id': matrix['matrix_id'], 'matrix_sha256': matrix_sha,
+                    'executable_code_commit_sha': executable_sha,
+                    'status': 'FORMAL_FROZEN_MATRIX_V1'}
+        if identity_path.exists() and json.loads(identity_path.read_text(encoding='utf-8')) != identity:
+            raise ValueError('Formal executable identity changed on resume')
+        if not identity_path.exists():
+            identity_path.write_text(json.dumps(identity, indent=2, sort_keys=True)+'\n', encoding='utf-8')
+        if args.phase in ('samples', 'samples-and-planning'):
+            base.run_formal_samples(cfg)
+        if args.phase in ('planning', 'samples-and-planning'):
+            base.run_formal_ga_planning(cfg)
+        return
     if args.legacy:
         cfg.REVISION_EVENT_PATH = False
         cfg.MAP_TRACT_SUB_CSV = cfg.JULY_BASELINE_MAPPING_CSV
