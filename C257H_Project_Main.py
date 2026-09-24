@@ -6895,6 +6895,157 @@ def run_formal_schedule_prepass(cfg):
     return record
 
 
+def run_formal_trajectory_archives(cfg):
+    """Original entry: consume frozen schedules and retain formal event states.
+
+    This phase never samples physical inputs or reschedules a completed case.
+    Its outputs are the station-state source for subsequent offline mapping/gate
+    evaluation, with one common precomputed horizon for every case.
+    """
+    import hashlib, json
+    from r1_final_matrix import HAZARDS, SCHEDULED, _sha
+    from r1_formal_archive import inspect_formal_archive, retain_formal_trajectory, sha256_file
+    from r1_realization_scheduling import evaluate_completion_step_functionality
+    if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
+        raise ValueError("Formal trajectory phase requires the frozen matrix")
+    out_dirs = make_out_dirs(cfg)
+    stage0 = run_stage_0(cfg)
+    stage1 = run_stage_1_revision(cfg, stage0, out_dirs)
+    context = stage1["context"]
+    horizon_path = Path(cfg.OUTPUT_DIRECTORY) / "Formal_Schedule_Prepass" / "EVALUATION_HORIZON.json"
+    if not horizon_path.is_file():
+        raise ValueError("Schedule prepass must freeze a common H_eval before trajectories")
+    horizon_record = json.loads(horizon_path.read_text(encoding="utf-8"))
+    if horizon_record["status"] != "FORMAL_FROZEN_MATRIX_V1" or horizon_record["schedule_shards"] != 80:
+        raise ValueError("Formal evaluation horizon identity is incomplete")
+    horizon = float(horizon_record["H_eval_hr"])
+    if horizon < float(horizon_record["maximum_completion_hr"]):
+        raise ValueError("Common evaluation horizon truncates scheduled repairs")
+    executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
+    if not executable_sha:
+        raise ValueError("Formal trajectory phase lacks executable commit identity")
+    ids = list(map(str, context["ids"]))
+    graph_edges = [tuple(sorted((str(a), str(b)))) for a, b in context["G"].edges()]
+    graph_hash = hashlib.sha256(("\n".join("|".join(x) for x in sorted(graph_edges))+"\n").encode()).hexdigest()
+    source_hash = hashlib.sha256(("\n".join(sorted(map(str,context["sources"])))+"\n").encode()).hexdigest()
+    path_hashes = context["provenance"]["files"]
+    travel_hash = hashlib.sha256((path_hashes[str(Path(cfg.TRAVEL_BASE_TO_TASK_CSV).relative_to(PROJECT_ROOT))]+"|"+
+                                  path_hashes[str(Path(cfg.TRAVEL_TASK_TO_TASK_CSV).relative_to(PROJECT_ROOT))]).encode()).hexdigest()
+    matrix_sha = _sha(PROJECT_ROOT / "FINAL_EXPERIMENT_MATRIX.json")
+    schedule_dir = Path(cfg.OUTPUT_DIRECTORY) / "Formal_Schedule_Prepass"
+    archive_root = Path(cfg.OUTPUT_DIRECTORY) / "Formal_Trajectories"
+    archive_root.mkdir(parents=True, exist_ok=True)
+    physical_frozen = json.loads((out_dirs["STAGE1_DIR"] / "PHYSICAL_INPUTS_FROZEN.json").read_text(encoding="utf-8"))
+    counts = {"written": 0, "reused": 0}
+    from r1_realization_scheduling import INITIAL_BY_DS
+    for hazard in HAZARDS:
+        realizations = stage1["physical"][hazard]["evaluation"]
+        cases = [("C57_D1", 1.0, 1.0)]
+        if hazard == "2pc50":
+            cases += [("C29_D1", 0.5, 1.0), ("C86_D1", 1.5, 1.0),
+                      ("C114_D1", 2.0, 1.0), ("C57_D075", 1.0, 0.75),
+                      ("C57_D125", 1.0, 1.25), ("C57_D150", 1.0, 1.5)]
+        cases_with_unconstrained = [("C57_D1", 1.0, 1.0, "unconstrained")]
+        cases_with_unconstrained += [(name,crew_scale,duration_scale,strategy)
+                                    for name,crew_scale,duration_scale in cases for strategy in SCHEDULED]
+        for case_name, crew_scale, duration_scale, strategy in cases_with_unconstrained:
+            origins = (context["origins"] if crew_scale == 1.0 else
+                       _scale_sensitivity_crew_origins(context["origins"], crew_scale))
+            roster_hash = hashlib.sha256(("\n".join(origins)+"\n").encode()).hexdigest()
+            scheduled = strategy != "unconstrained"
+            schedule_npz = schedule_dir / f"{hazard}__{case_name}__{strategy}.npz"
+            schedule_json = schedule_npz.with_suffix(".json")
+            if scheduled:
+                if not schedule_json.is_file() or not schedule_npz.is_file():
+                    raise ValueError("Frozen schedule shard is missing")
+                schedule_record = json.loads(schedule_json.read_text(encoding="utf-8"))
+                if schedule_record["status"] != "FORMAL_FROZEN_MATRIX_V1" or sha256_file(schedule_npz) != schedule_record["npz_sha256"]:
+                    raise ValueError("Frozen schedule shard has changed")
+                if schedule_record["identity"]["matrix_sha256"] != matrix_sha:
+                    raise ValueError("Frozen schedule shard belongs to a different matrix")
+                schedule_source = np.load(schedule_npz,allow_pickle=False)
+                if not np.array_equal(schedule_source["station_ids"].astype(str),np.asarray(ids)):
+                    raise ValueError("Frozen schedule station order differs")
+            else:
+                schedule_source = None
+            try:
+                for sample_index, real in enumerate(realizations):
+                    physical_hash = _revision_physical_hash(real)
+                    if physical_frozen["sample_hashes"][real.realization_id] != physical_hash:
+                        raise ValueError("Formal physical sample identity changed")
+                    ds = real.damage_state.reindex(ids).to_numpy(dtype="<i8")
+                    duration = real.realized_duration_hr.reindex(ids).to_numpy(dtype="<f8")*duration_scale
+                    ds_hash = hashlib.sha256(ds.tobytes()).hexdigest()
+                    duration_hash = hashlib.sha256(duration.tobytes()).hexdigest()
+                    identity = dict(matrix_id=cfg.REVISION_MATRIX_ID,
+                                    executable_code_commit_sha=executable_sha,
+                                    hazard=hazard, realization_id=real.realization_id,
+                                    split="evaluation", strategy=strategy,
+                                    resource_scenario=case_name, DS_hash=ds_hash,
+                                    duration_hash=duration_hash,
+                                    physical_sample_hash=physical_hash,
+                                    graph_hash=graph_hash, source_set_hash=source_hash,
+                                    mapping_method_id="M1_UTILITY_003",
+                                    crew_roster_hash=roster_hash,
+                                    directed_travel_hash=travel_hash,
+                                    event_horizon_hr=horizon)
+                    folder = archive_root / hazard / case_name / strategy
+                    stem = real.realization_id
+                    if inspect_formal_archive(folder,identity=identity,stem=stem) is not None:
+                        counts["reused"] += 1
+                        continue
+                    if scheduled:
+                        completion = schedule_source["completion"][sample_index].astype(float)
+                        arrival = schedule_source["arrival"][sample_index].astype(float)
+                        travel = schedule_source["travel"][sample_index].astype(float)
+                        crew = schedule_source["crew"][sample_index].astype(int)
+                        previous = schedule_source["previous"][sample_index].astype(int)
+                        dispatch = schedule_source["dispatch"][sample_index].astype(int)
+                        if str(schedule_source["physical_hashes"][sample_index]) != physical_hash:
+                            raise ValueError("Frozen schedule/physical sample pairing failed")
+                        rows = []
+                        for j in np.argsort(dispatch):
+                            if dispatch[j] < 0:
+                                continue
+                            rows.append(dict(dispatch_rank=int(dispatch[j])+1,task_id=ids[j],
+                                             damage_state=int(ds[j]),crew_index=int(crew[j]),
+                                             crew_origin_id=origins[int(crew[j])],
+                                             previous_task_id=(ids[int(previous[j])] if previous[j]>=0 else None),
+                                             crew_available_before_hr=float(arrival[j]-travel[j]),
+                                             travel_hr=float(travel[j]),arrival_hr=float(arrival[j]),
+                                             realized_duration_hr=float(duration[j]),completion_hr=float(completion[j])))
+                        events = pd.DataFrame(rows)
+                        if len(events) != int(np.count_nonzero(ds)) or any(
+                                row["completion_hr"] != row["arrival_hr"]+row["realized_duration_hr"]
+                                for row in rows):
+                            raise ValueError("Saved schedule does not satisfy task/completion identity")
+                    else:
+                        completion = np.where(ds>0,duration,np.nan)
+                        rows = [dict(task_id=ids[j],damage_state=int(ds[j]),
+                                     arrival_hr=0.,realized_duration_hr=float(duration[j]),
+                                     completion_hr=float(completion[j]),travel_hr=0.,crew_index=np.nan)
+                                for j in range(len(ids)) if ds[j]>0]
+                        events = pd.DataFrame(rows)
+                    completed = completion[np.isfinite(completion)]
+                    times = np.unique(np.r_[0.,completed,horizon])
+                    raw = evaluate_completion_step_functionality(
+                        damage_state=real.damage_state,
+                        completion_time_hr=pd.Series(completion,index=ids),time_hr=times,
+                        initial_functionality_by_ds=INITIAL_BY_DS)
+                    trace = context["gate"](raw)
+                    action = retain_formal_trajectory(folder,trace=trace,task_events=events,
+                                                      identity=identity,stem=stem)
+                    counts[action] += 1
+                logging.info("Formal states: %s %s %s; written=%d reused=%d",
+                             hazard,case_name,strategy,counts["written"],counts["reused"])
+            finally:
+                if schedule_source is not None:
+                    schedule_source.close()
+    if sum(counts.values()) != 84000:
+        raise ValueError("Formal trajectory archive count is not 84000")
+    return counts
+
+
 def run_pipeline(cfg: Optional[Config] = None) -> None:
     """
     Orchestrate the end-to-end pipeline.

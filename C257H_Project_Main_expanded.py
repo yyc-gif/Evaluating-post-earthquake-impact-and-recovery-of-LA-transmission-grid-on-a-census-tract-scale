@@ -74,7 +74,7 @@ def main() -> None:
     parser.add_argument('--revised-final', action='store_true',
                         help='Formal July92 execution from the committed matrix.')
     parser.add_argument('--matrix', type=Path)
-    parser.add_argument('--phase', choices=('samples', 'planning', 'samples-and-planning', 'schedule-prepass'),
+    parser.add_argument('--phase', choices=('samples', 'planning', 'samples-and-planning', 'schedule-prepass', 'trajectories'),
                         default='samples-and-planning')
     parser.add_argument('--output', type=Path)
     parser.add_argument('--resume', action='store_true', help='Reuse retained physical samples and completed stage archives; no resampling.')
@@ -97,6 +97,7 @@ def main() -> None:
         executable_sha = require_dry_validation(matrix, PROJECT_ROOT, output)
         identity_path = output / ('GA_EXECUTION_IDENTITY.json' if args.phase == 'planning' else
                                   'SCHEDULE_EXECUTION_IDENTITY.json' if args.phase == 'schedule-prepass' else
+                                  'TRAJECTORY_EXECUTION_IDENTITY.json' if args.phase == 'trajectories' else
                                   'FORMAL_EXECUTION_IDENTITY.json')
         identity = {'matrix_id': matrix['matrix_id'], 'matrix_sha256': matrix_sha,
                     'executable_code_commit_sha': executable_sha,
@@ -112,6 +113,8 @@ def main() -> None:
             base.run_formal_ga_planning(cfg)
         if args.phase == 'schedule-prepass':
             print(json.dumps(base.run_formal_schedule_prepass(cfg), indent=2, sort_keys=True))
+        if args.phase == 'trajectories':
+            print(json.dumps(base.run_formal_trajectory_archives(cfg), indent=2, sort_keys=True))
         return
     if args.legacy:
         cfg.REVISION_EVENT_PATH = False
