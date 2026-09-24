@@ -7064,6 +7064,18 @@ def run_formal_offline_evaluation(cfg):
         offline_code_sha=executable_sha)
 
 
+def run_formal_results(cfg):
+    """Original expanded entry's paired Stage 6 summaries from saved views."""
+    from r1_formal_results import build_formal_results
+    if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
+        raise ValueError("Formal results require the frozen-matrix configuration")
+    executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
+    if not executable_sha:
+        raise ValueError("Formal postprocessing lacks executable commit identity")
+    return build_formal_results(Path(cfg.OUTPUT_DIRECTORY),
+                                executable_code_sha=executable_sha)
+
+
 def run_pipeline(cfg: Optional[Config] = None) -> None:
     """
     Orchestrate the end-to-end pipeline.
