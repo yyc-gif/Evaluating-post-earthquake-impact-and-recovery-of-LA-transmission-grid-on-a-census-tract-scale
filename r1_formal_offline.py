@@ -182,7 +182,7 @@ def evaluate_frozen_archive_shard(*, input_folder: Path, output_folder: Path,
             raise ValueError("Formal offline shard identity changed on resume")
         if sha256_file(summary_path) != record["summary_sha256"] or sha256_file(integral_path) != record["integral_sha256"]:
             raise ValueError("Formal offline shard contents changed on resume")
-        return dict(status="reused", **record)
+        return dict(record, action="reused")
     if all_robustness:
         map_names = list(mappings)
     station_ids = np.array(next(iter(mappings.values())).station_ids)
@@ -292,7 +292,7 @@ def evaluate_frozen_archive_shard(*, input_folder: Path, output_folder: Path,
         os.replace(temp, record_path)
     finally:
         temp.unlink(missing_ok=True)
-    return dict(status="written", **record)
+    return dict(record, action="written")
 
 
 def evaluate_all_frozen_archives(*, output_root: Path, context: dict,
@@ -356,7 +356,7 @@ def evaluate_all_frozen_archives(*, output_root: Path, context: dict,
                     H_eval_hr=H_eval_hr,
                     all_robustness=(hazard == "2pc50" and resource == "C57_D1"))
                 records.append(dict(hazard=hazard, resource_scenario=resource,
-                                    strategy=strategy, status=result["status"],
+                                    strategy=strategy, status=result["action"],
                                     summary_rows=result["summary_row_count"],
                                     summary_sha256=result["summary_sha256"],
                                     integral_sha256=result["integral_sha256"]))
