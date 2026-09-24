@@ -5766,7 +5766,12 @@ def run_stage_7(
     constant_features = [
         col for col in feat_cols if float(df_main[col].std()) <= 1e-6
     ]
-    if constant_features and getattr(cfg, 'REVISION_EVENT_PATH', False):
+    if constant_features and getattr(cfg, 'REVISION_FORMAL', False):
+        pd.DataFrame({'constant_feature':constant_features,
+                      'handling':'excluded from formal PCA/K-means because variance is zero'}).to_csv(
+                          out_dir/'REVISION_CONSTANT_FEATURES.csv',index=False)
+        logger.warning('Formal Stage 7 zero-variance features excluded: %s',constant_features)
+    elif constant_features and getattr(cfg, 'REVISION_EVENT_PATH', False):
         pd.DataFrame({'constant_feature':constant_features,'handling':'retained; StandardScaler maps constant column to zero; no typology discrimination'}).to_csv(out_dir/'REVISION_CONSTANT_FEATURES.csv',index=False)
         logger.warning('Revision constant features retained with zero standardized variation: %s', constant_features)
     elif constant_features:
@@ -5774,7 +5779,10 @@ def run_stage_7(
             "Stage 7 required clustering features are constant: "
             f"{constant_features}."
         )
-    valid_cols = feat_cols
+    valid_cols = ([col for col in feat_cols if col not in constant_features]
+                  if getattr(cfg, 'REVISION_FORMAL', False) else feat_cols)
+    if len(valid_cols) < 2:
+        raise ValueError('Formal Stage 7 requires at least two varying clustering features')
     logger.info(
         "KMeans raw/log robustness check on %d required features: %s",
         len(valid_cols),
@@ -5788,6 +5796,8 @@ def run_stage_7(
             ("Pop_Density", "NRI_BUILDVALUE"),
         )
     )
+    if getattr(cfg, 'REVISION_FORMAL', False):
+        log1p_cols = [col for col in log1p_cols if col in valid_cols]
     unknown_log_cols = sorted(set(log1p_cols) - set(valid_cols))
     if unknown_log_cols:
         raise ValueError(
@@ -7074,6 +7084,24 @@ def run_formal_results(cfg):
         raise ValueError("Formal postprocessing lacks executable commit identity")
     return build_formal_results(Path(cfg.OUTPUT_DIRECTORY),
                                 executable_code_sha=executable_sha)
+
+
+def run_formal_stage_7(cfg):
+    """Original Stage 7 typology on formal 1000-sample 2pc50 mean recovery."""
+    from r1_formal_stage7 import materialize_formal_stage7_inputs
+    if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
+        raise ValueError("Formal Stage 7 requires the frozen-matrix configuration")
+    executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
+    if not executable_sha:
+        raise ValueError("Formal Stage 7 lacks executable commit identity")
+    out_dirs = make_out_dirs(cfg)
+    stage0 = run_stage_0(cfg)
+    provenance = materialize_formal_stage7_inputs(
+        output_root=Path(cfg.OUTPUT_DIRECTORY), station_ids=stage0["sub_index"],
+        tract_ids=stage0["tract_index"], tract_station_weight=stage0["W_mat"],
+        executable_code_sha=executable_sha)
+    result = run_stage_7(cfg, {}, stage0, {}, out_dirs)
+    return dict(**provenance, cluster_rows=len(result["clusters"]))
 
 
 def run_pipeline(cfg: Optional[Config] = None) -> None:
