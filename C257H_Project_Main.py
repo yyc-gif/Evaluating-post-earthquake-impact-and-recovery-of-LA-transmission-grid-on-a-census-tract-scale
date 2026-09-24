@@ -7104,6 +7104,20 @@ def run_formal_stage_7(cfg):
     return dict(**provenance, cluster_rows=len(result["clusters"]))
 
 
+def run_formal_figures(cfg):
+    """Original-entry Stage 6 displays from retained event and result archives."""
+    from r1_formal_figures import render_formal_figures
+    if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
+        raise ValueError("Formal figures require the frozen-matrix configuration")
+    executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
+    if not executable_sha:
+        raise ValueError("Formal figures lack executable commit identity")
+    stage0 = run_stage_0(cfg)
+    population, _ = get_analysis_weights(cfg, stage0)
+    return render_formal_figures(Path(cfg.OUTPUT_DIRECTORY), stage0["tract_index"],
+                                 population, stage0["W_mat"], executable_sha)
+
+
 def run_pipeline(cfg: Optional[Config] = None) -> None:
     """
     Orchestrate the end-to-end pipeline.
