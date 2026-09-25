@@ -112,7 +112,8 @@ def run():
         raise ValueError("Frozen vulnerability sequence does not match July92")
     context, decoder, hashes = execution_context(ids)
     order = decoder.order(sequence["ordered_station_ids"])
-    output = AMEND / "Trajectories"
+    # Keep Windows archive/event temporary paths below the default path limit.
+    output = AMEND / "T"
     summary_rows = []
     counts = {"written": 0, "reused": 0}
     for hazard in HAZARDS:
@@ -139,7 +140,7 @@ def run():
             if roster_hash != prior_schedule["identity"]["crew_roster_sha256"]:
                 raise ValueError("Amendment crew roster differs from retained formal roster")
             crew_keys = decoder.origins(origins)
-            folder = output / hazard / case / STRATEGY
+            folder = output / hazard / case
             for sample in range(1000):
                 stem = f"{hazard}__evaluation_{sample:04d}"
                 ds = DS[:, sample].astype("<i8", copy=False)
