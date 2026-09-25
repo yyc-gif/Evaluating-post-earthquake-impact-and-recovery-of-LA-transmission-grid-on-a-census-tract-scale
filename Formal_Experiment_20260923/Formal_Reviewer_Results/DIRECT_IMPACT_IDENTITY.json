@@ -1,0 +1,19 @@
+{
+  "status": "EXACT",
+  "paired_archive_count": 10000,
+  "direct_sequence_source": "incumbent:impact-first",
+  "compared_fields": [
+    "f",
+    "F",
+    "C",
+    "e",
+    "L_self",
+    "L_threshold",
+    "L_source",
+    "L_total",
+    "station_ids",
+    "event_time_hr"
+  ],
+  "frozen_matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+  "comparison": "numpy array_equal for every field in every matched impact-first/direct-community formal NPZ"
+}
