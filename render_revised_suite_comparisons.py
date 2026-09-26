@@ -63,7 +63,7 @@ metric_specs = [
     ("population_resolved_mass_weighted_burden_hr", "Population cumulative burden", "h"),
     ("population_T80_hr", "Population T80", "h"),
     ("hospital_mean_normalized_burden_hr", "Hospital-tract burden", "h"),
-    ("burden_Q4_hr", "Q4 absolute burden", "h"),
+    ("burden_Q4_hr", "Change in Q4 burden relative to Hospital First", "h"),
     ("L_source_population_mass_weighted_hr", "Source-path burden", "h"),
 ]
 for hazard in HAZARDS:
@@ -137,9 +137,37 @@ for hazard in HAZARDS:
 
 # Source-gate decomposition in the full eight-strategy comparison.
 gate = pd.read_csv(FORMAL / "Formal_Reviewer_Results" / "FORMAL_GATE_COMPONENTS.csv")
+v_gate = vuln_rows[(vuln_rows.mapping == "M1_UTILITY_003") &
+                   (vuln_rows.gate == "G1_BASELINE_050") &
+                   (vuln_rows.resource_scenario == "C57_D1")]
+assert len(v_gate) == 4000
+v_component_cols = ["L_self_population_mass_weighted_hr",
+                    "L_threshold_population_mass_weighted_hr",
+                    "L_source_population_mass_weighted_hr"]
+assert np.isfinite(v_gate[v_component_cols +
+                           ["L_total_population_mass_weighted_hr"]].to_numpy(float)).all()
+assert np.allclose(v_gate[v_component_cols].sum(axis=1),
+                   v_gate.L_total_population_mass_weighted_hr, atol=1e-9)
+assert np.allclose(v_gate.L_total_population_mass_weighted_hr,
+                   v_gate.population_resolved_mass_weighted_burden_hr, atol=1e-9)
+extra = []
+for hazard, rows in v_gate.groupby("hazard"):
+    assert len(rows) == 1000
+    values = rows[v_component_cols].mean()
+    extra.append({"hazard":hazard,"resource_scenario":"C57_D1",
+                  "strategy_id":"vulnerability-first",
+                  "self_mean_hr":values.iloc[0],"threshold_mean_hr":values.iloc[1],
+                  "source_mean_hr":values.iloc[2],
+                  "total_mean_hr":rows.L_total_population_mass_weighted_hr.mean()})
+gate = pd.concat([gate, pd.DataFrame(extra)], ignore_index=True)
+gate.to_csv(S3 / "LOSS_DECOMPOSITION_ALL_DISTINCT_STRATEGIES.csv",index=False)
 for hazard in HAZARDS:
     d = gate[(gate.hazard == hazard) & (gate.resource_scenario == "C57_D1")]
+    assert set(POLICIES).issubset(d.strategy_id)
     d = d.set_index("strategy_id").reindex(POLICIES)
+    cols = ["self_mean_hr", "threshold_mean_hr", "source_mean_hr", "total_mean_hr"]
+    assert np.isfinite(d[cols].to_numpy(float)).all(), hazard
+    assert np.allclose(d[cols[:3]].sum(axis=1), d.total_mean_hr, atol=1e-9), hazard
     fig, ax = plt.subplots(figsize=july.get_figsize("PANEL_FULLROW", height_cm=7.0))
     x = np.arange(len(POLICIES))
     bottom = np.zeros(len(x))
@@ -171,16 +199,22 @@ for hazard in HAZARDS:
                (source.strategy_id == "hospital-first")].set_index("tract_id")
     assert len(d) == 2315
     july.plot_map(geo.copy(), d.mean_source_loss_hr,
-                  f"{hazard}: source-path contribution, Hospital First", str(S3),
+                  f"{hazard}: source-path loss", str(S3),
                   f"vis_stage3_source_loss_map_{hazard}.png", label="Source-path loss (h)",
                   cmap="OrRd", figure_role="PANEL_MAP_TALL")
 shift = pd.read_parquet(FORMAL / "Formal_Results" / "TRACT_MAPPING_SHIFT.parquet")
+map_display_metadata = []
 for hazard in HAZARDS:
     d = shift[(shift.hazard == hazard) & (shift.strategy_id == "hospital-first")].set_index("tract_id")
     assert len(d) == 2315
     span = float(np.nanpercentile(np.abs(d.mean_M1_minus_M0_burden_hr), 99))
+    map_display_metadata.append({"panel":f"vis_mapping_shift_magnitude_{hazard}",
+                                 "display_clip":"symmetric 99th percentile of absolute paired mean difference",
+                                 "display_min_hr":-span,"display_max_hr":span,
+                                 "actual_min_hr":d.mean_M1_minus_M0_burden_hr.min(),
+                                 "actual_max_hr":d.mean_M1_minus_M0_burden_hr.max()})
     july.plot_map(geo.copy(), d.mean_M1_minus_M0_burden_hr,
-                  f"{hazard}: M1 minus July M0 tract burden", str(SENS),
+                  f"{hazard}: M1 − M0 burden", str(SENS),
                   f"vis_mapping_shift_magnitude_{hazard}.png", label="Paired burden shift (h)",
                   cmap="coolwarm", vmin=-span, vmax=span, cmap_low=0, figure_role="PANEL_MAP_TALL")
 
@@ -190,11 +224,17 @@ for reference in ("hospital-first", "impact-first"):
                      (tract_effect.reference_strategy == reference)].set_index("tract_id")
     assert len(d) == 2315
     span = float(np.nanpercentile(np.abs(d.mean_paired_delta_burden_hr), 99))
+    map_display_metadata.append({"panel":f"vis_stage6_vulnerability_effect_magnitude_vs_{reference}",
+                                 "display_clip":"symmetric 99th percentile of absolute paired mean difference",
+                                 "display_min_hr":-span,"display_max_hr":span,
+                                 "actual_min_hr":d.mean_paired_delta_burden_hr.min(),
+                                 "actual_max_hr":d.mean_paired_delta_burden_hr.max()})
     july.plot_map(geo.copy(), d.mean_paired_delta_burden_hr,
-                  f"2pc50: Vulnerability First minus {reference} burden", str(S6),
+                  f"Vulnerability First − {reference}", str(S6),
                   f"vis_stage6_vulnerability_effect_magnitude_vs_{reference}.png",
                   label="Paired mean burden difference (h)", cmap="coolwarm",
                   vmin=-span, vmax=span, cmap_low=0, figure_role="PANEL_MAP_TALL")
+pd.DataFrame(map_display_metadata).to_csv(SENS/"SPATIAL_DISPLAY_SCALE_METADATA.csv",index=False)
 
 # Formal GA histories (search mean and retained best) are the revised
 # equivalent of July's GA convergence display. Incumbent is explicit.
@@ -217,6 +257,9 @@ export(fig, S5, "vis_stage5_five_seed_convergence")
 resource = pd.read_csv(FORMAL / "Formal_Reviewer_Results" / "FORMAL_RESOURCE_EFFECTS.csv")
 vuln_resource = pd.read_parquet(FORMAL / "Equity_Amendment" / "VULNERABILITY_PRIMARY_SUMMARY.parquet")
 for metric in ("population_resolved_mass_weighted_burden_hr", "burden_Q4_hr", "L_source_population_mass_weighted_hr"):
+    readable = {"population_resolved_mass_weighted_burden_hr":"Population cumulative burden",
+                "burden_Q4_hr":"Q4 absolute burden",
+                "L_source_population_mass_weighted_hr":"Source-path cumulative burden"}[metric]
     for kind, cases, xs, xlabel in (
         ("crew", ["C29_D1", "C57_D1", "C86_D1", "C114_D1"], [29, 57, 86, 114], "Available crews"),
         ("duration", ["C57_D075", "C57_D1", "C57_D125", "C57_D150"], [.75, 1, 1.25, 1.5], "Repair-duration scale")):
@@ -244,8 +287,10 @@ for metric in ("population_resolved_mass_weighted_burden_hr", "burden_Q4_hr", "L
             st = july.STAGE6_RECOVERY_STYLE_CONFIG[s]
             ax.plot(xs, vals, marker="o", ms=2.4, color=st["color"], ls=st["ls"],
                     lw=st["lw"], label=st["label"])
-        july.style_axis(ax, title=f"2pc50: {metric.replace('_',' ')} by {kind}",
-                        xlabel=xlabel, ylabel="Cumulative burden (h)")
+        ax.set_xticks(xs, [str(n) for n in xs] if kind == "crew" else
+                      [f"{n:.2f}" for n in xs])
+        july.style_axis(ax, title=f"2pc50: {readable} — {kind} OFAT",
+                        xlabel=xlabel + " (one factor at a time)", ylabel="Cumulative burden (h)")
         lg = ax.legend(ncol=2, frameon=False); july.format_legend(lg)
         export(fig, SENS, f"vis_resource_{kind}_{metric}")
 
@@ -367,14 +412,24 @@ bench = bench[(bench.version == "NEW_20260922") &
               (bench.mapping.isin(["JULY_BASELINE_92","JULY_UTILITY_CONSTRAINED_92"]))]
 assert len(bench) == 2 and set(bench.tract_count) == {337}
 fig, ax = plt.subplots(figsize=july.get_figsize("PANEL_FULLROW", height_cm=7.0))
-for _,row in bench.iterrows():
-    ax.plot(range(3), [row.any_match,row.top1,row.top3],marker="o",ms=3,lw=1.2,
-            label="Utility-compatible M1" if "UTILITY" in row.mapping else "July M0")
-ax.set_xticks(range(3), ["Any candidate", "Top one", "Top three"])
-ax.set_ylim(.80,1.01)
-july.style_axis(ax,title="SCE public-candidate consistency (337 comparable tracts)",
-                ylabel="Agreement with represented public candidate set")
-lg=ax.legend(frameon=False);july.format_legend(lg)
+old = bench.set_index("mapping").loc["JULY_BASELINE_92"]
+new = bench.set_index("mapping").loc["JULY_UTILITY_CONSTRAINED_92"]
+for y,(metric,label) in enumerate((("any_match","Any candidate"),
+                                   ("top1","Top one"),("top3","Top three"))):
+    v0,v1 = float(old[metric]),float(new[metric])
+    ax.plot([v0,v1],[y,y],color="0.60",lw=1.0)
+    ax.scatter([v0],[y],color="#4c78a8",s=22,zorder=3,
+               label="July M0" if y==0 else None)
+    ax.scatter([v1],[y],color="#b22222",s=22,zorder=3,
+               label="Utility-compatible M1" if y==0 else None)
+    ax.text(v0-.005,y+.19,f"{v0:.1%} ({round(v0*337)})",ha="right",fontsize=july.FS_ANNOTATION)
+    ax.text(v1+.005,y+.19,f"{v1:.1%} ({round(v1*337)})",ha="left",fontsize=july.FS_ANNOTATION)
+ax.set_yticks(range(3),["Any candidate","Top one","Top three"])
+ax.set_ylim(2.48,-.48); ax.set_xlim(.82,1.01)
+ax.set_xticks([.825,.85,.875,.90,.925,.95,.975,1.0])
+july.style_axis(ax,title="SCE public candidates: 337 representable strict-SCE tracts",
+                xlabel="Fraction matching the represented candidate set")
+lg=ax.legend(frameon=False,loc="lower left");july.format_legend(lg)
 export(fig,SENS,"vis_sce_candidate_benchmark")
 
 # Cutoff is an ordered sparsification decision. Draw the two mapping families
@@ -414,3 +469,100 @@ july.style_axis(ax,title="Source-path loss concentration by hazard",
                 ylabel="Mean share of source-path cumulative burden")
 lg=ax.legend(frameon=False);july.format_legend(lg)
 export(fig,SENS,"vis_dynamic_source_loss_concentration")
+
+# Gate alternatives are frozen offline evaluations of the same Hospital-first
+# trajectories. These four bars are alternative gate assumptions, not the
+# additive components of the production gate shown in Stage 3.
+offline = pd.read_parquet(FORMAL/"Formal_Offline_Evaluation"/
+                          "2pc50__C57_D1__hospital-first__SUMMARY.parquet")
+gate_ids = ["G0_NO_GATE","G2_RELAXED_005","G1_BASELINE_050","G3_STRICT_075"]
+gate_names = ["G0: no gate","G2: threshold 0.05","G1: production 0.50",
+              "G3: threshold 0.75"]
+g = offline[(offline.mapping=="M1_UTILITY_003") &
+            (offline.comparison_domain=="mapping_native_domain") &
+            (offline.gate.isin(gate_ids))]
+assert len(g)==4000 and all(g.groupby("gate").size().reindex(gate_ids)==1000)
+gm = g.groupby("gate").population_resolved_mass_weighted_burden_hr.agg(["mean","median"])
+gm = gm.reindex(gate_ids)
+fig,ax=plt.subplots(figsize=july.get_figsize("PANEL_FULLROW",height_cm=7.0))
+ax.bar(np.arange(4),gm["mean"],color=["#4c78a8","#72b7b2","#b22222","#f39c34"],
+       width=.55,edgecolor="0.35",linewidth=.5)
+ax.set_xticks(np.arange(4),gate_names)
+july.style_axis(ax,title="2pc50: gate assumption and community burden",
+                ylabel="Population cumulative burden (h)")
+export(fig,SENS,"vis_gate_robustness_2pc50_hospital_first")
+gm.reset_index().to_csv(SENS/"GATE_ROBUSTNESS_DISPLAY.csv",index=False)
+
+# Common positive-mass 320-tract comparison: the M3 candidate-supported map
+# never becomes a full-region mapping or production decision.
+maps=["M0_JULY_003","M1_UTILITY_003","M3_SCE_SUPPORTED"]
+m=offline[(offline.comparison_domain=="SCE_common_positive_support") &
+          (offline.gate=="G1_BASELINE_050") & (offline.mapping.isin(maps))]
+assert len(m)==3000 and all(m.groupby("mapping").size().reindex(maps)==1000)
+assert set(m.resolved_tract_count)=={320}
+mm=m.groupby("mapping").population_resolved_mass_weighted_burden_hr.agg(["mean","median"])
+mm=mm.reindex(maps)
+fig,ax=plt.subplots(figsize=july.get_figsize("PANEL_FULLROW",height_cm=7.0))
+ax.scatter(range(3),mm["mean"],color=["#4c78a8","#b22222","#72b7b2"],s=30)
+ax.set_xticks(range(3),["July M0","Utility M1","SCE-supported M3"])
+july.style_axis(ax,title="SCE common-support recovery: 320 tracts",
+                ylabel="Population cumulative burden (h)")
+export(fig,SENS,"vis_sce_common320_mapping_outcomes")
+mm.reset_index().to_csv(SENS/"SCE_COMMON320_MAPPING_OUTCOMES.csv",index=False)
+
+# The reviewer-facing trade-off figure keeps the paired burden differences,
+# population classification, and system/hospital costs in separate panels.
+eq = vuln[(vuln.hazard=="2pc50") &
+          (vuln.reference_strategy=="hospital-first") &
+          (vuln.resource_scenario=="C57_D1")].set_index("metric")
+classes=pd.read_csv(FORMAL/"Equity_Amendment"/
+                    "VULNERABILITY_CLASSIFICATION_POPULATION.csv")
+classes=classes[(classes.hazard=="2pc50") &
+                (classes.reference_strategy=="hospital-first") &
+                (classes.classification_scope=="mean_paired_tract_effect") &
+                (classes.quartile.isin(["all","Q4"]))]
+assert len(classes)==8
+fig=plt.figure(figsize=july.get_figsize("COMPOSITE_FULL_DEFAULT",height_cm=13.0))
+gs=fig.add_gridspec(2,2,height_ratios=[1.15,1],hspace=.52,wspace=.47)
+ax_a=fig.add_subplot(gs[0,:]); ax_b=fig.add_subplot(gs[1,0]); ax_c=fig.add_subplot(gs[1,1])
+group_keys=[f"burden_Q{i}_hr" for i in range(1,5)]
+for i,key in enumerate(group_keys):
+    row=eq.loc[key]; v=float(row.paired_mean_difference)
+    ax_a.plot([row.bootstrap_ci_low,row.bootstrap_ci_high],[i,i],
+              color="#b22222" if v>0 else "#4c78a8",lw=1.2)
+    ax_a.plot(v,i,"o",color="#b22222" if v>0 else "#4c78a8",ms=3)
+ax_a.axvline(0,color="0.4",ls="--",lw=.6)
+ax_a.set_yticks(range(4),["Q1","Q2","Q3","Q4"]); ax_a.invert_yaxis()
+july.style_axis(ax_a,title="A  Group burden change",
+                xlabel="Vulnerability First − Hospital First (h); 95% paired bootstrap CI")
+colors={"improved":"#4c78a8","near-zero":"#bdbdbd","worsened":"#b22222"}
+for i,scope in enumerate(["all","Q4"]):
+    row=classes[classes.quartile==scope].set_index("classification")
+    left=0
+    for label in ["improved","near-zero","worsened"]:
+        frac=float(row.loc[label,"population_fraction"])
+        ax_b.barh(i,frac,left=left,height=.45,color=colors[label],
+                  label=label.title() if i==0 else None)
+        left+=frac
+ax_b.set_yticks([0,1],["All tracts","Q4"]);ax_b.invert_yaxis();ax_b.set_xlim(0,1)
+july.style_axis(ax_b,title="B  Population by tract effect",
+                xlabel="Population share (±1 h practical threshold)")
+lg=ax_b.legend(ncol=3,frameon=False,loc="upper center",bbox_to_anchor=(.5,-.23))
+july.format_legend(lg)
+cost=[("population_resolved_mass_weighted_burden_hr","Pop. burden"),
+      ("population_T80_hr","Pop. T80"),
+      ("hospital_mean_normalized_burden_hr","Hospital burden"),
+      ("absolute_Q4_minus_Q1_hr","|Q4–Q1| gap")]
+for i,(key,label) in enumerate(cost):
+    row=eq.loc[key]; v=float(row.paired_mean_difference)
+    ax_c.plot([row.bootstrap_ci_low,row.bootstrap_ci_high],[i,i],
+              color="#b22222" if v>0 else "#4c78a8",lw=1.2)
+    ax_c.plot(v,i,"o",color="#b22222" if v>0 else "#4c78a8",ms=3)
+ax_c.axvline(0,color="0.4",ls="--",lw=.6)
+ax_c.set_yticks(range(4),[x[1] for x in cost]);ax_c.invert_yaxis()
+july.style_axis(ax_c,title="C  System and hospital costs",
+                xlabel="Paired change (h); 95% bootstrap CI")
+export(fig,S6,"vis_stage6_vulnerability_tradeoff_vs_hospital_first")
+eq.loc[group_keys+[x[0] for x in cost]].reset_index().to_csv(
+    S6/"VULNERABILITY_TRADEOFF_PAIRED_DISPLAY.csv",index=False)
+classes.to_csv(S6/"VULNERABILITY_TRADEOFF_CLASSIFICATION_DISPLAY.csv",index=False)

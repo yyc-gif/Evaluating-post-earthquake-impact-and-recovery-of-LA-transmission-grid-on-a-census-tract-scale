@@ -47,9 +47,28 @@ CANDIDATE_SOURCES = {
     "Candidate_S21_Crew_Base_Locations":"Stage 4 Output_expanded/vis_stage4_crew_bases_map",
 }
 
+def hash_file(path):
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for block in iter(lambda: f.read(1024*1024), b""):
+            h.update(block)
+    return h.hexdigest()
+
 stage_images = [p for folder in [*STAGES, SENS] for p in sorted(folder.glob("vis_*.png"))]
 candidate_images = [*sorted(MAIN.glob("Candidate_*.png")), *sorted(SUPP.glob("Candidate_*.png"))]
-images = stage_images + candidate_images
+candidate_roles = {}
+unmapped_candidates = []
+for candidate in candidate_images:
+    source = CANDIDATE_SOURCES.get(candidate.stem)
+    if source is None:
+        unmapped_candidates.append(candidate)
+        continue
+    source_path = SUITE / (source + ".png")
+    assert source_path.is_file(), (candidate, source_path)
+    assert hash_file(source_path) == hash_file(candidate), (candidate, source_path)
+    candidate_roles.setdefault(source_path, []).append(
+        ("Main" if candidate.parent == MAIN else "Supplement", candidate.stem))
+images = stage_images + unmapped_candidates
 assert images
 
 pdf = fitz.open()
@@ -66,9 +85,17 @@ for i, path in enumerate(images, start=1):
                                (841.89, 595.28) if w / h > 1.15 else
                                (595.28, 841.89))
     page = pdf.new_page(width=page_width, height=page_height)
-    page.insert_textbox(fitz.Rect(24, 14, page_width-24, 45), rel,
+    roles = candidate_roles.get(path, [])
+    main_names=[name for role,name in roles if role == "Main"]
+    supp_names=[name for role,name in roles if role == "Supplement"]
+    candidate_note = ("Main candidate: " + ("yes: "+", ".join(main_names) if main_names else "no")
+                      + " | Supplement candidate: " +
+                      ("yes: "+", ".join(supp_names) if supp_names else "no"))
+    page.insert_textbox(fitz.Rect(24, 12, page_width-24, 27), rel,
                         fontname="hebo", fontsize=8, color=(.12,.12,.12))
-    box = fitz.Rect(18, 52, page_width-18, page_height-20)
+    page.insert_textbox(fitz.Rect(24, 28, page_width-24, 48), candidate_note,
+                        fontsize=7, color=(.32,.32,.32))
+    box = fitz.Rect(18, 53, page_width-18, page_height-20)
     scale = min(box.width/w, box.height/h)
     pw, ph = w*scale, h*scale
     x, y = box.x0+(box.width-pw)/2, box.y0+(box.height-ph)/2
@@ -77,13 +104,6 @@ for i, path in enumerate(images, start=1):
 pdf.set_toc(toc)
 pdf.save(SUITE / "FIGURE_INDEX.pdf", garbage=4, deflate=True)
 pdf.close()
-
-def hash_file(path):
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for block in iter(lambda: f.read(1024*1024), b""):
-            h.update(block)
-    return h.hexdigest()
 
 def origin(path):
     rel = path.relative_to(SUITE)

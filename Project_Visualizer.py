@@ -886,6 +886,8 @@ def plot_map(
         cmap=truncated_cmap,
         vmin=vmin,
         vmax=vmax,
+        edgecolor="#f4f4f4",
+        linewidth=0.06,
         missing_kwds={
             "color": "lightgrey",
             "edgecolor": "none",
@@ -1247,13 +1249,14 @@ def vis_stage1(gdf):
                     figure_role="PANEL_MAP_TALL",
                 )
 
-                # Distribution: histogram + KDE
+                # Fixed bins retain the boundary pile-up without a KDE spike.
                 fig, ax = plt.subplots(figsize=get_figsize("PANEL_ASYM_LEFT"))
                 sns.histplot(
                     supply.dropna(),
-                    bins=np.linspace(0, 1, 21),
-                    stat="density",
-                    kde=True,
+                    bins=(np.linspace(0, .03, 13) if scen == "2pc50"
+                          else np.linspace(0, 1, 21)),
+                    stat="count",
+                    kde=False,
                     color="#e41a1c",
                     edgecolor="black",
                     alpha=0.6,
@@ -1263,9 +1266,15 @@ def vis_stage1(gdf):
                     ax,
                     title=scen,
                     xlabel="Mean Supply (0-1)",
-                    ylabel="Density",
+                    ylabel="Tracts",
                 )
-                ax.set_xlim(0.0, 1.0)
+                ax.set_xlim(0.0, .03 if scen == "2pc50" else 1.0)
+                if scen == "2pc50":
+                    assert float(supply.max()) <= .03
+                    zero_count = int((supply == 0).sum())
+                    ax.text(.98,.94,f"{zero_count:,} of {len(supply):,} tracts at zero",
+                            transform=ax.transAxes,ha="right",va="top",
+                            fontsize=FS_ANNOTATION)
                 save_plot(fig, stage_dir, f"vis_stage1_hist_supply_{scen}.png")
                 plt.close(fig)
             else:
@@ -1312,11 +1321,11 @@ def vis_stage1(gdf):
 # ==============================================================================
 def vis_stage2_topology_with_tracts_latlon():
     """
-    High-voltage transmission topology over the City of Los Angeles (lon/lat):
+    High-voltage transmission topology over the configured study area (lon/lat):
 
     Layers:
-      - City boundary polygon (CITY_BOUNDARY_SHP) as clip/extent reference
-      - Original CEC transmission lines (clipped to city bbox)
+      - Configured boundary polygon (CITY_BOUNDARY_SHP) as clip/extent reference
+      - Original CEC transmission lines (clipped to the boundary bbox)
       - Stage 2 simplified topology edges (CEC_GRAPH_EDGES_CSV)
       - CEC substations (DEVICES_CSV), with robust ID matching
     """
@@ -1393,7 +1402,9 @@ def vis_stage2_topology_with_tracts_latlon():
         print(f"   ❌ Match Failed. Max overlap: {max_overlap}")
         return
 
-    print(f"   ✅ Smart Match: Using column '{best_col}' (Matches {max_overlap} edges)")
+    # ``max_overlap`` counts distinct IDs in the edge *u* column, not edges.
+    # The expanded graph has 73 distinct u IDs but 318 retained edges.
+    print(f"   ID match: {best_col}; {max_overlap} distinct u-endpoint IDs")
     devices["id_match"] = devices[best_col].apply(_canonical_substation_key_value)
 
     # Clean edge endpoint IDs for mapping
@@ -1419,7 +1430,13 @@ def vis_stage2_topology_with_tracts_latlon():
     edf["lat_v"] = edf["v_clean"].map(lat_map)
     edf["lon_v"] = edf["v_clean"].map(lon_map)
 
+    input_edge_count = len(edf)
     edf = edf.dropna(subset=["lat_u", "lon_u", "lat_v", "lon_v"])
+    print(f"   Drawable topology edges: {len(edf)} / {input_edge_count}")
+    if input_edge_count == 318 and len(devices) == 92:
+        assert len(edf) == 318, "Expanded Stage 2 map lost modeled edges"
+        assert len(set(edf.u_clean) | set(edf.v_clean)) == 92, \
+            "Expanded Stage 2 map lost modeled stations"
     if edf.empty:
         print("   [Error] No edges with valid coordinates.")
         return
@@ -1472,7 +1489,7 @@ def vis_stage2_topology_with_tracts_latlon():
         )
     )
 
-    # City boundary
+    # Configured study-area boundary
     city.plot(
         ax=ax,
         facecolor="none",
@@ -1526,7 +1543,7 @@ def vis_stage2_topology_with_tracts_latlon():
             seen.add(l)
             uniq.append((h, l))
 
-    # Viewport based on city bbox with padding
+    # Viewport based on the configured boundary bbox with padding
     dx, dy = xmax - xmin, ymax - ymin
     ax.set_xlim(xmin - 0.02 * dx, xmax + 0.02 * dx)
     ax.set_ylim(ymin - 0.02 * dy, ymax + 0.02 * dy)
@@ -2249,11 +2266,12 @@ def vis_stage3(gdf):
                     figure_role=STAGE3_MAP_FIGURE_ROLE,
                 )
 
-                # Histogram + KDE
+                # Two-hour bins are held fixed across hazards for T50/T80.
                 fig, ax = plt.subplots(figsize=get_figsize("PANEL_ASYM_LEFT"))
                 if metric in {"T50", "T80"}:
-                    bins = _stage3_fixed_bins(df[metric], bin_width=0.1)
-                    sns.histplot(df[metric], bins=bins, kde=True, ax=ax)
+                    bins = np.arange(0.0, 50.0, 2.0)
+                    sns.histplot(df[metric], bins=bins, kde=False, ax=ax)
+                    ax.set_xlim(0, 48)
                 else:
                     sns.histplot(df[metric], bins=30, kde=True, ax=ax)
                 style_axis(ax, title=scen, xlabel=metric_label, ylabel="Count")
@@ -3322,6 +3340,8 @@ def _stage6_plot_single_scenario_recovery_curve(
     title_suffix_override: str | None = None,
     output_slug_override: str | None = None,
     interval_by_key: dict | None = None,
+    ylim_override: tuple[float, float] | None = None,
+    xlim_override: float | None = None,
 ) -> None:
     """
     Plot one Stage 6 system-recovery panel from reconstructed curve inputs.
@@ -3394,8 +3414,8 @@ def _stage6_plot_single_scenario_recovery_curve(
         title_size=FS_TITLE,
         title_weight="semibold",
     )
-    ax.set_xlim(0, limit_t)
-    ax.set_ylim(-0.02, 1.05)
+    ax.set_xlim(0, xlim_override if xlim_override is not None else limit_t)
+    ax.set_ylim(*(ylim_override or (-0.02, 1.05)))
     ax.grid(True, linestyle="--", alpha=0.45)
 
     if has_plotted:

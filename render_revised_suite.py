@@ -232,6 +232,74 @@ pd.DataFrame(group_records, columns=["hazard", "strategy_id", "group", "time_hr"
              "mean_availability", "p05_availability", "p95_availability"]).to_csv(
     STAGE6 / "GROUP_EVENT_STATE_DISPLAY_CURVES.csv", index=False)
 
+# Recover July's two actual network metrics from frozen event-state functional
+# flags. Mean station functionality above is a distinct diagnostic. An hourly
+# display grid does not change event-exact recovery or any formal statistic.
+from scipy.sparse.csgraph import connected_components
+edges = pd.read_csv(ROOT / "Data" / "substation_graph_CEC_edges_expanded.csv",
+                    dtype={"u":str,"v":str})
+assert len(edges)==318 and len(station_ids)==92
+adj = np.zeros((92,92),dtype=np.uint8)
+for row in edges.itertuples(index=False):
+    u,v=ci[row.u],ci[row.v]
+    adj[u,v]=adj[v,u]=1
+assert int(adj.sum()/2)==318
+assert connected_components(sparse.csr_matrix(adj),directed=False)[0]==1
+topology_cache = {}
+def july_network_metrics(flags):
+    key=np.packbits(flags.astype(np.uint8)).tobytes()
+    if key in topology_cache:
+        return topology_cache[key]
+    active=np.flatnonzero(flags)
+    if not len(active):
+        result=(0.0,0.0)
+    else:
+        sub=adj[np.ix_(active,active)]
+        _,labels=connected_components(sparse.csr_matrix(sub),directed=False)
+        counts=np.bincount(labels)
+        largest=np.flatnonzero(labels==counts.argmax())
+        inside=sub[np.ix_(largest,largest)]
+        result=(float(len(largest)/92),float(inside.sum()/len(largest)))
+    topology_cache[key]=result
+    return result
+
+net_grid=np.arange(481,dtype=float)
+network_records=[]; network_curves={"lcc":{},"degree":{}}
+for strategy in ["unconstrained",*POLICIES]:
+    folder = (FORMAL / "Equity_Amendment" / "T" / "2pc50" / "C57_D1"
+              if strategy=="vulnerability-first" else
+              FORMAL / "Formal_Trajectories" / "2pc50" / "C57_D1" / strategy)
+    paths=sorted(folder.glob("*.npz"))
+    assert len(paths)==1000,(strategy,len(paths))
+    sums=np.zeros((481,2))
+    for path in paths:
+        with np.load(path) as z:
+            assert list(z["station_ids"].astype(str))==station_ids
+            ix=np.clip(np.searchsorted(z["event_time_hr"],net_grid,side="right")-1,
+                       0,len(z["event_time_hr"])-1)
+            needed=np.unique(ix)
+            event_values={int(j):july_network_metrics(z["F"][j]) for j in needed}
+            sums+=np.array([event_values[int(j)] for j in ix])
+    mean=sums/1000
+    key="S3_Mean" if strategy=="unconstrained" else strategy
+    network_curves["lcc"][key]=pd.Series(mean[:,0],index=net_grid)
+    network_curves["degree"][key]=pd.Series(mean[:,1],index=net_grid)
+    network_records.extend((strategy,int(t),float(a),float(b)) for t,(a,b) in zip(net_grid,mean))
+    print("network topology display 2pc50",strategy,"cached states",len(topology_cache),flush=True)
+pd.DataFrame(network_records,columns=["strategy_id","time_hr","mean_lcc_fraction",
+                                      "mean_lcc_average_degree"]).to_csv(
+    STAGE6/"NETWORK_TOPOLOGY_DISPLAY_CURVES_2pc50.csv",index=False)
+assert set(network_curves["lcc"])==set(["S3_Mean",*POLICIES])
+for metric,ylabel,title,ylim in (
+    ("lcc","Largest connected component / 92","functional-network LCC recovery",(-.02,1.05)),
+    ("degree","Average degree within largest component","functional-network degree recovery",
+     (0,float(max(s.max() for s in network_curves["degree"].values())*1.06)))):
+    july._stage6_plot_single_scenario_recovery_curve(
+        "2pc50",network_curves[metric],"Population",str(STAGE6),pd.Index(net_grid),
+        event_step=True,ylabel_override=ylabel,title_suffix_override=title,
+        output_slug_override=f"topology_{metric}_all_strategies",ylim_override=ylim,
+        xlim_override=120 if metric=="degree" else None)
+
 
 # Stage 7: formal inputs use the July Stage-7 schema; invoke that plotting
 # family directly to retain the feature, profile, PCA, cluster and continuous

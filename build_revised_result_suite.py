@@ -179,11 +179,28 @@ write_df(curves,'Stage 6 Output_expanded/ALL_DISTINCT_STRATEGY_RECOVERY_CURVES.c
 # July visualization functions and the formal comparison renderer own all panels.
 import subprocess
 import Project_Visualizer as july
+import Project_Visualizer_expanded as july_expanded
 for name in ('impact_centrality_substations.csv','percolation_curve_impact.csv','percolation_curve_random.csv'):
  copy(FORMAL/'Stage 2 Output_expanded'/name,'Stage 2 Output_expanded/'+name)
+july_expanded.configure_namespace(july.__dict__)
 july.OUTPUT_ROOT=str(SUITE)
+station_file = pd.read_csv(july.DEVICES_CSV)
+edge_file = pd.read_csv(july.CEC_GRAPH_EDGES_CSV)
+tract_file = pd.read_csv(ROOT/'Data/Tracts_Within_Expanded_Area.csv')
+assert len(station_file) == station_file.HIFLD_ID.nunique() == 92
+assert len(edge_file) == 318
+assert len(set(edge_file.u.astype(str)) | set(edge_file.v.astype(str))) == 92
+assert len(tract_file) == tract_file.GEOID.nunique() == 2315
+assert 'expanded_boundary' in str(july.CITY_BOUNDARY_SHP)
 july.apply_publication_style()
 july.vis_stage2()
+for name in ('impact','random','degree','betweenness_centrality','closeness_centrality'):
+ percolation = ('percolation_curve_' if name in ('impact','random') else 'exploratory_percolation_curve_')+name+'.csv'
+ curve = pd.read_csv(SUITE/'Stage 2 Output_expanded'/percolation)
+ assert int(curve.nodes_removed.iloc[0]) == 0 and int(curve.lcc_size.iloc[0]) == 92
+ assert np.isclose(curve.lcc_fraction.iloc[0],1), (name,curve.iloc[0].to_dict())
+ assert np.array_equal(curve.nodes_removed.to_numpy(), np.arange(93)), name
+ assert np.allclose(curve.lcc_fraction.to_numpy(),curve.lcc_size.to_numpy()/92), name
 for name in ('vis_stage4_crew_bases_map','vis_stage4_logistics_heatmap_base_to_task_full','vis_stage4_logistics_heatmap_full'):
  for ext in ('.png','.pdf'):
   src=JULY/'Stage 4 Output_expanded'/(name+ext)
