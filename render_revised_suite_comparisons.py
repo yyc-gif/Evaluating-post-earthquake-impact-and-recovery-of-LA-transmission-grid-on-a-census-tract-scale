@@ -432,11 +432,10 @@ july.style_axis(ax,title="SCE public candidates: 337 representable strict-SCE tr
 lg=ax.legend(frameon=False,loc="lower left");july.format_legend(lg)
 export(fig,SENS,"vis_sce_candidate_benchmark")
 
-# Cutoff is an ordered sparsification decision. Draw the two mapping families
-# separately, using the saved paired outcome shift from their own 3% baseline.
+# Production M1 cutoff sensitivity, with the same fixed decision and samples.
 mapping_effects=pd.read_csv(FORMAL/"Formal_Reviewer_Results"/"FORMAL_MAPPING_EFFECTS.csv")
 fig,ax=plt.subplots(figsize=july.get_figsize("PANEL_FULLROW",height_cm=7.0))
-for family,color in (("M0","#4c78a8"),("M1","#b22222")):
+for family,color in (("M1","#b22222"),):
     values=[]
     for comp in (f"2pc50_cutoff_{family}_none",f"2pc50_cutoff_{family}_001"):
         d=mapping_effects[(mapping_effects.comparison==comp)&
@@ -445,11 +444,11 @@ for family,color in (("M0","#4c78a8"),("M1","#b22222")):
         assert len(d)==1,(comp,len(d))
         values.append(float(d.mean_delta.iloc[0]))
     values.append(0.0)
-    ax.plot([0,.01,.03],values,marker="o",ms=3,lw=1.2,color=color,label=family)
+    ax.plot([0,.01,.03],values,marker="o",ms=3,lw=1.2,color=color,label="Utility-compatible M1")
 ax.axhline(0,color="0.4",ls="--",lw=.6)
 ax.set_xticks([0,.01,.03],["No cutoff","1%","3% baseline"])
 july.style_axis(ax,title="2pc50: cutoff effect with fixed Hospital First decision",
-                xlabel="Candidate-weight cutoff",ylabel="Paired mean burden shift from own 3% baseline (h)")
+                xlabel="Candidate-weight cutoff",ylabel="Change in population cumulative burden from M1 3% (h)")
 lg=ax.legend(frameon=False);july.format_legend(lg)
 export(fig,SENS,"vis_mapping_cutoff_response")
 
@@ -492,23 +491,6 @@ july.style_axis(ax,title="2pc50: gate assumption and community burden",
                 ylabel="Population cumulative burden (h)")
 export(fig,SENS,"vis_gate_robustness_2pc50_hospital_first")
 gm.reset_index().to_csv(SENS/"GATE_ROBUSTNESS_DISPLAY.csv",index=False)
-
-# Common positive-mass 320-tract comparison: the M3 candidate-supported map
-# never becomes a full-region mapping or production decision.
-maps=["M0_JULY_003","M1_UTILITY_003","M3_SCE_SUPPORTED"]
-m=offline[(offline.comparison_domain=="SCE_common_positive_support") &
-          (offline.gate=="G1_BASELINE_050") & (offline.mapping.isin(maps))]
-assert len(m)==3000 and all(m.groupby("mapping").size().reindex(maps)==1000)
-assert set(m.resolved_tract_count)=={320}
-mm=m.groupby("mapping").population_resolved_mass_weighted_burden_hr.agg(["mean","median"])
-mm=mm.reindex(maps)
-fig,ax=plt.subplots(figsize=july.get_figsize("PANEL_FULLROW",height_cm=7.0))
-ax.scatter(range(3),mm["mean"],color=["#4c78a8","#b22222","#72b7b2"],s=30)
-ax.set_xticks(range(3),["July M0","Utility M1","SCE-supported M3"])
-july.style_axis(ax,title="SCE common-support recovery: 320 tracts",
-                ylabel="Population cumulative burden (h)")
-export(fig,SENS,"vis_sce_common320_mapping_outcomes")
-mm.reset_index().to_csv(SENS/"SCE_COMMON320_MAPPING_OUTCOMES.csv",index=False)
 
 # The reviewer-facing trade-off figure keeps the paired burden differences,
 # population classification, and system/hospital costs in separate panels.

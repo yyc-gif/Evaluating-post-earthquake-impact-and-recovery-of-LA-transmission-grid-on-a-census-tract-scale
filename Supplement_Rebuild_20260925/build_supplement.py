@@ -95,11 +95,11 @@ add('S3b','S3 Mapping methodology and robustness','Paired M1 minus M0 outcomes b
     'Supplement_Rebuild_20260925/Tables/S3_M1_MINUS_M0_HOSPITAL_FIRST.csv',png,pdf,
     caption='Mean within-realization difference under Hospital-first, holding frozen station states and schedules fixed. Bars compare production utility-compatible M1 with submitted July M0; positive means a larger modeled metric under M1.')
 
-cut=mapping[mapping.comparison.str.contains('cutoff|SCE_common320',regex=True)].copy()
-cut.to_csv(TAB/'S3_CUTOFF_AND_COMMON320.csv',index=False)
-add('Table S3c','S3 Mapping methodology and robustness','Cutoff and SCE common-support contrasts','ALREADY_READY',mpath,
-    'Supplement_Rebuild_20260925/Tables/S3_CUTOFF_AND_COMMON320.csv',
-    notes='Formal output has cutoff/no-cutoff and common-positive-mass SCE subset; not a complete 337-tract outcome domain.')
+cut=mapping[mapping.comparison.str.contains('2pc50_cutoff_M1_',regex=True)].copy()
+cut.to_csv(TAB/'S3_M1_CUTOFF.csv',index=False)
+add('Table S3c','S3 Mapping methodology and robustness','Production M1 cutoff contrasts','ALREADY_READY',mpath,
+    'Supplement_Rebuild_20260925/Tables/S3_M1_CUTOFF.csv',
+    notes='Fixed-decision production M1 cutoff comparison: no cutoff, 1%, and 3%.')
 
 # S4 gate components, dynamic redundancy and equivalence table.
 gpath='Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_GATE_COMPONENTS.csv'

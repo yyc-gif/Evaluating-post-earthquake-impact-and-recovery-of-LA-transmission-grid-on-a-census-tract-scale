@@ -78,11 +78,19 @@ network_pdf=copy(ROOT/'Manuscript_Figures'/'panel_a_direct_links_600dpi.pdf',
  'Submission_Package/Main_Figures/Candidate_Figure_Network_Topology.pdf',kind='retained_july_figure')
 copy(ROOT/'R1_Comment1_2_External_Evidence_20260922'/'SCE_MAPPING_BENCHMARK_SUMMARY.csv',
  'Stage 2 Output_expanded/SCE_PUBLIC_CANDIDATE_BENCHMARK.csv')
-for name in ['FORMAL_MAPPING_EFFECTS.csv','FORMAL_GATE_COMPONENTS.csv','FORMAL_DYNAMIC_TOPOLOGY_SUMMARY.csv',
+def active_mapping_effects():
+ df=pd.read_csv(REV/'FORMAL_MAPPING_EFFECTS.csv')
+ return df[(df.comparison_domain=='mapping_native_domain') &
+           (df.comparison.eq('full92') |
+            df.comparison.str.startswith('2pc50_cutoff_M1_'))].copy()
+
+for name in ['FORMAL_GATE_COMPONENTS.csv','FORMAL_DYNAMIC_TOPOLOGY_SUMMARY.csv',
  'FORMAL_SOURCE_LOSS_BY_STATION.csv','FORMAL_SOURCE_LOSS_BY_TRACT.csv',
  'FORMAL_SOURCE_MAPPING_SHIFT_BY_TRACT.csv']:
  section='Stage 2 Output_expanded' if name.startswith('FORMAL_MAPPING') else 'Stage 3 Output_expanded'
  copy(REV/name,section+'/'+name)
+write_df(active_mapping_effects(),'Stage 2 Output_expanded/FORMAL_MAPPING_EFFECTS.csv',
+ [REV/'FORMAL_MAPPING_EFFECTS.csv'],'Active M0/M1 native-domain mapping comparison')
 copy(FORMAL/'Stage 4 Output_expanded'/'FULL_RULE_SEQUENCES.json','Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json')
 copy(EQ/'VULNERABILITY_FIRST_SEQUENCE.json','Stage 4 Output_expanded/VULNERABILITY_FIRST_SEQUENCE.json')
 for name in ['GA_FIVE_SEED_CONVERGENCE.csv','INCUMBENT_DIRECT_SCORES_2pc50.csv','FINAL_DIRECT_COMMUNITY_SEQUENCE.json']:
@@ -95,10 +103,14 @@ for name in ['TRACT_PAIRED_EFFECTS.parquet','TRACT_CLASSIFICATION_POPULATION.csv
  copy(FORMAL/'Formal_Results'/name,'Stage 6 Output_expanded/'+name)
 for f in (FORMAL/'Stage 7 Output_expanded').glob('*.csv'):
  copy(f,'Stage 7 Output_expanded/'+f.name)
-for name in ['FORMAL_MAPPING_EFFECTS.csv','FORMAL_GATE_COMPONENTS.csv','FORMAL_DYNAMIC_TOPOLOGY_SUMMARY.csv',
+for name in ['FORMAL_GATE_COMPONENTS.csv','FORMAL_DYNAMIC_TOPOLOGY_SUMMARY.csv',
  'FORMAL_SOURCE_LOSS_CONCENTRATION.csv','FORMAL_RESOURCE_EFFECTS.csv','FORMAL_DISTRIBUTIONAL_EFFECTS.csv',
  'FORMAL_STRATEGY_EFFECTS.csv','FORMAL_MAPPING_TRACT_CLASSES.csv']:
  copy(REV/name,'Sensitivity Output_clean/'+name)
+write_df(active_mapping_effects(),'Sensitivity Output_clean/FORMAL_MAPPING_EFFECTS.csv',
+ [REV/'FORMAL_MAPPING_EFFECTS.csv'],'Active M0/M1 native-domain mapping comparison')
+write_df(active_mapping_effects(),'Submission_Package/Tables/Table_S2_Mapping_Effects.csv',
+ [REV/'FORMAL_MAPPING_EFFECTS.csv'],'M0/M1 and production M1 cutoff comparisons only')
 for name in ['VULNERABILITY_GROUP_SUMMARY.csv','VULNERABILITY_PAIRWISE_EFFECTS.csv',
  'VULNERABILITY_CLASSIFICATION_POPULATION.csv','VULNERABILITY_RESOURCE_EFFECTS.csv']:
  copy(EQ/name,'Sensitivity Output_clean/'+name)
@@ -207,6 +219,8 @@ for name in ('vis_stage4_crew_bases_map','vis_stage4_logistics_heatmap_base_to_t
   if src.is_file(): copy(src,'Stage 4 Output_expanded/'+name+ext,kind='retained_july_static')
 for script in ('render_revised_suite.py','render_revised_suite_comparisons.py'):
  subprocess.run([sys.executable,str(ROOT/script)],check=True)
+if (REV/'FORMAL_CONNECTIVITY_STATE_SUMMARY.csv').is_file():
+ subprocess.run([sys.executable,str(ROOT/'render_connectivity_state_figures.py')],check=True)
 main_pairs={
  'Candidate_Figure_Population_Burden':'Stage 6 Output_expanded/vis_stage6_paired_population_resolved_mass_weighted_burden_hr_2pc50',
  'Candidate_Figure_T80':'Stage 6 Output_expanded/vis_stage6_paired_population_T80_hr_2pc50',
