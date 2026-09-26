@@ -99,20 +99,22 @@ for name in ['GA_FIVE_SEED_CONVERGENCE.csv','INCUMBENT_DIRECT_SCORES_2pc50.csv',
 for seed in range(42,47):
  copy(FORMAL/'Stage 5 Output_expanded'/f'GA_HISTORY_2pc50_{seed}.csv',f'Stage 5 Output_expanded/GA_HISTORY_2pc50_{seed}.csv')
 copy(EQ/'GA_METHODS_CLARIFICATION.md','Stage 5 Output_expanded/GA_METHODS_CLARIFICATION.md')
-for name in ['TRACT_PAIRED_EFFECTS.parquet','TRACT_CLASSIFICATION_POPULATION.csv']:
- copy(FORMAL/'Formal_Results'/name,'Stage 6 Output_expanded/'+name)
+tract_source=FORMAL/'Formal_Results'/'TRACT_PAIRED_EFFECTS.parquet'
+tract_display=SUITE/'Stage 6 Output_expanded'/'TRACT_PAIRED_EFFECTS.parquet'
+pd.read_parquet(tract_source).drop(columns=['mean_effect_classification'],errors='ignore').to_parquet(tract_display,index=False)
+record(tract_display,tract_source,'derived_table','Continuous paired tract burden effects; historical class label omitted')
 for f in (FORMAL/'Stage 7 Output_expanded').glob('*.csv'):
  copy(f,'Stage 7 Output_expanded/'+f.name)
 for name in ['FORMAL_GATE_COMPONENTS.csv','FORMAL_DYNAMIC_TOPOLOGY_SUMMARY.csv',
  'FORMAL_SOURCE_LOSS_CONCENTRATION.csv','FORMAL_RESOURCE_EFFECTS.csv','FORMAL_DISTRIBUTIONAL_EFFECTS.csv',
- 'FORMAL_STRATEGY_EFFECTS.csv','FORMAL_MAPPING_TRACT_CLASSES.csv']:
+ 'FORMAL_STRATEGY_EFFECTS.csv']:
  copy(REV/name,'Sensitivity Output_clean/'+name)
 write_df(active_mapping_effects(),'Sensitivity Output_clean/FORMAL_MAPPING_EFFECTS.csv',
  [REV/'FORMAL_MAPPING_EFFECTS.csv'],'Active M0/M1 native-domain mapping comparison')
 write_df(active_mapping_effects(),'Submission_Package/Tables/Table_S2_Mapping_Effects.csv',
  [REV/'FORMAL_MAPPING_EFFECTS.csv'],'M0/M1 and production M1 cutoff comparisons only')
 for name in ['VULNERABILITY_GROUP_SUMMARY.csv','VULNERABILITY_PAIRWISE_EFFECTS.csv',
- 'VULNERABILITY_CLASSIFICATION_POPULATION.csv','VULNERABILITY_RESOURCE_EFFECTS.csv']:
+ 'VULNERABILITY_RESOURCE_EFFECTS.csv']:
  copy(EQ/name,'Sensitivity Output_clean/'+name)
 copy(EQ/'NO_THRESHOLD_CONNECTIVITY_EQUIVALENCE.json','Sensitivity Output_clean/NO_THRESHOLD_CONNECTIVITY_EQUIVALENCE.json')
 

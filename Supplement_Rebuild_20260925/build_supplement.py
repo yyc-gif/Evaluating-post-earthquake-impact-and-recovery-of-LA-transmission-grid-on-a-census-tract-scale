@@ -182,12 +182,12 @@ for code,name,title in [('A','EQUITY_EFFICIENCY','Equity–efficiency tradeoff')
         f'Formal_Experiment_20260923/Equity_Amendment/Figures/{basename}.pdf',
         f'Supplement_Rebuild_20260925/Tables/S7_{basename}_SOURCE.csv',png,pdf,
         caption='Frozen 1,000-realization formal evaluation, reproduced without rerunning scheduling or recovery. Vulnerability-first is a deterministic equity-informed comparator, not an equity-optimal policy. See source CSV for plotted values.')
-for srcname in ['VULNERABILITY_GROUP_SUMMARY.csv','VULNERABILITY_PAIRWISE_EFFECTS.csv','VULNERABILITY_CLASSIFICATION_POPULATION.csv','VULNERABILITY_RESOURCE_EFFECTS.csv']:
+for srcname in ['VULNERABILITY_GROUP_SUMMARY.csv','VULNERABILITY_PAIRWISE_EFFECTS.csv','VULNERABILITY_RESOURCE_EFFECTS.csv']:
     shutil.copy2(EQUITY/srcname,TAB/f'S7_{srcname}')
-add('Table S7e','S7 Distributional and vulnerability-first','Group, paired, classification, and resource effects','ALREADY_READY',
+add('Table S7e','S7 Distributional and vulnerability-first','Group, paired continuous tract effects, and resource effects','ALREADY_READY',
     'Formal_Experiment_20260923/Equity_Amendment/',
     'Supplement_Rebuild_20260925/Tables/S7_VULNERABILITY_GROUP_SUMMARY.csv',
-    notes='Other three companion S7_VULNERABILITY_* CSVs are in the same Tables directory.')
+    notes='The paired and resource companion CSVs are in the same Tables directory; tract-effect magnitude remains continuous.')
 
 # S8 Stage 7 PCA and cluster diagnostics; no re-clustering.
 s7=FORMAL/'Stage 7 Output_expanded'

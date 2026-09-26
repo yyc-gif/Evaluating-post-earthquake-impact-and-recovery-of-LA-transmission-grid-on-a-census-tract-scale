@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
+import shutil
 from pathlib import Path
 
 import fitz
@@ -65,6 +66,12 @@ for candidate in candidate_images:
         continue
     source_path = SUITE / (source + ".png")
     assert source_path.is_file(), (candidate, source_path)
+    if hash_file(source_path) != hash_file(candidate):
+        shutil.copy2(source_path, candidate)
+        source_pdf = source_path.with_suffix(".pdf")
+        candidate_pdf = candidate.with_suffix(".pdf")
+        if source_pdf.is_file():
+            shutil.copy2(source_pdf, candidate_pdf)
     assert hash_file(source_path) == hash_file(candidate), (candidate, source_path)
     candidate_roles.setdefault(source_path, []).append(
         ("Main" if candidate.parent == MAIN else "Supplement", candidate.stem))

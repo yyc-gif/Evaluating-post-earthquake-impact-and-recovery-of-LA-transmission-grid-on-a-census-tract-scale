@@ -493,17 +493,36 @@ export(fig,SENS,"vis_gate_robustness_2pc50_hospital_first")
 gm.reset_index().to_csv(SENS/"GATE_ROBUSTNESS_DISPLAY.csv",index=False)
 
 # The reviewer-facing trade-off figure keeps the paired burden differences,
-# population classification, and system/hospital costs in separate panels.
+# continuous population-weighted tract effects, and system/hospital costs.
 eq = vuln[(vuln.hazard=="2pc50") &
           (vuln.reference_strategy=="hospital-first") &
           (vuln.resource_scenario=="C57_D1")].set_index("metric")
-classes=pd.read_csv(FORMAL/"Equity_Amendment"/
-                    "VULNERABILITY_CLASSIFICATION_POPULATION.csv")
-classes=classes[(classes.hazard=="2pc50") &
-                (classes.reference_strategy=="hospital-first") &
-                (classes.classification_scope=="mean_paired_tract_effect") &
-                (classes.quartile.isin(["all","Q4"]))]
-assert len(classes)==8
+tract_effects=pd.read_parquet(FORMAL/"Equity_Amendment"/
+                              "VULNERABILITY_TRACT_EFFECTS.parquet")
+tract_effects=tract_effects[(tract_effects.hazard=="2pc50") &
+                            (tract_effects.reference_strategy=="hospital-first")]
+assert tract_effects.tract_id.nunique()==2315
+
+def weighted_quantiles(values, weights, probabilities):
+    order=np.argsort(values,kind="stable")
+    values=np.asarray(values)[order]
+    weights=np.asarray(weights)[order]
+    cumulative=(np.cumsum(weights)-.5*weights)/weights.sum()
+    return np.interp(probabilities,cumulative,values,left=values[0],right=values[-1])
+
+distribution=[]
+for scope in ["all","Q4"]:
+    subset=tract_effects if scope=="all" else tract_effects[tract_effects.quartile=="Q4"]
+    subset=subset[np.isfinite(subset.mean_paired_delta_burden_hr) &
+                  np.isfinite(subset.population) & (subset.population>0)]
+    assert len(subset)>0
+    values=subset.mean_paired_delta_burden_hr.to_numpy()
+    weights=subset.population.to_numpy()
+    q=weighted_quantiles(values,weights,[.05,.25,.5,.75,.95])
+    distribution.append(dict(scope=scope,tract_count=len(subset),population=weights.sum(),
+                             population_weighted_mean_hr=np.average(values,weights=weights),
+                             **{f"weighted_q{p}_hr":v for p,v in zip([5,25,50,75,95],q)}))
+distribution=pd.DataFrame(distribution).set_index("scope")
 fig=plt.figure(figsize=july.get_figsize("COMPOSITE_FULL_DEFAULT",height_cm=13.0))
 gs=fig.add_gridspec(2,2,height_ratios=[1.15,1],hspace=.52,wspace=.47)
 ax_a=fig.add_subplot(gs[0,:]); ax_b=fig.add_subplot(gs[1,0]); ax_c=fig.add_subplot(gs[1,1])
@@ -517,20 +536,16 @@ ax_a.axvline(0,color="0.4",ls="--",lw=.6)
 ax_a.set_yticks(range(4),["Q1","Q2","Q3","Q4"]); ax_a.invert_yaxis()
 july.style_axis(ax_a,title="A  Group burden change",
                 xlabel="Vulnerability First − Hospital First (h); 95% paired bootstrap CI")
-colors={"improved":"#4c78a8","near-zero":"#bdbdbd","worsened":"#b22222"}
 for i,scope in enumerate(["all","Q4"]):
-    row=classes[classes.quartile==scope].set_index("classification")
-    left=0
-    for label in ["improved","near-zero","worsened"]:
-        frac=float(row.loc[label,"population_fraction"])
-        ax_b.barh(i,frac,left=left,height=.45,color=colors[label],
-                  label=label.title() if i==0 else None)
-        left+=frac
-ax_b.set_yticks([0,1],["All tracts","Q4"]);ax_b.invert_yaxis();ax_b.set_xlim(0,1)
-july.style_axis(ax_b,title="B  Population by tract effect",
-                xlabel="Population share (±1 h practical threshold)")
-lg=ax_b.legend(ncol=3,frameon=False,loc="upper center",bbox_to_anchor=(.5,-.23))
-july.format_legend(lg)
+    row=distribution.loc[scope]
+    ax_b.plot([row.weighted_q5_hr,row.weighted_q95_hr],[i,i],color="#777777",lw=1.2)
+    ax_b.plot([row.weighted_q25_hr,row.weighted_q75_hr],[i,i],color="#4c78a8",lw=5,
+              solid_capstyle="butt")
+    ax_b.plot(row.weighted_q50_hr,i,"o",color="#111111",ms=3)
+ax_b.axvline(0,color="0.4",ls="--",lw=.6)
+ax_b.set_yticks([0,1],["All tracts","Q4"]);ax_b.invert_yaxis()
+july.style_axis(ax_b,title="B  Population-weighted tract effects",
+                xlabel="Burden change (h); 5–95% and 25–75% quantiles")
 cost=[("population_resolved_mass_weighted_burden_hr","Pop. burden"),
       ("population_T80_hr","Pop. T80"),
       ("hospital_mean_normalized_burden_hr","Hospital burden"),
@@ -547,4 +562,4 @@ july.style_axis(ax_c,title="C  System and hospital costs",
 export(fig,S6,"vis_stage6_vulnerability_tradeoff_vs_hospital_first")
 eq.loc[group_keys+[x[0] for x in cost]].reset_index().to_csv(
     S6/"VULNERABILITY_TRADEOFF_PAIRED_DISPLAY.csv",index=False)
-classes.to_csv(S6/"VULNERABILITY_TRADEOFF_CLASSIFICATION_DISPLAY.csv",index=False)
+distribution.reset_index().to_csv(S6/"VULNERABILITY_TRADEOFF_CONTINUOUS_DISPLAY.csv",index=False)

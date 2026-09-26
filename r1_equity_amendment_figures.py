@@ -36,7 +36,7 @@ def source_data() -> pd.DataFrame:
     return data
 
 def save(fig, stem: str) -> None:
-    fig.savefig(OUT / f"{stem}.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / f"{stem}.png", dpi=600, bbox_inches="tight")
     fig.savefig(OUT / f"{stem}.pdf", bbox_inches="tight")
     plt.close(fig)
 
@@ -98,20 +98,24 @@ def figure_c() -> None:
     effects=pd.read_parquet(AMEND/"VULNERABILITY_TRACT_EFFECTS.parquet")
     effects=effects[effects.hazard=="2pc50"].copy()
     effects[["hazard","reference_strategy","tract_id","quartile","population",
-             "mean_paired_delta_burden_hr","probability_delta_below_zero",
-             "mean_effect_classification"]].to_csv(OUT/"FIGURE_C_SOURCE.csv",index=False)
+             "mean_paired_delta_burden_hr","probability_delta_below_zero"]].to_csv(
+                 OUT/"FIGURE_C_SOURCE.csv",index=False)
     geo=gpd.GeoDataFrame(tr[["GEOID"]].copy(),geometry=gpd.GeoSeries.from_wkt(tr.wkt_geom),crs="EPSG:4326")
     fig,axes=plt.subplots(1,2,figsize=(12,6),constrained_layout=True)
-    color={"improved":"#358bb8","near-zero":"#dfdfdf","worsened":"#d45c4a","unresolved":"#f0ca69"}
+    from matplotlib.colors import TwoSlopeNorm
+    from matplotlib.cm import ScalarMappable
+    finite=effects.mean_paired_delta_burden_hr.dropna().to_numpy()
+    bound=float(np.nanpercentile(np.abs(finite),99))
+    norm=TwoSlopeNorm(vmin=-bound,vcenter=0,vmax=bound)
     for ax,ref in zip(axes,["hospital-first","impact-first"]):
         q=geo.merge(effects[effects.reference_strategy==ref],left_on="GEOID",right_on="tract_id",how="left",validate="one_to_one")
-        q["mean_effect_classification"]=q.mean_effect_classification.fillna("unresolved")
-        q.plot(ax=ax,color=q.mean_effect_classification.map(color),linewidth=0,rasterized=True)
+        q.plot(ax=ax,column="mean_paired_delta_burden_hr",cmap="RdBu_r",norm=norm,
+               missing_kwds={"color":"#eeeeee"},linewidth=0,rasterized=True)
         ax.set_title(f"Vulnerability-first minus {LABELS[ref]}")
         ax.axis("off")
-    from matplotlib.patches import Patch
-    fig.legend([Patch(facecolor=color[k],label=k) for k in color],list(color),loc="lower center",ncol=4,bbox_to_anchor=(.5,-.01))
-    fig.suptitle("2pc50 paired-mean tract effects; ±1 h practical threshold")
+    fig.colorbar(ScalarMappable(norm=norm,cmap="RdBu_r"),ax=axes,orientation="horizontal",
+                 shrink=.7,pad=.02,label="Mean paired tract burden change (h)")
+    fig.suptitle("2pc50 paired-mean tract burden change (display clipped at 99th percentile)")
     save(fig,"FIGURE_C_TRACT_EFFECT_MAP")
 
 def figure_d(data: pd.DataFrame) -> None:
