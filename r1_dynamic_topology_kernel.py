@@ -197,3 +197,55 @@ def characterize_mask(active, source_flag, edge_u, edge_v, adjacency, degree):
             if station != removed and active[station] and source_count[station] > 0 and remaining[station] == 0:
                 metrics[station, 7] = 1
     return metrics
+
+
+@njit(cache=True)
+def station_independent_routes_mask(active, source_flag, edge_u, edge_v):
+    """Routes to any active source, allowing several routes to share a source.
+
+    Every intermediate station and physical edge has unit capacity. Active
+    source endpoints have unrestricted terminal capacity. A local source is
+    marked -1 because its own zero-length connection is not an upstream route.
+    This read-only diagnostic never enters the production gate.
+    """
+    n = len(active)
+    sink = 2*n
+    size = sink+1
+    cap = np.zeros((size,size), dtype=np.int16)
+    neighbors = np.zeros((size,size), dtype=np.int16)
+    neighbor_count = np.zeros(size, dtype=np.int16)
+    for i in range(n):
+        neighbors[i,neighbor_count[i]] = i+n
+        neighbor_count[i] += 1
+        neighbors[i+n,neighbor_count[i+n]] = i
+        neighbor_count[i+n] += 1
+        neighbors[i+n,neighbor_count[i+n]] = sink
+        neighbor_count[i+n] += 1
+        neighbors[sink,neighbor_count[sink]] = i+n
+        neighbor_count[sink] += 1
+        if active[i]:
+            cap[i,i+n] = n if source_flag[i] else 1
+            if source_flag[i]:
+                cap[i+n,sink] = n
+    for k in range(len(edge_u)):
+        u,v = edge_u[k],edge_v[k]
+        if not (active[u] and active[v]):
+            continue
+        cap[u+n,v] = 1
+        cap[v+n,u] = 1
+        neighbors[u+n,neighbor_count[u+n]] = v
+        neighbor_count[u+n] += 1
+        neighbors[v,neighbor_count[v]] = u+n
+        neighbor_count[v] += 1
+        neighbors[v+n,neighbor_count[v+n]] = u
+        neighbor_count[v+n] += 1
+        neighbors[u,neighbor_count[u]] = v+n
+        neighbor_count[u] += 1
+    routes = np.zeros(n,dtype=np.int16)
+    for station in range(n):
+        if active[station]:
+            if source_flag[station]:
+                routes[station] = -1
+            else:
+                routes[station] = _flow(cap,neighbors,neighbor_count,station+n,sink)
+    return routes

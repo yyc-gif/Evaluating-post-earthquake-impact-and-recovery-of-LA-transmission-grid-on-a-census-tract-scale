@@ -1,0 +1,26 @@
+{
+  "baseline_trajectories": 36000,
+  "classification_coverage": "100%",
+  "core_sources": 14,
+  "direct_community_repeated": false,
+  "edges": 318,
+  "event_intervals": 2427174,
+  "formal_population_burden_parity_max_abs_hr": 1.7053025658242404e-13,
+  "formal_population_burden_parity_n": 36000,
+  "horizon_hr": 480,
+  "max_production_C_difference": 0.0,
+  "max_tract_integral_abs_error": 2.2737367544323206e-13,
+  "physical_samples": 4000,
+  "production_gate_changed": false,
+  "service_share_denominator": "Time-integrated population-weighted connected modeled service; pooled shares sum component service-hours over 1000 realizations then divide by total service-hours.",
+  "source_diversity_separate_from_route_count": true,
+  "state_classes": [
+    "Disconnected",
+    "Active source",
+    "One route",
+    "Multiple routes"
+  ],
+  "stations": 92,
+  "trajectory_rerun": false,
+  "vulnerability_first_baseline_per_hazard": 1000
+}

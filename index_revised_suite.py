@@ -114,6 +114,8 @@ def origin(path):
     if stage.startswith("Stage 2"):
         return "Project_Visualizer.py::vis_stage2", "July unchanged 92-node topology/percolation"
     if stage.startswith("Stage 3"):
+        if "connected_service_composition" in name or "one_route_service_share" in name:
+            return "Project_Visualizer.py::plot_map/style_axis", "Formal_Reviewer_Results/FORMAL_CONNECTIVITY_TIME_SERIES.csv or FORMAL_CONNECTIVITY_TRACT_EFFECTS.parquet"
         if "source_loss" in name or "decomposition" in name:
             return "Project_Visualizer.py::plot_map/style_axis", "Formal_Reviewer_Results/FORMAL_SOURCE_LOSS_BY_TRACT.csv or FORMAL_GATE_COMPONENTS.csv"
         return "Project_Visualizer.py::vis_stage3", "Formal unconstrained event states and M1 integrals"
@@ -122,6 +124,8 @@ def origin(path):
     if stage.startswith("Stage 5"):
         return "Project_Visualizer.py::style_axis", "Formal Stage 5 GA_HISTORY_2pc50_{42..46}.csv"
     if stage.startswith("Stage 6"):
+        if "multiple_route_service" in name or "route_composition" in name:
+            return "Project_Visualizer.py::style_axis/STAGE6_RECOVERY_STYLE_CONFIG", "Formal_Reviewer_Results/FORMAL_CONNECTIVITY_TIME_SERIES.csv or FORMAL_CONNECTIVITY_STATE_SUMMARY.csv"
         if "recovery_curve" in name:
             return "Project_Visualizer.py::_stage6_plot_single_scenario_recovery_curve", "Formal event trajectories and M1 mapping"
         return "Project_Visualizer.py::style_axis/STAGE6_RECOVERY_STYLE_CONFIG", "Formal paired or strategy summaries"
