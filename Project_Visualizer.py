@@ -1320,7 +1320,9 @@ def vis_stage2_topology_with_tracts_latlon():
       - Stage 2 simplified topology edges (CEC_GRAPH_EDGES_CSV)
       - CEC substations (DEVICES_CSV), with robust ID matching
     """
-    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output")
+    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output_expanded")
+    if not os.path.exists(stage_dir):
+        stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output")
     if not os.path.exists(stage_dir):
         print(f"  [Warning] Directory not found: {stage_dir}")
         return
@@ -1559,7 +1561,9 @@ def vis_stage2_topology_with_tracts_latlon():
 
 def vis_stage2_top10_map():
     """Create the Stage 2 map highlighting the top-10 impact-centrality substations."""
-    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output")
+    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output_expanded")
+    if not os.path.exists(stage_dir):
+        stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output")
     if not os.path.exists(stage_dir):
         print(f"  [Warning] Directory not found: {stage_dir}")
         return
@@ -1829,7 +1833,9 @@ def vis_stage2_top10_map():
 
 def vis_stage2():
     """Generate the full Stage 2 figure suite and exploratory diagnostics."""
-    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output")
+    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output_expanded")
+    if not os.path.exists(stage_dir):
+        stage_dir = os.path.join(OUTPUT_ROOT, "Stage 2 Output")
     if not os.path.exists(stage_dir):
         print(f"  [Warning] Directory not found: {stage_dir}")
         return
@@ -2195,7 +2201,9 @@ def _stage3_auc_display_limits(values: pd.Series) -> tuple[float | None, float |
 
 def vis_stage3(gdf):
     """Produce Stage 3 tract KPI maps and distribution panels for each scenario."""
-    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 3 Output")
+    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 3 Output_expanded")
+    if not os.path.exists(stage_dir):
+        stage_dir = os.path.join(OUTPUT_ROOT, "Stage 3 Output")
     if not os.path.exists(stage_dir):
         print(f"  [Warning] Directory not found: {stage_dir}")
         return
@@ -3309,6 +3317,11 @@ def _stage6_plot_single_scenario_recovery_curve(
     weight_type: str,
     stage_dir: str,
     time_grid: pd.Index,
+    event_step: bool = False,
+    ylabel_override: str | None = None,
+    title_suffix_override: str | None = None,
+    output_slug_override: str | None = None,
+    interval_by_key: dict | None = None,
 ) -> None:
     """
     Plot one Stage 6 system-recovery panel from reconstructed curve inputs.
@@ -3338,9 +3351,11 @@ def _stage6_plot_single_scenario_recovery_curve(
 
         plotted_series.append(series)
         final_label = _stage6_adjust_curve_label(key, weight_type, style["label"])
-        ax.plot(
+        draw = ax.step if event_step else ax.plot
+        draw(
             series.index,
             series.values,
+            **({"where": "post"} if event_step else {}),
             label=final_label,
             color=style["color"],
             linestyle=style["ls"],
@@ -3348,6 +3363,11 @@ def _stage6_plot_single_scenario_recovery_curve(
             alpha=style["alpha"],
             zorder=style["zorder"],
         )
+        if interval_by_key is not None and key in interval_by_key:
+            lower, upper = interval_by_key[key]
+            ax.fill_between(series.index, lower, upper, step="post" if event_step else None,
+                            color=style["color"], alpha=0.08, linewidth=0,
+                            zorder=max(0, style["zorder"] - 1))
         has_plotted = True
 
     limit_t = _stage6_adaptive_xlim(plotted_series, time_grid)
@@ -3362,6 +3382,10 @@ def _stage6_plot_single_scenario_recovery_curve(
         if weight_type == "Population"
         else "SVI-weighted service availability"
     )
+    if ylabel_override is not None:
+        y_label = ylabel_override
+    if title_suffix_override is not None:
+        title_suffix = title_suffix_override
     style_axis(
         ax,
         title=f"{scenario_name}: {title_suffix}",
@@ -3392,6 +3416,8 @@ def _stage6_plot_single_scenario_recovery_curve(
         .replace("-", "_")
         .replace(" ", "_")
     )
+    if output_slug_override is not None:
+        weight_slug = output_slug_override
     save_plot(fig, stage_dir, f"vis_stage6_recovery_curve_{scenario_name}_{weight_slug}.png")
 
 
@@ -4468,7 +4494,9 @@ def vis_stage7_cluster_top10_impact_degree_km(
 
 def vis_stage7(gdf):
     """Generate Stage 7 PCA diagnostics, cluster maps, and tract-typology profiles."""
-    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 7 Output")
+    stage_dir = os.path.join(OUTPUT_ROOT, "Stage 7 Output_expanded")
+    if not os.path.exists(stage_dir):
+        stage_dir = os.path.join(OUTPUT_ROOT, "Stage 7 Output")
     if not os.path.exists(stage_dir):
         print(f"  [Warning] Directory not found: {stage_dir}")
         return
