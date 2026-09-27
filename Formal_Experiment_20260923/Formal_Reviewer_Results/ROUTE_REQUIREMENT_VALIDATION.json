@@ -1,0 +1,39 @@
+{
+  "k1_max_absolute_error": {
+    "station_e": 0.0,
+    "tract_service": 0.0,
+    "tract_burden": 4.263256414560601e-14,
+    "population_burden": 1.4210854715202004e-14,
+    "T50": 0.0,
+    "T80": 0.0
+  },
+  "topology": {
+    "stations": 92,
+    "edges": 318,
+    "core_sources": 14
+  },
+  "horizon_hr": 480,
+  "trajectories_regenerated": false,
+  "production_gate_changed": false,
+  "scenarios": [
+    "k1",
+    "k2",
+    "k3"
+  ],
+  "realizations_per_hazard": 1000,
+  "k2_saved_route_composition_max_absolute_error_hr": 1.4210854715202004e-13,
+  "k1_reused_formal_metric_max_absolute_error": {
+    "population_normalized_burden_hr": 1.4210854715202004e-14,
+    "population_resolved_mass_weighted_burden_hr": 1.4210854715202004e-14,
+    "hospital_burden_hr": 2.1316282072803006e-14,
+    "population_weighted_gini": 5.551115123125783e-16,
+    "signed_Q4_minus_Q1_hr": 2.842170943040401e-14,
+    "absolute_Q4_minus_Q1_hr": 2.842170943040401e-14,
+    "T50": 0.0,
+    "T80": 0.0,
+    "Q1_burden_hr": 2.1316282072803006e-14,
+    "Q2_burden_hr": 1.4210854715202004e-14,
+    "Q3_burden_hr": 1.4210854715202004e-14,
+    "Q4_burden_hr": 1.4210854715202004e-14
+  }
+}

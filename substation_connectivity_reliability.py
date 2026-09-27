@@ -12,7 +12,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from numba import njit
-from scipy.stats import lognorm
 
 from r1_dynamic_topology_kernel import _reachable, station_independent_routes_mask
 from r1_formal_dynamic_topology import _graph_arrays
@@ -73,11 +72,15 @@ def _mapped_weights(ids):
 
 
 def _fragility_probability(frame, hazard):
+    # Mirror the production five-DS probability cleanup.  The DS2 shortcut is
+    # not exact when exceedance curves cross at a station's scenario PGA.
+    from fragility_connectivity_audit import production_ds_probabilities
     vintage = "" if hazard == "2pc50" else "_old"
     pga = frame[f"PGA_{hazard}"].to_numpy(float)
-    mu = np.clip(frame[f"mu_DS2{vintage}"].to_numpy(float), 1e-6, None)
-    beta = np.clip(frame[f"beta_DS2{vintage}"].to_numpy(float), 1e-4, None)
-    p = 1 - np.nan_to_num(lognorm.cdf(pga, s=beta, scale=mu), nan=0.0, posinf=1.0, neginf=0.0)
+    mu = frame[[f"mu_DS{i}{vintage}" for i in range(1, 5)]].to_numpy(float)
+    beta = frame[[f"beta_DS{i}{vintage}" for i in range(1, 5)]].to_numpy(float)
+    _, ds = production_ds_probabilities(pga, mu, beta)
+    p = ds[:, 0] + ds[:, 1]
     if not ((p >= 0) & (p <= 1)).all():
         raise ValueError("Invalid station functionality probability")
     return p
