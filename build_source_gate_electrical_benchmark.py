@@ -205,6 +205,10 @@ def build():
             "calculated_loading_ratio": ratio,
             "capacity_margin_provider_SUBST_CAPACITY": g["subst_capacity"],
             "provider_DEFICIENCY": g["deficiency"],
+            "evidence_level": "A",
+            "direct_benchmark_eligible": True,
+            "constraint_status": status,
+            "has_simultaneous_demand_and_limit": True,
             "documented_constraint_status": status,
             "evidence_type": "Level A: same voltage-level facility/year demand, limit, loading and margin",
             "interpretation": "Planning-condition facility adequacy screen; not an earthquake overload result",
@@ -222,6 +226,10 @@ def build():
         "documented_limit": "160", "documented_limit_unit": "MVA existing Rack B capacity",
         "provider_loading_percent": "", "calculated_loading_ratio": "",
         "capacity_margin_provider_SUBST_CAPACITY": "", "provider_DEFICIENCY": "",
+        "evidence_level": "B",
+        "direct_benchmark_eligible": False,
+        "constraint_status": "constraint explicitly identified",
+        "has_simultaneous_demand_and_limit": False,
         "documented_constraint_status": "constraint explicitly identified",
         "evidence_type": "Level B: provider project document identifies existing capacity and circuit-congestion/capacity limitations without simultaneous demand",
         "interpretation": "Existing RS-Q Rack B is 160 MVA and documented as limited for future Port load growth; not an earthquake loading result",
@@ -243,10 +251,10 @@ def build():
         ["stations_with_demand", int(has_demand.sum()), "2026 SCE GNA CUMULATIVE_DEMAND"],
         ["stations_with_meaningful_capacity_or_limit", int(has_limit.sum()), "SCE facility limit or LADWP rating"],
         ["stations_with_both_demand_and_limit", int(both.sum()), "Same station; voltage-level rows retained in benchmark"],
-        ["stations_usable_for_connected_vs_constrained_benchmark", int(cross["usable_for_connected_vs_constrained_check"].eq("True").sum()) + 1, "28 SCE Level-A stations plus RS-Q provider-identified constraint"],
-        ["level_A_voltage_facility_rows_usable_for_benchmark", 34, "Provider-consistent 2026 SCE rows"],
-        ["level_B_explicit_constraint_rows_in_benchmark", 1, "RS-Q existing Rack B; no loading ratio"],
-        ["connected_and_documented_above_limit_facilities", int((bench["documented_constraint_status"] == "above documented limit").sum()), "OLINDA 66/12"],
+        ["stations_usable_for_direct_connected_vs_adequacy_benchmark", int(cross["usable_for_connected_vs_constrained_check"].eq("True").sum()), "28 SCE stations represented by Level-A rows; RS-Q excluded"],
+        ["level_A_voltage_facility_rows", int(bench["evidence_level"].eq("A").sum()), "Provider-consistent 2026 SCE rows"],
+        ["additional_level_B_constraint_context_stations", int(bench.loc[bench["evidence_level"].eq("B"), "station_id"].nunique()), "RS-Q existing Rack B; no simultaneous demand"],
+        ["connected_and_documented_above_limit_level_A_facilities", int(((bench["evidence_level"] == "A") & (bench["constraint_status"] == "above documented limit")).sum()), "OLINDA 66/12"],
         ["connected_and_provider_constraint_identified_facilities", int((bench["documented_constraint_status"] == "constraint explicitly identified").sum()), "RS-Q existing Rack B"],
         ["core_sources_with_real_injection_availability_evidence", 0, "Named identity/site evidence does not provide time-specific P availability or import bounds"],
         ["stations_without_exact_or_strong_match", int((~strong).sum()), "No conservative real-facility identity match"],
@@ -257,5 +265,11 @@ def build():
 
 if __name__ == "__main__":
     c, b, s = build()
-    print(f"crosswalk={len(c)} benchmark_rows={len(b)} benchmark_stations={b.station_id.nunique()}")
+    direct = b[b["direct_benchmark_eligible"]]
+    context = b[b["evidence_level"].eq("B")]
+    print(
+        f"crosswalk={len(c)} direct_level_A_rows={len(direct)} "
+        f"direct_benchmark_stations={direct.station_id.nunique()} "
+        f"additional_level_B_context_stations={context.station_id.nunique()}"
+    )
     print(s.to_string(index=False))
