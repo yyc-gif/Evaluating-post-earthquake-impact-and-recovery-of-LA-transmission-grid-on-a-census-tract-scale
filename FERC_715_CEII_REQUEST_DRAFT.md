@@ -1,0 +1,7 @@
+# Draft FERC Form 715 CEII request
+
+Request the most recent usable Form 715 base-case materials for LADWP and Southern California Edison within WECC, plus one earlier comparison year if available, in the native submitted load-flow format and associated data dictionaries. The requested fields are bus identifiers/types/voltage, branch and transformer endpoints/status/reactance/base/ratings, bus active-power load, generator and interchange bounds, contingency/status assumptions, and slack/reference treatment.
+
+**Statement of need.** The records are needed for academic validation of a published topological source-connectivity proxy against a compatible constrained DC load-shedding case. This function cannot be performed with public CEC topology, isolated GNA planning tables, or project ratings because those files do not share bus identities, electrical parameters, operating conditions, or a common vintage. Access is needed for the duration of the reviewer revision and reproducibility review. The work is not tied to a Commission proceeding and is not an operational study.
+
+Before submission, complete the current electronic CEII Request Form, execute the applicable General NDA for every person who will access the files, identify the requesting organization and authorized point of contact, specify WECC and the requested years/respondents, and accept storage/use restrictions. Do not send this draft without institutional authorization.
