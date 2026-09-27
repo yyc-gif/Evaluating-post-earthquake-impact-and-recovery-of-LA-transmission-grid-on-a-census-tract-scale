@@ -103,7 +103,7 @@ tract_source=FORMAL/'Formal_Results'/'TRACT_PAIRED_EFFECTS.parquet'
 tract_display=SUITE/'Stage 6 Output_expanded'/'TRACT_PAIRED_EFFECTS.parquet'
 pd.read_parquet(tract_source).drop(columns=['mean_effect_classification'],errors='ignore').to_parquet(tract_display,index=False)
 record(tract_display,tract_source,'derived_table','Continuous paired tract burden effects; historical class label omitted')
-for f in (FORMAL/'Stage 7 Output_expanded').glob('*.csv'):
+for f in (FORMAL/'Stage 7 Output_SOVI_Harmonized').glob('*.csv'):
  copy(f,'Stage 7 Output_expanded/'+f.name)
 for name in ['FORMAL_GATE_COMPONENTS.csv','FORMAL_DYNAMIC_TOPOLOGY_SUMMARY.csv',
  'FORMAL_SOURCE_LOSS_CONCENTRATION.csv','FORMAL_RESOURCE_EFFECTS.csv','FORMAL_DISTRIBUTIONAL_EFFECTS.csv',

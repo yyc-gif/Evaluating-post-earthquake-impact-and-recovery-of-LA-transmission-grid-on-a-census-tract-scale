@@ -38,6 +38,36 @@ station dependency mass. Neither is actual delivered power.
 
 ## Four-hazard results
 
+### What this adds beyond the July analysis
+
+The July Stage 1 code already drew station DS, translated DS to initial
+functionality, applied the same source-connected gate to every MC sample, and
+mapped gated functionality to tract initial supply. July Stage 3/4 also used
+the gate. Thus the present 100,000-state calculation **does not introduce a
+new fragility or propagation model**. Its `R_conn` is a higher-precision,
+station-level probability summary of a mechanism already present in July;
+`R_path` divides out the station's own functionality to isolate conditional
+source-path survival. The route-class and forced-station importance tables
+are new diagnostics of *why* the existing gate succeeds or fails. They are
+model-internal mechanism evidence, not external validation.
+
+The direct combination of fragility and source connectivity can be read as
+`R_conn_i = p_functional_i × R_path_i`. The population-dependency-weighted
+initial functional mass before the source gate, after the source gate, and
+the difference are:
+
+| Hazard | Fragility-only functional mass | Functional **and** source-connected mass | Gate reduction | Reduction / fragility-only mass |
+|---|---:|---:|---:|---:|
+| Northridge | 0.5331 | 0.4975 | 0.0356 | 6.7% |
+| SanFernando | 0.7481 | 0.7207 | 0.0274 | 3.7% |
+| LongBeach | 0.6931 | 0.6772 | 0.0159 | 2.3% |
+| 2pc50 | 0.01074 | 0.000973 | 0.00977 | 90.9% |
+
+These are initial binary functionality/connectivity-mass quantities, not
+delivered-MW estimates or the July tract-service score, which also retains
+the station's residual functionality value. The 2pc50 relative reduction is
+large partly because initial functional mass is already very small.
+
 | Hazard | Population-dependency-weighted R_path | Weighted R_conn | R_path, intact one-route stations | R_path, intact multiple-route stations | Multiple minus one route |
 |---|---:|---:|---:|---:|---:|
 | Northridge | 0.7680 | 0.4975 | 0.3955 | 0.8218 | +0.4263 |

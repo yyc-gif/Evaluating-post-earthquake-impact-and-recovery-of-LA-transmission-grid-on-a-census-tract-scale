@@ -2,6 +2,7 @@
 
 No physical sample, restoration trajectory, or Stage 1-6 routine is called.
 """
+import argparse
 from dataclasses import replace
 from pathlib import Path
 
@@ -11,10 +12,14 @@ from C257H_Project_Main import Config, run_stage_7
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--refresh-existing-stage7-only", action="store_true",
+                        help="Explicitly replace only the harmonized Stage 7 tables")
+    args = parser.parse_args()
     root = Path("Formal_Experiment_20260923")
     stage7 = root / "Stage 7 Output_SOVI_Harmonized"
-    if stage7.exists() and any(stage7.iterdir()):
-        raise FileExistsError(f"Refusing to overwrite Stage 7 result: {stage7}")
+    if stage7.exists() and any(stage7.iterdir()) and not args.refresh_existing_stage7_only:
+        raise FileExistsError(f"Refusing to overwrite Stage 7 output without explicit flag: {stage7}")
     stage7.mkdir(parents=True, exist_ok=True)
     paths = {
         "STAGE1_DIR": root / "Stage 1 Output_expanded",

@@ -5399,7 +5399,7 @@ def run_stage_7(
             df_la["tract_id"] = _normalize_tract_id(df_la["FIPS"])
             _require_valid_ids(df_la, "tract_id", "Stage 7 CDC density file", unique=True)
             df_main = df_main.merge(
-                df_la[["tract_id", "Pop_Density"]], on="tract_id",
+                df_la[["tract_id", "Pop_Density", "E_TOTPOP", "E_GROUPQ"]], on="tract_id",
                 how="left", validate="one_to_one",
             )
             _require_finite(df_main, ["Pop_Density"], "Stage 7 population density")
@@ -5540,22 +5540,46 @@ def run_stage_7(
             "Stage 7 housing-age file",
         )
         denominator = df_house[total_col].where(df_house[total_col] > 0)
-        df_house["Pre_1970_Ratio"] = (
-            df_house[old_cols].sum(axis=1) / denominator
-        )
-        housing_lookup = df_house[["tract_id", "Pre_1970_Ratio"]]
+        df_house["Housing_Units_Total"] = df_house[total_col]
+        df_house["Pre_1970_Units"] = df_house[old_cols].sum(axis=1)
+        df_house["Pre_1970_Ratio"] = df_house["Pre_1970_Units"] / denominator
+        housing_lookup = df_house[["tract_id", "Housing_Units_Total",
+                                   "Pre_1970_Units", "Pre_1970_Ratio"]]
         df_main = df_main.merge(
             housing_lookup,
             on="tract_id",
             how="left",
             validate="one_to_one",
         )
-        missing_housing = df_main["Pre_1970_Ratio"].isna()
-        if missing_housing.any():
-            df_main.loc[missing_housing, ["tract_id", "SOVI_SCORE"]].assign(
-                exclusion_reason="housing_age_ratio_unavailable"
-            ).to_csv(out_dir / "stage7_housing_excluded_tracts.csv", index=False)
-            df_main = df_main.loc[~missing_housing].copy()
+        _require_columns(m, ["population"], "Stage 7 production mapping")
+        population_by_tract = m.groupby("tract_id")["population"]
+        if population_by_tract.nunique().gt(1).any():
+            raise ValueError("Stage 7 production mapping has inconsistent tract population")
+        df_main = df_main.merge(
+            population_by_tract.first().rename("formal_population"),
+            left_on="tract_id", right_index=True, how="left", validate="one_to_one",
+        )
+        _require_finite(df_main, ["formal_population", "Housing_Units_Total"],
+                        "Stage 7 population and housing counts")
+        structural_zero_housing = df_main["Housing_Units_Total"].eq(0)
+        zero_formal_population = df_main["formal_population"].eq(0)
+        eligible_typology = (~structural_zero_housing) & (~zero_formal_population)
+        df_main["typology_status"] = np.select(
+            [structural_zero_housing, zero_formal_population, eligible_typology],
+            ["zero_housing_units_ratio_undefined", "zero_formal_population",
+             "residential_typology_eligible"], default="unresolved",
+        )
+        if df_main["typology_status"].eq("unresolved").any():
+            raise ValueError("Stage 7 typology has unresolved feature coverage")
+        full_domain_stage7 = df_main[[
+            "tract_id", "scenario", "T50", "T80", "Init_Supply", "SOVI_SCORE",
+            "E_TOTPOP", "E_GROUPQ", "formal_population", "Housing_Units_Total",
+            "Pre_1970_Units", "Pre_1970_Ratio", "typology_status",
+        ]].copy()
+        full_domain_stage7.loc[~eligible_typology].to_csv(
+            out_dir / "stage7_typology_noneligible_tracts.csv", index=False
+        )
+        df_main = df_main.loc[eligible_typology].copy()
         _require_finite(
             df_main,
             ["Pre_1970_Ratio"],
@@ -6127,6 +6151,16 @@ def run_stage_7(
     df_main = df_main[cols_keep]
 
     df_main.to_csv(out_dir / "clusters_labels_final.csv", index=False)
+    full_domain_stage7 = full_domain_stage7.merge(
+        df_main[["tract_id", "cluster", "SlowVulnerable_Hotspot_Score"]],
+        on="tract_id", how="left", validate="one_to_one",
+    )
+    if len(full_domain_stage7) != 2315 or (
+        full_domain_stage7["cluster"].notna() !=
+        full_domain_stage7["typology_status"].eq("residential_typology_eligible")
+    ).any():
+        raise AssertionError("Stage 7 full-domain typology accounting failed")
+    full_domain_stage7.to_csv(out_dir / "stage7_full_domain_tract_status.csv", index=False)
 
     logger.info("--- STAGE 7 Complete ---")
     return {"clusters": df_main}
