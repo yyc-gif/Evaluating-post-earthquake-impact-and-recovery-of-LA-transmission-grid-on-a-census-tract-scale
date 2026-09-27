@@ -22,7 +22,8 @@ BOOTSTRAP_METRICS = (
     "population_T80_hr", "population_weighted_normalized_burden_hr",
     "population_resolved_mass_weighted_burden_hr",
     "hospital_mean_normalized_burden_hr", "burden_Q4_hr",
-    "signed_Q4_minus_Q1_hr", "burden_gini", "makespan_hr",
+    "signed_Q4_minus_Q1_hr", "absolute_Q4_minus_Q1_hr",
+    "burden_gini", "makespan_hr",
     "total_travel_hr",
 )
 
@@ -136,13 +137,58 @@ def _paired_strategy_effects(primary: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def materialize_absolute_gap_pairing(root: Path) -> Path:
+    """Postprocess frozen per-realization absolute gaps; never abs(mean signed gap)."""
+    root = Path(root)
+    source = root / "Formal_Results" / "PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet"
+    primary = pd.read_parquet(source)
+    primary = primary.loc[
+        primary.resource_scenario.eq("C57_D1") &
+        primary.mapping.eq("M1_UTILITY_003") &
+        primary.gate.eq("G1_BASELINE_050") &
+        primary.comparison_domain.eq("mapping_native_domain")
+    ]
+    primary = primary.loc[~primary.strategy_id.eq("direct-community")]
+    amendment = pd.read_parquet(
+        root / "Equity_Amendment" / "VULNERABILITY_PRIMARY_SUMMARY.parquet")
+    amendment = amendment.loc[
+        amendment.resource_scenario.eq("C57_D1") &
+        amendment.mapping.eq("M1_UTILITY_003") &
+        amendment.gate.eq("G1_BASELINE_050") &
+        amendment.comparison_domain.eq("mapping_native_domain")
+    ]
+    primary = pd.concat([primary, amendment], ignore_index=True)
+    rows = []
+    for hazard, group in primary.groupby("hazard", sort=False):
+        reference = group.loc[group.strategy_id.eq("hospital-first")].set_index("realization_id")
+        if len(reference) != 1000:
+            raise ValueError("Frozen hospital-first absolute-gap reference is incomplete")
+        for strategy, candidate in group.groupby("strategy_id", sort=False):
+            if strategy == "hospital-first":
+                continue
+            candidate = candidate.set_index("realization_id").reindex(reference.index)
+            if candidate.strategy_id.isna().any():
+                raise ValueError("Unpaired absolute-gap realization")
+            delta = (candidate.absolute_Q4_minus_Q1_hr.to_numpy(float) -
+                     reference.absolute_Q4_minus_Q1_hr.to_numpy(float))
+            rows.append(dict(hazard=hazard, strategy_id=strategy,
+                             reference_strategy="hospital-first",
+                             metric="absolute_Q4_minus_Q1_hr",
+                             **_bootstrap_paired(delta)))
+    result = pd.DataFrame(rows)
+    if len(result) != 32:
+        raise ValueError("Expected eight paired scheduled/reference effects per hazard")
+    path = root / "Formal_Reviewer_Results" / "FORMAL_ABSOLUTE_GAP_PAIRED_EFFECTS.csv"
+    result.to_csv(path, index=False)
+    return path
+
+
 def _tract_effects(root: Path, prepared, population: pd.Series, quartile: pd.Series):
     integrals = root / "Formal_Offline_Evaluation"
     tracts = prepared["M1_UTILITY_003"].tract_ids
     pop = population.reindex(tracts).to_numpy(float)
     q = quartile.reindex(tracts).to_numpy(str)
     records = []
-    classification = []
     mapping_shift = []
     for hazard in HAZARDS:
         resources = ["C57_D1"]
@@ -168,38 +214,13 @@ def _tract_effects(root: Path, prepared, population: pd.Series, quartile: pd.Ser
                 n = valid.sum(axis=0)
                 mean = np.divide(np.nansum(delta, axis=0), n,
                                  out=np.full(len(tracts), np.nan), where=n>0)
-                labels = np.full(len(tracts), "near-zero", dtype="<U10")
-                labels[mean < -1] = "improved"
-                labels[mean > 1] = "worsened"
-                labels[~np.isfinite(mean)] = "unresolved"
                 records.extend(dict(hazard=hazard, resource_scenario=resource,
                                     strategy_id=strategy, reference_strategy="hospital-first",
                                     tract_id=tracts[j], quartile=q[j], population=pop[j],
                                     paired_mean_delta_burden_hr=float(mean[j]),
                                     valid_paired_realizations=int(n[j]),
-                                    probability_delta_below_zero=float(np.mean(delta[valid[:, j], j]<0)) if n[j] else np.nan,
-                                    mean_effect_classification=labels[j]) for j in range(len(tracts)))
-                for label, mask in (("improved", delta < -1), ("near-zero", abs(delta) <= 1),
-                                    ("worsened", delta > 1), ("unresolved", ~valid)):
-                    if label != "unresolved":
-                        mask &= valid
-                    represented_pop = mask @ pop
-                    classification.append(dict(hazard=hazard, resource_scenario=resource,
-                                               strategy_id=strategy, reference_strategy="hospital-first",
-                                               classification_scope="per_realization_mean",
-                                               classification=label,
-                                               mean_population=float(represented_pop.mean()),
-                                               domain_population=float(pop.sum()),
-                                               mean_population_fraction=float(represented_pop.mean()/pop.sum())))
-                for label in ("improved", "near-zero", "worsened", "unresolved"):
-                    use = labels == label
-                    classification.append(dict(hazard=hazard, resource_scenario=resource,
-                                               strategy_id=strategy, reference_strategy="hospital-first",
-                                               classification_scope="mean_paired_effect",
-                                               classification=label,
-                                               mean_population=float(pop[use].sum()),
-                                               domain_population=float(pop.sum()),
-                                               mean_population_fraction=float(pop[use].sum()/pop.sum())))
+                                    probability_delta_below_zero=float(np.mean(delta[valid[:, j], j]<0)) if n[j] else np.nan)
+                               for j in range(len(tracts)))
             if resource == "C57_D1":
                 for strategy in ["unconstrained", *SCHEDULED]:
                     path = integrals / f"{hazard}__{resource}__{strategy}__INTEGRALS.npz"
@@ -212,7 +233,7 @@ def _tract_effects(root: Path, prepared, population: pd.Series, quartile: pd.Ser
                                               tract_id=tracts[j], population=pop[j],
                                               mean_M1_minus_M0_burden_hr=float(average[j]))
                                          for j in range(len(tracts)))
-    return pd.DataFrame(records), pd.DataFrame(classification), pd.DataFrame(mapping_shift)
+    return pd.DataFrame(records), pd.DataFrame(mapping_shift)
 
 
 def build_formal_results(root: Path, *, executable_code_sha: str) -> dict:
@@ -234,23 +255,21 @@ def build_formal_results(root: Path, *, executable_code_sha: str) -> dict:
     prepared = {name: PreparedMapping.from_frame(name, w, stations, meta.population,
                  meta.SOVI_quartile, set(meta.index[meta.hospital_tract]))
                 for name, w in maps.items() if name in ("M0_JULY_003", "M1_UTILITY_003")}
-    tract, classification, mapping_shift = _tract_effects(root, prepared,
-                                                            meta.population, meta.SOVI_quartile)
+    tract, mapping_shift = _tract_effects(root, prepared,
+                                         meta.population, meta.SOVI_quartile)
     paths = {
         "primary": output / "PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",
         "paired": output / "PAIRED_STRATEGY_EFFECTS.csv",
         "tract": output / "TRACT_PAIRED_EFFECTS.parquet",
-        "classification": output / "TRACT_CLASSIFICATION_POPULATION.csv",
         "mapping_shift": output / "TRACT_MAPPING_SHIFT.parquet",
     }
     primary.to_parquet(paths["primary"], index=False)
     effects.to_csv(paths["paired"], index=False)
     tract.to_parquet(paths["tract"], index=False)
-    classification.to_csv(paths["classification"], index=False)
     mapping_shift.to_parquet(paths["mapping_shift"], index=False)
     result = dict(status="FORMAL_FROZEN_MATRIX_V1", executable_code_commit_sha=executable_code_sha,
                   primary_rows=len(primary), paired_effect_rows=len(effects),
-                  tract_effect_rows=len(tract), classification_rows=len(classification),
+                  tract_effect_rows=len(tract),
                   mapping_shift_rows=len(mapping_shift),
                   sha256={name: sha256_file(path) for name, path in paths.items()})
     (output / "FORMAL_RESULTS_INDEX.json").write_text(json.dumps(result, indent=2, sort_keys=True)+"\n", encoding="utf-8")

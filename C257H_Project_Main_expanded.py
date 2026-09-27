@@ -94,6 +94,13 @@ def main() -> None:
             result = validate_final_inputs(matrix, cfg, PROJECT_ROOT, output)
             print(json.dumps(result, indent=2, sort_keys=True))
             return
+        if args.phase == 'stage7':
+            # The formal Stage 7 has already been rerun with FEMA SOVI_SCORE.
+            # Current methodology selects those frozen tables read-only;
+            # the historical July-derived Stage 7 directory is never used.
+            from r1_stage7_harmonized import verify_harmonized_stage7
+            print(json.dumps(verify_harmonized_stage7(output), indent=2, sort_keys=True))
+            return
         executable_sha = require_dry_validation(matrix, PROJECT_ROOT, output)
         identity_path = output / ('GA_EXECUTION_IDENTITY.json' if args.phase == 'planning' else
                                   'SCHEDULE_EXECUTION_IDENTITY.json' if args.phase == 'schedule-prepass' else

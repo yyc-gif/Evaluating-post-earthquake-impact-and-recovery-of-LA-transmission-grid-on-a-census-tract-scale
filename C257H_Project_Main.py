@@ -6992,21 +6992,14 @@ def run_formal_results(cfg):
 
 
 def run_formal_stage_7(cfg):
-    """Original Stage 7 typology on formal 1000-sample 2pc50 mean recovery."""
-    from r1_formal_stage7 import materialize_formal_stage7_inputs
+    """Select the completed harmonized Stage 7 without rerunning clustering."""
+    from r1_stage7_harmonized import verify_harmonized_stage7
     if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
         raise ValueError("Formal Stage 7 requires the frozen-matrix configuration")
     executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
     if not executable_sha:
         raise ValueError("Formal Stage 7 lacks executable commit identity")
-    out_dirs = make_out_dirs(cfg)
-    stage0 = run_stage_0(cfg)
-    provenance = materialize_formal_stage7_inputs(
-        output_root=Path(cfg.OUTPUT_DIRECTORY), station_ids=stage0["sub_index"],
-        tract_ids=stage0["tract_index"], tract_station_weight=stage0["W_mat"],
-        executable_code_sha=executable_sha)
-    result = run_stage_7(cfg, {}, stage0, {}, out_dirs)
-    return dict(**provenance, cluster_rows=len(result["clusters"]))
+    return verify_harmonized_stage7(Path(cfg.OUTPUT_DIRECTORY))
 
 
 def run_formal_figures(cfg):

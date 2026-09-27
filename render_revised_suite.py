@@ -5,6 +5,15 @@ dispatches crews, evaluates source gates, or changes frozen scientific inputs.
 """
 from __future__ import annotations
 
+# Explicit Stage 7-only route before this legacy whole-suite module performs
+# any plotting or reads unrelated formal trajectories.
+if __name__ == "__main__":
+    import sys as _sys
+    if _sys.argv[1:] == ["--stage7-only"]:
+        from render_revised_stage7 import main as _render_stage7_only
+        _render_stage7_only()
+        raise SystemExit(0)
+
 import csv
 import hashlib
 import shutil

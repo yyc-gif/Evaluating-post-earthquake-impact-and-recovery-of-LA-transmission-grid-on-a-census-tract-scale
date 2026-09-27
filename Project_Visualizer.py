@@ -4930,7 +4930,11 @@ def vis_stage7(gdf):
         print("  [Skip] 'cluster' missing in Stage 7 CSV.")
         return
     hotspot_ids = _stage7_hotspot_ids(stage_dir, df)
-    svi_na_path = os.path.join(stage_dir, "stage7_svi_excluded_tracts.csv")
+    typology_na_path = os.path.join(stage_dir, "stage7_typology_noneligible_tracts.csv")
+    svi_na_path = (typology_na_path if os.path.exists(typology_na_path) else
+                   os.path.join(stage_dir, "stage7_svi_excluded_tracts.csv"))
+    na_label = ("Residential typology not applicable" if svi_na_path == typology_na_path
+                else "N/A")
     svi_na_ids = set()
     if os.path.exists(svi_na_path):
         svi_na_df = pd.read_csv(svi_na_path)
@@ -5269,7 +5273,7 @@ def vis_stage7(gdf):
             ]
 
             if not missing.empty:
-                handles.append(mpatches.Patch(color=STAGE7_NA_COLOR, label="N/A"))
+                handles.append(mpatches.Patch(color=STAGE7_NA_COLOR, label=na_label))
             if not hotspot_plot.empty:
                 handles.append(
                     mlines.Line2D(
@@ -5445,7 +5449,7 @@ def vis_stage7(gdf):
             ]
             if svi_na_ids:
                 handles.append(
-                    mpatches.Patch(color="lightgrey", label="N/A")
+                    mpatches.Patch(color="lightgrey", label=na_label)
                 )
             legend = fig.legend(
                 handles=handles,
@@ -5601,7 +5605,7 @@ def vis_stage7(gdf):
                 legend_handles = []
                 if not na_map.empty:
                     legend_handles.append(
-                        mpatches.Patch(color="lightgrey", label="N/A")
+                        mpatches.Patch(color="lightgrey", label=na_label)
                     )
                 if not top10_map.empty:
                     legend_handles.append(

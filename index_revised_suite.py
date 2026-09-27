@@ -137,7 +137,11 @@ def origin(path):
             return "Project_Visualizer.py::_stage6_plot_single_scenario_recovery_curve", "Formal event trajectories and M1 mapping"
         return "Project_Visualizer.py::style_axis/STAGE6_RECOVERY_STYLE_CONFIG", "Formal paired or strategy summaries"
     if stage.startswith("Stage 7"):
-        return "Project_Visualizer.py::vis_stage7", "Formal Stage 7 typology output"
+        return "Project_Visualizer.py::vis_stage7", "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized (FEMA NRI v1.19 SOVI_SCORE)"
+    if name.startswith(("Table_S7_", "Table_S8_", "Table_S9_")):
+        return "frozen Stage 7 table copy", "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized"
+    if name.startswith("Table_S10_"):
+        return "r1_formal_results.materialize_absolute_gap_pairing", "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_ABSOLUTE_GAP_PAIRED_EFFECTS.csv"
     if stage.startswith("Sensitivity"):
         return "Project_Visualizer.py::plot_map/style_axis", "Formal resource and mapping summaries"
     if name.startswith("Candidate_"):
