@@ -35,8 +35,21 @@ def _root(parent, i):
     return i
 
 
+def _required_path_masks(paths):
+    """Bit masks of path nodes other than each conditionally functional target."""
+    shape=(len(paths),len(paths[0]))
+    lo=np.zeros(shape,dtype=np.uint64);hi=np.zeros(shape,dtype=np.uint64)
+    for i in range(shape[0]):
+        for s in range(shape[1]):
+            for node in paths[i][s][1:]:
+                if node<64:lo[i,s] |= np.uint64(1)<<np.uint64(node)
+                else:hi[i,s] |= np.uint64(1)<<np.uint64(node-64)
+    return lo,hi
+
+
 @njit(cache=True)
-def _component_counts(states, edge_u, edge_v, adjacency, degree, source_indices, checkpoints):
+def _component_counts(states, edge_u, edge_v, adjacency, degree, source_indices,
+                      checkpoints, best_lo, best_hi, source_lo, source_hi):
     """Component masks plus conditional-on-target-functional connectivity.
 
     The other 91 independently sampled states are held fixed. If a target is
@@ -49,13 +62,25 @@ def _component_counts(states, edge_u, edge_v, adjacency, degree, source_indices,
     connected = np.zeros_like(functional)
     conditional = np.zeros_like(functional)
     individual = np.zeros((len(checkpoints),n,len(source_indices)),np.int64)
+    best_count=np.zeros_like(functional)
+    residual_count=np.zeros_like(functional)
+    source_best_count=np.zeros_like(individual)
+    source_residual_count=np.zeros_like(individual)
     fcount=np.zeros(n,np.int64); ccount=np.zeros(n,np.int64)
     conditional_count=np.zeros(n,np.int64)
     source_counts=np.zeros((n,len(source_indices)),np.int64)
+    best_hits=np.zeros(n,np.int64);residual_hits=np.zeros(n,np.int64)
+    individual_best_hits=np.zeros((n,len(source_indices)),np.int64)
+    individual_residual_hits=np.zeros((n,len(source_indices)),np.int64)
     source_bit=np.zeros(n,dtype=np.int32)
     for s in range(len(source_indices)):source_bit[source_indices[s]]=1<<s
     for sample in range(ns):
         active=states[sample]
+        active_lo=np.uint64(0);active_hi=np.uint64(0)
+        for i in range(n):
+            if active[i]:
+                if i<64:active_lo |= np.uint64(1)<<np.uint64(i)
+                else:active_hi |= np.uint64(1)<<np.uint64(i-64)
         parent=np.arange(n,dtype=np.int16)
         rank=np.zeros(n,dtype=np.int8)
         for e in range(len(edge_u)):
@@ -81,15 +106,31 @@ def _component_counts(states, edge_u, edge_v, adjacency, degree, source_indices,
                     neighbor=adjacency[i,a]
                     if active[neighbor]:mask |= source_mask[_root(parent,neighbor)]
             if mask:conditional_count[i]+=1
+            best_event=(active_lo & best_lo[i])==best_lo[i] and (active_hi & best_hi[i])==best_hi[i]
+            if best_event:
+                if not mask:raise ValueError("Fixed best-path event is not full-network event")
+                best_hits[i]+=1
+            elif mask:residual_hits[i]+=1
             for s in range(len(source_indices)):
-                if mask & (1<<s):source_counts[i,s]+=1
+                source_event=(mask & (1<<s))!=0
+                if source_event:source_counts[i,s]+=1
+                individual_best_event=(active_lo & source_lo[i,s])==source_lo[i,s] and (active_hi & source_hi[i,s])==source_hi[i,s]
+                if individual_best_event:
+                    if not source_event:raise ValueError("Individual-source best path not connected")
+                    individual_best_hits[i,s]+=1
+                elif source_event:individual_residual_hits[i,s]+=1
         if sample+1 in checkpoints:
             c=np.searchsorted(checkpoints,sample+1)
             functional[c]=fcount
             connected[c]=ccount
             conditional[c]=conditional_count
             individual[c]=source_counts
-    return functional,connected,conditional,individual
+            best_count[c]=best_hits
+            residual_count[c]=residual_hits
+            source_best_count[c]=individual_best_hits
+            source_residual_count[c]=individual_residual_hits
+    return (functional,connected,conditional,individual,best_count,
+            residual_count,source_best_count,source_residual_count)
 
 
 def best_paths(ids, eu, ev, source, r):
@@ -139,33 +180,40 @@ def static_reliability():
     exceed,ds=production_ds_probabilities(pga,mu,beta)
     r=ds[:,:2].sum(axis=1)
     analytic_best,paths,best_source_ix=best_paths(ids,eu,ev,source,r)
+    source_paths=[best_paths(ids,eu,ev,np.arange(92)==s,r) for s in source_ix]
+    per_source_path=np.column_stack([item[0] for item in source_paths])
+    best_lo,best_hi=_required_path_masks([[path] for path in paths])
+    source_lo,source_hi=_required_path_masks([
+        [item[1][i] for item in source_paths] for i in range(92)])
     rng=np.random.default_rng(np.random.SeedSequence([20260926,3,991]))
     states=rng.random((N,92))<r
-    f,c,conditional,by_source=_component_counts(states,eu,ev,adj,degree,source_ix,np.array(CHECKPOINTS))
+    (f,c,conditional,by_source,best_hits,residual_hits,
+     source_best_hits,source_residual_hits)=_component_counts(
+        states,eu,ev,adj,degree,source_ix,np.array(CHECKPOINTS),
+        best_lo[:,0],best_hi[:,0],source_lo,source_hi)
     final_f=f[-1];final_c=c[-1]
     full_raw=conditional[-1]/N
     indiv_raw=by_source[-1]/N
-    per_source_path=np.column_stack([
-        best_paths(ids,eu,ev,np.arange(92)==s,r)[0] for s in source_ix])
-    indiv=np.maximum(indiv_raw,per_source_path)
-    # A finite 100k draw cannot resolve rare paths with probability <<1/N.
-    # Enforce the known analytical best-path lower bound transparently and
-    # retain the unadjusted MC estimate/count alongside it.
-    full=np.maximum(full_raw,analytic_best)
+    # Exact fixed-path probability plus a same-draw residual event. This is
+    # unbiased under the independent station states; no estimator clipping.
+    residual=residual_hits[-1]/N
+    full=analytic_best+residual
+    individual_residual=source_residual_hits[-1]/N
+    indiv=per_source_path+individual_residual
     rconn=r*full
     best_source=np.max(indiv,axis=1)
-    empirical_best=np.array([(states[:,path[1:]].all(axis=1)).mean()
-                             for i,path in enumerate(paths)])
+    empirical_best=best_hits[-1]/N
     # Within the same draws, the best-path event is a subset of the full event.
     if np.any(full_raw+1e-15<empirical_best):raise ValueError("Best path exceeds full network in common draws")
-    analytic_delta=full-analytic_best
-    se=_confidence(full_raw,N)
-    if np.any(analytic_delta < -1e-15) or np.any(full+1e-15<best_source):
-        raise ValueError("Known path/source lower bound violated")
-    # Wilson interval for the raw conditional MC proportion, including zero hits.
+    analytic_delta=residual
+    se=_confidence(residual,N)
+    if np.any(analytic_delta < -1e-15):
+        raise ValueError("Negative common-event residual")
+    # Wilson interval applies to the sampled residual event, with exact path
+    # probability added afterward. It is not a clipped raw-MC interval.
     z=1.96
-    center=(full_raw+z*z/(2*N))/(1+z*z/N)
-    half=z*np.sqrt(full_raw*(1-full_raw)/N+z*z/(4*N*N))/(1+z*z/N)
+    center=(residual+z*z/(2*N))/(1+z*z/N)
+    half=z*np.sqrt(residual*(1-residual)/N+z*z/(4*N*N))/(1+z*z/N)
     tracts,pop,W,station_pop=mapping_matrix(ids)
     roles=pd.read_csv(ROOT/"Revision_Mapping_Gate/SOURCE_NODE_EVIDENCE_CROSSWALK.csv",dtype={"July_ID":str})
     role_by_id=roles.set_index("July_ID")["original_source_type"].to_dict()
@@ -179,12 +227,14 @@ def static_reliability():
                  R_best_path=analytic_best[i],R_best_path_common_draws=empirical_best[i],
                  R_path_full=full[i],R_path_full_MC_raw=full_raw[i],
                  R_path_full_MC_count=int(conditional[-1,i]),
-                 R_path_MC_wilson95_lower=max(analytic_best[i],center[i]-half[i]),
-                 R_path_MC_wilson95_upper=max(analytic_best[i],center[i]+half[i]),
+                 R_path_MC_wilson95_lower=analytic_best[i]+center[i]-half[i],
+                 R_path_MC_wilson95_upper=analytic_best[i]+center[i]+half[i],
                  full_MC_below_exact_path_bound=bool(full_raw[i]<analytic_best[i]),
                  R_conn_full=rconn[i],
                  Delta_R_redundancy=analytic_delta[i],
-                 Delta_R_redundancy_common_draws=full[i]-empirical_best[i],
+                 Delta_R_redundancy_common_draws=analytic_delta[i],
+                 fixed_best_path_MC_count=int(best_hits[-1,i]),
+                 residual_connection_MC_count=int(residual_hits[-1,i]),
                  R_path_mc_se=se[i],functional_draw_count=int(final_f[i]),
                  best_source=ids[best_source_ix[i]],best_path_station_ids="|".join(ids[j] for j in paths[i]),
                  best_path_length_edges=len(paths[i])-1,
@@ -210,22 +260,26 @@ def static_reliability():
     convergence=[]
     for ix,count in enumerate(CHECKPOINTS):
         path=conditional[ix]/count
+        corrected=analytic_best+residual_hits[ix]/count
         connection=r*path
         convergence.append(dict(draws=count,population_weighted_R_path=float(station_pop@path),
             population_weighted_R_conn=float(station_pop@connection),
-            max_path_mc_se=float(_confidence(path,count).max()),
-            mean_absolute_path_change_from_100k=float(np.average(abs(path-full_raw),weights=station_pop)),
-            max_absolute_path_change_from_100k=float(np.max(abs(path-full_raw)))))
+            corrected_population_weighted_R_path=float(station_pop@corrected),
+            corrected_population_weighted_R_conn=float(station_pop@(r*corrected)),
+            max_path_mc_se=float(_confidence(residual_hits[ix]/count,count).max()),
+            mean_absolute_path_change_from_100k=float(np.average(abs(corrected-full),weights=station_pop)),
+            max_absolute_path_change_from_100k=float(np.max(abs(corrected-full)))))
     old=pd.read_csv(ROOT/"SUBSTATION_CONNECTIVITY_RELIABILITY.csv",dtype={"station_id":str})
     old=old[old.hazard==HAZARD].set_index("station_id").loc[ids]
     comparison=dict(max_abs_vs_prior_100k_R_path=float(np.max(abs(full-old.R_path.to_numpy(float)))),
                     pop_weighted_abs_vs_prior_100k_R_path=float(station_pop@abs(full-old.R_path.to_numpy(float))),
-                    max_abs_vs_prior_100k_R_conn=float(np.max(abs(r*full_raw-old.R_conn.to_numpy(float)))),
+                    max_abs_vs_prior_100k_R_conn=float(np.max(abs(r*full-old.R_conn.to_numpy(float)))),
                     max_abs_unconditional_connection_check=float(np.max(abs(final_c/N-r*full_raw))),
                     raw_MC_below_exact_best_path_count=int((full_raw<analytic_best).sum()),
                     zero_conditional_connection_count=int((conditional[-1]==0).sum()),
-                    analytical_lower_bound_used_count=int((full>full_raw).sum()),
-                    common_draw_negative_delta_count=int(((full-empirical_best)<-1e-15).sum()))
+                    residual_zero_count=int((residual_hits[-1]==0).sum()),
+                    common_draw_negative_delta_count=0,
+                    negative_source_diversity_estimate_count=int(((full-best_source)<-1e-12).sum()))
     return ids,paths,source,station_pop,station,tract,pd.DataFrame(convergence),comparison
 
 
@@ -257,15 +311,13 @@ def dynamic_reliability(ids,paths,source,station_pop,*,samples=1000):
                 rows.append(dict(strategy=strategy,time_hr=time,station_id=station,
                     functional_count=int(functional[ti,i]),draws=samples,
                     P_functional=pF[ti,i],R_path_full_conditional=ppath[ti,i],
-                    R_conn_full=pconn[ti,i],R_best_fixed_path_conditional=pbestcond[ti,i],
+                    R_conn_full=pconn[ti,i],R_fixed_precomputed_best_path_conditional=pbestcond[ti,i],
                     Delta_R_redundancy_conditional=ppath[ti,i]-pbestcond[ti,i],
-                    R_best_fixed_path_unconditional=pbest[ti,i]))
+                    R_fixed_precomputed_best_path_unconditional=pbest[ti,i]))
             aggregate.append(dict(strategy=strategy,time_hr=time,
                 population_dependency_weighted_R_conn=float(station_pop@pconn[ti]),
-                population_dependency_weighted_best_path_connection=float(station_pop@pbest[ti]),
-                population_dependency_weighted_redundancy_gain=float(station_pop@(pconn[ti]-pbest[ti])),
-                population_dependency_weighted_R_path_conditional=float(station_pop@np.nan_to_num(ppath[ti])),
-                population_dependency_weighted_best_path_conditional=float(station_pop@np.nan_to_num(pbestcond[ti]))))
+                population_dependency_weighted_fixed_precomputed_best_path_connection=float(station_pop@pbest[ti]),
+                population_dependency_weighted_full_minus_fixed_precomputed_best_path=float(station_pop@(pconn[ti]-pbest[ti]))))
         print(json.dumps(dict(strategy=strategy,read_only_trajectories=samples)),flush=True)
     station=pd.DataFrame(rows);station.to_csv(ROOT/"SOURCE_TERMINAL_DYNAMIC_STATION_2PC50.csv",index=False)
     summary=pd.DataFrame(aggregate);summary.to_csv(ROOT/"SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv",index=False)
