@@ -137,6 +137,7 @@ PRETTY_VAR_NAMES = {
     "NRI_BUILDVALUE": "NRI building value",
     "log1p(NRI_BUILDVALUE)": "Log NRI building value",
     "SVI_SCORE": "SVI score",
+    "SOVI_SCORE": "FEMA NRI social-vulnerability score",
     "SVI_Composite": "SVI composite",
     "SVI_THEME1": "SVI Theme 1: Socioeconomic",
     "SVI_THEME2": "SVI Theme 2: Household composition/Disability",
@@ -150,7 +151,7 @@ STAGE7_SELECTED_THEME_FEATURES = [
     "Pop_Density",
     "NRI_RISK_SCORE",
     "NRI_BUILDVALUE",
-    "SVI_Composite",
+    "SOVI_SCORE",
 ]
 STAGE7_IJDRR_CLUSTER_PALETTE = [
     "#607D9E",  # C1 blue-grey
@@ -248,14 +249,14 @@ def _canonical_substation_key(series: pd.Series) -> pd.Series:
 
 
 def _attach_stage7_svi_score(df: pd.DataFrame) -> pd.DataFrame:
-    """Attach a compact Stage 7 SVI summary score when it is absent.
+    """Attach the FEMA NRI Stage 7 social-vulnerability score if absent.
 
     The function looks up tract-level SOVI/SVI values from the shared external
     CSV used by the visualization workflow, aligns them with the current tract
     table through canonical tract identifiers, and leaves the input unchanged
     when the enrichment source is unavailable.
     """
-    if "SVI_SCORE" in df.columns:
+    if "SOVI_SCORE" in df.columns:
         return df
 
     svi_path = DATA_DIR / "LA_Census_Tracts_SOVI_Scores_with_Identifiers.csv"
@@ -279,14 +280,14 @@ def _attach_stage7_svi_score(df: pd.DataFrame) -> pd.DataFrame:
     svi_scores = pd.to_numeric(svi_df[svi_score_col], errors="coerce")
 
     svi_map = (
-        pd.DataFrame({"_tract_key": svi_keys, "SVI_SCORE": svi_scores})
+        pd.DataFrame({"_tract_key": svi_keys, "SOVI_SCORE": svi_scores})
         .dropna(subset=["_tract_key"])
         .drop_duplicates("_tract_key", keep="first")
-        .set_index("_tract_key")["SVI_SCORE"]
+        .set_index("_tract_key")["SOVI_SCORE"]
     )
 
     merged = df.copy()
-    merged["SVI_SCORE"] = tract_keys.map(svi_map)
+    merged["SOVI_SCORE"] = tract_keys.map(svi_map)
     return merged
 
 
@@ -4802,7 +4803,7 @@ def vis_stage7(gdf):
             "Pop_Density",
             "NRI_RISK_SCORE",
             "NRI_BUILDVALUE",
-            "SVI_Composite",
+            "SOVI_SCORE",
         ]
         direction_labels = {
             ("T80", "high"): "slower recovery",
@@ -4815,8 +4816,8 @@ def vis_stage7(gdf):
             ("NRI_RISK_SCORE", "low"): "lower NRI risk",
             ("NRI_BUILDVALUE", "high"): "high value",
             ("NRI_BUILDVALUE", "low"): "low value",
-            ("SVI_Composite", "high"): "higher SVI",
-            ("SVI_Composite", "low"): "lower SVI",
+            ("SOVI_SCORE", "high"): "higher social vulnerability",
+            ("SOVI_SCORE", "low"): "lower social vulnerability",
         }
         if "cluster" not in work.columns:
             return {str(c): _stage7_cluster_display_label(c) for c in clusters_sorted}

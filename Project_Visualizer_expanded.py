@@ -200,6 +200,7 @@ def configure_namespace(namespace: dict) -> None:
     pretty_names["NRI_BUILDVALUE"] = "NRI building value"
     pretty_names["SVI_SCORE"] = "SVI score"
     pretty_names["SVI_Composite"] = "SVI composite"
+    pretty_names["SOVI_SCORE"] = "FEMA NRI social-vulnerability score"
 
     namespace["_orig_vis_stage2"] = namespace["vis_stage2"]
     namespace["_orig_vis_stage3"] = namespace["vis_stage3"]

@@ -5352,10 +5352,10 @@ def run_stage_7(
     )
 
     # ---------------------------------------------------------
-    # D. SVI & Population Density (four themes -> one composite)
+    # D. Population density and the formal NRI social-vulnerability score
     # ---------------------------------------------------------
     SVI_FILE_PATH = cfg.STAGE7_SVI_DATA_PATH
-    svi_factor_cols = ["SVI_Composite"]
+    svi_factor_cols = ["SOVI_SCORE"]
 
     if not os.path.exists(SVI_FILE_PATH):
         raise FileNotFoundError(f"Required Stage 7 SVI file not found: {SVI_FILE_PATH}")
@@ -5396,165 +5396,28 @@ def run_stage_7(
                     "Stage 7 SVI file requires E_TOTPOP and AREA_SQMI for population density."
                 )
 
-            # 1) Prefer official RPL_THEME1-4
-            theme_cols = []
-            rpl_to_theme = {
-                "RPL_THEME1": "SVI_THEME1",
-                "RPL_THEME2": "SVI_THEME2",
-                "RPL_THEME3": "SVI_THEME3",
-                "RPL_THEME4": "SVI_THEME4",
-            }
-            for rpl, svi_name in rpl_to_theme.items():
-                if rpl in df_la.columns:
-                    df_la[svi_name] = df_la[rpl]
-                    theme_cols.append(svi_name)
+            df_la["tract_id"] = _normalize_tract_id(df_la["FIPS"])
+            _require_valid_ids(df_la, "tract_id", "Stage 7 CDC density file", unique=True)
+            df_main = df_main.merge(
+                df_la[["tract_id", "Pop_Density"]], on="tract_id",
+                how="left", validate="one_to_one",
+            )
+            _require_finite(df_main, ["Pop_Density"], "Stage 7 population density")
 
-            # 2) If RPL_THEME* not available, build themes from EP_* variables
-            if not theme_cols:
-                theme1_vars = [v for v in ["EP_POV150", "EP_UNEMP", "EP_PCI", "EP_NOHSDP"] if v in df_la.columns]
-                theme2_vars = [v for v in ["EP_AGE65", "EP_AGE17", "EP_DISABL", "EP_SNGPNT"] if v in df_la.columns]
-                theme3_vars = [v for v in ["EP_MINRTY", "EP_LIMENG"] if v in df_la.columns]
-                theme4_vars = [v for v in ["EP_MUNIT", "EP_MOBILE", "EP_CROWD", "EP_NOVEH", "EP_GROUPQ", "EP_GRPQ"] if v in df_la.columns]
-
-                def build_theme(df, var_list, name, invert_vars=None):
-                    """
-                    CDC-like logic:
-                    - percentile-rank each EP_* variable
-                    - invert variables if needed (e.g., EP_PCI: higher income -> lower vulnerability)
-                    - sum ranks, then percentile-rank again for the theme score
-                    """
-                    if invert_vars is None:
-                        invert_vars = set()
-
-                    var_list = [v for v in var_list if v in df.columns]
-                    if not var_list:
-                        return False
-
-                    ranks = []
-                    for v in var_list:
-                        r = df[v].rank(pct=True)
-                        if v in invert_vars:
-                            r = 1.0 - r
-                        ranks.append(r)
-
-                    theme_sum = pd.concat(ranks, axis=1).sum(axis=1)
-                    df[name + "_SUM"] = theme_sum
-                    df[name] = theme_sum.rank(pct=True)
-                    return True
-
-                if build_theme(df_la, theme1_vars, "SVI_THEME1", invert_vars={"EP_PCI"}):
-                    theme_cols.append("SVI_THEME1")
-                if build_theme(df_la, theme2_vars, "SVI_THEME2"):
-                    theme_cols.append("SVI_THEME2")
-                if build_theme(df_la, theme3_vars, "SVI_THEME3"):
-                    theme_cols.append("SVI_THEME3")
-                if build_theme(df_la, theme4_vars, "SVI_THEME4"):
-                    theme_cols.append("SVI_THEME4")
-
-            # 3) Map theme columns + Pop_Density to tract_id
-            required_theme_cols = [
-                "SVI_THEME1",
-                "SVI_THEME2",
-                "SVI_THEME3",
-                "SVI_THEME4",
-            ]
-            if set(theme_cols) != set(required_theme_cols):
-                raise ValueError(
-                    "Stage 7 requires all four SVI themes; produced "
-                    f"{sorted(theme_cols)}."
-                )
-            else:
-                df_la["tract_id"] = _normalize_tract_id(df_la["FIPS"])
-                _require_valid_ids(
-                    df_la,
-                    "tract_id",
-                    "Stage 7 SVI file",
-                    unique=True,
-                )
-
-                df_la["_svi_record_present"] = True
-                audit_source_cols = [
-                    "tract_id",
-                    "LOCATION",
-                    "E_TOTPOP",
-                    "EP_GROUPQ",
-                    "_svi_record_present",
-                ] + required_theme_cols + ["Pop_Density"]
-                audit_source_cols = [
-                    col for col in audit_source_cols if col in df_la.columns
-                ]
-                df_la_subset = df_la[audit_source_cols].copy()
-                df_main = df_main.merge(
-                    df_la_subset,
-                    on="tract_id",
-                    how="left",
-                    validate="one_to_one",
-                )
-
-                missing_records = df_main["_svi_record_present"].isna()
-                if missing_records.any():
-                    missing_ids = df_main.loc[
-                        missing_records,
-                        "tract_id",
-                    ].head(20).tolist()
-                    raise ValueError(
-                        "Stage 7 LA County SVI file has no record for active "
-                        f"tracts: {missing_ids}."
-                    )
-
-                required_svi_features = required_theme_cols + ["Pop_Density"]
-                incomplete_svi = df_main[required_svi_features].isna().any(axis=1)
-                if incomplete_svi.any():
-                    audit_cols = [
-                        "tract_id",
-                        "LOCATION",
-                        "E_TOTPOP",
-                        "EP_GROUPQ",
-                    ] + required_theme_cols
-                    audit_cols = [
-                        col for col in audit_cols if col in df_main.columns
-                    ]
-                    svi_exclusions = df_main.loc[
-                        incomplete_svi,
-                        audit_cols,
-                    ].copy()
-                    svi_exclusions["exclusion_reason"] = np.where(
-                        pd.to_numeric(
-                            svi_exclusions.get("E_TOTPOP"),
-                            errors="coerce",
-                        ).fillna(0)
-                        <= 0,
-                        "zero_population_official_svi_unavailable",
-                        "special_group_quarters_official_svi_unavailable",
-                    )
-                    svi_exclusions.to_csv(
-                        out_dir / "stage7_svi_excluded_tracts.csv",
-                        index=False,
-                    )
-                    logger.warning(
-                        "Stage 7 excludes %d tracts with matched CDC SVI "
-                        "records but unavailable official four-theme scores; "
-                        "audit saved to %s.",
-                        int(incomplete_svi.sum()),
-                        out_dir / "stage7_svi_excluded_tracts.csv",
-                    )
-                    df_main = df_main.loc[~incomplete_svi].copy()
-
-                _require_finite(
-                    df_main,
-                    required_svi_features,
-                    "Stage 7 tract-level SVI features",
-                )
-                df_main["SVI_Composite"] = df_main[required_theme_cols].mean(axis=1)
-                df_main = df_main.drop(
-                    columns=[
-                        "_svi_record_present",
-                        "LOCATION",
-                        "E_TOTPOP",
-                        "EP_GROUPQ",
-                    ],
-                    errors="ignore",
-                )
+            # FEMA NRI v1.19 SOVI_SCORE is the complete measure used by the
+            # formal Q1-Q4 groups. CDC RPL_THEMES is missing for 24 study tracts.
+            df_sovi = pd.read_csv(cfg.SVI_CSV)
+            _require_columns(df_sovi, ["TRACTFIPS", "SOVI_SCORE"], "Stage 7 NRI SOVI")
+            df_sovi["tract_id"] = _normalize_tract_id(df_sovi["TRACTFIPS"])
+            _require_valid_ids(df_sovi, "tract_id", "Stage 7 NRI SOVI", unique=True)
+            df_sovi["SOVI_SCORE"] = pd.to_numeric(
+                df_sovi["SOVI_SCORE"], errors="coerce"
+            ).replace(-999, np.nan)
+            df_main = df_main.merge(
+                df_sovi[["tract_id", "SOVI_SCORE"]], on="tract_id",
+                how="left", validate="one_to_one",
+            )
+            _require_finite(df_main, ["SOVI_SCORE"], "Stage 7 NRI social-vulnerability score")
 
         except Exception as e:
             raise ValueError(f"Stage 7 SVI loading failed: {e}") from e
@@ -5687,6 +5550,12 @@ def run_stage_7(
             how="left",
             validate="one_to_one",
         )
+        missing_housing = df_main["Pre_1970_Ratio"].isna()
+        if missing_housing.any():
+            df_main.loc[missing_housing, ["tract_id", "SOVI_SCORE"]].assign(
+                exclusion_reason="housing_age_ratio_unavailable"
+            ).to_csv(out_dir / "stage7_housing_excluded_tracts.csv", index=False)
+            df_main = df_main.loc[~missing_housing].copy()
         _require_finite(
             df_main,
             ["Pre_1970_Ratio"],
@@ -5698,7 +5567,9 @@ def run_stage_7(
     # ---------------------------------------------------------
     # G. Compound slow-vulnerable hotspot score
     # ---------------------------------------------------------
-    df_main["Hotspot_SVI_Score"] = df_main["SVI_Composite"]
+    # Historical hotspot output name is kept for plot-reader compatibility;
+    # its value is the FEMA NRI v1.19 SOVI_SCORE, not CDC 2022 RPL_THEMES.
+    df_main["Hotspot_SVI_Score"] = df_main["SOVI_SCORE"]
 
     def _rank_pct_component(source_col: str, out_col: str) -> bool:
         vals = pd.to_numeric(df_main.get(source_col), errors="coerce")
@@ -6239,7 +6110,7 @@ def run_stage_7(
         "Redundancy_HHI",
         "Pre_1970_Ratio",
         "Pop_Density",
-        "SVI_Composite",
+        "SOVI_SCORE",
         "NRI_BUILDVALUE",
         "NRI_RISK_SCORE",
         "Hotspot_SVI_Score",
