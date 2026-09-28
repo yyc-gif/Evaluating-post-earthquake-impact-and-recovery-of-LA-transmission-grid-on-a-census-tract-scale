@@ -72,22 +72,35 @@ class PreparedMapping:
 
 
 def evaluate_exact_event_arrays(*, mapping: PreparedMapping, event_time_hr,
-                                f, e, L_self, L_threshold, L_source, L_total):
+                                f, e, L_self, L_threshold, L_source, L_total,
+                                L_capacity=None):
+    """Evaluate the frozen exact-event service metrics.
+
+    L_capacity is an optional sensitivity-only additive loss component.
+    When omitted, legacy callers retain the same returned fields and accounting.
+    Production source-gate semantics are unchanged.
+    """
     time = np.asarray(event_time_hr, float)
     if time.ndim != 1 or len(time) < 2 or time[0] != 0 or np.any(np.diff(time) <= 0):
         raise ValueError("Event time must be strictly increasing from zero")
     values = {name: np.asarray(value, float) for name, value in
               {"f": f, "e": e, "L_self": L_self, "L_threshold": L_threshold,
                "L_source": L_source, "L_total": L_total}.items()}
+    loss_names = ["L_self", "L_threshold", "L_source"]
+    if L_capacity is not None:
+        values["L_capacity"] = np.asarray(L_capacity, float)
+        loss_names.append("L_capacity")
     shape = (len(time), len(mapping.station_ids))
     if any(x.shape != shape for x in values.values()):
         raise ValueError("Event arrays differ from mapping station/time dimensions")
     known = np.isfinite(values["f"][0])
     if any(not np.array_equal(np.isfinite(v), np.broadcast_to(known, shape)) for v in values.values()):
         raise ValueError("Event identification mask is inconsistent")
+    station_names = [*loss_names, "L_total"]
     station = {name: np.sum(np.nan_to_num(values[name][:-1]) * np.diff(time)[:, None], axis=0)
-               for name in ("L_self", "L_threshold", "L_source", "L_total")}
-    if np.max(np.abs(station["L_self"] + station["L_threshold"] + station["L_source"] - station["L_total"])) > 1e-10:
+               for name in station_names}
+    accounted = sum(station[name] for name in loss_names)
+    if np.max(np.abs(accounted - station["L_total"])) > 1e-10:
         raise ValueError("Station loss accounting differs")
     w = mapping.weight
     resolved = w[:, known].sum(axis=1)
@@ -125,16 +138,16 @@ def evaluate_exact_event_arrays(*, mapping: PreparedMapping, event_time_hr,
     for target, label in ((.5, "T50"), (.8, "T80"), (.9, "T90")):
         hit = np.flatnonzero(curve >= target)
         summary[f"population_{label}_hr"] = float(time[hit[0]]) if len(hit) else np.nan
-    for name in ("L_self", "L_threshold", "L_source", "L_total"):
+    for name in station_names:
         summary[name + "_population_mass_weighted_hr"] = (
             float(np.dot(p, component[name]) / denominator_mass) if denominator_mass else np.nan)
     total = summary["L_total_population_mass_weighted_hr"]
-    for name in ("L_self", "L_threshold", "L_source"):
+    for name in loss_names:
         summary[name + "_fraction"] = summary[name + "_population_mass_weighted_hr"] / total if total > 0 else np.nan
     tract = dict(resolved_mass=resolved, normalized_burden_hr=burden,
                  restoration_burden_mass_hr=np.where(eligible, component["L_total"], np.nan),
                  status=np.where(eligible, "resolved", "unresolved"))
-    for name in ("L_self", "L_threshold", "L_source", "L_total"):
+    for name in station_names:
         tract[name + "_mass_hr"] = np.where(eligible, component[name], np.nan)
     return summary, tract, station
 
