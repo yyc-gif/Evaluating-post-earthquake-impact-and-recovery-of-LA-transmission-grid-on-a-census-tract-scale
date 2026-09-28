@@ -1,63 +1,73 @@
-# STATUS — SUPERSEDED PENDING CLOSED R1-2 POST-PROCESSING
-
-The capacity tables/figure currently retained on this branch were produced before the final strategy-set correction and before realization-level baseline reconciliation. They must **not** be used in the manuscript or Reviewer 1 Comment 2 response.
-
-The authoritative entry point is `run_sce_capacity_supported_sensitivity.py`, which now delegates to `sce_capacity_closure.py`. The closed post-processing requires the already-saved vulnerability-first station trajectories at `Formal_Experiment_20260923/Equity_Amendment/T/2pc50/C57_D1/`; it explicitly refuses to resample, reschedule, or redispatch them. A successful local run overwrites this notice with the reconciled final audit.
-
----
-
 # SCE Capacity Sensitivity Audit
 
-## Data definition
+## Closure status
 
-The sensitivity uses only the 28 retained SCE stations with numeric 2026 `CUMULATIVE_DEMAND` and `FAC_LOAD_LIMIT` evidence, and only the 19 stations with one numeric provider facility row are assigned a station-level capacity ceiling. `CUMULATIVE_DEMAND` is used as D (MW) and `FAC_LOAD_LIMIT` as K (MW), following the SCE GNA/DUPR public definitions. Provider `FACILITY_LOADING` is QA only and never enters the sensitivity equation. The 19-row input is `SCE_CAPACITY_SUPPORTED_STATIONS.csv`.
+This is the closed Reviewer 1 Comment 2 capacity sensitivity. It is post-processing only. No sampling, damage state, repair duration, dispatch, priority sequence, GA, source gate, tract mapping, or restoration schedule is recomputed. Vulnerability-first is read only from the saved station trajectories at C:\2025-2026 Fall\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\Project\LA_grid_reviewer_revision\Formal_Experiment_20260923\Equity_Amendment\T\2pc50\C57_D1. direct-community is excluded after verifying that its frozen sequence hash is identical to Impact-first.
 
-The earlier 0.05-percentage-point loading-consistency screen is not used as an eligibility test. The three retained numeric facility rows above that QA discrepancy threshold are COLORADO 66/4.16 (+0.07704 pp), GANESHA 12/4.16 (-0.05190 pp), and REPETTO 66/4.16 (+0.06551 pp). All three belong to multi-facility retained stations. They are retained as QA discrepancies; their stations are excluded from station-level capacity assignment solely because a one-to-one station-facility interpretation is unavailable, not because of the discrepancy.
+Every baseline realization is reconciled before the capacity ceiling is applied. Original policies are checked against Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet and Vulnerability-first against Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet. The tolerance is 1.0e-09 h for population burden, T80, and hospital burden.
 
-## 19-station coverage
+## Coverage and formula
 
-- Supported retained stations: 19 of 92.
-- Numeric-evidence retained SCE stations: 28; the remaining 9 are multi-facility.
-- Tracts with positive weight on at least one supported station: 932 of 2315.
-- Tracts with zero supported-station weight: 1383 of 2315.
-- Population-weighted mean supported dependency mass: 0.253420.
-- `W_r^sup` P25/P50/P75 across all 2315 tracts: 0.000000, 0.000000, 0.260429.
-- Stations for which the capacity ceiling actually binds in at least one evaluated realization/case: 1 (306279 (OLINDA 66/12)).
-- Tracts with a positive capacity-induced burden change in at least one evaluated case: 25.
+- Supported station factors: 19/92.
+- Numeric-evidence retained SCE stations: 28; 9 are multi-facility and receive no station factor.
+- Unsupported retained stations: 73, asserted to satisfy e_cap=e exactly.
+- Tracts with supported dependency: 932/2315.
+- Population-weighted supported dependency mass: 0.2534.
+- W_r^sup P25/P50/P75: 0.000000, 0.000000, 0.260429.
+- Only OLINDA 306279 has K/D<1 in the supported subset.
+- Actual binding stations in the evaluated cases: 1 (306279 (OLINDA 66/12)).
+- Tracts with positive capacity-induced burden in at least one case: 25.
 
-These coverage statistics describe where public SCE evidence permits the perturbation. Unsupported stations remain at baseline service in the sensitivity; they are not classified as capacity-adequate.
+Production service remains e_i(t)=f_i(t)F_i(t)C_i(t). For supported stations, a_i=min(1,K_i/D_i) and e_i^cap(t)=min[e_i(t),a_i]. Unsupported stations retain e_i^cap=e_i. Tract service remains A_r^cap(t)=sum_i w_ri e_i^cap(t). FACILITY_LOADING is QA only. The three rows exceeding the earlier 0.05 percentage-point D/K-versus-provider-loading QA tolerance remain in the evidence audit rather than being deleted: COLORADO 66/4.16 (+0.07704 pp), GANESHA 12/4.16 (-0.05190 pp), and REPETTO 66/4.16 (+0.06551 pp). They are excluded from station-level capacity factors only because their retained stations are multi-facility and SCE provides no public aggregation rule.
 
-## Formula
+Hard assertions require 19 supported stations, 9 multi-facility exclusions, K/D<1 only at OLINDA 306279, 73 unsupported stations unchanged, e_cap<=e on supported stations, strict loss accounting including L_capacity, exactly eight distinct scheduled 2pc50 policies plus Unconstrained, no direct-community output, and inclusion of vulnerability-first.
 
-Production service is unchanged: `e_i(t)=f_i(t)F_i(t)C_i(t)`. For each of the 19 supported stations, `a_i=min(1,K_i/D_i)` and the sensitivity service is `e_i^cap(t)=min(e_i(t),a_i)`. Equivalently, `P_i^base(t)=D_i e_i(t)`, `P_i^served(t)=min(P_i^base(t),K_i)`, and `e_i^cap(t)=P_i^served(t)/D_i`. Unsupported stations use `e_i^cap(t)=e_i(t)`.
+## Baseline reconciliation
 
-Tract service uses the frozen production weights: `A_r^cap(t)=sum_i w_ri e_i^cap(t)`. The capacity loss term is `L_capacity=e-e_cap`, and the existing formal exact-event evaluator is used for cumulative burden, population T80, and hospital burden with `L_total=1-e_cap`. No multiplicative derating and no new metric definition are used. Positive differences in the output tables mean capacity-bounded burden minus baseline burden.
+- Northridge / hospital-first: max abs difference population burden=3.553e-15, T80=0.000e+00, hospital burden=7.105e-15.
+- SanFernando / hospital-first: max abs difference population burden=1.776e-15, T80=0.000e+00, hospital burden=3.553e-15.
+- LongBeach / hospital-first: max abs difference population burden=1.776e-15, T80=0.000e+00, hospital burden=3.553e-15.
+- 2pc50 / hospital-first: max abs difference population burden=1.421e-14, T80=0.000e+00, hospital burden=2.132e-14.
+- 2pc50 / centrality-first: max abs difference population burden=2.132e-14, T80=0.000e+00, hospital burden=2.842e-14.
+- 2pc50 / impact-first: max abs difference population burden=1.421e-14, T80=0.000e+00, hospital burden=2.132e-14.
+- 2pc50 / betweenness-first: max abs difference population burden=2.132e-14, T80=0.000e+00, hospital burden=2.132e-14.
+- 2pc50 / degree-first: max abs difference population burden=1.421e-14, T80=0.000e+00, hospital burden=2.842e-14.
+- 2pc50 / closeness-first: max abs difference population burden=1.421e-14, T80=0.000e+00, hospital burden=2.132e-14.
+- 2pc50 / random: max abs difference population burden=1.421e-14, T80=0.000e+00, hospital burden=4.974e-14.
+- 2pc50 / vulnerability-first: max abs difference population burden=1.421e-14, T80=0.000e+00, hospital burden=2.132e-14.
+- 2pc50 / Unconstrained: max abs difference population burden=1.421e-14, T80=0.000e+00, hospital burden=1.776e-14.
 
-## Why 9 multi-facility stations do not enter
-
-The 28 numeric-evidence retained stations contain 37 numeric voltage-level facility rows: 19 stations have one facility row and 9 stations have two. SCE's public definitions provide facility-level demand and facility loading limits but no official rule for summing, averaging, minimizing, maximizing, or otherwise aggregating multiple facility rows into one retained-station capacity. The 9 multi-facility stations therefore receive no station-level capacity factor in this sensitivity.
-
-## Frozen inputs
-
-Batch A is the four hazards (`Northridge`, `SanFernando`, `LongBeach`, `2pc50`) under `hospital-first`. Batch B is `2pc50` under the eight frozen scheduled policies (`hospital-first`, `impact-first`, `degree-first`, `closeness-first`, `betweenness-first`, `centrality-first`, `random`, `direct-community`) plus `Unconstrained`. The overlapping `2pc50 / hospital-first` case is evaluated once, giving 12 distinct hazard-policy cases.
-
-Every case uses the frozen 1000 evaluation realizations, damage states, repair durations, 57-crew C57_D1 schedule completions for scheduled policies, baseline 0.5 source gate with 14 Core sources, production `JULY_UTILITY_CONSTRAINED_92` tract mapping, and common 480-h exact-event horizon. The script verifies the formal hashes for the physical files, schedule shards, graph, source table, and production mapping before evaluation. No GA is run, no policy is reoptimized, and no schedule is redispatched. Formal matrix ID: `JULY92_REVIEWER_REVISION_FINAL_V1`; matrix SHA-256: `798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe`; physical executable identity: `e934affb4b4c242d8e770070de684e7ab471c691`.
-
-`binding_hours` in the station table is the mean exact-event duration per realization for which baseline `e_i(t)>a_i`; `binding_realization_fraction` is the fraction of the 1000 paired realizations with positive binding duration. `affected_population` is the population in tracts with positive mean paired capacity-induced burden for that hazard-policy case.
+Frozen 2pc50 anchors reproduce as reported: Hospital-first 34.306 / 45.971 / 33.367 h; Impact-first 33.594 / 45.251 / 33.059; Vulnerability-first 34.258 / 46.437 / 33.939.
 
 ## Effect sizes
 
-- Northridge / hospital-first: population burden Δ=0.134426 h; T80 Δ=0.029159 h; hospital burden Δ=0.028665 h; binding stations=1; binding tracts=25; affected population=117102.
-- SanFernando / hospital-first: population burden Δ=0.134730 h; T80 Δ=0.012997 h; hospital burden Δ=0.028730 h; binding stations=1; binding tracts=25; affected population=117102.
-- LongBeach / hospital-first: population burden Δ=0.134302 h; T80 Δ=0.009410 h; hospital burden Δ=0.028639 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / hospital-first: population burden Δ=0.121886 h; T80 Δ=0.012760 h; hospital burden Δ=0.025991 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / impact-first: population burden Δ=0.121475 h; T80 Δ=0.002114 h; hospital burden Δ=0.025903 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / degree-first: population burden Δ=0.125572 h; T80 Δ=0.020718 h; hospital burden Δ=0.026777 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / closeness-first: population burden Δ=0.125506 h; T80 Δ=0.009359 h; hospital burden Δ=0.026763 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / betweenness-first: population burden Δ=0.125554 h; T80 Δ=0.014233 h; hospital burden Δ=0.026773 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / centrality-first: population burden Δ=0.125425 h; T80 Δ=0.009391 h; hospital burden Δ=0.026746 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / random: population burden Δ=0.124831 h; T80 Δ=0.009432 h; hospital burden Δ=0.026619 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / direct-community: population burden Δ=0.121475 h; T80 Δ=0.002114 h; hospital burden Δ=0.025903 h; binding stations=1; binding tracts=25; affected population=117102.
-- 2pc50 / Unconstrained: population burden Δ=0.125765 h; T80 Δ=0.009708 h; hospital burden Δ=0.026818 h; binding stations=1; binding tracts=25; affected population=117102.
+- Northridge / hospital-first: population burden delta=0.134426 h; T80 delta=0.029159 h; hospital burden delta=0.028665 h; binding stations=1; binding tracts=25; affected population=117102.
+- SanFernando / hospital-first: population burden delta=0.134730 h; T80 delta=0.012997 h; hospital burden delta=0.028730 h; binding stations=1; binding tracts=25; affected population=117102.
+- LongBeach / hospital-first: population burden delta=0.134302 h; T80 delta=0.009410 h; hospital burden delta=0.028639 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / hospital-first: population burden delta=0.121886 h; T80 delta=0.012760 h; hospital burden delta=0.025991 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / centrality-first: population burden delta=0.125425 h; T80 delta=0.009391 h; hospital burden delta=0.026746 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / impact-first: population burden delta=0.121475 h; T80 delta=0.002114 h; hospital burden delta=0.025903 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / betweenness-first: population burden delta=0.125554 h; T80 delta=0.014233 h; hospital burden delta=0.026773 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / degree-first: population burden delta=0.125572 h; T80 delta=0.020718 h; hospital burden delta=0.026777 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / closeness-first: population burden delta=0.125506 h; T80 delta=0.009359 h; hospital burden delta=0.026763 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / random: population burden delta=0.124831 h; T80 delta=0.009432 h; hospital burden delta=0.026619 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / vulnerability-first: population burden delta=0.120107 h; T80 delta=0.005182 h; hospital burden delta=0.025612 h; binding stations=1; binding tracts=25; affected population=117102.
+- 2pc50 / Unconstrained: population burden delta=0.125765 h; T80 delta=0.009708 h; hospital burden delta=0.026818 h; binding stations=1; binding tracts=25; affected population=117102.
 
-The sensitivity answers only how much modeled recovery outcomes change when provider-defined planning capacity ceilings are imposed on the retained facilities for which public SCE data support an unambiguous one-to-one station-facility interpretation. It does not validate a complete capacity model or a Los Angeles AC/DC power-flow model.
+Across the nine 2pc50 cases, population-burden increments range from 0.120107 to 0.125765 h.
+
+### Required pairwise contrasts
+
+- impact-first - hospital-first: population burden -0.712779 -> -0.713190 h (change -0.000411 h; sign flipped=no); T80 -0.719445 -> -0.730090 h; hospital burden -0.307361 -> -0.307448 h.
+- degree-first - hospital-first: population burden +1.401244 -> +1.404930 h (change +0.003686 h; sign flipped=no); T80 +3.539142 -> +3.547100 h; hospital burden +2.364318 -> +2.365104 h.
+- vulnerability-first - hospital-first: population burden -0.048616 -> -0.050395 h (change -0.001779 h; sign flipped=no); T80 +0.466293 -> +0.458716 h; hospital burden +0.572389 -> +0.572009 h.
+
+## Reviewer 1 Comment 2 response
+
+1. Source-gate interpretation. C_i(t) represents surviving source-path availability only. e_i(t) is a modeled service-availability proxy, not delivered MW. The model does not solve AC/DC power flow and does not represent branch loading, voltage, reactive power, generation/import dispatch, or load shedding.
+
+2. External-data-constrained stress test. SCE public planning data provide facility-level forecast peak demand D and loading limit K. For the 19/92 retained stations with a strict one-to-one facility interpretation, we imposed the static planning-peak ceiling e_i^cap(t)=min[e_i(t),K_i/D_i]. The supported subset intersects 932/2315 tracts and has population-weighted supported dependency mass 0.2534. Nine additional numeric-evidence stations have multiple facility rows and were not aggregated.
+
+3. Result and boundary. Within the strictly supported subset, only OLINDA is capacity-binding. The four-hazard Hospital-first population-burden increment is about 0.12-0.13 h; the complete 2pc50 strategy range and the three direct pairwise contrasts are reported above. The principal strategy comparisons are therefore not strongly driven by this particular class of documented SCE facility planning-capacity constraints within the supported subset. This test cannot establish adequacy for unsupported facilities, source-generation availability, branch-flow feasibility, voltage, reactive power, dispatch, or load shedding.
+
+> Within the subset of retained facilities for which public SCE data support a strict one-to-one interpretation, imposing provider-defined planning capacity ceilings produced only small changes in modeled recovery outcomes. The principal strategy comparisons therefore were not strongly driven by this class of documented facility-capacity constraint. However, the stress test covers only part of the modeled network and does not establish adequacy for unsupported facilities, source-generation availability, branch flow, voltage, reactive power, dispatch, or load-shedding feasibility.
