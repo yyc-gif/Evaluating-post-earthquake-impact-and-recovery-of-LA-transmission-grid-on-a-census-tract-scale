@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "document_type": "canonical workflow overlay; not an experiment design replacement",
+  "parent_frozen_design": {
+    "path": "FINAL_EXPERIMENT_MATRIX.json",
+    "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+    "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+    "status": "FROZEN_BEFORE_FORMAL_EXECUTION"
+  },
+  "accepted_post_freeze_additions": {
+    "vulnerability_first": {
+      "authority": "Formal_Experiment_20260923/Equity_Amendment/EQUITY_POLICY_AMENDMENT.json",
+      "sequence": "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_FIRST_SEQUENCE.json",
+      "status": "accepted frozen strategy added after parent matrix freeze"
+    },
+    "final_stage7_sovi_harmonization": {
+      "authority": "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized",
+      "social_vulnerability_field": "FEMA NRI v1.19 SOVI_SCORE"
+    },
+    "capacity_robustness": {
+      "authority_commit": "2d54e737ebf3b010507b6186dcbf00a37ef0602c",
+      "entrypoint": "sce_capacity_closure.py",
+      "resume_behavior": "validate and reuse existing closure outputs only"
+    },
+    "final_reporting_strategy_resolution": {
+      "authority": "Formal_Experiment_20260923/Formal_Reviewer_Results/DIRECT_IMPACT_IDENTITY.json",
+      "direct_community": "retained historical GA output; exact sequence equivalent to Impact-first; not separately reported"
+    },
+    "source_network_diagnostics": {
+      "authority": "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json",
+      "role": "supporting diagnostics; production source gate unchanged"
+    }
+  },
+  "final_reporting_view": {
+    "strategies": [
+      "centrality-first",
+      "impact-first",
+      "betweenness-first",
+      "degree-first",
+      "closeness-first",
+      "hospital-first",
+      "random",
+      "vulnerability-first"
+    ],
+    "reference": "unconstrained",
+    "direct_community": {
+      "provenance_status": "retained historical GA output",
+      "sequence_equivalent_to": "impact-first",
+      "report_separately": false
+    }
+  },
+  "frozen_operational_constants": {
+    "domain": {
+      "stations": 92,
+      "edges": 318,
+      "tracts": 2315
+    },
+    "hazards": [
+      "Northridge",
+      "SanFernando",
+      "LongBeach",
+      "2pc50"
+    ],
+    "evaluation_per_hazard": 1000,
+    "planning_hazard": "2pc50",
+    "planning_samples": 64,
+    "production_mapping": "JULY_UTILITY_CONSTRAINED_92",
+    "production_gate": {
+      "threshold": 0.5,
+      "sources": "14 retained Core sources"
+    },
+    "resource_baseline": "C57",
+    "common_horizon_hours": 480,
+    "GA": {
+      "planning_only_on": "2pc50",
+      "planning_N": 64,
+      "population": 100,
+      "generations": 100,
+      "crossover_probability": 0.8,
+      "mutation_probability": 0.2,
+      "selection": "tournament",
+      "tournament_size": 3,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "stopping": "fixed generation budget for all seeds",
+      "chromosome": "full permutation of the retained 92 IDs",
+      "objective_maximize": "negative mean population-times-resolved-mass cumulative community burden over the 64 planning realizations",
+      "evaluation_chain": "DS>0 filter -> event crew schedule -> completion functionality -> production source gate -> production mapping -> event-integrated tract burden",
+      "deterministic_incumbents": "all seven rule sequences evaluated with the same objective and planning samples",
+      "legacy_station_completion_surrogate": false,
+      "retention": "best-so-far archive including deterministic incumbents",
+      "candidate_rule": "highest final retained fitness among five seeds; exact tie smallest seed; retain incumbent if search does not improve it",
+      "save": [
+        "generation_best",
+        "generation_mean",
+        "best_so_far",
+        "incumbent_score",
+        "best_generation",
+        "candidate_source",
+        "five_seed_convergence"
+      ],
+      "planning_horizon_rule": "pre-search fixed H_plan=max(480, maximum across planning samples of [sum positive task durations + task_count*largest finite directed travel cell]); independent of evaluation and candidate result",
+      "freeze_sequence_before_evaluation": true
+    },
+    "active_mapping_reporting": [
+      "M0 July baseline",
+      "M1 utility-compatible production",
+      "M1 cutoff sensitivity: no cutoff, 1%, 3%"
+    ],
+    "tract_effects": "continuous paired burden differences; no ±1 h classification"
+  },
+  "stage_authorities": {
+    "01": "FINAL_EXECUTION_VALIDATION.json",
+    "02": "Stage 1 frozen mapping and physical samples",
+    "03": "GA identities + fixed sequences + final Vulnerability-first sequence",
+    "04": "formal trajectory archive indexes",
+    "05": "formal offline/results indexes and accepted equity outputs",
+    "06": "retained source/network diagnostic identities and tables",
+    "07": "Equity Amendment final distributional results",
+    "08": "Stage 7 Output_SOVI_Harmonized",
+    "09": "closed SCE capacity sensitivity outputs",
+    "10": "LA_Grid_Revised_Suite_20260925"
+  },
+  "execution_modes": {
+    "resume": "authoritative validate/reuse only",
+    "from_scratch": "NOT YET CERTIFIED"
+  },
+  "external_archive_manifest": "EXTERNAL_ARCHIVE_MANIFEST.json"
+}

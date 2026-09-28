@@ -1,0 +1,57 @@
+{
+  "stage_id": "03",
+  "stage_name": "03_GA_AND_STRATEGY_FREEZE",
+  "status": "PASS_REUSE",
+  "authority": "GA identities + fixed sequences + final Vulnerability-first sequence",
+  "inputs": {
+    "resolved_strategy_registry": {
+      "strategies": [
+        "centrality-first",
+        "impact-first",
+        "betweenness-first",
+        "degree-first",
+        "closeness-first",
+        "hospital-first",
+        "random",
+        "vulnerability-first"
+      ],
+      "reference": "unconstrained",
+      "direct_community_report_separately": false,
+      "GA_identity_sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4"
+    },
+    "previous_stage_manifest": {
+      "path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
+      "sha256": "e209ef80f2f4004fad26869865fac31eb37fe89a77f4c6b9f8786387c72f203b",
+      "status": "PASS_REUSE"
+    }
+  },
+  "hashes": {
+    "resolved_strategy_registry.GA_identity_sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
+    "previous_stage_manifest.sha256": "e209ef80f2f4004fad26869865fac31eb37fe89a77f4c6b9f8786387c72f203b"
+  },
+  "outputs": [
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/03_GA_AND_STRATEGY_FREEZE/FINAL_STRATEGY_SET.json",
+      "sha256": "fdace5df66795045625465859f5bfd2b6e02d9517a0245ad93a5b8b91f3f0d99"
+    },
+    {
+      "path": "Formal_Experiment_20260923/GA_EXECUTION_IDENTITY.json",
+      "sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Formal_Reviewer_Results/DIRECT_IMPACT_IDENTITY.json",
+      "sha256": "a1a5b0c3f90b179b7525ae92d2839e1f74c8787a252d3d623ae335500ee34ddf"
+    }
+  ],
+  "output_hashes": {
+    "FINAL_REVISION_RUN_SEQUENCE/03_GA_AND_STRATEGY_FREEZE/FINAL_STRATEGY_SET.json": "fdace5df66795045625465859f5bfd2b6e02d9517a0245ad93a5b8b91f3f0d99",
+    "Formal_Experiment_20260923/GA_EXECUTION_IDENTITY.json": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
+    "Formal_Experiment_20260923/Formal_Reviewer_Results/DIRECT_IMPACT_IDENTITY.json": "a1a5b0c3f90b179b7525ae92d2839e1f74c8787a252d3d623ae335500ee34ddf"
+  },
+  "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
+  "code_identity": {
+    "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+    "historical_phase_identities_preserved": true
+  },
+  "scientific_generation_called": false
+}

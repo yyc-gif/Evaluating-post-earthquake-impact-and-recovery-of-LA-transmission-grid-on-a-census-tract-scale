@@ -1,0 +1,55 @@
+{
+  "stage_id": "02",
+  "stage_name": "02_MAPPING_AND_PHYSICAL_SAMPLES",
+  "status": "PASS_REUSE",
+  "authority": "Stage 1 frozen mapping and physical samples",
+  "inputs": {
+    "physical_samples": {
+      "physical_inputs_manifest_sha256": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba",
+      "evaluation_samples": 4000,
+      "planning_samples": 64,
+      "sample_hash_count": 4064,
+      "sample_archive_hashes": {
+        "2pc50": "fa40cc26567c22e7d8195e04949e2ef7dbc960a9751f4b9af3d687edf542cdcb",
+        "LongBeach": "47ebad579273a3528151510827f77dbe26c59b773888123d759635d67cc9abd6",
+        "Northridge": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
+        "SanFernando": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0"
+      }
+    },
+    "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+    "previous_stage_manifest": {
+      "path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
+      "sha256": "7412a4c53cf95170062364363f8c444183c1ce15f3d88a4c685e06d8f565f8d0",
+      "status": "PASS_VALIDATE"
+    }
+  },
+  "hashes": {
+    "physical_samples.physical_inputs_manifest_sha256": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba",
+    "physical_samples.sample_archive_hashes.2pc50": "fa40cc26567c22e7d8195e04949e2ef7dbc960a9751f4b9af3d687edf542cdcb",
+    "physical_samples.sample_archive_hashes.LongBeach": "47ebad579273a3528151510827f77dbe26c59b773888123d759635d67cc9abd6",
+    "physical_samples.sample_archive_hashes.Northridge": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
+    "physical_samples.sample_archive_hashes.SanFernando": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0",
+    "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+    "previous_stage_manifest.sha256": "7412a4c53cf95170062364363f8c444183c1ce15f3d88a4c685e06d8f565f8d0"
+  },
+  "outputs": [
+    {
+      "path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+      "sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 1 Output_expanded/PHYSICAL_INPUTS_FROZEN.json",
+      "sha256": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba"
+    }
+  ],
+  "output_hashes": {
+    "Data/JULY_UTILITY_CONSTRAINED_92.csv": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+    "Formal_Experiment_20260923/Stage 1 Output_expanded/PHYSICAL_INPUTS_FROZEN.json": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba"
+  },
+  "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
+  "code_identity": {
+    "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+    "historical_phase_identities_preserved": true
+  },
+  "scientific_generation_called": false
+}

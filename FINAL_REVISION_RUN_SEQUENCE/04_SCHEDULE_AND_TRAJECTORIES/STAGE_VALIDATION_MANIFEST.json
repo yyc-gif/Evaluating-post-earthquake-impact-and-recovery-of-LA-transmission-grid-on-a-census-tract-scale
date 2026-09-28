@@ -1,0 +1,60 @@
+{
+  "stage_id": "04",
+  "stage_name": "04_SCHEDULE_AND_TRAJECTORIES",
+  "status": "PASS_REUSE",
+  "authority": "formal trajectory archive indexes",
+  "inputs": {
+    "formal_trajectories": {
+      "file_count": 252000,
+      "total_size": 1669251984,
+      "trajectory_identities_checked": 84000,
+      "archive_manifest_chain_sha256": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd"
+    },
+    "vulnerability_first_trajectories": {
+      "file_count": 30000,
+      "total_size": 204630868,
+      "trajectory_identities_checked": 10000,
+      "manifest_chain_sha256": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
+      "sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f"
+    },
+    "previous_stage_manifest": {
+      "path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
+      "sha256": "d07b51f677911fb36e20c283548ee1598a5d386f5a41e1c42b799e0c0d172277",
+      "status": "PASS_REUSE"
+    }
+  },
+  "hashes": {
+    "formal_trajectories.archive_manifest_chain_sha256": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
+    "vulnerability_first_trajectories.manifest_chain_sha256": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
+    "vulnerability_first_trajectories.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
+    "previous_stage_manifest.sha256": "d07b51f677911fb36e20c283548ee1598a5d386f5a41e1c42b799e0c0d172277"
+  },
+  "outputs": [
+    {
+      "path": "Formal_Experiment_20260923/Formal_Trajectories",
+      "artifact_id": "formal_trajectories",
+      "file_count": 252000,
+      "total_size": 1669251984,
+      "identity_hash": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
+      "identity_index_sha256": "e888aac5aeadc2d5de01ab6ed979d91f2384062aeb404ab96e135c072e6f1ef6"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Equity_Amendment/T",
+      "artifact_id": "vulnerability_first_trajectories",
+      "file_count": 30000,
+      "total_size": 204630868,
+      "identity_hash": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
+      "identity_index_sha256": "d9a0d4864c6e3a0dea6243029d94cf9f6e870d85a0ef4e08132cb79855635ce4"
+    }
+  ],
+  "output_hashes": {
+    "Formal_Experiment_20260923/Formal_Trajectories": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
+    "Formal_Experiment_20260923/Equity_Amendment/T": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7"
+  },
+  "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
+  "code_identity": {
+    "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+    "historical_phase_identities_preserved": true
+  },
+  "scientific_generation_called": false
+}

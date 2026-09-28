@@ -1,0 +1,42 @@
+{
+  "stage_id": "10",
+  "stage_name": "10_FINAL_RESULTS_AND_FIGURES",
+  "status": "PASS_REUSE",
+  "authority": "LA_Grid_Revised_Suite_20260925",
+  "inputs": {
+    "suite": {
+      "file_count": 575,
+      "total_size": 299030125,
+      "suite_manifest_rows_checked": 558,
+      "suite_manifest_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
+    },
+    "previous_stage_manifest": {
+      "path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
+      "sha256": "1a065f6eb746cf585be4046e595bde8eb254db7d98e45981f863212426ca8fbd",
+      "status": "PASS_REUSE"
+    }
+  },
+  "hashes": {
+    "suite.suite_manifest_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
+    "previous_stage_manifest.sha256": "1a065f6eb746cf585be4046e595bde8eb254db7d98e45981f863212426ca8fbd"
+  },
+  "outputs": [
+    {
+      "path": "../LA_Grid_Revised_Suite_20260925",
+      "artifact_id": "revised_suite",
+      "file_count": 575,
+      "total_size": 299030125,
+      "identity_hash": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
+      "identity_index_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
+    }
+  ],
+  "output_hashes": {
+    "../LA_Grid_Revised_Suite_20260925": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
+  },
+  "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
+  "code_identity": {
+    "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+    "historical_phase_identities_preserved": true
+  },
+  "scientific_generation_called": false
+}
