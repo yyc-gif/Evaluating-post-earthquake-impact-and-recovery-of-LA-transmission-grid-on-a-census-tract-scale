@@ -579,4 +579,5 @@ def _write_figure(supported: pd.DataFrame, summary: pd.DataFrame, binding_statio
 
 
 if __name__ == "__main__":
-    run()
+    from sce_capacity_closure import run as run_closed_capacity_sensitivity
+    run_closed_capacity_sensitivity()
