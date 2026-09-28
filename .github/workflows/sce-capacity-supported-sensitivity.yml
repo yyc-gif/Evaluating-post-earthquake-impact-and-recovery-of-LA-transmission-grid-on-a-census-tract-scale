@@ -1,0 +1,66 @@
+name: SCE supported capacity-ceiling sensitivity
+
+on:
+  push:
+    branches:
+      - revision/reviewer-driven-core-rebuild-v2
+    paths:
+      - run_sce_capacity_supported_sensitivity.py
+      - SCE_CAPACITY_SUPPORTED_STATIONS.csv
+      - r1_formal_offline.py
+      - .github/workflows/sce-capacity-supported-sensitivity.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-sensitivity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out frozen reviewer branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install project dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Verify existing formal offline evaluator
+        run: python -m unittest test_r1_formal_offline.py
+
+      - name: Run only the supported SCE capacity-ceiling sensitivity
+        run: python run_sce_capacity_supported_sensitivity.py
+
+      - name: Check generated files and commit results
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s SCE_CAPACITY_SUPPORTED_STATIONS.csv
+          test -s SCE_CAPACITY_SENSITIVITY_STATION.csv
+          test -s SCE_CAPACITY_SENSITIVITY_TRACT.csv
+          test -s SCE_CAPACITY_SENSITIVITY_SUMMARY.csv
+          test -s SCE_CAPACITY_SENSITIVITY_AUDIT.md
+          test -s Manuscript_Figures/vis_sce_capacity_supported_sensitivity.png
+          test -s Manuscript_Figures/vis_sce_capacity_supported_sensitivity.pdf
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            SCE_CAPACITY_SENSITIVITY_STATION.csv \
+            SCE_CAPACITY_SENSITIVITY_TRACT.csv \
+            SCE_CAPACITY_SENSITIVITY_SUMMARY.csv \
+            SCE_CAPACITY_SENSITIVITY_AUDIT.md \
+            Manuscript_Figures/vis_sce_capacity_supported_sensitivity.png \
+            Manuscript_Figures/vis_sce_capacity_supported_sensitivity.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "results: add SCE supported capacity-ceiling sensitivity [skip ci]"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
