@@ -362,7 +362,7 @@ Every baseline realization is reconciled before the capacity ceiling is applied.
 - Actual binding stations in the evaluated cases: {len(binding_ids)} ({binding_text}).
 - Tracts with positive capacity-induced burden in at least one case: {int(binding_tract.sum())}.
 
-Production service remains e_i(t)=f_i(t)F_i(t)C_i(t). For supported stations, a_i=min(1,K_i/D_i) and e_i^cap(t)=min[e_i(t),a_i]. Unsupported stations retain e_i^cap=e_i. Tract service remains A_r^cap(t)=sum_i w_ri e_i^cap(t). FACILITY_LOADING is QA only.
+Production service remains e_i(t)=f_i(t)F_i(t)C_i(t). For supported stations, a_i=min(1,K_i/D_i) and e_i^cap(t)=min[e_i(t),a_i]. Unsupported stations retain e_i^cap=e_i. Tract service remains A_r^cap(t)=sum_i w_ri e_i^cap(t). FACILITY_LOADING is QA only. The three rows exceeding the earlier 0.05 percentage-point D/K-versus-provider-loading QA tolerance remain in the evidence audit rather than being deleted: COLORADO 66/4.16 (+0.07704 pp), GANESHA 12/4.16 (-0.05190 pp), and REPETTO 66/4.16 (+0.06551 pp). They are excluded from station-level capacity factors only because their retained stations are multi-facility and SCE provides no public aggregation rule.
 
 Hard assertions require 19 supported stations, 9 multi-facility exclusions, K/D<1 only at OLINDA 306279, 73 unsupported stations unchanged, e_cap<=e on supported stations, strict loss accounting including L_capacity, exactly eight distinct scheduled 2pc50 policies plus Unconstrained, no direct-community output, and inclusion of vulnerability-first.
 
