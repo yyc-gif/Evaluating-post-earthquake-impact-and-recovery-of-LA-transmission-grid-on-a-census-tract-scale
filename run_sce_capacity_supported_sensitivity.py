@@ -32,14 +32,14 @@ FIGURE_DIR = ROOT / "Manuscript_Figures"
 
 HAZARDS = ["Northridge", "SanFernando", "LongBeach", "2pc50"]
 SCHEDULED = [
-    "hospital-first",
+    "centrality-first",
     "impact-first",
+    "betweenness-first",
     "degree-first",
     "closeness-first",
-    "betweenness-first",
-    "centrality-first",
+    "hospital-first",
     "random",
-    "direct-community",
+    "vulnerability-first",
 ]
 POLICY_OUTPUT = {"unconstrained": "Unconstrained", **{x: x for x in SCHEDULED}}
 CAPACITY_TOL = 1e-12
