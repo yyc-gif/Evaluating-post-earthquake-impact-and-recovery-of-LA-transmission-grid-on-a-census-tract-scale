@@ -9,6 +9,19 @@ transmission/substation topology, scenario-based substation damage, tract-to-
 substation dependency weights, active-source connectivity, road-network travel
 times, and rule-based or genetic-algorithm restoration schedules.
 
+Final reviewer-revision workflow:
+FINAL_REVISION_RUN_SEQUENCE/00_README.md
+
+Canonical validation/reuse command:
+```bash
+python FINAL_REVISION_RUN_SEQUENCE/run_all.py --resume
+```
+
+`--resume` is the currently certified reproduction mode. Full `--from-scratch`
+reproduction is not yet certified because several frozen trajectory and offline
+archives are maintained externally and are validated through the canonical
+external-archive manifest.
+
 > **Model scope:** Network robustness and service propagation are represented
 > with graph-connectivity proxies. The workflow is not an AC/DC power-flow,
 > voltage-stability, or generation-dispatch model.
@@ -32,11 +45,12 @@ For geospatial packages, a Conda environment may be easier on Windows. The
 versions in `requirements.txt` record the environment used for the manuscript
 results.
 
-## Official Workflow
+## Legacy / Original July Manuscript Workflow
 
-The five `*_expanded.py` files are the manuscript entry points. The files
-without `_expanded` are their shared implementations and must remain beside
-them; they are not duplicate obsolete workflows.
+The five `*_expanded.py` files describe the original July manuscript workflow.
+They are retained for historical provenance and are not the canonical entry
+point for the final reviewer revision. The files without `_expanded` are their
+shared implementations and must remain beside them for that legacy workflow.
 
 Run the pipeline from the repository root in this order:
 
@@ -72,7 +86,7 @@ python make_manuscript_composites.py
 - `C257H_Project_Main.py`: damage, service, recovery, scheduling, GA, metrics,
   sensitivity, and clustering calculations.
 - `Project_Visualizer.py`: stage-level maps and plots.
-- `*_expanded.py`: manuscript configuration wrappers and official entry points.
+- `*_expanded.py`: configuration wrappers for the original July manuscript workflow.
 - `strategy_names.py`: canonical strategy IDs and display labels.
 - `build_sensitivity_outputs.py`: Figure 7 and sensitivity-table outputs.
 - `make_methodology_workflow_figure.py` and
