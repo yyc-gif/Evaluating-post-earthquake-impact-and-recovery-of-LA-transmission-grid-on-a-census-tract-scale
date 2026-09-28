@@ -1,3 +1,11 @@
+# STATUS — SUPERSEDED PENDING CLOSED R1-2 POST-PROCESSING
+
+The capacity tables/figure currently retained on this branch were produced before the final strategy-set correction and before realization-level baseline reconciliation. They must **not** be used in the manuscript or Reviewer 1 Comment 2 response.
+
+The authoritative entry point is `run_sce_capacity_supported_sensitivity.py`, which now delegates to `sce_capacity_closure.py`. The closed post-processing requires the already-saved vulnerability-first station trajectories at `Formal_Experiment_20260923/Equity_Amendment/T/2pc50/C57_D1/`; it explicitly refuses to resample, reschedule, or redispatch them. A successful local run overwrites this notice with the reconciled final audit.
+
+---
+
 # SCE Capacity Sensitivity Audit
 
 ## Data definition
