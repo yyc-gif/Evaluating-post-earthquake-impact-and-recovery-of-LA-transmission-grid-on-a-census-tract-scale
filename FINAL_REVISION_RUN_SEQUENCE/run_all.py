@@ -42,10 +42,20 @@ class ValidationError(RuntimeError):
 
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
-    with path.open("rb") as f:
+    with open(long_path(path), "rb") as f:
         for block in iter(lambda: f.read(1024 * 1024), b""):
             h.update(block)
     return h.hexdigest()
+
+
+def long_path(path):
+    """Return an extended-length Windows path when ordinary paths may exceed MAX_PATH."""
+    value = os.path.abspath(os.fspath(path))
+    if os.name == "nt" and len(value) >= 248 and not value.startswith("\\\\?\\"):
+        if value.startswith("\\\\"):
+            return "\\\\?\\UNC\\" + value.lstrip("\\")
+        return "\\\\?\\" + value
+    return value
 
 
 def read_json(path: Path):
@@ -57,12 +67,12 @@ def read_json(path: Path):
 
 
 def require_file(path: Path):
-    if not path.is_file():
+    if not os.path.isfile(long_path(path)):
         raise ValidationError(f"Missing required file: {path}")
 
 
 def require_dir(path: Path):
-    if not path.is_dir():
+    if not os.path.isdir(long_path(path)):
         raise ValidationError(f"Missing required archive directory: {path}")
 
 
@@ -77,14 +87,18 @@ def run_git(*args: str) -> str:
     return p.stdout.strip()
 
 
-def require_git_tracked(path: Path):
-    rel = path.resolve().relative_to(ROOT).as_posix()
+def require_git_tracked(path: Path, canonical_rel: str | None = None):
+    # On Windows, `data/travel` can resolve physically as `Data/travel` because
+    # the preserved legacy input directory is case-insensitive. Git records the
+    # moved travel inputs under the lowercase canonical path, so prefer that
+    # manifest spelling when one is supplied.
+    rel = canonical_rel or path.resolve().relative_to(ROOT).as_posix()
     run_git("ls-files", "--error-unmatch", rel)
 
 
 def require_materialized(path: Path):
     require_file(path)
-    with path.open("rb") as f:
+    with open(long_path(path), "rb") as f:
         head = f.read(120)
     if head.startswith(b"version https://git-lfs.github.com/spec/v1"):
         raise ValidationError(f"Git LFS pointer is not materialized: {path}")
@@ -92,11 +106,16 @@ def require_materialized(path: Path):
 
 def tree_inventory(path: Path, selected_files=None):
     require_dir(path)
-    files = [path / x for x in selected_files] if selected_files else [p for p in path.rglob("*") if p.is_file()]
-    missing = [p for p in files if not p.is_file()]
+    if selected_files:
+        files = [Path(long_path(path / x)) for x in selected_files]
+    else:
+        files = []
+        for root, _, names in os.walk(long_path(path)):
+            files.extend(Path(os.path.join(root, name)) for name in names)
+    missing = [p for p in files if not os.path.isfile(long_path(p))]
     if missing:
         raise ValidationError("Missing archive payload(s): " + ", ".join(map(str, missing[:8])))
-    return files, len(files), sum(p.stat().st_size for p in files)
+    return files, len(files), sum(os.path.getsize(long_path(p)) for p in files)
 
 
 def check_inventory(path: Path, item: dict):
@@ -276,15 +295,15 @@ def validate_revised_suite(path: Path, item: dict):
         rel = row.get("suite_path") or row.get("path") or row.get("file")
         if not rel:
             raise ValidationError("Suite manifest row has no suite_path/path/file")
-        target = (path / rel).resolve()
-        if not target.is_file():
+        target = path / rel
+        if not os.path.isfile(long_path(target)):
             raise ValidationError(f"Suite manifest references missing output: {target}")
         try:
             nbytes = int(row.get("bytes") or row.get("size_bytes") or -1)
         except ValueError:
             nbytes = -1
         digest = row.get("sha256") or row.get("SHA256")
-        if nbytes >= 0 and target.stat().st_size != nbytes:
+        if nbytes >= 0 and os.path.getsize(long_path(target)) != nbytes:
             raise ValidationError(f"Suite output size mismatch: {target}")
         if digest and sha256(target).lower() != digest.lower():
             raise ValidationError(f"Suite output hash mismatch: {target}")
@@ -318,7 +337,7 @@ def validate_code_authority():
 
 
 def validate_parent_design():
-    matrix_path = repo_path("FINAL_EXPERIMENT_MATRIX.json")
+    matrix_path = repo_path("config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json")
     parent = read_json(matrix_path)
     expected = read_json(HERE / "FINAL_REVISION_RUN_MATRIX.json")["parent_frozen_design"]
     if parent.get("matrix_id") != expected["matrix_id"] or sha256(matrix_path) != expected["matrix_sha256"]:
@@ -333,19 +352,28 @@ def validate_parent_design():
     return {"matrix_id": parent["matrix_id"], "matrix_sha256": expected["matrix_sha256"], "protected_archive_sha": PROTECTED_SHA}
 
 
+def current_input_path(rel):
+    # Preserve historical input paths in the frozen identity record while resolving relocated bytes.
+    canonical = {
+        "Stage 4 Output_expanded/travel_base_to_task.csv": "data/travel/travel_base_to_task.csv",
+        "Stage 4 Output_expanded/travel_task_to_task.csv": "data/travel/travel_task_to_task.csv",
+    }.get(rel.replace("\\", "/"), rel.replace("\\", "/"))
+    return repo_path(canonical), canonical
+
+
 def validate_inputs():
     vpath = repo_path("Formal_Experiment_20260923/FINAL_EXECUTION_VALIDATION.json"); val = read_json(vpath)
-    mpath = repo_path("FINAL_EXPERIMENT_MATRIX.json")
+    mpath = repo_path("config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json")
     if val.get("status") != "PASS_DRY_VALIDATION_NO_SAMPLING_OR_SCHEDULING" or val.get("matrix_sha256") != sha256(mpath):
         raise ValidationError("Existing formal dry-validation identity does not match frozen matrix")
     hashes = val.get("input_sha256", {})
     checked = []
     for rel, expected in hashes.items():
-        p = repo_path(rel.replace("\\", "/")); require_materialized(p); require_git_tracked(p)
+        p, canonical_rel = current_input_path(rel); require_materialized(p); require_git_tracked(p, canonical_rel)
         actual = sha256(p)
         if actual != expected:
             raise ValidationError(f"Frozen input hash mismatch: {rel}: {actual} != {expected}")
-        checked.append({"path": rel.replace("\\", "/"), "sha256": actual})
+        checked.append({"historical_path": rel.replace("\\", "/"), "current_path": canonical_rel, "sha256": actual})
     if len(checked) != 14:
         raise ValidationError(f"Expected 14 frozen input hashes, found {len(checked)}")
     counts = val["counts"]
@@ -415,8 +443,8 @@ def validate_stage7():
         if sha256(p)!=digest: raise ValidationError(f"Final Stage 7 output hash mismatch: {p}")
     # Invoke only the existing verifier; it reads and checks the harmonized outputs, without fitting PCA/K-means.
     try:
-        sys.path.insert(0,str(ROOT))
-        import r1_stage7_harmonized
+        sys.path.insert(0,str(ROOT / "src"))
+        import la_grid.revision.r1_stage7_harmonized as r1_stage7_harmonized
         result=r1_stage7_harmonized.verify_harmonized_stage7(root)
         result.pop("source_directory",None)
     except Exception as exc:
@@ -481,7 +509,7 @@ def validate_stage(stage_id, registry, run_manifest):
         it=item_by_id["dynamic_topology_archive"]; evidence["dynamic_topology_archive"]=validate_dynamic_archive(archive_path(it),it)
         it=item_by_id["connectivity_state_cache"]; evidence["connectivity_state_cache"]=validate_connectivity_cache(archive_path(it),it)
         # Confirm representative retained diagnostics are tracked/materialized and immutable.
-        for rel in ["SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv","SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv","ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv"]:
+        for rel in ["results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv","results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv","results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv"]:
             p=repo_path(rel); require_materialized(p); require_git_tracked(p); evidence.setdefault("compact_diagnostic_sha256",{})[rel]=sha256(p)
     elif stage_id=="07":
         evidence["equity_results_index_sha256"]=sha256(repo_path("Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json"))
@@ -516,11 +544,11 @@ def validate_stage(stage_id, registry, run_manifest):
 def stage_outputs(stage_id, registry):
     """List verified authorities, without copying or rewriting them."""
     paths={
-        "01":["FINAL_EXPERIMENT_MATRIX.json","Formal_Experiment_20260923/FINAL_EXECUTION_VALIDATION.json"],
+        "01":["config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json","Formal_Experiment_20260923/FINAL_EXECUTION_VALIDATION.json"],
         "02":["Data/JULY_UTILITY_CONSTRAINED_92.csv","Formal_Experiment_20260923/Stage 1 Output_expanded/PHYSICAL_INPUTS_FROZEN.json"],
         "03":["FINAL_REVISION_RUN_SEQUENCE/03_GA_AND_STRATEGY_FREEZE/FINAL_STRATEGY_SET.json","Formal_Experiment_20260923/GA_EXECUTION_IDENTITY.json","Formal_Experiment_20260923/Formal_Reviewer_Results/DIRECT_IMPACT_IDENTITY.json"],
         "05":["Formal_Experiment_20260923/Formal_Offline_Evaluation/FORMAL_OFFLINE_INDEX.json","Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json","Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json"],
-        "06":["Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json","Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json"],
+        "06":["results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv","Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json","Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json"],
         "07":["Formal_Experiment_20260923/Equity_Amendment/EQUITY_POLICY_AMENDMENT.json","Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json"],
         "08":["FINAL_REVISION_RUN_SEQUENCE/08_FINAL_STAGE7_TYPOLOGY/STAGE8_OUTPUT_HASHES.json"],
         "09":["FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json"],

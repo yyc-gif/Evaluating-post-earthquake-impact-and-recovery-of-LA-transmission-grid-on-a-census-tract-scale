@@ -3,8 +3,8 @@
   "workflow": "FINAL_REVISION_RUN_SEQUENCE",
   "mode": "resume",
   "status": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
-  "started_at_utc": "2026-09-28T22:40:34.521990+00:00",
-  "repository_head": "2d54e737ebf3b010507b6186dcbf00a37ef0602c",
+  "started_at_utc": "2026-09-29T01:33:30.465484+00:00",
+  "repository_head": "cfeadcdcb7d7b0d1d70a9b854440c6f0360c72b5",
   "branch": "revision/reviewer-driven-core-rebuild-v2",
   "parent_matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
   "parent_matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
@@ -26,59 +26,73 @@
           "input_count": 14,
           "input_hashes": [
             {
-              "path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+              "historical_path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+              "current_path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
               "sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446"
             },
             {
-              "path": "Data/LA_Census_Tracts_SOVI_Scores_with_Identifiers.csv",
+              "historical_path": "Data/LA_Census_Tracts_SOVI_Scores_with_Identifiers.csv",
+              "current_path": "Data/LA_Census_Tracts_SOVI_Scores_with_Identifiers.csv",
               "sha256": "117e19f0937aa2a2a0a75a8051883e59ed33146ed5da244bd89819976454a482"
             },
             {
-              "path": "Data/Substations_PGA_IDW_CEC_expanded.csv",
+              "historical_path": "Data/Substations_PGA_IDW_CEC_expanded.csv",
+              "current_path": "Data/Substations_PGA_IDW_CEC_expanded.csv",
               "sha256": "10367d947a2f7e887f06cd8ac690c5a91999f427cdcfb69486437d8e7fe8ccb5"
             },
             {
-              "path": "Data/hospital_with_tract_expanded.csv",
+              "historical_path": "Data/hospital_with_tract_expanded.csv",
+              "current_path": "Data/hospital_with_tract_expanded.csv",
               "sha256": "60481dde007c7890d1e0911b847ba8f2c43e6d86a1de55f86ff94bf3ad7fe88c"
             },
             {
-              "path": "Data/source_nodes_core_expanded.csv",
+              "historical_path": "Data/source_nodes_core_expanded.csv",
+              "current_path": "Data/source_nodes_core_expanded.csv",
               "sha256": "892f5ec3e9a260db138c7fb2454dea09fcb75a8989ef13695aefca417b8c2955"
             },
             {
-              "path": "Data/stage45_C57_expanded_crew_origins.csv",
+              "historical_path": "Data/stage45_C57_expanded_crew_origins.csv",
+              "current_path": "Data/stage45_C57_expanded_crew_origins.csv",
               "sha256": "6419deeaba0e5e41bc25a35619917835ef114e51350ea9ae60993b0ebaba7bc2"
             },
             {
-              "path": "Data/stage45_active_crew_bases_C57.csv",
+              "historical_path": "Data/stage45_active_crew_bases_C57.csv",
+              "current_path": "Data/stage45_active_crew_bases_C57.csv",
               "sha256": "ec76a253b0a5a3c817532730ac990734175328e8f8b0857f7ad62e162dff31b4"
             },
             {
-              "path": "Data/stage45_depot_inputs_final_origin_proxy.csv",
+              "historical_path": "Data/stage45_depot_inputs_final_origin_proxy.csv",
+              "current_path": "Data/stage45_depot_inputs_final_origin_proxy.csv",
               "sha256": "a893fdc77affbb9642823bc85b9536e0c4ffa79bcadef2b5b9b4f4a21e852c2b"
             },
             {
-              "path": "Data/substation_graph_CEC_edges_expanded.csv",
+              "historical_path": "Data/substation_graph_CEC_edges_expanded.csv",
+              "current_path": "Data/substation_graph_CEC_edges_expanded.csv",
               "sha256": "1a3073240a6dca3e902e0bf5c2b975c67ff100892d85f007270e9855250bd225"
             },
             {
-              "path": "Data/substation_graph_CEC_nodes_expanded.csv",
+              "historical_path": "Data/substation_graph_CEC_nodes_expanded.csv",
+              "current_path": "Data/substation_graph_CEC_nodes_expanded.csv",
               "sha256": "cf01e03faba73891179b17af277d997ce239d69207af00416733d15154e5d647"
             },
             {
-              "path": "Data/tract_to_substation_mapping_CEC_expanded.csv",
+              "historical_path": "Data/tract_to_substation_mapping_CEC_expanded.csv",
+              "current_path": "Data/tract_to_substation_mapping_CEC_expanded.csv",
               "sha256": "04b3f83a7be7a0a60fbfb6968b5bcee5a6e722722155f351712508f2c438fd93"
             },
             {
-              "path": "Data/working_area_substations_with_fragility.csv",
+              "historical_path": "Data/working_area_substations_with_fragility.csv",
+              "current_path": "Data/working_area_substations_with_fragility.csv",
               "sha256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00"
             },
             {
-              "path": "Stage 4 Output_expanded/travel_base_to_task.csv",
+              "historical_path": "Stage 4 Output_expanded/travel_base_to_task.csv",
+              "current_path": "data/travel/travel_base_to_task.csv",
               "sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630"
             },
             {
-              "path": "Stage 4 Output_expanded/travel_task_to_task.csv",
+              "historical_path": "Stage 4 Output_expanded/travel_task_to_task.csv",
+              "current_path": "data/travel/travel_task_to_task.csv",
               "sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8"
             }
           ],
@@ -97,10 +111,10 @@
           "status": "PASS_DRY_VALIDATION_NO_SAMPLING_OR_SCHEDULING"
         },
         "code": {
-          "authority_file_sha256": "e6c010dbcb3d89b571203bced950ed87dbe0efa7d07e0bdb405fae287dba8bf9",
+          "authority_file_sha256": "72e70e94304dbec336d6ca74097de2e1f81258889ebda45038c4a27d6e85b7f5",
           "code_file_count": 24,
           "historical_commit_count": 10,
-          "current_head": "2d54e737ebf3b010507b6186dcbf00a37ef0602c"
+          "current_head": "cfeadcdcb7d7b0d1d70a9b854440c6f0360c72b5"
         }
       },
       "hashes": {
@@ -119,11 +133,11 @@
         "inputs.input_hashes[11].sha256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00",
         "inputs.input_hashes[12].sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630",
         "inputs.input_hashes[13].sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
-        "code.authority_file_sha256": "e6c010dbcb3d89b571203bced950ed87dbe0efa7d07e0bdb405fae287dba8bf9"
+        "code.authority_file_sha256": "72e70e94304dbec336d6ca74097de2e1f81258889ebda45038c4a27d6e85b7f5"
       },
       "outputs": [
         {
-          "path": "FINAL_EXPERIMENT_MATRIX.json",
+          "path": "config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json",
           "sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe"
         },
         {
@@ -132,17 +146,17 @@
         }
       ],
       "output_hashes": {
-        "FINAL_EXPERIMENT_MATRIX.json": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
         "Formal_Experiment_20260923/FINAL_EXECUTION_VALIDATION.json": "a3d2371ca4b8dbf0969c97c3857cb3add895b26120c9ce66078095846ee7ca82"
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "7412a4c53cf95170062364363f8c444183c1ce15f3d88a4c685e06d8f565f8d0"
+      "stage_manifest_sha256": "a4bb7890117956dc6f26507e32f2ed13c53ea8752ee7d72bd6a3cfd7e4b230f4"
     },
     {
       "stage_id": "02",
@@ -165,7 +179,7 @@
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "7412a4c53cf95170062364363f8c444183c1ce15f3d88a4c685e06d8f565f8d0",
+          "sha256": "a4bb7890117956dc6f26507e32f2ed13c53ea8752ee7d72bd6a3cfd7e4b230f4",
           "status": "PASS_VALIDATE"
         }
       },
@@ -176,7 +190,7 @@
         "physical_samples.sample_archive_hashes.Northridge": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
         "physical_samples.sample_archive_hashes.SanFernando": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0",
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
-        "previous_stage_manifest.sha256": "7412a4c53cf95170062364363f8c444183c1ce15f3d88a4c685e06d8f565f8d0"
+        "previous_stage_manifest.sha256": "a4bb7890117956dc6f26507e32f2ed13c53ea8752ee7d72bd6a3cfd7e4b230f4"
       },
       "outputs": [
         {
@@ -194,12 +208,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "e209ef80f2f4004fad26869865fac31eb37fe89a77f4c6b9f8786387c72f203b"
+      "stage_manifest_sha256": "8a54ed32f8661b7bd729f7cee07e63628c2a79d3899438cd9136c8a51f84f791"
     },
     {
       "stage_id": "03",
@@ -224,18 +238,18 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "e209ef80f2f4004fad26869865fac31eb37fe89a77f4c6b9f8786387c72f203b",
+          "sha256": "8a54ed32f8661b7bd729f7cee07e63628c2a79d3899438cd9136c8a51f84f791",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "resolved_strategy_registry.GA_identity_sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
-        "previous_stage_manifest.sha256": "e209ef80f2f4004fad26869865fac31eb37fe89a77f4c6b9f8786387c72f203b"
+        "previous_stage_manifest.sha256": "8a54ed32f8661b7bd729f7cee07e63628c2a79d3899438cd9136c8a51f84f791"
       },
       "outputs": [
         {
           "path": "FINAL_REVISION_RUN_SEQUENCE/03_GA_AND_STRATEGY_FREEZE/FINAL_STRATEGY_SET.json",
-          "sha256": "fdace5df66795045625465859f5bfd2b6e02d9517a0245ad93a5b8b91f3f0d99"
+          "sha256": "5c3558140d5e7a7cba4a242daa668dcb2c8b2552a00b5fe0653e11eb2f8bf93a"
         },
         {
           "path": "Formal_Experiment_20260923/GA_EXECUTION_IDENTITY.json",
@@ -247,18 +261,18 @@
         }
       ],
       "output_hashes": {
-        "FINAL_REVISION_RUN_SEQUENCE/03_GA_AND_STRATEGY_FREEZE/FINAL_STRATEGY_SET.json": "fdace5df66795045625465859f5bfd2b6e02d9517a0245ad93a5b8b91f3f0d99",
+        "FINAL_REVISION_RUN_SEQUENCE/03_GA_AND_STRATEGY_FREEZE/FINAL_STRATEGY_SET.json": "5c3558140d5e7a7cba4a242daa668dcb2c8b2552a00b5fe0653e11eb2f8bf93a",
         "Formal_Experiment_20260923/GA_EXECUTION_IDENTITY.json": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
         "Formal_Experiment_20260923/Formal_Reviewer_Results/DIRECT_IMPACT_IDENTITY.json": "a1a5b0c3f90b179b7525ae92d2839e1f74c8787a252d3d623ae335500ee34ddf"
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "d07b51f677911fb36e20c283548ee1598a5d386f5a41e1c42b799e0c0d172277"
+      "stage_manifest_sha256": "dfc5f7c5f118eeaa877c80cd7f50fc5b883f07132669600f2a9226febd2f7267"
     },
     {
       "stage_id": "04",
@@ -281,7 +295,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "d07b51f677911fb36e20c283548ee1598a5d386f5a41e1c42b799e0c0d172277",
+          "sha256": "dfc5f7c5f118eeaa877c80cd7f50fc5b883f07132669600f2a9226febd2f7267",
           "status": "PASS_REUSE"
         }
       },
@@ -289,7 +303,7 @@
         "formal_trajectories.archive_manifest_chain_sha256": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
         "vulnerability_first_trajectories.manifest_chain_sha256": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
         "vulnerability_first_trajectories.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
-        "previous_stage_manifest.sha256": "d07b51f677911fb36e20c283548ee1598a5d386f5a41e1c42b799e0c0d172277"
+        "previous_stage_manifest.sha256": "dfc5f7c5f118eeaa877c80cd7f50fc5b883f07132669600f2a9226febd2f7267"
       },
       "outputs": [
         {
@@ -315,12 +329,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "194519ea7f54d15e2a03cf3ef54dd35a264437c9d1911c026f3cff58e5d8c1ff"
+      "stage_manifest_sha256": "d8dde7f9c22967ec702dbd738933b3cf1a4126a5cc37aa5165759b9b198c9d72"
     },
     {
       "stage_id": "05",
@@ -346,7 +360,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "194519ea7f54d15e2a03cf3ef54dd35a264437c9d1911c026f3cff58e5d8c1ff",
+          "sha256": "d8dde7f9c22967ec702dbd738933b3cf1a4126a5cc37aa5165759b9b198c9d72",
           "status": "PASS_REUSE"
         }
       },
@@ -355,7 +369,7 @@
         "equity_offline_shards.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
         "formal_result_authorities.Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json": "a2a9a2f95b18d01e86bc34175ddd775756d93866d24859d06df0c50eb02c2d08",
         "formal_result_authorities.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json": "64fed2a28641e2010fe7413b6162f258557b25243ac0923e0be534aff9a8fc1a",
-        "previous_stage_manifest.sha256": "194519ea7f54d15e2a03cf3ef54dd35a264437c9d1911c026f3cff58e5d8c1ff"
+        "previous_stage_manifest.sha256": "d8dde7f9c22967ec702dbd738933b3cf1a4126a5cc37aa5165759b9b198c9d72"
       },
       "outputs": [
         {
@@ -396,12 +410,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "ed8022730a5415f14ff0a8c2a5559996487054ca2e2f0f872d4543783d30b2bc"
+      "stage_manifest_sha256": "8d93d256af3d8c712dff8dd593d8d3d15405f2585388d8926b1b5dc2dbf7f51f"
     },
     {
       "stage_id": "06",
@@ -422,25 +436,29 @@
           "classification_coverage": "100%"
         },
         "compact_diagnostic_sha256": {
-          "SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
-          "SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
-          "ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec"
+          "results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
+          "results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
+          "results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec"
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "ed8022730a5415f14ff0a8c2a5559996487054ca2e2f0f872d4543783d30b2bc",
+          "sha256": "8d93d256af3d8c712dff8dd593d8d3d15405f2585388d8926b1b5dc2dbf7f51f",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "dynamic_topology_archive.realization_detail_sha256": "2f95ef67cfc36938ecbed5d5491b73b36b21fad848341b0ce76b0b77d5a28d2d",
         "connectivity_state_cache.inventory_sha256": "813950c28ccac4d98c0180bc5cb59058b666511515054dc01d7cd5af34d80a72",
-        "compact_diagnostic_sha256.SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
-        "compact_diagnostic_sha256.SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
-        "compact_diagnostic_sha256.ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
-        "previous_stage_manifest.sha256": "ed8022730a5415f14ff0a8c2a5559996487054ca2e2f0f872d4543783d30b2bc"
+        "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
+        "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
+        "compact_diagnostic_sha256.results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
+        "previous_stage_manifest.sha256": "8d93d256af3d8c712dff8dd593d8d3d15405f2585388d8926b1b5dc2dbf7f51f"
       },
       "outputs": [
+        {
+          "path": "results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv",
+          "sha256": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe"
+        },
         {
           "path": "Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json",
           "sha256": "39ad54a2b1b06e2f58d842e7c107bc100e8c04c962b79ea3228b1757f0267d2d"
@@ -467,6 +485,7 @@
         }
       ],
       "output_hashes": {
+        "results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
         "Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json": "39ad54a2b1b06e2f58d842e7c107bc100e8c04c962b79ea3228b1757f0267d2d",
         "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json": "74a3ea81605340a954bce29440398e9e4dd6a1f3e390dff3805e5076f0289530",
         "Formal_Experiment_20260923/Formal_Dynamic_Topology": "2f95ef67cfc36938ecbed5d5491b73b36b21fad848341b0ce76b0b77d5a28d2d",
@@ -474,12 +493,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "b0a0347d1265d15481dbf1ff5bec26022b59349bf2a1efc761a13f7493543081"
+      "stage_manifest_sha256": "0a302d532fa38973f1883b6ebf6a4d3e148773362fcf753e2f63aa30f433229f"
     },
     {
       "stage_id": "07",
@@ -498,7 +517,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "b0a0347d1265d15481dbf1ff5bec26022b59349bf2a1efc761a13f7493543081",
+          "sha256": "0a302d532fa38973f1883b6ebf6a4d3e148773362fcf753e2f63aa30f433229f",
           "status": "PASS_REUSE"
         }
       },
@@ -510,7 +529,7 @@
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_GROUP_SUMMARY.csv": "5d9f41af008d3f084c5f1def040f59a3e47329b59a8b5524e5cb68f17644f6c9",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PAIRWISE_EFFECTS.csv": "ef5af1d32dc0184684f9d0c619b96a1dcab596818e1c01be8fe8de7d53cff982",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_TRACT_EFFECTS.parquet": "f0e1a0897d7a6b4ec2251ffc35c3008744ddf7d6ca2ec6b5bfadaaf7ed9632db",
-        "previous_stage_manifest.sha256": "b0a0347d1265d15481dbf1ff5bec26022b59349bf2a1efc761a13f7493543081"
+        "previous_stage_manifest.sha256": "0a302d532fa38973f1883b6ebf6a4d3e148773362fcf753e2f63aa30f433229f"
       },
       "outputs": [
         {
@@ -528,12 +547,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "a648d0865907e3cfc303fd7c965f93f7036f0f35f512532d2ca521ff6cd034f3"
+      "stage_manifest_sha256": "5b1b51bd10e2dd3fa7b6a8b5f346ffa86c047a29a3be1665d33144f31e433286"
     },
     {
       "stage_id": "08",
@@ -570,7 +589,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "a648d0865907e3cfc303fd7c965f93f7036f0f35f512532d2ca521ff6cd034f3",
+          "sha256": "5b1b51bd10e2dd3fa7b6a8b5f346ffa86c047a29a3be1665d33144f31e433286",
           "status": "PASS_REUSE"
         }
       },
@@ -590,7 +609,7 @@
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_profile_stability.csv": "aedc45da49daac1ac7eeb9f74655f45bbae63b77e03baefa4cd0fcaf437d50bd",
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_robustness_summary.csv": "12a4067d95ca1c97fbb5b9222bd936d7c3c9c3c17f7bab75cd2318d97d9db7e3",
         "stage7.verifier_result.input_sha256.stage7_long_tail_diagnostics.csv": "442399c768b0db29b84a2346a4b0559ba1719c5f02c3600a9633c8a5ed045a4e",
-        "previous_stage_manifest.sha256": "a648d0865907e3cfc303fd7c965f93f7036f0f35f512532d2ca521ff6cd034f3"
+        "previous_stage_manifest.sha256": "5b1b51bd10e2dd3fa7b6a8b5f346ffa86c047a29a3be1665d33144f31e433286"
       },
       "outputs": [
         {
@@ -603,12 +622,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "f778876359c15c4bc8418fa8161be89cfd2ed5939b1891e0a78d26454b973f27"
+      "stage_manifest_sha256": "5104ad2b5bea1ef253ffdacdbb74ef74a0877b4a23d12e5a76974e98ef0bc801"
     },
     {
       "stage_id": "09",
@@ -618,49 +637,49 @@
       "inputs": {
         "capacity": {
           "output_hashes": {
-            "SCE_CAPACITY_SENSITIVITY_AUDIT.md": "e7f6d5a140db4167de3a76b7f7cb9cd358298ed01a33024fc7cd569261c357d3",
-            "SCE_CAPACITY_SENSITIVITY_SUMMARY.csv": "decc3b932e734f9b99e137f1694352d70366163b0e7878fa458a030984e214c0",
-            "SCE_CAPACITY_SENSITIVITY_STATION.csv": "33d8631d289828f3a83d3b160453f7f1d35b9edcb713a030a1d1b8860e73976b",
-            "SCE_CAPACITY_SENSITIVITY_TRACT.csv": "b71603ec61fb24328599bafb6fdb8d04b025816d641862d26fbb2cbccbfdf5bf",
-            "SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff",
-            "Manuscript_Figures/vis_sce_capacity_supported_sensitivity.png": "b553d790ae2116f7d07400385738f34b1401a8d63adf7c0722d38d73d7b155af",
-            "Manuscript_Figures/vis_sce_capacity_supported_sensitivity.pdf": "0b211427ce2184d83d2e9fe624393e2de30777618b1028aa51f2284216716796"
+            "results/capacity/SCE_CAPACITY_SENSITIVITY_AUDIT.md": "e7f6d5a140db4167de3a76b7f7cb9cd358298ed01a33024fc7cd569261c357d3",
+            "results/capacity/SCE_CAPACITY_SENSITIVITY_SUMMARY.csv": "decc3b932e734f9b99e137f1694352d70366163b0e7878fa458a030984e214c0",
+            "results/capacity/SCE_CAPACITY_SENSITIVITY_STATION.csv": "33d8631d289828f3a83d3b160453f7f1d35b9edcb713a030a1d1b8860e73976b",
+            "results/capacity/SCE_CAPACITY_SENSITIVITY_TRACT.csv": "b71603ec61fb24328599bafb6fdb8d04b025816d641862d26fbb2cbccbfdf5bf",
+            "results/capacity/SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff",
+            "results/manuscript/figures/vis_sce_capacity_supported_sensitivity.png": "b553d790ae2116f7d07400385738f34b1401a8d63adf7c0722d38d73d7b155af",
+            "results/manuscript/figures/vis_sce_capacity_supported_sensitivity.pdf": "0b211427ce2184d83d2e9fe624393e2de30777618b1028aa51f2284216716796"
           },
           "capacity_closure_executed": false
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "f778876359c15c4bc8418fa8161be89cfd2ed5939b1891e0a78d26454b973f27",
+          "sha256": "5104ad2b5bea1ef253ffdacdbb74ef74a0877b4a23d12e5a76974e98ef0bc801",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
-        "capacity.output_hashes.SCE_CAPACITY_SENSITIVITY_AUDIT.md": "e7f6d5a140db4167de3a76b7f7cb9cd358298ed01a33024fc7cd569261c357d3",
-        "capacity.output_hashes.SCE_CAPACITY_SENSITIVITY_SUMMARY.csv": "decc3b932e734f9b99e137f1694352d70366163b0e7878fa458a030984e214c0",
-        "capacity.output_hashes.SCE_CAPACITY_SENSITIVITY_STATION.csv": "33d8631d289828f3a83d3b160453f7f1d35b9edcb713a030a1d1b8860e73976b",
-        "capacity.output_hashes.SCE_CAPACITY_SENSITIVITY_TRACT.csv": "b71603ec61fb24328599bafb6fdb8d04b025816d641862d26fbb2cbccbfdf5bf",
-        "capacity.output_hashes.SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff",
-        "capacity.output_hashes.Manuscript_Figures/vis_sce_capacity_supported_sensitivity.png": "b553d790ae2116f7d07400385738f34b1401a8d63adf7c0722d38d73d7b155af",
-        "capacity.output_hashes.Manuscript_Figures/vis_sce_capacity_supported_sensitivity.pdf": "0b211427ce2184d83d2e9fe624393e2de30777618b1028aa51f2284216716796",
-        "previous_stage_manifest.sha256": "f778876359c15c4bc8418fa8161be89cfd2ed5939b1891e0a78d26454b973f27"
+        "capacity.output_hashes.results/capacity/SCE_CAPACITY_SENSITIVITY_AUDIT.md": "e7f6d5a140db4167de3a76b7f7cb9cd358298ed01a33024fc7cd569261c357d3",
+        "capacity.output_hashes.results/capacity/SCE_CAPACITY_SENSITIVITY_SUMMARY.csv": "decc3b932e734f9b99e137f1694352d70366163b0e7878fa458a030984e214c0",
+        "capacity.output_hashes.results/capacity/SCE_CAPACITY_SENSITIVITY_STATION.csv": "33d8631d289828f3a83d3b160453f7f1d35b9edcb713a030a1d1b8860e73976b",
+        "capacity.output_hashes.results/capacity/SCE_CAPACITY_SENSITIVITY_TRACT.csv": "b71603ec61fb24328599bafb6fdb8d04b025816d641862d26fbb2cbccbfdf5bf",
+        "capacity.output_hashes.results/capacity/SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff",
+        "capacity.output_hashes.results/manuscript/figures/vis_sce_capacity_supported_sensitivity.png": "b553d790ae2116f7d07400385738f34b1401a8d63adf7c0722d38d73d7b155af",
+        "capacity.output_hashes.results/manuscript/figures/vis_sce_capacity_supported_sensitivity.pdf": "0b211427ce2184d83d2e9fe624393e2de30777618b1028aa51f2284216716796",
+        "previous_stage_manifest.sha256": "5104ad2b5bea1ef253ffdacdbb74ef74a0877b4a23d12e5a76974e98ef0bc801"
       },
       "outputs": [
         {
           "path": "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json",
-          "sha256": "73f8624b7f7e0087bfabb9f37bf27d2a49285b55e749889f3bce2a885aaf716e"
+          "sha256": "802f66aef0c7871b3b03375ab526081138d9dfaa9ec55d7fd3b6abf863bde971"
         }
       ],
       "output_hashes": {
-        "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json": "73f8624b7f7e0087bfabb9f37bf27d2a49285b55e749889f3bce2a885aaf716e"
+        "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json": "802f66aef0c7871b3b03375ab526081138d9dfaa9ec55d7fd3b6abf863bde971"
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "1a065f6eb746cf585be4046e595bde8eb254db7d98e45981f863212426ca8fbd"
+      "stage_manifest_sha256": "482388378b907ff7a30c59e4dc45dda3bc3253b6209ec84f94ceda70da7f3fff"
     },
     {
       "stage_id": "10",
@@ -676,17 +695,17 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "1a065f6eb746cf585be4046e595bde8eb254db7d98e45981f863212426ca8fbd",
+          "sha256": "482388378b907ff7a30c59e4dc45dda3bc3253b6209ec84f94ceda70da7f3fff",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "suite.suite_manifest_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
-        "previous_stage_manifest.sha256": "1a065f6eb746cf585be4046e595bde8eb254db7d98e45981f863212426ca8fbd"
+        "previous_stage_manifest.sha256": "482388378b907ff7a30c59e4dc45dda3bc3253b6209ec84f94ceda70da7f3fff"
       },
       "outputs": [
         {
-          "path": "../LA_Grid_Revised_Suite_20260925",
+          "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925",
           "artifact_id": "revised_suite",
           "file_count": 575,
           "total_size": 299030125,
@@ -695,17 +714,17 @@
         }
       ],
       "output_hashes": {
-        "../LA_Grid_Revised_Suite_20260925": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
+        "results/revised_suite/LA_Grid_Revised_Suite_20260925": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+        "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\10_FINAL_RESULTS_AND_FIGURES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "9dc05067280df6ca1072050d6c66e4be3977dbd785052b9955f68fe4ec1a2016"
+      "stage_manifest_sha256": "e74633937f4668789c4247321d9c8f707f9a24c11d499841cb09d9df6dcc2495"
     }
   ],
-  "finished_at_utc": "2026-09-28T22:43:37.473859+00:00"
+  "finished_at_utc": "2026-09-29T01:35:52.492274+00:00"
 }

@@ -2,7 +2,7 @@
 
 ## Decision
 
-The sibling `LA_Grid_Revised_Suite_20260925` contains presentation outputs but no executable source files. The rendering and validation code required by the final workflow is already in this Git branch. The canonical workflow uses repository code only; it does not depend on an absolute Windows sibling path. The suite folder is a required external output collection for Stage 10 resume validation and is resolved by repository-relative path or `LA_GRID_REVISED_SUITE_DIR`.
+The repository-local `results/revised_suite/LA_Grid_Revised_Suite_20260925` contains presentation outputs but no executable source files. The rendering and validation code required by the final workflow is already in this Git branch. The canonical workflow uses repository code only; it does not depend on an absolute Windows sibling path. The suite folder is a required external output collection for Stage 10 resume validation and is resolved by repository-relative path or `LA_GRID_REVISED_SUITE_DIR`.
 
 ## Verified sources
 
@@ -20,7 +20,7 @@ Exact source-file SHA-256 values and historical executable commit presence are r
 | SCE capacity closure provenance | `run_sce_capacity_supported_sensitivity.py`, `sce_capacity_closure.py` (outputs validated; closure not run) |
 | Figure/output organization | `build_revised_result_suite.py`, `render_revised_suite.py`, `render_revised_suite_comparisons.py`, `render_revised_stage7.py`, July `Project_Visualizer.py` |
 
-The sibling-suite audit found zero code-like files. There is no missing executable source that needs to be copied into this repository. The canonical validator consumes no sibling code.
+The suite inventory found zero code-like files. There is no missing executable source that needs to be copied into this repository. The canonical validator consumes the local externally maintained result collection, not code from another checkout.
 
 ## Historical identities and scratch status
 

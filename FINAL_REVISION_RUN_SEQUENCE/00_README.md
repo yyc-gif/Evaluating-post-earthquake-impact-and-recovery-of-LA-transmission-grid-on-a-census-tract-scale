@@ -21,6 +21,6 @@ python FINAL_REVISION_RUN_SEQUENCE/run_all.py --resume
 | 07 Distributional/vulnerability | same | Verify final equity results | Equity Amendment result index | Reuse |
 | 08 Stage 7 typology | same | Verify harmonized typology | `Stage 7 Output_SOVI_Harmonized` | Reuse |
 | 09 Capacity robustness | same | Verify closed SCE capacity sensitivity | closure outputs | Reuse |
-| 10 Results and figures | same | Verify final suite and every manifest row | `LA_Grid_Revised_Suite_20260925` | Reuse; sibling required |
+| 10 Results and figures | same | Verify final suite and every manifest row | `results/revised_suite/LA_Grid_Revised_Suite_20260925` | Reuse; external archive is required |
 
-Large archives are outside Git and are registered in `EXTERNAL_ARCHIVE_MANIFEST.json`. The suite defaults to `../LA_Grid_Revised_Suite_20260925`; set `LA_GRID_REVISED_SUITE_DIR` to override. Prior patches and identities are mapped in `LEGACY_AND_PROVENANCE_MAP.md`.
+Large archives are outside Git and are registered in `EXTERNAL_ARCHIVE_MANIFEST.json`. The suite defaults to `results/revised_suite/LA_Grid_Revised_Suite_20260925`; set `LA_GRID_REVISED_SUITE_DIR` to override. Prior patches and identities are mapped in `LEGACY_AND_PROVENANCE_MAP.md`.

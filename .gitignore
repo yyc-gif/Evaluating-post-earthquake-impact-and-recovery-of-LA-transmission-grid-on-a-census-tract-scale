@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
 # Local environments and package caches
 .venv/
@@ -59,3 +60,18 @@ Stage 2 Output*/zoom_suspicious_*.png
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Local external archives / derived viewing suite (registered by canonical manifests)
+/Data/external_validation/
+/results/revised_suite/
+
+# Registered local-only formal archives (tracked authority files remain tracked)
+/Formal_Experiment_20260923/Formal_Trajectories/
+/Formal_Experiment_20260923/Formal_Offline_Evaluation/
+/Formal_Experiment_20260923/Formal_Dynamic_Topology/
+/Formal_Experiment_20260923/Equity_Amendment/T/
+/Formal_Experiment_20260923/Equity_Amendment/Trajectories/
+/Formal_Experiment_20260923/Equity_Amendment/Offline/
+/Formal_Experiment_20260923/Formal_Reviewer_Results/
+
+.pytest_cache/

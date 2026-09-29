@@ -114,17 +114,17 @@
       "artifact_id": "revised_suite",
       "scientific_role": "Final Revised Suite output collection",
       "canonical_stage": "10_FINAL_RESULTS_AND_FIGURES",
-      "current_local_path": "../LA_Grid_Revised_Suite_20260925",
+      "current_local_path": "results/revised_suite/LA_Grid_Revised_Suite_20260925",
       "expected_file_count": 575,
       "expected_total_size": 299030125,
-      "identity_index_file": "../LA_Grid_Revised_Suite_20260925/RESULT_SUITE_MANIFEST.csv",
+      "identity_index_file": "results/revised_suite/LA_Grid_Revised_Suite_20260925/RESULT_SUITE_MANIFEST.csv",
       "identity_index_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
       "expected_hash_or_manifest_chain_hash": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
       "required_for_resume": true,
       "required_for_from_scratch": false,
-      "git_or_external": "external_sibling",
+      "git_or_external": "local_external_archive_within_repository_layout",
       "selected_files": null,
-      "notes": "Presentation outputs only; no executable code. Path may be overridden by LA_GRID_REVISED_SUITE_DIR."
+      "notes": "Presentation outputs only; no executable code. Physical directory is in the canonical results layout and remains externally maintained; path may be overridden by LA_GRID_REVISED_SUITE_DIR."
     }
   ]
 }

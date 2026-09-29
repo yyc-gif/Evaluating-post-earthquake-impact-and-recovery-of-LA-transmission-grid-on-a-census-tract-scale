@@ -1,0 +1,249 @@
+{
+  "analysis": "July92 mapping and static source-gate external evidence",
+  "branch": "revision/reviewer-driven-core-rebuild-v2",
+  "HEAD": "d484ff1647b5b2a7edb25d61955fc092d53edb77",
+  "stations": 92,
+  "edges": 318,
+  "tracts": 2315,
+  "functional_threshold": 0.5,
+  "static_definition": {
+    "source_ids": [
+      "300829",
+      "301541",
+      "304450",
+      "305984",
+      "306489",
+      "307039",
+      "307373",
+      "307693",
+      "308540",
+      "308581",
+      "309553",
+      "309569",
+      "309703",
+      "310199"
+    ],
+    "source_count": 14,
+    "static_states_evaluated": 7,
+    "gate_function_sha256": "136b66da5aabf1f1f1cc04a91206cf89ede883b3f7386d719396429e36d24a62",
+    "interpretation": "all-other-stations-functional single-node outage; not accident replay",
+    "pipeline_MC_GA_recovery_runs": 0
+  },
+  "tracked_diff_empty": true,
+  "new_analysis_only": true,
+  "normalized_files_matched_acquisition_hashes": [
+    "External_Validation_Data/normalized/CPUC/20250104sce-psps-event-data-workbookfinal/T05.csv",
+    "External_Validation_Data/normalized/CPUC/20250104sce-psps-event-data-workbookfinal/T14.csv",
+    "External_Validation_Data/normalized/CPUC/20250120sce-psps-event-data-workbookfinal/T05.csv",
+    "External_Validation_Data/normalized/CPUC/20250120sce-psps-event-data-workbookfinal/T14.csv",
+    "External_Validation_Data/normalized/CPUC_2025_SCE_POSTSR2A_3_2_2026.csv",
+    "External_Validation_Data/normalized/CPUC_circuit_events_public_-sce_psdr_4-1-2024.csv",
+    "External_Validation_Data/normalized/CPUC_tract_events_sce_2023amended_postsr2b_1-22-2025.csv",
+    "External_Validation_Data/normalized/CPUC_tract_events_sce_postsr2b_3-2-2026.csv",
+    "External_Validation_Data/normalized/LADWP_NAMED_STATION_CASES.csv",
+    "External_Validation_Data/normalized/LADWP_OFFICIAL_NEWS_RECORDS.csv",
+    "External_Validation_Data/normalized/SCE_CIRCUIT_SUBSTATION_LOAD_LINK_READINESS.csv",
+    "External_Validation_Data/normalized/SCE_Distribution_circuits_0_Distribution_Circuits.geojson",
+    "External_Validation_Data/normalized/SCE_GNA_Layer_5_Substation_Level_Planning_Assumptions.csv",
+    "External_Validation_Data/normalized/SCE_ICA_Layer_18_Substations.csv",
+    "External_Validation_Data/normalized/SCE_ICA_Layer_18_Substations.geojson",
+    "External_Validation_Data/normalized/SCE_ICA_Tables_2_Historical_Substation_Load_Profile.csv"
+  ],
+  "input_files": [
+    {
+      "file": "C257H_Project_Main.py",
+      "bytes": 252612,
+      "SHA256": "06741fe20d69ae7fd91de29a8413f99ce8e16e379b09a44209018a292b10db23"
+    },
+    {
+      "file": "Data/source_nodes_core_expanded.csv",
+      "bytes": 3539,
+      "SHA256": "892f5ec3e9a260db138c7fb2454dea09fcb75a8989ef13695aefca417b8c2955"
+    },
+    {
+      "file": "Data/substation_graph_CEC_edges_expanded.csv",
+      "bytes": 10627,
+      "SHA256": "1a3073240a6dca3e902e0bf5c2b975c67ff100892d85f007270e9855250bd225"
+    },
+    {
+      "file": "Data/substation_graph_CEC_nodes_expanded.csv",
+      "bytes": 3280,
+      "SHA256": "cf01e03faba73891179b17af277d997ce239d69207af00416733d15154e5d647"
+    },
+    {
+      "file": "Data/tract_to_substation_mapping_CEC_expanded.csv",
+      "bytes": 557402,
+      "SHA256": "04b3f83a7be7a0a60fbfb6968b5bcee5a6e722722155f351712508f2c438fd93"
+    },
+    {
+      "file": "Data/Tracts_Within_Expanded_Area.csv",
+      "bytes": 5711602,
+      "SHA256": "b81268b48d77758f9d23fac4335c06024059a711f3c1453be2d0b9ecd1aa3a9e"
+    },
+    {
+      "file": "Data/working_area_substations_with_fragility.csv",
+      "bytes": 47928,
+      "SHA256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00"
+    },
+    {
+      "file": "External_Validation_Data/EXTERNAL_DATA_MANIFEST.csv",
+      "bytes": 4565564,
+      "SHA256": "d39915ebd73b3605e4bbe84714e8edaa829a744aab48941cb298afd71b51d36b"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC/20250104sce-psps-event-data-workbookfinal/T05.csv",
+      "bytes": 72134,
+      "SHA256": "1aac83065bf26b37562dc33a80b164771d87b09ea8f48848f75b33ed452ef46e"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC/20250104sce-psps-event-data-workbookfinal/T14.csv",
+      "bytes": 3385,
+      "SHA256": "d834f8c8582ff98ce18a600d51eecdefff7a3f63efc3322c190af524ed509226"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC/20250120sce-psps-event-data-workbookfinal/T05.csv",
+      "bytes": 49273,
+      "SHA256": "fa5baa1cfbcc088294aefabfb32997eeeafbe00e54bf5e364fc3f7c62fccbccb"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC/20250120sce-psps-event-data-workbookfinal/T14.csv",
+      "bytes": 1610,
+      "SHA256": "20a5e8fe6e8b6c4ac354faa7c67838fee28682d67e20bf9becfccca1ff4d1ece"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC_2025_SCE_POSTSR2A_3_2_2026.csv",
+      "bytes": 168852,
+      "SHA256": "a54558e4444555b673bd18ea460279ddec20bad393fab702b818bc44f5a1edb7"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC_circuit_events_public_-sce_psdr_4-1-2024.csv",
+      "bytes": 20373,
+      "SHA256": "9f942e87d275a7a16c23d32344e94e9b8f5d8b90e4f8fee849830ecc3a2734a1"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC_tract_events_sce_2023amended_postsr2b_1-22-2025.csv",
+      "bytes": 55214,
+      "SHA256": "abaf0b42afeb517fe19a1fae7fa5e93da1fff83ea5424b911d9f45aa9461c026"
+    },
+    {
+      "file": "External_Validation_Data/normalized/CPUC_tract_events_sce_postsr2b_3-2-2026.csv",
+      "bytes": 349129,
+      "SHA256": "e962f3b11cb4239b1c010085fe846653c322e50a20175afb0df4de877cdfeae5"
+    },
+    {
+      "file": "External_Validation_Data/normalized/LADWP_NAMED_STATION_CASES.csv",
+      "bytes": 5646,
+      "SHA256": "c1eb34b6f782aae8bc5487c527c3bb4e6f48882078af1a7a73e93df08fffd154"
+    },
+    {
+      "file": "External_Validation_Data/normalized/LADWP_OFFICIAL_NEWS_RECORDS.csv",
+      "bytes": 89566,
+      "SHA256": "da2c3ab72c636f76c635f2b7f827836d8ee9af9274d3b51bb9080d85108454e5"
+    },
+    {
+      "file": "External_Validation_Data/normalized/SCE_CIRCUIT_SUBSTATION_LOAD_LINK_READINESS.csv",
+      "bytes": 479656,
+      "SHA256": "07757dc5b49e8776e67301ac5d93debebfa68d4c996fa43260d20ff7691e3818"
+    },
+    {
+      "file": "External_Validation_Data/normalized/SCE_Distribution_circuits_0_Distribution_Circuits.geojson",
+      "bytes": 266680471,
+      "SHA256": "ec8cb1ea337018bed83c1a3226d9eff2434735cc3ae924994fd0d1416df40503"
+    },
+    {
+      "file": "External_Validation_Data/normalized/SCE_GNA_Layer_5_Substation_Level_Planning_Assumptions.csv",
+      "bytes": 1094560,
+      "SHA256": "f8451c0f349b10f0d7489c3ff7d175090510393e73e61dca5b9b2ef1656da5c0"
+    },
+    {
+      "file": "External_Validation_Data/normalized/SCE_ICA_Layer_18_Substations.csv",
+      "bytes": 176003,
+      "SHA256": "024b1debec37deb24c26e6d0613b4c369f32d7cb3749da8c9152885807526398"
+    },
+    {
+      "file": "External_Validation_Data/normalized/SCE_ICA_Layer_18_Substations.geojson",
+      "bytes": 492780,
+      "SHA256": "8c5a80ff9567926053e9df02fd3841cbd00257623bae1d18432b7e86c1296b1c"
+    },
+    {
+      "file": "External_Validation_Data/normalized/SCE_ICA_Tables_2_Historical_Substation_Load_Profile.csv",
+      "bytes": 12460288,
+      "SHA256": "5133902fe0af645ab3103c26622a3af23beff91f2b23c30dceb14c334bf6f017"
+    },
+    {
+      "file": "External_Validation_Data/provenance/DATASET_INVENTORY.csv",
+      "bytes": 18802,
+      "SHA256": "0ea74c148faad79000a96253333c1dcd6065be8c2ac382f46f7ff4a39724741a"
+    },
+    {
+      "file": "External_Validation_Data/provenance/FIELD_DICTIONARY.csv",
+      "bytes": 127959,
+      "SHA256": "7d991058d5887d555728d95ff0d6f8fc494b9bacc9e5950fd894b8e0901b13f5"
+    },
+    {
+      "file": "External_Validation_Data/provenance/NORMALIZED_FILE_MANIFEST.csv",
+      "bytes": 106340,
+      "SHA256": "8a1503f509310656e9f5da2354b87493ca61ca382ecb68054747a9b0fc13515a"
+    },
+    {
+      "file": "External_Validation_Data/raw/LADWP_news/search_Receiving_Station_P.json",
+      "bytes": 225368,
+      "SHA256": "932d925351dfdf6fd59244e3ac2bd79a41cdc9da2364659aba8d60bf25010cf4"
+    },
+    {
+      "file": "External_Validation_Data/raw/references/Adelanto_Rinaldi_MND_2025.pdf",
+      "bytes": 2795165,
+      "SHA256": "4ba600b4eed7b4d1c3f9b99ed293e7d86f07fea0f37debbe3f62550a5f25138d"
+    },
+    {
+      "file": "External_Validation_Data/raw/references/LADWP_49_final.txt",
+      "bytes": 708757,
+      "SHA256": "2d0ff21b363db664de268c7157211be7c7f4fba3fa381a3de6a12e9e72ee8073"
+    },
+    {
+      "file": "External_Validation_Data/raw/references/LADWP_57_final.txt",
+      "bytes": 434767,
+      "SHA256": "0c797c2a870fba369b0c2d07d5e9ef2955035e90f6262fe050b4867a7f36e107"
+    },
+    {
+      "file": "External_Validation_Data/raw/references/LADWP_B_exact.txt",
+      "bytes": 7264,
+      "SHA256": "19ce9a0ac938ad4cbdb52b2f953f0e2b7eceed9f43b6b105d711d436453edae8"
+    },
+    {
+      "file": "External_Validation_Data/raw/references/LAX_RSX_FinalEA_2019.pdf",
+      "bytes": 46205413,
+      "SHA256": "4010f83fcd3742a11cdc88c32f8995f92205d64f19f4a5a4a677b6e68143359a"
+    },
+    {
+      "file": "External_Validation_Data/raw/references/ZEPEO_MND_2025.pdf",
+      "bytes": 78342034,
+      "SHA256": "df9ddfcf87af143471ea077eb1359f561d716f02a1cd2cb818f414e4ae932c8e"
+    },
+    {
+      "file": "R1_Comment1_July92_Utility_Constraint/JULY_UTILITY_CONSTRAINED_92.csv",
+      "bytes": 429606,
+      "SHA256": "ee31969141015479334ffaa0bae2ce117a85d34d12333986654f5433ff8eb7b9"
+    },
+    {
+      "file": "R1_Comment1_July92_Utility_Constraint/MAPPING_STRUCTURE_SENSITIVITY_TRACTS.csv",
+      "bytes": 448278,
+      "SHA256": "4c9fed19d1561759edff15702daed6d448155ca3604bd8d920fb6c7d7f7ddbe1"
+    },
+    {
+      "file": "R1_Comment1_July92_Utility_Constraint/SCE_CANDIDATE_BENCHMARK_TRACTS.csv",
+      "bytes": 104585,
+      "SHA256": "0c12248701afa6181b94d31b9871ff4cad65f680b7bf5888f69eb8fd13b5bbef"
+    }
+  ],
+  "reproduction_order": [
+    "analyze_evidence.py",
+    "spatial_results.py"
+  ],
+  "limits": [
+    "No production mapping/topology/source edits",
+    "No stochastic damage, recovery, scheduling, MC or GA runs",
+    "Seven distinct static conditions; same diagnostics recomputed during analysis assembly; not independent events",
+    "LADWP geography reference points are illustrative analyst locations, not observed customer outage polygons"
+  ]
+}

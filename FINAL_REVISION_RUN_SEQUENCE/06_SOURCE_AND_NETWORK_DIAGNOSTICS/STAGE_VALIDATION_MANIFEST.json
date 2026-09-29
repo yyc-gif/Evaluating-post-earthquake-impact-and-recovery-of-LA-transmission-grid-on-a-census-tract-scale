@@ -17,25 +17,29 @@
       "classification_coverage": "100%"
     },
     "compact_diagnostic_sha256": {
-      "SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
-      "SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
-      "ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec"
+      "results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
+      "results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
+      "results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec"
     },
     "previous_stage_manifest": {
       "path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-      "sha256": "ed8022730a5415f14ff0a8c2a5559996487054ca2e2f0f872d4543783d30b2bc",
+      "sha256": "8d93d256af3d8c712dff8dd593d8d3d15405f2585388d8926b1b5dc2dbf7f51f",
       "status": "PASS_REUSE"
     }
   },
   "hashes": {
     "dynamic_topology_archive.realization_detail_sha256": "2f95ef67cfc36938ecbed5d5491b73b36b21fad848341b0ce76b0b77d5a28d2d",
     "connectivity_state_cache.inventory_sha256": "813950c28ccac4d98c0180bc5cb59058b666511515054dc01d7cd5af34d80a72",
-    "compact_diagnostic_sha256.SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
-    "compact_diagnostic_sha256.SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
-    "compact_diagnostic_sha256.ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
-    "previous_stage_manifest.sha256": "ed8022730a5415f14ff0a8c2a5559996487054ca2e2f0f872d4543783d30b2bc"
+    "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
+    "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
+    "compact_diagnostic_sha256.results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
+    "previous_stage_manifest.sha256": "8d93d256af3d8c712dff8dd593d8d3d15405f2585388d8926b1b5dc2dbf7f51f"
   },
   "outputs": [
+    {
+      "path": "results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv",
+      "sha256": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe"
+    },
     {
       "path": "Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json",
       "sha256": "39ad54a2b1b06e2f58d842e7c107bc100e8c04c962b79ea3228b1757f0267d2d"
@@ -62,6 +66,7 @@
     }
   ],
   "output_hashes": {
+    "results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
     "Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json": "39ad54a2b1b06e2f58d842e7c107bc100e8c04c962b79ea3228b1757f0267d2d",
     "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json": "74a3ea81605340a954bce29440398e9e4dd6a1f3e390dff3805e5076f0289530",
     "Formal_Experiment_20260923/Formal_Dynamic_Topology": "2f95ef67cfc36938ecbed5d5491b73b36b21fad848341b0ce76b0b77d5a28d2d",
@@ -69,7 +74,7 @@
   },
   "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
   "code_identity": {
-    "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+    "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
     "historical_phase_identities_preserved": true
   },
   "scientific_generation_called": false

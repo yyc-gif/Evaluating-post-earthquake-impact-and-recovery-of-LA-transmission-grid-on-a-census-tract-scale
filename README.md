@@ -26,8 +26,7 @@ external-archive manifest.
 > with graph-connectivity proxies. The workflow is not an AC/DC power-flow,
 > voltage-stability, or generation-dispatch model.
 
-Large data and result files are stored with Git LFS. After cloning, retrieve
-them before running the workflow:
+Tracked large files use Git LFS; registered trajectory/offline archives and the revised viewing suite are local external archives rather than Git objects. After cloning, retrieve tracked LFS objects and restore the external archives listed in the canonical manifest:
 
 ```bash
 git lfs pull
@@ -48,54 +47,24 @@ results.
 ## Legacy / Original July Manuscript Workflow
 
 The five `*_expanded.py` files describe the original July manuscript workflow.
-They are retained for historical provenance and are not the canonical entry
-point for the final reviewer revision. The files without `_expanded` are their
-shared implementations and must remain beside them for that legacy workflow.
+They are retained under `src/la_grid/core/legacy_entrypoints/` for history and
+are not the canonical entry point for the final reviewer revision. Their shared
+implementations are under `src/la_grid/core/`.
 
-Run the pipeline from the repository root in this order:
-
-```bash
-python Topology_and_Weight_expanded.py
-python IDW_expanded.py
-python build_travel_matrices_osm_expanded.py
-python C257H_Project_Main_expanded.py
-python Project_Visualizer_expanded.py
-```
-
-The stages perform the following tasks:
-
-1. Build and validate the reduced substation topology and tract dependency map.
-2. Interpolate scenario PGA fields to substations.
-3. Build crew-base-to-task and task-to-task road travel-time matrices.
-4. Run damage, source-gated recovery, restoration scheduling, sensitivity, and
-   tract clustering analyses.
-5. Regenerate stage-level visualizations.
-
-Final manuscript composites are regenerated separately with:
-
-```bash
-python make_manuscript_composites.py
-```
+Shared July implementation modules are in `src/la_grid/core/`; plotting tools are in `src/la_grid/plotting/`.
 
 ## Repository Contents
 
-- `Topology_and_Weight.py`, `topology_outputs.py`, and
-  `topology_visualization.py`: topology construction, export, and validation.
-- `IDW.py`: PGA interpolation.
-- `build_travel_matrices_osm.py`: OSM travel-time matrix construction.
-- `C257H_Project_Main.py`: damage, service, recovery, scheduling, GA, metrics,
-  sensitivity, and clustering calculations.
-- `Project_Visualizer.py`: stage-level maps and plots.
-- `*_expanded.py`: configuration wrappers for the original July manuscript workflow.
-- `strategy_names.py`: canonical strategy IDs and display labels.
-- `build_sensitivity_outputs.py`: Figure 7 and sensitivity-table outputs.
-- `make_methodology_workflow_figure.py` and
-  `make_manuscript_composites.py`: final manuscript figure assembly.
-- `Data/`: required inputs and processed topology/mapping files.
-- `Stage 1 Output_expanded/` through `Stage 7 Output_expanded/`: retained
-  numerical and graphical results from the manuscript workflow.
-- `Sensitivity Output_clean/`: retained sensitivity figures and tables.
-- `Manuscript_Figures/`: final composite manuscript figures.
+- `FINAL_REVISION_RUN_SEQUENCE/`: sole canonical reviewer-revision validation/reuse entry point.
+- `src/la_grid/`: package containing core, revision, diagnostics, plotting, and utility code.
+- `config/parent_frozen_design/`: unchanged parent frozen experiment matrix.
+- `Data/`: PATH_FROZEN model inputs plus the ignored local-only `external_validation/` evidence directory.
+- `Formal_Experiment_20260923/`: PATH_FROZEN mixed formal archive; logical result indexes are under `results/formal/`, `results/vulnerability/`, and `results/stage7/`.
+- `results/formal/`, `results/revised_suite/`, `results/manuscript/`, `results/capacity/`, and `results/diagnostics/`: organized formal archives and final result collections.
+- `data/travel/`: the two active frozen directed travel matrices; historical stage outputs are under `provenance/legacy_outputs/`.
+- `docs/`: methodology, reviewer, data-research, meeting, and reproducibility records.
+- `provenance/`: legacy and reviewer-working records retained for traceability.
+- `tests/`: reviewer-revision tests.
 
 Generated caches, logs, one-off mechanism experiments, audit/debug files,
 downloaded literature PDFs, and intermediate composite panels are intentionally

@@ -14,59 +14,73 @@
       "input_count": 14,
       "input_hashes": [
         {
-          "path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+          "historical_path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+          "current_path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
           "sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446"
         },
         {
-          "path": "Data/LA_Census_Tracts_SOVI_Scores_with_Identifiers.csv",
+          "historical_path": "Data/LA_Census_Tracts_SOVI_Scores_with_Identifiers.csv",
+          "current_path": "Data/LA_Census_Tracts_SOVI_Scores_with_Identifiers.csv",
           "sha256": "117e19f0937aa2a2a0a75a8051883e59ed33146ed5da244bd89819976454a482"
         },
         {
-          "path": "Data/Substations_PGA_IDW_CEC_expanded.csv",
+          "historical_path": "Data/Substations_PGA_IDW_CEC_expanded.csv",
+          "current_path": "Data/Substations_PGA_IDW_CEC_expanded.csv",
           "sha256": "10367d947a2f7e887f06cd8ac690c5a91999f427cdcfb69486437d8e7fe8ccb5"
         },
         {
-          "path": "Data/hospital_with_tract_expanded.csv",
+          "historical_path": "Data/hospital_with_tract_expanded.csv",
+          "current_path": "Data/hospital_with_tract_expanded.csv",
           "sha256": "60481dde007c7890d1e0911b847ba8f2c43e6d86a1de55f86ff94bf3ad7fe88c"
         },
         {
-          "path": "Data/source_nodes_core_expanded.csv",
+          "historical_path": "Data/source_nodes_core_expanded.csv",
+          "current_path": "Data/source_nodes_core_expanded.csv",
           "sha256": "892f5ec3e9a260db138c7fb2454dea09fcb75a8989ef13695aefca417b8c2955"
         },
         {
-          "path": "Data/stage45_C57_expanded_crew_origins.csv",
+          "historical_path": "Data/stage45_C57_expanded_crew_origins.csv",
+          "current_path": "Data/stage45_C57_expanded_crew_origins.csv",
           "sha256": "6419deeaba0e5e41bc25a35619917835ef114e51350ea9ae60993b0ebaba7bc2"
         },
         {
-          "path": "Data/stage45_active_crew_bases_C57.csv",
+          "historical_path": "Data/stage45_active_crew_bases_C57.csv",
+          "current_path": "Data/stage45_active_crew_bases_C57.csv",
           "sha256": "ec76a253b0a5a3c817532730ac990734175328e8f8b0857f7ad62e162dff31b4"
         },
         {
-          "path": "Data/stage45_depot_inputs_final_origin_proxy.csv",
+          "historical_path": "Data/stage45_depot_inputs_final_origin_proxy.csv",
+          "current_path": "Data/stage45_depot_inputs_final_origin_proxy.csv",
           "sha256": "a893fdc77affbb9642823bc85b9536e0c4ffa79bcadef2b5b9b4f4a21e852c2b"
         },
         {
-          "path": "Data/substation_graph_CEC_edges_expanded.csv",
+          "historical_path": "Data/substation_graph_CEC_edges_expanded.csv",
+          "current_path": "Data/substation_graph_CEC_edges_expanded.csv",
           "sha256": "1a3073240a6dca3e902e0bf5c2b975c67ff100892d85f007270e9855250bd225"
         },
         {
-          "path": "Data/substation_graph_CEC_nodes_expanded.csv",
+          "historical_path": "Data/substation_graph_CEC_nodes_expanded.csv",
+          "current_path": "Data/substation_graph_CEC_nodes_expanded.csv",
           "sha256": "cf01e03faba73891179b17af277d997ce239d69207af00416733d15154e5d647"
         },
         {
-          "path": "Data/tract_to_substation_mapping_CEC_expanded.csv",
+          "historical_path": "Data/tract_to_substation_mapping_CEC_expanded.csv",
+          "current_path": "Data/tract_to_substation_mapping_CEC_expanded.csv",
           "sha256": "04b3f83a7be7a0a60fbfb6968b5bcee5a6e722722155f351712508f2c438fd93"
         },
         {
-          "path": "Data/working_area_substations_with_fragility.csv",
+          "historical_path": "Data/working_area_substations_with_fragility.csv",
+          "current_path": "Data/working_area_substations_with_fragility.csv",
           "sha256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00"
         },
         {
-          "path": "Stage 4 Output_expanded/travel_base_to_task.csv",
+          "historical_path": "Stage 4 Output_expanded/travel_base_to_task.csv",
+          "current_path": "data/travel/travel_base_to_task.csv",
           "sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630"
         },
         {
-          "path": "Stage 4 Output_expanded/travel_task_to_task.csv",
+          "historical_path": "Stage 4 Output_expanded/travel_task_to_task.csv",
+          "current_path": "data/travel/travel_task_to_task.csv",
           "sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8"
         }
       ],
@@ -85,10 +99,10 @@
       "status": "PASS_DRY_VALIDATION_NO_SAMPLING_OR_SCHEDULING"
     },
     "code": {
-      "authority_file_sha256": "e6c010dbcb3d89b571203bced950ed87dbe0efa7d07e0bdb405fae287dba8bf9",
+      "authority_file_sha256": "72e70e94304dbec336d6ca74097de2e1f81258889ebda45038c4a27d6e85b7f5",
       "code_file_count": 24,
       "historical_commit_count": 10,
-      "current_head": "2d54e737ebf3b010507b6186dcbf00a37ef0602c"
+      "current_head": "cfeadcdcb7d7b0d1d70a9b854440c6f0360c72b5"
     }
   },
   "hashes": {
@@ -107,11 +121,11 @@
     "inputs.input_hashes[11].sha256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00",
     "inputs.input_hashes[12].sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630",
     "inputs.input_hashes[13].sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
-    "code.authority_file_sha256": "e6c010dbcb3d89b571203bced950ed87dbe0efa7d07e0bdb405fae287dba8bf9"
+    "code.authority_file_sha256": "72e70e94304dbec336d6ca74097de2e1f81258889ebda45038c4a27d6e85b7f5"
   },
   "outputs": [
     {
-      "path": "FINAL_EXPERIMENT_MATRIX.json",
+      "path": "config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json",
       "sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe"
     },
     {
@@ -120,12 +134,12 @@
     }
   ],
   "output_hashes": {
-    "FINAL_EXPERIMENT_MATRIX.json": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+    "config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
     "Formal_Experiment_20260923/FINAL_EXECUTION_VALIDATION.json": "a3d2371ca4b8dbf0969c97c3857cb3add895b26120c9ce66078095846ee7ca82"
   },
   "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
   "code_identity": {
-    "current_validator_sha256": "cea8553d1cd74aeb792d58b9538dfc4a97ecc49b5c6711ac04bc0a671e397ddb",
+    "current_validator_sha256": "ecdc686a740d34e7e0293cd540cf61e7a3f348234dd64859981c9bef07b8c86e",
     "historical_phase_identities_preserved": true
   },
   "scientific_generation_called": false

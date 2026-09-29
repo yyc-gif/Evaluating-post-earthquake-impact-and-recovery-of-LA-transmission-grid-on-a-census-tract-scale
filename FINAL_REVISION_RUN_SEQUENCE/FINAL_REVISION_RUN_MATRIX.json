@@ -2,7 +2,7 @@
   "schema_version": 1,
   "document_type": "canonical workflow overlay; not an experiment design replacement",
   "parent_frozen_design": {
-    "path": "FINAL_EXPERIMENT_MATRIX.json",
+    "path": "config/parent_frozen_design/FINAL_EXPERIMENT_MATRIX.json",
     "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
     "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
     "status": "FROZEN_BEFORE_FORMAL_EXECUTION"
@@ -19,7 +19,7 @@
     },
     "capacity_robustness": {
       "authority_commit": "2d54e737ebf3b010507b6186dcbf00a37ef0602c",
-      "entrypoint": "sce_capacity_closure.py",
+      "entrypoint": "src/la_grid/revision/capacity/sce_capacity_closure.py",
       "resume_behavior": "validate and reuse existing closure outputs only"
     },
     "final_reporting_strategy_resolution": {
