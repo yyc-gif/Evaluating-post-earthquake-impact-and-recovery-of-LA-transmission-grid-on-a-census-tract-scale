@@ -186,8 +186,8 @@ def station_map(station):
     # Label every Core source and the seven non-source stations with the
     # largest alternative-route gain.  A small deterministic repel routine
     # chooses among candidate offsets to avoid label-label collisions.
-    source_labels = sources.assign(_label_kind="source")
-    gain_labels = non.nlargest(7, "Delta_R_redundancy").assign(_label_kind="gain")
+    source_labels = sources.assign(label_kind="source")
+    gain_labels = non.nlargest(7, "Delta_R_redundancy").assign(label_kind="gain")
     label_rows = pd.concat([source_labels, gain_labels], ignore_index=True)
     offsets = [(4, 4), (4, 10), (4, -10), (-4, 4), (-4, 10), (-4, -10),
                (10, 0), (-10, 0), (8, 8), (-8, 8), (8, -8), (-8, -8)]
@@ -208,8 +208,8 @@ def station_map(station):
             for off in offsets:
                 probe = ax.annotate(
                     name, (row.lon, row.lat), xytext=off, textcoords="offset points",
-                    fontsize=5.7 if row._label_kind == "source" else 6.1,
-                    fontweight="semibold" if row._label_kind == "gain" else "normal",
+                    fontsize=5.7 if row.label_kind == "source" else 6.1,
+                    fontweight="semibold" if row.label_kind == "gain" else "normal",
                     color="#252525", zorder=7,
                     bbox=dict(facecolor="white", edgecolor="none", alpha=.76, pad=.20),
                 )
@@ -223,8 +223,8 @@ def station_map(station):
                     break
             final = ax.annotate(
                 name, (row.lon, row.lat), xytext=best_offset, textcoords="offset points",
-                fontsize=5.7 if row._label_kind == "source" else 6.1,
-                fontweight="semibold" if row._label_kind == "gain" else "normal",
+                fontsize=5.7 if row.label_kind == "source" else 6.1,
+                fontweight="semibold" if row.label_kind == "gain" else "normal",
                 color="#252525", zorder=7,
                 bbox=dict(facecolor="white", edgecolor="none", alpha=.76, pad=.20),
             )
