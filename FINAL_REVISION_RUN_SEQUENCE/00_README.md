@@ -1,26 +1,26 @@
 # Final revised-paper workflow
 
-Run the authoritative local validation/reuse path:
+Run the authoritative validation/reuse path:
 
 ```bash
 python FINAL_REVISION_RUN_SEQUENCE/run_all.py --resume
 ```
 
-`--from-scratch = NOT YET CERTIFIED`.
+`--resume` is the currently certified mode. `--from-scratch` is **NOT YET CERTIFIED**.
 
-`--resume` validates and reuses frozen formal archives and accepted post-freeze results. It does not sample, schedule, run GA, recompute Stage 7, or regenerate sensitivity results. `--from-scratch` is **NOT YET CERTIFIED**.
+| Stage | Entrypoint | Purpose | Status |
+|---|---|---|---|
+| 01 | `01_VALIDATE_INPUTS/run_01_validate.py` | Verify frozen configuration, input identities, code authority and protected archive identity | PASS_VALIDATE |
+| 02 | `02_MAPPING_AND_PHYSICAL_SAMPLES/run_02_mapping_and_physical.py` | Validate and reuse the production mapping and frozen physical/planning samples | PASS_REUSE |
+| 03 | `03_GA_AND_STRATEGY_FREEZE/run_03_strategy_freeze.py` | Validate frozen rule sequences, GA provenance, incumbent and final strategy registry | PASS_REUSE |
+| 04 | `04_SCHEDULE_AND_TRAJECTORIES/run_04_trajectories.py` | Validate and reuse the frozen formal and Vulnerability-first event archives | PASS_REUSE |
+| 05 | `05_SERVICE_AND_TRACT_EVALUATION/run_05_service_evaluation.py` | Validate frozen offline evaluations and accepted service/distribution results | PASS_REUSE |
+| 06 | `06_SOURCE_AND_NETWORK_DIAGNOSTICS/run_06_source_network_diagnostics.py` | Validate retained source-connectivity and dynamic network diagnostic outputs | PASS_REUSE |
+| 07 | `07_DISTRIBUTIONAL_AND_VULNERABILITY/run_07_distributional_vulnerability.py` | Validate final Q1–Q4 and vulnerability-targeting results | PASS_REUSE |
+| 08 | `08_FINAL_STAGE7_TYPOLOGY/run_08_stage7_typology.py` | Validate the harmonized Stage 7 authority and its saved products | PASS_REUSE |
+| 09 | `09_CAPACITY_ROBUSTNESS/run_09_capacity_robustness.py` | Validate the closed SCE-supported capacity sensitivity outputs | PASS_REUSE |
+| 10 | `10_FINAL_RESULTS_AND_FIGURES/run_10_final_outputs.py` | Validate the revised suite archive and the single final figure collection | PASS_REUSE |
 
-| Stage | Command | Purpose | Primary authority | Resume status |
-|---|---|---|---|---|
-| 01 Validate inputs | same | Verify frozen matrix, hashes, code and Git/LFS identities | parent matrix and dry validation | Validate |
-| 02 Mapping and samples | same | Verify/reuse M1 and 4,000 evaluation + 64 planning samples | frozen Stage 1 inputs | Reuse |
-| 03 GA and strategy freeze | same | Verify final eight sequences and GA provenance | GA identities and frozen sequences | Reuse |
-| 04 Trajectories | same | Verify/reuse 84,000 formal + 10,000 Vulnerability-first trajectories | archive indexes | Reuse; local archive required |
-| 05 Service and tract evaluation | same | Verify frozen offline shards and metrics | formal/equity indexes | Reuse; local shards required |
-| 06 Source/network diagnostics | same | Verify retained diagnostics | dynamic/connectivity identities | Reuse; local diagnostic archive required |
-| 07 Distributional/vulnerability | same | Verify final equity results | Equity Amendment result index | Reuse |
-| 08 Stage 7 typology | same | Verify harmonized typology | `Stage 7 Output_SOVI_Harmonized` | Reuse |
-| 09 Capacity robustness | same | Verify closed SCE capacity sensitivity | closure outputs | Reuse |
-| 10 Results and figures | same | Verify final suite and every manifest row | `results/revised_suite/LA_Grid_Revised_Suite_20260925` | Reuse; external archive is required |
+Each stage entrypoint calls the same `stage_runner.py` implementation used by `run_all.py`. Every entrypoint requires `--resume` and fails if a prerequisite manifest or frozen artifact is missing; no stage wrapper falls back to scientific computation.
 
-Large archives are outside Git and are registered in `EXTERNAL_ARCHIVE_MANIFEST.json`. The suite defaults to `results/revised_suite/LA_Grid_Revised_Suite_20260925`; set `LA_GRID_REVISED_SUITE_DIR` to override. Prior patches and identities are mapped in `LEGACY_AND_PROVENANCE_MAP.md`.
+The authoritative figure collection is `results/figures/` (see its `README.md`). Scientific implementation is in `src/la_grid/`; numerical result collections and archive pointers are under `results/`. Large local/external archives are listed in `EXTERNAL_ARCHIVE_MANIFEST.json`.

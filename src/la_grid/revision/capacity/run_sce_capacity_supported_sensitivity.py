@@ -28,7 +28,7 @@ PHYSICAL_MANIFEST_PATH = FORMAL / "Stage 1 Output_expanded" / "PHYSICAL_INPUTS_F
 HORIZON_PATH = FORMAL / "Formal_Schedule_Prepass" / "EVALUATION_HORIZON.json"
 SCHEDULE_DIR = FORMAL / "Formal_Schedule_Prepass"
 PHYSICAL_DIR = FORMAL / "Stage 1 Output_expanded"
-FIGURE_DIR = ROOT / "results" / "manuscript" / "figures"
+FIGURE_DIR = ROOT / "results" / "figures"
 
 HAZARDS = ["Northridge", "SanFernando", "LongBeach", "2pc50"]
 SCHEDULED = [

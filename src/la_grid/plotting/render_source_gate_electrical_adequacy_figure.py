@@ -17,7 +17,7 @@ import pandas as pd
 import la_grid.plotting.Project_Visualizer as july
 from la_grid.paths import REPO_ROOT as ROOT
 BENCHMARK = ROOT / "CONNECTED_VS_ELECTRICAL_CONSTRAINT_BENCHMARK.csv"
-CANONICAL = ROOT / "results" / "manuscript" / "figures"
+CANONICAL = ROOT / "results" / "figures"
 SUITE = ROOT / "results" / "revised_suite" / "LA_Grid_Revised_Suite_20260925"
 STAGE = SUITE / "Stage 3 Output_expanded"
 SUPP = SUITE / "Submission_Package" / "Supplementary_Figures"

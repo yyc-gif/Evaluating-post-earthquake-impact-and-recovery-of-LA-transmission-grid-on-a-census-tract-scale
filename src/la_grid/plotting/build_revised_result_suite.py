@@ -72,9 +72,9 @@ for name in ['S1_DAMAGE_STATE_COUNTS.csv','S1_S2_FROZEN_TRACT_INITIAL_AND_T80.cs
 for name in ['substation_graph_CEC_edges.csv','JULY_UTILITY_CONSTRAINED_92.csv','tract_to_substation_mapping_CEC.csv']:
  copy(ROOT/'Data'/name,'Stage 2 Output_expanded/'+name)
 # The 92-station topology itself is unchanged, so retain its July-standard panel.
-network_png=copy(ROOT/'results'/'manuscript'/'figures'/'panel_a_direct_links_600dpi.png',
+network_png=copy(ROOT/'results'/'figures'/'panel_a_direct_links_600dpi.png',
  'Submission_Package/Main_Figures/Candidate_Figure_Network_Topology.png',kind='retained_july_figure')
-network_pdf=copy(ROOT/'results'/'manuscript'/'figures'/'panel_a_direct_links_600dpi.pdf',
+network_pdf=copy(ROOT/'results'/'figures'/'panel_a_direct_links_600dpi.pdf',
  'Submission_Package/Main_Figures/Candidate_Figure_Network_Topology.pdf',kind='retained_july_figure')
 copy(ROOT/'R1_Comment1_2_External_Evidence_20260922'/'SCE_MAPPING_BENCHMARK_SUMMARY.csv',
  'Stage 2 Output_expanded/SCE_PUBLIC_CANDIDATE_BENCHMARK.csv')

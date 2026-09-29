@@ -53,7 +53,7 @@ import matplotlib.pyplot as plt
 
 
 from la_grid.paths import REPO_ROOT as ROOT
-OUT_DIR = ROOT / "results" / "manuscript" / "figures"
+OUT_DIR = ROOT / "results" / "figures"
 OUT_DIR.mkdir(exist_ok=True)
 
 BASE_NAME = "methodology_workflow_IJDRR"

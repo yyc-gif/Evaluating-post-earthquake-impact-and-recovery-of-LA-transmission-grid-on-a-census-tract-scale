@@ -12,10 +12,19 @@ times, and rule-based or genetic-algorithm restoration schedules.
 Final reviewer-revision workflow:
 FINAL_REVISION_RUN_SEQUENCE/00_README.md
 
-Canonical validation/reuse command:
+Run the final reviewer-revision workflow:
 ```bash
 python FINAL_REVISION_RUN_SEQUENCE/run_all.py --resume
 ```
+
+Run or validate an individual stage (example):
+```bash
+python FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/run_09_capacity_robustness.py --resume
+```
+
+Final figures: `results/figures/`
+Scientific implementation: `src/la_grid/`
+Final numerical results: `results/`
 
 `--resume` is the currently certified reproduction mode. Full `--from-scratch`
 reproduction is not yet certified because several frozen trajectory and offline
@@ -60,7 +69,7 @@ Shared July implementation modules are in `src/la_grid/core/`; plotting tools ar
 - `config/parent_frozen_design/`: unchanged parent frozen experiment matrix.
 - `Data/`: PATH_FROZEN model inputs plus the ignored local-only `external_validation/` evidence directory.
 - `Formal_Experiment_20260923/`: PATH_FROZEN mixed formal archive; logical result indexes are under `results/formal/`, `results/vulnerability/`, and `results/stage7/`.
-- `results/formal/`, `results/revised_suite/`, `results/manuscript/`, `results/capacity/`, and `results/diagnostics/`: organized formal archives and final result collections.
+- `results/formal/`, `results/revised_suite/`, `results/figures/`, `results/capacity/`, and `results/diagnostics/`: organized formal archives and final result collections.
 - `data/travel/`: the two active frozen directed travel matrices; historical stage outputs are under `provenance/legacy_outputs/`.
 - `docs/`: methodology, reviewer, data-research, meeting, and reproducibility records.
 - `provenance/`: legacy and reviewer-working records retained for traceability.

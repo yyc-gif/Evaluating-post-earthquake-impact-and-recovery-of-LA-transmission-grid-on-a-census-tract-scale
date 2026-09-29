@@ -475,6 +475,58 @@ def validate_formal_result_authorities():
     return out
 
 
+def validate_final_figures():
+    figure_dir=repo_path("results/figures")
+    require_dir(figure_dir)
+    index_path=figure_dir/"FIGURE_INDEX.csv"
+    readme_path=figure_dir/"README.md"
+    require_file(index_path); require_file(readme_path)
+    required_columns={"file","format","scientific_content","current_status","main_or_supplement","source_authority","source_path","generator","sha256_or_lfs_oid","include_in_final_figure_collection","notes"}
+    try:
+        with index_path.open(encoding="utf-8-sig",newline="") as f:
+            reader=csv.DictReader(f)
+            if not required_columns.issubset(reader.fieldnames or []):
+                raise ValidationError("FIGURE_INDEX.csv is missing required inventory columns")
+            rows=list(reader)
+    except ValidationError:
+        raise
+    except Exception as exc:
+        raise ValidationError(f"Cannot read final figure index: {exc}") from exc
+    included=[r for r in rows if r["include_in_final_figure_collection"].strip().lower()=="true"]
+    names=[r["file"] for r in included]
+    if len(names)!=len(set(names)):
+        raise ValidationError("FIGURE_INDEX.csv contains duplicate publication-facing filenames")
+    expected=set(names)
+    actual={p.name for p in figure_dir.iterdir() if p.is_file() and p.suffix.lower() in (".png",".pdf",".svg",".jpg",".jpeg")}
+    if actual!=expected:
+        raise ValidationError(f"Final figure inventory differs from FIGURE_INDEX.csv: missing={sorted(expected-actual)}, extra={sorted(actual-expected)}")
+    seen_hashes={}
+    hashes={"results/figures/FIGURE_INDEX.csv":sha256(index_path),"results/figures/README.md":sha256(readme_path)}
+    source_checks={}
+    for row in included:
+        name=row["file"]
+        if Path(name).name!=name or Path(name).suffix.lower() not in (".png",".pdf",".svg",".jpg",".jpeg"):
+            raise ValidationError(f"Invalid publication-facing figure filename: {name}")
+        digest=row["sha256_or_lfs_oid"].strip().removeprefix("sha256:").lower()
+        if len(digest)!=64 or any(c not in "0123456789abcdef" for c in digest):
+            raise ValidationError(f"Invalid SHA-256/LFS OID in figure index for {name}")
+        if digest in seen_hashes:
+            raise ValidationError(f"Duplicate publication-facing figure content: {name} and {seen_hashes[digest]}")
+        seen_hashes[digest]=name
+        target=figure_dir/name; require_materialized(target); require_git_tracked(target)
+        if target.suffix.lower().lstrip(".")!=row["format"].strip().lower():
+            raise ValidationError(f"Figure format does not match indexed filename: {target}")
+        if sha256(target)!=digest:
+            raise ValidationError(f"Publication-facing figure hash differs from index: {target}")
+        source=repo_path(row["source_path"])
+        require_materialized(source)
+        if sha256(source)!=digest:
+            raise ValidationError(f"Figure copy differs from its indexed source authority: {source} -> {target}")
+        source_checks[row["source_path"]]=digest
+        hashes[f"results/figures/{name}"]=digest
+    require_git_tracked(index_path); require_git_tracked(readme_path)
+    return {"file_count":len(included),"inventory_rows":len(rows),"figure_hashes":hashes,"source_authority_hashes":source_checks,"index_sha256":sha256(index_path),"unique_publication_content":len(seen_hashes)}
+
 def validate_suite(item):
     path=archive_path(item)
     # The suite manifest path is external, so verify its hash directly against the frozen registry.
@@ -519,6 +571,7 @@ def validate_stage(stage_id, registry, run_manifest):
     elif stage_id=="09": evidence["capacity"]=validate_capacity()
     elif stage_id=="10":
         it=item_by_id["revised_suite"]; evidence["suite"]=validate_suite(it)
+        evidence["final_figures"]=validate_final_figures()
     else: raise ValidationError(f"Unknown stage {stage_id}")
 
     if stage_id!="01":
@@ -556,6 +609,13 @@ def stage_outputs(stage_id, registry):
     out=[]
     for rel in paths.get(stage_id,[]):
         p=repo_path(rel); out.append({"path":rel,"sha256":sha256(p)})
+    if stage_id=="10":
+        index_path=repo_path("results/figures/FIGURE_INDEX.csv")
+        with index_path.open(encoding="utf-8-sig",newline="") as f:
+            figure_rows=list(csv.DictReader(f))
+        out.extend({"path":"results/figures/"+row["file"],"sha256":row["sha256_or_lfs_oid"].removeprefix("sha256:")} for row in figure_rows if row["include_in_final_figure_collection"].strip().lower()=="true")
+        out.append({"path":"results/figures/FIGURE_INDEX.csv","sha256":sha256(index_path)})
+        out.append({"path":"results/figures/README.md","sha256":sha256(repo_path("results/figures/README.md"))})
     artifact_ids={"04":["formal_trajectories","vulnerability_first_trajectories"],"05":["formal_offline_shards","equity_offline_shards"],"06":["dynamic_topology_archive","connectivity_state_cache"],"10":["revised_suite"]}.get(stage_id,[])
     byid={x["artifact_id"]:x for x in read_json(HERE/"EXTERNAL_ARCHIVE_MANIFEST.json")["artifacts"]}
     for aid in artifact_ids:
@@ -590,8 +650,9 @@ def main():
     run_manifest={"schema_version":1,"workflow":"FINAL_REVISION_RUN_SEQUENCE","mode":"resume","status":"RUNNING_VALIDATION","started_at_utc":datetime.now(timezone.utc).isoformat(),"repository_head":run_git("rev-parse","HEAD"),"branch":run_git("branch","--show-current"),"parent_matrix_id":matrix["parent_frozen_design"]["matrix_id"],"parent_matrix_sha256":matrix["parent_frozen_design"]["matrix_sha256"],"scientific_computation_performed":False,"stages":[]}
     manifest_path=HERE/"FINAL_RUN_MANIFEST.json"
     try:
+        from stage_runner import run_stage
         for stage_id,_ in STAGES:
-            validate_stage(stage_id,registry,run_manifest)
+            run_stage(stage_id,matrix=matrix,registry=registry,run_manifest=run_manifest)
         run_manifest["status"]="PASS_ALL_STAGES_REUSE_OR_VALIDATE"
     except Exception as exc:
         run_manifest["status"]="FAIL_FAST"

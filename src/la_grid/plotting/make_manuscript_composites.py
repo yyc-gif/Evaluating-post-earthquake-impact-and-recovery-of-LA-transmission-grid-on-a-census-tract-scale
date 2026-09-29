@@ -31,7 +31,7 @@ FULL_ROW_MARGIN_CM = 0.25
 FULL_ROW_WIDTH_CM = FIGURE_WIDTH_CM - 2.0 * FULL_ROW_MARGIN_CM
 
 from la_grid.paths import REPO_ROOT as ROOT
-MANUSCRIPT_DIR = ROOT / "results" / "manuscript" / "figures"
+MANUSCRIPT_DIR = ROOT / "results" / "figures"
 PREP_DIR = MANUSCRIPT_DIR / "composite_ready_panels"
 
 RC = {

@@ -21,7 +21,7 @@ import la_grid.plotting.Project_Visualizer as july
 from la_grid.paths import REPO_ROOT as ROOT
 DATA = ROOT / "Data"
 SUITE = ROOT / "results" / "revised_suite" / "LA_Grid_Revised_Suite_20260925"
-CANONICAL = ROOT / "results" / "manuscript" / "figures"
+CANONICAL = ROOT / "results" / "figures"
 STAGE = SUITE / "Stage 3 Output_expanded"
 MAIN = SUITE / "Submission_Package" / "Main_Figures"
 SUPP = SUITE / "Submission_Package" / "Supplementary_Figures"
