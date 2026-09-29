@@ -1,0 +1,64 @@
+name: Refresh co-author figure edits
+
+on:
+  push:
+    branches:
+      - revision/reviewer-driven-core-rebuild-v2
+    paths:
+      - src/la_grid/plotting/render_source_reliability_figures.py
+      - src/la_grid/plotting/render_source_gate_electrical_adequacy_figure.py
+      - src/la_grid/plotting/render_sce_capacity_sensitivity_figure.py
+      - src/la_grid/plotting/render_efficiency_distribution_tradeoff.py
+      - src/la_grid/plotting/update_coauthor_figure_index.py
+      - .github/workflows/coauthor-figure-refresh.yml
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: revision/reviewer-driven-core-rebuild-v2
+          fetch-depth: 0
+          lfs: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pull only required LFS inputs
+        shell: bash
+        run: |
+          git lfs install --local
+          git lfs pull --include="results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv,results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv,results/diagnostics/SOURCE_TERMINAL_DYNAMIC_STATION_2PC50.csv,results/diagnostics/SOURCE_TERMINAL_TRACT_RELIABILITY_2PC50.csv,results/capacity/CONNECTED_VS_ELECTRICAL_CONSTRAINT_BENCHMARK.csv,results/capacity/SCE_CAPACITY_SUPPORTED_STATIONS.csv,results/capacity/SCE_CAPACITY_SENSITIVITY_SUMMARY.csv,Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet,Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet,Data/LA_Tracts_With_Population.*,Data/Tracts_Within_Expanded_Area.csv,Data/substation_graph_CEC_nodes_expanded.csv,Data/substation_graph_CEC_edges_expanded.csv,Data/source_nodes_core_expanded.csv,results/figures/FIGURE_INDEX.csv"
+
+      - name: Install plotting environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install pyarrow==17.0.0
+          python -m pip install -e .
+
+      - name: Render presentation-only updates
+        run: |
+          python -m la_grid.plotting.render_source_reliability_figures
+          python -m la_grid.plotting.render_source_gate_electrical_adequacy_figure
+          python -m la_grid.plotting.render_sce_capacity_sensitivity_figure
+          python -m la_grid.plotting.render_efficiency_distribution_tradeoff
+          python -m la_grid.plotting.update_coauthor_figure_index
+
+      - name: Commit refreshed figures
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/figures results/vulnerability/EFFICIENCY_DISTRIBUTION_TRADEOFF_2PC50.csv
+          if git diff --cached --quiet; then
+            echo "No figure changes to commit."
+            exit 0
+          fi
+          git commit -m "figures: apply co-author presentation feedback [skip ci]"
+          git push origin HEAD:revision/reviewer-driven-core-rebuild-v2

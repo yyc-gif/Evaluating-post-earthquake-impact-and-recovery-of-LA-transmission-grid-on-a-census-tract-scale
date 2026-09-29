@@ -278,42 +278,9 @@ def _contrasts(case_metrics):
 
 
 def _write_figure(supported, summary, binding_count):
-    base.FIGURE_DIR.mkdir(parents=True, exist_ok=True)
-    fig, axes = plt.subplots(1, 3, figsize=(18, 7))
-    a = supported.sort_values("D_MW").reset_index(drop=True)
-    y = np.arange(len(a))
-    axes[0].scatter(a["D_MW"], y, label="D (MW)", marker="o")
-    axes[0].scatter(a["K_MW"], y, label="K (MW)", marker="s")
-    for i, row in a.iterrows():
-        axes[0].plot([row["D_MW"], row["K_MW"]], [i, i], linewidth=.8)
-        if row["D_MW"] > row["K_MW"]:
-            axes[0].annotate("D>K", (row["D_MW"], i), xytext=(4, 4), textcoords="offset points", fontsize=8)
-    axes[0].set_yticks(y)
-    axes[0].set_yticklabels(a["StationName"], fontsize=7)
-    axes[0].set_xlabel("MW")
-    axes[0].set_title(f"A. Supported one-to-one facilities\nBinding-capable: {binding_count} of 19")
-    axes[0].legend(fontsize=8)
-
-    b = summary.loc[summary.Policy.eq("hospital-first")].set_index("Hazard").reindex(HAZARDS).reset_index()
-    axes[1].bar(b["Hazard"], b["delta"])
-    axes[1].axhline(0, linewidth=.8)
-    axes[1].tick_params(axis="x", rotation=30)
-    axes[1].set_ylabel("Capacity-bounded minus baseline burden (h)")
-    axes[1].set_title("B. Hospital-first across four hazards")
-
-    c = summary.loc[summary.Hazard.eq("2pc50")].set_index("Policy").reindex([*SCHEDULED, "Unconstrained"]).reset_index()
-    axes[2].bar(np.arange(len(c)), c["delta"])
-    axes[2].axhline(0, linewidth=.8)
-    axes[2].set_xticks(np.arange(len(c)))
-    axes[2].set_xticklabels(c["Policy"], rotation=55, ha="right", fontsize=8)
-    axes[2].set_ylabel("Capacity-bounded minus baseline burden (h)")
-    axes[2].set_title("C. 2pc50 frozen policy comparison")
-    fig.suptitle("SCE-supported capacity-ceiling sensitivity", fontsize=13)
-    fig.tight_layout(rect=(0, 0, 1, .95))
-    fig.savefig(base.FIGURE_STEM.with_suffix(".png"), dpi=300, bbox_inches="tight")
-    fig.savefig(base.FIGURE_STEM.with_suffix(".pdf"), bbox_inches="tight")
-    plt.close(fig)
-
+    # Presentation-only renderer shared with the standalone figure refresh.
+    from la_grid.plotting.render_sce_capacity_sensitivity_figure import render_from_frames
+    render_from_frames(supported, summary, binding_count=binding_count)
 
 def _write_audit(validation, physical_manifest, horizon, supported, support_weight,
                  population, support_mask, summary, contrasts, recon, binding_ids, binding_tract):

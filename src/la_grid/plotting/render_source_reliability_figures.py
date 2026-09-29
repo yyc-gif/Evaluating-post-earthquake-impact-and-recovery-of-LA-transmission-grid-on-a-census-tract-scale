@@ -26,10 +26,10 @@ STAGE = SUITE / "Stage 3 Output_expanded"
 MAIN = SUITE / "Submission_Package" / "Main_Figures"
 SUPP = SUITE / "Submission_Package" / "Supplementary_Figures"
 
-STATION_CSV = ROOT / "SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv"
-DYNAMIC_CSV = ROOT / "SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv"
-DYNAMIC_STATION_CSV = ROOT / "SOURCE_TERMINAL_DYNAMIC_STATION_2PC50.csv"
-TRACT_CSV = ROOT / "SOURCE_TERMINAL_TRACT_RELIABILITY_2PC50.csv"
+STATION_CSV = ROOT / "results" / "diagnostics" / "SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv"
+DYNAMIC_CSV = ROOT / "results" / "diagnostics" / "SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv"
+DYNAMIC_STATION_CSV = ROOT / "results" / "diagnostics" / "SOURCE_TERMINAL_DYNAMIC_STATION_2PC50.csv"
+TRACT_CSV = ROOT / "results" / "diagnostics" / "SOURCE_TERMINAL_TRACT_RELIABILITY_2PC50.csv"
 
 SCHEDULED = (
     "centrality-first", "impact-first", "betweenness-first", "degree-first",
@@ -67,10 +67,11 @@ def _export(fig, stem: str, candidate: str):
         source = CANONICAL / (stem + suffix)
         if not source.is_file() or source.stat().st_size == 0:
             raise ValueError(f"Figure export missing: {source}")
-        for target in (STAGE / source.name,
-                       (SUPP if candidate == "supplement" else MAIN) / source.name):
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(source, target)
+        if SUITE.is_dir():
+            for target in (STAGE / source.name,
+                           (SUPP if candidate == "supplement" else MAIN) / source.name):
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, target)
 
 
 def _style_for(strategy: str):
@@ -92,7 +93,7 @@ def full_vs_best_path(station):
     ax = fig.add_subplot(gs[0, 0]); ax2 = fig.add_subplot(gs[0, 1])
     sizes = 11 + 65 * np.sqrt(rows.population_dependency_weight.clip(lower=0))
     ax.scatter(rows.R_best_path, rows.R_path_full, s=sizes,
-               color="#377eb8", edgecolor="white", linewidth=.35, alpha=.82, zorder=3)
+               color="#377eb8", edgecolor="white", linewidth=.35, alpha=.50, zorder=3)
     lower = 1e-11; upper = 1e-1
     ax.plot([lower, upper], [lower, upper], color="#555555", lw=.8,
             ls="--", label="1:1 reference", zorder=2)
@@ -113,12 +114,13 @@ def full_vs_best_path(station):
     ax2.axvline(0, color="#555555", lw=.6)
     ax2.set_xlim(left=0, right=float(top.Delta_R_redundancy.max()) * 1.12)
     july.style_axis(ax2, title="B  Largest alternative-route gains",
-                    xlabel="Full network minus fixed path probability")
+                    xlabel="Full network minus fixed path probability",
+                    ylabel="Substation")
     ax2.tick_params(axis="y", labelsize=july.FS_TICK)
     ax2.grid(axis="x", color="#dedede", lw=.4)
     fig.suptitle("Full-network source-terminal reliability versus fixed most-reliable single-path reference\nunder 2pc50 station fragility",
                  fontsize=july.FS_SUPTITLE, y=.985)
-    _export(fig, "vis_source_reliability_full_vs_best_path_2pc50", "main")
+    _export(fig, "vis_source_reliability_full_vs_best_path_2pc50", "supplement")
 
 
 def dynamic_redundancy(dynamic):
@@ -176,18 +178,66 @@ def station_map(station):
     boundary = geo.geometry.union_all() if hasattr(geo.geometry, "union_all") else geo.geometry.unary_union
     gdf = gpd.GeoDataFrame(geometry=[boundary], crs=geo.crs).to_crs(4326)
     node = nodes.merge(station, left_on="id", right_on="station_id", validate="one_to_one")
-    non = node[~node.is_core_source]
-    sources = node[node.is_core_source]
+    non = node[~node.is_core_source].copy()
+    sources = node[node.is_core_source].copy()
     assert len(non) == 78 and len(sources) == 14 and set(sources.id) == core_ids
     xy = nodes.set_index("id")[["lon", "lat"]]
-    fig, axes = plt.subplots(1, 2, figsize=july.get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=9.5))
+
+    # Label every Core source and the seven non-source stations with the
+    # largest alternative-route gain.  A small deterministic repel routine
+    # chooses among candidate offsets to avoid label-label collisions.
+    source_labels = sources.assign(_label_kind="source")
+    gain_labels = non.nlargest(7, "Delta_R_redundancy").assign(_label_kind="gain")
+    label_rows = pd.concat([source_labels, gain_labels], ignore_index=True)
+    offsets = [(4, 4), (4, 10), (4, -10), (-4, 4), (-4, 10), (-4, -10),
+               (10, 0), (-10, 0), (8, 8), (-8, 8), (8, -8), (-8, -8)]
+
+    def _overlap_area(a, b):
+        if not a.overlaps(b):
+            return 0.0
+        return max(0.0, min(a.x1, b.x1) - max(a.x0, b.x0)) * \
+               max(0.0, min(a.y1, b.y1) - max(a.y0, b.y0))
+
+    def _repelled_labels(ax):
+        ax.figure.canvas.draw()
+        renderer = ax.figure.canvas.get_renderer()
+        occupied = []
+        for row in label_rows.itertuples(index=False):
+            name = str(row.station_name).title()
+            best_offset, best_score = offsets[0], float("inf")
+            for off in offsets:
+                probe = ax.annotate(
+                    name, (row.lon, row.lat), xytext=off, textcoords="offset points",
+                    fontsize=5.7 if row._label_kind == "source" else 6.1,
+                    fontweight="semibold" if row._label_kind == "gain" else "normal",
+                    color="#252525", zorder=7,
+                    bbox=dict(facecolor="white", edgecolor="none", alpha=.76, pad=.20),
+                )
+                ax.figure.canvas.draw()
+                bbox = probe.get_window_extent(renderer=renderer).expanded(1.03, 1.10)
+                score = sum(_overlap_area(bbox, prior) for prior in occupied)
+                probe.remove()
+                if score < best_score:
+                    best_offset, best_score = off, score
+                if score == 0:
+                    break
+            final = ax.annotate(
+                name, (row.lon, row.lat), xytext=best_offset, textcoords="offset points",
+                fontsize=5.7 if row._label_kind == "source" else 6.1,
+                fontweight="semibold" if row._label_kind == "gain" else "normal",
+                color="#252525", zorder=7,
+                bbox=dict(facecolor="white", edgecolor="none", alpha=.76, pad=.20),
+            )
+            ax.figure.canvas.draw()
+            occupied.append(final.get_window_extent(renderer=renderer).expanded(1.03, 1.10))
+
+    fig, axes = plt.subplots(1, 2, figsize=july.get_figsize("COMPOSITE_FULL_DEFAULT", height_cm=10.2))
     fig.subplots_adjust(left=.07, right=.99, top=.90, bottom=.24, wspace=.10)
-    labels = set(station.nlargest(3, "Delta_R_redundancy").station_id)
     specs = [
         ("R_path_full", "A  Full-network conditional reachability", "YlGnBu",
-         "P(source path | target functional)"),
+         "Conditional source-path reliability (0–1)"),
         ("Delta_R_redundancy", "B  Alternative-route gain", "OrRd",
-         "Full network minus fixed path"),
+         "Alternative-route probability gain, ΔR"),
     ]
     xmin, ymin, xmax, ymax = gdf.total_bounds
     dx, dy = xmax - xmin, ymax - ymin
@@ -204,12 +254,7 @@ def station_map(station):
         ax.scatter(sources.lon, sources.lat, marker="^", s=27,
                    facecolor="white", edgecolor="#282828", linewidth=.65,
                    label="Core source", zorder=5)
-        for row in non[non.id.isin(labels)].itertuples():
-            offset = (3, 8) if row.station_name.upper() == "HINSON" else (3, -9) if "WILMINGTON" in row.station_name.upper() else (3, 3)
-            ax.annotate(row.station_name.title(), (row.lon, row.lat),
-                        xytext=offset, textcoords="offset points", fontsize=6.2,
-                        color="#222222", zorder=6,
-                        bbox=dict(facecolor="white", edgecolor="none", alpha=.72, pad=.25))
+        _repelled_labels(ax)
         ax.set_xlim(xmin-.035*dx, xmax+.035*dx)
         ax.set_ylim(ymin-.035*dy, ymax+.035*dy)
         ax.set_aspect(1/np.cos(np.deg2rad((ymin+ymax)/2)))
@@ -220,7 +265,6 @@ def station_map(station):
         july.format_legend(ax.legend(loc="lower left"))
     fig.supxlabel("Longitude", y=.055, fontsize=july.FS_LABEL)
     _export(fig, "vis_source_reliability_station_map_2pc50", "supplement")
-
 
 def main():
     july.apply_publication_style()

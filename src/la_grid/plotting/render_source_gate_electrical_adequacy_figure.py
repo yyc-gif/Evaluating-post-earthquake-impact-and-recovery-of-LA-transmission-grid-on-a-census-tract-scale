@@ -1,10 +1,11 @@
 """Render the facility-level electrical-adequacy evidence figure.
 
-This script reads the retained benchmark table only. It does not run damage,
-recovery, scheduling, mapping, or any source-gate calculation.
+Presentation only: reads the retained SCE benchmark table and does not execute
+hazard, recovery, scheduling, mapping, or source-gate calculations.
 """
 from __future__ import annotations
 
+import re
 import shutil
 from pathlib import Path
 
@@ -16,7 +17,8 @@ import pandas as pd
 
 import la_grid.plotting.Project_Visualizer as july
 from la_grid.paths import REPO_ROOT as ROOT
-BENCHMARK = ROOT / "CONNECTED_VS_ELECTRICAL_CONSTRAINT_BENCHMARK.csv"
+
+BENCHMARK = ROOT / "results" / "capacity" / "CONNECTED_VS_ELECTRICAL_CONSTRAINT_BENCHMARK.csv"
 CANONICAL = ROOT / "results" / "figures"
 SUITE = ROOT / "results" / "revised_suite" / "LA_Grid_Revised_Suite_20260925"
 STAGE = SUITE / "Stage 3 Output_expanded"
@@ -42,6 +44,14 @@ def _load_level_a() -> pd.DataFrame:
     rsq = table.loc[table["evidence_level"].eq("B")]
     assert len(rsq) == 1
     assert not bool(rsq.iloc[0]["direct_benchmark_eligible"])
+
+    parsed = direct["facility"].astype(str).str.extract(
+        r"^(?P<base>.+?)\s+\d+(?:\.\d+)?/(?P<low>\d+(?:\.\d+)?)$"
+    )
+    direct["display_station"] = parsed["base"].fillna(direct["facility"]).str.strip()
+    direct["low_side_kv"] = pd.to_numeric(parsed["low"], errors="coerce")
+    if direct["low_side_kv"].isna().any():
+        raise ValueError("Unable to parse low-side voltage class from a Level-A facility label")
     return direct.sort_values("provider_loading_percent", ascending=True).reset_index(drop=True)
 
 
@@ -56,18 +66,26 @@ def render() -> tuple[Path, Path]:
         figsize=july.get_figsize("COMPOSITE_FULL_DENSE", width_cm=18.5, height_cm=15.5)
     )
     ax.hlines(y, 0, loading, color="#b9c7d5", linewidth=0.65, zorder=1)
+
+    markers = ("o", "s", "^", "D", "P", "v")
+    voltage_classes = sorted(data["low_side_kv"].dropna().unique())
+    marker_by_voltage = {v: markers[i % len(markers)] for i, v in enumerate(voltage_classes)}
+    for voltage in voltage_classes:
+        mask = data["low_side_kv"].eq(voltage).to_numpy() & ~is_olinda
+        ax.scatter(
+            loading[mask], y[mask], s=20, marker=marker_by_voltage[voltage],
+            color="#377eb8", edgecolor="white", linewidth=0.4, zorder=3,
+            label=f"{voltage:g} kV low-side",
+        )
+
     ax.scatter(
-        loading[~is_olinda], y[~is_olinda], s=18, color="#377eb8",
-        edgecolor="white", linewidth=0.4, zorder=3,
-        label="SCE Level-A facility row",
-    )
-    ax.scatter(
-        loading[is_olinda], y[is_olinda], s=32, color="#d95f02",
-        edgecolor="white", linewidth=0.5, zorder=4, label="OLINDA 66/12",
+        loading[is_olinda], y[is_olinda], s=48, marker="*",
+        color="#d95f02", edgecolor="white", linewidth=0.5, zorder=4,
+        label="OLINDA above planning limit",
     )
     ax.axvline(
         100.0, color="#555555", linewidth=1.0, linestyle="--", zorder=2,
-        label="Provider-defined facility planning limit (100%)",
+        label="Provider-defined planning limit (100%)",
     )
 
     oi = int(np.flatnonzero(is_olinda)[0])
@@ -77,30 +95,32 @@ def render() -> tuple[Path, Path]:
         fontsize=july.FS_ANNOTATION, fontweight="semibold", color="#b44700",
     )
     ax.set_yticks(y)
-    ax.set_yticklabels(data["facility"], fontsize=july.FS_TICK)
+    ax.set_yticklabels(data["display_station"], fontsize=july.FS_TICK)
     ax.set_xlim(0, max(116.0, float(loading.max()) + 7.0))
     ax.set_ylim(-0.8, len(data) - 0.1)
     ax.grid(axis="y", visible=False)
     ax.grid(axis="x", color="#dddddd", linewidth=0.4)
     july.style_axis(
         ax,
-        title="SCE planning loading for retained source-reachable facilities",
+        title="SCE planning loading for retained source-reachable facilities\n"
+              "Marker shape denotes low-side voltage class",
         xlabel="Provider-reported facility loading (%)",
-        ylabel="SCE voltage-level facility",
+        ylabel="SCE station",
     )
     legend = ax.legend(loc="lower right", frameon=True, borderpad=0.5, handletextpad=0.5)
     july.format_legend(legend)
-    fig.subplots_adjust(left=0.255, right=0.985, bottom=0.09, top=0.94)
+    fig.subplots_adjust(left=0.22, right=0.985, bottom=0.09, top=0.92)
 
     CANONICAL.mkdir(parents=True, exist_ok=True)
     july.save_plot(fig, str(CANONICAL), STEM + ".png")
-    for suffix in (".png", ".pdf"):
-        source = CANONICAL / (STEM + suffix)
-        if not source.is_file() or source.stat().st_size == 0:
-            raise RuntimeError(f"Missing figure output: {source}")
-        for folder in (STAGE, SUPP):
-            folder.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(source, folder / source.name)
+    if SUITE.is_dir():
+        for suffix in (".png", ".pdf"):
+            source = CANONICAL / (STEM + suffix)
+            if not source.is_file() or source.stat().st_size == 0:
+                raise RuntimeError(f"Missing figure output: {source}")
+            for folder in (STAGE, SUPP):
+                folder.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, folder / source.name)
     return CANONICAL / (STEM + ".png"), CANONICAL / (STEM + ".pdf")
 
 
