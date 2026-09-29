@@ -67,9 +67,9 @@ def main():
             path = FIG / name
             if not path.is_file():
                 raise FileNotFoundError(path)
-            mask = table["file"].eq(name)
+            mask = table["file"].eq(name) & table["include_in_final_figure_collection"].astype(str).str.lower().eq("true")
             if mask.sum() != 1:
-                raise ValueError(f"Expected one FIGURE_INDEX row for {name}; got {int(mask.sum())}")
+                raise ValueError(f"Expected one included FIGURE_INDEX row for {name}; got {int(mask.sum())}")
             table.loc[mask, "scientific_content"] = content
             table.loc[mask, "current_status"] = "current final candidate"
             table.loc[mask, "main_or_supplement"] = role
