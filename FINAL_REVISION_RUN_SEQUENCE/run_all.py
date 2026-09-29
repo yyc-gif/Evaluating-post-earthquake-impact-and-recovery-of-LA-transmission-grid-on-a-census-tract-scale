@@ -48,6 +48,10 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
 def long_path(path):
     """Return an extended-length Windows path when ordinary paths may exceed MAX_PATH."""
     value = os.path.abspath(os.fspath(path))
@@ -322,7 +326,10 @@ def validate_code_authority():
             require_git_tracked(p)
         elif not record["path"].startswith("FINAL_REVISION_RUN_SEQUENCE/"):
             raise ValidationError(f"Untracked noncanonical code cannot be an authority: {p}")
-        if sha256(p) != record["sha256"]:
+        # Hash source text with normalized newlines so authority identity is
+        # stable across Windows autocrlf and LF checkouts.
+        actual_code_hash = sha256_bytes(p.read_bytes().replace(b"\r\n", b"\n"))
+        if actual_code_hash != record["sha256"]:
             raise ValidationError(f"Code authority hash changed: {p}")
     missing = [x["commit"] for x in ca["required_historical_executable_commits"] if not x["exists_in_local_git"]]
     if missing:
