@@ -1,6 +1,6 @@
 # 09 CAPACITY ROBUSTNESS
 
-Validates closed SCE capacity outputs only; does not call the closure computation.
+Validates closed SCE capacity numerical outputs and audit only; does not call the closure computation. The publication-facing capacity panels are part of `results/figures/FigS08_Capacity_Sensitivity.*` and are validated in Stage 10 against frozen sources.
 
 This stage is validation/reuse only under `run_all.py --resume`. Missing authority files cause fail-fast; no scientific fallback is permitted.
 

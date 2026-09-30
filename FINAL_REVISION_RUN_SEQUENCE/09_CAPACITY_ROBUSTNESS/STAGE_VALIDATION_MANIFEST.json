@@ -10,15 +10,13 @@
         "results/capacity/SCE_CAPACITY_SENSITIVITY_SUMMARY.csv": "decc3b932e734f9b99e137f1694352d70366163b0e7878fa458a030984e214c0",
         "results/capacity/SCE_CAPACITY_SENSITIVITY_STATION.csv": "33d8631d289828f3a83d3b160453f7f1d35b9edcb713a030a1d1b8860e73976b",
         "results/capacity/SCE_CAPACITY_SENSITIVITY_TRACT.csv": "b71603ec61fb24328599bafb6fdb8d04b025816d641862d26fbb2cbccbfdf5bf",
-        "results/capacity/SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff",
-        "results/figures/vis_sce_capacity_supported_sensitivity.png": "013f65b33e1223558e26c43686baf80b04312bf4f8c0788b7b1bccb3ffabfec7",
-        "results/figures/vis_sce_capacity_supported_sensitivity.pdf": "57214feb60a786b03c1d715af2fb9c54eeb5c3c5370bbfe9f7e85133b197020f"
+        "results/capacity/SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff"
       },
       "capacity_closure_executed": false
     },
     "previous_stage_manifest": {
       "path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-      "sha256": "77bbf0f030f1bfee9594153b3b1bb796226eb3a3128375ffe9eeaf9c22239ba9",
+      "sha256": "35554224dfdcaeb79fb0dd96283783cd9b49e00371a5a675092fa9537ec5575b",
       "status": "PASS_REUSE"
     }
   },
@@ -28,18 +26,16 @@
     "capacity.output_hashes.results/capacity/SCE_CAPACITY_SENSITIVITY_STATION.csv": "33d8631d289828f3a83d3b160453f7f1d35b9edcb713a030a1d1b8860e73976b",
     "capacity.output_hashes.results/capacity/SCE_CAPACITY_SENSITIVITY_TRACT.csv": "b71603ec61fb24328599bafb6fdb8d04b025816d641862d26fbb2cbccbfdf5bf",
     "capacity.output_hashes.results/capacity/SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff",
-    "capacity.output_hashes.results/figures/vis_sce_capacity_supported_sensitivity.png": "013f65b33e1223558e26c43686baf80b04312bf4f8c0788b7b1bccb3ffabfec7",
-    "capacity.output_hashes.results/figures/vis_sce_capacity_supported_sensitivity.pdf": "57214feb60a786b03c1d715af2fb9c54eeb5c3c5370bbfe9f7e85133b197020f",
-    "previous_stage_manifest.sha256": "77bbf0f030f1bfee9594153b3b1bb796226eb3a3128375ffe9eeaf9c22239ba9"
+    "previous_stage_manifest.sha256": "35554224dfdcaeb79fb0dd96283783cd9b49e00371a5a675092fa9537ec5575b"
   },
   "outputs": [
     {
       "path": "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json",
-      "sha256": "ae62514df6ec6db7b4e41dfd3f7ebd6b6e6e71764376e71011b4560b264feb42"
+      "sha256": "3eaff3e3bcac198a360d64d6f96d1ccef611190002b8fd16efb33cd7a939323a"
     }
   ],
   "output_hashes": {
-    "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json": "ae62514df6ec6db7b4e41dfd3f7ebd6b6e6e71764376e71011b4560b264feb42"
+    "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json": "3eaff3e3bcac198a360d64d6f96d1ccef611190002b8fd16efb33cd7a939323a"
   },
   "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
   "code_identity": {
