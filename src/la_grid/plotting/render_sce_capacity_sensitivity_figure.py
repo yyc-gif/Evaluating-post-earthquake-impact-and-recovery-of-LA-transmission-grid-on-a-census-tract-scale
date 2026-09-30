@@ -30,14 +30,14 @@ POLICIES = [
     "Unconstrained",
 ]
 DISPLAY = {
-    "centrality-first": "Centrality",
-    "impact-first": "Impact",
-    "betweenness-first": "Betweenness",
-    "degree-first": "Degree",
-    "closeness-first": "Closeness",
-    "hospital-first": "Hospital",
+    "centrality-first": "Centrality-first",
+    "impact-first": "Impact-first",
+    "betweenness-first": "Betweenness-first",
+    "degree-first": "Degree-first",
+    "closeness-first": "Closeness-first",
+    "hospital-first": "Hospital-first",
     "random": "Random",
-    "vulnerability-first": "Vulnerability",
+    "vulnerability-first": "Vulnerability-first",
     "Unconstrained": "Unconstrained",
 }
 
@@ -50,6 +50,12 @@ def _policy_rows(summary: pd.DataFrame) -> pd.DataFrame:
 
 def render_from_frames(supported: pd.DataFrame, summary: pd.DataFrame, *, binding_count: int | None = None):
     july.apply_publication_style()
+    july.STAGE6_SHARED_LINE_STYLES.setdefault(
+        "vulnerability-first",
+        {"color": "#a65628", "ls": "-", "lw_recovery": 1.08,
+         "lw_topology": .98, "alpha_recovery": .85,
+         "alpha_topology": .82, "zorder": 9},
+    )
     summary = _policy_rows(summary)
     supported = supported.copy()
     supported["D_MW"] = pd.to_numeric(supported["D_MW"], errors="raise")
@@ -60,7 +66,7 @@ def render_from_frames(supported: pd.DataFrame, summary: pd.DataFrame, *, bindin
     fig = plt.figure(figsize=july.get_figsize("COMPOSITE_FULL_DENSE", width_cm=18.5, height_cm=15.2))
     gs = fig.add_gridspec(
         2, 2, width_ratios=[1.42, 1.0], height_ratios=[1, 1],
-        left=.10, right=.98, bottom=.14, top=.91, wspace=.38, hspace=.48,
+        left=.10, right=.98, bottom=.14, top=.85, wspace=.38, hspace=.48,
     )
     a = fig.add_subplot(gs[:, 0])
     b = fig.add_subplot(gs[0, 1])
@@ -114,25 +120,32 @@ def render_from_frames(supported: pd.DataFrame, summary: pd.DataFrame, *, bindin
     cp = summary.loc[summary["Hazard"].eq("2pc50")].set_index("Policy").reindex(POLICIES)
     if cp["delta"].isna().any():
         raise ValueError("Capacity summary lacks one or more final 2pc50 policy rows")
-    x = np.arange(len(POLICIES))
+    y = np.arange(len(POLICIES))
     vals = cp["delta"].to_numpy(float)
-    c.plot(x, vals, marker="o", linewidth=.9)
-    c.set_xticks(x, [DISPLAY[p] for p in POLICIES], rotation=45, ha="right")
+    policy_colors = {
+        policy: july._stage6_line_style("S3_Mean" if policy == "Unconstrained" else policy)["color"]
+        for policy in POLICIES
+    }
+    for yi, policy in zip(y, POLICIES):
+        c.scatter(vals[yi], yi, s=18, marker="o", color=policy_colors[policy], zorder=3)
+        c.annotate(f"{vals[yi]:.3f}", (vals[yi], yi), xytext=(4, 0), textcoords="offset points",
+                   ha="left", va="center", fontsize=july.FS_ANNOTATION)
+    c.set_yticks(y, [DISPLAY[p] for p in POLICIES])
+    c.invert_yaxis()
     pad = max(.0015, (vals.max() - vals.min()) * .30)
-    c.set_ylim(vals.min() - pad, vals.max() + pad * 1.8)
-    for i, value in enumerate(vals):
-        c.annotate(f"{value:.3f}", (i, value), xytext=(0, 5), textcoords="offset points",
-                   ha="center", fontsize=july.FS_ANNOTATION)
+    c.set_xlim(vals.min() - pad, vals.max() + pad * 3.8)
     july.style_axis(
         c,
         title="C  2pc50 frozen policy comparison",
-        ylabel="Δ population burden (h)\n(expanded scale)",
+        xlabel="Δ population burden (h; expanded scale)",
     )
-    c.grid(axis="y", color="#e1e1e1", linewidth=.4)
+    c.tick_params(axis="y", labelsize=july.FS_TICK)
+    c.grid(axis="x", color="#e1e1e1", linewidth=.4)
 
-    fig.suptitle("SCE-supported planning-capacity sensitivity", fontsize=july.FS_SUPTITLE, y=.975)
+    # Keep the title fully inside the PDF page at finished size.
+    fig.suptitle("SCE-supported planning-capacity sensitivity", fontsize=july.FS_SUPTITLE, y=.962)
     OUT.mkdir(parents=True, exist_ok=True)
-    july.save_plot(fig, str(OUT), STEM + ".png")
+    july.save_plot(fig, str(OUT), STEM + ".png", top_clearance_inches=.10)
     return OUT / (STEM + ".png"), OUT / (STEM + ".pdf")
 
 

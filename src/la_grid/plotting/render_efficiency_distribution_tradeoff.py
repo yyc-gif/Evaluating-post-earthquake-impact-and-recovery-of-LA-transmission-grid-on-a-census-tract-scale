@@ -11,6 +11,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 import pandas as pd
 
 import la_grid.plotting.Project_Visualizer as july
@@ -23,9 +24,9 @@ STEM = "Candidate_S18_Equity_Efficiency_Tradeoff"
 
 POLICIES = ["impact-first", "hospital-first", "vulnerability-first"]
 LABELS = {
-    "impact-first": "Impact first",
-    "hospital-first": "Hospital first",
-    "vulnerability-first": "Vulnerability first",
+    "impact-first": "Impact-first",
+    "hospital-first": "Hospital-first",
+    "vulnerability-first": "Vulnerability-first",
 }
 METRICS = [
     "population_weighted_normalized_burden_hr",
@@ -111,10 +112,6 @@ def render():
             x = getattr(row, xcol)
             y = getattr(row, ycol)
             ax.scatter(x, y, s=30, color=style["color"], zorder=3)
-            ax.annotate(
-                row.label, (x, y), xytext=(4, 4), textcoords="offset points",
-                fontsize=july.FS_ANNOTATION,
-            )
         july.style_axis(
             ax, title=title,
             xlabel="Aggregate population burden (h)",
@@ -126,7 +123,21 @@ def render():
         "2pc50/C57: aggregate efficiency and distributional outcomes",
         fontsize=july.FS_SUPTITLE, y=.985,
     )
-    fig.tight_layout(rect=(0, 0, 1, .94))
+    handles = [
+        Line2D(
+            [], [], linestyle="none", marker="o", markersize=5,
+            markerfacecolor=july.STAGE6_RECOVERY_STYLE_CONFIG[policy]["color"],
+            markeredgecolor=july.STAGE6_RECOVERY_STYLE_CONFIG[policy]["color"],
+            label=LABELS[policy],
+        )
+        for policy in POLICIES
+    ]
+    fig.legend(
+        handles=handles, loc="upper center", bbox_to_anchor=(.5, .91),
+        ncol=3, frameon=False, fontsize=july.FS_LEGEND,
+        handletextpad=.45, columnspacing=1.5,
+    )
+    fig.tight_layout(rect=(0, 0, 1, .83))
     OUT.mkdir(parents=True, exist_ok=True)
     july.save_plot(fig, str(OUT), STEM + ".png")
     return OUT / (STEM + ".png"), OUT / (STEM + ".pdf"), TABLE_OUT

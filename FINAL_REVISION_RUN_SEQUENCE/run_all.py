@@ -485,6 +485,12 @@ def validate_formal_result_authorities():
 def validate_final_figures():
     figure_dir=repo_path("results/figures")
     require_dir(figure_dir)
+    # Stage 10 has already validated this registered external archive and its
+    # manifest chain. Figure source rows still require their exact SHA-256,
+    # while Git tracking applies to sources outside that archive.
+    archive_registry=read_json(HERE/"EXTERNAL_ARCHIVE_MANIFEST.json")
+    suite_item=next(x for x in archive_registry["artifacts"] if x["artifact_id"]=="revised_suite")
+    suite_root=repo_path(suite_item["current_local_path"]).resolve()
     index_path=figure_dir/"FIGURE_INDEX.csv"
     readme_path=figure_dir/"README.md"
     require_file(index_path); require_file(readme_path)
@@ -527,9 +533,28 @@ def validate_final_figures():
             raise ValidationError(f"Publication-facing figure hash differs from index: {target}")
         source=repo_path(row["source_path"])
         require_materialized(source)
-        if sha256(source)!=digest:
-            raise ValidationError(f"Figure copy differs from its indexed source authority: {source} -> {target}")
-        source_checks[row["source_path"]]=digest
+        source_hash=sha256(source)
+        if source_hash==digest:
+            source_checks[row["source_path"]]=digest
+        else:
+            # A publication-style derivative is allowed only when it is
+            # explicitly marked presentation-only and names a frozen source
+            # table with its own verified SHA-256. This is distinct from an
+            # authority-copy claim: the original frozen figure remains intact.
+            if "presentation-only" not in row["current_status"].lower():
+                raise ValidationError(f"Figure copy differs from its indexed source authority: {source} -> {target}")
+            data_rels=[x.strip() for x in row.get("source_data_path","").split(";") if x.strip()]
+            data_digests=[x.strip().removeprefix("sha256:").lower() for x in row.get("source_data_sha256","").split(";") if x.strip()]
+            if not data_rels or len(data_rels)!=len(data_digests) or any(len(x)!=64 for x in data_digests):
+                raise ValidationError(f"Rendered figure lacks a frozen source-data identity: {target}")
+            for data_rel,data_digest in zip(data_rels,data_digests):
+                data_source=repo_path(data_rel)
+                require_materialized(data_source)
+                if not data_source.resolve().is_relative_to(suite_root):
+                    require_git_tracked(data_source)
+                if sha256(data_source)!=data_digest:
+                    raise ValidationError(f"Frozen source-data hash mismatch for rendered figure: {data_source}")
+                source_checks[data_rel]=data_digest
         hashes[f"results/figures/{name}"]=digest
     require_git_tracked(index_path); require_git_tracked(readme_path)
     return {"file_count":len(included),"inventory_rows":len(rows),"figure_hashes":hashes,"source_authority_hashes":source_checks,"index_sha256":sha256(index_path),"unique_publication_content":len(seen_hashes)}

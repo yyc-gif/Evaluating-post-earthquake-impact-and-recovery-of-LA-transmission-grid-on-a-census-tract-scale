@@ -3,8 +3,8 @@
   "workflow": "FINAL_REVISION_RUN_SEQUENCE",
   "mode": "resume",
   "status": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
-  "started_at_utc": "2026-09-29T06:27:24.392956+00:00",
-  "repository_head": "a82fe9c299d74eae040fac2f7c16b91b6cac17ee",
+  "started_at_utc": "2026-09-30T08:18:28.438866+00:00",
+  "repository_head": "351f23af29df964a429184bd6b3f96d15fb0d4ed",
   "branch": "revision/reviewer-driven-core-rebuild-v2",
   "parent_matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
   "parent_matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
@@ -111,10 +111,10 @@
           "status": "PASS_DRY_VALIDATION_NO_SAMPLING_OR_SCHEDULING"
         },
         "code": {
-          "authority_file_sha256": "906aa5dd7d360759a7c43b728ca14832a87ecce8c1eed2ae610b72be60c7e71f",
-          "code_file_count": 40,
+          "authority_file_sha256": "6401d5b20155ea970257ab0ec49f6d8fe76c593b259095678f87233c8ebe0d7d",
+          "code_file_count": 43,
           "historical_commit_count": 10,
-          "current_head": "a82fe9c299d74eae040fac2f7c16b91b6cac17ee"
+          "current_head": "351f23af29df964a429184bd6b3f96d15fb0d4ed"
         }
       },
       "hashes": {
@@ -133,7 +133,7 @@
         "inputs.input_hashes[11].sha256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00",
         "inputs.input_hashes[12].sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630",
         "inputs.input_hashes[13].sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
-        "code.authority_file_sha256": "906aa5dd7d360759a7c43b728ca14832a87ecce8c1eed2ae610b72be60c7e71f"
+        "code.authority_file_sha256": "6401d5b20155ea970257ab0ec49f6d8fe76c593b259095678f87233c8ebe0d7d"
       },
       "outputs": [
         {
@@ -151,12 +151,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "1d77121a806232a994c71445a681fc46d07c5bf8358e7e48fb3c17b14c8e4067"
+      "stage_manifest_sha256": "693b220bd03287c75da9a6b4036ac8ef57cdcfa343b2c80852e11412397a756c"
     },
     {
       "stage_id": "02",
@@ -179,7 +179,7 @@
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "1d77121a806232a994c71445a681fc46d07c5bf8358e7e48fb3c17b14c8e4067",
+          "sha256": "693b220bd03287c75da9a6b4036ac8ef57cdcfa343b2c80852e11412397a756c",
           "status": "PASS_VALIDATE"
         }
       },
@@ -190,7 +190,7 @@
         "physical_samples.sample_archive_hashes.Northridge": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
         "physical_samples.sample_archive_hashes.SanFernando": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0",
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
-        "previous_stage_manifest.sha256": "1d77121a806232a994c71445a681fc46d07c5bf8358e7e48fb3c17b14c8e4067"
+        "previous_stage_manifest.sha256": "693b220bd03287c75da9a6b4036ac8ef57cdcfa343b2c80852e11412397a756c"
       },
       "outputs": [
         {
@@ -208,12 +208,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "da61122be9e62428bc4a69f48df7e59a177bb49032e28bcd20cf277f545860dd"
+      "stage_manifest_sha256": "61e4e465bb0aacfd2f897a5c75a4d23a65fbda02eded0f631aed4243a39dbfe9"
     },
     {
       "stage_id": "03",
@@ -238,13 +238,13 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "da61122be9e62428bc4a69f48df7e59a177bb49032e28bcd20cf277f545860dd",
+          "sha256": "61e4e465bb0aacfd2f897a5c75a4d23a65fbda02eded0f631aed4243a39dbfe9",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "resolved_strategy_registry.GA_identity_sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
-        "previous_stage_manifest.sha256": "da61122be9e62428bc4a69f48df7e59a177bb49032e28bcd20cf277f545860dd"
+        "previous_stage_manifest.sha256": "61e4e465bb0aacfd2f897a5c75a4d23a65fbda02eded0f631aed4243a39dbfe9"
       },
       "outputs": [
         {
@@ -267,12 +267,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "e61d02532a58647c9a34c0a7157bff3abfc3535947592c66f495e3c7dcc88fcc"
+      "stage_manifest_sha256": "124962d11559629b670a08217b5368fa4ac2a81f6a55ee88fe1caa52331b8728"
     },
     {
       "stage_id": "04",
@@ -295,7 +295,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "e61d02532a58647c9a34c0a7157bff3abfc3535947592c66f495e3c7dcc88fcc",
+          "sha256": "124962d11559629b670a08217b5368fa4ac2a81f6a55ee88fe1caa52331b8728",
           "status": "PASS_REUSE"
         }
       },
@@ -303,7 +303,7 @@
         "formal_trajectories.archive_manifest_chain_sha256": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
         "vulnerability_first_trajectories.manifest_chain_sha256": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
         "vulnerability_first_trajectories.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
-        "previous_stage_manifest.sha256": "e61d02532a58647c9a34c0a7157bff3abfc3535947592c66f495e3c7dcc88fcc"
+        "previous_stage_manifest.sha256": "124962d11559629b670a08217b5368fa4ac2a81f6a55ee88fe1caa52331b8728"
       },
       "outputs": [
         {
@@ -329,12 +329,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "c36d9cfbc9b7a53e924a575b7ecfb8131f0452e2b6f9953eaab534a4d2c964a1"
+      "stage_manifest_sha256": "b9fae1481fef3fc0ae145b36f64c9137cc63558a6b85cf6e3600fe852438bc20"
     },
     {
       "stage_id": "05",
@@ -360,7 +360,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "c36d9cfbc9b7a53e924a575b7ecfb8131f0452e2b6f9953eaab534a4d2c964a1",
+          "sha256": "b9fae1481fef3fc0ae145b36f64c9137cc63558a6b85cf6e3600fe852438bc20",
           "status": "PASS_REUSE"
         }
       },
@@ -369,7 +369,7 @@
         "equity_offline_shards.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
         "formal_result_authorities.Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json": "a2a9a2f95b18d01e86bc34175ddd775756d93866d24859d06df0c50eb02c2d08",
         "formal_result_authorities.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json": "64fed2a28641e2010fe7413b6162f258557b25243ac0923e0be534aff9a8fc1a",
-        "previous_stage_manifest.sha256": "c36d9cfbc9b7a53e924a575b7ecfb8131f0452e2b6f9953eaab534a4d2c964a1"
+        "previous_stage_manifest.sha256": "b9fae1481fef3fc0ae145b36f64c9137cc63558a6b85cf6e3600fe852438bc20"
       },
       "outputs": [
         {
@@ -410,12 +410,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "a4606809a90f9ce9cbe644600451fdd5fc6feef960e15d899a21b6e2323ac8ce"
+      "stage_manifest_sha256": "dd9f22352333b11e387c2b7476c15754924bfad56ee5e4354995a9356ab46664"
     },
     {
       "stage_id": "06",
@@ -442,7 +442,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "a4606809a90f9ce9cbe644600451fdd5fc6feef960e15d899a21b6e2323ac8ce",
+          "sha256": "dd9f22352333b11e387c2b7476c15754924bfad56ee5e4354995a9356ab46664",
           "status": "PASS_REUSE"
         }
       },
@@ -452,7 +452,7 @@
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
         "compact_diagnostic_sha256.results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
-        "previous_stage_manifest.sha256": "a4606809a90f9ce9cbe644600451fdd5fc6feef960e15d899a21b6e2323ac8ce"
+        "previous_stage_manifest.sha256": "dd9f22352333b11e387c2b7476c15754924bfad56ee5e4354995a9356ab46664"
       },
       "outputs": [
         {
@@ -493,12 +493,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "b11366532268d01afa71f7432cb09c236491b19ab31f42f5f00cd82e9889c30b"
+      "stage_manifest_sha256": "18b5785b1bd93dda58012b912f19de03ea75840324495587b0f730c17e8b7bcc"
     },
     {
       "stage_id": "07",
@@ -517,7 +517,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "b11366532268d01afa71f7432cb09c236491b19ab31f42f5f00cd82e9889c30b",
+          "sha256": "18b5785b1bd93dda58012b912f19de03ea75840324495587b0f730c17e8b7bcc",
           "status": "PASS_REUSE"
         }
       },
@@ -529,7 +529,7 @@
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_GROUP_SUMMARY.csv": "5d9f41af008d3f084c5f1def040f59a3e47329b59a8b5524e5cb68f17644f6c9",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PAIRWISE_EFFECTS.csv": "ef5af1d32dc0184684f9d0c619b96a1dcab596818e1c01be8fe8de7d53cff982",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_TRACT_EFFECTS.parquet": "f0e1a0897d7a6b4ec2251ffc35c3008744ddf7d6ca2ec6b5bfadaaf7ed9632db",
-        "previous_stage_manifest.sha256": "b11366532268d01afa71f7432cb09c236491b19ab31f42f5f00cd82e9889c30b"
+        "previous_stage_manifest.sha256": "18b5785b1bd93dda58012b912f19de03ea75840324495587b0f730c17e8b7bcc"
       },
       "outputs": [
         {
@@ -547,12 +547,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "06954ffb864840f38bbe1068b7cdfe966ad4e52f433c1d17a45d04a1b1304628"
+      "stage_manifest_sha256": "5add605b5f388ced2c9f241ae099434b0f33e30e2c5bd22acf2c7e5bc31e54da"
     },
     {
       "stage_id": "08",
@@ -589,7 +589,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "06954ffb864840f38bbe1068b7cdfe966ad4e52f433c1d17a45d04a1b1304628",
+          "sha256": "5add605b5f388ced2c9f241ae099434b0f33e30e2c5bd22acf2c7e5bc31e54da",
           "status": "PASS_REUSE"
         }
       },
@@ -609,7 +609,7 @@
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_profile_stability.csv": "aedc45da49daac1ac7eeb9f74655f45bbae63b77e03baefa4cd0fcaf437d50bd",
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_robustness_summary.csv": "12a4067d95ca1c97fbb5b9222bd936d7c3c9c3c17f7bab75cd2318d97d9db7e3",
         "stage7.verifier_result.input_sha256.stage7_long_tail_diagnostics.csv": "442399c768b0db29b84a2346a4b0559ba1719c5f02c3600a9633c8a5ed045a4e",
-        "previous_stage_manifest.sha256": "06954ffb864840f38bbe1068b7cdfe966ad4e52f433c1d17a45d04a1b1304628"
+        "previous_stage_manifest.sha256": "5add605b5f388ced2c9f241ae099434b0f33e30e2c5bd22acf2c7e5bc31e54da"
       },
       "outputs": [
         {
@@ -622,12 +622,12 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "4de58daa6ae08931f745d0b637cba960513004ece09f85b67d81d91fc0dbadbc"
+      "stage_manifest_sha256": "77bbf0f030f1bfee9594153b3b1bb796226eb3a3128375ffe9eeaf9c22239ba9"
     },
     {
       "stage_id": "09",
@@ -649,7 +649,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "4de58daa6ae08931f745d0b637cba960513004ece09f85b67d81d91fc0dbadbc",
+          "sha256": "77bbf0f030f1bfee9594153b3b1bb796226eb3a3128375ffe9eeaf9c22239ba9",
           "status": "PASS_REUSE"
         }
       },
@@ -661,25 +661,25 @@
         "capacity.output_hashes.results/capacity/SCE_CAPACITY_SUPPORTED_STATIONS.csv": "b6bd5cf70e29365bc7229540f5764707566abe23c4a8b61b74529868cd9914ff",
         "capacity.output_hashes.results/figures/vis_sce_capacity_supported_sensitivity.png": "013f65b33e1223558e26c43686baf80b04312bf4f8c0788b7b1bccb3ffabfec7",
         "capacity.output_hashes.results/figures/vis_sce_capacity_supported_sensitivity.pdf": "57214feb60a786b03c1d715af2fb9c54eeb5c3c5370bbfe9f7e85133b197020f",
-        "previous_stage_manifest.sha256": "4de58daa6ae08931f745d0b637cba960513004ece09f85b67d81d91fc0dbadbc"
+        "previous_stage_manifest.sha256": "77bbf0f030f1bfee9594153b3b1bb796226eb3a3128375ffe9eeaf9c22239ba9"
       },
       "outputs": [
         {
           "path": "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json",
-          "sha256": "10e44777f632529bdb51efe4eb3a29e8ffb87796fd406aa7349c4033c868ec8b"
+          "sha256": "ae62514df6ec6db7b4e41dfd3f7ebd6b6e6e71764376e71011b4560b264feb42"
         }
       ],
       "output_hashes": {
-        "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json": "10e44777f632529bdb51efe4eb3a29e8ffb87796fd406aa7349c4033c868ec8b"
+        "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json": "ae62514df6ec6db7b4e41dfd3f7ebd6b6e6e71764376e71011b4560b264feb42"
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "0c4d8337a7459d163fd50eb1efebc3bb769b89143b87534906733ff7b571b704"
+      "stage_manifest_sha256": "1547c8550535cec932f8fb058c5b6ef90ac066a5cd1b0f1987c1a4af47085c01"
     },
     {
       "stage_id": "10",
@@ -689,7 +689,7 @@
       "inputs": {
         "suite": {
           "file_count": 575,
-          "total_size": 299030125,
+          "total_size": 299219353,
           "suite_manifest_rows_checked": 558,
           "suite_manifest_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
         },
@@ -901,7 +901,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "0c4d8337a7459d163fd50eb1efebc3bb769b89143b87534906733ff7b571b704",
+          "sha256": "1547c8550535cec932f8fb058c5b6ef90ac066a5cd1b0f1987c1a4af47085c01",
           "status": "PASS_REUSE"
         }
       },
@@ -1104,7 +1104,7 @@
         "final_figures.source_authority_hashes.Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/vis_stage7_pca_scree_plot.pdf": "75d2f087391afb169214e852ab8cdc73249648911aa3e5723bcbdbc3bb749620",
         "final_figures.source_authority_hashes.Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/vis_stage7_pca_scree_plot.png": "f831a66cca08a8b3c363d7ec70c58a2187759699df40cc5f88b4c4f237fb405a",
         "final_figures.index_sha256": "aabeeee0dad9c2441b6b70cb38f55a51b783612e0f26266ba38aa201cb93d51f",
-        "previous_stage_manifest.sha256": "0c4d8337a7459d163fd50eb1efebc3bb769b89143b87534906733ff7b571b704"
+        "previous_stage_manifest.sha256": "1547c8550535cec932f8fb058c5b6ef90ac066a5cd1b0f1987c1a4af47085c01"
       },
       "outputs": [
         {
@@ -1507,7 +1507,7 @@
           "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925",
           "artifact_id": "revised_suite",
           "file_count": 575,
-          "total_size": 299030125,
+          "total_size": 299219353,
           "identity_hash": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
           "identity_index_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
         }
@@ -1616,13 +1616,13 @@
       },
       "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
       "code_identity": {
-        "current_validator_sha256": "94d72b04a788af9b252c397b96eb72212afe655725bc2ce01a16d85019c8f0e0",
+        "current_validator_sha256": "80f75acd1ac956f58ba489ab04c1f6954af9e4f66ace24c55d0ccef243b72958",
         "historical_phase_identities_preserved": true
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\10_FINAL_RESULTS_AND_FIGURES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "4a7e4cc7585c1203e32685e3099339d9cd3d1b7430cc22c4bc956a0497ec1a72"
+      "stage_manifest_sha256": "7714cd1bb7c7ee792ece847dff35e062d0f360956b56e73cdc0b8948e3e7246c"
     }
   ],
-  "finished_at_utc": "2026-09-29T06:32:32.149481+00:00"
+  "finished_at_utc": "2026-09-30T08:21:19.861787+00:00"
 }

@@ -153,17 +153,17 @@ STAGE7_SELECTED_THEME_FEATURES = [
     "SOVI_SCORE",
 ]
 STAGE7_IJDRR_CLUSTER_PALETTE = [
-    "#607D9E",  # C1 blue-grey
-    "#B99B4A",  # C2 ochre-grey
-    "#5E8B61",  # C3 green-grey
-    "#86AFC0",  # C4 cyan-grey
-    "#92607F",  # C5 mauve-grey
+    "#303E4E",  # C1 blue-grey; darker luminance step for grayscale distinction
+    "#C0A55B",  # C2 ochre-grey
+    "#567E58",  # C3 green-grey
+    "#BAD1DB",  # C4 cyan-grey
+    "#724B63",  # C5 mauve-grey
     "#B97070",  # C6 rose-grey
     "#AAA05B",
     "#6F9B92",
 ]
 STAGE7_HOTSPOT_COLOR = "#222222"
-STAGE7_NA_COLOR = "#D9D9D9"
+STAGE7_NA_COLOR = "#F0F0F0"
 STAGE7_HOTSPOT_SCORE_CMAP = mcolors.LinearSegmentedColormap.from_list(
     "stage7_hotspot_score",
     ["#2C7BB6", "#ABD9E9", "#FFFFBF", "#F46D43", "#8B1E3F"],
@@ -467,6 +467,7 @@ def style_axis(
     ylabel=None,
     title_pad: float = 4.0,
     title_size: float | None = None,
+    label_size: float | None = None,
     title_weight: str = "semibold",
     xrotation=None,
     yrotation=None,
@@ -485,9 +486,9 @@ def style_axis(
             pad=title_pad,
         )
     if xlabel is not None:
-        ax.set_xlabel(xlabel, fontsize=FS_LABEL)
+        ax.set_xlabel(xlabel, fontsize=FS_LABEL if label_size is None else label_size)
     if ylabel is not None:
-        ax.set_ylabel(ylabel, fontsize=FS_LABEL)
+        ax.set_ylabel(ylabel, fontsize=FS_LABEL if label_size is None else label_size)
     ax.tick_params(axis="both", which="major", labelsize=FS_TICK, width=0.6, length=3)
     if xrotation is not None:
         ax.tick_params(axis="x", labelrotation=xrotation)
@@ -583,11 +584,25 @@ def tiered_export_bbox(fig: plt.Figure) -> Bbox:
     )
 
 
-def save_figure(fig: plt.Figure, path: str, close: bool = True) -> None:
+def save_figure(
+    fig: plt.Figure,
+    path: str,
+    close: bool = True,
+    top_clearance_inches: float = 0.0,
+) -> None:
     """Export a 600 dpi raster plus a font-embedded vector companion."""
     fig.patch.set_facecolor("white")
     output_path = Path(path)
     export_bbox = tiered_export_bbox(fig)
+    if top_clearance_inches:
+        if top_clearance_inches < 0:
+            raise ValueError("top_clearance_inches must be nonnegative")
+        export_bbox = Bbox.from_bounds(
+            export_bbox.x0,
+            export_bbox.y0,
+            export_bbox.width,
+            export_bbox.height + top_clearance_inches,
+        )
     fig.savefig(
         output_path,
         dpi=EXPORT_DPI,
@@ -609,10 +624,15 @@ def save_figure(fig: plt.Figure, path: str, close: bool = True) -> None:
         plt.close(fig)
 
 
-def save_plot(fig: plt.Figure, folder: str, filename: str) -> None:
+def save_plot(
+    fig: plt.Figure,
+    folder: str,
+    filename: str,
+    top_clearance_inches: float = 0.0,
+) -> None:
     """Save and close a matplotlib figure."""
     path = os.path.join(folder, filename)
-    save_figure(fig, path, close=True)
+    save_figure(fig, path, close=True, top_clearance_inches=top_clearance_inches)
     print(f"  [Saved] {filename}")
 
 
@@ -887,7 +907,7 @@ def plot_map(
         vmin=vmin,
         vmax=vmax,
         edgecolor="#f4f4f4",
-        linewidth=0.06,
+        linewidth=0.10,
         missing_kwds={
             "color": "lightgrey",
             "edgecolor": "none",
@@ -3037,7 +3057,7 @@ def _stage6_line_style(strategy_key: str, role: str = "recovery") -> dict:
 
 STAGE6_RECOVERY_STYLE_CONFIG = {
     "S3_Mean": {
-        "label": "Theoretical limit",
+        "label": "Unconstrained",
         "color": "black",
         "ls": "--",
         "lw": 1.35,
@@ -3411,6 +3431,9 @@ def _stage6_plot_single_scenario_recovery_curve(
         title=f"{scenario_name}: {title_suffix}",
         xlabel="Time (hours)",
         ylabel=y_label,
+        # Slightly increase the axis label so the rendered mathtext subscript
+        # remains at least 6 pt at the finished single-panel size.
+        label_size=8.6,
         title_size=FS_TITLE,
         title_weight="semibold",
     )
@@ -5002,6 +5025,12 @@ def vis_stage7(gdf):
                 float(mesh.norm.vmax),
                 include_zero=True,
             )
+            # Anchor endpoint labels inside the figure edge. Centered alignment
+            # can let the top endpoint cross the PDF page boundary by a few pt.
+            colorbar_ticklabels = mesh.colorbar.ax.get_yticklabels()
+            if colorbar_ticklabels:
+                colorbar_ticklabels[-1].set_verticalalignment("top")
+                colorbar_ticklabels[0].set_verticalalignment("bottom")
 
             style_axis(
                 ax,
@@ -5826,6 +5855,7 @@ def vis_stage7(gdf):
             "ax": ax,
             "warn_singular": False,
         }
+        line_start = len(ax.lines)
         if col in bounded_cols:
             sns.kdeplot(
                 **kde_kwargs,
@@ -5837,6 +5867,12 @@ def vis_stage7(gdf):
             ax.set_xlim(-0.02, 1.02)
         else:
             sns.kdeplot(**kde_kwargs, bw_adjust=1.0)
+
+        # Preserve the July cluster palette and add line-style redundancy so
+        # overlapping profiles remain distinguishable in grayscale/CVD review.
+        cluster_line_styles = ["-", "--", ":", "-.", (0, (5, 1, 1, 1))]
+        for line, linestyle in zip(ax.lines[line_start:], cluster_line_styles):
+            line.set_linestyle(linestyle)
 
         for cluster in clusters_order:
             subset = pd.to_numeric(df_plot.loc[df_plot["cluster"] == cluster, x_col], errors="coerce").dropna()
@@ -5875,14 +5911,16 @@ def vis_stage7(gdf):
         else:
             fig.delaxes(axes[idx])
 
+    cluster_line_styles = ["-", "--", ":", "-.", (0, (5, 1, 1, 1))]
     cluster_handles = [
         Line2D(
             [0], [0],
             color=cluster_color_map.get(cluster, "black"),
-            lw=2,
+            lw=1.2,
+            linestyle=cluster_line_styles[idx % len(cluster_line_styles)],
             label=f"{_stage7_cluster_display_label(cluster)} (n={cluster_counts.get(cluster, 0)})",
         )
-        for cluster in clusters_order
+        for idx, cluster in enumerate(clusters_order)
     ]
     ref_handle = Line2D([0], [0], color="black", lw=1.2, linestyle="--", label="Cluster median")
     if legend_ax is not None:

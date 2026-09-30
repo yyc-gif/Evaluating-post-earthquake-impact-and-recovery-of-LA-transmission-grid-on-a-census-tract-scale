@@ -30,9 +30,8 @@ CANONICAL_STRATEGY_DISPLAY_ORDER = [
     CANONICAL_STRATEGY_LABELS[key] for key in CANONICAL_STRATEGY_ORDER
 ]
 
-# Stage 6 recovery/topology figures use the descriptive legend supplied for
-# those two plot families only. Other figures and exported Strategy fields keep
-# the compact canonical labels above.
+# Stage 6 recovery/topology figures use the same concise reader-facing labels
+# as all other final figures. Mechanism-specific definitions belong in captions.
 STAGE6_LEGEND_ORDER = [
     "centrality-first",
     "betweenness-first",
@@ -47,13 +46,13 @@ STAGE6_LEGEND_ORDER = [
 ]
 
 STAGE6_LEGEND_LABELS = {
-    "centrality-first": "Impact λ2 (Grid Topology) First",
-    "betweenness-first": "Betweenness First (Bridges)",
-    "impact-first": "Impact (Population) First",
-    "degree-first": "Degree First (Hubs)",
-    "closeness-first": "Closeness First (Accessibility)",
-    "hospital-first": "Hospital First (Critical Nodes)",
-    "random": "Random Baseline",
+    "centrality-first": "Centrality-first",
+    "betweenness-first": "Betweenness-first",
+    "impact-first": "Impact-first",
+    "degree-first": "Degree-first",
+    "closeness-first": "Closeness-first",
+    "hospital-first": "Hospital-first",
+    "random": "Random",
     "GA_Balanced": "GA (Balanced)",
     "GA_HospFirst": "GA (HospitalFirst)",
     "GA_Efficiency": "GA (Efficiency)",
