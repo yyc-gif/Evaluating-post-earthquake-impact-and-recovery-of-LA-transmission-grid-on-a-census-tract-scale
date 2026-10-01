@@ -1,0 +1,142 @@
+{
+  "source_candidate": "candidate_v2.1",
+  "source_commit": "e0153095a69a722cc89e90ecf06790d80e4b4dd4",
+  "mode": "layout-only; review; not promoted",
+  "figure_count": 12,
+  "width_mm": 185.0,
+  "scientific_content_changed": false,
+  "source_hash_changes": 0,
+  "original_candidate_hash_changes": 0,
+  "results_figures_hash_changes": 0,
+  "captions_identical": true,
+  "plotted_values_and_geometry": {
+    "Fig01_Revised_Analytical_Framework": {
+      "before": "f5e4521bb22f8c548d49755ea8dcf7599f740d383cf49250367111344a9847f7",
+      "after": "f5e4521bb22f8c548d49755ea8dcf7599f740d383cf49250367111344a9847f7",
+      "equal": true
+    },
+    "Fig02_System_Network_Mapping_and_Public_Site_Check": {
+      "before": "e65f28d8cd6020548f6a6b0271545402f1263fbe9736eacc930952083af3564b",
+      "after": "e65f28d8cd6020548f6a6b0271545402f1263fbe9736eacc930952083af3564b",
+      "equal": true
+    },
+    "Fig03_Hazard_Service_Loss_and_Unconstrained_Baseline": {
+      "before": "0c23eb7b2490b263b058991ace502730e93c34a27cda44e50ec64d9447d8d519",
+      "after": "0c23eb7b2490b263b058991ace502730e93c34a27cda44e50ec64d9447d8d519",
+      "equal": true
+    },
+    "Fig04_All_Policy_Recovery_and_Outcomes": {
+      "before": "5df980703e5c34b6b41c33355f72debd6ce9cceea272794c5f9e2b83a66b0680",
+      "after": "5df980703e5c34b6b41c33355f72debd6ce9cceea272794c5f9e2b83a66b0680",
+      "equal": true
+    },
+    "Fig05_Distributional_Outcomes_and_Reference_Sensitivity": {
+      "before": "10a950fa19da2097e31ee02bd1c45262327709807aa343c85946ce0a09943083",
+      "after": "10a950fa19da2097e31ee02bd1c45262327709807aa343c85946ce0a09943083",
+      "equal": true
+    },
+    "Fig06_Two_Level_Crew_Resource_Contrast": {
+      "before": "7a9fc716c91deb12a498a2abe76062303000d807d7eb67377733b51d45a8b891",
+      "after": "7a9fc716c91deb12a498a2abe76062303000d807d7eb67377733b51d45a8b891",
+      "equal": true
+    },
+    "Fig07_Community_Typology_and_Hotspots": {
+      "before": "e473fb7440b552df9a8b295d75a27dd248ac6899ad8f113f41b449106e8365e2",
+      "after": "e473fb7440b552df9a8b295d75a27dd248ac6899ad8f113f41b449106e8365e2",
+      "equal": true
+    },
+    "FigS05_GA_Reproducibility": {
+      "before": "6ef609ab70ee3bd7cc57f86037d58217d3b969bf4e9afc7ba564978de161625d",
+      "after": "6ef609ab70ee3bd7cc57f86037d58217d3b969bf4e9afc7ba564978de161625d",
+      "equal": true
+    },
+    "FigS09_Stage7_Diagnostics": {
+      "before": "7ba022f29e5328da7e36761449e777de1e2943c026a49b217daf80f00b54772c",
+      "after": "7ba022f29e5328da7e36761449e777de1e2943c026a49b217daf80f00b54772c",
+      "equal": true
+    },
+    "Candidate_Supplement_Cross_Hazard_Policy_Robustness": {
+      "before": "31ad7fcd3117a2681207a86806aa9bacbaac4cb70e6f35bdd96fbb25fde0bf0d",
+      "after": "31ad7fcd3117a2681207a86806aa9bacbaac4cb70e6f35bdd96fbb25fde0bf0d",
+      "equal": true
+    },
+    "Candidate_Supplement_Crew_Resource_Contrasts": {
+      "before": "2179a2f8222d2eb568d9ada17bc50346b9240d9def97522d2249677def85e2cf",
+      "after": "2179a2f8222d2eb568d9ada17bc50346b9240d9def97522d2249677def85e2cf",
+      "equal": true
+    },
+    "Candidate_Supplement_Repair_Duration_Contrasts": {
+      "before": "4c95a6ad65a29985a3f4b3855a73710f9f02c771343e952170a347bacb4c3df7",
+      "after": "4c95a6ad65a29985a3f4b3855a73710f9f02c771343e952170a347bacb4c3df7",
+      "equal": true
+    }
+  },
+  "policy_style": {
+    "centrality-first": [
+      "#e41a1c",
+      "-."
+    ],
+    "impact-first": [
+      "#ff7f00",
+      ":"
+    ],
+    "betweenness-first": [
+      "#b59a00",
+      [
+        0,
+        [
+          5,
+          1.5,
+          1.2,
+          1.5
+        ]
+      ]
+    ],
+    "degree-first": [
+      "#4daf4a",
+      "--"
+    ],
+    "closeness-first": [
+      "#377eb8",
+      [
+        0,
+        [
+          4,
+          1.6
+        ]
+      ]
+    ],
+    "hospital-first": [
+      "#555555",
+      [
+        0,
+        [
+          2.2,
+          1.4
+        ]
+      ]
+    ],
+    "random": [
+      "#9a9a9a",
+      "-"
+    ],
+    "vulnerability-first": [
+      "#a65628",
+      "-"
+    ],
+    "unconstrained": [
+      "#111111",
+      "--"
+    ]
+  },
+  "cluster_palette": [
+    "#303E4E",
+    "#C0A55B",
+    "#567E58",
+    "#BAD1DB",
+    "#724B63",
+    "#B97070",
+    "#AAA05B",
+    "#6F9B92"
+  ]
+}
