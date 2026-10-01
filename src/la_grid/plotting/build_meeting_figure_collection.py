@@ -23,6 +23,7 @@ import seaborn as sns
 from matplotlib.colors import TwoSlopeNorm
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
+from PIL import Image
 
 import la_grid.plotting.Project_Visualizer as july
 from la_grid.paths import REPO_ROOT as ROOT
@@ -93,12 +94,13 @@ def style_axis(ax, *, title=None, xlabel=None, ylabel=None) -> None:
     ax.set_axisbelow(True)
 
 
-def save_figure(fig, stem: str) -> None:
+def save_figure(fig, stem: str, *, tight: bool = True) -> None:
     pdf = OUT / f"{stem}.pdf"
     png = OUT / f"{stem}.png"
-    fig.savefig(pdf, format="pdf", bbox_inches="tight", pad_inches=.04,
+    bbox = "tight" if tight else None
+    fig.savefig(pdf, format="pdf", bbox_inches=bbox, pad_inches=.04 if tight else 0,
                 facecolor="white", metadata={"Creator": "LA Grid presentation-only renderer"})
-    fig.savefig(png, format="png", dpi=600, bbox_inches="tight", pad_inches=.04,
+    fig.savefig(png, format="png", dpi=600, bbox_inches=bbox, pad_inches=.04 if tight else 0,
                 facecolor="white")
     plt.close(fig)
 
@@ -173,9 +175,9 @@ def plot_supp_fig07_station_map() -> Path:
     lookup = points.set_index("id").geometry
     fig, axes = plt.subplots(1, 2, figsize=(18.5 * CM, 7.6 * CM))
     specifications = [
-        ("R_path_full", "C. Full-network conditional reachability", "YlGnBu",
+        ("R_path_full", "C. Full-network conditional reachability", "Blues",
          "Conditional source-path reliability"),
-        ("Delta_R_redundancy", "D. Alternative-route gain", "YlOrRd",
+        ("Delta_R_redundancy", "D. Alternative-route gain", "Reds",
          "Additional reliability from alternate routes"),
     ]
     for ax, (column, title, palette, scale_label) in zip(axes, specifications):
@@ -185,18 +187,18 @@ def plot_supp_fig07_station_map() -> Path:
                 a, b = lookup.loc[edge.u], lookup.loc[edge.v]
                 ax.plot([a.x, b.x], [a.y, b.y], color="#9ca5aa", lw=.36, alpha=.38, zorder=2)
         scatter = ax.scatter(non.geometry.x, non.geometry.y, c=non[column], cmap=palette,
-                             vmin=0, vmax=float(non[column].max()), s=24,
-                             edgecolors="white", linewidths=.32, zorder=3)
-        ax.scatter(core.geometry.x, core.geometry.y, marker="^", s=37,
-                   facecolors="white", edgecolors="#252525", linewidths=.68, zorder=4)
+                             vmin=0, vmax=float(non[column].max()), s=10,
+                             edgecolors="white", linewidths=.25, zorder=3)
+        ax.scatter(core.geometry.x, core.geometry.y, marker="^", s=12,
+                   facecolors="#26323b", edgecolors="white", linewidths=.32, zorder=4)
         ax.set_title(title, fontsize=july.FS_TITLE, weight="bold", pad=5)
         cbar = fig.colorbar(scatter, ax=ax, orientation="horizontal", fraction=.045, pad=.025,
                             shrink=.82)
         cbar.set_label(scale_label, fontsize=7.1)
         cbar.ax.tick_params(labelsize=7.0, width=.5, length=2)
         cbar.outline.set_linewidth(.5)
-    fig.legend(handles=[Line2D([], [], marker="^", color="none", markerfacecolor="white",
-                               markeredgecolor="#252525", markersize=5, label="Core source")],
+    fig.legend(handles=[Line2D([], [], marker="^", color="none", markerfacecolor="#26323b",
+                               markeredgecolor="white", markersize=4, label="Core source")],
                loc="lower center", bbox_to_anchor=(.5, .005), frameon=False, fontsize=7.1)
     fig.subplots_adjust(left=.015, right=.985, bottom=.16, top=.91, wspace=.035)
     path = OUT / "_FigS07_expanded_station_map.pdf"
@@ -238,51 +240,71 @@ def draw_tract_base(ax, g: gpd.GeoDataFrame, colors=None) -> None:
 
 
 def plot_fig02() -> None:
+    """Restore the July real-network panels and retain the revised M1 mapping.
+
+    July panels A and B are reused pixel-for-pixel. The former percolation panel
+    C is replaced with the already-frozen revised mapping table. No scientific
+    path or mapping calculation is repeated.
+    """
+    july_png = (ROOT / "provenance" / "legacy_outputs" /
+                "Submission_Package" / "Figure_2.png")
+    if not july_png.is_file():
+        raise FileNotFoundError(july_png)
+    old = Image.open(july_png).convert("RGB")
+    if old.size != (4370, 5925):
+        raise ValueError(f"Unexpected frozen July Figure 2 raster: {old.size}")
+    physical_panel = old.crop((0, 0, old.width, 2055))
+    path_panel = old.crop((0, 2070, old.width, 4215))
+
     tracts = tract_geometry()
-    nodes = pd.read_csv(ROOT / "Data" / "substation_graph_CEC_nodes_expanded.csv", dtype={"id": str})
-    nodes["id"] = nodes.id.astype(str)
-    edges = pd.read_csv(ROOT / "Data" / "substation_graph_CEC_edges_expanded.csv", dtype={"u": str, "v": str})
-    edges["u"], edges["v"] = edges.u.astype(str), edges.v.astype(str)
-    core = pd.read_csv(ROOT / "Data" / "source_nodes_core_expanded.csv", dtype={"ID": str})
-    core = set(core.loc[core.level.eq("Core"), "ID"].astype(str))
-    if len(nodes) != 92 or len(edges) != 318 or len(core) != 14:
-        raise ValueError("System map frozen topology identity does not match 92/318/14")
-    points = map_points(nodes, tracts.crs).set_index("id")
-    mapping = pd.read_csv(ROOT / "Data" / "JULY_UTILITY_CONSTRAINED_92.csv", dtype={"tract_id": str, "substation_id": str})
+    mapping = pd.read_csv(ROOT / "Data" / "JULY_UTILITY_CONSTRAINED_92.csv",
+                          dtype={"tract_id": str, "substation_id": str})
+    mapping["tract_id"] = mapping.tract_id.astype(str).str.replace(r"\.0$", "", regex=True).str.zfill(11)
     counts = mapping.groupby("tract_id").substation_id.nunique().rename("links")
-    tracts = tracts.merge(counts, left_on="tract_id_norm", right_index=True, how="left")
-    tracts["links"] = tracts.links.fillna(0).astype(int)
-    fig, axes = plt.subplots(1, 2, figsize=(18.5 * CM, 7.8 * CM))
-    ax = axes[0]
-    draw_tract_base(ax, tracts)
-    for row in edges.itertuples(index=False):
-        if row.u in points.index and row.v in points.index:
-            a, b = points.loc[row.u].geometry, points.loc[row.v].geometry
-            ax.plot([a.x, b.x], [a.y, b.y], color="#8c9298", lw=.45, alpha=.68, zorder=2)
-    pts = points.reset_index()
-    non = pts[~pts.id.isin(core)]
-    src = pts[pts.id.isin(core)]
-    ax.scatter(non.geometry.x, non.geometry.y, s=8, c="#3b6b8e", edgecolors="white", linewidths=.28, zorder=3)
-    ax.scatter(src.geometry.x, src.geometry.y, s=21, marker="^", c="#222222", edgecolors="white", linewidths=.35, zorder=4)
-    style_axis(ax, title=None, xlabel=None, ylabel=None)
-    ax.set_axis_off()
-    handles=[
-        Line2D([], [], marker="o", color="none", markerfacecolor="#3b6b8e", markeredgecolor="white", markersize=4, label="Retained station (n=92)"),
-        Line2D([], [], marker="^", color="none", markerfacecolor="#222222", markeredgecolor="white", markersize=5, label="Core source (n=14)"),
-        Line2D([], [], color="#8c9298", lw=.65, label="Retained edge (n=318)"),
-    ]
-    ax = axes[1]
-    tracts.plot(column="links", ax=ax, cmap="Blues", vmin=0, vmax=max(1, tracts.links.max()),
-                edgecolor="#c9c9c9", linewidth=.12, legend=True,
-                legend_kwds={"label": "Mapped substations per tract", "shrink": .68, "pad": .02})
-    style_axis(ax, title=None, xlabel=None, ylabel=None)
+    tracts = tracts.merge(counts, left_on="tract_id_norm", right_index=True,
+                          how="left", validate="one_to_one")
+    if len(tracts) != 2315 or tracts.links.isna().any():
+        raise ValueError("Revised mapping display must cover all 2,315 study tracts")
+    fig, ax = plt.subplots(figsize=(18.5 * CM, 7.4 * CM))
+    tracts.plot(column="links", ax=ax, cmap="Blues", vmin=1,
+                vmax=max(1, int(tracts.links.max())), edgecolor="#bcbcbc",
+                linewidth=.12, legend=True,
+                legend_kwds={"label": "Mapped substations per tract", "shrink": .72, "pad": .02})
     ax.set_axis_off(); ax.set_aspect("equal")
-    fig.text(.255, .95, "A. Retained network", ha="center", va="center", fontsize=july.FS_TITLE, weight="bold")
-    fig.text(.73, .95, "B. Utility-compatible tract mapping", ha="center", va="center", fontsize=july.FS_TITLE, weight="bold")
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(.5, .015),
-               frameon=False, fontsize=7.1, ncol=3, columnspacing=2.5)
-    fig.subplots_adjust(left=.025, right=.97, bottom=.14, top=.91, wspace=.06)
-    save_figure(fig, "Fig02_System_Network_and_Mapping")
+    fig.subplots_adjust(left=.06, right=.94, bottom=.03, top=.91)
+    map_pdf = OUT / "_Fig02_M1_mapping_panel.pdf"
+    fig.savefig(map_pdf, format="pdf", bbox_inches="tight", pad_inches=.025,
+                facecolor="white", metadata={"Creator": "LA Grid presentation-only renderer"})
+    plt.close(fig)
+
+    width = 524.4094
+    px_to_pt = width / old.width
+    crops = [physical_panel, path_panel]
+    crop_heights = [im.height * px_to_pt for im in crops]
+    map_doc = fitz.open(map_pdf); map_page = map_doc[0]
+    map_height = width * map_page.rect.height / map_page.rect.width
+    header, gap = 15.0, 5.0
+    page_height = sum(crop_heights) + map_height + header + 2 * gap
+    doc = fitz.open(); page = doc.new_page(width=width, height=page_height)
+    page.insert_font(fontname="ArBold", fontfile=str(ARIAL_BOLD))
+    y = gap
+    for i, image in enumerate(crops):
+        tmp = OUT / f"_Fig02_july_panel_{i+1}.png"
+        image.save(tmp, dpi=(600, 600))
+        h = crop_heights[i]
+        page.insert_image(fitz.Rect(0, y, width, y + h), filename=str(tmp))
+        y += h + gap
+    page.insert_text((8, y + 10.2), "C. Revised utility-compatible tract–substation mapping",
+                     fontname="ArBold", fontsize=9.5, color=(.12, .17, .20))
+    y += header
+    page.show_pdf_page(fitz.Rect(0, y, width, y + map_height), map_doc, 0,
+                       keep_proportion=True)
+    doc.save(OUT / "Fig02_System_Network_and_Mapping.pdf", garbage=4, deflate=True)
+    pix = page.get_pixmap(matrix=fitz.Matrix(600/72, 600/72), alpha=False)
+    pix.set_dpi(600, 600); pix.save(OUT / "Fig02_System_Network_and_Mapping.png")
+    doc.close(); map_doc.close(); map_pdf.unlink(missing_ok=True)
+    for i in (1, 2):
+        (OUT / f"_Fig02_july_panel_{i}.png").unlink(missing_ok=True)
 
 
 def plot_supp_fig03_crew_map() -> Path:
@@ -304,7 +326,7 @@ def plot_supp_fig03_crew_map() -> Path:
     for utility, group in crews.groupby("utility"):
         ax.scatter(group.geometry.x, group.geometry.y, s=43, c=colors.get(utility, "#6a3d9a"),
                    edgecolors="white", linewidths=.45, zorder=4)
-    ax.set_title("C57 crew origins across the expanded study area", fontsize=july.FS_TITLE, pad=4)
+    ax.set_title("Crew origins across the study area (57 modeled crews)", fontsize=july.FS_TITLE, pad=4)
     handles = [
         Line2D([], [], marker="o", color="none", markerfacecolor="#89939b",
                markeredgecolor="white", markersize=4.2, label="Retained station (n=92)"),
@@ -428,13 +450,17 @@ def baseline_realizations() -> pd.DataFrame:
     primary = pd.read_parquet(FORMAL / "Formal_Results" / "PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet")
     primary = primary[(primary.hazard == "2pc50") & (primary.resource_scenario == "C57_D1") &
                       (primary.mapping == "M1_UTILITY_003") & (primary.gate == "G1_BASELINE_050") &
-                      (primary.strategy_id.isin(["impact-first", "hospital-first", "degree-first", "unconstrained"]))].copy()
+                      (primary.strategy_id.isin([
+                          "centrality-first", "impact-first", "betweenness-first", "degree-first",
+                          "closeness-first", "hospital-first", "random", "unconstrained",
+                      ]))].copy()
     vuln = pd.read_parquet(FORMAL / "Equity_Amendment" / "VULNERABILITY_PRIMARY_SUMMARY.parquet")
     vuln = vuln[(vuln.hazard == "2pc50") & (vuln.resource_scenario == "C57_D1") &
                 (vuln.mapping == "M1_UTILITY_003") & (vuln.gate == "G1_BASELINE_050") &
                 (vuln.strategy_id == "vulnerability-first")].copy()
     d = pd.concat([primary, vuln], ignore_index=True)
-    expected = {"impact-first", "hospital-first", "vulnerability-first", "degree-first", "unconstrained"}
+    expected = {"centrality-first", "impact-first", "betweenness-first", "degree-first",
+                "closeness-first", "hospital-first", "random", "vulnerability-first", "unconstrained"}
     counts = d.groupby("strategy_id").realization_id.nunique().to_dict()
     if set(counts) != expected or any(v != 1000 for v in counts.values()):
         raise ValueError(f"Frozen main policy display must be five groups × 1000 realizations: {counts}")
@@ -456,30 +482,86 @@ def plot_box(ax, df, metric: str, keys: list[str], positions=None, *, width=.58)
 
 
 def plot_fig04(data: pd.DataFrame) -> None:
-    keys = ["impact-first", "hospital-first", "vulnerability-first", "degree-first", "unconstrained"]
+    """Show complete recovery paths and outcome distributions for all policies.
+
+    Curves and realization-level distributions are read from frozen outputs;
+    this function changes only their presentation.
+    """
+    curve_path = SUITE / "Stage 6 Output_expanded" / "ALL_DISTINCT_STRATEGY_RECOVERY_CURVES.csv"
+    curves = pd.read_csv(curve_path)
+    curves = curves[curves.hazard.eq("2pc50")].copy()
+    all_keys = ["unconstrained", "centrality-first", "impact-first", "betweenness-first",
+                "degree-first", "closeness-first", "hospital-first", "random",
+                "vulnerability-first"]
+    if set(curves.strategy_id.unique()) != set(all_keys):
+        raise ValueError("Frozen 2pc50 curve table must include eight scheduled policies and Unconstrained")
+    style_map = {key: july._stage6_line_style(key, role="recovery")
+                 for key in all_keys if key != "unconstrained"}
+    style_map["vulnerability-first"] = {
+        "color": STRATEGY_COLORS["vulnerability-first"], "ls": "-", "lw": 1.08,
+        "alpha": .9, "zorder": 9,
+    }
+    style_map["betweenness-first"] = {**style_map["betweenness-first"],
+                                     "color": STRATEGY_COLORS["betweenness-first"]}
+    # The legacy Random gray is darkened slightly so its line remains visible
+    # on a white page while its marker/line role remains unchanged.
+    style_map["random"] = {**style_map["random"], "color": "#858585"}
+    style_map["unconstrained"] = {"color": "#111111", "ls": "--", "lw": 1.3,
+                                  "alpha": .98, "zorder": 11}
+    fig = plt.figure(figsize=(18.5 * CM, 19.0 * CM))
+    gs = fig.add_gridspec(4, 1, height_ratios=[1.2, 1.0, 1.0, 1.0], hspace=.52)
+    ax_curve = fig.add_subplot(gs[0, 0])
+    for key in all_keys:
+        part = curves[curves.strategy_id.eq(key)].sort_values("time_hr")
+        line_style = style_map[key]
+        ax_curve.step(part.time_hr, part.mean_population_availability_proxy,
+                      where="post", color=line_style["color"], linestyle=line_style["ls"],
+                      linewidth=line_style["lw"], alpha=line_style["alpha"],
+                      label=STRATEGY_LABELS[key], zorder=line_style["zorder"])
+    style_axis(ax_curve, title="A. Population-weighted service recovery",
+               xlabel="Time after earthquake (h)", ylabel="Modeled service availability")
+    ax_curve.set_xlim(0, 120); ax_curve.set_ylim(0, 1.04)
+    ax_curve.set_yticks(np.linspace(0, 1, 6))
+    ax_curve.grid(True, color="#e4e4e4", linewidth=.4, linestyle="--", alpha=.68)
+    handles, labels = ax_curve.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(.5, .998), ncol=3,
+               frameon=False, fontsize=7.0, handlelength=1.7,
+               columnspacing=1.1, handletextpad=.38)
+
     panels = [
-        ("population_resolved_mass_weighted_burden_hr", "A. Population service burden", "Burden (h)"),
-        ("L_source_population_mass_weighted_hr", "B. Source-path burden", "Burden (h)"),
-        ("hospital_mean_normalized_burden_hr", "C. Hospital-linked tract burden", "Burden (h)"),
+        ("population_resolved_mass_weighted_burden_hr", "B. Population-weighted cumulative service burden", "Cumulative burden (h)"),
+        ("hospital_mean_normalized_burden_hr", "C. Hospital-linked tract cumulative burden", "Cumulative burden (h)"),
         ("population_T80_hr", "D. Population time to 80% service", "Time (h)"),
     ]
-    fig, axes = plt.subplots(2, 2, figsize=(18.5 * CM, 13.2 * CM))
-    for ax, (metric, title, unit_label) in zip(axes.flat, panels):
-        plot_box(ax, data, metric, keys, width=.55)
-        # The shared strategy legend carries the full names once; repeating five
-        # long labels below each narrow panel made the strategy axis unreadable.
-        ax.set_xticks(range(1, len(keys) + 1), [""] * len(keys))
-        ax.tick_params(axis="x", length=0)
-        style_axis(ax, title=title, xlabel=None, ylabel=unit_label)
-        ax.set_xlabel("")
-    handles = [Patch(facecolor=STRATEGY_COLORS[k], edgecolor=STRATEGY_COLORS[k], alpha=.45,
-                     label=STRATEGY_LABELS[k]) for k in keys]
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(.5, .012), ncol=5,
-               frameon=False, fontsize=7.5, handlelength=1.2, columnspacing=1.5)
-    fig.text(.5, .985, "2pc50 · matched physical realizations · lower values indicate less burden or faster recovery",
-             ha="center", va="top", fontsize=7.5, color="#555555")
-    fig.subplots_adjust(left=.10, right=.985, bottom=.145, top=.91, wspace=.27, hspace=.25)
-    save_figure(fig, "Fig04_Restoration_Strategy_Tradeoffs")
+    for ax, (metric, title, xlabel) in zip(
+            [fig.add_subplot(gs[i, 0]) for i in range(1, 4)], panels):
+        values = [data.loc[data.strategy_id.eq(key), metric].dropna().to_numpy(float)
+                  for key in all_keys]
+        if any(len(v) != 1000 for v in values):
+            raise ValueError(f"Expected 1,000 frozen realization values for {metric}")
+        positions = np.arange(len(all_keys), 0, -1)
+        artists = ax.boxplot(values, vert=False, positions=positions, widths=.58,
+                             whis=(5, 95), showfliers=False, patch_artist=True,
+                             medianprops={"linewidth": 1.05},
+                             whiskerprops={"linewidth": .75},
+                             capprops={"linewidth": .75})
+        for box, key in zip(artists["boxes"], all_keys):
+            box.set_facecolor(STRATEGY_COLORS[key]); box.set_edgecolor(STRATEGY_COLORS[key])
+            box.set_alpha(.32); box.set_linewidth(.75)
+        for med, key in zip(artists["medians"], all_keys):
+            med.set_color(STRATEGY_COLORS[key]); med.set_linewidth(1.05)
+        for i, key in enumerate(all_keys):
+            for whisk in artists["whiskers"][2*i:2*i+2]:
+                whisk.set_color(STRATEGY_COLORS[key])
+            for cap in artists["caps"][2*i:2*i+2]:
+                cap.set_color(STRATEGY_COLORS[key])
+        ax.set_yticks(positions, [STRATEGY_LABELS[k] for k in all_keys])
+        ax.tick_params(axis="y", labelsize=7.1, length=0)
+        style_axis(ax, title=title, xlabel=xlabel, ylabel=None)
+        ax.grid(True, axis="x", color="#e4e4e4", linewidth=.4, linestyle="--", alpha=.68)
+        ax.grid(False, axis="y")
+    fig.subplots_adjust(left=.22, right=.985, bottom=.045, top=.91)
+    save_figure(fig, "Fig04_Restoration_Strategy_Tradeoffs", tight=False)
 
 
 def plot_fig05(data: pd.DataFrame) -> None:
@@ -512,7 +594,7 @@ def plot_fig05(data: pd.DataFrame) -> None:
     fig = plt.figure(figsize=(18.5 * CM, 10.5 * CM))
     gs = fig.add_gridspec(1, 2, width_ratios=[1.27, .73], wspace=.23)
     axmap = fig.add_subplot(gs[0, 0]); axbox = fig.add_subplot(gs[0, 1])
-    colors = np.where(tracts.hospital_link, "#d69b55", "#f7f7f7")
+    colors = np.where(tracts.hospital_link, "#d9c8eb", "#f7f7f7")
     draw_tract_base(axmap, tracts, colors)
     pts.plot(ax=axmap, color="#55758b", markersize=7, marker="o", edgecolor="white", linewidth=.22, zorder=3)
     priority.plot(ax=axmap, color="#a65628", markersize=11, marker="o", edgecolor="white", linewidth=.35, zorder=4)
@@ -523,19 +605,21 @@ def plot_fig05(data: pd.DataFrame) -> None:
                        bbox={"boxstyle": "circle,pad=.16", "fc": "white", "ec": "#a65628", "lw": .7}, zorder=7)
     style_axis(axmap, title="A. Hospital priority targets substations", xlabel=None, ylabel=None)
     axmap.set_axis_off()
-    handles = [Patch(facecolor="#d69b55", edgecolor="none", label="Hospital-linked tracts"),
+    handles = [Patch(facecolor="#d9c8eb", edgecolor="none", label="Hospital-linked tracts"),
                Line2D([], [], marker="o", color="none", markerfacecolor="#55758b", markeredgecolor="white", markersize=4, label="All substations"),
-               Line2D([], [], marker="o", color="none", markerfacecolor="#a65628", markeredgecolor="white", markersize=4, label="Hospital-priority substations")]
-    axmap.legend(handles=handles, frameon=False, loc="lower center", bbox_to_anchor=(.5,-.13),
+               Line2D([], [], marker="o", color="none", markerfacecolor="#a65628", markeredgecolor="white", markersize=4, label="Hospital-priority substations"),
+               Line2D([], [], marker="o", color="none", markerfacecolor="white", markeredgecolor="#a65628", markersize=5,
+                      label="Numbered circles = substation priority rank")]
+    axmap.legend(handles=handles, frameon=False, loc="lower center", bbox_to_anchor=(.5,-.14),
                  fontsize=7.0, ncol=2, columnspacing=.8, handlelength=1.0)
     keys = STRATEGIES
     plot_box(axbox, data, "hospital_mean_normalized_burden_hr", keys, width=.50)
     axbox.set_xticks([1,2,3,4], ["Impact-\nfirst", "Hospital-\nfirst", "Vulnerability-\nfirst", "Degree-\nfirst"])
-    style_axis(axbox, title="B. Hospital-linked tract burden", xlabel=None,
+    style_axis(axbox, title="B. Hospital-linked burden", xlabel=None,
                ylabel="Cumulative burden (h)")
     axbox.tick_params(axis="x", labelsize=7.0)
     fig.subplots_adjust(left=.035, right=.98, bottom=.20, top=.91)
-    save_figure(fig, "Fig05_Hospital_Priority_and_Critical_Service")
+    save_figure(fig, "Fig05_Hospital_Priority_and_Critical_Service", tight=False)
 
 
 def plot_fig06(data: pd.DataFrame) -> None:
@@ -553,8 +637,8 @@ def plot_fig06(data: pd.DataFrame) -> None:
         raise ValueError("Frozen equity panel inputs do not cover expected strategies/tracts")
     q_order = ["Q1", "Q2", "Q3", "Q4"]
     fig = plt.figure(figsize=(18.5 * CM, 14.8 * CM))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.05, 1.0],
-                          hspace=.38, wspace=.28)
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.16],
+                          hspace=.34, wspace=.28)
     ax_a = fig.add_subplot(gs[0, 0]); ax_b = fig.add_subplot(gs[0, 1])
     ax_c = fig.add_subplot(gs[1, 0]); ax_d = fig.add_subplot(gs[1, 1])
     offsets = {"impact-first": -.22, "hospital-first": 0, "vulnerability-first": .22}
@@ -566,52 +650,77 @@ def plot_fig06(data: pd.DataFrame) -> None:
         ax_a.errorbar(xx, yy, yerr=np.vstack([low, high]), fmt="o", markersize=3.5,
                       color=STRATEGY_COLORS[key], ecolor=STRATEGY_COLORS[key], lw=.8, capsize=1.8,
                       linestyle="none", label=STRATEGY_LABELS[key])
-    ax_a.set_xticks(np.arange(4), q_order)
+    ax_a.set_xticks(np.arange(4), ["Q1", "Q2", "Q3", "Q4"])
     style_axis(ax_a, title="A. Absolute burden by social-vulnerability quartile", xlabel=None, ylabel="Cumulative burden (h)")
     handles, labels = ax_a.get_legend_handles_labels()
-    fig.legend(handles, labels, frameon=False, fontsize=7.0, ncol=3,
-               loc="upper center", bbox_to_anchor=(.5, .995))
+    fig.legend(handles, labels, frameon=False, fontsize=7.2, ncol=3,
+               loc="upper center", bbox_to_anchor=(.5, .992))
     b = effect[effect.metric.isin([f"burden_Q{i}_hr" for i in range(1,5)])].copy()
     b["quartile"] = b.metric.str.extract(r"(Q[1-4])")
     b = b.set_index("quartile").loc[q_order]
     yy = b.paired_mean_difference.to_numpy(float)
-    ax_b.errorbar(yy, np.arange(4), xerr=np.vstack([yy - b.bootstrap_ci_low.to_numpy(float), b.bootstrap_ci_high.to_numpy(float) - yy]),
+    ci_low = b.bootstrap_ci_low.to_numpy(float); ci_high = b.bootstrap_ci_high.to_numpy(float)
+    qx = np.arange(4)
+    ax_b.errorbar(qx, yy, yerr=np.vstack([yy - ci_low, ci_high - yy]),
                   fmt="o", color=STRATEGY_COLORS["vulnerability-first"], ecolor=STRATEGY_COLORS["vulnerability-first"],
-                  lw=.9, capsize=2.0, markersize=4.0)
-    ax_b.axvline(0, color="#666666", lw=.65, ls="--")
-    ax_b.set_yticks(np.arange(4), q_order)
-    style_axis(ax_b, title="B. Vulnerability-first change relative to Hospital-first", xlabel="Change relative to Hospital-first (h)", ylabel=None)
-    ax_b.grid(True, axis="x", color="#e4e4e4", linewidth=.4, alpha=.68); ax_b.grid(False, axis="y")
-    # Panel C uses only fixed realization-level summary rows and descriptive means.
-    stats = []
-    for key in ["impact-first", "hospital-first", "vulnerability-first"]:
-        dd = data[data.strategy_id.eq(key)]
-        stats.append({"strategy": key,
-                      "burden": float(dd.population_resolved_mass_weighted_burden_hr.mean()),
-                      "gap": float(dd.absolute_Q4_minus_Q1_hr.mean()),
-                      "gini": float(dd.burden_gini.mean())})
-    stat = pd.DataFrame(stats).set_index("strategy").loc[
-        ["impact-first", "hospital-first", "vulnerability-first"]].reset_index()
-    ax_c.set_axis_off()
-    ax_c.set_title("C. Distributional trade-off", loc="left", fontsize=july.FS_TITLE, pad=3)
-    table_values = [[metric, *[f"{v:.3f}" for v in values]] for metric, values in [
-        ("Population burden (h)", stat.burden.to_numpy(float)),
-        ("|Q4-Q1| gap (h)", stat.gap.to_numpy(float)),
-        ("Burden Gini", stat.gini.to_numpy(float)),
-    ]]
-    tab = ax_c.table(cellText=table_values,
-                     colLabels=["Outcome", "Impact", "Hospital", "Vulnerability"],
-                     colWidths=[.38, .18, .20, .24], loc="center",
-                     cellLoc="center", colLoc="center", bbox=[.005, .24, .99, .58])
-    tab.auto_set_font_size(False); tab.set_fontsize(7.0)
-    for (ri, ci), cell in tab.get_celld().items():
-        cell.set_linewidth(.35); cell.set_edgecolor("#c5c5c5")
-        if ri == 0:
-            cell.set_facecolor("#e8edf0"); cell.set_text_props(weight="bold")
-        elif ci > 0:
-            cell.get_text().set_color(STRATEGY_COLORS[stat.iloc[ci-1].strategy])
-    ax_c.text(.01,.12,"Q4 = highest social-vulnerability quartile.",
-              transform=ax_c.transAxes,fontsize=7.0,ha="left",va="center")
+                  lw=1.0, capsize=2.2, markersize=4.2)
+    ax_b.axhline(0, color="#666666", lw=.65, ls="--")
+    ax_b.set_xticks(qx, ["Q1\n(lowest)", "Q2", "Q3", "Q4\n(highest)"])
+    style_axis(ax_b, title="B. Quartile burden change", xlabel="Social-vulnerability quartile",
+               ylabel="Change relative to Hospital-first (h)")
+    ax_b.tick_params(axis="x", labelsize=7.0, rotation=0)
+    ax_b.grid(True, axis="y", color="#e4e4e4", linewidth=.4, alpha=.68); ax_b.grid(False, axis="x")
+    ax_b.set_ylim(min(float(ci_low.min()), 0) - .35, max(float(ci_high.max()), 0) + .42)
+    for qlabel, estimate, xpos in zip(["Q1", "Q2", "Q3", "Q4"], yy, qx):
+        ax_b.annotate(f"{estimate:+.3f} h", (xpos, estimate), xytext=(0, 6),
+                      textcoords="offset points", ha="center", va="bottom", fontsize=7.0,
+                      color=STRATEGY_COLORS["vulnerability-first"])
+    # Panel C is a dot-and-interval effect profile, not a numeric table. Each
+    # row has its own scale because the effects have different units/magnitudes.
+    effect_rows = [
+        ("population_resolved_mass_weighted_burden_hr", "Population-weighted cumulative\nservice burden (h)", "h"),
+        ("absolute_Q4_minus_Q1_hr", "High–low vulnerability burden\ndifference (h)", "h"),
+        ("burden_gini", "Tract-burden inequality\n(population-weighted Gini)", ""),
+        ("population_T80_hr", "Population time to 80%\nservice (h)", "h"),
+        ("hospital_mean_normalized_burden_hr", "Hospital-linked tract cumulative\nburden (h)", "h"),
+    ]
+    effect_lookup = effect.set_index("metric")
+    ax_c.remove()
+    cgrid = gs[1, 0].subgridspec(6, 3, height_ratios=[.62, 1, 1, 1, 1, 1],
+                                 width_ratios=[1.2, 1.45, .55], hspace=.25, wspace=.12)
+    title_ax = fig.add_subplot(cgrid[0, :]); title_ax.set_axis_off()
+    title_ax.text(.5, .60, "C. Broader distributional and system effects",
+                  ha="center", va="center", fontsize=july.FS_TITLE,
+                  fontweight="bold", color="#26323b", transform=title_ax.transAxes)
+    title_ax.text(.5, .05, "Dot = mean change; line = 95% interval; scales are metric-specific.",
+                  ha="center", va="center", fontsize=7.0, color="#555555",
+                  transform=title_ax.transAxes)
+    for idx, (metric, label, unit) in enumerate(effect_rows):
+        if metric not in effect_lookup.index:
+            raise ValueError(f"Frozen paired-effects table missing {metric}")
+        row = effect_lookup.loc[metric]
+        if isinstance(row, pd.DataFrame):
+            row = row.iloc[0]
+        value = float(row.paired_mean_difference)
+        ci0 = float(row.bootstrap_ci_low); ci1 = float(row.bootstrap_ci_high)
+        row_id = idx + 1
+        label_ax = fig.add_subplot(cgrid[row_id, 0]); label_ax.set_axis_off()
+        plot_ax = fig.add_subplot(cgrid[row_id, 1])
+        value_ax = fig.add_subplot(cgrid[row_id, 2]); value_ax.set_axis_off()
+        span = max(abs(ci0), abs(ci1), .01) * 1.32
+        plot_ax.set_xlim(-span, span); plot_ax.set_ylim(-.5, .5)
+        plot_ax.axvline(0, color="#737373", lw=.6, ls="--", zorder=0)
+        plot_ax.hlines(0, ci0, ci1, color=STRATEGY_COLORS["vulnerability-first"], lw=1.15, zorder=2)
+        plot_ax.plot(value, 0, marker="o", ms=3.8, color=STRATEGY_COLORS["vulnerability-first"], zorder=3)
+        plot_ax.set_yticks([]); plot_ax.set_xticks([])
+        for spine in ("left", "right", "top", "bottom"):
+            plot_ax.spines[spine].set_visible(False)
+        label_ax.text(1, .5, label, ha="right", va="center", fontsize=7.0,
+                      color="#26323b", transform=label_ax.transAxes)
+        value_ax.text(0, .5, f"{value:+.3f}{' '+unit if unit else ''}",
+                      ha="left", va="center", fontsize=7.0,
+                      color=STRATEGY_COLORS["vulnerability-first"],
+                      transform=value_ax.transAxes)
     # Full-domain continuous tract effect map; 0 is the neutral reference.
     tracts = tract_geometry()
     tracts["tract_id_norm"] = tracts.tract_id_norm.astype(str).str.zfill(11)
@@ -625,16 +734,18 @@ def plot_fig06(data: pd.DataFrame) -> None:
                 norm=TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax),
                 edgecolor="#c9c9c9", linewidth=.10,
                 legend=True, legend_kwds={"label": "Burden change (h)", "shrink": .70, "pad": .02})
-    style_axis(ax_d, title="D. Tract burden change", xlabel=None, ylabel=None)
+    style_axis(ax_d, title="D. Continuous tract effect", xlabel=None, ylabel=None)
     ax_d.set_axis_off(); ax_d.set_aspect("equal")
     # Population summaries retain continuous sign and magnitude; no threshold band is introduced.
     delta = mapped[["effect_population", "mean_paired_delta_burden_hr"]].dropna()
     pop = delta.effect_population.to_numpy(float); val = delta.mean_paired_delta_burden_hr.to_numpy(float)
     lower = float(pop[val < 0].sum()); higher = float(pop[val > 0].sum()); equal = float(pop[val == 0].sum())
-    fig.text(.51, .075, f"Population with lower / higher burden: {lower/1e6:.2f} / {higher/1e6:.2f} million",
+    fig.text(.08, .064, "Q4 = highest and Q1 = lowest social-vulnerability quartile. Population-weighted Gini: 0 = equal tract burden; larger = more unequal.",
              fontsize=7.0, ha="left", va="center")
-    fig.subplots_adjust(left=.075, right=.98, bottom=.11, top=.88)
-    save_figure(fig, "Fig06_Vulnerability_Targeting_and_Distributional_Tradeoffs")
+    fig.text(.08, .043, f"Population with lower / higher burden: {lower/1e6:.2f} / {higher/1e6:.2f} million.",
+             fontsize=7.0, ha="left", va="center")
+    fig.subplots_adjust(left=.08, right=.92, bottom=.095, top=.88)
+    save_figure(fig, "Fig06_Vulnerability_Targeting_and_Distributional_Tradeoffs", tight=False)
 
 
 def plot_stage7_maps() -> tuple[Path, Path]:
@@ -648,11 +759,15 @@ def plot_stage7_maps() -> tuple[Path, Path]:
     score_col = score_candidates[-1]
     if len(merged) != 2315 or merged[cluster_col].notna().sum() != 2291:
         raise ValueError("Stage 7 final map must preserve 2,291 typology members and 24 not-applicable tracts")
-    cmap = {str(c): july.STAGE7_IJDRR_CLUSTER_PALETTE[i % len(july.STAGE7_IJDRR_CLUSTER_PALETTE)] for i,c in enumerate(sorted(merged[cluster_col].dropna().unique(), key=lambda x: int(float(x))))}
+    # The original pale yellow cluster was difficult to distinguish on the
+    # white tract boundary layer. Use a muted, color-vision-friendlier display
+    # palette only; cluster IDs and membership remain unchanged.
+    review_colors = ["#2878B5", "#D55E00", "#2A8C68", "#9A6FB0", "#52606D"]
+    cmap = {str(c): review_colors[i % len(review_colors)] for i,c in enumerate(sorted(merged[cluster_col].dropna().unique(), key=lambda x: int(float(x))))}
     colors = merged[cluster_col].map(lambda x: cmap.get(str(x), july.STAGE7_NA_COLOR))
     f1, ax1 = plt.subplots(figsize=(8.9 * CM, 7.2 * CM))
     draw_tract_base(ax1, merged, colors)
-    ax1.set_title("B. Residential typology", fontsize=july.FS_TITLE, loc="left", pad=3)
+    ax1.set_title("B. Residential typology", fontsize=july.FS_TITLE, loc="center", pad=3)
     handles = [Patch(facecolor=c, edgecolor="white", linewidth=.25, label=f"Cluster {int(float(k))}") for k,c in cmap.items()]
     handles.append(Patch(facecolor=july.STAGE7_NA_COLOR, edgecolor="#bcbcbc", linewidth=.35, label="Not in residential typology"))
     ax1.legend(handles=handles, frameon=False, loc="upper center", bbox_to_anchor=(.5,-.02), ncol=2, fontsize=7.0)
@@ -661,12 +776,12 @@ def plot_stage7_maps() -> tuple[Path, Path]:
     f1.savefig(cluster_pdf, bbox_inches="tight", pad_inches=.025, facecolor="white")
     plt.close(f1)
     f2, ax2 = plt.subplots(figsize=(8.9 * CM, 7.2 * CM))
-    merged.plot(column=score_col, ax=ax2, cmap=july.STAGE7_HOTSPOT_SCORE_CMAP,
+    merged.plot(column=score_col, ax=ax2, cmap="Blues",
                 edgecolor="#c9c9c9", linewidth=.12, legend=True,
                 legend_kwds={"label": "Slow-vulnerable hotspot score", "shrink": .67, "pad": .02},
                 missing_kwds={"color": july.STAGE7_NA_COLOR, "edgecolor": "#bcbcbc", "label": "Not in residential typology"})
     ax2.set_axis_off(); ax2.set_aspect("equal")
-    ax2.set_title("C. Hotspot score", fontsize=july.FS_TITLE, loc="left", pad=3)
+    ax2.set_title("C. Hotspot score", fontsize=july.FS_TITLE, loc="center", pad=3)
     f2.subplots_adjust(left=.02, right=.98, top=.91, bottom=.05)
     hotspot_pdf = OUT / "_Fig07_hotspot_map_panel.pdf"
     f2.savefig(hotspot_pdf, bbox_inches="tight", pad_inches=.025, facecolor="white")
@@ -680,21 +795,25 @@ def plot_fig07() -> None:
         ("A. Cluster profile differences", STAGE7 / "vis_stage7_heatmap.pdf"),
         ("", panel_b), ("", panel_c),
     ]
-    # Build a balanced page: profile at native full width, two maps at native 89 mm width.
+    # Build a full-width page while keeping all three panels at their native
+    # physical size; only the containing page gains a little white margin.
     docs = [(title, fitz.open(path)) for title, path in panels]
     prof = docs[0][1][0]
     map1, map2 = docs[1][1][0], docs[2][1][0]
-    width = max(prof.rect.width, map1.rect.width * 2 + 12)
-    gap_h = 18.0
-    bottom_h = max(map1.rect.height, map2.rect.height) + gap_h
-    total_h = prof.rect.height + 17 + bottom_h
+    width = 524.4094
+    gap_h = 4.0
+    bottom_h = max(map1.rect.height, map2.rect.height)
+    title_h = 17.0
+    total_h = title_h + prof.rect.height + gap_h + bottom_h + 4.0
     outdoc = fitz.open(); page = outdoc.new_page(width=width, height=total_h)
     page.insert_font(fontname="ArBold", fontfile=str(ARIAL_BOLD))
-    page.insert_text((8,9.5), "A. Cluster profile differences", fontname="ArBold", fontsize=8.2, color=(.1,.1,.1))
+    title_rect = fitz.Rect(0, 1, width, 15)
+    page.insert_textbox(title_rect, "A. Cluster profile differences", fontname="ArBold",
+                        fontsize=9.5, color=(.1,.1,.1), align=1, overlay=True)
     x_profile = (width - prof.rect.width) / 2
-    page.show_pdf_page(fitz.Rect(x_profile,17,x_profile+prof.rect.width,17+prof.rect.height), docs[0][1], 0, keep_proportion=True)
-    y = 17 + prof.rect.height
-    y += 4.0
+    page.show_pdf_page(fitz.Rect(x_profile,title_h,x_profile+prof.rect.width,title_h+prof.rect.height),
+                       docs[0][1], 0, keep_proportion=True)
+    y = title_h + prof.rect.height + gap_h
     page.show_pdf_page(fitz.Rect((width/2-map1.rect.width)/2, y, (width/2-map1.rect.width)/2+map1.rect.width, y+map1.rect.height), docs[1][1], 0, keep_proportion=True)
     page.show_pdf_page(fitz.Rect(width/2+(width/2-map2.rect.width)/2, y, width/2+(width/2-map2.rect.width)/2+map2.rect.width, y+map2.rect.height), docs[2][1], 0, keep_proportion=True)
     outdoc.save(OUT / "Fig07_Community_Typology_and_Hotspots.pdf", garbage=4, deflate=True)
@@ -788,27 +907,53 @@ def plot_supp_fig05() -> None:
     required={"seed","fitness","incumbent_fitness","search_improved_incumbent"}
     if not required.issubset(d.columns) or len(d)!=5:
         raise ValueError(f"Unexpected frozen five-seed GA table: {d.columns.tolist()}")
-    if d.fitness.nunique()!=1 or not np.allclose(d.fitness,d.incumbent_fitness,atol=1e-12):
-        raise ValueError("Expected frozen five-seed incumbent identity was not reproduced")
-    d=d.sort_values("seed")
-    fig,ax=plt.subplots(figsize=(13.2*CM,4.7*CM))
-    x=np.arange(5)
-    ax.hlines(0,x[0],x[-1],color="#bdbdbd",lw=.7)
-    ax.scatter(x,np.zeros(5),s=42,color=STRATEGY_COLORS["impact-first"],zorder=3)
-    ax.set_xlim(-.45,4.45);ax.set_ylim(-.7,.7)
-    ax.set_xticks(x,[str(int(v)) for v in d.seed]);ax.set_yticks([])
-    style_axis(ax,title="All five GA seeds retained Impact-first",xlabel="Independent planning seed",ylabel=None)
-    ax.grid(False)
-    ax.text(.5,.81,f"Same planning objective: {d.fitness.iloc[0]:.3f}",
-            transform=ax.transAxes,ha="center",va="center",fontsize=7.5)
-    ax.text(.5,.20,"Search improvement over retained incumbent: 0 of 5",
-            transform=ax.transAxes,ha="center",va="center",fontsize=7.0)
-    fig.subplots_adjust(left=.08,right=.98,bottom=.23,top=.82)
+    if d.search_improved_incumbent.astype(bool).any() or d.best_generation.ne(0).any():
+        raise ValueError("Frozen GA closure no longer matches the retained-incumbent result")
+    if not np.allclose(d.fitness,d.incumbent_fitness,atol=1e-12):
+        raise ValueError("Frozen GA final scores do not match their retained incumbents")
+    rules=pd.read_csv(FORMAL/"Stage 5 Output_expanded"/"INCUMBENT_DIRECT_SCORES_2pc50.csv")
+    if not np.allclose(rules.planning_fitness,-rules.planning_burden_hr,atol=1e-9):
+        raise ValueError("Fixed-rule scores do not match the frozen planning-burden definition")
+    rules=rules.sort_values("planning_burden_hr",ascending=True)
+    histories=[]
+    for seed in sorted(d.seed.astype(int)):
+        h=pd.read_csv(FORMAL/"Stage 5 Output_expanded"/f"GA_HISTORY_2pc50_{seed}.csv")
+        if len(h)!=101 or set(h.seed.astype(int))!={seed}:
+            raise ValueError(f"Unexpected frozen GA history for seed {seed}")
+        histories.append(h)
+    fig,axes=plt.subplots(1,2,figsize=(18.5*CM,9.2*CM),gridspec_kw={"width_ratios":[.86,1.14]})
+    ax=axes[0]; y=np.arange(len(rules))[::-1]
+    for yy,row in zip(y,rules.itertuples(index=False)):
+        color=STRATEGY_COLORS.get(row.rule,"#555555")
+        ax.hlines(yy,0,row.planning_burden_hr,color="#dddddd",lw=.7,zorder=1)
+        ax.plot(row.planning_burden_hr,yy,marker="o",ms=4.1,color=color,zorder=2)
+        ax.annotate(f"{row.planning_burden_hr:.3f}",(row.planning_burden_hr,yy),xytext=(4,0),
+                    textcoords="offset points",ha="left",va="center",fontsize=7.0,color="#26323b")
+    ax.set_yticks(y,[STRATEGY_LABELS.get(k,k) for k in rules.rule])
+    style_axis(ax,title="A. Fixed-rule planning objectives",xlabel="Planning burden (h; lower is better)",ylabel=None)
+    ax.set_xlim(0,float(rules.planning_burden_hr.max())*1.18); ax.grid(False,axis="y")
+    ax=axes[1]
+    trace_colors=["#2878B5","#D55E00","#2A8C68","#9A6FB0","#52606D"]
+    for h,color in zip(histories,trace_colors):
+        ax.plot(h.generation,-h.generation_mean,color=color,lw=.82,alpha=.78,
+                label=f"Seed {int(h.seed.iloc[0])}")
+    incumbent=float(rules.loc[rules.rule.eq("impact-first"),"planning_burden_hr"].iloc[0])
+    ax.axhline(incumbent,color=STRATEGY_COLORS["impact-first"],lw=1.2,ls="--",
+               label=f"Impact-first incumbent ({incumbent:.3f} h)")
+    style_axis(ax,title="B. Genetic algorithm (GA) search across five seeds",
+               xlabel="Generation",ylabel="Mean candidate planning burden (h)")
+    ax.set_xlim(0,100); ax.set_xticks([0,20,40,60,80,100])
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(.5, .995),
+               frameon=False, ncol=3, fontsize=7.0, handlelength=1.4, columnspacing=1.0)
+    fig.text(.5,.025,"No seed improved the retained incumbent; the resolved GA sequence equals Impact-first.",
+             ha="center",va="center",fontsize=7.1,color="#26323b")
+    fig.subplots_adjust(left=.14,right=.985,bottom=.17,top=.84,wspace=.32)
     save_figure(fig,"FigS05_GA_Reproducibility")
 
 
 def plot_supp_fig06() -> None:
-    """Show frozen cutoff and strict-SCE checks without internal mapping codes."""
+    """Show frozen mapping-cutoff, external-match and mapping-effect results."""
     source = ROOT / "provenance/reviewer_working/Supplement_Rebuild_20260925/Tables"
     cutoff = pd.read_csv(source / "S3_CUTOFF_HOSPITAL_FIRST_2PC50.csv")
     cutoff = cutoff[(cutoff.hazard == "2pc50") &
@@ -822,34 +967,107 @@ def plot_supp_fig06() -> None:
     sce = sce[(sce.version == "NEW_20260922") & (sce.candidate_kind == "direct_site")]
     if set(sce.mapping) != {"JULY_BASELINE_92", "JULY_UTILITY_CONSTRAINED_92"} or not (sce.tract_count == 337).all():
         raise ValueError("Frozen strict-SCE benchmark has unexpected mapping/domain")
-    fig, axes = plt.subplots(1, 2, figsize=(18.5 * CM, 8.0 * CM))
-    ax = axes[0]
+    effects_path=SUITE/"Sensitivity Output_clean"/"FORMAL_MAPPING_EFFECTS.csv"
+    effects=pd.read_csv(effects_path)
+    effects=effects[(effects.comparison.eq("full92"))&(effects.domain.eq("mapping_native_domain"))&
+                    (effects.reference_mapping.eq("M0_JULY_003"))&(effects.target_mapping.eq("M1_UTILITY_003"))&
+                    (effects.metric.eq("population_resolved_mass_weighted_burden_hr"))&
+                    (effects.strategy_id.eq("hospital-first"))].copy()
+    if len(effects)!=4:
+        raise ValueError("Expected four frozen hazard-level July-to-revised mapping effects")
+    shifts=pd.read_parquet(FORMAL/"Formal_Results"/"TRACT_MAPPING_SHIFT.parquet")
+    shifts=shifts[(shifts.hazard.eq("2pc50"))&(shifts.strategy_id.eq("hospital-first"))]
+    shift_values=shifts.mean_M1_minus_M0_burden_hr.to_numpy(float)
+    if len(shift_values)!=2315 or int((np.abs(shift_values)>1).sum())!=246:
+        raise ValueError("Frozen tract mapping shifts do not match the 2,315-tract / 246-over-1h result")
+    fig, axes = plt.subplots(2, 2, figsize=(18.5 * CM, 11.5 * CM))
+    ax = axes[0,0]
     ax.plot([0, 1, 3], values, color=STRATEGY_COLORS["hospital-first"],
             marker="o", markersize=4.0, lw=1.0)
     ax.axhline(0, color="#777777", lw=.55, ls="--")
-    ax.set_xticks([0, 1, 3], ["No cutoff", "1%", "3%\nproduction"])
-    style_axis(ax, title="A. Tract-mapping cutoff response", xlabel="Candidate-weight cutoff",
+    ax.axvline(3, color="#7a3e65", lw=.7, ls=(0, (3, 2)), zorder=0)
+    ax.set_xticks([0, 1, 3], ["No cutoff", "1%", "3% production"])
+    for xx,vv in zip([0,1,3],values):
+        if xx == 3:
+            # The 3% production case defines the zero reference; do not add a
+            # second zero label beside its x tick.
+            continue
+        else:
+            ax.annotate(f"{vv:+.3f}",(xx,vv),xytext=(0,-12),textcoords="offset points",
+                        ha="center",va="top",fontsize=7.0)
+    style_axis(ax, title="A. Effect of the mapping-weight cutoff", xlabel="Candidate-weight cutoff",
                ylabel="Change from 3% production (h)")
+    ax.set_xlim(-.18, 3.55)
+    ax.annotate("Selected cutoff: 3%", xy=(3, .015),
+                xytext=(1.55, max(values) * .78), textcoords="data",
+                ha="center", va="center", fontsize=7.0, color="#7a3e65",
+                arrowprops={"arrowstyle": "->", "color": "#7a3e65", "lw": .65})
     ax.grid(False, axis="x")
-    ax = axes[1]
-    labels = ["Any match", "Top 1", "Top 3"]
+    ax = axes[0,1]
+    labels = ["Any public site", "Nearest site", "Three nearest"]
     columns = ["any_match", "top1", "top3"]
     y = np.arange(3)[::-1]
     july_row = sce[sce.mapping.eq("JULY_BASELINE_92")].iloc[0]
     production_row = sce[sce.mapping.eq("JULY_UTILITY_CONSTRAINED_92")].iloc[0]
     for yy, name, col in zip(y, labels, columns):
         a, b = 100 * float(july_row[col]), 100 * float(production_row[col])
-        ax.hlines(yy, min(a, b), max(a, b), color="#adadad", lw=.7, zorder=1)
-        ax.plot(a, yy, "o", color="#377eb8", ms=3.6, label="July baseline" if yy == y[0] else None)
-        ax.plot(b, yy, "D", color="#ff7f00", ms=3.5, label="Utility-compatible" if yy == y[0] else None)
+        ax.plot(a, yy, "o", color="#377eb8", ms=3.6,
+                label="Distance-based baseline" if yy == y[0] else None, zorder=3)
+        ax.plot(b, yy, "D", color="#ff7f00", ms=3.5,
+                label="Utility-compatible mapping" if yy == y[0] else None, zorder=3)
+        if yy == y[-1]:
+            base_offset, base_va = (0, 7), "bottom"
+            revised_offset, revised_va = (0, 19), "bottom"
+        else:
+            base_offset, base_va = (0, -10), "top"
+            revised_offset, revised_va = (0, -22), "top"
+        ax.annotate(f"{a:.1f}%", (a, yy), xytext=base_offset, textcoords="offset points",
+                    ha="center", va=base_va, fontsize=7.0, color="#28618a")
+        ax.annotate(f"{b:.1f}%", (b, yy), xytext=revised_offset, textcoords="offset points",
+                    ha="center", va=revised_va, fontsize=7.0, color="#b85a00")
     ax.set_yticks(y, labels)
-    ax.set_xlim(84, 100)
-    style_axis(ax, title="B. Strict-SCE tract benchmark (337 tracts)",
-               xlabel="Tracts matching public candidates (%)", ylabel=None)
+    ax.set_xlim(85, 100)
+    style_axis(ax, title="B. Match to public SCE sites (n=337)",
+               xlabel="Comparable tracts matched (%)", ylabel=None)
     ax.grid(False, axis="y")
-    ax.legend(frameon=False, loc="center right", bbox_to_anchor=(.99, .50), fontsize=7.0, ncol=1)
-    fig.subplots_adjust(left=.11, right=.985, bottom=.22, top=.88, wspace=.36)
-    save_figure(fig, "FigS06_Mapping_Robustness")
+    fig.legend(handles=[
+        Line2D([], [], marker="o", color="none", markerfacecolor="#377eb8",
+               markeredgecolor="#377eb8", markersize=3.8, label="Distance-based baseline"),
+        Line2D([], [], marker="D", color="none", markerfacecolor="#ff7f00",
+               markeredgecolor="#ff7f00", markersize=3.8, label="Utility-compatible mapping"),
+    ], frameon=False, loc="upper center", bbox_to_anchor=(.5,.99),
+       fontsize=7.0, ncol=2, columnspacing=1.8)
+
+    ax=axes[1,0]
+    hazard_order=["Northridge","SanFernando","LongBeach","2pc50"]
+    ef=effects.set_index("hazard").loc[hazard_order]
+    yy=np.arange(4)[::-1]; vv=ef.mean_delta.to_numpy(float)
+    for yv,hz,value in zip(yy,hazard_order,vv):
+        ax.hlines(yv,min(0,value),max(0,value),color="#aeb7bd",lw=1.0)
+        ax.plot(value,yv,"o",ms=4.1,color="#2878B5" if value<0 else "#A64B3C")
+        ax.annotate(f"{value:+.3f} h",(value,yv),xytext=(5,0),
+                    textcoords="offset points",ha="left",va="center",fontsize=7.0)
+    ax.axvline(0,color="#666666",lw=.65,ls="--")
+    ax.set_yticks(yy,hazard_order)
+    ax.set_xlim(min(-.08, float(vv.min())-.08), max(.08, float(vv.max())+.15))
+    style_axis(ax,title="C. Population-burden change: July to revised mapping",
+               xlabel="Revised minus July mapping (h)",ylabel=None)
+    ax.grid(False,axis="y")
+
+    ax=axes[1,1]
+    sorted_shifts=np.sort(np.abs(shift_values)); ecdf=np.arange(1,len(sorted_shifts)+1)/len(sorted_shifts)
+    ax.step(sorted_shifts,ecdf,where="post",color="#2878B5",lw=1.1)
+    ax.axvline(1.0,color="#666666",lw=.65,ls="--")
+    y1=float(np.searchsorted(sorted_shifts,1.0,side="right")/len(sorted_shifts))
+    ax.scatter([1.0],[y1],s=18,facecolors="white",edgecolors="#555555",zorder=3)
+    ax.annotate("246 of 2,315 tracts\nshift by >1 h",xy=(1.0,y1),xytext=(.54,.72),
+                textcoords="axes fraction",fontsize=7.0,
+                arrowprops={"arrowstyle":"-","color":"#555555","lw":.55})
+    style_axis(ax,title="D. Tract-level shift magnitude (2pc50)",
+               xlabel="Absolute mean burden shift (h)",ylabel="Cumulative share of tracts")
+    ax.set_ylim(0,1.02); ax.set_xlim(left=0)
+    fig.subplots_adjust(left=.115,right=.985,bottom=.13,top=.85,wspace=.38,hspace=.48)
+    save_figure(fig, "FigS06_Mapping_Robustness", tight=False)
 
 
 def plot_capacity_increment_panel() -> Path:
@@ -923,16 +1141,15 @@ def make_index() -> None:
         "Fig01_Methodology_Workflow": ("Main", "How does the revised analysis connect hazard damage, restoration, network service, and community burden?", "Preserves the July tiered input-to-service-to-outcome workflow while showing the adopted revision methods.", "src/la_grid/plotting/make_methodology_workflow_figure.py", [ROOT/"provenance/legacy_outputs/Submission_Package/Figure_1.pdf"], "Caption: The workflow links fixed hazard damage samples to restoration execution, source-path service, and tract distributional outcomes; Vulnerability-first and capacity robustness are post-freeze accepted additions."),
         "Fig02_System_Network_and_Mapping": ("Main", "What retained network and tract mapping define the study?", "Shows the retained 92-station network and utility-compatible tract dependencies across the expanded study area.", "src/la_grid/plotting/build_meeting_figure_collection.py", [ROOT/"Data/JULY_UTILITY_CONSTRAINED_92.csv",ROOT/"Data/substation_graph_CEC_nodes_expanded.csv",ROOT/"Data/substation_graph_CEC_edges_expanded.csv",ROOT/"Data/source_nodes_core_expanded.csv",ROOT/"Data/LA_Tracts_With_Population.shp",ROOT/"Data/LA_Tracts_With_Population.dbf",ROOT/"Data/LA_Tracts_With_Population.shx",ROOT/"Data/LA_Tracts_With_Population.prj"], "Caption: The right panel counts mapped station links per tract. This is a dependency map, not electrical capacity or delivered power."),
         "Fig03_Unconstrained_Recovery": ("Main", "How long does Unconstrained service recovery take across realizations and tracts?", "Pairs the 1,000-realization population T80 distribution with the expanded-study-area tract T80 map in the July two-panel layout.", "src/la_grid/plotting/build_meeting_figure_collection.py", [FORMAL/"Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",SUITE/"Stage 3 Output_expanded/tract_kpis_2pc50.csv"], "Caption: T80 is time to 80% modeled service. Panel A uses 2-hour bins without density smoothing; Panel B maps the frozen mean tract T80 values under the Unconstrained reference."),
-        "Fig04_Restoration_Strategy_Tradeoffs": ("Main", "How do four selected schedules compare with the Unconstrained reference?", "Compares cumulative population burden, population T80, hospital-linked tract burden, and source-path burden across Impact-first, Hospital-first, Vulnerability-first, Degree-first, and Unconstrained.", "src/la_grid/plotting/build_meeting_figure_collection.py", [FORMAL/"Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",FORMAL/"Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet"], "Caption: All scheduled strategies use the same frozen physical realizations. Degree-first is retained as a mechanism comparator; complete strategy results remain available in tables and Supplement."),
-        "Fig05_Hospital_Priority_and_Critical_Service": ("Main", "How is hospital priority constructed and how does it relate to hospital-linked tract burden?", "Maps hospital-linked tracts and hospital-priority substations with the frozen priority order, then compares four selected strategies across matched realizations.", "src/la_grid/plotting/build_meeting_figure_collection.py", [ROOT/"Data/JULY_UTILITY_CONSTRAINED_92.csv",ROOT/"Data/hospital_with_tract_expanded.csv",ROOT/"Data/substation_graph_CEC_nodes_expanded.csv",FORMAL/"Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",FORMAL/"Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",FORMAL/"Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet",ROOT/"Data/LA_Tracts_With_Population.shp",ROOT/"Data/LA_Tracts_With_Population.dbf",ROOT/"Data/LA_Tracts_With_Population.shx",ROOT/"Data/LA_Tracts_With_Population.prj"], "Caption: Hospital-first prioritizes substations, not tracts directly. The priority order first counts mapped links to hospital tracts and uses total mapped population only as a tie-break. All strategies use the same damage states, repair durations, and resource realization within each physical realization."),
+        "Fig04_Restoration_Strategy_Tradeoffs": ("Main", "How do all eight scheduled strategies compare with the Unconstrained reference?", "Compares population-weighted recovery and realization distributions for cumulative service burden, hospital-linked cumulative burden, and population T80.", "src/la_grid/plotting/build_meeting_figure_collection.py", [FORMAL/"Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",FORMAL/"Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet"], "Caption: All eight scheduled strategies and the Unconstrained reference are shown. All scheduled strategies use the same frozen physical realizations; complete values are distributions across 1,000 realizations."),
+        "Fig05_Hospital_Priority_and_Critical_Service": ("Main", "How is hospital priority constructed and how does it relate to hospital-linked tract burden?", "Maps hospital-linked tracts and hospital-priority substations with the frozen priority order, then compares four strategies using matched realizations.", "src/la_grid/plotting/build_meeting_figure_collection.py", [ROOT/"Data/JULY_UTILITY_CONSTRAINED_92.csv",ROOT/"Data/hospital_with_tract_expanded.csv",ROOT/"Data/substation_graph_CEC_nodes_expanded.csv",FORMAL/"Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",FORMAL/"Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",FORMAL/"Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet",ROOT/"Data/LA_Tracts_With_Population.shp",ROOT/"Data/LA_Tracts_With_Population.dbf",ROOT/"Data/LA_Tracts_With_Population.shx",ROOT/"Data/LA_Tracts_With_Population.prj"], "Caption: Hospital-first prioritizes substations, not tracts directly. The priority order first counts mapped links to hospital tracts and uses total mapped population only as a tie-break. Number labels identify frozen station priority ranks, not hospital IDs. All strategies use the same damage states, repair durations, and resource realization within each physical realization."),
         "Fig06_Vulnerability_Targeting_and_Distributional_Tradeoffs": ("Main", "What distributional gains and costs accompany Vulnerability-first relative to Hospital-first?", "Combines Q1–Q4 absolute burden, quartile changes, aggregate burden/gap/Gini, and a continuous tract-effect map.", "src/la_grid/plotting/build_meeting_figure_collection.py", [FORMAL/"Equity_Amendment/Figures/FIGURE_B_SOURCE.csv",FORMAL/"Equity_Amendment/VULNERABILITY_PAIRWISE_EFFECTS.csv",FORMAL/"Equity_Amendment/Figures/FIGURE_C_SOURCE.csv",FORMAL/"Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",FORMAL/"Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet",ROOT/"Data/LA_Tracts_With_Population.shp",ROOT/"Data/LA_Tracts_With_Population.dbf",ROOT/"Data/LA_Tracts_With_Population.shx",ROOT/"Data/LA_Tracts_With_Population.prj"], "Caption: Q4 denotes the highest social-vulnerability quartile. For each physical realization, Vulnerability-first and Hospital-first use the same damage states, repair durations, and resource realization before their outcomes are differenced. Gini is population-weighted tract-burden inequality: 0 means equal tract burden; larger values mean more unequal tract burden. The tract map displays the continuous mean change; negative values indicate reduced burden and positive values indicate increased burden."),
         "Fig07_Community_Typology_and_Hotspots": ("Main", "How do the final residential typologies and hotspot scores vary spatially?", "Shows harmonized cluster profiles, the full-domain residential typology map, and the hotspot score map.", "src/la_grid/plotting/build_meeting_figure_collection.py", [STAGE7/"vis_stage7_heatmap.pdf",STAGE7/"stage7_full_domain_tract_status.csv",ROOT/"Data/LA_Tracts_With_Population.shp",ROOT/"Data/LA_Tracts_With_Population.dbf",ROOT/"Data/LA_Tracts_With_Population.shx",ROOT/"Data/LA_Tracts_With_Population.prj"], "Caption: The typology is descriptive and is not a repair strategy. Tracts outside the residential typology eligibility domain are shown as not applicable, not as zero service or ordinary cluster members."),
         "FigS01_Damage_Severity": ("Supplement", "How do initial damage-severity states differ by hazard?", "Frozen four-hazard average damage-state distributions.", "Formal_Experiment_20260923/Stage 1 Output_expanded/vis_stage1_supp_damage_severity_scenarios.pdf", [SUITE/"Stage 1 Output_expanded/vis_stage1_supp_damage_severity_scenarios.pdf"], "Caption: Uses the frozen damage-state summaries; no new damage samples are generated."),
         "FigS02_Initial_Service": ("Supplement", "What service is initially available across hazards and where is it located?", "Combines cross-hazard initial-service distributions and full-domain maps.", "Formal_Experiment_20260923/Stage 1 Output_expanded/vis_stage1_supp_initial_supply_ecdf_scenarios.pdf", [SUITE/"Stage 1 Output_expanded/vis_stage1_supp_initial_supply_ecdf_scenarios.pdf",SUITE/"Stage 1 Output_expanded/vis_stage1_supp_initial_supply_maps_scenarios.pdf"], "Caption: Retains the original cross-hazard ECDF and spatial service panels."),
         "FigS03_Crew_Bases_and_Directed_Travel": ("Supplement", "Where are the frozen C57 crew origins, and how does directed travel vary by destination?", "Shows the active crew origins against all 2,315 study tracts and the retained directed-travel display.", "src/la_grid/plotting/build_meeting_figure_collection.py", [ROOT/"Data/stage45_active_crew_bases_C57.csv",ROOT/"Data/substation_graph_CEC_nodes_expanded.csv",ROOT/"Data/JULY_UTILITY_CONSTRAINED_92.csv",SUITE/"Stage 4 Output_expanded/vis_stage4_logistics_heatmap_full.pdf"], "Caption: The map uses the expanded study footprint, 92 retained stations, and the frozen C57 crew-origin allocation. Travel remains directed; these are logistics inputs, not a factorial experiment."),
         "FigS04_Network_Criticality_and_Percolation": ("Supplement", "How do static attack diagnostics and recovery-network mechanisms relate?", "Retains five static criticality curves, frozen dynamic LCC/average-degree recovery, and source-path burden effects.", "src/la_grid/plotting/build_meeting_figure_collection.py", [SUITE/"Stage 2 Output_expanded/percolation_curve_impact.csv",SUITE/"Stage 2 Output_expanded/percolation_curve_random.csv",SUITE/"Stage 2 Output_expanded/exploratory_percolation_curve_degree.csv",SUITE/"Stage 2 Output_expanded/exploratory_percolation_curve_betweenness_centrality.csv",SUITE/"Stage 2 Output_expanded/exploratory_percolation_curve_closeness_centrality.csv",original("vis_stage6_network_topology_recovery_2pc50.pdf"),SUITE/"Stage 6 Output_expanded/SOURCE_PATH_PAIRED_EFFECT_DISPLAY.csv"], "Caption: Static removal is a network diagnostic, not a repair policy. Source-path intervals show the 5–95% realization range; for each physical realization, the compared policy and Hospital-first use the same damage states, repair durations, and resource realization. Full distinct-strategy evidence is retained; Direct-community is not separately reported."),
-        "FigS05_GA_Reproducibility": ("Supplement", "How stable was the retained GA result across planning seeds?", "Displays the frozen five-seed convergence record.", "src/la_grid/plotting/build_meeting_figure_collection.py", [FORMAL/"Stage 5 Output_expanded/GA_FIVE_SEED_CONVERGENCE.csv"], "Caption: Uses the existing five-seed planning record; no GA is rerun."),
-        "FigS06_Mapping_Robustness": ("Supplement", "How sensitive are results to the utility-compatible cutoff, and how do mapped sites compare with public SCE candidates?", "Shows the frozen cutoff response and discrete 337-tract SCE benchmark with reader-facing mapping names.", "src/la_grid/plotting/build_meeting_figure_collection.py", [ROOT/"provenance/reviewer_working/Supplement_Rebuild_20260925/Tables/S3_CUTOFF_HOSPITAL_FIRST_2PC50.csv",ROOT/"provenance/reviewer_working/Supplement_Rebuild_20260925/Tables/S3_SCE_337_CANDIDATE_BENCHMARK.csv"], "Caption: The cutoff check uses the frozen Hospital-first 2pc50 realizations. The strict-SCE benchmark covers 337 comparable tracts; Any match, Top 1 and Top 3 are separate discrete comparisons. No internal mapping codes appear in the artwork."),
+        "FigS06_Mapping_Robustness": ("Supplement", "How sensitive are results to the selected mapping cutoff, and how does utility-compatible mapping compare with a distance-based baseline?", "Marks the selected 3% cutoff and directly labels the frozen match percentages for both mapping approaches.", "src/la_grid/plotting/build_meeting_figure_collection.py", [ROOT/"provenance/reviewer_working/Supplement_Rebuild_20260925/Tables/S3_CUTOFF_HOSPITAL_FIRST_2PC50.csv",ROOT/"provenance/reviewer_working/Supplement_Rebuild_20260925/Tables/S3_SCE_337_CANDIDATE_BENCHMARK.csv"], "Caption: The distance-based baseline is the submitted July network-distance IDW mapping. Values are public-site matching percentages over the same 337 comparable tracts. The selected 3% cutoff is marked on the frozen cutoff response."),
         "FigS07_Source_Redundancy": ("Supplement", "How do alternative paths contribute to source connectivity during recovery and across stations?", "Combines dynamic alternative-route contribution with frozen station reliabilities mapped on the expanded study area.", "src/la_grid/plotting/build_meeting_figure_collection.py", [original("vis_source_reliability_dynamic_redundancy_2pc50.pdf"),ROOT/"results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv",ROOT/"results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv",ROOT/"Data/JULY_UTILITY_CONSTRAINED_92.csv"], "Caption: Panel C is conditional on target-station functionality; panel D is the alternative-route gain beyond a fixed precomputed path. These are connectivity diagnostics, not delivered power or capacity."),
         "FigS08_Capacity_Sensitivity": ("Supplement", "Does source reachability imply facility-level electrical adequacy, and how large is the bounded burden increment?", "Shows 34 documented SCE planning-loading rows and the small 2pc50 capacity-bounded burden increments for the four displayed policies.", "src/la_grid/plotting/build_meeting_figure_collection.py", [original("vis_source_gate_connected_vs_facility_loading.pdf"),ROOT/"results/capacity/SCE_CAPACITY_SENSITIVITY_SUMMARY.csv",ROOT/"results/capacity/CONNECTED_VS_ELECTRICAL_CONSTRAINT_BENCHMARK.csv"], "Caption: Facility loading is documented planning-condition evidence, not earthquake-time loading. The capacity-bounded comparison is a separate sensitivity. Its burden axis uses an explicitly expanded scale."),
         "FigS09_Stage7_Diagnostics": ("Supplement", "What dimensionality and clustering diagnostics support the final Stage 7 typology?", "Groups frozen PCA variance, K-means diagnostics, loadings, and the existing PC score scatter.", "src/la_grid/plotting/build_meeting_figure_collection.py", [STAGE7/"pca_stats_with_eigenvalues.csv",STAGE7/"kmeans_k_diagnostics.csv",STAGE7/"pca_loadings.csv",STAGE7/"clusters_labels_final.csv"], "Caption: PCA scores, loadings, and diagnostic values are read from the final harmonized Stage 7 authority; no PCA or clustering is rerun."),
@@ -994,7 +1211,7 @@ def main() -> None:
         ("",plot_supp_fig03_crew_map()),
         ("",SUITE/"Stage 4 Output_expanded/vis_stage4_logistics_heatmap_full.pdf")])
     (OUT/"_FigS03_expanded_crew_map.pdf").unlink(missing_ok=True)
-    plot_supp_fig04(); plot_supp_fig05()
+    plot_supp_fig04()
     plot_supp_fig06()
     station_map = plot_supp_fig07_station_map()
     combine_pdf_panels("FigS07_Source_Redundancy", [
