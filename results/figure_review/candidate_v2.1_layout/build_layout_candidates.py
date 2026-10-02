@@ -24,6 +24,7 @@ import pandas as pd
 from matplotlib.container import ErrorbarContainer
 from matplotlib.lines import Line2D
 from matplotlib.text import Text
+from matplotlib.transforms import ScaledTranslation
 from PIL import Image, ImageDraw
 
 OUT = Path(__file__).resolve().parent
@@ -36,6 +37,8 @@ base = v.base
 WIDTH = 185.0
 TITLE, LABEL, TICK, LEGEND = 9.5, 8.5, 7.5, 7.5
 FONT = "Arial"
+HAZARD_COLORS = {"Long Beach": "#366E9F", "San Fernando": "#9364A1",
+                 "Northridge": "#9a7559", "2pc50": "#a65628"}
 RECORDS, QA = [], []
 PLOT_SIGNATURES = {}
 
@@ -132,6 +135,12 @@ def remove_footer_notes(fig):
 def common_style(fig):
     for t in fig.findobj(match=Text):
         if t.get_text():
+            text = t.get_text()
+            text = text.replace("Simplified retained topology", "Simplified network topology")
+            text = text.replace("Retained grid stations", "Modeled substations")
+            text = text.replace("Retained sequence identity", "Selected sequence identity")
+            text = text.replace("Retained:", "Selected:")
+            t.set_text(text)
             t.set_fontfamily(FONT)
             t.set_fontsize(max(7.0, t.get_fontsize()))
     for ax in all_axes(fig):
@@ -185,6 +194,9 @@ def layout_02(fig):
     p = axes[3].get_position(original=True)
     box(fig, axes[3], 120, (1-p.y1)*174, 59, p.height*174)
     axes[3].set_xlabel("Agreement with public-site\nevidence (%)")
+    for text in axes[3].texts:
+        if text.get_text().endswith("%"):
+            text.set_transform(text.get_transform() + ScaledTranslation(3/72, 0, fig.dpi_scale_trans))
     # Keep the balanced 2x2, original geography and all agreement values.
     for ax, x, top in zip(axes, [9, 101, 9, 101], [10, 10, 84, 84]):
         title_at(fig, ax, x, top)
@@ -197,7 +209,7 @@ def layout_02(fig):
         leg = ax.get_legend()
         if leg:
             leg.set_frame_on(False)
-    return "2x2 retained; panel letters aligned; legend spacing and font hierarchy standardized"
+    return "2x2 kept; topology/station wording clarified; public-site values offset 3 pt from points; letters and legends aligned"
 
 
 def layout_03(fig):
@@ -207,6 +219,25 @@ def layout_03(fig):
     box(fig, c, 24, 94, 155, 31)
     box(fig, d, 24, 149, 56, 52)
     box(fig, mp, 91, 149, 88, 52)
+    for patch, hazard in zip(a.patches, base.HAZARDS):
+        patch.set_facecolor(HAZARD_COLORS[base.HAZARD_LABEL[hazard]])
+        patch.set_alpha(.80)
+    for line in b.lines:
+        name = line.get_label()
+        line.set_color(HAZARD_COLORS[name])
+        line.set_linestyle({"Long Beach":"-", "San Fernando":"--", "Northridge":"-.", "2pc50":"-"}[name])
+        line.set_zorder(5)
+        if name == "2pc50":
+            line.set_linewidth(1.4)
+            line.set_clip_on(False)
+    # Move the visible frame, not the data or probability limits, away from
+    # the steep 2pc50 CDF at x=0 and from the upper probability boundary.
+    b.spines["left"].set_position(("outward", 3))
+    for spine in b.spines.values(): spine.set_zorder(0)
+    handles, labels = b.get_legend_handles_labels()
+    b.legend(handles, labels, frameon=False, loc="lower right", ncol=2, fontsize=LEGEND)
+    d.set_title("D. 2pc50 Unconstrained T80", loc="left")
+    d.set_ylabel("2pc50 realizations (n)")
     for ax, x, top in [(a,24,14),(b,109,14),(c,24,82),(d,24,143)]:
         title_at(fig, ax, x, top)
     # Map title becomes a fixed row anchor, independent of map aspect fitting.
@@ -222,7 +253,7 @@ def layout_03(fig):
     cax.set_axes_locator(None)
     box(fig, cax, 103, 205, 60, 2.2)
     d.set_xlabel("Population-weighted time to\n80% service (h)")
-    return "loss row compressed; T80 map widened and matched to histogram row; component legend moved above data; colorbar aligned"
+    return "Long Beach blue / San Fernando purple with distinct line styles; 2pc50 CDF drawn above offset frame; histogram scenario explicit; baseline layout kept"
 
 
 def layout_04(fig):
@@ -248,6 +279,7 @@ def layout_04(fig):
         line.set_linewidth(1.4 if key in v.CORE_POLICIES else 1.15 if key == "unconstrained" else .8)
         line.set_zorder(4 if core else 2)
     a.set_xlabel("Time after earthquake (h)")
+    a.set_ylabel("Mean population-weighted\nservice availability")
     for j, ax in enumerate(outcomes):
         box(fig, ax, 36 + j * 36, 132, 27, 56)
         ax.set_title("", loc="left"); ax.set_title("")
@@ -290,13 +322,13 @@ def layout_05(fig):
     title_at(fig, b, 36, 59)
     fig.text(36/WIDTH,1-103/208,"C. Vulnerability-first change relative to matched policies",
              ha="left",va="bottom",fontsize=TITLE,fontweight="bold",fontfamily=FONT)
-    title_at(fig, g, 157, 103, size=TITLE)
+    title_at(fig, g, 157, 103, text="D. Gini change", size=TITLE)
     g.set_xticks([-.025, 0, .025], ["−0.025", "0", "0.025"])
     title_at(fig, d, 36, 149,
-             text="D. Mean tract burden change: Vulnerability-first − Impact-first")
+             text="E. Mean tract burden change: Vulnerability-first − Impact-first")
     cax = holder.child_axes[0]
     cax.set_axes_locator(None); box(fig, cax, 166, 164, 2.2, 34)
-    return "218 to 208 mm; nine-policy shared legend; repeated reference keys removed; row gutters tightened; map physical size retained; colorbar aligned"
+    return "218 to 208 mm; shared legend; Gini identified as D and tract map as E; map physical size unchanged; colorbar aligned"
 
 
 def wrap_label(ax, text, width=31):
@@ -458,11 +490,20 @@ def page_previews():
 
 def review_packet():
     out=fitz.open()
-    # Caption pages are preserved exactly from the original packet.
+    # Preserve unaffected caption pages; synchronize edited display wording
+    # and panel references without changing the scientific definitions.
     with fitz.open(SOURCE/"FIGURE_V2_1_REVIEW_PACKET.pdf") as old:
         for i,stem in enumerate(v.CAPTIONS):
             with fitz.open(OUT/f"{stem}.pdf") as src: out.insert_pdf(src)
-            out.insert_pdf(old,from_page=2*i+1,to_page=2*i+1)
+            if stem.startswith(("Fig02", "Fig04", "Fig05")):
+                page = out.new_page(width=185/25.4*72, height=340/25.4*72)
+                page.insert_font(fontname="LocalArial", fontfile="C:/Windows/Fonts/arial.ttf")
+                page.insert_text((24, 32), stem.replace("_", " "), fontname="LocalArial", fontsize=9.5)
+                available = page.insert_textbox(fitz.Rect(24, 56, page.rect.width-24, page.rect.height-24),
+                                                v.CAPTIONS[stem], fontname="LocalArial", fontsize=9.5, lineheight=1.25)
+                if available < 0: raise ValueError(f"Updated caption does not fit: {stem}")
+            else:
+                out.insert_pdf(old,from_page=2*i+1,to_page=2*i+1)
     out.save(OUT/"FIGURE_V2_1_LAYOUT_REVIEW_PACKET.pdf",garbage=4,deflate=True)
     out.close()
 
@@ -495,18 +536,46 @@ def main():
     effects=pd.read_csv(SOURCE/"CROSS_HAZARD_POLICY_EFFECTS.csv")
     v.build_cross_hazard(None,effects)
     v.build_discrete_case_figure(eval_data,"crew");v.build_discrete_case_figure(eval_data,"duration")
+    # Reader-facing nomenclature and panel references only; caption science
+    # and statistical statements retain the original definitions.
+    for stem in v.CAPTIONS:
+        caption = v.CAPTIONS[stem]
+        if stem.startswith("Fig02"):
+            caption = caption.replace("the retained model graph", "the model network")
+        elif stem.startswith("Fig04"):
+            caption = caption.replace("mean population service availability", "mean population-weighted service availability")
+        elif stem.startswith("Fig05"):
+            caption = caption.replace("population-weighted Gini change uses a separate unitless axis.",
+                                      "(D) Population-weighted Gini change uses a separate unitless axis for the same matched comparisons.")
+            caption = caption.replace("hour axis; (D)", "hour axis. (D)")
+            caption = caption.replace("(D) Tract-level", "(E) Tract-level")
+        v.CAPTIONS[stem] = caption
     page_previews();review_packet();contact_sheets()
-    for name in ["FIGURE_V2_1_CAPTIONS.md","FIGURE_V2_1_PANEL_CROSSWALK.csv",
+    for name in ["FIGURE_V2_1_PANEL_CROSSWALK.csv",
                  "FIGURE_V2_1_SOURCE_HASHES.csv","STORY_EVIDENCE_MATRIX.md","CROSS_HAZARD_POLICY_EFFECTS.csv"]:
         shutil.copyfile(SOURCE/name,OUT/name)
+    (OUT/"FIGURE_V2_1_CAPTIONS.md").write_text("# Figure v2.1 layout draft captions\n\n"+
+        "\n\n".join(f"## {stem}\n\n{caption}" for stem, caption in v.CAPTIONS.items())+"\n", encoding="utf-8")
+    crosswalk = pd.read_csv(OUT/"FIGURE_V2_1_PANEL_CROSSWALK.csv")
+    # Keep source/metric identity and change only the existing map locator.
+    crosswalk = crosswalk.replace("Fig05-D", "Fig05-E")
+    gini = crosswalk[crosswalk.candidate_v2_1_panel_id.eq("Fig05-C")].iloc[0].copy()
+    gini["panel_id"] = "Fig05-D"
+    gini["candidate_v2_1_panel_id"] = "Fig05-D"
+    gini["metric_definition"] = "Population-weighted Gini: matched VF minus Impact/Hospital/Degree change; mean and 5th-95th paired range"
+    gini["interpretation_boundary"] = "Separate labeled unitless axis; 0 is equal tract burden, larger Gini is greater inequality"
+    gini["v2_1_change"] = "Existing Gini subplot explicitly lettered D; no metric, data or reference change"
+    crosswalk = pd.concat([crosswalk, gini.to_frame().T], ignore_index=True)
+    crosswalk.to_csv(OUT/"FIGURE_V2_1_PANEL_CROSSWALK.csv", index=False)
     index=pd.read_csv(SOURCE/"FIGURE_V2_1_INDEX.csv")
+    index["caption"] = index.figure_stem.map(v.CAPTIONS)
     index["journal_page_preview"] = index.figure_stem+"_page_preview.png"
     index["layout_review_only"] = True
     index.to_csv(OUT/"FIGURE_V2_1_LAYOUT_INDEX.csv",index=False)
     pd.DataFrame(QA).to_csv(OUT/"LAYOUT_ACTUAL_OUTPUT_QA.csv",index=False)
     pd.DataFrame(RECORDS).to_csv(OUT/"LAYOUT_CHANGELOG.csv",index=False)
     lines=["# Candidate v2.1 layout changelog","", "Scientific content changed = NO.", "",
-           "The accepted candidate renderer is reused. Only physical layout and presentation properties change; captions and scientific source tables are unchanged.","",
+           "The accepted candidate renderer is reused. Only layout, display wording, panel lettering and colors change. Caption edits clarify the same metric and panel references; scientific source tables and definitions are unchanged.","",
            "| Figure | Height before → after (mm) | Visual changes | Scientific content changed |",
            "|---|---:|---|---|"]
     for r in RECORDS:
@@ -521,11 +590,13 @@ def main():
               "width_mm":WIDTH,"scientific_content_changed":False,"source_hash_changes":0,
               "original_candidate_hash_changes":0,"results_figures_hash_changes":0,
               "captions_identical":sha(OUT/"FIGURE_V2_1_CAPTIONS.md")==sha(SOURCE/"FIGURE_V2_1_CAPTIONS.md"),
+              "caption_changes":"display nomenclature and Fig05 D/E references only; scientific meaning unchanged",
+              "hazard_display_palette": HAZARD_COLORS,
               "plotted_values_and_geometry":PLOT_SIGNATURES,
               "policy_style":v.STYLE,"cluster_palette":v.get_cluster_palette()[0]}
     (OUT/"LAYOUT_IDENTITY_VALIDATION.json").write_text(json.dumps(identity,indent=2),encoding="utf-8")
-    (OUT/"README.md").write_text("# Candidate v2.1 layout review\n\nReview-only derivatives of candidate_v2.1; scientific content changed = NO.\n\nOpen FIGURE_V2_1_LAYOUT_REVIEW_PACKET.pdf for actual-size figures with unchanged full captions, or LAYOUT_JOURNAL_PAGE_PREVIEWS.pdf for 185-mm placement on typical two-column pages. Each figure has a native PDF, 600-dpi PNG, 150-dpi artwork preview and page preview. See LAYOUT_CHANGELOG.md and LAYOUT_ACTUAL_OUTPUT_QA.csv. Nothing is promoted to results/figures.\n",encoding="utf-8")
-    print("LAYOUT_RENDER_COMPLETE: 12 figures; plotted-data parity; source/caption/publication hashes unchanged",flush=True)
+    (OUT/"README.md").write_text("# Candidate v2.1 layout review\n\nReview-only derivatives of candidate_v2.1; scientific content changed = NO.\n\nOpen FIGURE_V2_1_LAYOUT_REVIEW_PACKET.pdf for actual-size figures and captions with synchronized display names and panel letters, or LAYOUT_JOURNAL_PAGE_PREVIEWS.pdf for 185-mm placement on typical two-column pages. Each figure has a native PDF, 600-dpi PNG, 150-dpi artwork preview and page preview. See LAYOUT_CHANGELOG.md and LAYOUT_ACTUAL_OUTPUT_QA.csv. Nothing is promoted to results/figures.\n",encoding="utf-8")
+    print("LAYOUT_RENDER_COMPLETE: 12 figures; plotted-data parity; source/publication hashes unchanged; caption nomenclature synchronized",flush=True)
 
 
 if __name__=="__main__":

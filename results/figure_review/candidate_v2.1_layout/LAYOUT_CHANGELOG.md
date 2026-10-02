@@ -2,15 +2,15 @@
 
 Scientific content changed = NO.
 
-The accepted candidate renderer is reused. Only physical layout and presentation properties change; captions and scientific source tables are unchanged.
+The accepted candidate renderer is reused. Only layout, display wording, panel lettering and colors change. Caption edits clarify the same metric and panel references; scientific source tables and definitions are unchanged.
 
 | Figure | Height before → after (mm) | Visual changes | Scientific content changed |
 |---|---:|---|---|
 | Fig01_Revised_Analytical_Framework | 100 → 78 | footer explanations left in unchanged caption; bottom whitespace cropped; diagram geometry and text retained | NO |
-| Fig02_System_Network_Mapping_and_Public_Site_Check | 174 → 174 | 2x2 retained; panel letters aligned; legend spacing and font hierarchy standardized | NO |
-| Fig03_Hazard_Service_Loss_and_Unconstrained_Baseline | 216 → 216 | loss row compressed; T80 map widened and matched to histogram row; component legend moved above data; colorbar aligned | NO |
+| Fig02_System_Network_Mapping_and_Public_Site_Check | 174 → 174 | 2x2 kept; topology/station wording clarified; public-site values offset 3 pt from points; letters and legends aligned | NO |
+| Fig03_Hazard_Service_Loss_and_Unconstrained_Baseline | 216 → 216 | Long Beach blue / San Fernando purple with distinct line styles; 2pc50 CDF drawn above offset frame; histogram scenario explicit; baseline layout kept | NO |
 | Fig04_All_Policy_Recovery_and_Outcomes | 205 → 205 | all nine identities retained; core policies emphasized; shared external legend; repeated column titles removed; notes left in unchanged caption | NO |
-| Fig05_Distributional_Outcomes_and_Reference_Sensitivity | 218 → 208 | 218 to 208 mm; nine-policy shared legend; repeated reference keys removed; row gutters tightened; map physical size retained; colorbar aligned | NO |
+| Fig05_Distributional_Outcomes_and_Reference_Sensitivity | 218 → 208 | 218 to 208 mm; shared legend; Gini identified as D and tract map as E; map physical size unchanged; colorbar aligned | NO |
 | Fig06_Two_Level_Crew_Resource_Contrast | 169 → 169 | consistent crew-category positions/offsets retained in all panels; long labels wrapped; legend/font/interval style unified; footer note moved to existing caption | NO |
 | Fig07_Community_Typology_and_Hotspots | 188 → 188 | cluster/profile/hotspot structure retained; cluster-ID palette unchanged; map colorbar aligned; panel title and legend hierarchy unified | NO |
 | FigS05_GA_Reproducibility | 148 → 148 | caption-only boundary notes removed from artwork; shared font/legend/interval hierarchy; physical whitespace reduced where safe | NO |
