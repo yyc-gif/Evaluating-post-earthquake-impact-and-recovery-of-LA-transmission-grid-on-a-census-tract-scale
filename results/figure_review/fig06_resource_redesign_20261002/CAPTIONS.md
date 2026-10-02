@@ -1,0 +1,43 @@
+## Fig06_Preferred_Resource_Policy_Contrasts
+
+Tested restoration-capacity conditions under 2pc50. A–C compare 29, 57, 86 and 114 crews with the adopted repair-duration multiplier 1.00; D–F compare multipliers 0.75, 1.00, 1.25 and 1.50 with 57 crews. Every point is Vulnerability-first minus its explicitly named Hospital-first (gray circle) or Impact-first (orange square) reference, using 1,000 matched physical realizations per condition. Whiskers are the existing 95% bootstrap confidence intervals for the mean paired difference, copied from accepted tables; they are not 5th–95th realization ranges. All losses integrate 0–480 h. Q4 is the highest social-vulnerability quartile. Negative Q4 change denotes lower group loss; positive population change denotes greater population-weighted loss; positive absolute Q4–Q1 change denotes greater per-realization absolute group separation, summarized over realizations. Each column shares its y scale across the two scenario families. These are discrete one-factor cases: no continuous response, interpolation, factorial interaction, or universal scarcity claim is implied. The common 57-crew/multiplier-1.00 case appears in both rows. Q4 benefit, aggregate efficiency and inequality reduction are separate outcomes, and their directions can disagree.
+
+## Fig06_Previous_Two_Level_Comparison
+
+Exact copy of the existing review artwork, retained for comparison; no result or style is changed. Only 29 and 57 crews and four policies are displayed.
+
+## Full_Crew_Absolute_Outcomes
+
+Exact copy of the existing review artwork, retained for comparison; no result or style is changed. All eight scheduled policies and all four tested levels are displayed. Points are means and whiskers are 5th–95th realization ranges; these are not confidence intervals. All cumulative losses integrate 0–480 h. There is no untested-level interpolation.
+
+## Full_Duration_Absolute_Outcomes
+
+Exact copy of the existing review artwork, retained for comparison; no result or style is changed. All eight scheduled policies and all four tested levels are displayed. Points are means and whiskers are 5th–95th realization ranges; these are not confidence intervals. All cumulative losses integrate 0–480 h. There is no untested-level interpolation.
+
+## Fig05_Separated_Quartile_Intervals
+
+Distributional outcomes and matched-reference sensitivity under 2pc50, C57_D1. (A) Absolute Q1–Q4 service burden for Impact-first, Hospital-first, Degree-first, and Vulnerability-first; whiskers are 5th–95th realization ranges, not confidence intervals. Q1 and Q4 denote the lowest- and highest-social-vulnerability quartiles. (B) Mean aggregate population-weighted service burden versus mean Q4 burden for all eight distinct scheduled policies and Unconstrained; points are summary estimates and no two-dimensional uncertainty is encoded in this panel. (C) For each physical realization, the Vulnerability-first outcome is differenced from Impact-first, Hospital-first, or Degree-first. Hour-valued outcomes use the labeled hour axis. (D) Population-weighted Gini change uses a separate unitless axis for the same matched comparisons. Gini is 0 under equal tract burden and increases with inequality. Whiskers are 5th–95th paired-realization ranges. (E) Tract-level mean burden change, Vulnerability-first minus Impact-first, over the same physical realizations. Negative values indicate lower mean burden under Vulnerability-first; the map does not show statistical significance or the per-realization count of people helped. Panel A shows means and 5th-95th realization ranges, not boxplots or standard deviations. Quartile losses are population-weighted within each social-vulnerability quartile. In both C and D, each point is Vulnerability-first minus the explicitly named reference: orange = Impact-first, grey = Hospital-first, green = Degree-first. Panel C includes population-weighted all-tract loss, Q4 loss, signed Q4-Q1 difference, per-realization absolute Q4-Q1 separation, and the equal-weight hospital-linked tract mean. All service-loss integrals use 0-480 h. References and physical realizations are unchanged. The quartile markers and intervals are horizontally dodged for visibility; categorical quartile identity and all y values are unchanged. This is a layout review, not a change in statistics. C and D share the explicitly named reference-policy key.
+
+## Fig04_Readable_All_Policy_Comparison
+
+Recovery and outcomes for all eight distinct scheduled policies plus the Unconstrained reference under 2pc50, C57_D1. Panel A displays mean population-weighted service availability over 0–100 h; panels B summarize outcomes integrated/evaluated over the full 0–480 h horizon. Dots are realization means and whiskers show the 5th–95th realization range (n=1,000), not confidence intervals. Impact-first, Degree-first, Hospital-first, and Vulnerability-first receive stronger visual emphasis; Centrality-first, Betweenness-first, Closeness-first, and Random remain displayed as lower-emphasis comparators. Unconstrained is the black reference. Direct-community is omitted because its frozen sequence is the same as Impact-first. Source-path-related burden is a modeled loss component, not delivered electricity. The recovery display is now 0-100 h; cumulative service-loss outcomes still integrate over 0-480 h. Cumulative service loss is the time-integrated normalized modeled tract service deficit, in equivalent hours of complete service loss. The all-tract metric is population-weighted. The hospital-linked metric is the equal-weight mean across hospital-linked tracts, not hospital power delivery or clinical capacity. Display opacity is increased for legibility; all data coordinates, values, cluster colors and interval definitions are unchanged.
+
+## FigS09_Cluster_Visibility
+
+Frozen Stage 7 support diagnostics for the harmonized 2pc50 residential typology. (A) PCA scores for 2,291 eligible tracts colored by the same official cluster-ID palette used in Fig07. (B) Explained variance by component. (C) Loadings in the accepted log1p-exposure, standardized feature space. (D) Frozen k-means inertia (left scale) and silhouette coefficient (right scale) across candidate cluster counts. These panels document dimensionality-reduction and clustering support; they do not turn clusters or hotspots into repair strategies. Display opacity is increased for legibility; all data coordinates, values, cluster colors and interval definitions are unchanged.
+
+## FigS03_Clear_Input_Labels
+
+Presentation-label correction of the existing publication figure. The map geometry, numerical results, discrete cases and plot arrangement remain unchanged. Crew/travel panels are inputs, not resource-response evidence; SCE loading is planning evidence, not post-earthquake load flow. No scientific result is regenerated.
+
+## FigS08_Clear_Planning_Labels
+
+Presentation-label correction of the existing publication figure. The map geometry, numerical results, discrete cases and plot arrangement remain unchanged. Crew/travel panels are inputs, not resource-response evidence; SCE loading is planning evidence, not post-earthquake load flow. No scientific result is regenerated.
+
+## Fig07_Native_Panel_Reflow
+
+Community typology and hotspots under 2pc50, presented in the July distribution/profile/map arrangement. (A) Existing harmonized six-feature distribution curves; no density fit is rerun. (B) Existing annotated standardized cluster profiles for T80, pre-1970 housing share, population density, NRI risk score, NRI building value and social vulnerability. These six descriptive features are not the full eleven-feature clustering input. (C) Community cluster membership. (D) Hotspot score. The same cluster-ID palette is used in A, C and the PCA diagnostic. The ten highest-ranked accepted hotspots are outlined on both maps. The full domain contains 2,315 tracts; the 24 noneligible tracts are N/A, not zero-valued or low-vulnerability. Cluster membership, PCA and hotspot ranking are unchanged. The hotspot score is descriptive and is not a validated intervention or repair-priority rule. This layout-only alternative reduces the plot-box heights of the existing distribution/profile rows while restoring every text span at its original point size. The map row remains at native size. All existing words, ticks, density paths, profile values, cluster colors and top-10 boundaries are preserved; no distribution fit, cluster, PCA or map calculation is rerun.
+
+## FIG06_SIDE_BY_SIDE_REVIEW
+
+A3 landscape comparison at native 185-mm artwork width. Review sheet only; not submission artwork.
