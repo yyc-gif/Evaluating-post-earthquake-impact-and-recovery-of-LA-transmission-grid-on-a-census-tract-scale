@@ -34,6 +34,9 @@ SPEC = importlib.util.spec_from_file_location("accepted_v21_layout_source", SOUR
 v = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(v)
 base = v.base
+ADD_SPEC = importlib.util.spec_from_file_location("author_review_additions", OUT / "author_review_additions.py")
+additions = importlib.util.module_from_spec(ADD_SPEC)
+ADD_SPEC.loader.exec_module(additions)
 WIDTH = 185.0
 TITLE, LABEL, TICK, LEGEND = 9.5, 8.5, 7.5, 7.5
 FONT = "Arial"
@@ -65,7 +68,7 @@ def all_axes(fig):
 
 
 def data_signature(fig):
-    """Hash plotted values/geometry/limits; deliberately exclude visual style."""
+    """Hash plotted values/geometry; exclude style and requested display limits."""
     h = hashlib.sha256()
     def array(x):
         a = np.asanyarray(x)
@@ -78,7 +81,8 @@ def data_signature(fig):
         if np.ma.isMaskedArray(a):
             array(np.ma.getmaskarray(a))
     for ax in fig.axes:
-        array(ax.get_xlim()); array(ax.get_ylim())
+        # Display limits may change at author request (Fig04 time window).
+        # Every plotted data coordinate and geometry still must match.
         for line in ax.lines:
             array(line.get_xdata()); array(line.get_ydata())
         for col in ax.collections:
@@ -140,6 +144,9 @@ def common_style(fig):
             text = text.replace("Retained grid stations", "Modeled substations")
             text = text.replace("Retained sequence identity", "Selected sequence identity")
             text = text.replace("Retained:", "Selected:")
+            text = text.replace("Frozen crew-resource cases under 2pc50", "Crew-count sensitivity under 2pc50")
+            text = text.replace("Frozen repair-duration cases under 2pc50", "Repair-duration sensitivity under 2pc50")
+            text = text.replace("Planning objective (frozen fitness scale)", "Planning objective (higher is better)")
             t.set_text(text)
             t.set_fontfamily(FONT)
             t.set_fontsize(max(7.0, t.get_fontsize()))
@@ -253,6 +260,7 @@ def layout_03(fig):
     cax.set_axes_locator(None)
     box(fig, cax, 103, 205, 60, 2.2)
     d.set_xlabel("Population-weighted time to\n80% service (h)")
+    c.set_xlabel("Population-weighted modeled cumulative service loss (h)")
     return "Long Beach blue / San Fernando purple with distinct line styles; 2pc50 CDF drawn above offset frame; histogram scenario explicit; baseline layout kept"
 
 
@@ -280,10 +288,13 @@ def layout_04(fig):
         line.set_zorder(4 if core else 2)
     a.set_xlabel("Time after earthquake (h)")
     a.set_ylabel("Mean population-weighted\nservice availability")
+    a.set_xlim(0, 100)
+    outcome_labels = ["Population-weighted\ncumulative service loss (h)", "Time to 80%\nservice (h)",
+                      "Hospital-tract mean\ncumulative service loss (h)", "Source-path-related\ncumulative loss (h)"]
     for j, ax in enumerate(outcomes):
         box(fig, ax, 36 + j * 36, 132, 27, 56)
         ax.set_title("", loc="left"); ax.set_title("")
-        ax.set_xlabel(ax.get_xlabel().replace(" (h)", "\n(h)"))
+        ax.set_xlabel(outcome_labels[j])
         for key, cont in zip(v.STRATEGY_ORDER, ax.containers):
             if isinstance(cont, ErrorbarContainer):
                 alpha = 1.0 if key in v.CORE_POLICIES or key == "unconstrained" else .50
@@ -293,6 +304,7 @@ def layout_04(fig):
                     cont.lines[0].set_markersize(3.2 if alpha == 1 else 2.7)
     fig.text(36/WIDTH, 1-126/205, "B. Outcome ranges", fontsize=TITLE,
              weight="bold", ha="left", va="bottom", fontfamily=FONT)
+    fig.text(36/WIDTH,1-130/205,"Dots: means; whiskers: 5th–95th realization range",fontsize=7.0,va="bottom")
     return "all nine identities retained; core policies emphasized; shared external legend; repeated column titles removed; notes left in unchanged caption"
 
 
@@ -300,35 +312,51 @@ def layout_05(fig):
     a,b,bleg,ctitle,rleg,c,g,d,holder = fig.axes[:9]
     old_map = d.get_position().frozen()
     map_width, map_height = old_map.width * WIDTH, old_map.height * 218
-    fig.set_size_inches(WIDTH/25.4, 208/25.4, forward=True)
+    fig.set_size_inches(WIDTH/25.4, 218/25.4, forward=True)
     for lg in list(fig.legends): lg.remove()
     if bleg.get_legend(): bleg.get_legend().remove()
     if rleg.get_legend(): rleg.get_legend().remove()
     # Keep the helper axes and their data (none); just silence repeated keys.
     for t in list(ctitle.texts): t.remove()
     for helper in (bleg,ctitle,rleg): helper.set_visible(False)
-    legend(fig, policy_handles(v.STRATEGY_ORDER), 105, 4, ncol=3)
-    box(fig, a, 36, 28, 143, 21)
-    box(fig, b, 36, 64, 143, 23)
-    box(fig, c, 36, 109, 103, 26)
-    box(fig, g, 157, 109, 22, 26)
+    lg = legend(fig, policy_handles(v.STRATEGY_ORDER), 105, 4, ncol=3)
+    for key,t in zip(v.STRATEGY_ORDER,lg.get_texts()):
+        t.set_fontweight("bold" if key in v.CORE_POLICIES else "normal")
+    for coll,key in zip(b.collections,v.STRATEGY_ORDER):
+        coll.set_alpha(1.0 if key in v.CORE_POLICIES or key=="unconstrained" else .40)
+        coll.set_sizes([29 if key in v.CORE_POLICIES else 20])
+    box(fig, a, 46, 29, 133, 20)
+    box(fig, b, 46, 65, 133, 19)
+    box(fig, c, 49, 121, 90, 24)
+    box(fig, g, 157, 121, 22, 24)
+    a.set_ylabel("Cumulative\nservice loss (h)")
+    b.set_xlabel("Population-weighted cumulative service loss (h)")
+    b.set_ylabel("Q4 cumulative\nservice loss (h)")
+    c.set_yticks(range(5), ["All tracts (population-weighted)","Highest-vulnerability quartile (Q4)",
+                          "Signed Q4 − Q1 difference", "Absolute Q4 − Q1 difference", "Hospital-linked tract mean"])
+    c.set_xlabel("Vulnerability-first minus reference (h)")
+    g.set_xlabel("Change\n(unitless)")
     # The map's actual width and height are retained; excess outer white space
     # comes from repeated legends and row gutters, never from map downscaling.
     map_h = max(47.0, map_height)
     map_w = max(100.0, map_width)
-    box(fig, d, 47, 155, map_w, map_h)
-    box(fig, holder, 165, 155, 10, map_h)
-    title_at(fig, a, 36, 23)
-    title_at(fig, b, 36, 59)
-    fig.text(36/WIDTH,1-103/208,"C. Vulnerability-first change relative to matched policies",
+    box(fig, d, 47, 165, map_w, map_h)
+    box(fig, holder, 165, 165, 10, map_h)
+    title_at(fig, a, 46, 23, text="A. Population-weighted cumulative loss by quartile")
+    fig.text(46/WIDTH,1-27/218,"Dots: means; whiskers: 5th–95th realization range",fontsize=7.0,va="bottom")
+    title_at(fig, b, 46, 59, text="B. All-tract and Q4 cumulative service loss")
+    fig.text(49/WIDTH,1-101/218,"C. Vulnerability-first minus reference policy",
              ha="left",va="bottom",fontsize=TITLE,fontweight="bold",fontfamily=FONT)
-    title_at(fig, g, 157, 103, text="D. Gini change", size=TITLE)
+    fig.text(49/WIDTH,1-105/218,"C/D references:",fontsize=7.5,va="top")
+    ref_handles = policy_handles(["impact-first","hospital-first","degree-first"],lines=False)
+    legend(fig,ref_handles,49,109,ncol=3,loc="upper left")
+    title_at(fig, g, 151, 101, text="D. Gini change", size=TITLE)
     g.set_xticks([-.025, 0, .025], ["−0.025", "0", "0.025"])
-    title_at(fig, d, 36, 149,
-             text="E. Mean tract burden change: Vulnerability-first − Impact-first")
+    title_at(fig, d, 36, 161,
+             text="E. Tract service-loss change: Vulnerability-first − Impact-first")
     cax = holder.child_axes[0]
-    cax.set_axes_locator(None); box(fig, cax, 166, 164, 2.2, 34)
-    return "218 to 208 mm; shared legend; Gini identified as D and tract map as E; map physical size unchanged; colorbar aligned"
+    cax.set_axes_locator(None); box(fig, cax, 166, 172, 2.2, 34)
+    return "218 mm; explicit mean/range annotation and reference-policy key; Gini identified as D and tract map as E; core policies emphasized; map physical size unchanged"
 
 
 def wrap_label(ax, text, width=31):
@@ -340,11 +368,17 @@ def layout_06(fig):
     remove_footer_notes(fig)
     for lg in list(fig.legends): lg.remove()
     legend(fig, policy_handles(base.POLICIES_4, lines=False), 104, 7, ncol=4)
-    for ax in fig.axes:
+    fig._suptitle.set_text("29- versus 57-crew comparison under 2pc50")
+    names = ["Population-weighted cumulative service loss (h)",
+             "Highest-vulnerability quartile cumulative service loss (h)",
+             "Absolute high-low vulnerability cumulative-loss difference (h)",
+             "Hospital-linked tract mean cumulative service loss (h)"]
+    for j, ax in enumerate(fig.axes):
         title_at(fig, ax, ax.get_position(original=True).x0 * WIDTH,
                  (1-ax.get_position(original=True).y1)*169 - 4,
-                 text="\n".join(textwrap.wrap(ax.get_title(loc="left"), 37, break_long_words=False, break_on_hyphens=False)))
-        ax.set_ylabel(wrap_label(ax, ax.get_ylabel(), 31))
+                 text=["A. All-tract service loss", "B. Highest-vulnerability group",
+                       "C. High-low group separation", "D. Hospital-linked tracts"][j])
+        ax.set_ylabel(wrap_label(ax, names[j], 31))
     return "consistent crew-category positions/offsets retained in all panels; long labels wrapped; legend/font/interval style unified; footer note moved to existing caption"
 
 
@@ -368,8 +402,48 @@ def layout_07(fig):
 
 def layout_support(fig, stem):
     remove_footer_notes(fig)
+    replacements = {
+        "Population burden (h)": "Population-weighted\ncumulative service loss (h)",
+        "Population-weighted service burden (h)": "Population-weighted\ncumulative service loss (h)",
+        "Q4 burden (h)": "Highest-vulnerability quartile\ncumulative service loss (h)",
+        "Highest-vulnerability quartile burden (h)": "Highest-vulnerability quartile\ncumulative service loss (h)",
+        "Hospital-linked burden (h)": "Hospital-linked tract mean\ncumulative service loss (h)",
+        "Hospital-linked tract burden (h)": "Hospital-linked tract mean\ncumulative service loss (h)",
+        "Hospital-linked tract service burden (h)": "Hospital-linked tract mean\ncumulative service loss (h)",
+    }
+    for ax in fig.axes:
+        ax.set_ylabel(replacements.get(ax.get_ylabel(), ax.get_ylabel()))
+    if stem.startswith("FigS09"):
+        scatter = fig.axes[0]
+        handles, labels = scatter.get_legend_handles_labels()
+        scatter.get_legend().remove()
+        box(fig, scatter, 31.5, 16, 57.6, 58)
+        fig.legend(handles, labels, frameon=False, ncol=5, fontsize=7.5,
+                       loc="upper center", bbox_to_anchor=(.52,.995),
+                       handletextpad=.25,columnspacing=.8,borderaxespad=0)
+        for ax in fig.axes:
+            for im in ax.images:
+                im.set_cmap("RdBu_r")
+                values = np.asarray(im.get_array())
+                for iy in range(values.shape[0]):
+                    for ix in range(values.shape[1]):
+                        val = values[iy,ix]
+                        ax.text(ix,iy,f"{val:.2f}",ha="center",va="center",fontsize=7,
+                                color="white" if abs(val)>.65 else "#17212b")
     if "Cross_Hazard" in stem:
         resize_keep_positions(fig, 198)
+        titles = ["A. Population-weighted\ncumulative service loss",
+                  "B. Time to 80% service",
+                  "C. Highest-vulnerability quartile\ncumulative service loss",
+                  "D. Hospital-linked tract mean\ncumulative service loss"]
+        heatmaps = [ax for ax in fig.axes if ax.images]
+        for ax, text in zip(heatmaps,titles):
+            ax.set_title(text,loc="left")
+        for ax in fig.axes:
+            if "Paired mean difference" in ax.get_ylabel():
+                ax.set_ylabel("Mean change (h)")
+        fig.suptitle("Policy changes relative to Unconstrained",fontsize=9.5,
+                     fontweight="bold",y=.995)
     elif "Crew_Resource_Contrasts" in stem or "Repair_Duration_Contrasts" in stem:
         resize_keep_positions(fig, 180)
         for ax in fig.axes:
@@ -379,6 +453,13 @@ def layout_support(fig, stem):
             if title:
                 ax.set_title("\n".join(textwrap.wrap(title, 38, break_long_words=False,
                                                       break_on_hyphens=False)), loc="left")
+        for ax, text in zip(fig.axes,["A. All-tract service loss",
+                "B. Highest-vulnerability group","C. High-low group separation",
+                "D. Hospital-linked tracts"]):
+            ax.set_title(text,loc="left")
+            ax.set_xlabel("Number of repair crews" if "Crew_Resource" in stem
+                          else "Repair-duration multiplier (57 crews)")
+        fig.axes[2].set_ylabel("Absolute high-low vulnerability\ncumulative-loss difference (h)")
     return "caption-only boundary notes removed from artwork; shared font/legend/interval hierarchy; physical whitespace reduced where safe"
 
 
@@ -468,7 +549,9 @@ def page_previews():
     arial=Path("C:/Windows/Fonts/arial.ttf")
     for stem,caption in v.CAPTIONS.items():
         with fitz.open(OUT/f"{stem}.pdf") as src:
-            page=packet.new_page(width=210/25.4*72,height=297/25.4*72)
+            # Preserve July-height Fig07 at native scale; never shrink it to A4.
+            page_height = max(297, src[0].rect.height/72*25.4 + 55)
+            page=packet.new_page(width=210/25.4*72,height=page_height/25.4*72)
             page.insert_font(fontname="LocalArial",fontfile=str(arial))
             h=src[0].rect.height
             left=12.5/25.4*72;top=18/25.4*72
@@ -495,7 +578,7 @@ def review_packet():
     with fitz.open(SOURCE/"FIGURE_V2_1_REVIEW_PACKET.pdf") as old:
         for i,stem in enumerate(v.CAPTIONS):
             with fitz.open(OUT/f"{stem}.pdf") as src: out.insert_pdf(src)
-            if stem.startswith(("Fig02", "Fig04", "Fig05")):
+            if True:
                 page = out.new_page(width=185/25.4*72, height=340/25.4*72)
                 page.insert_font(fontname="LocalArial", fontfile="C:/Windows/Fonts/arial.ttf")
                 page.insert_text((24, 32), stem.replace("_", " "), fontname="LocalArial", fontsize=9.5)
@@ -528,14 +611,77 @@ def main():
     if mismatches: raise ValueError(f"Frozen source identity differs from v2.1: {mismatches}")
     originals={p:sha(p) for p in SOURCE.iterdir() if p.is_file()}
     formal_figures={p:sha(p) for p in (ROOT/"results"/"figures").iterdir() if p.is_file()}
+    added_sources = [
+        ROOT/"provenance/legacy_outputs/Submission_Package/Figure_1.pdf",
+        v.STAGE7/"vis_stage7_kde_profiles.pdf", v.STAGE7/"vis_stage7_heatmap.pdf",
+        v.STAGE7/"stage7_top10_slow_vulnerable_tracts.csv",
+        v.FORMAL/"Stage 5 Output_expanded/INCUMBENT_DIRECT_SCORES_2pc50.csv"]
+    sources.update({p:sha(p) for p in added_sources})
     v.save_figure=save_layout;base.save_figure=save_layout
     eval_data=base.read_eval();tracts=base.map_domain()
-    base.build_fig01();v.build_fig02();v.build_fig03(eval_data);base.build_fig04(eval_data)
-    v.build_fig05(eval_data,tracts);v.build_fig06(eval_data);v.build_fig07()
-    v.build_figs05();v.build_figs09()
+    def register_native(stem, before, action):
+        qa=pdf_qa(OUT/f"{stem}.pdf");QA.append(qa)
+        if qa["text_outside_page"]:raise ValueError(qa)
+        if not stem.startswith("Fig01") and qa["minimum_text_pt"]<6.99:raise ValueError(qa)
+        RECORDS.append({"figure":stem,"before_height_mm":before,
+                        "after_height_mm":round(qa["height_mm"],1),
+                        "visual_changes":action,"scientific_content_changed":"NO"})
+        print(stem,action,flush=True)
+    additions.restore_july_figure1(ROOT,OUT)
+    register_native("Fig01_Revised_Analytical_Framework",78,"Exact protected July Figure 1 restored; historical finished-size text retained by author request")
+    v.build_fig02();v.build_fig03(eval_data);base.build_fig04(eval_data)
+    v.build_fig05(eval_data,tracts);v.build_fig06(eval_data)
+    additions.build_figure7(ROOT,OUT,v)
+    register_native("Fig07_Community_Typology_and_Hotspots",188,"July KDE/profile/maps arrangement; harmonized accepted data; top-10 boundaries; local legends; shared cluster colors")
+    additions.build_ga(ROOT,OUT,v)
+    register_native("FigS05_GA_Reproducibility",148,"Generation-mean search trajectories and seven fixed incumbents shown in service-loss hours; no algorithm rerun")
+    v.build_figs09()
     effects=pd.read_csv(SOURCE/"CROSS_HAZARD_POLICY_EFFECTS.csv")
     v.build_cross_hazard(None,effects)
     v.build_discrete_case_figure(eval_data,"crew");v.build_discrete_case_figure(eval_data,"duration")
+    _, metric_rows = additions.complete_metric_review(ROOT,OUT,v)
+    v.CAPTIONS["Fig01_Revised_Analytical_Framework"] = (
+        "The exact protected July submission Figure 1, restored at the author's request. "
+        "This is the original visual framework, not a newly drawn block diagram. "
+        "Its historic diagram wording and finished-size lettering are retained unchanged. "
+        "Current reviewer-revision definitions and additions remain documented in the canonical workflow; "
+        "this restoration does not revert the scientific model or certify the original small lettering for submission.")
+    v.CAPTIONS["Fig04_All_Policy_Recovery_and_Outcomes"] += (
+        " The recovery display is now 0-100 h; cumulative service-loss outcomes still integrate over 0-480 h. "
+        "Cumulative service loss is the time-integrated normalized modeled tract service deficit, in equivalent "
+        "hours of complete service loss. The all-tract metric is population-weighted. The hospital-linked metric "
+        "is the equal-weight mean across hospital-linked tracts, not hospital power delivery or clinical capacity.")
+    v.CAPTIONS["Fig05_Distributional_Outcomes_and_Reference_Sensitivity"] += (
+        " Panel A shows means and 5th-95th realization ranges, not boxplots or standard deviations. "
+        "Quartile losses are population-weighted within each social-vulnerability quartile. "
+        "In both C and D, each point is Vulnerability-first minus the explicitly named reference: "
+        "orange = Impact-first, grey = Hospital-first, green = Degree-first. "
+        "Panel C includes population-weighted all-tract loss, Q4 loss, signed Q4-Q1 difference, "
+        "per-realization absolute Q4-Q1 separation, and the equal-weight hospital-linked tract mean. "
+        "All service-loss integrals use 0-480 h. References and physical realizations are unchanged.")
+    v.CAPTIONS["Fig06_Two_Level_Crew_Resource_Contrast"] += (
+        " This figure compares absolute outcomes under 29 and 57 crews, not percentage changes. "
+        "Crew count is unrelated to Q1-Q4 quartile labels. It is one resource comparison, not a complete "
+        "sensitivity analysis or an automatic main-text selection. Complete tested crew and duration cases "
+        "are available in the separate review figures. Hospital-linked loss is an equal-weight tract mean.")
+    v.CAPTIONS["Fig07_Community_Typology_and_Hotspots"] = (
+        "Community typology and hotspots under 2pc50, presented in the July distribution/profile/map arrangement. "
+        "(A) Existing harmonized six-feature distribution curves; no density fit is rerun. "
+        "(B) Existing annotated standardized cluster profiles for T80, pre-1970 housing share, population density, "
+        "NRI risk score, NRI building value and social vulnerability. These six descriptive features are not "
+        "the full eleven-feature clustering input. (C) Community cluster membership. (D) Hotspot score. "
+        "The same cluster-ID palette is used in A, C and the PCA diagnostic. The ten highest-ranked accepted "
+        "hotspots are outlined on both maps. The full domain contains 2,315 tracts; the 24 noneligible tracts "
+        "are N/A, not zero-valued or low-vulnerability. Cluster membership, PCA and hotspot ranking are unchanged. "
+        "The hotspot score is descriptive and is not a validated intervention or repair-priority rule.")
+    v.CAPTIONS["FigS05_GA_Reproducibility"] = (
+        "Genetic algorithm (GA) reproducibility on the 64 independent 2pc50 planning realizations. "
+        "(A) The generation-mean candidate service-loss objective for each of five search seeds, with the "
+        "Impact-first incumbent. The saved negative fitness is displayed as positive service-loss hours "
+        "by reversing its sign; lower is better. (B) Seven original fixed-rule planning incumbents and the "
+        "retained GA incumbent. All five seeds executed the registered search without finding an improvement "
+        "over Impact-first. This does not prove global optimality. Evaluation realizations did not select "
+        "the strategy, and the retained sequence is Impact-first, not an additional scheduled policy.")
     # Reader-facing nomenclature and panel references only; caption science
     # and statistical statements retain the original definitions.
     for stem in v.CAPTIONS:
@@ -566,7 +712,36 @@ def main():
     gini["interpretation_boundary"] = "Separate labeled unitless axis; 0 is equal tract burden, larger Gini is greater inequality"
     gini["v2_1_change"] = "Existing Gini subplot explicitly lettered D; no metric, data or reference change"
     crosswalk = pd.concat([crosswalk, gini.to_frame().T], ignore_index=True)
+    fig1 = crosswalk.candidate_v2_1_panel_id.eq("Fig01-A")
+    crosswalk.loc[fig1,"metric_definition"] = "Exact July Figure 1 artwork; no newly drawn diagram"
+    crosswalk.loc[fig1,"frozen_source"] = "Protected July submission Figure_1.pdf"
+    crosswalk.loc[fig1,"source_paths"] = "provenance/legacy_outputs/Submission_Package/Figure_1.pdf"
+    crosswalk.loc[fig1,"interpretation_boundary"] = "Historical original diagram, restored by author request; canonical workflow retains current definitions"
+    july7 = [
+        ("Fig07-A","Existing harmonized KDE distributions for six descriptive features; no refit", "vis_stage7_kde_profiles.pdf"),
+        ("Fig07-B","Existing annotated cluster profiles for six descriptive features", "vis_stage7_heatmap.pdf"),
+        ("Fig07-C","Harmonized 2,291 residential typology members; 24 N/A; accepted top-10 hotspot boundaries", "stage7_full_domain_tract_status.csv; stage7_top10_slow_vulnerable_tracts.csv"),
+        ("Fig07-D","Harmonized hotspot score with accepted top-10 boundaries", "stage7_full_domain_tract_status.csv; stage7_top10_slow_vulnerable_tracts.csv")]
+    template = crosswalk[crosswalk.candidate_v2_1_panel_id.astype(str).str.startswith("Fig07")].iloc[0].copy()
+    crosswalk = crosswalk[~crosswalk.candidate_v2_1_panel_id.astype(str).str.startswith("Fig07")].copy()
+    for panel, definition, authority in july7:
+        row = template.copy()
+        row["panel_id"] = panel; row["candidate_v2_1_panel_id"] = panel
+        row["theme"] = {"Fig07-A":"Community feature distributions","Fig07-B":"Community profiles",
+                        "Fig07-C":"Cluster spatial pattern","Fig07-D":"Hotspot spatial pattern"}[panel]
+        row["scientific_question"] = {"Fig07-A":"How do accepted clusters differ in six descriptive feature distributions?",
+                        "Fig07-B":"How do standardized cluster means differ?",
+                        "Fig07-C":"Where are the accepted community typologies?",
+                        "Fig07-D":"Where are high hotspot scores and the accepted top ten?"}[panel]
+        row["metric_definition"] = definition
+        row["frozen_source"] = authority
+        row["source_paths"] = "; ".join(str(v.STAGE7.relative_to(ROOT)).replace("\\","/")+"/"+x for x in authority.split("; "))
+        row["interpretation_boundary"] = "Descriptive community typology and hotspots; no intervention ranking; clustering and PCA not rerun"
+        row["v2_1_change"] = "July display arrangement restored with accepted harmonized outputs"
+        crosswalk = pd.concat([crosswalk,row.to_frame().T],ignore_index=True)
     crosswalk.to_csv(OUT/"FIGURE_V2_1_PANEL_CROSSWALK.csv", index=False)
+    pd.DataFrame([{"source_path":str(p.relative_to(ROOT)).replace("\\","/"),"sha256":h} for p,h in sources.items()]).to_csv(
+        OUT/"FIGURE_V2_1_SOURCE_HASHES.csv",index=False)
     index=pd.read_csv(SOURCE/"FIGURE_V2_1_INDEX.csv")
     index["caption"] = index.figure_stem.map(v.CAPTIONS)
     index["journal_page_preview"] = index.figure_stem+"_page_preview.png"
@@ -580,8 +755,8 @@ def main():
            "|---|---:|---|---|"]
     for r in RECORDS:
         lines.append(f"| {r['figure']} | {r['before_height_mm']:g} → {r['after_height_mm']:g} | {r['visual_changes']} | NO |")
-    lines += ["", "Shared hierarchy: Arial; panel title 9.5 pt; axis label 8.5 pt; ticks and legends 7.5 pt; normal text at least 7 pt. Range whiskers retain the original 5th–95th realization definition, using 0.75-pt strokes and consistent caps. Map colorbars use 2.2-mm thickness; vertical map bars use 34-mm height.", "",
-              "Figure pages stay at 185 mm. Page previews show each native PDF at actual size on a 210×297-mm two-column page; they are layout review aids, not submission numbering or promotion."]
+    lines += ["", "Local Arial; newly rendered normal text is at least 7 pt. Exact July Fig01 is intentionally preserved, including its historic smaller lettering, and is not falsely certified as compliant. Range whiskers retain the 5th–95th realization definition. Scientific source hashes are checked before and after rendering.", "",
+              "Native width remains 185 mm. Fig07 restores July's 267.6-mm composition and is not scaled to fit A4; its page preview is explicitly taller. Author controls manuscript placement. Nothing is promoted to results/figures."]
     (OUT/"LAYOUT_CHANGELOG.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     changed=[str(p) for p,h in {**sources,**originals,**formal_figures}.items() if sha(p)!=h]
     if changed: raise ValueError(f"Protected source/publication files changed: {changed}")
@@ -590,12 +765,23 @@ def main():
               "width_mm":WIDTH,"scientific_content_changed":False,"source_hash_changes":0,
               "original_candidate_hash_changes":0,"results_figures_hash_changes":0,
               "captions_identical":sha(OUT/"FIGURE_V2_1_CAPTIONS.md")==sha(SOURCE/"FIGURE_V2_1_CAPTIONS.md"),
-              "caption_changes":"display nomenclature and Fig05 D/E references only; scientific meaning unchanged",
+              "caption_changes":"explicit metric weighting, comparison keys and display scope; restored July Fig01 and July-style Fig07 source provenance",
+              "all_summary_metrics_review_pages":len(metric_rows),
+              "july_fig01_exact_source_sha256":additions.JULY_FIG1_OID,
+              "july_fig01_submission_font_exception":"Exact historic artwork restored at author request; not a fresh submission certification",
               "hazard_display_palette": HAZARD_COLORS,
               "plotted_values_and_geometry":PLOT_SIGNATURES,
               "policy_style":v.STYLE,"cluster_palette":v.get_cluster_palette()[0]}
     (OUT/"LAYOUT_IDENTITY_VALIDATION.json").write_text(json.dumps(identity,indent=2),encoding="utf-8")
-    (OUT/"README.md").write_text("# Candidate v2.1 layout review\n\nReview-only derivatives of candidate_v2.1; scientific content changed = NO.\n\nOpen FIGURE_V2_1_LAYOUT_REVIEW_PACKET.pdf for actual-size figures and captions with synchronized display names and panel letters, or LAYOUT_JOURNAL_PAGE_PREVIEWS.pdf for 185-mm placement on typical two-column pages. Each figure has a native PDF, 600-dpi PNG, 150-dpi artwork preview and page preview. See LAYOUT_CHANGELOG.md and LAYOUT_ACTUAL_OUTPUT_QA.csv. Nothing is promoted to results/figures.\n",encoding="utf-8")
+    (OUT/"README.md").write_text("# Author-corrected review figures\n\nOpen FIGURE_V2_1_LAYOUT_REVIEW_PACKET.pdf for the 12 figures and explicit captions. PDFs use local Arial; PNGs are 600-dpi previews. Fig01 is the exact July original; Fig07 restores the July composition with accepted harmonized results and top-10 boundaries. Fig07 is provided at its original tall size without shrinking text.\n\nALL_SUMMARY_METRICS_REVIEW.pdf displays every saved outcome field in the two primary strategy-summary tables, across existing hazards, crew counts and duration cases. SUMMARY_METRIC_REVIEW_INDEX.csv locates each metric. EXISTING_ANALYSIS_CATALOG.csv records other available diagnostics/results; the twelve figures alone are not a complete analysis inventory or author selection. See EVIDENCE_COVERAGE_AND_FIG06_SCOPE.md for remaining coverage limits.\n\nNo scientific calculation, source table, trajectory or results/figures file is modified. No main/supplement selection or promotion is made.\n",encoding="utf-8")
+    (OUT/"EVIDENCE_COVERAGE_AND_FIG06_SCOPE.md").write_text(
+        "# Review coverage and Fig06 scope\n\n"
+        "Fig06 compares absolute outcomes for 29 and 57 crews under 2pc50, with baseline repair duration held fixed. Q1-Q4 are vulnerability quartiles, not crew conditions. Panel C is mean realization-specific absolute Q4-Q1 separation in hours. It is neither a resource percentage change nor Vulnerability-first minus Hospital-first. No ambiguous percentage denominator is introduced. Its main-text placement remains an author decision.\n\n"
+        "The separate crew figure displays all four tested counts (29,57,86,114). The repair-duration figure displays all four multipliers (0.75,1,1.25,1.50) with 57 crews. Those are discrete tested scenarios, not an inferred continuous response.\n\n"
+        f"The result browser has {len(metric_rows)} pages, one for every saved primary outcome field, retaining all eight distinct scheduled policies and Unconstrained wherever data exist. Each page shows hazard, crew and duration summaries, plus the 2pc50/57-crew realization range. Cells marked N/A have no corresponding saved value; no fallback or replacement is used.\n\n"
+        "This closes missing visibility of primary outcome fields, not every project analysis. Mapping/cutoff/gate, capacity, source reliability, topology diagnostics, full tract-effect maps and hospital-priority construction remain in their existing review/source locations. They are not deleted or declared unimportant. The accompanying source catalog is a location inventory, not a claim of visual or scientific acceptance. No final figure selection is made here.\n\n"
+        "Metric language: cumulative service loss means the normalized modeled service-deficit integral over 0-480 h. All-tract and quartile quantities are population-weighted; hospital-linked loss is an equal-weight tract mean. This is not delivered electricity or clinical capacity. Fig05 A uses means and 5th-95th realization ranges, not standard deviations; C/D explicitly use Vulnerability-first minus Impact/Hospital/Degree. Gini is unitless, with 0 representing equal tract loss.\n",
+        encoding="utf-8")
     print("LAYOUT_RENDER_COMPLETE: 12 figures; plotted-data parity; source/publication hashes unchanged; caption nomenclature synchronized",flush=True)
 
 
