@@ -107,7 +107,7 @@ def preferred(effects):
     fig=plt.figure(figsize=(185/25.4,166/25.4))
     gs=fig.add_gridspec(2,3,left=.115,right=.985,top=.79,bottom=.12,
                        hspace=.67,wspace=.50)
-    fig.text(.5,.985,'Restoration capacity and policy-dependent service loss',
+    fig.text(.5,.985,'Resource dependence of restoration-policy contrasts under 2pc50',
              ha='center',va='top',fontsize=10,fontweight='bold')
     fig.text(.5,.946,'2pc50  |  Difference = Vulnerability-first minus reference',
              ha='center',va='top',fontsize=8)
@@ -151,7 +151,7 @@ def preferred(effects):
     fig.text(.5,.038,'Points: matched means; whiskers: saved 95% bootstrap confidence intervals.',
              ha='center',va='center',fontsize=7.5)
     pd.DataFrame(panels).to_csv(OUT/'FIG06_PANEL_SOURCE_INDEX.csv',index=False)
-    caption=('Tested restoration-capacity conditions under 2pc50. A–C compare 29, 57, 86 and 114 crews '
+    caption=('Resource dependence of restoration-policy contrasts under 2pc50. A–C compare 29, 57, 86 and 114 crews '
       'with the adopted repair-duration multiplier 1.00; D–F compare multipliers 0.75, 1.00, 1.25 '
       'and 1.50 with 57 crews. Every point is Vulnerability-first minus its explicitly named '
       'Hospital-first (gray circle) or Impact-first (orange square) reference, using 1,000 matched '
@@ -164,8 +164,57 @@ def preferred(effects):
       'across the two scenario families. These are discrete one-factor cases: no continuous response, '
       'interpolation, factorial interaction, or universal scarcity claim is implied. The common '
       '57-crew/multiplier-1.00 case appears in both rows. Q4 benefit, aggregate efficiency and '
-      'inequality reduction are separate outcomes, and their directions can disagree.')
+      'between-group separation are separate outcomes, and their directions can disagree. '
+      'Gini is a separate overall inequality measure, reported in Fig05 and the supplement. '
+      'Policy contrasts were largest under the most crew-constrained tested case and generally '
+      'diminished at higher crew availability, while longer tested repair durations amplified '
+      'Q4 and Q4–Q1 separation contrasts. Together, these tested cases indicate greater policy '
+      'leverage when restoration capacity is more constrained relative to workload. '
+      'Crew count and duration are two separate one-factor-at-a-time scenario families, '
+      'not a unified calibrated capacity variable.')
     return save(fig,'Fig06_Preferred_Resource_Policy_Contrasts',caption)
+
+
+def separation_detail(effects):
+    """Review-only near-zero detail; preserve the preferred figure's common scales."""
+    fig, ax = plt.subplots(figsize=(185/25.4,90/25.4))
+    fig.subplots_adjust(left=.16,right=.98,bottom=.23,top=.67)
+    fig.text(.5,.98,'Review-only detail: higher-crew between-group separation',
+             ha='center',va='top',fontsize=9.5,fontweight='bold')
+    handles=[Line2D([0],[0],marker=m,color=c,lw=0,markersize=4,
+               label='Reference: '+label) for c,m,label in REF_STYLE.values()]
+    fig.legend(handles=handles,loc='upper center',bbox_to_anchor=(.54,.88),
+               ncol=2,frameon=False,columnspacing=1.7,handletextpad=.4)
+    detail=effects[effects.metric.eq(METRICS[2]) & effects.resource_scenario.isin(CREW[2:])]
+    lo=min(0,float(detail.bootstrap_ci_low.min()))
+    hi=max(0,float(detail.bootstrap_ci_high.max())); padding=(hi-lo)*.18
+    ax.set_ylim(lo-padding,hi+padding)
+    ax.axhline(0,color='#343434',linewidth=.7,ls='--',zorder=1)
+    for k,ref in enumerate(REFERENCES):
+        c,m,_=REF_STYLE[ref]
+        for x,case in enumerate(CREW[2:]):
+            row=detail[detail.resource_scenario.eq(case) & detail.reference_strategy.eq(ref)].iloc[0]
+            y=row.paired_mean_difference
+            ax.errorbar(x+(-.065 if k==0 else .065),y,
+                        yerr=[[y-row.bootstrap_ci_low],[row.bootstrap_ci_high-y]],
+                        fmt=m,color=c,ecolor=c,ms=4,elinewidth=.8,capsize=2.1,
+                        markeredgecolor='white',markeredgewidth=.4,zorder=4)
+    ax.set_xticks([0,1],['86','114']);ax.set_xlim(-.4,1.4)
+    ax.set_xlabel('Repair crews (duration multiplier = 1.00)',fontsize=8)
+    ax.set_ylabel('Absolute Q4–Q1 separation\nchange relative to reference (h)',fontsize=8)
+    ax.grid(axis='y',alpha=.18);ax.tick_params(length=2.5,width=.6)
+    fig.text(.5,.055,'Local detail only; the main Fig06 common scales remain unchanged.',
+             ha='center',fontsize=7.5)
+    caption=('Review-only zoom of the four 86-/114-crew points already shown in Fig06C, '
+        'with duration multiplier 1.00. Each point is Vulnerability-first minus Hospital-first '
+        '(gray circle) or Impact-first (orange square). The local hour scale reveals the '
+        'near-zero between-group separation contrasts; it does not replace or break the '
+        'common axes of the six-panel figure. Whiskers reproduce the same saved 95% bootstrap '
+        'confidence intervals for the mean paired difference across 1,000 matched realizations. '
+        'The Impact-first interval at 86 crews crosses zero; the other three intervals do not. '
+        'These small contrasts must not be described as a strictly monotonic crew effect. '
+        'All source rows are the corresponding panel-C entries in FIG06_PANEL_SOURCE_INDEX.csv.')
+    return save(fig,'Fig06_Separation_Detail_Review',caption)
 
 def exact_comparison_copies():
     records=[]
@@ -418,6 +467,7 @@ def verify_unchanged():
 if __name__=='__main__':
     effects,raw=read_inputs()
     preferred(effects)
+    separation_detail(effects)
     exact_comparison_copies()
     fix_fig05()
     improve_policy_and_cluster_visibility()

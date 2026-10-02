@@ -8,6 +8,11 @@ the resource effect on the baseline but does not isolate the effect of choosing
 one restoration priority over another. It omits two tested crew levels and all
 duration levels. Its exact PDF is retained as `Fig06_Previous_Two_Level_Comparison.pdf`.
 
+The preferred title is **Resource dependence of restoration-policy contrasts
+under 2pc50**. Crew count and repair duration are two separate
+one-factor-at-a-time scenario families, not a unified calibrated capacity
+variable.
+
 The preferred figure uses six panels, all at a native width of 185 mm. Gray
 circles identify the Hospital-first reference; orange squares identify the
 Impact-first reference. Every difference is **Vulnerability-first minus the
@@ -46,9 +51,11 @@ the confidence intervals used in the preferred figure.
 
 ## What the tested results support
 
-“Under the tested 2pc50 cases, tighter restoration capacity relative to workload
-increased the leverage and distributional consequences of restoration
-prioritization.” This refers to these discrete scenario families and these
+“Policy contrasts were largest under the most crew-constrained tested case and
+generally diminished at higher crew availability, while longer tested repair
+durations amplified Q4 and Q4–Q1 separation contrasts. Together, these tested
+cases indicate greater policy leverage when restoration capacity is more
+constrained relative to workload.” This refers to these discrete scenario families and these
 policy contrasts, not a universal monotonic law or a single equity verdict.
 
 | Reference and condition | Q4 loss change (h) | Population loss change (h) | Absolute separation change (h) |
@@ -66,8 +73,10 @@ At 86/114 crews the contrasts are near zero and not strictly monotonic; the
 absolute-gap contrast at 86 crews is slightly negative. Aggregate direction is
 reference-dependent: increasing duration does not create an aggregate penalty
 relative to Hospital-first in these saved cases, whereas it does relative to
-Impact-first. Thus **targeted benefit ≠ aggregate efficiency ≠ inequality
-reduction**. The figure preserves this disagreement.
+Impact-first. Thus **targeted benefit ≠ aggregate efficiency ≠ between-group
+separation**. The figure preserves this disagreement. Between-group separation (group
+disparity) is distinct from the population-weighted Gini coefficient, an
+overall tract-burden inequality measure retained in Fig05 and the supplement.
 
 Degree-first is retained in the complete absolute-outcome comparisons, but is
 not elevated to a main contrast reference here. T80, Gini and hospital-linked
@@ -78,5 +87,12 @@ scarcity claim is made. No metric definition or source table is modified.
 `FIG06_SIDE_BY_SIDE_REVIEW.pdf` is one A3 landscape page placing both 185-mm
 figures at native size. `RESOURCE_REVIEW_PACKET.pdf` supplies actual-size pages,
 captions and the other isolated layout candidates. PNGs are 600-dpi previews.
+
+At 185-mm native width, the C29 magnitude compresses the 86-/114-crew signs
+against the zero line. The preferred figure retains its shared scales without
+any broken axis. `Fig06_Separation_Detail_Review.pdf` is a separate review-only
+local zoom of those same four saved points/intervals; no main scale or source
+value changes. Duration-row direction and relative magnitude remain readable
+on the main common scale.
 
 Scientific content changed = NO. Promotion = NO. Author review = PENDING.

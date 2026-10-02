@@ -7,6 +7,7 @@ Nothing here replaces `results/figures/` or implies author approval.
 | File stem | Purpose |
 |---|---|
 | Fig06_Preferred_Resource_Policy_Contrasts | Six-panel differences from Hospital-first / Impact-first over all tested crew and duration levels |
+| Fig06_Separation_Detail_Review | Review-only zoom of the near-zero 86-/114-crew group-separation contrasts; main scales unchanged |
 | Fig06_Previous_Two_Level_Comparison | Exact previous two-level Fig06, retained for comparison |
 | Full_Crew_Absolute_Outcomes | All eight scheduled policies at 29/57/86/114 crews |
 | Full_Duration_Absolute_Outcomes | All eight scheduled policies at 0.75/1.00/1.25/1.50 duration multipliers |

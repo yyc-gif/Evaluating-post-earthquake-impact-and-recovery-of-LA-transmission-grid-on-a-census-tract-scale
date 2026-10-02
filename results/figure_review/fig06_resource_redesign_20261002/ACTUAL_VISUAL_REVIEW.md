@@ -67,3 +67,32 @@ artworks at 185 mm. It is a review aid, not submission artwork.
 **Author acceptance remains pending.** The unresolved July Fig01 small lettering
 and the older publication-set inconsistencies are not converted into a PASS.
 The checked and corrected review artifacts are not a promotion decision.
+
+
+## Final Fig06 wording and native-size check
+
+The title now reads “Resource dependence of restoration-policy contrasts under
+2pc50.” Caption and rationale distinguish between-group separation/group
+disparity from the separate overall Gini inequality measure. The stated finding
+uses “generally diminished” and the tested-case scope, with crew and duration
+identified as separate OFAT families, not one calibrated capacity variable.
+
+The revised actual PDF and actual-size page were opened. At 185 x 166 mm,
+minimum text is 7.5 pt with embedded Arial/Arial Bold; the longer title fits.
+The main drawing paths, common axes, zero lines, markers and saved intervals
+are exactly unchanged. Gray circles and orange squares still match Fig05.
+C29 and the duration row retain readable relative magnitudes, but 86-/114-crew
+separation signs sit against zero on the main scale. A separate review-only
+local-detail PDF exposes those same four values and saved CIs without a broken
+axis or changed main scale. Its actual PDF/preview was also opened; it shows
+the Impact-first interval at 86 crews crossing zero. No universal monotonic
+trend is inferred.
+
+Fig04, Fig05, Fig07 and FigS09 actual PDFs were freshly rendered and opened.
+No new obvious clipping, overlap or layout defect was found in these retained
+versions. Their PDFs and all previews are byte-identical to the preceding
+review. They are not declared author-approved or promoted.
+
+The 31 guarded scientific files and 33 publication files remain byte-identical;
+the saved effect rows, displayed-point source index and parity table also remain
+byte-identical. No scientific stage or bootstrap interval was rerun.
