@@ -41,3 +41,5 @@ Actual artwork changes are in the single author-review package. No scientific ca
 Official name checked against the [FEMA National Risk Index technical documentation](https://hazards.fema.gov/nri/Content/StaticDocuments/DataDownload/Archive/v117_0/fema_national-risk-index_technical-documentation.pdf). This is a naming check, not a model-input update.
 
 Updated artwork: Fig02/03/04/05/07 and S01/04/06/07/08. The single package contains all seven Main and thirteen Supplement figures with captions. No scientific result or historical source is removed.
+
+Source-commit check: the previous S09 manifest named a source file absent from commit 4422d956. Its two rows now refer to the byte-identical reviewed copy committed at f5cf30de. S09 PDF/PNG content is unchanged. All forty manifest source identities were checked against Git/LFS objects.
