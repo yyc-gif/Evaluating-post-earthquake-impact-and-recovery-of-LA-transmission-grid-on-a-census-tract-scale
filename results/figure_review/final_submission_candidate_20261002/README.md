@@ -14,3 +14,5 @@ Review_Evidence/Q4_Q1_Definitions.pdf distinguishes signed Q4–Q1 difference fr
 Artwork may be revised in response to author instructions. Earlier artwork-freeze notes do not restrict these edits. Scientific data, metrics and computations remain protected. Availability or technical checks do not constitute author acceptance.
 
 This remains an author-review collection, without promotion into results/figures/. Historical folders retain generation provenance, not alternate instructions for locating current review files.
+
+S03 now enlarges origin markers and includes a downtown inset. S04 retains every policy, with secondary curves lighter and the shared B/C key below C. S06 labels sit close to their points; its tract panel explicitly compares the two mappings rather than describing a policy benefit or prediction error.
