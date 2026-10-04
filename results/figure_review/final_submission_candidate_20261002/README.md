@@ -7,7 +7,9 @@ This is the single author-review source for the current submission figure set. D
 - MANUSCRIPT_FACING_CAPTIONS.md: metric definitions, conditions, references and interval meanings.
 - FIGURE_MANIFEST.csv: exact source file/commit, SHA256, physical size and minimum text size.
 
-The four author feedback messages of 2026-10-04 are implemented in these files. Earlier hospital/resource edits remain included. S05/S09 retain the exact artwork the author asked to leave untouched. S14/S15 are internal evidence and S16 a review aid; none is included here.
+The author feedback of 2026-10-04 is implemented in these files. Earlier hospital/resource edits remain included. S05 remains unchanged. S09 has only its cluster-ID category colors aligned with the July palette used by Figure 7; its diagnostic content and layout remain unchanged. S14/S15 are internal evidence and S16 a review aid; none is included here.
+
+Review_Evidence/Q4_Q1_Definitions.pdf distinguishes signed Q4–Q1 difference from per-realization absolute separation. It is an explanatory review aid, not another proposed submission figure. Figures 5 and 6 use absolute separation consistently. Figure 5E includes both references with available tract-effect tables, Hospital-first and Impact-first; no Degree-first tract-effect map is inferred.
 
 Artwork may be revised in response to author instructions. Earlier artwork-freeze notes do not restrict these edits. Scientific data, metrics and computations remain protected. Availability or technical checks do not constitute author acceptance.
 
