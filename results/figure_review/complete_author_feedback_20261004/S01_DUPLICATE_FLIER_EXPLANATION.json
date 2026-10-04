@@ -1,0 +1,10 @@
+{
+  "default_1_5_IQR_outliers": {
+    "LongBeach": 0,
+    "SanFernando": 13,
+    "Northridge": 0,
+    "2pc50": 0
+  },
+  "cause": "Default boxplot fliers duplicate the all-station scatter layer.",
+  "fix": "Disable only duplicate boxplot flier symbols; retain every station point."
+}

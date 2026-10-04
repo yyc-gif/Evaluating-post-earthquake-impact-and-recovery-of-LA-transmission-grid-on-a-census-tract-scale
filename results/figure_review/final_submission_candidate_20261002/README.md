@@ -1,19 +1,14 @@
 This is the single author-review source for the current submission figure set. Do not retrieve submission figures from older review folders.
 
-- `Main/`: Figures 01-07, each with its exact PDF and PNG.
-- `Supplement/`: Figures S01-S13, each with its exact PDF and PNG.
-- `ALL_MAIN_FIGURES.pdf`: seven main figures in order, at native page size.
-- `ALL_SUPPLEMENT_FIGURES.pdf`: thirteen supplementary figures in order, at native page size.
-- `ALL_FIGURES_WITH_CAPTIONS.pdf`: all twenty figures in order, each immediately followed by its caption page. Artwork pages are not resized.
-- `MANUSCRIPT_FACING_CAPTIONS.md`: the complete caption draft for author review.
-- `FIGURE_MANIFEST.csv`: per-file SHA256, source path and source commit. Source paths document provenance only; every selected artwork file is available here.
+- Main/: Fig01–Fig07, each with PDF and 600-dpi PNG.
+- Supplement/: FigS01–FigS13, each with PDF and 600-dpi PNG.
+- ALL_FIGURES_WITH_CAPTIONS.pdf: all twenty figures, each immediately followed by its caption, at native physical size.
+- ALL_MAIN_FIGURES.pdf and ALL_SUPPLEMENT_FIGURES.pdf: artwork-only collections.
+- MANUSCRIPT_FACING_CAPTIONS.md: metric definitions, conditions, references and interval meanings.
+- FIGURE_MANIFEST.csv: exact source file/commit, SHA256, physical size and minimum text size.
 
-The base artwork selection is from commit `a2a3c222b6c9180cc6b1c83cebe21c1d15a33ea6`; Fig06, Fig07 and FigS09 were updated for the author feedback of 2026-10-04 and remain review-only. Other selected figures are unchanged. Figure 01 is the submission-layout version. S14/S15 remain internal evidence and S16 is a review aid; they are not included.
+The four author feedback messages of 2026-10-04 are implemented in these files. Earlier hospital/resource edits remain included. S05/S09 retain the exact artwork the author asked to leave untouched. S14/S15 are internal evidence and S16 a review aid; none is included here.
 
-Manifest sizes are native PDF dimensions. PNG rows use the matching PDF's intended physical size and minimum text size. Each PDF and PNG row points to the corresponding source file and records its SHA256; `source_commit` identifies the commit containing that exact artwork version.
+Artwork may be revised in response to author instructions. Earlier artwork-freeze notes do not restrict these edits. Scientific data, metrics and computations remain protected. Availability or technical checks do not constitute author acceptance.
 
-This collection is for joint author review of artwork allocation and captions. It does not replace `results/figures/` or promote any figure. Historical review directories remain as provenance.
-
-Supplement S01–S04/S06–S08 were updated for the author feedback of 2026-10-04. S13 has only a reference-crew axis-label correction. S05/S09 and all Main artwork are unchanged in this round. Use the paired files here and the combined caption packet; historical generation sources remain in their review folders.
-
-Latest author-feedback update (2026-10-04): Figure 6 includes hospital-linked tract contrasts alongside the other three outcomes; S10 identifies the first five priority substations by name and removes the repeated outcome panel; S12/S13 retain the full-policy absolute outcomes with multiplier axes. Use these files and the updated combined caption packet.
+This remains an author-review collection, without promotion into results/figures/. Historical folders retain generation provenance, not alternate instructions for locating current review files.
