@@ -1,0 +1,77 @@
+[
+  {
+    "figure": "FigS07",
+    "metric": "R_path_full",
+    "normalization": "linear; unchanged 0\u2013max",
+    "vmin": 0,
+    "vmax": 0.0581508649049804,
+    "station_values_sha256": "fb52ae4f193618ce94547719e66e90cb0aa73215f5d2f9177e6db88e74def013"
+  },
+  {
+    "figure": "FigS07",
+    "metric": "Delta_R_redundancy",
+    "normalization": "linear; unchanged 0\u2013max",
+    "vmin": 0,
+    "vmax": 0.02644,
+    "station_values_sha256": "359306bb5229e0a6bdd1f6af258ce7253baba20a10d6166b113c91fa7b711392"
+  },
+  {
+    "figure": "FigS07",
+    "scheduled_policies_retained": [
+      "impact-first",
+      "hospital-first",
+      "degree-first",
+      "vulnerability-first",
+      "centrality-first",
+      "betweenness-first",
+      "closeness-first",
+      "random"
+    ],
+    "dynamic_values_unchanged": true,
+    "decorative_policy_markers": false,
+    "graph_edges_retained": 318
+  },
+  {
+    "figure": "FigS10",
+    "hospital_map_scale_unchanged": true,
+    "sequence_and_station_coordinates_unchanged": true,
+    "new_priority_maps": [
+      "vulnerability-first",
+      "impact-first"
+    ]
+  },
+  {
+    "figure": "FigS12",
+    "removed_empty_stripe_mm": 9,
+    "plot_scale_unchanged": true,
+    "displayed_means_and_realization_ranges_unchanged": true,
+    "gap_definition": "mean of within-realization abs(Q4\u2013Q1), not abs of ensemble means"
+  },
+  {
+    "figure": "FigS13",
+    "removed_empty_stripe_mm": 9,
+    "plot_scale_unchanged": true,
+    "displayed_means_and_realization_ranges_unchanged": true,
+    "gap_definition": "mean of within-realization abs(Q4\u2013Q1), not abs of ensemble means"
+  },
+  {
+    "figure": "Fig04",
+    "removed_empty_stripe_mm": 7.0,
+    "native_plot_map_and_text_scale_unchanged": true
+  },
+  {
+    "figure": "Fig07",
+    "removed_empty_stripe_mm": 6,
+    "native_plot_map_and_text_scale_unchanged": true
+  },
+  {
+    "figure": "FigS03",
+    "removed_empty_stripe_mm": 4.5,
+    "native_plot_map_and_text_scale_unchanged": true
+  },
+  {
+    "figure": "FigS04",
+    "removed_empty_stripe_mm": 8,
+    "native_plot_map_and_text_scale_unchanged": true
+  }
+]

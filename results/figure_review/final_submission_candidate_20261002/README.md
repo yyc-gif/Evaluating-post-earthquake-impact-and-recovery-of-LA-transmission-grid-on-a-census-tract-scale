@@ -16,3 +16,5 @@ Artwork may be revised in response to author instructions. Earlier artwork-freez
 This remains an author-review collection, without promotion into results/figures/. Historical folders retain generation provenance, not alternate instructions for locating current review files.
 
 S03 now enlarges origin markers and includes a downtown inset. S04 retains every policy, with secondary curves lighter and the shared B/C key below C. S06 labels sit close to their points; its tract panel explicitly compares the two mappings rather than describing a policy benefit or prediction error.
+
+S07 now separates its policy keys and map row, with visible network edges and matching curve legends. S08 states the OLINDA-bound comparison explicitly. S10 includes hospital, vulnerability and population-impact priority maps using the saved station sequences. S12/S13 explain the absolute Q4–Q1 service-loss gap and have tighter row spacing. All 20 figures were checked for internal blank space; source and publication numerical results are unchanged.
