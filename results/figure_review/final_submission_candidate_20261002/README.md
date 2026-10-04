@@ -15,3 +15,5 @@ Manifest sizes are native PDF dimensions. PNG rows use the matching PDF's intend
 This collection is for joint author review of artwork allocation and captions. It does not replace `results/figures/` or promote any figure. Historical review directories remain as provenance.
 
 Supplement S01–S04/S06–S08 were updated for the author feedback of 2026-10-04. S13 has only a reference-crew axis-label correction. S05/S09 and all Main artwork are unchanged in this round. Use the paired files here and the combined caption packet; historical generation sources remain in their review folders.
+
+Latest author-feedback update (2026-10-04): Figure 6 includes hospital-linked tract contrasts alongside the other three outcomes; S10 identifies the first five priority substations by name and removes the repeated outcome panel; S12/S13 retain the full-policy absolute outcomes with multiplier axes. Use these files and the updated combined caption packet.
