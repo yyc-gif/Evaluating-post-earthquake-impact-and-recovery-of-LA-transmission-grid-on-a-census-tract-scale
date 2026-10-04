@@ -30,7 +30,7 @@ def literal_constants(path, names):
             if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Name)
             and n.targets[0].id in names}
 
-C=literal_constants(ROOT/'results/figure_review/candidate_v2/build_candidate_v2.py',
+C=literal_constants(ROOT/'provenance/figure_review_history/candidate_v2/build_candidate_v2.py',
                     ['STRATEGY_ORDER','LABEL','STYLE','HAZARDS','HAZARD_LABEL'])
 POLICIES=C['STRATEGY_ORDER']; LABEL=C['LABEL']; STYLE=C['STYLE']
 HAZARDS=C['HAZARDS']; HL=C['HAZARD_LABEL']
@@ -489,9 +489,9 @@ Open **METRIC_EXPLORER.html** locally in Chrome/Edge. It is self-contained: ever
 
 Every book is 185 mm wide with Arial text at least 7 pt; first-page PNGs are 600 dpi previews. REVIEW_CONTACT_SHEET.pdf renders EVERY book page, four per page. It is an overview, not the readable scientific authority.
 
-METRIC_DIRECTION_COVERAGE.csv and PANEL_SOURCE_INDEX.csv identify coverage and exact page/panel. METRIC_DEFINITIONS.md explains weighting and intervals. EVIDENCE_AVAILABILITY.md identifies actual gaps without filling them. The earlier 23-page individual-metric browser is retained at ../candidate_v2.1_layout/ALL_SUMMARY_METRICS_REVIEW.pdf.
+METRIC_DIRECTION_COVERAGE.csv and PANEL_SOURCE_INDEX.csv identify coverage and exact page/panel. METRIC_DEFINITIONS.md explains weighting and intervals. EVIDENCE_AVAILABILITY.md identifies actual gaps without filling them. The earlier 23-page individual-metric browser is retained at ALL_SUMMARY_METRICS_REVIEW.pdf.
 
-Nothing here selects a Main/Supplement set or promotes figures. Existing results/figures and candidate layouts are unchanged. Source/index hashes and scientific-file guards are in QA_MANIFEST.json. Regenerate only this review presentation with `python results/figure_review/metric_tradeoff_review/build_review.py`.
+Nothing here selects a Main/Supplement set or promotes figures. Existing results/figures and candidate layouts are unchanged. Source/index hashes and scientific-file guards are in QA_MANIFEST.json. Regenerate only this review presentation with `python results/figure_review/Additional_Evidence/build_review.py`.
 ''',encoding='utf-8')
     after=protect_snapshot();assert before==after,'Existing scientific/artwork file metadata changed'
     assert all(sha(ROOT/p)==s for p,s in SOURCES.items()),'Read authority hash changed'

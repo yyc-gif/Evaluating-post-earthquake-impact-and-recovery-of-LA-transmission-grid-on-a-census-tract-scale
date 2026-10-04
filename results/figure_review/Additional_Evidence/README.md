@@ -1,4 +1,4 @@
-# Complete metric and trade-off review (no manuscript selection)
+# Additional metric and spatial evidence
 
 Open **METRIC_EXPLORER.html** locally in Chrome/Edge. It is self-contained: every available policy, condition, 23 outcome fields and all 1,000 realization rows are embedded without point thinning.
 
@@ -13,6 +13,8 @@ Open **METRIC_EXPLORER.html** locally in Chrome/Edge. It is self-contained: ever
 
 Every book is 185 mm wide with Arial text at least 7 pt; first-page PNGs are 600 dpi previews. REVIEW_CONTACT_SHEET.pdf renders EVERY book page, four per page. It is an overview, not the readable scientific authority.
 
-METRIC_DIRECTION_COVERAGE.csv and PANEL_SOURCE_INDEX.csv identify coverage and exact page/panel. METRIC_DEFINITIONS.md explains weighting and intervals. EVIDENCE_AVAILABILITY.md identifies actual gaps without filling them. The earlier 23-page individual-metric browser is retained at ../candidate_v2.1_layout/ALL_SUMMARY_METRICS_REVIEW.pdf.
+METRIC_DIRECTION_COVERAGE.csv and PANEL_SOURCE_INDEX.csv identify coverage and exact page/panel. METRIC_DEFINITIONS.md explains weighting and intervals. EVIDENCE_AVAILABILITY.md identifies actual gaps without filling them. ALL_SUMMARY_METRICS_REVIEW.pdf covers every saved primary outcome field in 23 pages; SUMMARY_METRIC_REVIEW_INDEX.csv and ALL_SUMMARY_COLUMN_COVERAGE.csv identify the fields and available cases.
 
-Nothing here selects a Main/Supplement set or promotes figures. Existing results/figures and candidate layouts are unchanged. Source/index hashes and scientific-file guards are in QA_MANIFEST.json. Regenerate only this review presentation with `python results/figure_review/metric_tradeoff_review/build_review.py`.
+Nothing here selects a Main/Supplement set or promotes figures. The 20 numbered figures are in ../Main/ and ../Supplement/; this directory preserves additional information directions rather than alternate layouts. Source/index hashes and scientific-file guards are in QA_MANIFEST.json. Regenerate only this review presentation with `python results/figure_review/Additional_Evidence/build_review.py`.
+
+Q4_Q1_Definitions.pdf explains signed versus within-realization absolute group gaps. The additional evidence is retained because relationships between metrics, alternative grouping definitions and all saved spatial comparisons are not exhausted by the numbered figures.

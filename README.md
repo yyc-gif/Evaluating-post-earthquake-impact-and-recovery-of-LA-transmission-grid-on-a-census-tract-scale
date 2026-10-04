@@ -1,3 +1,13 @@
+## October 2026 revision
+
+The current working version is on `revision/reviewer-driven-core-rebuild-v2`.
+
+**Current figure review: [results/figure_review/](results/figure_review/)** — one current set, with all figures and captions in [ALL_FIGURES_WITH_CAPTIONS.pdf](results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf).
+
+`main` and `archive/ijdrr-submission-20260722` retain the July history. Earlier experimental branches are preserved as archive tags.
+
+---
+
 # Evaluating Post-Earthquake Impact and Recovery of the LA Transmission Grid
 
 **Authors:** Yinchen Yi and Yutong Li
