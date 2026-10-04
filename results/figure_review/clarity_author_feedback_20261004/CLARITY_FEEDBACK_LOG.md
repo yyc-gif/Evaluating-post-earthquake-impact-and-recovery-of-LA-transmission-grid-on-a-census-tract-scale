@@ -16,7 +16,7 @@ Service loss is integrated unavailability over 0–480 h: 0.5 availability over 
 
 For every realization, signed Q4–Q1 difference retains which quartile has more loss. Absolute separation takes the absolute value within that realization before summarizing. These are distinct: Vulnerability-first versus Hospital-first changes the mean signed difference by −2.863895739 h and mean absolute separation by +2.501282620 h. This is why the primary gap display uses one clearly defined estimand, while directional information remains available in the companion.
 
-The tract-effect source contains 2,315 tracts for each of Hospital-first and Impact-first under 2pc50. It contains no Degree-first tract map. No missing map or interval was invented. Figure 5 is now 185 × 295 mm to preserve two readable reference maps; this is an expanded author-review page, not a claim of single-page journal readiness. Figure 7 is 185 × 259 mm; its map geometry is not shrunk to force a shorter page.
+The tract-effect source contains 2,315 tracts for each of Hospital-first and Impact-first under 2pc50. It contains no Degree-first tract map. No missing map or interval was invented. Figure 5 is 185 × 250 mm: A/B read left-to-right with a shared policy key, avoiding an oversized 295-mm vertical stack. The two tract maps retain their 83 × 51-mm panel regions and text sizes remain unchanged. Figure 7 is 185 × 259 mm; its map geometry is not shrunk to force a shorter page.
 
 Native-PDF renderings and page previews were reviewed for line identity, point clutter, legibility, legend placement, neutral-map visibility and profile/map separation. Minimum text remains at least 7 pt; Arial is embedded. Technical checks do not replace author acceptance.
 

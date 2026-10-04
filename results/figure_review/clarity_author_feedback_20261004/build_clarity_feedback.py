@@ -252,13 +252,42 @@ def fig05(data):
     cb=fig.colorbar(plt.cm.ScalarMappable(norm=norm,cmap=cmap),cax=cbax,orientation='horizontal')
     cb.set_label('Mean tract service-loss change (h)',fontsize=7.5,labelpad=1)
     cb.ax.tick_params(labelsize=7.5,length=2);cb.outline.set_linewidth(.5)
+    # A and B read left-to-right; recover page height by removing the duplicate
+    # policy key, not by reducing the map geometry or typography.
+    compact_height=250
+    fig.set_figheight(compact_height/25.4)
+    for ax,(x,top,w,hh) in zip(fig.axes,[(27,35,66,41),(113,35,66,41),
+        (55,112,73,34),(147,112,32,34),(5,178,83,51),(95,178,83,51),(48,235,90,1.6)]):
+        ax.set_position([x/185,(compact_height-top-hh)/compact_height,w/185,hh/compact_height])
+    a.set_xlabel('All-tract population-weighted\nservice loss (h)',fontsize=7.5)
+    a.set_ylabel('Highest-vulnerability\nquartile service loss (h)',fontsize=7.5)
+    b.set_ylabel('Population-weighted\nservice loss (h)',fontsize=7.5)
+    headings={
+        'A.':(27,28,'A. Overall and Q4 service loss'),
+        'B.':(113,28,'B. Quartile service loss'),
+        'C.':(55,95,'C. Vulnerability-first service-loss changes'),
+        'D.':(144,95,'D. Gini change'),
+        'E.':(9,169,'E. Spatial service-loss changes under Vulnerability-first')}
+    for text in fig.texts:
+        prefix=text.get_text()[:2]
+        if prefix in headings:
+            x,top,label=headings[prefix];text.set_text(label);text.set_position((x/185,1-top/compact_height))
+        elif text.get_text()=='Vulnerability-first compared with:':
+            text.set_position((28/185,1-103/compact_height))
+    keys=list(fig.legends)
+    keys[0].set_bbox_to_anchor((105/185,1-2/compact_height))
+    keys[1].set_bbox_to_anchor((105/185,1-13/compact_height))
+    keys[2].remove()
+    keys[3].set_bbox_to_anchor((86/185,1-103/compact_height))
     h.save(fig,'Fig05')
     CAPTIONS['Figure 5. Vulnerability-targeted restoration and distributional consequences']=(
         'Results for 2pc50 at the reference crew condition and repair-duration multiplier 1.00. '
         '(A) Mean population-weighted service loss across all tracts versus mean loss within Q4 for '
-        'all eight scheduled policies and Unconstrained. The ordered key above A applies to A only. '
+        'all eight scheduled policies and Unconstrained. '
+        'The first key row contains the four emphasized policies shared by A/B; '
+        'the second contains the five additional policies shown in A only. '
         'Points are mean outcomes, not two-dimensional uncertainty regions. '
-        '(B) Population-weighted service loss within Q1–Q4 for the four policies named above B; '
+        '(B) Population-weighted service loss within Q1–Q4 for the four policies in the first key row; '
         'Q1 is the lowest and Q4 the highest social-vulnerability quartile. Dots are means and whiskers '
         'are 5th–95th realization ranges, not boxplots, standard deviations or confidence intervals. '
         '(C/D) Vulnerability-first compared with Hospital-first (gray circles), Impact-first '
