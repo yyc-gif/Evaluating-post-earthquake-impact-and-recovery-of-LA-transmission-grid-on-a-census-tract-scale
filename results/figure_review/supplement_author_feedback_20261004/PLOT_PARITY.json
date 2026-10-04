@@ -1,0 +1,103 @@
+[
+  {
+    "figure": "FigS01",
+    "hazard": "LongBeach",
+    "station_values": 92,
+    "all_points_retained": true,
+    "value_hash": "b2e7a9dc42a381d0afa18abe8b2d9f4e2b7655cfc023bad765c441f684f48bd0"
+  },
+  {
+    "figure": "FigS01",
+    "hazard": "SanFernando",
+    "station_values": 92,
+    "all_points_retained": true,
+    "value_hash": "9b648813b4079918613f9eabcba17a8eef98578a091247397e5237353b738935"
+  },
+  {
+    "figure": "FigS01",
+    "hazard": "Northridge",
+    "station_values": 92,
+    "all_points_retained": true,
+    "value_hash": "6ef0858d713bfbe8dec2a39e6d7fe653de07186a8024eecf5d659e7195f981d5"
+  },
+  {
+    "figure": "FigS01",
+    "hazard": "2pc50",
+    "station_values": 92,
+    "all_points_retained": true,
+    "value_hash": "f8e7943a21eee72c64deb32e5f5b248c24461df673b4e97f3e99dc3c5276b34f"
+  },
+  {
+    "figure": "FigS03",
+    "origins_from_allocation_table": 11,
+    "origin_coordinates_unchanged": true,
+    "matrix": "Exact vector crop, labels only edited"
+  },
+  {
+    "figure": "FigS07",
+    "metric": "R_path_full",
+    "vmin": 0,
+    "vmax": 0.0581508649049804,
+    "normalization": "linear; unchanged 0\u2013max limits",
+    "values_hash": "fb52ae4f193618ce94547719e66e90cb0aa73215f5d2f9177e6db88e74def013"
+  },
+  {
+    "figure": "FigS07",
+    "metric": "Delta_R_redundancy",
+    "vmin": 0,
+    "vmax": 0.02644,
+    "normalization": "linear; unchanged 0\u2013max limits",
+    "values_hash": "359306bb5229e0a6bdd1f6af258ce7253baba20a10d6166b113c91fa7b711392"
+  },
+  {
+    "figure": "FigS08",
+    "provider_loading_values": [
+      31.12,
+      34.23,
+      43.59,
+      47.48,
+      52.28,
+      61.85,
+      63.38,
+      63.88,
+      64.06,
+      65.05,
+      66.55,
+      68.98,
+      70.23,
+      72.83,
+      73.6,
+      73.91,
+      74.52,
+      74.66,
+      78.63,
+      78.73,
+      80.1,
+      82.58,
+      83.82,
+      83.84,
+      84.73,
+      85.11,
+      87.32,
+      89.79,
+      91.73,
+      93.39,
+      95.6,
+      96.01,
+      97.64,
+      109.04
+    ],
+    "capacity_increment_policies": [
+      "impact-first",
+      "hospital-first",
+      "vulnerability-first",
+      "degree-first"
+    ],
+    "closed_capacity_increments": [
+      0.1214751443,
+      0.1218863462,
+      0.1201068849,
+      0.1255720213
+    ]
+  }
+]

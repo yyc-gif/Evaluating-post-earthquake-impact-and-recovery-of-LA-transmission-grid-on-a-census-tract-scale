@@ -13,3 +13,5 @@ The base artwork selection is from commit `a2a3c222b6c9180cc6b1c83cebe21c1d15a33
 Manifest sizes are native PDF dimensions. PNG rows use the matching PDF's intended physical size and minimum text size. Each PDF and PNG row points to the corresponding source file and records its SHA256; `source_commit` identifies the commit containing that exact artwork version.
 
 This collection is for joint author review of artwork allocation and captions. It does not replace `results/figures/` or promote any figure. Historical review directories remain as provenance.
+
+Supplement S01–S04/S06–S08 were updated for the author feedback of 2026-10-04. S13 has only a reference-crew axis-label correction. S05/S09 and all Main artwork are unchanged in this round. Use the paired files here and the combined caption packet; historical generation sources remain in their review folders.
