@@ -1,4 +1,4 @@
-"""Uncurated review of SAVED metrics, matched effects and grouping sensitivity.
+"""Uncurated review of SAVED metrics, distributional effects effects and grouping sensitivity.
 
 Presentation only: read accepted tables; never import scientific execution code.
 No bootstrap/resampling, trajectories, scheduling, optimization or model changes.
@@ -41,7 +41,7 @@ METRICS={
  **{f'burden_Q{q}_hr':f'Q{q} population-weighted cumulative service loss (h)' for q in range(1,5)},
  'signed_Q4_minus_Q1_hr':'Signed Q4 minus Q1 cumulative-loss difference (h)',
  'absolute_Q4_minus_Q1_hr':'Absolute Q4 minus Q1 cumulative-loss difference (h)',
- 'burden_gini':'Tract-burden inequality (population-weighted Gini)',
+ 'burden_gini':'Tract service-loss inequality (population-weighted Gini)',
  **{f'population_T{t}_hr':f'Population-weighted time to {t}% service (h)' for t in [50,80,90]},
  'L_self_population_mass_weighted_hr':'Local-damage cumulative service loss (h)',
  'L_threshold_population_mass_weighted_hr':'Threshold-related cumulative service loss (h)',
@@ -215,7 +215,7 @@ def paired(effects):
             g=effects[effects.metric.eq(metric)]
             if g.empty:continue
             for first in range(0,10,4):
-                fig,axs=figure('Saved matched comparisons | '+METRICS[metric]);panels=[]
+                fig,axs=figure('Distributional effects | '+METRICS[metric]);panels=[]
                 fig.subplots_adjust(left=.19,right=.915,wspace=.72)
                 for j,ax in enumerate(axs):
                     idx=first+j
@@ -235,14 +235,14 @@ def paired(effects):
                         ax.set_xlabel('Candidate minus reference\n'+('Gini (unitless)' if metric=='burden_gini' else 'h' if metric.endswith('_hr') else 'saved metric units'))
                         count+=len(s)
                     title(ax,'ABCD'[j],CASE_LABEL[idx])
-                    panels.append(dict(direction='matched mean and existing bootstrap CI',metric=metric,source='three effect CSVs',context=CASE_LABEL[idx],statistic='saved mean + bootstrap95 CI'))
-                finish(pdf,fig,book,panels,'Intervals are the already saved 95% bootstrap CIs of matched mean effects, NOT realization ranges. No interval is invented for a missing comparison. Lower cumulative loss is favorable; inequality measures do not define fairness alone.')
+                    panels.append(dict(direction='distributional effects mean and existing bootstrap CI',metric=metric,source='three effect CSVs',context=CASE_LABEL[idx],statistic='saved mean + bootstrap95 CI'))
+                finish(pdf,fig,book,panels,'Intervals are the already saved 95% bootstrap CIs of mean distributional effects, NOT realization ranges. No interval is invented for a missing comparison. Lower cumulative loss is favorable; inequality measures do not define fairness alone.')
             # Every saved median and negative-effect frequency, across all conditions/references.
             comparison=list(dict.fromkeys(zip(g.strategy_id,g.reference_strategy)))
             fig,axs=figure('Uncertainty and reference dependence | '+METRICS[metric]);panels=[]
             fig.subplots_adjust(left=.19,right=.915,wspace=.72)
             fields=['paired_mean_difference','paired_median_difference','fraction_delta_below_zero','change_in_strategy_difference_vs_baseline']
-            titles=['Mean matched change','Median matched change','Fraction of realizations with negative change','Resource/duration shift in the strategy contrast']
+            titles=['Mean distributional effect','Median distributional effect','Fraction of realizations with negative change','Resource/duration shift in the strategy contrast']
             for j,(field,t) in enumerate(zip(fields,titles)):
                 ax=axs[j];arr=np.full((len(comparison),10),np.nan)
                 for iy,(p,r) in enumerate(comparison):
@@ -286,7 +286,7 @@ def redistribution(d):
             axs[3].set_xlabel('Q4 cumulative service loss (h)');axs[3].set_ylabel('Population-weighted Gini (unitless)')
             axs[3].set_ylim(0,g.burden_gini.groupby(g.strategy_id).mean().max()*1.08)
             for i,t in enumerate(['All-policy absolute quartile outcomes','Vulnerability-first against every available reference','Signed versus absolute group separation','Q4 outcome versus tract inequality']):
-                title(axs[i],'ABCD'[i],t);panels.append(dict(direction=t,metric='Q1-Q4; signed/absolute gap; Gini',source='primary summaries',context=HL[case[0]]+' / '+case[1],statistic='means of saved quantities; matched subtraction for B'))
+                title(axs[i],'ABCD'[i],t);panels.append(dict(direction=t,metric='Q1-Q4; signed/absolute gap; Gini',source='primary summaries',context=HL[case[0]]+' / '+case[1],statistic='means of saved quantities; distributional effects subtraction for B'))
             finish(pdf,fig,book,panels,'Q1 = lowest and Q4 = highest social vulnerability. Absolute separation is averaged AFTER taking each realization\'s absolute gap. Gini: 0 = equal tract loss; larger = more unequal loss. No policy is labeled most equitable.')
 
 def spatial(tract,geo):
@@ -344,7 +344,7 @@ def grouping(definitions):
             axs[1].axhline(0,color='black',lw=.6);axs[1].set_ylabel('Vulnerability-first minus\nHospital-first (h)')
             axs[2].set_xlabel('Signed Q4 minus Q1 loss (h)');axs[2].set_ylabel('Absolute Q4 minus Q1 loss (h)')
             axs[3].set_xlabel('Q4 cumulative service loss (h)');axs[3].set_ylabel('Population-weighted Gini (unitless)')
-            for i,t in enumerate(['Absolute outcomes under saved grouping','Saved matched-mean bootstrap intervals','Signed and absolute group separation','Q4 outcome and tract inequality']):
+            for i,t in enumerate(['Absolute outcomes under saved grouping','Distributional effects: bootstrap CI intervals','Signed and absolute group separation','Q4 outcome and tract inequality']):
                 title(axs[i],'ABCD'[i],t);panels.append(dict(direction=t,metric='grouping sensitivity saved metrics',source='SOCIAL_VULNERABILITY_GROUP_RESULT_SENSITIVITY.csv',context=' / '.join(key),statistic='saved summary / saved bootstrap95 CI'))
             finish(pdf,fig,book,panels,'Same executed policies; changing the evaluation grouping does NOT rerun vulnerability targeting. Q4 is highest social vulnerability, not income class. Missing CDC scores are excluded from groups, not treated as low vulnerability. Gini is unitless.')
 
@@ -439,7 +439,7 @@ def qa_and_docs(d,effects,tract,definitions,measures,before):
     write_panel_index()
     # Explicit holes: not paper claims and never auto-filled.
     gaps=[
-        ('Saved bootstrap CIs for every arbitrary policy/reference/metric pair','Only Hospital-reference formal metrics and VF/Hospital or VF/Impact effects have saved CIs. Other pairs available as matched raw distributions; no fresh resampling.'),
+        ('Saved bootstrap CIs for every arbitrary policy/reference/metric pair','Only Hospital-reference formal metrics and VF/Hospital or VF/Impact effects have saved CIs. Other pairs available as distributions of effects across realizations; no fresh resampling.'),
         ('Vulnerability-first resource/duration tract-level effects','Only four baseline hazards x Hospital/Impact spatial references are saved. No VF resource spatial maps generated.'),
         ('All executed strategies evaluated under alternative vulnerability definitions','Saved grouping sensitivity contains Impact, Hospital and Vulnerability only. Other policies are not inferred.'),
         ('Continuous resource response','Only four discrete crew conditions and four discrete duration factors exist. No interpolation or response-function claim.'),
@@ -458,19 +458,19 @@ def qa_and_docs(d,effects,tract,definitions,measures,before):
         '\n\nHistorical hazards and 2pc50 use different adopted fragility parameters. Hazard contrasts are not pure PGA sensitivity. All original result fields remain accessible. No outcomes are removed because they repeat another metric.\n',encoding='utf-8')
     (OUT/'METRIC_DEFINITIONS.md').write_text('''# What these metrics mean
 
-All cumulative service-loss metrics integrate the saved modeled deficit over 0-480 h. Units h are equivalent complete-service-loss hours, not electricity or clinical performance. “Burden” and “cumulative service loss” label the same integrated metric here.
+All cumulative service-loss metrics integrate the saved modeled deficit over 0-480 h. Units h are equivalent complete-service-loss hours, not electricity or clinical performance. “service loss” and “cumulative service loss” label the same integrated metric here.
 
 - Population-weighted loss: normalized tract service deficit, weighted by tract population.
 - Population/dependency-mass-weighted loss: population times represented dependency mass weighting; separately saved and retained even if identical within the fully resolved domain.
 - Hospital-linked loss: equally weighted mean across the hospital-linked tracts, NOT hospital population weighting or actual hospital electricity.
 - Q1-Q4: population weighting within each adopted social-vulnerability group. Q1 lowest, Q4 highest; these are not income classes.
 - Signed gap: Q4 minus Q1 in each realization. Absolute gap: absolute value in each realization, then averaged; NOT absolute value of the mean signed gap.
-- Population-weighted Gini: inequality of tract burden, 0 equal, larger more unequal. It does not decide which strategy is equitable.
+- Population-weighted Gini: inequality of tract service loss, 0 equal, larger more unequal. It does not decide which strategy is equitable.
 - T50/T80/T90: time to the stated population-service fraction. Missing/unreached stays NA, never replaced by zero or 480.
 - Local/threshold/source-path loss: adopted decomposition, dependency-mass weighted; shares are saved per-realization fractions. Ratio of mean components is not substituted for mean fractions.
 - Task count, completion and travel: saved scheduling outcomes, not re-executed here.
 
-Means, realization ranges, existing bootstrap confidence intervals, and spatial tract percentiles are distinct. The explorer identifies their definitions. Matched effects join the same saved realization IDs before differencing, without new resampling. No correlation or direction of an outcome is treated as causality, optimality or a fairness verdict.
+Means, realization ranges, existing bootstrap confidence intervals, and spatial tract percentiles are distinct. The explorer identifies their definitions. distributional effects effects join the same saved realization IDs before differencing, without new resampling. No correlation or direction of an outcome is treated as causality, optimality or a fairness verdict.
 
 Spatial sign populations classify the population of tracts by mean paired effect. This is not mean benefiting population per realization and is not significance. The saved negative-effect frequency is an empirical frequency, not a p-value. Alternative vulnerability groupings re-evaluate the same executed strategies; alternative priority ranks were not executed.
 ''',encoding='utf-8')
@@ -523,7 +523,7 @@ def detailed_availability(d,effects):
                     reader_facing_metric=METRICS[m],valid_raw_pairs=int(n),
                     saved_bootstrap_row=s is not None,
                     finite_saved_bootstrap_ci=s is not None and pd.notna(s['bootstrap_ci_low']) and pd.notna(s['bootstrap_ci_high']),
-                    location='METRIC_EXPLORER.html | Every matched reference; existing-CI tab if saved',
+                    location='METRIC_EXPLORER.html | Distributional effects; existing-CI tab if saved',
                     notes='No saved CI is generated here' if s is None else 'Saved n=0/NA remains NA' if not n else 'Frozen interval copied without resampling'))
     assert len(rows)==14352,len(rows)
     pd.DataFrame(rows).to_csv(OUT/'REFERENCE_UNCERTAINTY_AVAILABILITY.csv',index=False)
@@ -535,7 +535,7 @@ def detailed_availability(d,effects):
             condition_count=10,policy_condition_cells=84,other_metric_partners=22,
             available_directed_reference_comparisons=len(cells),saved_bootstrap_rows=len(e),
             finite_saved_bootstrap_rows=int(e.bootstrap_ci_low.notna().sum()),
-            raw_distribution='explorer absolute-outcomes tab',raw_matched_effect='explorer every-matched-reference tab',
+            raw_distribution='explorer absolute-outcomes tab',raw_matched_effect='explorer every-distributional effects-reference tab',
             joint_relationship='ALL_METRIC_RELATIONSHIPS.pdf + explorer relationships',
             context='all four hazards, four discrete crew counts, four discrete duration factors',
             spatial='saved tract cumulative-loss effects only; not tract-level Gini/T80/other arbitrary metric effects',
@@ -548,9 +548,9 @@ The earlier 23-page browser displayed individual saved outcome fields by conditi
 This review makes the following distinct directions accessible without selecting policies or “favorable” results:
 
 1. Absolute levels AND all realization distributions, including missing/unreached counts.
-2. Every available matched candidate/reference combination, not only Vulnerability-first versus Hospital-first.
+2. Every available distributional effects candidate/reference combination, not only Vulnerability-first versus Hospital-first.
 3. Every pair of the 23 saved outcome fields: all-policy means AND the full 1,000-realization cloud, under every available condition.
-4. Saved matched means, medians, empirical frequencies and bootstrap intervals. No confidence interval is silently substituted by a realization range.
+4. Saved mean distributional effects, medians, empirical frequencies and bootstrap intervals. No confidence interval is silently substituted by a realization range.
 5. Q1–Q4 absolute outcomes and redistribution; signed gap versus realization-wise absolute gap; Q4 outcome versus population-weighted Gini. Disagreeing directions are visible rather than reduced to a fairness verdict.
 6. Hazard, crew-count and duration contexts, including the saved change in strategy contrast relative to baseline. These are discrete comparisons, not continuous response functions.
 7. All 68 saved spatial comparison sets: continuous tract mean, empirical improvement frequency, quartile distributions and population classified by mean sign.
@@ -580,14 +580,14 @@ def rebuild_panel_index(effects,tract,definitions,measures):
             page+=1
             for j in range(min(4,10-first)):
                 PAGE_ROWS.append(dict(book='SAVED_PAIRED_EFFECTS.pdf',page=page,panel='ABCD'[j],
-                    direction='Existing matched mean and bootstrap95 interval',metric=m,context=CASE_LABEL[first+j],
+                    direction='Existing distributional effects mean and bootstrap95 interval',metric=m,context=CASE_LABEL[first+j],
                     source='Formal PAIRED_STRATEGY_EFFECTS.csv; VULNERABILITY_PAIRWISE_EFFECTS.csv; VULNERABILITY_RESOURCE_EFFECTS.csv',statistic='saved mean / bootstrap CI; reference stated on row'))
         page+=1
         add('SAVED_PAIRED_EFFECTS.pdf',page,'all 10 cases; candidate and reference on row',m,
             'three paired-effect CSVs','saved fields',['Mean effect','Median effect','Fraction below zero','Saved shift in contrast versus baseline'])
     for i,case in enumerate(CASES,1):
         add('QUARTILE_REDISTRIBUTION.pdf',i,CASE_LABEL[i-1],'Q1-Q4; signed/absolute gap; Gini','primary summary parquets',
-            'means of saved quantities; matched raw subtraction for B',['Absolute outcomes','Vulnerability-first minus each available reference','Signed versus absolute gap','Q4 versus Gini'])
+            'means of saved quantities; distributional effects raw subtraction for B',['Absolute outcomes','Vulnerability-first minus each available reference','Signed versus absolute gap','Q4 versus Gini'])
     for i,(key,g) in enumerate(tract.groupby(['hazard','resource_scenario','strategy_id','reference_strategy'],sort=False),1):
         add('SPATIAL_EFFECTS.pdf',i,' / '.join(key),'tract mean / fraction below zero / population',
             'TRACT_PAIRED_EFFECTS.parquet; VULNERABILITY_TRACT_EFFECTS.parquet','saved fields; population aggregation of tract mean signs',
@@ -595,7 +595,7 @@ def rebuild_panel_index(effects,tract,definitions,measures):
     for i,(key,g) in enumerate(definitions.groupby(['hazard','measure','grouping_scheme'],sort=False),1):
         add('VULNERABILITY_DEFINITIONS.pdf',i,' / '.join(key),'Q1-Q4; signed/absolute gap; Gini',
             'SOCIAL_VULNERABILITY_GROUP_RESULT_SENSITIVITY.csv','saved summary / saved bootstrap CI; VF minus Hospital',
-            ['Absolute quartile outcomes','Saved matched bootstrap CI','Signed and absolute gaps','Q4 versus Gini'])
+            ['Absolute quartile outcomes','Saved distributional effects bootstrap CI','Signed and absolute gaps','Q4 versus Gini'])
     a=measures['SOCIAL_VULNERABILITY_MEASURE_COMPARISON'];n=0
     for row in a.itertuples():
         n+=1;add('MEASURE_AND_TARGETING.pdf',n,row.measure_a+' / '+row.measure_b,'correlation / Q4 overlap / transitions',
@@ -646,7 +646,7 @@ if __name__=='__main__':
         qa_and_docs(d,effects,tract,definitions,measures,before)
         sys.exit(0)
     print('Building metric relationships',flush=True);relationships(d)
-    print('Building saved matched effects',flush=True);paired(effects)
+    print('Building saved distributional effects effects',flush=True);paired(effects)
     print('Building quartile redistribution',flush=True);redistribution(d)
     print('Building ALL 68 saved spatial sets',flush=True);spatial(tract,geo)
     print('Building vulnerability-definition views',flush=True);grouping(definitions)

@@ -2,7 +2,7 @@
 
 **Saved bootstrap CIs for every arbitrary policy/reference/metric pair**
 
-Only Hospital-reference formal metrics and VF/Hospital or VF/Impact effects have saved CIs. Other pairs available as matched raw distributions; no fresh resampling.
+Only Hospital-reference formal metrics and VF/Hospital or VF/Impact effects have saved CIs. Other pairs available as distributions of effects across realizations; no fresh resampling.
 
 **Vulnerability-first resource/duration tract-level effects**
 

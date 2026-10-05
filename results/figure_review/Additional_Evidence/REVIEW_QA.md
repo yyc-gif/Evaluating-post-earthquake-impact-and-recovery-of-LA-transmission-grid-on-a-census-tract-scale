@@ -1,7 +1,7 @@
 # Scoped presentation verification
 
 - 23 outcome fields, 84,000 saved realization rows; all 84 available policy/condition cells have 1,000 realizations and matching realization identities.
-- 856 existing effect rows checked against raw matched means, medians and fractions below zero (1e-9 mean/median tolerance); 852 have finite saved bootstrap CIs. Four Unconstrained travel comparisons are n=0/NA, not zero.
+- 856 existing effect rows checked against raw mean distributional effects, medians and fractions below zero (1e-9 mean/median tolerance); 852 have finite saved bootstrap CIs. Four Unconstrained travel comparisons are n=0/NA, not zero.
 - 253 metric pairs; 68 saved spatial comparison sets; 72 alternate-grouping policy/hazard rows; 368 saved priority-rank rows; 96 transition cells; 880 archived population-classification rows disclosed with their original ±1-hour semantics.
 - Native PDFs: 233 pages total, 185 x 214 mm; every extracted nonempty text span Arial and >=7 pt; no text beyond page margins. All native pages rendered into the 59-page contact sheet. Representative baseline/resource/spatial/grouping/rank pages visually opened; initial clipping and legend/footer collisions corrected.
 - Interactive browser: all eight tabs tested; 23 metrics; 10 conditions; all 68 spatial choices; 6 grouping choices; complete 2,315-row spatial tables. 29-crew condition correctly exposes eight scheduled policies without fabricating Unconstrained. Impact reference, Gini interval, grouping, 368 ranks and archived 880 rows tested; no browser console errors.

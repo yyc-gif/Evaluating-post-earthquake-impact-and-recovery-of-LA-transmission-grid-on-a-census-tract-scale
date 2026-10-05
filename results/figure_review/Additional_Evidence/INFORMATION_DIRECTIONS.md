@@ -5,9 +5,9 @@ The earlier 23-page browser displayed individual saved outcome fields by conditi
 This review makes the following distinct directions accessible without selecting policies or “favorable” results:
 
 1. Absolute levels AND all realization distributions, including missing/unreached counts.
-2. Every available matched candidate/reference combination, not only Vulnerability-first versus Hospital-first.
+2. Every available distributional effects candidate/reference combination, not only Vulnerability-first versus Hospital-first.
 3. Every pair of the 23 saved outcome fields: all-policy means AND the full 1,000-realization cloud, under every available condition.
-4. Saved matched means, medians, empirical frequencies and bootstrap intervals. No confidence interval is silently substituted by a realization range.
+4. Saved mean distributional effects, medians, empirical frequencies and bootstrap intervals. No confidence interval is silently substituted by a realization range.
 5. Q1–Q4 absolute outcomes and redistribution; signed gap versus realization-wise absolute gap; Q4 outcome versus population-weighted Gini. Disagreeing directions are visible rather than reduced to a fairness verdict.
 6. Hazard, crew-count and duration contexts, including the saved change in strategy contrast relative to baseline. These are discrete comparisons, not continuous response functions.
 7. All 68 saved spatial comparison sets: continuous tract mean, empirical improvement frequency, quartile distributions and population classified by mean sign.
