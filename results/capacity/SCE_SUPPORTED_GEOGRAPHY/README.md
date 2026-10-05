@@ -60,8 +60,10 @@ For tract r and realization n, the increment is the 0–480 h left-rectangle eve
 
 **The old about-0.12-h statement does not survive on the primary domain:** the four policies span 0.366431–0.383104 h.
 
-The corrected S8B review candidate shows domain population-weighted mean increments (points) and 5th–95th realization ranges (lines), not confidence intervals. Both axes start at zero; their hour scales differ because the two domain averages have different magnitudes. Forecast planning ceilings are not earthquake-time flow observations or full-network electrical adequacy.
+The integrated S8B panel shows domain population-weighted mean increments (points) and 5th–95th realization ranges (lines), not confidence intervals. Both axes start at zero; their hour scales differ because the two domain averages have different magnitudes. Forecast planning ceilings are not earthquake-time flow observations or full-network electrical adequacy.
 
 TRACT_LEVEL_CHANGES.csv gives each tract's mean increment, realization quantiles and positive-increment frequency. TRACT_CHANGE_DISTRIBUTIONS.csv gives unweighted quantiles of tract means; these are not realization ranges and are not population-weighted percentiles. POLICY_DOMAIN_REALIZATIONS.csv supplies all 1,000 domain results per policy for independent checking.
 
 Only OLINDA 66/12 is binding-capable under the existing provider values. Its original forecast demand and planning limit are retained; other supported factors equal one. Existing numerical source files and trajectories are unchanged. Current S8 artwork and its caption were updated on author instruction; the previous versions are archived.
+
+The complete figure set and captions are in `results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf`. No separate geographic sensitivity figure is proposed.

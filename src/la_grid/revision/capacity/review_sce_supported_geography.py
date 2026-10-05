@@ -1,4 +1,4 @@
-"""Review-only SCE geography aggregation from saved event arrays and integrals.
+"""SCE-supported geography aggregation from saved event arrays and integrals.
 
 No sampling, source-gate reconstruction, scheduling, or trajectory generation.
 Original closure outputs and submission figures are never written.
@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import tempfile
 from pathlib import Path
 
 import matplotlib
@@ -19,7 +20,7 @@ import pandas as pd
 from la_grid.paths import REPO_ROOT as ROOT
 from la_grid.revision.capacity import run_sce_capacity_supported_sensitivity as source
 
-OUT = ROOT / "results/figure_review/Additional_Evidence/SCE_SUPPORTED_GEOGRAPHY"
+OUT = ROOT / "results/capacity/SCE_SUPPORTED_GEOGRAPHY"
 POLICIES = ["hospital-first", "impact-first", "degree-first", "vulnerability-first"]
 N = 1000
 TOL = 1e-12
@@ -232,7 +233,6 @@ def main():
         "strict_sce_supported": primary, "local_olinda_binding": local, "any_supported_diagnostic": any_support,
         "sce_337_comparison_member": comparison_mask})
     membership.to_csv(OUT / "DOMAIN_MEMBERSHIP.csv", index=False, float_format="%.15g")
-    make_figure(pd.DataFrame(summary_rows))
     report = {"source_commit": head, "scenario": "2pc50/C57_D1", "realizations_per_policy": N,
         "horizon_hr": 480, "mapping_changed": False, "weights_renormalized": False,
         "unsupported_weights_reassigned": False, "trajectories_generated": 0, "source_hashes": inputs,
@@ -273,8 +273,10 @@ def make_figure(summary):
         ax.text(.5,1.02,f"{int(f.tract_count.iloc[0]):,} tracts; population {int(f.population.iloc[0]):,}",
                 transform=ax.transAxes, ha="center", va="bottom", fontsize=7.5)
     fig.subplots_adjust(left=.165, right=.965, bottom=.18, top=.8, wspace=.78)
-    fig.savefig(OUT / "PROPOSED_FigS08B_SUPPORTED_GEOGRAPHY.pdf")
-    fig.savefig(OUT / "PROPOSED_FigS08B_SUPPORTED_GEOGRAPHY.png", dpi=600)
+    temporary_artwork = Path(tempfile.gettempdir()) / "sce_capacity_artwork_checks"
+    temporary_artwork.mkdir(exist_ok=True)
+    fig.savefig(temporary_artwork / "capacity_geography_panel.pdf")
+    fig.savefig(temporary_artwork / "capacity_geography_panel.png", dpi=600)
     plt.close(fig)
 
 

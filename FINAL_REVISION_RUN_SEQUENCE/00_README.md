@@ -19,8 +19,8 @@ python FINAL_REVISION_RUN_SEQUENCE/run_all.py --resume
 | 07 | `07_DISTRIBUTIONAL_AND_VULNERABILITY/run_07_distributional_vulnerability.py` | Validate final Q1–Q4 and vulnerability-targeting results | PASS_REUSE |
 | 08 | `08_FINAL_STAGE7_TYPOLOGY/run_08_stage7_typology.py` | Validate the harmonized Stage 7 authority and its saved products | PASS_REUSE |
 | 09 | `09_CAPACITY_ROBUSTNESS/run_09_capacity_robustness.py` | Validate the closed SCE-supported capacity sensitivity outputs | PASS_REUSE |
-| 10 | `10_FINAL_RESULTS_AND_FIGURES/run_10_final_outputs.py` | Validate the revised suite archive and the single final figure collection | PASS_REUSE |
+| 10 | `10_FINAL_RESULTS_AND_FIGURES/run_10_final_outputs.py` | Validate the revised suite archive and complete figure review collection | PASS_REUSE |
 
 Each stage entrypoint calls the same `stage_runner.py` implementation used by `run_all.py`. Every entrypoint requires `--resume` and fails if a prerequisite manifest or frozen artifact is missing; no stage wrapper falls back to scientific computation.
 
-The authoritative figure collection is `results/figures/` (see its `README.md`). Scientific implementation is in `src/la_grid/`; numerical result collections and archive pointers are under `results/`. Large local/external archives are listed in `EXTERNAL_ARCHIVE_MANIFEST.json`.
+The complete figure review collection is `results/figures/` (open `FIGURE_REVIEW_GALLERY.html`; no manuscript figure selection has been made). Scientific implementation is in `src/la_grid/`; numerical result collections and archive pointers are under `results/`. Large local/external archives are listed in `EXTERNAL_ARCHIVE_MANIFEST.json`.

@@ -1,26 +1,32 @@
-# Current figure set
+# Current complete figure set
 
-Main figures: Fig01–Fig07. Supplement figures: FigS01–FigS04 and FigS06–FigS09.
+Main: **Fig01–Fig07**. Supplement: **FigS01–FigS13**.
 
-PDF is the vector review file where its source panels are vector; PNG is a 600-dpi preview. The index records each figure question and source authority.
+[Open the complete figure-and-caption packet](../figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf).
 
-## Main figures
+All numbered files here are byte-identical to the current set in `results/figure_review/Main/` and `Supplement/`. PDF is the artwork; PNG is the 600-dpi preview. `FIGURE_INDEX.csv` records the exact current source. There is no separate S8B candidate in the author-facing collection.
 
-- **Fig01_Methodology_Workflow** — How does the July workflow connect grid damage, recovery, and community service?
-- **Fig02_System_Network_and_Mapping** — How does the revised tract mapping relate to the real transmission network and its retained topology?
-- **Fig03_Unconstrained_Recovery** — What is the distribution and spatial pattern of Unconstrained time to 80% service?
-- **Fig04_Restoration_Strategy_Tradeoffs** — How do all eight scheduled strategies compare in service recovery and downstream outcomes?
-- **Fig05_Hospital_Priority_and_Critical_Service** — How is Hospital-first priority assigned, and what cumulative burden occurs in hospital-linked tracts?
-- **Fig06_Vulnerability_Targeting_and_Distributional_Tradeoffs** — What distributional gains and system-level costs accompany Vulnerability-first relative to Hospital-first?
-- **Fig07_Community_Typology_and_Hotspots** — How do the final residential community typologies and hotspot scores vary spatially?
+S8 uses the strict-SCE supported denominator; detailed numerical tables are in [results/capacity/SCE_SUPPORTED_GEOGRAPHY](../capacity/SCE_SUPPORTED_GEOGRAPHY/README.md).
 
-## Supplement figures
+## Figures
 
-- **FigS01_Damage_Severity** — How does initial substation damage severity differ across hazards?
-- **FigS02_Initial_Service** — How does initial modeled service vary across hazards and tracts?
-- **FigS03_Crew_Bases_and_Directed_Travel** — Where are crew origins and how does directed travel enter restoration?
-- **FigS04_Network_Criticality_and_Percolation** — How do static network criticality diagnostics relate to dynamic source-path recovery?
-- **FigS06_Mapping_Robustness** — How sensitive are findings to mapping cutoffs and July-to-revised mapping changes?
-- **FigS07_Source_Redundancy** — How does network alternative-route support change over recovery and across stations?
-- **FigS08_Capacity_Sensitivity** — What is the scope and size of the frozen SCE capacity-bounded sensitivity?
-- **FigS09_Stage7_Diagnostics** — What diagnostics accompany the harmonized Stage 7 typology?
+- **Fig01** — How are earthquake damage, network service, tract dependency, restoration and community outcomes linked?
+- **Fig02** — How is the transmission system represented and what supports the tract dependency mapping?
+- **Fig03** — How do earthquake damage and source-path loss produce service disruption and spatial recovery differences?
+- **Fig04** — How do all restoration policies compare in recovery and service-loss outcomes?
+- **Fig05** — How do policies redistribute service loss across vulnerability groups and communities?
+- **Fig06** — How do policy contrasts change across the tested crew and repair-duration conditions?
+- **Fig07** — How do community profiles, clusters and hotspot scores vary spatially?
+- **FigS01** — How does substation damage severity differ across scenarios?
+- **FigS02** — How does initial modeled tract service availability vary across scenarios?
+- **FigS03** — Where are crew origins and how does directed travel enter restoration?
+- **FigS04** — What do network criticality and dynamic connectivity diagnostics show?
+- **FigS05** — What do the five genetic-algorithm searches show relative to the incumbent?
+- **FigS06** — What do mapping cutoff and public-record comparison results support?
+- **FigS07** — How do alternate source paths affect modeled connectivity?
+- **FigS08** — How large is capacity-induced service loss on the SCE-supported geography?
+- **FigS09** — What diagnostics support the community typology?
+- **FigS10** — How are the population, hospital-linked and vulnerability priorities constructed?
+- **FigS11** — Which policy effects differ across earthquake scenarios?
+- **FigS12** — How do all policy outcomes vary across the tested crew conditions?
+- **FigS13** — How do all policy outcomes vary across the tested duration conditions?

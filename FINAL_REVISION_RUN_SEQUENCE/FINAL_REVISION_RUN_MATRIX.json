@@ -20,7 +20,25 @@
     "capacity_robustness": {
       "authority_commit": "2d54e737ebf3b010507b6186dcbf00a37ef0602c",
       "entrypoint": "src/la_grid/revision/capacity/sce_capacity_closure.py",
-      "resume_behavior": "validate and reuse existing closure outputs only"
+      "resume_behavior": "validate and reuse existing closure outputs only",
+      "supported_geographic_reporting": {
+        "authority": "results/capacity/SCE_SUPPORTED_GEOGRAPHY/AUDIT.json",
+        "primary_domain": "utility_domain SCE and positive original dependency on any of 19 one-to-one supported stations",
+        "primary_tract_count": 676,
+        "primary_population": 2971782,
+        "local_binding_domain": "positive integrated OLINDA capacity-induced service loss in at least one saved realization",
+        "local_binding_tract_count": 25,
+        "local_binding_population": 117102,
+        "reporting_policies": [
+          "hospital-first",
+          "impact-first",
+          "degree-first",
+          "vulnerability-first"
+        ],
+        "historical_full_2315_result": "provenance only; not the primary manuscript-facing estimate",
+        "mapping_weights_renormalized": false,
+        "trajectories_regenerated": false
+      }
     },
     "final_reporting_strategy_resolution": {
       "authority": "Formal_Experiment_20260923/Formal_Reviewer_Results/DIRECT_IMPACT_IDENTITY.json",
@@ -112,7 +130,7 @@
       "M1 utility-compatible production",
       "M1 cutoff sensitivity: no cutoff, 1%, 3%"
     ],
-    "tract_effects": "continuous paired burden differences; no ±1 h classification"
+    "tract_effects": "continuous paired burden differences; no \u00c2\u00b11 h classification"
   },
   "stage_authorities": {
     "01": "FINAL_EXECUTION_VALIDATION.json",
@@ -123,8 +141,8 @@
     "06": "retained source/network diagnostic identities and tables",
     "07": "Equity Amendment final distributional results",
     "08": "Stage 7 Output_SOVI_Harmonized",
-    "09": "closed SCE capacity sensitivity outputs",
-    "10": "results/figures/FIGURE_INDEX.csv; publication-facing files in results/figures/; existing revised suite remains a validated external source archive"
+    "09": "Original capacity closure provenance plus evidence-supported geographic post-processing in results/capacity/SCE_SUPPORTED_GEOGRAPHY",
+    "10": "Current complete Fig01\u2013Fig07 and FigS01\u2013FigS13; results/figures/FIGURE_INDEX.csv; complete author packet results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf"
   },
   "execution_modes": {
     "resume": "authoritative validate/reuse only",

@@ -15,7 +15,7 @@ import pandas as pd
 from la_grid.paths import REPO_ROOT as ROOT
 
 REVIEW = ROOT / "results/figure_review"
-DATA = REVIEW / "Additional_Evidence/SCE_SUPPORTED_GEOGRAPHY"
+DATA = ROOT / "results/capacity/SCE_SUPPORTED_GEOGRAPHY"
 ARCHIVE = ROOT / "provenance/figure_review_history/s8_full_geography_before_20261004"
 
 
@@ -38,7 +38,7 @@ def run():
     caption_file = REVIEW / "MANUSCRIPT_FACING_CAPTIONS.md"
     shutil.copy2(caption_file, ARCHIVE / caption_file.name)
     original = fitz.open(ARCHIVE / "review_FigS08.pdf")
-    increment = fitz.open(DATA / "PROPOSED_FigS08B_SUPPORTED_GEOGRAPHY.pdf")
+    increment = fitz.open(ROOT / "provenance/figure_review_history/s8_supported_geography_draft_20261004/PROPOSED_FigS08B_SUPPORTED_GEOGRAPHY.pdf")
     width = original[0].rect.width
     out = fitz.open()
     # A is byte-identical visual content, clipped below its own xlabel; the

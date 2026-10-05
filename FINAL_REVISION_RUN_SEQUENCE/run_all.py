@@ -493,7 +493,8 @@ def validate_final_figures():
     suite_root=repo_path(suite_item["current_local_path"]).resolve()
     index_path=figure_dir/"FIGURE_INDEX.csv"
     readme_path=figure_dir/"README.md"
-    require_file(index_path); require_file(readme_path)
+    gallery_path=figure_dir/"FIGURE_REVIEW_GALLERY.html"
+    require_file(index_path); require_file(readme_path); require_file(gallery_path)
     required_columns={"file","format","scientific_content","current_status","main_or_supplement","source_authority","source_path","generator","sha256_or_lfs_oid","include_in_final_figure_collection","notes"}
     try:
         with index_path.open(encoding="utf-8-sig",newline="") as f:
@@ -508,13 +509,14 @@ def validate_final_figures():
     included=[r for r in rows if r["include_in_final_figure_collection"].strip().lower()=="true"]
     names=[r["file"] for r in included]
     if len(names)!=len(set(names)):
-        raise ValidationError("FIGURE_INDEX.csv contains duplicate publication-facing filenames")
+        raise ValidationError("FIGURE_INDEX.csv contains duplicate review filenames")
     expected=set(names)
     actual={p.name for p in figure_dir.iterdir() if p.is_file() and p.suffix.lower() in (".png",".pdf",".svg",".jpg",".jpeg")}
     if actual!=expected:
         raise ValidationError(f"Final figure inventory differs from FIGURE_INDEX.csv: missing={sorted(expected-actual)}, extra={sorted(actual-expected)}")
     seen_hashes={}
-    hashes={"results/figures/FIGURE_INDEX.csv":sha256(index_path),"results/figures/README.md":sha256(readme_path)}
+    hash_counts={}
+    hashes={"results/figures/FIGURE_INDEX.csv":sha256(index_path),"results/figures/README.md":sha256(readme_path),"results/figures/FIGURE_REVIEW_GALLERY.html":sha256(gallery_path)}
     source_checks={}
     for row in included:
         name=row["file"]
@@ -523,9 +525,10 @@ def validate_final_figures():
         digest=row["sha256_or_lfs_oid"].strip().removeprefix("sha256:").lower()
         if len(digest)!=64 or any(c not in "0123456789abcdef" for c in digest):
             raise ValidationError(f"Invalid SHA-256/LFS OID in figure index for {name}")
-        if digest in seen_hashes:
-            raise ValidationError(f"Duplicate publication-facing figure content: {name} and {seen_hashes[digest]}")
-        seen_hashes[digest]=name
+        # Keep byte-identical files when they came from separate prior figure
+        # inventory rows. This review collection is deliberately unfiltered.
+        seen_hashes.setdefault(digest,name)
+        hash_counts[digest]=hash_counts.get(digest,0)+1
         target=figure_dir/name; require_materialized(target); require_git_tracked(target)
         if target.suffix.lower().lstrip(".")!=row["format"].strip().lower():
             raise ValidationError(f"Figure format does not match indexed filename: {target}")
@@ -556,8 +559,9 @@ def validate_final_figures():
                     raise ValidationError(f"Frozen source-data hash mismatch for rendered figure: {data_source}")
                 source_checks[data_rel]=data_digest
         hashes[f"results/figures/{name}"]=digest
-    require_git_tracked(index_path); require_git_tracked(readme_path)
-    return {"file_count":len(included),"inventory_rows":len(rows),"figure_hashes":hashes,"source_authority_hashes":source_checks,"index_sha256":sha256(index_path),"unique_publication_content":len(seen_hashes)}
+    require_git_tracked(index_path); require_git_tracked(readme_path); require_git_tracked(gallery_path)
+    duplicate_files=sum(n-1 for n in hash_counts.values() if n>1)
+    return {"file_count":len(included),"inventory_rows":len(rows),"figure_hashes":hashes,"source_authority_hashes":source_checks,"index_sha256":sha256(index_path),"unique_content_count":len(seen_hashes),"byte_identical_copy_count":duplicate_files}
 
 def validate_suite(item):
     path=archive_path(item)

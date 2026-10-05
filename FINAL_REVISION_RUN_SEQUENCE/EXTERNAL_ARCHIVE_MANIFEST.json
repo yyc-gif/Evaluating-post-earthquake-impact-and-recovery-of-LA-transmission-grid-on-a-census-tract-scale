@@ -124,7 +124,7 @@
       "required_for_from_scratch": false,
       "git_or_external": "local_external_archive_within_repository_layout",
       "selected_files": null,
-      "notes": "Inventory size revalidated 2026-09-29 after co-author figure refresh; all 558 manifest-indexed files retain matching size/SHA-256. The 16 additional source figure files remain archive extras; publication-facing figures are indexed separately in results/figures/FIGURE_INDEX.csv."
+      "notes": "Source figures remain in this external archive as generation provenance. The current seven main and thirteen supplement figures are synchronized byte-for-byte from results/figure_review/ into results/figures/ and registered in FIGURE_INDEX.csv; superseded publication copies are retained under provenance/figure_review_history/."
     }
   ]
 }

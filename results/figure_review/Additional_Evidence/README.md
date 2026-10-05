@@ -4,7 +4,7 @@ Open **METRIC_EXPLORER.html** locally in Chrome/Edge. It is self-contained: ever
 
 | Review book | Question answered |
 |---|---|
-| [SCE supported-geography audit](SCE_SUPPORTED_GEOGRAPHY/README.md) | What is the capacity-induced service loss on strict-SCE supported and OLINDA-affected tracts? Separate S8B review candidate; current S8 unchanged. |
+| [SCE supported-geography results](../../capacity/SCE_SUPPORTED_GEOGRAPHY/README.md) | What is the capacity-induced service loss on strict-SCE supported and OLINDA-affected tracts? Integrated into the current complete figure set as S8; numerical domain tables are in results/capacity/. |
 | ALL_METRIC_RELATIONSHIPS.pdf | How do all 253 metric pairs relate across policies? Baseline means in PDF; all contexts/raw realizations in explorer. |
 | SAVED_PAIRED_EFFECTS.pdf | How do mean, median, empirical improvement frequency and existing bootstrap intervals differ with reference/hazard/resource/duration? |
 | QUARTILE_REDISTRIBUTION.pdf | Who improves or waits longer under every executed policy, and do signed gap, absolute gap and Gini disagree? |

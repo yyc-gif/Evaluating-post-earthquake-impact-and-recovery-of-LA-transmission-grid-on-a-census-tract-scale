@@ -32,7 +32,7 @@ Run or validate an individual stage (example):
 python FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/run_09_capacity_robustness.py --resume
 ```
 
-Final figures: `results/figures/`
+Current complete figure gallery: `results/figures/FIGURE_REVIEW_GALLERY.html`
 Scientific implementation: `src/la_grid/`
 Final numerical results: `results/`
 

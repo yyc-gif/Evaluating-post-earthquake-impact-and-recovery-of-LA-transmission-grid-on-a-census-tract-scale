@@ -1,6 +1,6 @@
 # 10 FINAL RESULTS AND FIGURES
 
-Validates the external revised suite archive and the consolidated publication-facing collection in `results/figures/`. The collection inventory is `results/figures/FIGURE_INDEX.csv`; included files are checked against their indexed source authority by SHA-256/Git LFS OID.
+Validates the current complete Fig01–Fig07 and FigS01–FigS13 set in `results/figures/` against the byte-identical author-review files. The complete figure-and-caption packet is `results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf`. S8 includes the supported-geography correction; there is no separate proposed S8B. The external revised suite remains historical scientific source provenance.
 
 This stage is validation/reuse only under `run_all.py --resume`. Missing authority files cause fail-fast; no scientific fallback is permitted.
 

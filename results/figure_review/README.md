@@ -8,6 +8,6 @@ This is the single author-review source for the current submission figure set. D
 - **[MANUSCRIPT_FACING_CAPTIONS.md](MANUSCRIPT_FACING_CAPTIONS.md)**: definitions, references, intervals and interpretation boundaries.
 - **[Additional_Evidence/](Additional_Evidence/)**: complementary metric, reference, grouping and spatial evidence not exhaustively represented by the 20 numbered figures. These are additional findings, not alternate versions of the figure set.
 
-`FIGURE_MANIFEST.csv` records original generation paths/commits and current source locations, with identical artwork hashes. The collection remains for author review; it is not a claim of author approval or promotion into `results/figures/`.
+`FIGURE_MANIFEST.csv` records original generation paths/commits and current source locations, with identical artwork hashes. The same current artwork is synchronized into `results/figures/`. Use the complete packet above to review the entire set. The SCE supported-geography correction is integrated into S8, not a separate figure.
 
 Earlier layouts and single-figure edit folders are retained outside this author-facing directory in `provenance/figure_review_history/`.

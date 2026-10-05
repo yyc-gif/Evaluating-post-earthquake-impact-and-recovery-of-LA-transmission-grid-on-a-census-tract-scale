@@ -1,6 +1,6 @@
 # 09 CAPACITY ROBUSTNESS
 
-Validates closed SCE capacity numerical outputs and audit only; does not call the closure computation. The publication-facing capacity panels are part of `results/figures/FigS08_Capacity_Sensitivity.*` and are validated in Stage 10 against frozen sources.
+Validates the original capacity closure for provenance and the current evidence-supported geographic results in `results/capacity/SCE_SUPPORTED_GEOGRAPHY/`. It does not execute capacity post-processing. S8 is integrated into the complete figure set and validated at Stage 10. The primary domain is 676 strict-SCE supported tracts; the independently identified OLINDA-local domain is 25 tracts. The old full-study approximately 0.12 h value is not the current manuscript-facing result.
 
 This stage is validation/reuse only under `run_all.py --resume`. Missing authority files cause fail-fast; no scientific fallback is permitted.
 
