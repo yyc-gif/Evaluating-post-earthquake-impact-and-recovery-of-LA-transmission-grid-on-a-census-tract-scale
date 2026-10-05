@@ -1,0 +1,9 @@
+# Proposed S8B interpretation — review only
+
+Capacity-induced modeled service loss under 2pc50, 57 crews and the baseline repair-duration condition. Points show population-weighted mean increments across 1,000 realizations; horizontal lines show the 5th–95th realization range, not a confidence interval. The primary domain comprises 676 strict-SCE tracts with positive original dependency on at least one of the 19 one-to-one supported SCE stations. The local domain comprises 25 tracts with positive OLINDA-induced loss, independently recomputed from saved event arrays; all four policies identify the same set. Original mapping weights and unsupported station contributions are preserved. The two panels use domain-specific hour scales, both beginning at zero.
+
+The ceiling uses the existing 2026 SCE facility planning values: OLINDA 66/12 demand 28.45 MW and limit 26.09 MW (K/D = 0.91704745). This is a static planning-ceiling sensitivity, not observed post-earthquake loading, a power-flow solution, or full-network electrical adequacy.
+
+The old full-study increment of approximately 0.12 h uses all 2,315 tracts and is retained only as provenance. The primary-domain estimate is 0.366–0.383 h; the local-domain estimate is 9.299–9.722 h. Applying the ceiling does not change the sign of any of the three within-domain policy contrasts. Domain selection itself changes the relevant comparison: Vulnerability-first has higher service loss than Hospital-first within the primary domain, although its full-study service loss is slightly lower. These are different geographic estimands and must not be interchanged.
+
+The author authorized replacement of S8 on 4 October 2026. Its facility-loading panel is preserved, and its geographic-effect panel and caption now report the supported denominators.
