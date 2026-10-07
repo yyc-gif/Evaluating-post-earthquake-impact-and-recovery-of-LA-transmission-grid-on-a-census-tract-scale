@@ -153,11 +153,11 @@ STAGE7_SELECTED_THEME_FEATURES = [
     "SOVI_SCORE",
 ]
 STAGE7_IJDRR_CLUSTER_PALETTE = [
-    "#303E4E",  # C1 blue-grey; darker luminance step for grayscale distinction
-    "#C0A55B",  # C2 ochre-grey
-    "#567E58",  # C3 green-grey
-    "#BAD1DB",  # C4 cyan-grey
-    "#724B63",  # C5 mauve-grey
+    "#66C2A5",  # C1 teal, ColorBrewer Set2
+    "#FC8D62",  # C2 orange
+    "#8DA0CB",  # C3 periwinkle
+    "#E78AC3",  # C4 pink
+    "#A6D854",  # C5 lime
     "#B97070",  # C6 rose-grey
     "#AAA05B",
     "#6F9B92",
