@@ -1,0 +1,148 @@
+[
+  {
+    "file": "Supplement/FigS01.pdf",
+    "sha256": "991a9a35bd8c734b61fc051edce9ab566c99ba5e22401252534d6e0b341f5aa6",
+    "size_mm": [
+      185,
+      214.0
+    ],
+    "min_font_pt": 7.5
+  },
+  {
+    "file": "Supplement/FigS06.pdf",
+    "sha256": "fb6034d5d139ed5920e020eff815c3fb6060f67d8dab837a0d9088289e68caea",
+    "size_mm": [
+      185,
+      157.0
+    ],
+    "min_font_pt": 7.0,
+    "displayed_summary": [
+      {
+        "policy": "impact-first",
+        "gate": "G0_NO_GATE",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -5.102126707421313,
+        "p05_h": -7.648653234181205,
+        "p95_h": -3.1790659122647593,
+        "n": 1000
+      },
+      {
+        "policy": "impact-first",
+        "gate": "G2_RELAXED_005",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -0.03926646588603377,
+        "p05_h": -0.160117612289892,
+        "p95_h": 0.0,
+        "n": 1000
+      },
+      {
+        "policy": "impact-first",
+        "gate": "G3_STRICT_075",
+        "reference": "G1_BASELINE_050",
+        "mean_h": 0.006144545469606449,
+        "p05_h": 0.0,
+        "p95_h": 0.01783790390928085,
+        "n": 1000
+      },
+      {
+        "policy": "hospital-first",
+        "gate": "G0_NO_GATE",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -5.028483663621858,
+        "p05_h": -7.5822902933522425,
+        "p95_h": -3.154250063994026,
+        "n": 1000
+      },
+      {
+        "policy": "hospital-first",
+        "gate": "G2_RELAXED_005",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -0.026781195426974713,
+        "p05_h": -0.105732452341298,
+        "p95_h": 0.0,
+        "n": 1000
+      },
+      {
+        "policy": "hospital-first",
+        "gate": "G3_STRICT_075",
+        "reference": "G1_BASELINE_050",
+        "mean_h": 0.0037978996190059285,
+        "p05_h": 0.0,
+        "p95_h": 0.018911782853906434,
+        "n": 1000
+      },
+      {
+        "policy": "degree-first",
+        "gate": "G0_NO_GATE",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -3.4850256600498297,
+        "p05_h": -5.554436365181842,
+        "p95_h": -1.988995504828433,
+        "n": 1000
+      },
+      {
+        "policy": "degree-first",
+        "gate": "G2_RELAXED_005",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -0.0324261231876894,
+        "p05_h": -0.09306443926509082,
+        "p95_h": 0.0,
+        "n": 1000
+      },
+      {
+        "policy": "degree-first",
+        "gate": "G3_STRICT_075",
+        "reference": "G1_BASELINE_050",
+        "mean_h": 0.011852696726920048,
+        "p05_h": 0.0,
+        "p95_h": 0.045158887265696966,
+        "n": 1000
+      }
+    ],
+    "source_tables": [
+      {
+        "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__impact-first__SUMMARY.parquet",
+        "sha256": "0daf1c7a1898b0a31bae0e5e944a4e88c70ad21c446b83418eb5856afdd020fc"
+      },
+      {
+        "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__hospital-first__SUMMARY.parquet",
+        "sha256": "03d50947f57ca9b2e3f0d64c41feca576b53ff9568db3d7b70f98028d47fe8ce"
+      },
+      {
+        "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__degree-first__SUMMARY.parquet",
+        "sha256": "52f82970c78e57450d0edb61a5a75504fc219693550fa97b1a4cae7dd8df1f4c"
+      }
+    ]
+  },
+  {
+    "file": "Supplement/FigS07.pdf",
+    "sha256": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5",
+    "size_mm": [
+      185,
+      220.0
+    ],
+    "min_font_pt": 7.5,
+    "circular_station_diameter_factor": 0.8,
+    "circle_forms": [
+      28
+    ]
+  },
+  {
+    "file": "Supplement/FigS08.pdf",
+    "sha256": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
+    "size_mm": [
+      185,
+      241.0
+    ],
+    "min_font_pt": 7.0
+  },
+  {
+    "file": "Supplement/FigS09.pdf",
+    "sha256": "7a25c1c19d33fdc5c0a404faa2ef2124bde0f2466ae0add1b789e3449c72c973",
+    "size_mm": [
+      185,
+      174.0
+    ],
+    "min_font_pt": 7.0
+  }
+]
