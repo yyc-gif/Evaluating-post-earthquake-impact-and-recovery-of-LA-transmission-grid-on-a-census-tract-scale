@@ -1,0 +1,63 @@
+{
+  "source_commit": "3e1b0a318eb54b3c384c02d66a71a71dcdfdb1b6",
+  "input_tables": [
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/GA_FIVE_SEED_CONVERGENCE.csv",
+      "sha256": "563cc7f32287c39ca294aefecde4ed375b196611342daaa2bbee932b1a4e37ce"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/INCUMBENT_DIRECT_SCORES_2pc50.csv",
+      "sha256": "d7277d6f603ac44f964b0158736577b20aab8ab60969a6bf9eceaa7be61bc3cf"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/GA_HISTORY_2pc50_42.csv",
+      "sha256": "54a7badde4850f440729dad43e6cbd1c0272158c0e5e96d06d9377cb22912c93"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/GA_HISTORY_2pc50_43.csv",
+      "sha256": "29658a8ee4c1bcd6e96a8d84c1892b0ea50132e8881a4967175c0e75dadf0096"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/GA_HISTORY_2pc50_44.csv",
+      "sha256": "2c034006742f3cb125256aea69472049f0b2ecb1f3d006d82033c6e46cec33b7"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/GA_HISTORY_2pc50_45.csv",
+      "sha256": "a6383fc079530d2a68de9bed0a7189e5a7f8b251440a3631c195e9d7a0b90aa8"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/GA_HISTORY_2pc50_46.csv",
+      "sha256": "0ef05a21acfb714c8d694bb583c8ec50e890de3e52e8d4e38b2afc63b215bd74"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/PLANNING_HORIZON.json",
+      "sha256": "fa0701b395afccc52eb6bc66d4cd9c1663e05fc9b93d27283ef19908f1694232"
+    }
+  ],
+  "incumbent_loss_h": 33.57830255999965,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "generations_per_seed": 101,
+  "coincident_best_so_far_traces": true,
+  "final_loss_h": [
+    33.57830255999965,
+    33.57830255999965,
+    33.57830255999965,
+    33.57830255999965,
+    33.57830255999965
+  ],
+  "planning_horizon_h": 2855.2540131100995,
+  "pdf_sha256": "a14de55b0a34babddb764156680cec270cc6db9b1f1ec179e461cbb0c0dd94e8",
+  "png_sha256": "f0ece9be518ac945843cdb8fc12050d405f78679045a1d0fe3fee0d766ba8897",
+  "minimum_font_pt": 7.5,
+  "size_mm": [
+    185,
+    90
+  ],
+  "ga_execution_invoked": false
+}
