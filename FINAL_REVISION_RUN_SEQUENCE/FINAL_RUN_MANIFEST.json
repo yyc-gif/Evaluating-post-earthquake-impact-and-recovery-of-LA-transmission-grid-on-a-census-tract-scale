@@ -3,8 +3,8 @@
   "workflow": "FINAL_REVISION_RUN_SEQUENCE",
   "mode": "resume",
   "status": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
-  "started_at_utc": "2026-10-08T17:18:16.051183+00:00",
-  "repository_head": "09fa6b08da4aaa0d88bde9b4bd62e4a567ccc6fe",
+  "started_at_utc": "2026-10-08T17:27:40.923035+00:00",
+  "repository_head": "1c2a369781ad557b4de58673db5a14e22c3027a3",
   "branch": "revision/reviewer-driven-core-rebuild-v2",
   "parent_matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
   "parent_matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
@@ -111,10 +111,10 @@
           "status": "PASS_DRY_VALIDATION_NO_SAMPLING_OR_SCHEDULING"
         },
         "code": {
-          "authority_file_sha256": "89bca129c4ef9a45e26f1f86eb2453b0ad6d1a54389eaffa59297a6dc9ae05a0",
+          "authority_file_sha256": "28beb7c2d4226d64a871711960039dae9595a44b36747726d0651871d6477f20",
           "code_file_count": 52,
           "historical_commit_count": 10,
-          "current_head": "09fa6b08da4aaa0d88bde9b4bd62e4a567ccc6fe"
+          "current_head": "1c2a369781ad557b4de58673db5a14e22c3027a3"
         }
       },
       "hashes": {
@@ -133,7 +133,7 @@
         "inputs.input_hashes[11].sha256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00",
         "inputs.input_hashes[12].sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630",
         "inputs.input_hashes[13].sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
-        "code.authority_file_sha256": "89bca129c4ef9a45e26f1f86eb2453b0ad6d1a54389eaffa59297a6dc9ae05a0"
+        "code.authority_file_sha256": "28beb7c2d4226d64a871711960039dae9595a44b36747726d0651871d6477f20"
       },
       "outputs": [
         {
@@ -156,7 +156,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "0d760d162d8a06e6633cde2997e1b048b1ca2c23fa681626dd7fd42bfb191ddc"
+      "stage_manifest_sha256": "9d7baa9aa934bd841b929ea49bf3bf8381d2e508448d7686f630e1a50b1775b3"
     },
     {
       "stage_id": "02",
@@ -179,7 +179,7 @@
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "0d760d162d8a06e6633cde2997e1b048b1ca2c23fa681626dd7fd42bfb191ddc",
+          "sha256": "9d7baa9aa934bd841b929ea49bf3bf8381d2e508448d7686f630e1a50b1775b3",
           "status": "PASS_VALIDATE"
         }
       },
@@ -190,7 +190,7 @@
         "physical_samples.sample_archive_hashes.Northridge": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
         "physical_samples.sample_archive_hashes.SanFernando": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0",
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
-        "previous_stage_manifest.sha256": "0d760d162d8a06e6633cde2997e1b048b1ca2c23fa681626dd7fd42bfb191ddc"
+        "previous_stage_manifest.sha256": "9d7baa9aa934bd841b929ea49bf3bf8381d2e508448d7686f630e1a50b1775b3"
       },
       "outputs": [
         {
@@ -213,7 +213,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "155f1b33275327a373f83ec0bad90c0a8e69fdd8d3ed6a40c796739ea4723932"
+      "stage_manifest_sha256": "88db23c25c3b1bcce06b1283c5d32d141037a429e6ddd7511ea506642fa9c0b0"
     },
     {
       "stage_id": "03",
@@ -238,13 +238,13 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "155f1b33275327a373f83ec0bad90c0a8e69fdd8d3ed6a40c796739ea4723932",
+          "sha256": "88db23c25c3b1bcce06b1283c5d32d141037a429e6ddd7511ea506642fa9c0b0",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "resolved_strategy_registry.GA_identity_sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
-        "previous_stage_manifest.sha256": "155f1b33275327a373f83ec0bad90c0a8e69fdd8d3ed6a40c796739ea4723932"
+        "previous_stage_manifest.sha256": "88db23c25c3b1bcce06b1283c5d32d141037a429e6ddd7511ea506642fa9c0b0"
       },
       "outputs": [
         {
@@ -272,7 +272,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "8bdcaa5e98051c598bd3956295a6d6cdfa4c22b5d81a92dcf73786540cc2ef23"
+      "stage_manifest_sha256": "485064199067bf90a891924237f2063a87cdba01cdda18b866382f589923c634"
     },
     {
       "stage_id": "04",
@@ -295,7 +295,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "8bdcaa5e98051c598bd3956295a6d6cdfa4c22b5d81a92dcf73786540cc2ef23",
+          "sha256": "485064199067bf90a891924237f2063a87cdba01cdda18b866382f589923c634",
           "status": "PASS_REUSE"
         }
       },
@@ -303,7 +303,7 @@
         "formal_trajectories.archive_manifest_chain_sha256": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
         "vulnerability_first_trajectories.manifest_chain_sha256": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
         "vulnerability_first_trajectories.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
-        "previous_stage_manifest.sha256": "8bdcaa5e98051c598bd3956295a6d6cdfa4c22b5d81a92dcf73786540cc2ef23"
+        "previous_stage_manifest.sha256": "485064199067bf90a891924237f2063a87cdba01cdda18b866382f589923c634"
       },
       "outputs": [
         {
@@ -334,7 +334,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "783fa60d592551ac70cd6cd7d4e8540e04d6b2e341d1cc2c372f756b28ef039a"
+      "stage_manifest_sha256": "1a964843d363551b01cae71cfee47d5b3a88d0c6586ca02600e0db8c49458bb0"
     },
     {
       "stage_id": "05",
@@ -360,7 +360,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "783fa60d592551ac70cd6cd7d4e8540e04d6b2e341d1cc2c372f756b28ef039a",
+          "sha256": "1a964843d363551b01cae71cfee47d5b3a88d0c6586ca02600e0db8c49458bb0",
           "status": "PASS_REUSE"
         }
       },
@@ -369,7 +369,7 @@
         "equity_offline_shards.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
         "formal_result_authorities.Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json": "a2a9a2f95b18d01e86bc34175ddd775756d93866d24859d06df0c50eb02c2d08",
         "formal_result_authorities.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json": "64fed2a28641e2010fe7413b6162f258557b25243ac0923e0be534aff9a8fc1a",
-        "previous_stage_manifest.sha256": "783fa60d592551ac70cd6cd7d4e8540e04d6b2e341d1cc2c372f756b28ef039a"
+        "previous_stage_manifest.sha256": "1a964843d363551b01cae71cfee47d5b3a88d0c6586ca02600e0db8c49458bb0"
       },
       "outputs": [
         {
@@ -415,7 +415,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "74c6ae5b8986e7661be7d266671999cbf389b5e17df9b4fb96a3ba85365441e7"
+      "stage_manifest_sha256": "5644e457508f9bfeb010be3e521c67ec3784b51542520eef920774f2a8480cdb"
     },
     {
       "stage_id": "06",
@@ -442,7 +442,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "74c6ae5b8986e7661be7d266671999cbf389b5e17df9b4fb96a3ba85365441e7",
+          "sha256": "5644e457508f9bfeb010be3e521c67ec3784b51542520eef920774f2a8480cdb",
           "status": "PASS_REUSE"
         }
       },
@@ -452,7 +452,7 @@
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
         "compact_diagnostic_sha256.results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
-        "previous_stage_manifest.sha256": "74c6ae5b8986e7661be7d266671999cbf389b5e17df9b4fb96a3ba85365441e7"
+        "previous_stage_manifest.sha256": "5644e457508f9bfeb010be3e521c67ec3784b51542520eef920774f2a8480cdb"
       },
       "outputs": [
         {
@@ -498,7 +498,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "ada3ff18159c2ecb893644bda6c65a37f0ce8e67333197276b5a55084595ad7c"
+      "stage_manifest_sha256": "59a583d4d4d370fe96be57b6ae335b59cc2507907a04a45ba0866d923a96a1dc"
     },
     {
       "stage_id": "07",
@@ -517,7 +517,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "ada3ff18159c2ecb893644bda6c65a37f0ce8e67333197276b5a55084595ad7c",
+          "sha256": "59a583d4d4d370fe96be57b6ae335b59cc2507907a04a45ba0866d923a96a1dc",
           "status": "PASS_REUSE"
         }
       },
@@ -529,7 +529,7 @@
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_GROUP_SUMMARY.csv": "5d9f41af008d3f084c5f1def040f59a3e47329b59a8b5524e5cb68f17644f6c9",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PAIRWISE_EFFECTS.csv": "ef5af1d32dc0184684f9d0c619b96a1dcab596818e1c01be8fe8de7d53cff982",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_TRACT_EFFECTS.parquet": "f0e1a0897d7a6b4ec2251ffc35c3008744ddf7d6ca2ec6b5bfadaaf7ed9632db",
-        "previous_stage_manifest.sha256": "ada3ff18159c2ecb893644bda6c65a37f0ce8e67333197276b5a55084595ad7c"
+        "previous_stage_manifest.sha256": "59a583d4d4d370fe96be57b6ae335b59cc2507907a04a45ba0866d923a96a1dc"
       },
       "outputs": [
         {
@@ -552,7 +552,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "0c1dd7a06a51fa5113ecd5ec477ffff40ec826e169dd5172ef8fd3aaf4f288c1"
+      "stage_manifest_sha256": "2cd91cf0f65c49babd2694738494eb96a65ed4663f30cdc3ef5e8093fd8064b8"
     },
     {
       "stage_id": "08",
@@ -589,7 +589,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "0c1dd7a06a51fa5113ecd5ec477ffff40ec826e169dd5172ef8fd3aaf4f288c1",
+          "sha256": "2cd91cf0f65c49babd2694738494eb96a65ed4663f30cdc3ef5e8093fd8064b8",
           "status": "PASS_REUSE"
         }
       },
@@ -609,7 +609,7 @@
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_profile_stability.csv": "aedc45da49daac1ac7eeb9f74655f45bbae63b77e03baefa4cd0fcaf437d50bd",
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_robustness_summary.csv": "12a4067d95ca1c97fbb5b9222bd936d7c3c9c3c17f7bab75cd2318d97d9db7e3",
         "stage7.verifier_result.input_sha256.stage7_long_tail_diagnostics.csv": "442399c768b0db29b84a2346a4b0559ba1719c5f02c3600a9633c8a5ed045a4e",
-        "previous_stage_manifest.sha256": "0c1dd7a06a51fa5113ecd5ec477ffff40ec826e169dd5172ef8fd3aaf4f288c1"
+        "previous_stage_manifest.sha256": "2cd91cf0f65c49babd2694738494eb96a65ed4663f30cdc3ef5e8093fd8064b8"
       },
       "outputs": [
         {
@@ -627,7 +627,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "f09b06ddd2d7e25f20737be0364f20398d7c155b7c33e184b5f1f95dec281a93"
+      "stage_manifest_sha256": "dffa35a67b3f42e0fb8be1fb413b34b42858d1e914523b6afb8af38e5f1cf026"
     },
     {
       "stage_id": "09",
@@ -657,7 +657,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "f09b06ddd2d7e25f20737be0364f20398d7c155b7c33e184b5f1f95dec281a93",
+          "sha256": "dffa35a67b3f42e0fb8be1fb413b34b42858d1e914523b6afb8af38e5f1cf026",
           "status": "PASS_REUSE"
         }
       },
@@ -677,7 +677,7 @@
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/RECONCILIATION.csv": "bf86aa2adea91265c8c20607424e576bcec50e2f577f7e3ebd06b703e984c009",
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/TRAJECTORY_SOURCE_HASHES.csv": "6ca104ed170ff1b86b9bb350634e3d9b1e5a1bfcf15d7015fb9b7304dd0af092",
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/AUDIT.json": "80f02a624468735dbaf81a61a5da95ea88be47470f480fae8b6a52eb8e5dc4f9",
-        "previous_stage_manifest.sha256": "f09b06ddd2d7e25f20737be0364f20398d7c155b7c33e184b5f1f95dec281a93"
+        "previous_stage_manifest.sha256": "dffa35a67b3f42e0fb8be1fb413b34b42858d1e914523b6afb8af38e5f1cf026"
       },
       "outputs": [
         {
@@ -695,7 +695,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "ac297ed8eb67ebe9e530d0dbdfccfe21b0f847b55a2c6851de5259f40afe3000"
+      "stage_manifest_sha256": "c05b6f2f06b83e6ba7d1c04033c4e647891f0fe5955abfe1289b7993b33795a7"
     },
     {
       "stage_id": "10",
@@ -713,7 +713,7 @@
           "file_count": 38,
           "inventory_rows": 38,
           "figure_hashes": {
-            "results/figures/FIGURE_INDEX.csv": "d43a50b53319b3a181d206337e4cd1fced6d458eb8b5e63b9e12a374d8ca62d6",
+            "results/figures/FIGURE_INDEX.csv": "30ebeb46eaf121200b69eee036b43ce1cc228ec067368a4a42c1952218940bb2",
             "results/figures/README.md": "b47a03d91d1f122c81837951f7ff9e3fd5d372071feefde55bbcfca2ec826e20",
             "results/figures/FIGURE_REVIEW_GALLERY.html": "b18f22c7059f12fe882fa6802e1a6f22ed54c3cd239b4282a1a1818219b9cdc1",
             "results/figures/Fig01_Methodology_Workflow.pdf": "0053bf11ef38edb4178a13f5684f0593fca7f111d93bdbd5e862790a70f65a5e",
@@ -744,8 +744,8 @@
             "results/figures/FigS07_Source_Redundancy.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
             "results/figures/FigS08_Capacity_Sensitivity.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
             "results/figures/FigS08_Capacity_Sensitivity.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
-            "results/figures/FigS09_Stage7_Diagnostics.pdf": "845e10eaf95b99cd77fec1a667b9bf45b0682abea687415177492bd6d4b7228e",
-            "results/figures/FigS09_Stage7_Diagnostics.png": "d8ee219e669f9345df4ee079022d2a980510e861e4b8bcdd0b9d7b618232e0a2",
+            "results/figures/FigS09_Stage7_Diagnostics.pdf": "37c913783bf037f70a7ffede8e949789edbb8a45ab347f49f123306e2a339d93",
+            "results/figures/FigS09_Stage7_Diagnostics.png": "8de436275c0fbd4cc9c2ce749ff2a768c2761207ec5b5a6d535ca32304ca5216",
             "results/figures/FigS10_Priority_Construction.pdf": "b8ca79e7bea5ef5ddc26d1041e6206529e0007d5fadbb5e15573caa37ddac053",
             "results/figures/FigS10_Priority_Construction.png": "49e8b63f755994fef490fc6d53e44ba163d35f94f435170b7b45967b2a9b1534",
             "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
@@ -784,8 +784,8 @@
             "results/figure_review/Supplement/FigS07.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
             "results/figure_review/Supplement/FigS08.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
             "results/figure_review/Supplement/FigS08.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
-            "results/figure_review/Supplement/FigS09.pdf": "845e10eaf95b99cd77fec1a667b9bf45b0682abea687415177492bd6d4b7228e",
-            "results/figure_review/Supplement/FigS09.png": "d8ee219e669f9345df4ee079022d2a980510e861e4b8bcdd0b9d7b618232e0a2",
+            "results/figure_review/Supplement/FigS09.pdf": "37c913783bf037f70a7ffede8e949789edbb8a45ab347f49f123306e2a339d93",
+            "results/figure_review/Supplement/FigS09.png": "8de436275c0fbd4cc9c2ce749ff2a768c2761207ec5b5a6d535ca32304ca5216",
             "results/figure_review/Supplement/FigS10.pdf": "b8ca79e7bea5ef5ddc26d1041e6206529e0007d5fadbb5e15573caa37ddac053",
             "results/figure_review/Supplement/FigS10.png": "49e8b63f755994fef490fc6d53e44ba163d35f94f435170b7b45967b2a9b1534",
             "results/figure_review/Supplement/FigS11.pdf": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
@@ -795,19 +795,19 @@
             "results/figure_review/Supplement/FigS13.pdf": "4d9ab810a1bdaae29bb01b82ff9d31754786205ced84cc7ed87def4ea6713f31",
             "results/figure_review/Supplement/FigS13.png": "e658e6dcfe3e67ebc38ba6a3ecab1e9bfe9bd7b2f3ac34b10523760aeeecf725"
           },
-          "index_sha256": "d43a50b53319b3a181d206337e4cd1fced6d458eb8b5e63b9e12a374d8ca62d6",
+          "index_sha256": "30ebeb46eaf121200b69eee036b43ce1cc228ec067368a4a42c1952218940bb2",
           "unique_content_count": 38,
           "byte_identical_copy_count": 0
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "ac297ed8eb67ebe9e530d0dbdfccfe21b0f847b55a2c6851de5259f40afe3000",
+          "sha256": "c05b6f2f06b83e6ba7d1c04033c4e647891f0fe5955abfe1289b7993b33795a7",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "suite.suite_manifest_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
-        "final_figures.figure_hashes.results/figures/FIGURE_INDEX.csv": "d43a50b53319b3a181d206337e4cd1fced6d458eb8b5e63b9e12a374d8ca62d6",
+        "final_figures.figure_hashes.results/figures/FIGURE_INDEX.csv": "30ebeb46eaf121200b69eee036b43ce1cc228ec067368a4a42c1952218940bb2",
         "final_figures.figure_hashes.results/figures/README.md": "b47a03d91d1f122c81837951f7ff9e3fd5d372071feefde55bbcfca2ec826e20",
         "final_figures.figure_hashes.results/figures/FIGURE_REVIEW_GALLERY.html": "b18f22c7059f12fe882fa6802e1a6f22ed54c3cd239b4282a1a1818219b9cdc1",
         "final_figures.figure_hashes.results/figures/Fig01_Methodology_Workflow.pdf": "0053bf11ef38edb4178a13f5684f0593fca7f111d93bdbd5e862790a70f65a5e",
@@ -838,8 +838,8 @@
         "final_figures.figure_hashes.results/figures/FigS07_Source_Redundancy.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
         "final_figures.figure_hashes.results/figures/FigS08_Capacity_Sensitivity.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
         "final_figures.figure_hashes.results/figures/FigS08_Capacity_Sensitivity.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
-        "final_figures.figure_hashes.results/figures/FigS09_Stage7_Diagnostics.pdf": "845e10eaf95b99cd77fec1a667b9bf45b0682abea687415177492bd6d4b7228e",
-        "final_figures.figure_hashes.results/figures/FigS09_Stage7_Diagnostics.png": "d8ee219e669f9345df4ee079022d2a980510e861e4b8bcdd0b9d7b618232e0a2",
+        "final_figures.figure_hashes.results/figures/FigS09_Stage7_Diagnostics.pdf": "37c913783bf037f70a7ffede8e949789edbb8a45ab347f49f123306e2a339d93",
+        "final_figures.figure_hashes.results/figures/FigS09_Stage7_Diagnostics.png": "8de436275c0fbd4cc9c2ce749ff2a768c2761207ec5b5a6d535ca32304ca5216",
         "final_figures.figure_hashes.results/figures/FigS10_Priority_Construction.pdf": "b8ca79e7bea5ef5ddc26d1041e6206529e0007d5fadbb5e15573caa37ddac053",
         "final_figures.figure_hashes.results/figures/FigS10_Priority_Construction.png": "49e8b63f755994fef490fc6d53e44ba163d35f94f435170b7b45967b2a9b1534",
         "final_figures.figure_hashes.results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
@@ -876,8 +876,8 @@
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS07.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS08.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS08.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS09.pdf": "845e10eaf95b99cd77fec1a667b9bf45b0682abea687415177492bd6d4b7228e",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS09.png": "d8ee219e669f9345df4ee079022d2a980510e861e4b8bcdd0b9d7b618232e0a2",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS09.pdf": "37c913783bf037f70a7ffede8e949789edbb8a45ab347f49f123306e2a339d93",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS09.png": "8de436275c0fbd4cc9c2ce749ff2a768c2761207ec5b5a6d535ca32304ca5216",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS10.pdf": "b8ca79e7bea5ef5ddc26d1041e6206529e0007d5fadbb5e15573caa37ddac053",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS10.png": "49e8b63f755994fef490fc6d53e44ba163d35f94f435170b7b45967b2a9b1534",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS11.pdf": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
@@ -886,8 +886,8 @@
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS12.png": "9873f794c0863a8c52616b23cfec414a72880fd9a0f13a6669a83540eaa2d5e9",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.pdf": "4d9ab810a1bdaae29bb01b82ff9d31754786205ced84cc7ed87def4ea6713f31",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.png": "e658e6dcfe3e67ebc38ba6a3ecab1e9bfe9bd7b2f3ac34b10523760aeeecf725",
-        "final_figures.index_sha256": "d43a50b53319b3a181d206337e4cd1fced6d458eb8b5e63b9e12a374d8ca62d6",
-        "previous_stage_manifest.sha256": "ac297ed8eb67ebe9e530d0dbdfccfe21b0f847b55a2c6851de5259f40afe3000"
+        "final_figures.index_sha256": "30ebeb46eaf121200b69eee036b43ce1cc228ec067368a4a42c1952218940bb2",
+        "previous_stage_manifest.sha256": "c05b6f2f06b83e6ba7d1c04033c4e647891f0fe5955abfe1289b7993b33795a7"
       },
       "outputs": [
         {
@@ -1004,11 +1004,11 @@
         },
         {
           "path": "results/figures/FigS09_Stage7_Diagnostics.pdf",
-          "sha256": "845e10eaf95b99cd77fec1a667b9bf45b0682abea687415177492bd6d4b7228e"
+          "sha256": "37c913783bf037f70a7ffede8e949789edbb8a45ab347f49f123306e2a339d93"
         },
         {
           "path": "results/figures/FigS09_Stage7_Diagnostics.png",
-          "sha256": "d8ee219e669f9345df4ee079022d2a980510e861e4b8bcdd0b9d7b618232e0a2"
+          "sha256": "8de436275c0fbd4cc9c2ce749ff2a768c2761207ec5b5a6d535ca32304ca5216"
         },
         {
           "path": "results/figures/FigS10_Priority_Construction.pdf",
@@ -1044,7 +1044,7 @@
         },
         {
           "path": "results/figures/FIGURE_INDEX.csv",
-          "sha256": "d43a50b53319b3a181d206337e4cd1fced6d458eb8b5e63b9e12a374d8ca62d6"
+          "sha256": "30ebeb46eaf121200b69eee036b43ce1cc228ec067368a4a42c1952218940bb2"
         },
         {
           "path": "results/figures/README.md",
@@ -1088,8 +1088,8 @@
         "results/figures/FigS07_Source_Redundancy.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
         "results/figures/FigS08_Capacity_Sensitivity.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
         "results/figures/FigS08_Capacity_Sensitivity.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
-        "results/figures/FigS09_Stage7_Diagnostics.pdf": "845e10eaf95b99cd77fec1a667b9bf45b0682abea687415177492bd6d4b7228e",
-        "results/figures/FigS09_Stage7_Diagnostics.png": "d8ee219e669f9345df4ee079022d2a980510e861e4b8bcdd0b9d7b618232e0a2",
+        "results/figures/FigS09_Stage7_Diagnostics.pdf": "37c913783bf037f70a7ffede8e949789edbb8a45ab347f49f123306e2a339d93",
+        "results/figures/FigS09_Stage7_Diagnostics.png": "8de436275c0fbd4cc9c2ce749ff2a768c2761207ec5b5a6d535ca32304ca5216",
         "results/figures/FigS10_Priority_Construction.pdf": "b8ca79e7bea5ef5ddc26d1041e6206529e0007d5fadbb5e15573caa37ddac053",
         "results/figures/FigS10_Priority_Construction.png": "49e8b63f755994fef490fc6d53e44ba163d35f94f435170b7b45967b2a9b1534",
         "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
@@ -1098,7 +1098,7 @@
         "results/figures/FigS12_Crew_Resource_Contrasts.png": "9873f794c0863a8c52616b23cfec414a72880fd9a0f13a6669a83540eaa2d5e9",
         "results/figures/FigS13_Repair_Duration_Contrasts.pdf": "4d9ab810a1bdaae29bb01b82ff9d31754786205ced84cc7ed87def4ea6713f31",
         "results/figures/FigS13_Repair_Duration_Contrasts.png": "e658e6dcfe3e67ebc38ba6a3ecab1e9bfe9bd7b2f3ac34b10523760aeeecf725",
-        "results/figures/FIGURE_INDEX.csv": "d43a50b53319b3a181d206337e4cd1fced6d458eb8b5e63b9e12a374d8ca62d6",
+        "results/figures/FIGURE_INDEX.csv": "30ebeb46eaf121200b69eee036b43ce1cc228ec067368a4a42c1952218940bb2",
         "results/figures/README.md": "b47a03d91d1f122c81837951f7ff9e3fd5d372071feefde55bbcfca2ec826e20",
         "results/revised_suite/LA_Grid_Revised_Suite_20260925": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
       },
@@ -1109,8 +1109,8 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\10_FINAL_RESULTS_AND_FIGURES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "4d54ef307b32d34429760ff73ea6a08366a02f8dc897751359169800fd470606"
+      "stage_manifest_sha256": "0aa1528ab9c88eb959a1c23c8190c64187ece5b7a8fc2d4a2fd1fc481d647264"
     }
   ],
-  "finished_at_utc": "2026-10-08T17:24:32.920223+00:00"
+  "finished_at_utc": "2026-10-08T17:30:41.196678+00:00"
 }

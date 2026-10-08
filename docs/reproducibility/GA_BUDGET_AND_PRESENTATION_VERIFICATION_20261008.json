@@ -280,5 +280,31 @@
     "9": "PASS_REUSE",
     "10": "PASS_REUSE"
   },
-  "original_unrelated_staged_files_preserved": 862
+  "original_unrelated_staged_files_preserved": 862,
+  "cached_diagnostic_reuse_test": {
+    "runs": 25,
+    "objective_calls": 0,
+    "unique_permutations": 325824
+  },
+  "artwork_source_commit": "1c2a369781ad557b4de58673db5a14e22c3027a3",
+  "remote_artwork_checks": [
+    {
+      "path": "results/figure_review/Supplement/FigS05.pdf",
+      "source_commit": "1c2a369781ad557b4de58673db5a14e22c3027a3",
+      "remote_bytes": 46475,
+      "remote_sha256": "25ca0d8a26f9fa4c93cc917f1f60dbcebc3e8f1b81edfada8245d46f3fb1ed39",
+      "materialized_pdf": true
+    },
+    {
+      "path": "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf",
+      "source_commit": "1c2a369781ad557b4de58673db5a14e22c3027a3",
+      "remote_bytes": 84915488,
+      "remote_sha256": "94bb4bfcddb16ea89dd765fbce3a4e0da878428f3db02595bb63c33be6ace1de",
+      "materialized_pdf": true
+    }
+  ],
+  "protected_refs": {
+    "archive/ijdrr-submission-20260722": "182686868cffe962739804f6bc0ccecaed73d601",
+    "main": "8525954d943efe9f06c98c51f218568077788b9b"
+  }
 }
