@@ -27,3 +27,11 @@ The service-loss bars intentionally share a zero baseline; small differences are
 - `data/travel/travel_task_to_task.csv`
 
 Exact identities, displayed values and original artwork hashes are recorded in `COAUTHOR_FIGURE_FEEDBACK_20261008.json`. Scientific definitions, formal policies, mappings and trajectories were not changed. The existing 862 unrelated staged provenance entries are excluded from this round's commits.
+
+## Completed validation
+
+- `python -m pytest -q`: 49 passed.
+- Canonical `run_all.py --resume`: all ten stages PASS_VALIDATE/PASS_REUSE; overall `PASS_ALL_STAGES_REUSE_OR_VALIDATE`.
+- Protected scientific files: 260 checked, 0 changed.
+- 1,367 unaffected committed LFS identities preserved. The 27 figure/index LFS pointers in the artwork commit matched their materialized SHA-256 values.
+- July archive and main refs unchanged; original 862 staged provenance entries excluded and preserved.
