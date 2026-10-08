@@ -11,3 +11,5 @@ This is the single author-review source for the current submission figure set. D
 `FIGURE_MANIFEST.csv` records original generation paths/commits and current source locations, with identical artwork hashes. The same current artwork is synchronized into `results/figures/`. Use the complete packet above to review the entire set. The SCE supported-geography correction is integrated into S8, not a separate figure.
 
 Earlier layouts and single-figure edit folders are retained outside this author-facing directory in `provenance/figure_review_history/`.
+
+S05 distinguishes the original five-seed search from the separate 20-seed expanded-budget diagnostic. [Full numerical audit](../../docs/reviewer/GA_SEARCH_BUDGET_SENSITIVITY_20261007.md); the formal evaluation sequence is unchanged. S06 tests dependency and service-model assumptions.

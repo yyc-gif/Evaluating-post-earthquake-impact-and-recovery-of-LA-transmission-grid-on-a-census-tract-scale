@@ -20,7 +20,7 @@ S8 uses the strict-SCE supported denominator; detailed numerical tables are in [
 - **FigS01** — How do substation damage and initial modeled tract service availability vary across scenarios?
 - **FigS03** — Where are crew origins and how does directed travel enter restoration?
 - **FigS04** — What do network criticality and dynamic connectivity diagnostics show?
-- **FigS05** — What do the five genetic-algorithm searches show relative to the incumbent?
+- **FigS05** — How do original and expanded genetic-algorithm search budgets compare with the incumbent?
 - **FigS06** — What do public records support, and how sensitive are modeled outcomes to cutoff, threshold and source requirements?
 - **FigS07** — How do alternate source paths affect modeled connectivity?
 - **FigS08** — How large is capacity-induced service loss on the SCE-supported geography?
@@ -30,4 +30,4 @@ S8 uses the strict-SCE supported denominator; detailed numerical tables are in [
 - **FigS12** — How do all policy outcomes vary across the tested crew conditions?
 - **FigS13** — How do all policy outcomes vary across the tested duration conditions?
 
-S01 combines station damage and the former S02 initial-service maps. S06 covers mapping/service assumptions; S12 and S13 retain the separate crew and duration scenario families.
+S01 combines station damage and the former S02 initial-service maps. S06 tests dependency and service-model assumptions; S12 and S13 retain the separate crew and duration scenario families.
