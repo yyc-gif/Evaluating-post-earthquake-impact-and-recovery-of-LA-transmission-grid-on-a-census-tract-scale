@@ -1,0 +1,436 @@
+{
+  "base_commit": "8b0b75397a1a6dc152fde95289696ae63d71087d",
+  "figures": [
+    {
+      "before_sha256": "28536f50577b3b38e5c855667ef7c13fa8decd3861bc2cfe670c9c34e07a16b8",
+      "change": "Mechanism-grouped key; three grouped service-loss bars per strategy with preserved realization ranges; T80 remains separate.",
+      "scientific_sources": [
+        {
+          "path": "Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",
+          "sha256": "7f6d7bfd55883fb05b04088e65eea02da579c553064f40d992452cc92690cc4d"
+        },
+        {
+          "path": "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet",
+          "sha256": "8212425edf96dc1ebc6f98d8f80d08e7a7e378ce72d814f86e80983548d4997c"
+        }
+      ],
+      "display_values": [
+        {
+          "strategy": "impact-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 33.593686467844854,
+          "p05": 29.47939488907694,
+          "p95": 37.6928302662577
+        },
+        {
+          "strategy": "impact-first",
+          "metric": "burden_Q4_hr",
+          "mean": 32.73300490554173,
+          "p05": 28.053174298439206,
+          "p95": 37.459694282430384
+        },
+        {
+          "strategy": "impact-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 33.05932720079036,
+          "p05": 28.63122667922893,
+          "p95": 37.4363307890268
+        },
+        {
+          "strategy": "impact-first",
+          "metric": "population_T80_hr",
+          "mean": 45.251090655927634,
+          "p05": 40.18090902988713,
+          "p95": 50.60176271925809
+        },
+        {
+          "strategy": "hospital-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 34.30646521839252,
+          "p05": 30.132437271673204,
+          "p95": 38.387729126186166
+        },
+        {
+          "strategy": "hospital-first",
+          "metric": "burden_Q4_hr",
+          "mean": 33.618165154976595,
+          "p05": 28.83473337571684,
+          "p95": 38.327967908954754
+        },
+        {
+          "strategy": "hospital-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 33.366687787180126,
+          "p05": 28.878285831937003,
+          "p95": 37.81770798870994
+        },
+        {
+          "strategy": "hospital-first",
+          "metric": "population_T80_hr",
+          "mean": 45.97053519389106,
+          "p05": 40.599154375503076,
+          "p95": 51.25960814775676
+        },
+        {
+          "strategy": "degree-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 35.707709164451444,
+          "p05": 31.441243471536957,
+          "p95": 40.10001345662655
+        },
+        {
+          "strategy": "degree-first",
+          "metric": "burden_Q4_hr",
+          "mean": 34.90036944094061,
+          "p05": 30.132807720411844,
+          "p95": 39.69285431067533
+        },
+        {
+          "strategy": "degree-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 35.73100591148288,
+          "p05": 31.01763535739453,
+          "p95": 40.52049912777076
+        },
+        {
+          "strategy": "degree-first",
+          "metric": "population_T80_hr",
+          "mean": 49.50967725147978,
+          "p05": 43.772286406871,
+          "p95": 55.38989447024263
+        },
+        {
+          "strategy": "vulnerability-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 34.25784945267778,
+          "p05": 30.100819151961225,
+          "p95": 38.37673675661431
+        },
+        {
+          "strategy": "vulnerability-first",
+          "metric": "burden_Q4_hr",
+          "mean": 32.02349416829504,
+          "p05": 27.46253962554764,
+          "p95": 36.80707368283731
+        },
+        {
+          "strategy": "vulnerability-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 33.93907633764768,
+          "p05": 29.34974622356871,
+          "p95": 38.443648780533316
+        },
+        {
+          "strategy": "vulnerability-first",
+          "metric": "population_T80_hr",
+          "mean": 46.43682784802011,
+          "p05": 41.18240329404675,
+          "p95": 51.88608457268979
+        },
+        {
+          "strategy": "centrality-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 36.12592228299649,
+          "p05": 31.756516619588485,
+          "p95": 40.53933502478712
+        },
+        {
+          "strategy": "centrality-first",
+          "metric": "burden_Q4_hr",
+          "mean": 35.69535045279954,
+          "p05": 30.780775417490293,
+          "p95": 40.55554483603338
+        },
+        {
+          "strategy": "centrality-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 35.8267826261319,
+          "p05": 31.117329043915056,
+          "p95": 40.74276728077427
+        },
+        {
+          "strategy": "centrality-first",
+          "metric": "population_T80_hr",
+          "mean": 48.44182437972154,
+          "p05": 42.71842868773463,
+          "p95": 54.070042914162634
+        },
+        {
+          "strategy": "betweenness-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 35.52157245879788,
+          "p05": 31.25864400402996,
+          "p95": 39.94200504566688
+        },
+        {
+          "strategy": "betweenness-first",
+          "metric": "burden_Q4_hr",
+          "mean": 34.73011729067136,
+          "p05": 29.886003185622325,
+          "p95": 39.40378685340413
+        },
+        {
+          "strategy": "betweenness-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 35.37954022527479,
+          "p05": 30.660913995675045,
+          "p95": 40.16580281197064
+        },
+        {
+          "strategy": "betweenness-first",
+          "metric": "population_T80_hr",
+          "mean": 47.83094218068314,
+          "p05": 42.23549030377364,
+          "p95": 53.076140922518555
+        },
+        {
+          "strategy": "closeness-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 35.512499896383254,
+          "p05": 31.210506699384887,
+          "p95": 39.90570622733841
+        },
+        {
+          "strategy": "closeness-first",
+          "metric": "burden_Q4_hr",
+          "mean": 34.066060509449684,
+          "p05": 29.355661925891244,
+          "p95": 38.99708474152569
+        },
+        {
+          "strategy": "closeness-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 35.620139482363584,
+          "p05": 30.90737220919845,
+          "p95": 40.16004327288152
+        },
+        {
+          "strategy": "closeness-first",
+          "metric": "population_T80_hr",
+          "mean": 49.53179571268763,
+          "p05": 43.802510843716426,
+          "p95": 55.59594349254594
+        },
+        {
+          "strategy": "random",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 39.3884897974452,
+          "p05": 34.55176251816403,
+          "p95": 44.303414312837106
+        },
+        {
+          "strategy": "random",
+          "metric": "burden_Q4_hr",
+          "mean": 37.51984554270041,
+          "p05": 32.35397540191517,
+          "p95": 43.071333061475414
+        },
+        {
+          "strategy": "random",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 39.92426454980686,
+          "p05": 34.4434854521834,
+          "p95": 45.152500536625894
+        },
+        {
+          "strategy": "random",
+          "metric": "population_T80_hr",
+          "mean": 52.86287270549062,
+          "p05": 46.349108643789975,
+          "p95": 59.989969085701496
+        },
+        {
+          "strategy": "unconstrained",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 31.337776981796647,
+          "p05": 27.59068173865704,
+          "p95": 35.105784158681104
+        },
+        {
+          "strategy": "unconstrained",
+          "metric": "burden_Q4_hr",
+          "mean": 30.637942975052958,
+          "p05": 26.141422737502783,
+          "p95": 35.3521354614291
+        },
+        {
+          "strategy": "unconstrained",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 31.402914717863798,
+          "p05": 27.05274244265606,
+          "p95": 35.51867384654218
+        },
+        {
+          "strategy": "unconstrained",
+          "metric": "population_T80_hr",
+          "mean": 43.399848296543865,
+          "p05": 38.46480994740435,
+          "p95": 48.51803681572963
+        }
+      ],
+      "curve_geometry_changed": false,
+      "file": "Main/Fig04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        204.99999779595268
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "dbf76b0535298e5c02c04803cb726e718223d045a7450c2fc9548fe577e5334f",
+      "png_sha256": "42856aae8894c66a2f33f67e26da2e5ff8cd97935e29f291ac133ffd97df25a8"
+    },
+    {
+      "before_sha256": "6df0611affa54d357f403be7a465702917ceba32f728eb776f804d8e9a655273",
+      "change": "A: directly label the existing Vulnerability-first point with an arrow.",
+      "dot_center_pt": [
+        146.72859954833984,
+        188.87857055664062
+      ],
+      "data_coordinates_changed": false,
+      "file": "Main/Fig05.pdf",
+      "size_mm": [
+        184.99999118381075,
+        250.0000072903103
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "05c26fdf97faeada72bc2345d5e1cd3dde3d7cf7971794a604ae4ed3133e016f",
+      "png_sha256": "43c24c3fcc833ea63e9a27933cac9d9179d24a8a4731adde8391ed50b70efbe1"
+    },
+    {
+      "before_sha256": "fb6034d5d139ed5920e020eff815c3fb6060f67d8dab837a0d9088289e68caea",
+      "change": "Repeated public-site benchmark removed; unchanged native cutoff/gate/threshold panels reflowed and lettered A/B/C.",
+      "benchmark_location": "Main/Fig02, Panel D",
+      "scientific_graphics_scaled": false,
+      "file": "Supplement/FigS06.pdf",
+      "size_mm": [
+        184.99999118381075,
+        152.00000288221568
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "47725e1dd6ae9067da253de3901030c91c788930c9b02fc9ace7d68b7787a1f3",
+      "png_sha256": "59726b967929437030d4e8c0f15c381d20cfd5236cc1c93afdcc806d0f3d67b8"
+    },
+    {
+      "before_sha256": "37c913783bf037f70a7ffede8e949789edbb8a45ab347f49f123306e2a339d93",
+      "change": "Cluster legend circle diameter increased by 50%; annotate the selected fifth PC without relabeling it an elbow.",
+      "pca_source": "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/pca_stats_with_eigenvalues.csv",
+      "pca_sha256": "9a61aaae4678aa25d08cf2fcf0c00caca93807213a5a9904c46110c81e44ac08",
+      "pc_selection_rule": "Five eigenvalues exceed 1; no new PCA or elbow computation.",
+      "selected_pc5_ratio": 0.09450286036685,
+      "selected_pc5_center_pt": [
+        396.732666015625,
+        130.59445190429688
+      ],
+      "file": "Supplement/FigS09.pdf",
+      "size_mm": [
+        184.99999118381075,
+        173.99999508327906
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "b838169a879013af0e59f92ea489c5c8b2b3b4327736da5c5d96121aff74d9b6",
+      "png_sha256": "13bc037e97b4b06aa29fcfe06b0c65754d76dc776293417d845087ef90c17b5c"
+    },
+    {
+      "before_sha256": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
+      "change": "One compact 2pc50 heatmap with four outcome columns; full cross-hazard evidence retained.",
+      "scientific_source": "provenance/figure_review_history/candidate_v2.1/CROSS_HAZARD_POLICY_EFFECTS.csv",
+      "source_sha256": "2827deeb2a021e9599a8a1f6673f1feff8e5545bcbc28cca7cd7d21d55c1a2ab",
+      "metrics": [
+        "population_weighted_normalized_burden_hr",
+        "burden_Q4_hr",
+        "hospital_mean_normalized_burden_hr",
+        "population_T80_hr"
+      ],
+      "strategy_order": [
+        "impact-first",
+        "hospital-first",
+        "degree-first",
+        "vulnerability-first",
+        "centrality-first",
+        "betweenness-first",
+        "closeness-first",
+        "random"
+      ],
+      "display_values": [
+        [
+          2.2559094860482056,
+          2.095061930488774,
+          1.6564124829265578,
+          1.8512423593837608
+        ],
+        [
+          2.9686882365958818,
+          2.9802221799236404,
+          1.96377306931632,
+          2.570686897347202
+        ],
+        [
+          4.369932182654801,
+          4.2624264658876525,
+          4.328091193619083,
+          6.109828954935908
+        ],
+        [
+          2.9200724708811365,
+          1.385551193242079,
+          2.5361616197838783,
+          3.0369795514762457
+        ],
+        [
+          4.788145301199842,
+          5.057407477746583,
+          4.423867908268103,
+          5.041976083177666
+        ],
+        [
+          4.183795477001228,
+          4.092174315618408,
+          3.9766255074109846,
+          4.43109388413927
+        ],
+        [
+          4.174722914586607,
+          3.428117534396732,
+          4.217224764499788,
+          6.131947416143767
+        ],
+        [
+          8.05071281564855,
+          6.88190256764745,
+          8.521349831943066,
+          9.463024408946756
+        ]
+      ],
+      "color_scale": "Common symmetric true-hour scale, not metric-specific normalized colors.",
+      "cross_hazard_evidence": "results/figure_review/Additional_Evidence/Cross_Hazard_Policy_Contrasts.pdf",
+      "cross_hazard_pdf_sha256": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
+      "file": "Supplement/FigS11.pdf",
+      "size_mm": [
+        184.99999118381075,
+        113.00000398423936
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "92ce964d29ab8e6029aff6cd33ec1bda97d688ea7135f5a1c852c54a3f397b3e",
+      "png_sha256": "b17b98744a3b109a48aa63101116688b382a615f3b2ad61010144c088f3de2dd"
+    }
+  ],
+  "directed_travel_review": {
+    "file": "data/travel/travel_task_to_task.csv",
+    "sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
+    "matrix_shape": [
+      92,
+      92
+    ],
+    "asymmetric_directed_entries": 8324,
+    "max_reverse_direction_difference_hr": 0.0743962505850963,
+    "action": "Retain both triangles: opposite road directions are not duplicate entries."
+  },
+  "scientific_stage_invoked": false,
+  "source_tables_changed": false,
+  "verification": {
+    "protected_scientific_file_count": 260,
+    "changed_protected_scientific_files": [],
+    "unrelated_staged_entries_preserved": 862,
+    "protected_july_ref": "182686868cffe962739804f6bc0ccecaed73d601",
+    "main_ref": "8525954d943efe9f06c98c51f218568077788b9b"
+  }
+}

@@ -21,12 +21,12 @@ S8 uses the strict-SCE supported denominator; detailed numerical tables are in [
 - **FigS03** — Where are crew origins and how does directed travel enter restoration?
 - **FigS04** — What do network criticality and dynamic connectivity diagnostics show?
 - **FigS05** — How do original and expanded genetic-algorithm search budgets compare with the incumbent?
-- **FigS06** — What do public records support, and how sensitive are modeled outcomes to cutoff, threshold and source requirements?
+- **FigS06** — How sensitive are modeled outcomes to cutoff, threshold and source requirements?
 - **FigS07** — How do alternate source paths affect modeled connectivity?
 - **FigS08** — How large is capacity-induced service loss on the SCE-supported geography?
 - **FigS09** — What diagnostics support the community typology?
 - **FigS10** — How are the population, hospital-linked and vulnerability priorities constructed?
-- **FigS11** — Which policy effects differ across earthquake scenarios?
+- **FigS11** — How do eight policies change four outcomes under 2pc50? Complete cross-hazard contrasts remain in Additional Evidence.
 - **FigS12** — How do all policy outcomes vary across the tested crew conditions?
 - **FigS13** — How do all policy outcomes vary across the tested duration conditions?
 
