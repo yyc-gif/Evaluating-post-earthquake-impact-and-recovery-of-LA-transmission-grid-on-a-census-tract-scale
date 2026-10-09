@@ -1,0 +1,43 @@
+{
+  "base_commit": "63f6ab0daf23ac89bfdeee973b003dc7c177e4ff",
+  "figures": [
+    {
+      "before_sha256": "4383101ff2fb257cab3b6ab777ca249d126a3db25aad9fcd099998519109ab44",
+      "change": "Grouped policy legend above A, shared by recovery curves and T80 outcomes; service-loss bars retain means only; T80 intervals remain.",
+      "deleted_range_paint_operators": {
+        "S": 27,
+        "B": 54
+      },
+      "data_values_changed": false,
+      "figure_dimensions_changed": false,
+      "curve_scale_changed": false,
+      "file": "Main/Fig04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        204.99999779595268
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "e8804df46b9c529805871a23bd24c3a9a601e4ff0babb52c0d65d0880ccf524a",
+      "png_sha256": "7e119afc437833e814170125b468e23505639704e84f72dacfdf84df7a706f1c"
+    },
+    {
+      "before_sha256": "7b2ced59f4148a6f7751931b5bfd666d0f3dcf9bc53e61e6c9c27b935ea1e57a",
+      "change": "Explicit N/A meaning without falsely describing all excluded tracts as having no residents.",
+      "source_table": "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/stage7_typology_noneligible_tracts.csv",
+      "source_sha256": "75226d659d55df9e5fe49304b87811d97df10cf68704551ec27d2ed1259d9f24",
+      "noneligible_tracts": 24,
+      "zero_formal_population_tracts": 16,
+      "positive_population_zero_housing_tracts": 8,
+      "map_geometry_and_membership_changed": false,
+      "file": "Main/Fig07.pdf",
+      "size_mm": [
+        184.99999118381075,
+        252.99999643961587
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68",
+      "png_sha256": "4b29093179d401e00e904277f8e621525542b2456393a8643f573e672d5d735d"
+    }
+  ],
+  "scientific_content_changed": false
+}
