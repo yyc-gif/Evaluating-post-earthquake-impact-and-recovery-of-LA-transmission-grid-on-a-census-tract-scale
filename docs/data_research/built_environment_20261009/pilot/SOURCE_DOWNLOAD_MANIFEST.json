@@ -1,0 +1,229 @@
+[
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2022/table-based-SF/data/5YRData/acsdt5y2022-b25024.dat",
+    "file": "acsdt5y2022-b25024.dat",
+    "bytes": 47932915,
+    "sha256": "94e8391aa289ce5e12984d143b65ce1cf10f091d46c95c228d224a2a7d0e0809",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://api.census.gov/data/2022/acs/acs5/groups/B25024.json",
+    "file": "B25024_metadata.json",
+    "bytes": 207548,
+    "sha256": "dc47357025d96b734e7e0035c933ed69227509985f8d656d0c5abf725e639a80",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://api.census.gov/data/2022/acs/acs5/groups/B25034.json",
+    "file": "B25034_metadata.json",
+    "bytes": 208008,
+    "sha256": "e52042e03bbe641fb92e3f415fb43a64205e9710fe45778019bd80b81ae065b2",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0?f=pjson",
+    "file": "EPA_SLD_v3_layer.json",
+    "bytes": 41488,
+    "sha256": "e6a1018b1bb7d929099eeec974c8a589043451ec7c84c3bae1e5d2549fa8cc5a",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0?f=pjson",
+    "file": "SCAG_2019_1_layer.json",
+    "bytes": 91395,
+    "sha256": "0acf13bc43ff853cfcffa68969e328d8f3b73b04ae3a1c09f98554e9ccd55846",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://maps.scag.ca.gov/scaggis/rest/services/LDX/Existinglanduse_poly_LA/MapServer?f=pjson",
+    "file": "SCAG_current_LA_service.json",
+    "bytes": 39018,
+    "sha256": "04f97ea16a0d941f202e3ad563422621345c310ebe5a8f5e27a25a0aa0255065",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://usgs-landcover.s3.us-west-2.amazonaws.com/?list-type=2&prefix=annual-nlcd/c1/&delimiter=/",
+    "file": "nlcd_s3_c1_listing.xml",
+    "error": "HTTP Error 403: Forbidden",
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://www.census.gov/geographies/reference-files/2020/geo/relationship-files.html",
+    "file": "census_relationship_page.html",
+    "bytes": 2687953,
+    "sha256": "4e6cee4dc43ba80bae5554f1de76e3748c7dfbb0f08d8452601e986e53064793",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://dam.assets.ohio.gov/image/upload/ema.ohio.gov/mip/links/2023/ema-sohmp-AppendixJ.pdf",
+    "file": "FEMA_March2023_documentation.pdf",
+    "bytes": 23091570,
+    "sha256": "23f09170a909cd1cafcbbc61b3228ccd7bda3ed5714378bf7993d3fd25a48ab9",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Fractional-Impervious-Surface-Native_conus_year_data/wms?service=WMS&request=GetCapabilities",
+    "file": "Annual_NLCD_WMS_capabilities.xml",
+    "bytes": 226153,
+    "sha256": "3514c07b82d74cc94fcd0850de5b4e2f3620a7c642be1cff4f65f1048d8e9c58",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/blkgrp/tab20_blkgrp20_blkgrp10_st06.txt",
+    "file": "tab20_blkgrp20_blkgrp10_st06.txt",
+    "bytes": 4396510,
+    "sha256": "7264a05b9576da6d4c6e2f78da8c02b8f8a7ff235252e764be2c7fa4feac9f4d",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0/query?f=json&where=STATEFP%3D6+AND+COUNTYFP%3D37&outFields=GEOID10%2CGEOID20%2CHH%2CTotEmp%2CE5_Ret%2CE5_Off%2CE5_Ind%2CE5_Svc%2CE5_Ent%2CD2A_EPHHM%2CD2B_E8MIXA&returnGeometry=false&resultOffset=0&resultRecordCount=1000&orderByFields=OBJECTID",
+    "file": "EPA_LA_BG_page_00000.json",
+    "bytes": 192375,
+    "sha256": "aa0a42948fe521cd2558f3e90e1c1b3de74a0b9c2d244011f3374d53f15af183",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0/query?f=json&where=STATEFP%3D6+AND+COUNTYFP%3D37&outFields=GEOID10%2CGEOID20%2CHH%2CTotEmp%2CE5_Ret%2CE5_Off%2CE5_Ind%2CE5_Svc%2CE5_Ent%2CD2A_EPHHM%2CD2B_E8MIXA&returnGeometry=false&resultOffset=1000&resultRecordCount=1000&orderByFields=OBJECTID",
+    "file": "EPA_LA_BG_page_01000.json",
+    "bytes": 192231,
+    "sha256": "443edd71940367cbf8f9ae4bef9dd24d62dd2af797b1518676f2dad4c9c98307",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0/query?f=json&where=STATEFP%3D6+AND+COUNTYFP%3D37&outFields=GEOID10%2CGEOID20%2CHH%2CTotEmp%2CE5_Ret%2CE5_Off%2CE5_Ind%2CE5_Svc%2CE5_Ent%2CD2A_EPHHM%2CD2B_E8MIXA&returnGeometry=false&resultOffset=2000&resultRecordCount=1000&orderByFields=OBJECTID",
+    "file": "EPA_LA_BG_page_02000.json",
+    "bytes": 192133,
+    "sha256": "7ed438bd48dc1a7ba716ab84e9936015e0de38428bd6cec90f35ef7d2c348b0f",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0/query?f=json&where=STATEFP%3D6+AND+COUNTYFP%3D37&outFields=GEOID10%2CGEOID20%2CHH%2CTotEmp%2CE5_Ret%2CE5_Off%2CE5_Ind%2CE5_Svc%2CE5_Ent%2CD2A_EPHHM%2CD2B_E8MIXA&returnGeometry=false&resultOffset=3000&resultRecordCount=1000&orderByFields=OBJECTID",
+    "file": "EPA_LA_BG_page_03000.json",
+    "bytes": 192105,
+    "sha256": "6bc685c8a4ec0a0b9eb70e7f5fb1b6511db7984f2f237602d31597e142f48377",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0/query?f=json&where=STATEFP%3D6+AND+COUNTYFP%3D37&outFields=GEOID10%2CGEOID20%2CHH%2CTotEmp%2CE5_Ret%2CE5_Off%2CE5_Ind%2CE5_Svc%2CE5_Ent%2CD2A_EPHHM%2CD2B_E8MIXA&returnGeometry=false&resultOffset=4000&resultRecordCount=1000&orderByFields=OBJECTID",
+    "file": "EPA_LA_BG_page_04000.json",
+    "bytes": 192450,
+    "sha256": "46300629401aa5e8c5cce54da9ee06a153eb85781c3d6c305dd59c34d3f23cdc",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0/query?f=json&where=STATEFP%3D6+AND+COUNTYFP%3D37&outFields=GEOID10%2CGEOID20%2CHH%2CTotEmp%2CE5_Ret%2CE5_Off%2CE5_Ind%2CE5_Svc%2CE5_Ent%2CD2A_EPHHM%2CD2B_E8MIXA&returnGeometry=false&resultOffset=5000&resultRecordCount=1000&orderByFields=OBJECTID",
+    "file": "EPA_LA_BG_page_05000.json",
+    "bytes": 191819,
+    "sha256": "bb441d802c26d70647a5d2970fa69682ac7fff16af74ac20a80187ac1b3ffad8",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0/query?f=json&where=STATEFP%3D6+AND+COUNTYFP%3D37&outFields=GEOID10%2CGEOID20%2CHH%2CTotEmp%2CE5_Ret%2CE5_Off%2CE5_Ind%2CE5_Svc%2CE5_Ent%2CD2A_EPHHM%2CD2B_E8MIXA&returnGeometry=false&resultOffset=6000&resultRecordCount=1000&orderByFields=OBJECTID",
+    "file": "EPA_LA_BG_page_06000.json",
+    "bytes": 82477,
+    "sha256": "fba0790a8a5ad48bf5bcc6eff48f80397c8396b80455b40a489e3de91955265c",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": false
+  },
+  {
+    "url": "https://maps.scag.ca.gov/scaggis/rest/services/LDX/Existinglanduse_poly_LA/MapServer/0?f=pjson",
+    "file": "SCAG_current_LA_layer.json",
+    "bytes": 16510,
+    "sha256": "b75980a2b67390a825a5ccf57ccbbb6047b6f8952f6a9055311071efd5505ea5",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27&returnCountOnly=true",
+    "file": "SCAG2019_LA_count_verified.json",
+    "bytes": 17,
+    "sha256": "bf1d16e16e5e216fdf083b5739398ebdd1ef63ec019eb8332b236645fa8fc38f",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27&returnGeometry=false&groupByFieldsForStatistics=LU19_SRC&outStatistics=%5B%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22OBJECTID%22%2C+%22outStatisticFieldName%22%3A+%22parcel_records%22%7D%5D",
+    "file": "SCAG2019_LA_source_counts_verified.json",
+    "bytes": 687,
+    "sha256": "e36d1b274f0af5286c5784e69d7e3f5cbc3d3cf7c7119322fd88be7587f5f2f6",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27&returnGeometry=false&groupByFieldsForStatistics=LU19&outStatistics=%5B%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22OBJECTID%22%2C+%22outStatisticFieldName%22%3A+%22parcel_records%22%7D%5D",
+    "file": "SCAG2019_LA_landuse_counts_verified.json",
+    "bytes": 6830,
+    "sha256": "234a978d0d63b00c3d3f96beb4e26620cd350f4cdf887eed2a3448cd8f9756f8",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27+AND+%28STACK%3E0+OR+APN_DUP%3E0%29&returnCountOnly=true",
+    "file": "SCAG2019_LA_qa_counts_verified.json",
+    "bytes": 17,
+    "sha256": "bf1d16e16e5e216fdf083b5739398ebdd1ef63ec019eb8332b236645fa8fc38f",
+    "cached": true,
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27&returnGeometry=false&groupByFieldsForStatistics=STACK&outStatistics=%5B%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22OBJECTID%22%2C+%22outStatisticFieldName%22%3A+%22parcel_records%22%7D%5D",
+    "resolved_url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27&returnGeometry=false&groupByFieldsForStatistics=STACK&outStatistics=%5B%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22OBJECTID%22%2C+%22outStatisticFieldName%22%3A+%22parcel_records%22%7D%5D",
+    "content_type": "application/json; charset=UTF-8",
+    "last_modified": null,
+    "bytes": 12434,
+    "file": "SCAG2019_LA_stack_distribution.json",
+    "sha256": "e4d3ac4a5870090a7e5c2f29f5a81fc426ebdb68b83498425fc9ab46707db8d2",
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  },
+  {
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27&returnGeometry=false&groupByFieldsForStatistics=APN_DUP&outStatistics=%5B%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22OBJECTID%22%2C+%22outStatisticFieldName%22%3A+%22parcel_records%22%7D%5D",
+    "resolved_url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY_ID%3D%27037%27&returnGeometry=false&groupByFieldsForStatistics=APN_DUP&outStatistics=%5B%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22OBJECTID%22%2C+%22outStatisticFieldName%22%3A+%22parcel_records%22%7D%5D",
+    "content_type": "application/json; charset=UTF-8",
+    "last_modified": null,
+    "bytes": 374,
+    "file": "SCAG2019_LA_apn_distribution.json",
+    "sha256": "1e801329bb89fb66f5e0fd727c9d75c2f572dd4d153dbf0ab32d22ad8b39f015",
+    "accessed_date": "2026-10-09",
+    "retained_in_commit": true
+  }
+]

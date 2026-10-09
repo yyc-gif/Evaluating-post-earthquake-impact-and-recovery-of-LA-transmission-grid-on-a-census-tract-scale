@@ -1,0 +1,354 @@
+{
+ "currentVersion": 11.5,
+ "cimVersion": "3.5.0",
+ "id": 0,
+ "name": "Existinglanduse_poly_LA",
+ "type": "Feature Layer",
+ "description": "SCAG has developed its regional geospatial dataset of land use information at the parcel-level (approximately five million parcels) for 197 local jurisdictions in its region.  The regional land use dataset is developed (1) to aid in SCAG\u2019s regional transportation planning, scenario planning and growth forecasting, (2) facilitate policy discussion on various planning issues, and (3) enhance information database to better serve SCAG member jurisdictions, research institutes, universities, developers, general public, etc.  It is the most frequently and widely utilized SCAG geospatial data.  In 2024, SCAG successfully released the final 2019 regional land use dataset, developed for the Final Connect SoCal 2024, the 2024-2050 Regional Transportation Plan/Sustainable Communities Strategy (RTP/SCS), which includes general plan land use, specific plan land use, zoning code and existing land use information.  The 2019 regional land use dataset was reviewed by local jurisdiction, and SCAG staff made every effort to ensure the data reflect local jurisdiction\u2019s input received during the Connect SoCal 2024 Local Data Exchange process.  Following the successful adoption of Connect SoCal 2024, SCAG launched the 2024 regional land use data development process to update parcel-level land use information in preparation for Connect SoCal 2050, the 2028-2050 Regional Transportation Plan/Sustainable Communities Strategy (RTP/SCS). Between summer and fall of 2024, SCAG staff collected 2024 parcel boundary GIS files and tax roll property data from county assessor\u2019s offices. After several months of data standardization and cleanup, SCAG released the 2024 parcel boundary GIS files in March 2025, followed by the 2024 Annual Land Use dataset in June 2025.  SCAG staff migrated the 2019 existing land use information to 2024 parcel polygons and incorporated any recent land use changes since the year 2019.  As a part of the update process, SCAG staff identified newly developed parcels that were previously vacant by analyzing county assessor\u2019s tax roll information (including use codes and assessed valuations) and building footprint information.  Additional geoprocessing was performed to improve accuracy using reference layers, such as California Protected Areas Database (CPAD), California School Campus Database (CSCD), Farmland Mapping and Monitoring Program (FMMP)\u2019s Important Farmland, U.S. Department of Defense\u2019s Military Installations, Ranges, and Training Areas (MIRTA).  This dataset is intended for planning purposes only, and SCAG shall incur no responsibility or liability as to the completeness, currentness, or accuracy of this information. SCAG assumes no responsibility arising from use of this information by individuals, businesses, or other public entities. The information is provided with no warranty of any kind, expressed or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. Users should consult with each local jurisdiction directly to obtain the official land use information.Data Field/Value description: Field Description:Field NameData TypeLengthField DefinitionOBJECTIDObject IDInternal feature numberShapeGeometryType of geometryPID24Text142024 SCAG's unique parcel identifierAPN24Text102024 Assessor Parcel NumberPARENT_INDEXShortParent Parcel Index ('0' = not a parent parcel; '1' = parent parcel)COUNTYText14County nameCOUNTY_IDText3County FIPS codeCITYText22City nameCITY_IDText5City FIPS codeMULTIPARTShortMultipart feature (the number of multipart polygons; '1' = singlepart feature)STACKShortDuplicate geometry (the number of stacked polygons including all base parcels and children parcels; '1' = no duplicate polygons)ACRESDoubleParcel area (in acres)SLOPEShortSlope information1GEOID20Text152020 Census Block GEOIDPID19Text132019 SCAG's unique parcel identifierLU24Text42024 existing land use codeLU24_2NDText42024 existing land use code for secondary useLU24_RATIO_2NDDoubleArea ratio of secondary use coverageAPN19Text152019 Assessor\u2019s parcel numberLU19Text42019 existing land use codeYEARText4Year when existing land use information is updatedNOTESText200Additional informationShape_LengthDoubleLength of feature in internal unitsShape_AreaDoubleArea of feature in internal units squaredValue Description:2024 SCAG Land Use Codes: Please refer to SCAG Land Use Code Description for details.LegendLand Use Description Single Family Residential1110 Single Family Residential1111  High Density Single Family Residential (9 or more DUs/ac)1112  Medium Density Single Family Residential (3-8 DUs/ac)1113  Low Density Single Family Residential (2 or less DUs/ac)Multi-Family Residential1120 Multi-Family Residential1121 Mixed Multi-Family Residential1122 Duplexes, Triplexes and 2- or 3-Unit Condominiums and Townhouses1123 Low-Rise Apartments, Condominiums, and Townhouses1124 Medium-Rise Apartments and Condominiums1125 High-Rise Apartments and CondominiumsMobile Homes and Trailer Parks1130 Mobile Homes and Trailer Parks1131 Trailer Parks and Mobile Home Courts, High-Density1132 Mobile Home Courts and Subdivisions, Low-DensityMixed Residential1140 Mixed Residential1100  ResidentialRural Residential 1150 Rural ResidentialGeneral Office1210 General Office Use1211 Low- and Medium-Rise Major Office Use1212 High-Rise Major Office Use1213 SkyscrapersCommercial and Services1200  Commercial and Services1220 Retail Stores and Commercial Services1221 Regional Shopping Center 1222 Retail Centers (Non-Strip With Contiguous Interconnected Off-Street Parking)1223 Retail Strip Development1230 Other Commercial1231 Commercial Storage1232 Commercial Recreation1233 Hotels and MotelsFacilities1240 Public Facilities1241 Government Offices1242 Police and Sheriff Stations1243 Fire Stations1244 Major Medical Health Care Facilities1245 Religious Facilities1246 Other Public Facilities1247 Public Parking Facilities1250 Special Use Facilities1251 Correctional Facilities1252 Special Care Facilities1253 Other Special Use FacilitiesEducation1260 Educational Institutions1261 Pre-Schools/Day Care Centers1262 Elementary Schools1263 Junior or Intermediate High Schools1264 Senior High Schools1265 Colleges and Universities1266 Trade Schools and Professional Training FacilitiesMilitary Installations1270 Military Installations1271 Base (Built-up Area)1272 Vacant Area1273 Air Field1274 Former Base (Built-up Area)1275 Former Base Vacant Area1276 Former Base Air FieldIndustrial1300  Industrial 1310 Light Industrial1311 Manufacturing, Assembly, and Industrial Services1312 Motion Picture and Television Studio Lots1313 Packing Houses and Grain Elevators1314 Research and Development1320 Heavy Industrial1321 Manufacturing1322 Petroleum Refining and Processing1323 Open Storage1324 Major Metal Processing1325 Chemical Processing1330 Extraction1331 Mineral Extraction - Other Than Oil and Gas1332 Mineral Extraction - Oil and Gas1340 Wholesaling and WarehousingTransportation, Communications, and Utilities1400 Transportation, Communications, and Utilities 1410 Transportation1411 Airports1412 Railroads1413 Freeways and Major Roads1414 Park-and-Ride Lots1415 Bus Terminals and Yards1416 Truck Terminals1417 Harbor Facilities1418 Navigation Aids1420 Communication Facilities1430 Utility Facilities1431 Electrical Power Facilities1432 Solid Waste Disposal Facilities1433 Liquid Waste Disposal Facilities1434 Water Storage Facilities1435 Natural Gas and Petroleum Facilities1436 Water Transfer Facilities 1437 Improved Flood Waterways and Structures1438 Mixed Utilities1440 Maintenance Yards1441 Bus Yards1442 Rail Yards1450 Mixed Transportation1460 Mixed Transportation and UtilityMixed Commercial and Industrial1500  Mixed Commercial and IndustrialMixed Residential and Commercial1600  Mixed Residential and Commercial1610  Residential-Oriented Residential/Commercial Mixed Use 1620  Commercial-Oriented Residential/Commercial Mixed UseOpen Space and Recreation1800  Open Space and Recreation1810  Golf Courses1820  Local Parks and Recreation1830  Regional Parks and Recreation1840 Cemeteries1850 Wildlife Preserves and Sanctuaries1860 Specimen Gardens and Arboreta1870 Beach Parks1880  Other Open Space and Recreation1890  Off-Street TrailsAgriculture2000  Agriculture2100 Cropland and Improved Pasture Land2110 Irrigated Cropland and Improved Pasture Land2120 Non-Irrigated Cropland and Improved Pasture Land2200 Orchards and Vineyards2300 Nurseries2400 Dairy, Intensive Livestock, and Associated Facilities2500 Poultry Operations2600 Other Agriculture2700  Horse RanchesVacant3000  Vacant3100 Vacant Undifferentiated3200 Abandoned Orchards and Vineyards3300 Vacant With Limited Improvements3400 Beaches (Vacant)1900  Urban VacantWater4000  Water4100 Water, Undifferentiated4200 Harbor Water Facilities4300 Marina Water Facilities4400 Water Within a Military Installation4500 Area of Inundation (High Water)Specific Plan7777  Specific PlanUnder Construction1700  Under ConstructionUndevelopable or Protected Land8888 Undevelopable or Protected LandUnknown9999  Unknown",
+ "geometryType": "esriGeometryPolygon",
+ "sourceSpatialReference": {
+  "wkid": 26911,
+  "latestWkid": 26911,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -5120900,
+  "falseY": -9998100,
+  "xyUnits": 10000,
+  "falseZ": 0,
+  "zUnits": 1,
+  "falseM": 0,
+  "mUnits": 1
+ },
+ "spatialReference": {
+  "wkid": 26911,
+  "latestWkid": 26911,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -5120900,
+  "falseY": -9998100,
+  "xyUnits": 10000,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "copyrightText": "SCAG",
+ "parentLayer": null,
+ "subLayers": [],
+ "minScale": 0,
+ "maxScale": 0,
+ "referenceScale": 0.0,
+ "drawingInfo": {
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriSFS",
+    "style": "esriSFSSolid",
+    "color": [
+     233,
+     252,
+     209,
+     255
+    ],
+    "outline": {
+     "type": "esriSLS",
+     "style": "esriSLSSolid",
+     "color": [
+      110,
+      110,
+      110,
+      255
+     ],
+     "width": 0.7
+    }
+   }
+  },
+  "scaleSymbols": true,
+  "transparency": 0,
+  "labelingInfo": null
+ },
+ "defaultVisibility": true,
+ "extent": {
+  "xmin": 320493.88829999976,
+  "ymin": 3630660.4880999997,
+  "xmax": 440511.25320000015,
+  "ymax": 3854476.5472,
+  "spatialReference": {
+   "wkid": 26911,
+   "latestWkid": 26911,
+   "xyTolerance": 0.001,
+   "zTolerance": 0.001,
+   "mTolerance": 0.001,
+   "falseX": -5120900,
+   "falseY": -9998100,
+   "xyUnits": 10000,
+   "falseZ": -100000,
+   "zUnits": 10000,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "hasAttachments": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "displayField": "PID24",
+ "typeIdField": null,
+ "subtypeFieldName": null,
+ "subtypeField": null,
+ "defaultSubtypeCode": null,
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null
+  },
+  {
+   "name": "PID24",
+   "type": "esriFieldTypeString",
+   "alias": "PID24",
+   "length": 13,
+   "domain": null
+  },
+  {
+   "name": "APN24",
+   "type": "esriFieldTypeString",
+   "alias": "APN24",
+   "length": 10,
+   "domain": null
+  },
+  {
+   "name": "PARENT_INDEX",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PARENT_INDEX",
+   "domain": null
+  },
+  {
+   "name": "COUNTY",
+   "type": "esriFieldTypeString",
+   "alias": "COUNTY",
+   "length": 14,
+   "domain": null
+  },
+  {
+   "name": "COUNTY_ID",
+   "type": "esriFieldTypeString",
+   "alias": "COUNTY_ID",
+   "length": 3,
+   "domain": null
+  },
+  {
+   "name": "CITY",
+   "type": "esriFieldTypeString",
+   "alias": "CITY",
+   "length": 22,
+   "domain": null
+  },
+  {
+   "name": "CITY_ID",
+   "type": "esriFieldTypeString",
+   "alias": "CITY_ID",
+   "length": 5,
+   "domain": null
+  },
+  {
+   "name": "MULTIPART",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "MULTIPART",
+   "domain": null
+  },
+  {
+   "name": "STACK",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "STACK",
+   "domain": null
+  },
+  {
+   "name": "ACRES",
+   "type": "esriFieldTypeDouble",
+   "alias": "ACRES",
+   "domain": null
+  },
+  {
+   "name": "SLOPE",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "SLOPE",
+   "domain": null
+  },
+  {
+   "name": "GEOID20",
+   "type": "esriFieldTypeString",
+   "alias": "GEOID20",
+   "length": 15,
+   "domain": null
+  },
+  {
+   "name": "PID19",
+   "type": "esriFieldTypeString",
+   "alias": "PID19",
+   "length": 13,
+   "domain": null
+  },
+  {
+   "name": "LU24",
+   "type": "esriFieldTypeString",
+   "alias": "LU24",
+   "length": 4,
+   "domain": null
+  },
+  {
+   "name": "LU24_2ND",
+   "type": "esriFieldTypeString",
+   "alias": "LU24_2ND",
+   "length": 4,
+   "domain": null
+  },
+  {
+   "name": "LU24_RATIO_2ND",
+   "type": "esriFieldTypeDouble",
+   "alias": "LU24_RATIO_2ND",
+   "domain": null
+  },
+  {
+   "name": "APN19",
+   "type": "esriFieldTypeString",
+   "alias": "APN19",
+   "length": 10,
+   "domain": null
+  },
+  {
+   "name": "LU19",
+   "type": "esriFieldTypeString",
+   "alias": "LU19",
+   "length": 4,
+   "domain": null
+  },
+  {
+   "name": "NOTES",
+   "type": "esriFieldTypeString",
+   "alias": "NOTES",
+   "length": 100,
+   "domain": null
+  },
+  {
+   "name": "YEAR",
+   "type": "esriFieldTypeInteger",
+   "alias": "YEAR",
+   "domain": null
+  },
+  {
+   "name": "Shape",
+   "type": "esriFieldTypeGeometry",
+   "alias": "Shape",
+   "domain": null
+  },
+  {
+   "name": "Shape.STArea()",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape.STArea()",
+   "domain": null
+  },
+  {
+   "name": "Shape.STLength()",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape.STLength()",
+   "domain": null
+  }
+ ],
+ "geometryField": {
+  "name": "Shape",
+  "type": "esriFieldTypeGeometry",
+  "alias": "Shape"
+ },
+ "indexes": [
+  {
+   "name": "R4549_pk",
+   "fields": "OBJECTID",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "S2793_idx",
+   "fields": "Shape",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  }
+ ],
+ "subtypes": [],
+ "relationships": [],
+ "canModifyLayer": true,
+ "canScaleSymbols": false,
+ "hasLabels": false,
+ "capabilities": "Query,Map,Data",
+ "maxRecordCount": 2000,
+ "maxSelectionCount": 2000,
+ "supportsStatistics": true,
+ "supportsExceedsLimitStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "isDataVersioned": true,
+ "ownershipBasedAccessControlForFeatures": {"allowOthersToQuery": true},
+ "useStandardizedQueries": true,
+ "supportedSpatialRelationships": [
+  "esriSpatialRelIntersects",
+  "esriSpatialRelContains",
+  "esriSpatialRelCrosses",
+  "esriSpatialRelEnvelopeIntersects",
+  "esriSpatialRelIndexIntersects",
+  "esriSpatialRelOverlaps",
+  "esriSpatialRelTouches",
+  "esriSpatialRelWithin",
+  "esriSpatialRelRelation"
+ ],
+ "advancedQueryCapabilities": {
+  "useStandardizedQueries": true,
+  "supportsStatistics": true,
+  "supportsPercentileStatistics": true,
+  "supportsHavingClause": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsCountDistinct": true,
+  "supportsAdvancedQueryRelated": true,
+  "supportsQueryRelatedPagination": true,
+  "supportsPagination": true,
+  "supportsLod": false,
+  "supportsQueryWithLodSR": false,
+  "supportsTrueCurve": true,
+  "supportsQueryWithDatumTransformation": true,
+  "supportsReturningQueryExtent": true,
+  "supportsQueryWithDistance": true,
+  "supportsSqlExpression": true,
+  "supportsTimeRelation": true,
+  "supportsSqlFormat": false,
+  "supportsQueryAnalytic": true,
+  "supportsCurrentUserQueries": true
+ },
+ "supportsDatumTransformation": true,
+ "advancedQueryAnalyticCapabilities": {
+  "supportsLinearRegression": true,
+  "supportsAsync": false,
+  "supportsPercentileAnalytic": true
+ },
+ "dateFieldsTimeReference": null,
+ "preferredTimeReference": null,
+ "datesInUnknownTimezone": false,
+ "hasGeometryProperties": true,
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape.STArea()",
+  "shapeLengthFieldName": "Shape.STLength()",
+  "units": "esriMeters",
+  "mapUnits": {"uwkid": 9001}
+ },
+ "hasMetadata": true,
+ "isDataArchived": false,
+ "archivingInfo": {
+  "supportsQueryWithHistoricMoment": false,
+  "startArchivingMoment": -1
+ },
+ "supportsCoordinatesQuantization": true,
+ "supportsDynamicLegends": true,
+ "serviceItemId": "2fa0d7964a2a4f888636bffad385b797"
+}
