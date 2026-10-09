@@ -74,6 +74,27 @@
   ],
   "S12_S13_artwork_unchanged": true,
   "original_unrelated_staging_preserved": true,
-  "canonical_resume": "PENDING",
-  "pytest": "49 passed"
+  "canonical_resume": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
+  "pytest": "49 passed",
+  "artwork_source_commit": "095c292dc3073361477956732c864cc5743bc075",
+  "stage_statuses": {
+    "01": "PASS_VALIDATE",
+    "02": "PASS_REUSE",
+    "03": "PASS_REUSE",
+    "04": "PASS_REUSE",
+    "05": "PASS_REUSE",
+    "06": "PASS_REUSE",
+    "07": "PASS_REUSE",
+    "08": "PASS_REUSE",
+    "09": "PASS_REUSE",
+    "10": "PASS_REUSE"
+  },
+  "scientific_computation_performed": false,
+  "lfs_tracked_file_count": 1394,
+  "changed_LFS_files_presentation_only": 25,
+  "all_other_LFS_oids_unchanged": true,
+  "protected_refs": {
+    "main": "8525954d943efe9f06c98c51f218568077788b9b",
+    "archive/ijdrr-submission-20260722": "182686868cffe962739804f6bc0ccecaed73d601"
+  }
 }
