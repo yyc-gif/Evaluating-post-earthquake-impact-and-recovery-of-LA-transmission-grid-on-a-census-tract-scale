@@ -1,0 +1,435 @@
+{
+  "base_commit": "515024e19d060d283d85f2a8b3d74072e03b1c32",
+  "figures": [
+    {
+      "before_sha256": "ff2c21505bbb7c8f24da4de82e984cedff13e1dc775c2f25eb4c217b648b53b2",
+      "median_selection": "Largest median feature value per axis, not highest KDE peak",
+      "median_operator_changes": [
+        {
+          "form_xref": 15,
+          "medians_before": 30,
+          "medians_after": 6,
+          "retained": [
+            {
+              "axis_clip": [
+                43.196069,
+                195.63852,
+                122.733928,
+                91.76608
+              ],
+              "cluster": 4
+            },
+            {
+              "axis_clip": [
+                207.82125,
+                195.63852,
+                122.73393,
+                91.76608
+              ],
+              "cluster": 3
+            },
+            {
+              "axis_clip": [
+                372.4464,
+                195.63852,
+                122.73392,
+                91.76608
+              ],
+              "cluster": 1
+            },
+            {
+              "axis_clip": [
+                43.196069,
+                61.980443,
+                122.733928,
+                91.76608
+              ],
+              "cluster": 3
+            },
+            {
+              "axis_clip": [
+                207.82125,
+                61.980443,
+                122.73393,
+                91.76608
+              ],
+              "cluster": 4
+            },
+            {
+              "axis_clip": [
+                372.4464,
+                61.980443,
+                122.73392,
+                91.76608
+              ],
+              "cluster": 1
+            }
+          ]
+        },
+        {
+          "form_xref": 40,
+          "medians_before": 30,
+          "medians_after": 6,
+          "retained": [
+            {
+              "axis_clip": [
+                43.196069,
+                195.63852,
+                122.733928,
+                91.76608
+              ],
+              "cluster": 4
+            },
+            {
+              "axis_clip": [
+                207.82125,
+                195.63852,
+                122.73393,
+                91.76608
+              ],
+              "cluster": 3
+            },
+            {
+              "axis_clip": [
+                372.4464,
+                195.63852,
+                122.73392,
+                91.76608
+              ],
+              "cluster": 1
+            },
+            {
+              "axis_clip": [
+                43.196069,
+                61.980443,
+                122.733928,
+                91.76608
+              ],
+              "cluster": 3
+            },
+            {
+              "axis_clip": [
+                207.82125,
+                61.980443,
+                122.73393,
+                91.76608
+              ],
+              "cluster": 4
+            },
+            {
+              "axis_clip": [
+                372.4464,
+                61.980443,
+                122.73392,
+                91.76608
+              ],
+              "cluster": 1
+            }
+          ]
+        },
+        {
+          "form_xref": 68,
+          "medians_before": 30,
+          "medians_after": 6,
+          "retained": [
+            {
+              "axis_clip": [
+                43.196069,
+                195.63852,
+                122.733928,
+                91.76608
+              ],
+              "cluster": 4
+            },
+            {
+              "axis_clip": [
+                207.82125,
+                195.63852,
+                122.73393,
+                91.76608
+              ],
+              "cluster": 3
+            },
+            {
+              "axis_clip": [
+                372.4464,
+                195.63852,
+                122.73392,
+                91.76608
+              ],
+              "cluster": 1
+            },
+            {
+              "axis_clip": [
+                43.196069,
+                61.980443,
+                122.733928,
+                91.76608
+              ],
+              "cluster": 3
+            },
+            {
+              "axis_clip": [
+                207.82125,
+                61.980443,
+                122.73393,
+                91.76608
+              ],
+              "cluster": 4
+            },
+            {
+              "axis_clip": [
+                372.4464,
+                61.980443,
+                122.73392,
+                91.76608
+              ],
+              "cluster": 1
+            }
+          ]
+        }
+      ],
+      "all_KDE_curve_operators_preserved": true,
+      "cluster_palette": {
+        "1": "#4f8fb7",
+        "2": "#e19243",
+        "3": "#6ca274",
+        "4": "#c5aa63",
+        "5": "#87949e"
+      },
+      "N_A_display": "White; no hatching",
+      "region_outline_pt": 0.8,
+      "Top_10_outline_pt": 0.6,
+      "map_source_sha256": {
+        "Formal_Experiment_20260923\\Stage 7 Output_SOVI_Harmonized\\stage7_full_domain_tract_status.csv": "041887314e359078e009ad1f70051c664c92dae1d3eb3245dded3f8321b76ec7",
+        "Formal_Experiment_20260923\\Stage 7 Output_SOVI_Harmonized\\stage7_top10_slow_vulnerable_tracts.csv": "ffe9b1843abc13085a58ef8bc96521a861c69766d88a2c964f30465dbc791f46"
+      },
+      "tract_count": 2315,
+      "eligible_tract_count": 2291,
+      "not_applicable_count": 24,
+      "top_10_count": 10,
+      "file": "Main/Fig07.pdf",
+      "size_mm": [
+        184.99999118381075,
+        252.99999643961587
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "1e4b6494011ebf52250b4030942e4d97aee25df73d7aa150a6b1fb1da93aa499",
+      "png_sha256": "c4ef83ee534db27d91cd7b473bc0e6fc278dbc9696cc450286a8fa08a68f7eb8"
+    },
+    {
+      "before_sha256": "44217a24d8bc9b28fb15dc6c3f7dfd21c77c3eb3366b39487a3b35513fcd3a11",
+      "change": "Only the lower triangle and diagonal displayed",
+      "hidden_cells": 4186,
+      "visible_cells": 4278,
+      "input_file": "data/travel/travel_task_to_task.csv",
+      "input_sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
+      "directed_input_symmetrized": false,
+      "max_directional_difference_h": 0.0743962505850963,
+      "all_lower_triangle_native_cells_preserved": true,
+      "file": "Supplement/FigS03.pdf",
+      "size_mm": [
+        184.99999118381075,
+        230.67338765462236
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0",
+      "png_sha256": "b0c30c6f36b3fae4265d00cc13b568460a66a5a924a48ddac7b351a9f88170b0"
+    },
+    {
+      "before_sha256": "bc3f4282d839987893153c87c9c0dfe84e6673df74020e8f38ba497b685208e5",
+      "change": "B/C shared policy legend uses the same three groups as Figure 4A",
+      "static_attack_legend_changed": false,
+      "all_curve_geometry_unchanged": true,
+      "file": "Supplement/FigS04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        201.99998711480032
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "7ba4daf151040e42fdcd0a5e65116f5aacb0bccd3a2c0592e442ed0cecf959c2",
+      "png_sha256": "f774218bf2b6e1d44917b1b123aea65d3cfb0692aba4aced138f0bab7afb66b7"
+    },
+    {
+      "before_sha256": "47725e1dd6ae9067da253de3901030c91c788930c9b02fc9ace7d68b7787a1f3",
+      "change": "Split the two threshold cases into C/D, with identical hour limits and zero references",
+      "mean_and_range_values_reused_exactly": [
+        {
+          "policy": "impact-first",
+          "gate": "G0_NO_GATE",
+          "reference": "G1_BASELINE_050",
+          "mean_h": -5.102126707421313,
+          "p05_h": -7.648653234181205,
+          "p95_h": -3.1790659122647593,
+          "n": 1000
+        },
+        {
+          "policy": "impact-first",
+          "gate": "G2_RELAXED_005",
+          "reference": "G1_BASELINE_050",
+          "mean_h": -0.03926646588603377,
+          "p05_h": -0.160117612289892,
+          "p95_h": 0.0,
+          "n": 1000
+        },
+        {
+          "policy": "impact-first",
+          "gate": "G3_STRICT_075",
+          "reference": "G1_BASELINE_050",
+          "mean_h": 0.006144545469606449,
+          "p05_h": 0.0,
+          "p95_h": 0.01783790390928085,
+          "n": 1000
+        },
+        {
+          "policy": "hospital-first",
+          "gate": "G0_NO_GATE",
+          "reference": "G1_BASELINE_050",
+          "mean_h": -5.028483663621858,
+          "p05_h": -7.5822902933522425,
+          "p95_h": -3.154250063994026,
+          "n": 1000
+        },
+        {
+          "policy": "hospital-first",
+          "gate": "G2_RELAXED_005",
+          "reference": "G1_BASELINE_050",
+          "mean_h": -0.026781195426974713,
+          "p05_h": -0.105732452341298,
+          "p95_h": 0.0,
+          "n": 1000
+        },
+        {
+          "policy": "hospital-first",
+          "gate": "G3_STRICT_075",
+          "reference": "G1_BASELINE_050",
+          "mean_h": 0.0037978996190059285,
+          "p05_h": 0.0,
+          "p95_h": 0.018911782853906434,
+          "n": 1000
+        },
+        {
+          "policy": "degree-first",
+          "gate": "G0_NO_GATE",
+          "reference": "G1_BASELINE_050",
+          "mean_h": -3.4850256600498297,
+          "p05_h": -5.554436365181842,
+          "p95_h": -1.988995504828433,
+          "n": 1000
+        },
+        {
+          "policy": "degree-first",
+          "gate": "G2_RELAXED_005",
+          "reference": "G1_BASELINE_050",
+          "mean_h": -0.0324261231876894,
+          "p05_h": -0.09306443926509082,
+          "p95_h": 0.0,
+          "n": 1000
+        },
+        {
+          "policy": "degree-first",
+          "gate": "G3_STRICT_075",
+          "reference": "G1_BASELINE_050",
+          "mean_h": 0.011852696726920048,
+          "p05_h": 0.0,
+          "p95_h": 0.045158887265696966,
+          "n": 1000
+        }
+      ],
+      "source_display_record": "docs/reproducibility/SUPPLEMENT_ASSUMPTIONS_LAYOUT_UPDATE_20261006.json",
+      "source_display_record_sha256": "af793f0b2df70108840db0564100e65fac773fb5e23c86eefa0de4e4e73c809b",
+      "source_table_sha256_verified": [
+        {
+          "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__impact-first__SUMMARY.parquet",
+          "sha256": "0daf1c7a1898b0a31bae0e5e944a4e88c70ad21c446b83418eb5856afdd020fc"
+        },
+        {
+          "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__hospital-first__SUMMARY.parquet",
+          "sha256": "03d50947f57ca9b2e3f0d64c41feca576b53ff9568db3d7b70f98028d47fe8ce"
+        },
+        {
+          "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__degree-first__SUMMARY.parquet",
+          "sha256": "52f82970c78e57450d0edb61a5a75504fc219693550fa97b1a4cae7dd8df1f4c"
+        }
+      ],
+      "no_interval_or_objective_recalculation": true,
+      "file": "Supplement/FigS06.pdf",
+      "size_mm": [
+        184.99999118381075,
+        204.99999779595268
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "9b23b772105f8c1ad51a950656d79c94148cad848f732b4f57e1676d4acbf7a5",
+      "png_sha256": "27f57a4fad546aa78da003a6d003c31615fd27ef41f19328930366be40e5b58c"
+    }
+  ],
+  "S07_trend_caption": {
+    "source_file": "results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv",
+    "source_sha256": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
+    "displayed_curves_changed": false,
+    "caption_source_values": [
+      {
+        "strategy": "impact-first",
+        "time_hr": 0.0,
+        "population_dependency_weighted_R_conn": 0.0009136588287383,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.0009136588287383
+      },
+      {
+        "strategy": "impact-first",
+        "time_hr": 24.0,
+        "population_dependency_weighted_R_conn": 0.2681201082001037,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.1309413069225029
+      },
+      {
+        "strategy": "impact-first",
+        "time_hr": 48.0,
+        "population_dependency_weighted_R_conn": 0.8489228609791308,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.6679808445455594
+      },
+      {
+        "strategy": "impact-first",
+        "time_hr": 72.0,
+        "population_dependency_weighted_R_conn": 0.996395458099707,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.9847931593701036
+      },
+      {
+        "strategy": "impact-first",
+        "time_hr": 120.0,
+        "population_dependency_weighted_R_conn": 1.0,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 1.0
+      },
+      {
+        "strategy": "hospital-first",
+        "time_hr": 0.0,
+        "population_dependency_weighted_R_conn": 0.0009136588287383,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.0009136588287383
+      },
+      {
+        "strategy": "hospital-first",
+        "time_hr": 24.0,
+        "population_dependency_weighted_R_conn": 0.2512175190466325,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.1260612653578939
+      },
+      {
+        "strategy": "hospital-first",
+        "time_hr": 48.0,
+        "population_dependency_weighted_R_conn": 0.8334229952676192,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.6253288448010426
+      },
+      {
+        "strategy": "hospital-first",
+        "time_hr": 72.0,
+        "population_dependency_weighted_R_conn": 0.9947988991659994,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 0.9646937265362246
+      },
+      {
+        "strategy": "hospital-first",
+        "time_hr": 120.0,
+        "population_dependency_weighted_R_conn": 1.0,
+        "population_dependency_weighted_fixed_precomputed_best_path_connection": 1.0
+      }
+    ]
+  },
+  "scientific_stage_invoked": false,
+  "scientific_source_tables_changed": false
+}
