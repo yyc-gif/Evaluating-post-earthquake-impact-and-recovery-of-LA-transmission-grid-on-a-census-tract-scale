@@ -3,8 +3,8 @@
   "workflow": "FINAL_REVISION_RUN_SEQUENCE",
   "mode": "resume",
   "status": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
-  "started_at_utc": "2026-10-09T07:51:17.492509+00:00",
-  "repository_head": "2cfd9ce5f5c65c7edb575ebd4e8174c4f2fa817b",
+  "started_at_utc": "2026-10-09T08:00:35.359714+00:00",
+  "repository_head": "7061c00db21922510fdc58a5e96f594ab137bcfc",
   "branch": "revision/reviewer-driven-core-rebuild-v2",
   "parent_matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
   "parent_matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
@@ -114,7 +114,7 @@
           "authority_file_sha256": "5a648351c476738727cc97ac7721e111839d6f43b40b27d08768fb80eaad6f56",
           "code_file_count": 63,
           "historical_commit_count": 10,
-          "current_head": "2cfd9ce5f5c65c7edb575ebd4e8174c4f2fa817b"
+          "current_head": "7061c00db21922510fdc58a5e96f594ab137bcfc"
         }
       },
       "hashes": {
@@ -156,7 +156,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "36c95fe85c6ef1a251327a7318e541c1c4d8f1e9e2c7572f75e90b32f1fdd394"
+      "stage_manifest_sha256": "ccfe526b06a406bf636c2c26d978178b3b116335052d8c3b88fd44bc6387e57c"
     },
     {
       "stage_id": "02",
@@ -179,7 +179,7 @@
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "36c95fe85c6ef1a251327a7318e541c1c4d8f1e9e2c7572f75e90b32f1fdd394",
+          "sha256": "ccfe526b06a406bf636c2c26d978178b3b116335052d8c3b88fd44bc6387e57c",
           "status": "PASS_VALIDATE"
         }
       },
@@ -190,7 +190,7 @@
         "physical_samples.sample_archive_hashes.Northridge": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
         "physical_samples.sample_archive_hashes.SanFernando": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0",
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
-        "previous_stage_manifest.sha256": "36c95fe85c6ef1a251327a7318e541c1c4d8f1e9e2c7572f75e90b32f1fdd394"
+        "previous_stage_manifest.sha256": "ccfe526b06a406bf636c2c26d978178b3b116335052d8c3b88fd44bc6387e57c"
       },
       "outputs": [
         {
@@ -213,7 +213,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "f737b0974068b244e3c32d03401d7a52a9eccc9eb282be71b5a561b22c4547f5"
+      "stage_manifest_sha256": "e218bcc8fc8e992df6453aea9f5c1a80cc9b0ae9d0c99597b381c4cec53e634c"
     },
     {
       "stage_id": "03",
@@ -238,13 +238,13 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "f737b0974068b244e3c32d03401d7a52a9eccc9eb282be71b5a561b22c4547f5",
+          "sha256": "e218bcc8fc8e992df6453aea9f5c1a80cc9b0ae9d0c99597b381c4cec53e634c",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "resolved_strategy_registry.GA_identity_sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
-        "previous_stage_manifest.sha256": "f737b0974068b244e3c32d03401d7a52a9eccc9eb282be71b5a561b22c4547f5"
+        "previous_stage_manifest.sha256": "e218bcc8fc8e992df6453aea9f5c1a80cc9b0ae9d0c99597b381c4cec53e634c"
       },
       "outputs": [
         {
@@ -272,7 +272,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "e0e106a05ed0b2f95e8b41df955254b82a53d462fb373240e0c309a08bd742a3"
+      "stage_manifest_sha256": "677e730b095c63ffcd98b62fd8a161f5248073689a44edeef0b71df16a2eb0d4"
     },
     {
       "stage_id": "04",
@@ -295,7 +295,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "e0e106a05ed0b2f95e8b41df955254b82a53d462fb373240e0c309a08bd742a3",
+          "sha256": "677e730b095c63ffcd98b62fd8a161f5248073689a44edeef0b71df16a2eb0d4",
           "status": "PASS_REUSE"
         }
       },
@@ -303,7 +303,7 @@
         "formal_trajectories.archive_manifest_chain_sha256": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
         "vulnerability_first_trajectories.manifest_chain_sha256": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
         "vulnerability_first_trajectories.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
-        "previous_stage_manifest.sha256": "e0e106a05ed0b2f95e8b41df955254b82a53d462fb373240e0c309a08bd742a3"
+        "previous_stage_manifest.sha256": "677e730b095c63ffcd98b62fd8a161f5248073689a44edeef0b71df16a2eb0d4"
       },
       "outputs": [
         {
@@ -334,7 +334,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "e9fff086fa1fba7e81e2fff7f432fc7cdcb05f965eeec865857536f421e316f9"
+      "stage_manifest_sha256": "19d51d917ed4d320c1f6bfc6cb313ff8587bf98f49c0a0a7c2c78163ad900b35"
     },
     {
       "stage_id": "05",
@@ -360,7 +360,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "e9fff086fa1fba7e81e2fff7f432fc7cdcb05f965eeec865857536f421e316f9",
+          "sha256": "19d51d917ed4d320c1f6bfc6cb313ff8587bf98f49c0a0a7c2c78163ad900b35",
           "status": "PASS_REUSE"
         }
       },
@@ -369,7 +369,7 @@
         "equity_offline_shards.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
         "formal_result_authorities.Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json": "a2a9a2f95b18d01e86bc34175ddd775756d93866d24859d06df0c50eb02c2d08",
         "formal_result_authorities.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json": "64fed2a28641e2010fe7413b6162f258557b25243ac0923e0be534aff9a8fc1a",
-        "previous_stage_manifest.sha256": "e9fff086fa1fba7e81e2fff7f432fc7cdcb05f965eeec865857536f421e316f9"
+        "previous_stage_manifest.sha256": "19d51d917ed4d320c1f6bfc6cb313ff8587bf98f49c0a0a7c2c78163ad900b35"
       },
       "outputs": [
         {
@@ -415,7 +415,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "8d80dfbf01acd1a461780b5ca97b45c946137075442f0ed33b76fff564383e11"
+      "stage_manifest_sha256": "1d11b35668cf266f2fe64f7e5af0d17a0814e0bbd8417e370ab0ca6fc22d8eca"
     },
     {
       "stage_id": "06",
@@ -442,7 +442,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "8d80dfbf01acd1a461780b5ca97b45c946137075442f0ed33b76fff564383e11",
+          "sha256": "1d11b35668cf266f2fe64f7e5af0d17a0814e0bbd8417e370ab0ca6fc22d8eca",
           "status": "PASS_REUSE"
         }
       },
@@ -452,7 +452,7 @@
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
         "compact_diagnostic_sha256.results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
-        "previous_stage_manifest.sha256": "8d80dfbf01acd1a461780b5ca97b45c946137075442f0ed33b76fff564383e11"
+        "previous_stage_manifest.sha256": "1d11b35668cf266f2fe64f7e5af0d17a0814e0bbd8417e370ab0ca6fc22d8eca"
       },
       "outputs": [
         {
@@ -498,7 +498,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "5643e18e9c0b62d17af6136459a4640631d75ebd8dd6b55a4b18a6e1b3188d97"
+      "stage_manifest_sha256": "0a486e1772fc3677d1d7ad8d6e98798c198e3af64ae4f68fa806102b751f41c8"
     },
     {
       "stage_id": "07",
@@ -517,7 +517,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "5643e18e9c0b62d17af6136459a4640631d75ebd8dd6b55a4b18a6e1b3188d97",
+          "sha256": "0a486e1772fc3677d1d7ad8d6e98798c198e3af64ae4f68fa806102b751f41c8",
           "status": "PASS_REUSE"
         }
       },
@@ -529,7 +529,7 @@
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_GROUP_SUMMARY.csv": "5d9f41af008d3f084c5f1def040f59a3e47329b59a8b5524e5cb68f17644f6c9",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PAIRWISE_EFFECTS.csv": "ef5af1d32dc0184684f9d0c619b96a1dcab596818e1c01be8fe8de7d53cff982",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_TRACT_EFFECTS.parquet": "f0e1a0897d7a6b4ec2251ffc35c3008744ddf7d6ca2ec6b5bfadaaf7ed9632db",
-        "previous_stage_manifest.sha256": "5643e18e9c0b62d17af6136459a4640631d75ebd8dd6b55a4b18a6e1b3188d97"
+        "previous_stage_manifest.sha256": "0a486e1772fc3677d1d7ad8d6e98798c198e3af64ae4f68fa806102b751f41c8"
       },
       "outputs": [
         {
@@ -552,7 +552,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "b5abc0911e0a1452047448307c40be210bb38e1ac908009c41308f61a0c783d8"
+      "stage_manifest_sha256": "926ea20ea6d855b911d9ad40395e73d25925cef38b0d830f5076385ffa5d97b0"
     },
     {
       "stage_id": "08",
@@ -589,7 +589,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "b5abc0911e0a1452047448307c40be210bb38e1ac908009c41308f61a0c783d8",
+          "sha256": "926ea20ea6d855b911d9ad40395e73d25925cef38b0d830f5076385ffa5d97b0",
           "status": "PASS_REUSE"
         }
       },
@@ -609,7 +609,7 @@
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_profile_stability.csv": "aedc45da49daac1ac7eeb9f74655f45bbae63b77e03baefa4cd0fcaf437d50bd",
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_robustness_summary.csv": "12a4067d95ca1c97fbb5b9222bd936d7c3c9c3c17f7bab75cd2318d97d9db7e3",
         "stage7.verifier_result.input_sha256.stage7_long_tail_diagnostics.csv": "442399c768b0db29b84a2346a4b0559ba1719c5f02c3600a9633c8a5ed045a4e",
-        "previous_stage_manifest.sha256": "b5abc0911e0a1452047448307c40be210bb38e1ac908009c41308f61a0c783d8"
+        "previous_stage_manifest.sha256": "926ea20ea6d855b911d9ad40395e73d25925cef38b0d830f5076385ffa5d97b0"
       },
       "outputs": [
         {
@@ -627,7 +627,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "84ee2c8095e7252c1ce6f1c91fcac8a1ab6bcc302f96dbf2dee3dba9c20b630a"
+      "stage_manifest_sha256": "b12900f882281016a02af767e0ca731cfa876326d995335b06deeb77427f47e2"
     },
     {
       "stage_id": "09",
@@ -657,7 +657,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "84ee2c8095e7252c1ce6f1c91fcac8a1ab6bcc302f96dbf2dee3dba9c20b630a",
+          "sha256": "b12900f882281016a02af767e0ca731cfa876326d995335b06deeb77427f47e2",
           "status": "PASS_REUSE"
         }
       },
@@ -677,7 +677,7 @@
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/RECONCILIATION.csv": "bf86aa2adea91265c8c20607424e576bcec50e2f577f7e3ebd06b703e984c009",
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/TRAJECTORY_SOURCE_HASHES.csv": "6ca104ed170ff1b86b9bb350634e3d9b1e5a1bfcf15d7015fb9b7304dd0af092",
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/AUDIT.json": "80f02a624468735dbaf81a61a5da95ea88be47470f480fae8b6a52eb8e5dc4f9",
-        "previous_stage_manifest.sha256": "84ee2c8095e7252c1ce6f1c91fcac8a1ab6bcc302f96dbf2dee3dba9c20b630a"
+        "previous_stage_manifest.sha256": "b12900f882281016a02af767e0ca731cfa876326d995335b06deeb77427f47e2"
       },
       "outputs": [
         {
@@ -695,7 +695,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "0c20c77f60ec0afc9a1de5d7e958007f3cc845d08ff4f811bf137780489c830f"
+      "stage_manifest_sha256": "ed1d1e9a112dcf88b741fa84b422ad8654ae9ae2f48dfe99ea759e0bfbcf9ee9"
     },
     {
       "stage_id": "10",
@@ -801,7 +801,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "0c20c77f60ec0afc9a1de5d7e958007f3cc845d08ff4f811bf137780489c830f",
+          "sha256": "ed1d1e9a112dcf88b741fa84b422ad8654ae9ae2f48dfe99ea759e0bfbcf9ee9",
           "status": "PASS_REUSE"
         }
       },
@@ -887,7 +887,7 @@
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.pdf": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.png": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd",
         "final_figures.index_sha256": "9a0f5ff9827c085b031f3b1cdd64a61e6f8f69e3cfa33baaf49624c7650c5ff8",
-        "previous_stage_manifest.sha256": "0c20c77f60ec0afc9a1de5d7e958007f3cc845d08ff4f811bf137780489c830f"
+        "previous_stage_manifest.sha256": "ed1d1e9a112dcf88b741fa84b422ad8654ae9ae2f48dfe99ea759e0bfbcf9ee9"
       },
       "outputs": [
         {
@@ -1109,8 +1109,8 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\10_FINAL_RESULTS_AND_FIGURES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "b1dc6cbf21606640e371a329273dac603ac84003a3d5a3057edd9b1b75101333"
+      "stage_manifest_sha256": "74bb7a4e3fd6779dbb3779db44cfe922a7507dd246c566c421651fbb0297eedc"
     }
   ],
-  "finished_at_utc": "2026-10-09T07:54:12.590633+00:00"
+  "finished_at_utc": "2026-10-09T08:03:10.983224+00:00"
 }
