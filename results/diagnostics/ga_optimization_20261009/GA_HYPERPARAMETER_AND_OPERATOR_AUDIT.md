@@ -63,6 +63,18 @@ The original setting is not a uniformly good operating region. Low tournament pr
 | p500_k2          |       5 | 33.578303 | 0.000000 | 33.578303 |            0.000000 |              0.000000 |
 | p500_diverse     |       5 | 33.578303 | 0.000000 | 33.578303 |            0.000000 |              0.000000 |
 
+| factor                      |   observed_conditional_rank |   largest_absolute_mean_conditional_effect_hr | comparison                                                           |
+|:----------------------------|----------------------------:|----------------------------------------------:|:---------------------------------------------------------------------|
+| initialization              |                           1 |                                      0.541531 | P500: quality_mix minus legacy                                       |
+| crossover                   |                           2 |                                      0.483910 | crossover0.95 minus .8 at mutation0.1                                |
+| population                  |                           3 |                                      0.451859 | P500 minus P100                                                      |
+| selection                   |                           4 |                                      0.451859 | P100: tournament2 minus3                                             |
+| mutation                    |                           5 |                                      0.450659 | P100: mutation 0.6 minus .2                                          |
+| elitism                     |                           6 |                                      0.315799 | P500: elite3 minus archive-only                                      |
+| objective-evaluation budget |                           7 |                                      0.041263 | budget_extension/original_p100: 500,000 minus50,000 distinct queries |
+
+The ranking measures the largest absolute observed conditional contrast at the tested levels, including harmful changes; it is not a universal importance ordering. Initialization includes prior-quality advantage, while the budget row deliberately changes compute and is not part of equal-budget comparisons.
+
 CONTROLLED_FACTOR_EFFECTS.csv gives five-common-seed paired effects and difference-in-differences for population×mutation, population×selection, population×elitism and crossover×mutation. Seed-bootstrap intervals there describe exploratory variability, are not physical-realization CIs and are not adjusted for many comparisons. Crossed factors are identified only at tested levels; unsampled interactions remain unresolved. The largest practical mechanisms are retaining productive chromosomes, suitable selection/crossover, and high-quality initialization. Initialization includes prior scientific search effort and must not be mistaken for a new operator discovery. The following ranking is of observed conditional contrasts, not universal variance attribution across an untested factorial. Operator changes have their own replicated confirmation and budget comparison.
 
 | factor                 | contrast                                                         |   mean_effect_hr |   std_across_seed_effect_hr |

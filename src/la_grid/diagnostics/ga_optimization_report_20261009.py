@@ -48,6 +48,10 @@ The original setting is not a uniformly good operating region. Low tournament pr
 
 {table(screen.sort_values('mean_hr'),['config_id','seeds','mean_hr','std_hr','min_hr','success_vs_impact','success_vs_previous'])}
 
+{table(pd.read_csv(OUT/'GA_FACTOR_INFLUENCE_RANKING.csv'),['factor','observed_conditional_rank','largest_absolute_mean_conditional_effect_hr','comparison'])}
+
+The ranking measures the largest absolute observed conditional contrast at the tested levels, including harmful changes; it is not a universal importance ordering. Initialization includes prior-quality advantage, while the budget row deliberately changes compute and is not part of equal-budget comparisons.
+
 CONTROLLED_FACTOR_EFFECTS.csv gives five-common-seed paired effects and difference-in-differences for population×mutation, population×selection, population×elitism and crossover×mutation. Seed-bootstrap intervals there describe exploratory variability, are not physical-realization CIs and are not adjusted for many comparisons. Crossed factors are identified only at tested levels; unsampled interactions remain unresolved. The largest practical mechanisms are retaining productive chromosomes, suitable selection/crossover, and high-quality initialization. Initialization includes prior scientific search effort and must not be mistaken for a new operator discovery. The following ranking is of observed conditional contrasts, not universal variance attribution across an untested factorial. Operator changes have their own replicated confirmation and budget comparison.
 
 {table(ranked,['factor','contrast','mean_effect_hr','std_across_seed_effect_hr'])}

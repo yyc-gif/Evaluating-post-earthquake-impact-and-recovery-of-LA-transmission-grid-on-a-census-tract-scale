@@ -30,6 +30,7 @@ def tables():
     for c in [.6,.95]:
         for m in [.1,.4]:append('crossover',f'crossover{c:g} minus .8 at mutation{m:g}',diff(f'p100_c{c:g}_m{m:g}',f'p100_m{m:g}'),'Population100, archive-only')
     pd.DataFrame(effects).to_csv(OUT/'CONTROLLED_FACTOR_EFFECTS.csv',index=False)
+    write_influence_ranking(pd.DataFrame(effects))
     budget=pd.read_csv(OUT/'GA_COMPUTATIONAL_BUDGET_COMPARISON.csv');gain=[]
     for (phase,cid,seed),q in budget.groupby(['phase','config_id','seed']):
         for a,b in [(50000,100000),(100000,250000),(250000,500000)]:
@@ -57,6 +58,24 @@ def tables():
     pd.DataFrame(initialization).to_csv(OUT/'INITIALIZATION_VERSUS_SEARCH_GAINS.csv',index=False)
     print('ANALYSIS TABLES',len(d),'GA runs; local/hybrid',len(local))
 
+
+
+def write_influence_ranking(factors):
+    rows=[]
+    for factor,q in factors[~factors.factor.str.contains(' x ')].groupby('factor'):
+        z=q.iloc[np.argmax(q.mean_effect_hr.abs().to_numpy())]
+        rows.append(dict(factor=factor,largest_absolute_mean_conditional_effect_hr=abs(z.mean_effect_hr),signed_mean_effect_hr=z.mean_effect_hr,comparison=z.contrast,seed_count=int(z.seed_count),scope=z.scope,ranking_basis='Maximum absolute tested conditional mean effect; not global variance attribution',caveat='Contains previously earned warm-start advantage' if factor=='initialization' else 'Tested levels and conditional context only; magnitudes include deterioration as well as improvements'))
+    budget=pd.read_csv(OUT/'GA_COMPUTATIONAL_BUDGET_COMPARISON.csv');changes=[]
+    for (phase,cid),q in budget.groupby(['phase','config_id']):
+        low=q[q.distinct_evaluations.eq(50000)].set_index('seed')
+        for upper in [100000,250000,500000]:
+            high=q[q.distinct_evaluations.eq(upper)].set_index('seed');common=low.index.intersection(high.index)
+            if len(common)<5:continue
+            values=(high.loc[common].best_service_loss_hr-low.loc[common].best_service_loss_hr).to_numpy();changes.append((abs(values.mean()),values.mean(),phase,cid,upper,len(common)))
+    if changes:
+        _,effect,phase,cid,upper,n=max(changes)
+        rows.append(dict(factor='objective-evaluation budget',largest_absolute_mean_conditional_effect_hr=abs(effect),signed_mean_effect_hr=effect,comparison=f'{phase}/{cid}: {upper:,} minus50,000 distinct queries',seed_count=n,scope='Same configuration and seed, increasing distinct budget; extra generations are a consequence, not an independently isolated factor',ranking_basis='Maximum absolute tested conditional mean effect; not global variance attribution',caveat='Larger budget has greater compute cost; this row is outside equal-budget factor comparisons'))
+    q=pd.DataFrame(rows).sort_values('largest_absolute_mean_conditional_effect_hr',ascending=False);q.insert(1,'observed_conditional_rank',range(1,len(q)+1));q.to_csv(OUT/'GA_FACTOR_INFLUENCE_RANKING.csv',index=False)
 
 def planning_candidates():
     kernel,inc,previous=load();impact=tuple(inc['impact-first']);candidates=[]
