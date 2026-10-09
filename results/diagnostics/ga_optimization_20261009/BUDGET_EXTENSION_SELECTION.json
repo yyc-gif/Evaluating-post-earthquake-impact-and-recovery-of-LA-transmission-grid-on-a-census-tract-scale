@@ -1,0 +1,18 @@
+{
+  "rule": "Original baseline plus lowest 20-seed mean configuration at 100,000 distinct evaluations; planning only, bounded cost",
+  "config_ids": [
+    "original_p100",
+    "operator_swap"
+  ],
+  "seed_range": [
+    42,
+    46
+  ],
+  "budget": 500000,
+  "common_checkpoints": [
+    50000,
+    100000,
+    250000,
+    500000
+  ]
+}

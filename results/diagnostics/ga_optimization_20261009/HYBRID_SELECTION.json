@@ -1,0 +1,9 @@
+{
+  "planning_only_parent_configuration": "focused_p100_quality_m01_e1",
+  "seeds": [
+    42,
+    61
+  ],
+  "joint_distinct_budget": 100000,
+  "split": "50,000 GA distinct queries + local refinement until joint cache reaches 100,000"
+}

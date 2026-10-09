@@ -75,3 +75,11 @@ Thumbs.db
 /Formal_Experiment_20260923/Formal_Reviewer_Results/
 
 .pytest_cache/
+
+# GA optimization diagnostics: restart caches and worker logs are local only
+/results/diagnostics/ga_optimization_20261009/local_logs/
+/results/diagnostics/ga_optimization_20261009/**/CHECKPOINT.pkl.gz
+/results/diagnostics/ga_optimization_20261009/**/LOCAL_CHECKPOINT.pkl.gz
+/results/diagnostics/ga_optimization_20261009/original_behavior_replay/**/CANDIDATES.npz
+!results/diagnostics/ga_optimization_20261009/GA_PARAMETER_SENSITIVITY.csv
+!results/diagnostics/ga_optimization_20261009/LFS_OBJECT_AUDIT.csv
