@@ -1,0 +1,46 @@
+{
+  "base_commit": "73ef343f21e998eb9c9ccf7797d1aa0119d15c04",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "budget_per_seed": 50000,
+  "missing_runs": 10,
+  "maximum_new_queries": 500000,
+  "configurations": {
+    "C_quality_elite_inversion_m02": {
+      "population": 100,
+      "crossover": 0.8,
+      "mutation": 0.2,
+      "tournament": 3,
+      "elites": 1,
+      "initialization": "quality_mix",
+      "mutation_operator": "inversion",
+      "crossover_operator": "ordered",
+      "adaptive": false,
+      "restart": false,
+      "diversity_replacement": false
+    },
+    "D_quality_elite_swap_m02": {
+      "population": 100,
+      "crossover": 0.8,
+      "mutation": 0.2,
+      "tournament": 3,
+      "elites": 1,
+      "initialization": "quality_mix",
+      "mutation_operator": "swap",
+      "crossover_operator": "ordered",
+      "adaptive": false,
+      "restart": false,
+      "diversity_replacement": false
+    }
+  },
+  "rationale": "Two missing steps isolate elitism at original mutation0.20, then swap at unchanged0.20; final0.10 comparison is a separate saved bridge.",
+  "prior_cost_pilot_seconds_per_query": 0.000856,
+  "estimated_serial_objective_seconds": 428,
+  "workers": 5,
+  "formal_results_changed": false
+}

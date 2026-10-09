@@ -83,3 +83,7 @@ Thumbs.db
 /results/diagnostics/ga_optimization_20261009/original_behavior_replay/**/CANDIDATES.npz
 !results/diagnostics/ga_optimization_20261009/GA_PARAMETER_SENSITIVITY.csv
 !results/diagnostics/ga_optimization_20261009/LFS_OBJECT_AUDIT.csv
+
+# Final GA method: completed histories are retained; local resume caches/logs are ignored
+/results/diagnostics/final_ga_method_20261009/logs/
+/results/diagnostics/final_ga_method_20261009/**/CHECKPOINT.pkl.gz

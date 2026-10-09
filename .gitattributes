@@ -26,3 +26,8 @@ results/diagnostics/ga_search_budget_20261007/*/CANDIDATES.npz filter=lfs diff=l
 
 results/diagnostics/extended_ga_20261008/**/*.npz filter=lfs diff=lfs merge=lfs -text
 results/diagnostics/ga_optimization_20261009/**/*.npz filter=lfs diff=lfs merge=lfs -text
+
+results/diagnostics/final_ga_method_20261009/**/*.npz filter=lfs diff=lfs merge=lfs -text
+results/diagnostics/final_ga_method_20261009/**/*.json -text
+results/diagnostics/final_ga_method_20261009/*.json -text
+results/diagnostics/final_ga_method_20261009/SELECTED_SEQUENCE.txt text eol=lf
