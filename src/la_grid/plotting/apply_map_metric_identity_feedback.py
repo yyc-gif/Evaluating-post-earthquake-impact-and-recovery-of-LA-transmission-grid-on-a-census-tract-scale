@@ -35,8 +35,8 @@ MM = 72/25.4
 ARIAL = 'C:/Windows/Fonts/arial.ttf'
 BOLD = 'C:/Windows/Fonts/arialbd.ttf'
 OLD_COLORS = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854']
-# Explicit ID identity: blue, orange, green, ochre, slate. No pink/purple.
-CLUSTER_COLORS = {1:'#4f8fb7', 2:'#e19243', 3:'#6ca274', 4:'#c5aa63', 5:'#87949e'}
+# Explicit cluster-ID colors: blue, orange, green, cyan, brick red. Gray is reserved for N/A.
+CLUSTER_COLORS = {1:'#4f8fb7', 2:'#e19243', 3:'#6ca274', 4:'#68a9b5', 5:'#b45f50'}
 MAP_COLORS = ['#2166ac', '#80b4d4', '#c4c4c4', '#f4ae62', '#d96518']
 KEYS = ['Main/Fig01', 'Main/Fig04', 'Main/Fig05', 'Main/Fig06', 'Main/Fig07',
         'Supplement/FigS09', 'Supplement/FigS11', 'Supplement/FigS12', 'Supplement/FigS13']
