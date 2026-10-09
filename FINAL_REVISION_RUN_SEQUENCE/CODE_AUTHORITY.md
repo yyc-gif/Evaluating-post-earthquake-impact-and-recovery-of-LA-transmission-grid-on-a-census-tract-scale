@@ -27,3 +27,5 @@ The suite inventory found zero code-like files. There is no missing executable s
 ## Historical identities and scratch status
 
 The design, GA, scheduling, trajectory, offline, Stage 7, Vulnerability-first and reporting steps were executed at different historical commits. Those SHAs and their local frozen artifacts are preserved as provenance. Because some execution code and large archives are local-only, `--from-scratch` is **NOT YET CERTIFIED**. Resume fails on missing archives; it never regenerates them as fallback.
+
+The 2026-10-08 selected-policy display round right-aligns Stage7 profile labels and reads saved degree/betweenness metrics for new supplementary evidence. Six scheduled policies are displayed, while original formal strategies and their authority records remain intact. New GA budget extensions and planning-selected independent evaluation are separate exploratory diagnostics under `results/diagnostics/extended_ga_20261008/`; canonical resume validates and reuses the original formal strategy set.

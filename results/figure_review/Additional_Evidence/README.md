@@ -23,3 +23,11 @@ Q4_Q1_Definitions.pdf explains signed versus within-realization absolute group g
 ## Complete cross-hazard policy contrasts
 
 [Cross_Hazard_Policy_Contrasts.pdf](Cross_Hazard_Policy_Contrasts.pdf) retains the complete four-scenario policy evidence formerly shown in S11. The numbered S11 provides a compact 2pc50 view; no historical-scenario result was deleted. Refer to the S11 caption for the estimands and limits on cross-hazard interpretation.
+
+## Selected-policy and station evidence
+
+- [Degree and Betweenness](Degree_and_Betweenness.pdf): saved station centrality maps and distributions; July top-ten network-impact maps answer a different question.
+- [Network, Station and Community Tradeoffs](Network_Station_Community_Tradeoffs.pdf): raw/source-connected station recovery and named-reference component/community loss contrasts.
+- [Absolute outcomes](../../diagnostics/selected_strategy_20261008/ABSOLUTE_OUTCOMES.csv), [named-reference effects](../../diagnostics/selected_strategy_20261008/NAMED_REFERENCE_EFFECTS.csv), and [station priority/execution](../../diagnostics/selected_strategy_20261008/STATION_PRIORITY_AND_EXECUTION.csv) contain complete selected-policy comparisons in every available case.
+
+Earlier complete-metric atlas products retain the original full experimental set for reproducibility; the current manuscript displays use six scheduled policies. No earlier numerical record is removed.

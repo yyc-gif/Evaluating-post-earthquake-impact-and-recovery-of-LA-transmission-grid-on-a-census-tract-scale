@@ -1,0 +1,384 @@
+{
+  "base_commit": "2cfd9ce5f5c65c7edb575ebd4e8174c4f2fa817b",
+  "selected_scheduled_policies": [
+    "impact-first",
+    "hospital-first",
+    "degree-first",
+    "vulnerability-first",
+    "betweenness-first",
+    "random"
+  ],
+  "idealized_reference": "unconstrained",
+  "records": [
+    {
+      "before_sha256": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68",
+      "change": "Only profile panel B labels explicitly ha=right and multialignment=right; A/C/D native artwork preserved.",
+      "source_sha256": {
+        "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/stage7_cluster_profiles_raw_values.csv": "342e94f54e7617ac8269b561e626e4c9782a7b718df4fba59aeb2607bdb4a125"
+      },
+      "profile_values": [
+        [
+          0.40946473830089947,
+          0.44153633021498756,
+          -0.4416551104180874,
+          1.0911941059417924,
+          -1.5005400640395898
+        ],
+        [
+          0.5403255879928895,
+          -0.08948487749509018,
+          1.3938249961552118,
+          -1.089510619644178,
+          -0.7551550870088283
+        ],
+        [
+          1.4859916591666333,
+          0.20849515908650285,
+          -0.3868444323632922,
+          -1.2636349505735818,
+          -0.044007435316262736
+        ],
+        [
+          -0.08748700544243654,
+          0.04764379480373749,
+          1.016210155220214,
+          0.6255370509750623,
+          -1.601903995556583
+        ],
+        [
+          -1.1037714461870884,
+          -0.065506558192592,
+          0.07436271552534655,
+          1.589678332926497,
+          -0.4947630440721634
+        ],
+        [
+          1.1168310427927757,
+          -0.6078071847029026,
+          0.577921956968766,
+          -1.397445816143691,
+          0.3105000010850536
+        ]
+      ],
+      "file": "Main/Fig07.pdf",
+      "size_mm": [
+        184.99999118381075,
+        252.99999643961587
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "9e4f0accbc4d0874b71bb8873cd072c88c7d1aa364c1066de6ad34d8725d286e",
+      "png_sha256": "ae7342a38f94260b8dccf0b0448a403d11e8e9ad5933524f44e56bcbb867dca3"
+    },
+    {
+      "change": "Selected-policy presentation; numerical sources read-only.",
+      "file": "Additional_Evidence/Degree_and_Betweenness.pdf",
+      "size_mm": [
+        184.99999118381075,
+        167.99999525282115
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "a3c9158bad213b21dc634c2bcb0305b50ad2b9fc60043cf461bef761e3413af9",
+      "png_sha256": "7c0221c201d0b020eadf90ab433853f6db9bc6ab292cc48692a16deda56f39c8"
+    },
+    {
+      "change": "Selected-policy presentation; numerical sources read-only.",
+      "file": "Main/Fig04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        204.99999779595268
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+      "png_sha256": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+      "display_values": [
+        {
+          "strategy": "impact-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 33.593686467844854,
+          "p05": 29.47939488907694,
+          "p95": 37.6928302662577
+        },
+        {
+          "strategy": "impact-first",
+          "metric": "burden_Q4_hr",
+          "mean": 32.73300490554173,
+          "p05": 28.053174298439206,
+          "p95": 37.459694282430384
+        },
+        {
+          "strategy": "impact-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 33.05932720079036,
+          "p05": 28.63122667922893,
+          "p95": 37.4363307890268
+        },
+        {
+          "strategy": "hospital-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 34.30646521839252,
+          "p05": 30.132437271673204,
+          "p95": 38.387729126186166
+        },
+        {
+          "strategy": "hospital-first",
+          "metric": "burden_Q4_hr",
+          "mean": 33.618165154976595,
+          "p05": 28.83473337571684,
+          "p95": 38.327967908954754
+        },
+        {
+          "strategy": "hospital-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 33.366687787180126,
+          "p05": 28.878285831937003,
+          "p95": 37.81770798870994
+        },
+        {
+          "strategy": "degree-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 35.707709164451444,
+          "p05": 31.441243471536957,
+          "p95": 40.10001345662655
+        },
+        {
+          "strategy": "degree-first",
+          "metric": "burden_Q4_hr",
+          "mean": 34.90036944094061,
+          "p05": 30.132807720411844,
+          "p95": 39.69285431067533
+        },
+        {
+          "strategy": "degree-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 35.73100591148288,
+          "p05": 31.01763535739453,
+          "p95": 40.52049912777076
+        },
+        {
+          "strategy": "vulnerability-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 34.25784945267778,
+          "p05": 30.100819151961225,
+          "p95": 38.37673675661431
+        },
+        {
+          "strategy": "vulnerability-first",
+          "metric": "burden_Q4_hr",
+          "mean": 32.02349416829504,
+          "p05": 27.46253962554764,
+          "p95": 36.80707368283731
+        },
+        {
+          "strategy": "vulnerability-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 33.93907633764768,
+          "p05": 29.34974622356871,
+          "p95": 38.443648780533316
+        },
+        {
+          "strategy": "betweenness-first",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 35.52157245879788,
+          "p05": 31.25864400402996,
+          "p95": 39.94200504566688
+        },
+        {
+          "strategy": "betweenness-first",
+          "metric": "burden_Q4_hr",
+          "mean": 34.73011729067136,
+          "p05": 29.886003185622325,
+          "p95": 39.40378685340413
+        },
+        {
+          "strategy": "betweenness-first",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 35.37954022527479,
+          "p05": 30.660913995675045,
+          "p95": 40.16580281197064
+        },
+        {
+          "strategy": "random",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 39.3884897974452,
+          "p05": 34.55176251816403,
+          "p95": 44.303414312837106
+        },
+        {
+          "strategy": "random",
+          "metric": "burden_Q4_hr",
+          "mean": 37.51984554270041,
+          "p05": 32.35397540191517,
+          "p95": 43.071333061475414
+        },
+        {
+          "strategy": "random",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 39.92426454980686,
+          "p05": 34.4434854521834,
+          "p95": 45.152500536625894
+        },
+        {
+          "strategy": "unconstrained",
+          "metric": "population_weighted_normalized_burden_hr",
+          "mean": 31.337776981796647,
+          "p05": 27.59068173865704,
+          "p95": 35.105784158681104
+        },
+        {
+          "strategy": "unconstrained",
+          "metric": "burden_Q4_hr",
+          "mean": 30.637942975052958,
+          "p05": 26.141422737502783,
+          "p95": 35.3521354614291
+        },
+        {
+          "strategy": "unconstrained",
+          "metric": "hospital_mean_normalized_burden_hr",
+          "mean": 31.402914717863798,
+          "p05": 27.05274244265606,
+          "p95": 35.51867384654218
+        }
+      ]
+    },
+    {
+      "before_sha256": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc",
+      "change": "Seven-point policy plane and selected grouped key; B/C/D/E unchanged.",
+      "file": "Main/Fig05.pdf",
+      "size_mm": [
+        184.99999118381075,
+        250.0000072903103
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "ccaa356c8d760da50e06a082d46fe4f4b1641e81e9d80ca46fd6d9b36d847fd2",
+      "png_sha256": "45a4cafe6507a37c64248b04f5f1bea694813ec9ec08070ac9106a69494e7475"
+    },
+    {
+      "before_sha256": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846",
+      "change": "Six scheduled dynamic policies, preserved static attack diagnostic A.",
+      "file": "Supplement/FigS04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        215.99999389648434
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+      "png_sha256": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0"
+    },
+    {
+      "change": "Selected-policy presentation; numerical sources read-only.",
+      "file": "Supplement/FigS11.pdf",
+      "size_mm": [
+        184.99999118381075,
+        179.99999491373697
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "0b5f0123c4e269aeaa92eb77daf6e91db8097436cdc23f5f3b78ddd64b604559",
+      "png_sha256": "d28705962917b60617e028d76f78c5aa1e59862c5a5612987117d76cb4b436cf"
+    },
+    {
+      "change": "Selected-policy presentation; numerical sources read-only.",
+      "file": "Supplement/FigS12.pdf",
+      "size_mm": [
+        184.99999118381075,
+        170.9999951680501
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e",
+      "png_sha256": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c"
+    },
+    {
+      "change": "Selected-policy presentation; numerical sources read-only.",
+      "file": "Supplement/FigS13.pdf",
+      "size_mm": [
+        184.99999118381075,
+        170.9999951680501
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
+      "png_sha256": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd"
+    },
+    {
+      "before_sha256": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0",
+      "change": "Both directed travel directions shown; no symmetry assumption. Origins map unchanged.",
+      "max_direction_difference_hr": 0.0743962505850963,
+      "file": "Supplement/FigS03.pdf",
+      "size_mm": [
+        184.99999118381075,
+        230.67338765462236
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "148aefb58c7839bea8b5ca06c52661c0f7589f85207e5969049597bcc6a94ec0",
+      "png_sha256": "326fa54b2dc6968f57072188cb132e01bd2539fca2368b2158eb6174d0a9cc4d"
+    },
+    {
+      "before_sha256": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5",
+      "change": "Six selected scheduled policies plus Unconstrained; solid dynamic alternative-route curves and grouped identity. A/C/D unchanged.",
+      "file": "Supplement/FigS07.pdf",
+      "size_mm": [
+        184.99999118381075,
+        220.0000081380208
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "5d468b54ebccb395491c59a867071be648bf5086b36f5d608d25a4131b2c9610",
+      "png_sha256": "092a67145877431633515c3b7ef05efe85e5658ac587dca0af96dd83a34723b6"
+    },
+    {
+      "change": "Selected-policy presentation; numerical sources read-only.",
+      "file": "Additional_Evidence/Network_Station_Community_Tradeoffs.pdf",
+      "size_mm": [
+        184.99999118381075,
+        174.9999986436632
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "86dd14ba21593fe9b359ec035b2d649b12ca9969da5f7cf23e8bfa1d6f6b88cc",
+      "png_sha256": "2b6e44748b1f28f67d637fa05684e206f9374549d7e94533e8eb5131b8b6cf21"
+    },
+    {
+      "change": "Selected-policy presentation; numerical sources read-only.",
+      "file": "Supplement/FigS05.pdf",
+      "size_mm": [
+        184.99999118381075,
+        190.0000089857313
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "edbbeea33f30e5a78727339d24d597506e107628f8015deda5d3dd45a04143b3",
+      "png_sha256": "9db48826aecc64c22f53c08424cc0297c4c67c80d5989e754f24f61cecb5d83e",
+      "search_runs": 60,
+      "best_planning_result": {
+        "seed": 46,
+        "population": 100,
+        "generations": 2000,
+        "unique_candidates_evaluated": 81187,
+        "unique_non_incumbent_candidates": 81180,
+        "retained_service_loss_hr": 33.03813174326729,
+        "best_non_incumbent_service_loss_hr": 33.03813174326729,
+        "impact_service_loss_hr": 33.57830255999924,
+        "delta_J_hr": -0.5401708167319441,
+        "improvement_hr": 0.5401708167319441,
+        "improvement_percent": 1.608690063372746,
+        "strict_improvement": true,
+        "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed",
+        "generation_found": 1985,
+        "displaced_stations": 86,
+        "rank_correlation": 0.7222230784643127,
+        "top10_overlap": 2,
+        "elapsed_seconds": 138.83130999999412,
+        "exact_tie_candidate_count": 0,
+        "near_tie_abs_gap_lt_1e-06_hr": 0,
+        "near_tie_abs_gap_lt_0.0001_hr": 7,
+        "near_tie_abs_gap_lt_0.001_hr": 41,
+        "near_tie_abs_gap_lt_0.01_hr": 307,
+        "best_incumbent_fitness": -33.57830255999924,
+        "best_ga_generated_non_incumbent_fitness": -33.03813174326729,
+        "best_non_incumbent_sequence_identity": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed",
+        "best_non_incumbent_generation_found": 1985,
+        "best_non_incumbent_gap_from_impact_hr": -0.5401708167319441,
+        "best_non_incumbent_displaced_stations": 86,
+        "best_non_incumbent_rank_correlation": 0.7222230784643127,
+        "best_non_incumbent_top10_overlap": 2
+      },
+      "selection_sha256": "460e5657ad6ef92cb8b86ec663b3ee6f8f3380d1b3b6d080a97c70921839a688"
+    }
+  ],
+  "formal_results_replaced": false
+}

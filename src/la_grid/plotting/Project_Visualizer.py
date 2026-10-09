@@ -5733,7 +5733,11 @@ def vis_stage7(gdf):
         ax.set_yticklabels(
             [textwrap.fill(PRETTY_VAR_NAMES.get(str(f), str(f)), width=32) for f in grp_z.T.index.tolist()],
             rotation=0,
+            ha="right",
         )
+        for label in ax.get_yticklabels():
+            label.set_horizontalalignment("right")
+            label.set_multialignment("right")
         fig.subplots_adjust(left=0.36)
         style_axis(
             ax,
@@ -5775,7 +5779,11 @@ def vis_stage7(gdf):
                 for f in grp_z.T.index.tolist()
             ],
             rotation=0,
+            ha="right",
         )
+        for label in ax_compact.get_yticklabels():
+            label.set_horizontalalignment("right")
+            label.set_multialignment("right")
         mesh_compact = ax_compact.collections[0]
         style_colorbar_with_endpoints(
             mesh_compact.colorbar,

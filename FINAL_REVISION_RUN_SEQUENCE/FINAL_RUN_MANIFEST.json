@@ -3,8 +3,8 @@
   "workflow": "FINAL_REVISION_RUN_SEQUENCE",
   "mode": "resume",
   "status": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
-  "started_at_utc": "2026-10-09T06:30:40.811840+00:00",
-  "repository_head": "ae7bc9658ca4462ebd060744429d6051d70bbd98",
+  "started_at_utc": "2026-10-09T07:51:17.492509+00:00",
+  "repository_head": "2cfd9ce5f5c65c7edb575ebd4e8174c4f2fa817b",
   "branch": "revision/reviewer-driven-core-rebuild-v2",
   "parent_matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
   "parent_matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
@@ -111,10 +111,10 @@
           "status": "PASS_DRY_VALIDATION_NO_SAMPLING_OR_SCHEDULING"
         },
         "code": {
-          "authority_file_sha256": "6ce46679983668bae57f2a460878ca75b536a7d684bba06c5f956cc48d5a7dd9",
-          "code_file_count": 57,
+          "authority_file_sha256": "5a648351c476738727cc97ac7721e111839d6f43b40b27d08768fb80eaad6f56",
+          "code_file_count": 63,
           "historical_commit_count": 10,
-          "current_head": "ae7bc9658ca4462ebd060744429d6051d70bbd98"
+          "current_head": "2cfd9ce5f5c65c7edb575ebd4e8174c4f2fa817b"
         }
       },
       "hashes": {
@@ -133,7 +133,7 @@
         "inputs.input_hashes[11].sha256": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00",
         "inputs.input_hashes[12].sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630",
         "inputs.input_hashes[13].sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
-        "code.authority_file_sha256": "6ce46679983668bae57f2a460878ca75b536a7d684bba06c5f956cc48d5a7dd9"
+        "code.authority_file_sha256": "5a648351c476738727cc97ac7721e111839d6f43b40b27d08768fb80eaad6f56"
       },
       "outputs": [
         {
@@ -156,7 +156,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "de4e3952a3dfccc7afec12c480cb0e9c9b76234a3ab6b6323a9cf6edb3506d35"
+      "stage_manifest_sha256": "36c95fe85c6ef1a251327a7318e541c1c4d8f1e9e2c7572f75e90b32f1fdd394"
     },
     {
       "stage_id": "02",
@@ -179,7 +179,7 @@
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\01_VALIDATE_INPUTS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "de4e3952a3dfccc7afec12c480cb0e9c9b76234a3ab6b6323a9cf6edb3506d35",
+          "sha256": "36c95fe85c6ef1a251327a7318e541c1c4d8f1e9e2c7572f75e90b32f1fdd394",
           "status": "PASS_VALIDATE"
         }
       },
@@ -190,7 +190,7 @@
         "physical_samples.sample_archive_hashes.Northridge": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
         "physical_samples.sample_archive_hashes.SanFernando": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0",
         "production_mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
-        "previous_stage_manifest.sha256": "de4e3952a3dfccc7afec12c480cb0e9c9b76234a3ab6b6323a9cf6edb3506d35"
+        "previous_stage_manifest.sha256": "36c95fe85c6ef1a251327a7318e541c1c4d8f1e9e2c7572f75e90b32f1fdd394"
       },
       "outputs": [
         {
@@ -213,7 +213,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "dbb4d6fa29406a9bc8b3ce1faf94a8a98525e4111ea7b651701d5360c6346029"
+      "stage_manifest_sha256": "f737b0974068b244e3c32d03401d7a52a9eccc9eb282be71b5a561b22c4547f5"
     },
     {
       "stage_id": "03",
@@ -238,13 +238,13 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\02_MAPPING_AND_PHYSICAL_SAMPLES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "dbb4d6fa29406a9bc8b3ce1faf94a8a98525e4111ea7b651701d5360c6346029",
+          "sha256": "f737b0974068b244e3c32d03401d7a52a9eccc9eb282be71b5a561b22c4547f5",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "resolved_strategy_registry.GA_identity_sha256": "9d44e3fe17912fc7ec6c4298d6b6e6cab542a909cd8606b2230c2bf3469acba4",
-        "previous_stage_manifest.sha256": "dbb4d6fa29406a9bc8b3ce1faf94a8a98525e4111ea7b651701d5360c6346029"
+        "previous_stage_manifest.sha256": "f737b0974068b244e3c32d03401d7a52a9eccc9eb282be71b5a561b22c4547f5"
       },
       "outputs": [
         {
@@ -272,7 +272,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "84f00a6761afdd4432e10247278463502721837fe597a044dcdabd9e1eb862e6"
+      "stage_manifest_sha256": "e0e106a05ed0b2f95e8b41df955254b82a53d462fb373240e0c309a08bd742a3"
     },
     {
       "stage_id": "04",
@@ -295,7 +295,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\03_GA_AND_STRATEGY_FREEZE\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "84f00a6761afdd4432e10247278463502721837fe597a044dcdabd9e1eb862e6",
+          "sha256": "e0e106a05ed0b2f95e8b41df955254b82a53d462fb373240e0c309a08bd742a3",
           "status": "PASS_REUSE"
         }
       },
@@ -303,7 +303,7 @@
         "formal_trajectories.archive_manifest_chain_sha256": "5c9fa67fcc2b9fe35959429da34e918a676f22a6e8d0ede1f51f59fcb1debffd",
         "vulnerability_first_trajectories.manifest_chain_sha256": "2f9e6249414d607f5fc37b8b55e81c809ebed4529fcb0c43d1dbbf84ddaee5f7",
         "vulnerability_first_trajectories.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
-        "previous_stage_manifest.sha256": "84f00a6761afdd4432e10247278463502721837fe597a044dcdabd9e1eb862e6"
+        "previous_stage_manifest.sha256": "e0e106a05ed0b2f95e8b41df955254b82a53d462fb373240e0c309a08bd742a3"
       },
       "outputs": [
         {
@@ -334,7 +334,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "e579892e0b7640b4dfaa4a02cbc1479b2360eb2e05dd19befe09fbcab03ae45a"
+      "stage_manifest_sha256": "e9fff086fa1fba7e81e2fff7f432fc7cdcb05f965eeec865857536f421e316f9"
     },
     {
       "stage_id": "05",
@@ -360,7 +360,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\04_SCHEDULE_AND_TRAJECTORIES\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "e579892e0b7640b4dfaa4a02cbc1479b2360eb2e05dd19befe09fbcab03ae45a",
+          "sha256": "e9fff086fa1fba7e81e2fff7f432fc7cdcb05f965eeec865857536f421e316f9",
           "status": "PASS_REUSE"
         }
       },
@@ -369,7 +369,7 @@
         "equity_offline_shards.sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f",
         "formal_result_authorities.Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json": "a2a9a2f95b18d01e86bc34175ddd775756d93866d24859d06df0c50eb02c2d08",
         "formal_result_authorities.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json": "64fed2a28641e2010fe7413b6162f258557b25243ac0923e0be534aff9a8fc1a",
-        "previous_stage_manifest.sha256": "e579892e0b7640b4dfaa4a02cbc1479b2360eb2e05dd19befe09fbcab03ae45a"
+        "previous_stage_manifest.sha256": "e9fff086fa1fba7e81e2fff7f432fc7cdcb05f965eeec865857536f421e316f9"
       },
       "outputs": [
         {
@@ -415,7 +415,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "19c05e82b066f8a593b24a99dd93f1c60a2fe3fce02f692153d736b55b9e7489"
+      "stage_manifest_sha256": "8d80dfbf01acd1a461780b5ca97b45c946137075442f0ed33b76fff564383e11"
     },
     {
       "stage_id": "06",
@@ -442,7 +442,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\05_SERVICE_AND_TRACT_EVALUATION\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "19c05e82b066f8a593b24a99dd93f1c60a2fe3fce02f692153d736b55b9e7489",
+          "sha256": "8d80dfbf01acd1a461780b5ca97b45c946137075442f0ed33b76fff564383e11",
           "status": "PASS_REUSE"
         }
       },
@@ -452,7 +452,7 @@
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv": "b21a0de55e1d7e359f57c44dea0e1840607db49f5393ed167b413cfe2e7692fe",
         "compact_diagnostic_sha256.results/diagnostics/SOURCE_TERMINAL_DYNAMIC_SUMMARY_2PC50.csv": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
         "compact_diagnostic_sha256.results/diagnostics/ROUTE_REQUIREMENT_SENSITIVITY_SUMMARY.csv": "175c9781e8c8bd149a05e28722f54a32c31c476caccd649bb265ae8c8a40faec",
-        "previous_stage_manifest.sha256": "19c05e82b066f8a593b24a99dd93f1c60a2fe3fce02f692153d736b55b9e7489"
+        "previous_stage_manifest.sha256": "8d80dfbf01acd1a461780b5ca97b45c946137075442f0ed33b76fff564383e11"
       },
       "outputs": [
         {
@@ -498,7 +498,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "ea61ee643c2bb87b9c093afc1745c0a20dcd61074fe4e004c2cc09518f545f85"
+      "stage_manifest_sha256": "5643e18e9c0b62d17af6136459a4640631d75ebd8dd6b55a4b18a6e1b3188d97"
     },
     {
       "stage_id": "07",
@@ -517,7 +517,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\06_SOURCE_AND_NETWORK_DIAGNOSTICS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "ea61ee643c2bb87b9c093afc1745c0a20dcd61074fe4e004c2cc09518f545f85",
+          "sha256": "5643e18e9c0b62d17af6136459a4640631d75ebd8dd6b55a4b18a6e1b3188d97",
           "status": "PASS_REUSE"
         }
       },
@@ -529,7 +529,7 @@
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_GROUP_SUMMARY.csv": "5d9f41af008d3f084c5f1def040f59a3e47329b59a8b5524e5cb68f17644f6c9",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PAIRWISE_EFFECTS.csv": "ef5af1d32dc0184684f9d0c619b96a1dcab596818e1c01be8fe8de7d53cff982",
         "result_hashes.Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_TRACT_EFFECTS.parquet": "f0e1a0897d7a6b4ec2251ffc35c3008744ddf7d6ca2ec6b5bfadaaf7ed9632db",
-        "previous_stage_manifest.sha256": "ea61ee643c2bb87b9c093afc1745c0a20dcd61074fe4e004c2cc09518f545f85"
+        "previous_stage_manifest.sha256": "5643e18e9c0b62d17af6136459a4640631d75ebd8dd6b55a4b18a6e1b3188d97"
       },
       "outputs": [
         {
@@ -552,7 +552,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "91772090d5bf12947622ed0965c8c34a36a8c8323abc9f5566717acc3924d434"
+      "stage_manifest_sha256": "b5abc0911e0a1452047448307c40be210bb38e1ac908009c41308f61a0c783d8"
     },
     {
       "stage_id": "08",
@@ -589,7 +589,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\07_DISTRIBUTIONAL_AND_VULNERABILITY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "91772090d5bf12947622ed0965c8c34a36a8c8323abc9f5566717acc3924d434",
+          "sha256": "b5abc0911e0a1452047448307c40be210bb38e1ac908009c41308f61a0c783d8",
           "status": "PASS_REUSE"
         }
       },
@@ -609,7 +609,7 @@
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_profile_stability.csv": "aedc45da49daac1ac7eeb9f74655f45bbae63b77e03baefa4cd0fcaf437d50bd",
         "stage7.verifier_result.input_sha256.stage7_raw_vs_log_robustness_summary.csv": "12a4067d95ca1c97fbb5b9222bd936d7c3c9c3c17f7bab75cd2318d97d9db7e3",
         "stage7.verifier_result.input_sha256.stage7_long_tail_diagnostics.csv": "442399c768b0db29b84a2346a4b0559ba1719c5f02c3600a9633c8a5ed045a4e",
-        "previous_stage_manifest.sha256": "91772090d5bf12947622ed0965c8c34a36a8c8323abc9f5566717acc3924d434"
+        "previous_stage_manifest.sha256": "b5abc0911e0a1452047448307c40be210bb38e1ac908009c41308f61a0c783d8"
       },
       "outputs": [
         {
@@ -627,7 +627,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "3fa793aa4e512034ad39ea6e5036b082c097e770aacccc0d91729eeea32ffc94"
+      "stage_manifest_sha256": "84ee2c8095e7252c1ce6f1c91fcac8a1ab6bcc302f96dbf2dee3dba9c20b630a"
     },
     {
       "stage_id": "09",
@@ -657,7 +657,7 @@
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\08_FINAL_STAGE7_TYPOLOGY\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "3fa793aa4e512034ad39ea6e5036b082c097e770aacccc0d91729eeea32ffc94",
+          "sha256": "84ee2c8095e7252c1ce6f1c91fcac8a1ab6bcc302f96dbf2dee3dba9c20b630a",
           "status": "PASS_REUSE"
         }
       },
@@ -677,7 +677,7 @@
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/RECONCILIATION.csv": "bf86aa2adea91265c8c20607424e576bcec50e2f577f7e3ebd06b703e984c009",
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/TRAJECTORY_SOURCE_HASHES.csv": "6ca104ed170ff1b86b9bb350634e3d9b1e5a1bfcf15d7015fb9b7304dd0af092",
         "capacity.output_hashes.results/capacity/SCE_SUPPORTED_GEOGRAPHY/AUDIT.json": "80f02a624468735dbaf81a61a5da95ea88be47470f480fae8b6a52eb8e5dc4f9",
-        "previous_stage_manifest.sha256": "3fa793aa4e512034ad39ea6e5036b082c097e770aacccc0d91729eeea32ffc94"
+        "previous_stage_manifest.sha256": "84ee2c8095e7252c1ce6f1c91fcac8a1ab6bcc302f96dbf2dee3dba9c20b630a"
       },
       "outputs": [
         {
@@ -695,7 +695,7 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "fdd7e268760261d1231d85150ffd70fc4b7b6b33a060db868160e308dfa9245d"
+      "stage_manifest_sha256": "0c20c77f60ec0afc9a1de5d7e958007f3cc845d08ff4f811bf137780489c830f"
     },
     {
       "stage_id": "10",
@@ -713,7 +713,7 @@
           "file_count": 38,
           "inventory_rows": 38,
           "figure_hashes": {
-            "results/figures/FIGURE_INDEX.csv": "12342668f72e00df1a7675c0f6cf3a2455c74a6df041845ff2947be857f0051e",
+            "results/figures/FIGURE_INDEX.csv": "9a0f5ff9827c085b031f3b1cdd64a61e6f8f69e3cfa33baaf49624c7650c5ff8",
             "results/figures/README.md": "a91a67c0a2bc7f06378b9fe1fb07ba2049a8b74cb2b2179cea01b6e8f6a6d9a6",
             "results/figures/FIGURE_REVIEW_GALLERY.html": "c4355cbe95d674d848bfc18cc95b3803fcfda739e5e73bd55635207c00ca4cca",
             "results/figures/Fig01_Methodology_Workflow.pdf": "c33a693c0bfa7b42c92b1bbec36d0ada55487fbc6e3450fb727439197c451aff",
@@ -722,38 +722,38 @@
             "results/figures/Fig02_System_Network_and_Mapping.png": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
             "results/figures/Fig03_Unconstrained_Recovery.pdf": "25c4284bc9562e584dd8f43452ceb210fffcad307dff1e4564adb49911981f7f",
             "results/figures/Fig03_Unconstrained_Recovery.png": "675d095f57e19fc3f0083dc6a98d9a8f331e64481692e4a4dbdc5159af512ece",
-            "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf": "e8804df46b9c529805871a23bd24c3a9a601e4ff0babb52c0d65d0880ccf524a",
-            "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png": "7e119afc437833e814170125b468e23505639704e84f72dacfdf84df7a706f1c",
-            "results/figures/Fig05_Distributional_Outcomes.pdf": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc",
-            "results/figures/Fig05_Distributional_Outcomes.png": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f",
+            "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+            "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+            "results/figures/Fig05_Distributional_Outcomes.pdf": "ccaa356c8d760da50e06a082d46fe4f4b1641e81e9d80ca46fd6d9b36d847fd2",
+            "results/figures/Fig05_Distributional_Outcomes.png": "45a4cafe6507a37c64248b04f5f1bea694813ec9ec08070ac9106a69494e7475",
             "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
             "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
-            "results/figures/Fig07_Community_Typology_and_Hotspots.pdf": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68",
-            "results/figures/Fig07_Community_Typology_and_Hotspots.png": "4b29093179d401e00e904277f8e621525542b2456393a8643f573e672d5d735d",
+            "results/figures/Fig07_Community_Typology_and_Hotspots.pdf": "9e4f0accbc4d0874b71bb8873cd072c88c7d1aa364c1066de6ad34d8725d286e",
+            "results/figures/Fig07_Community_Typology_and_Hotspots.png": "ae7342a38f94260b8dccf0b0448a403d11e8e9ad5933524f44e56bcbb867dca3",
             "results/figures/FigS01_Damage_Severity.pdf": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
             "results/figures/FigS01_Damage_Severity.png": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
-            "results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0",
-            "results/figures/FigS03_Crew_Bases_and_Directed_Travel.png": "b0c30c6f36b3fae4265d00cc13b568460a66a5a924a48ddac7b351a9f88170b0",
-            "results/figures/FigS04_Network_Criticality_and_Percolation.pdf": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846",
-            "results/figures/FigS04_Network_Criticality_and_Percolation.png": "6ba9f583a4ed56461031549e0eec4c71c2e4fcdb7321f0347706a673d4b49a78",
-            "results/figures/FigS05_GA_Reproducibility.pdf": "25ca0d8a26f9fa4c93cc917f1f60dbcebc3e8f1b81edfada8245d46f3fb1ed39",
-            "results/figures/FigS05_GA_Reproducibility.png": "4e23f78a6830505ebddd45938f541e4ac4a282ad7cb57d5e3f351070765d51b5",
+            "results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf": "148aefb58c7839bea8b5ca06c52661c0f7589f85207e5969049597bcc6a94ec0",
+            "results/figures/FigS03_Crew_Bases_and_Directed_Travel.png": "326fa54b2dc6968f57072188cb132e01bd2539fca2368b2158eb6174d0a9cc4d",
+            "results/figures/FigS04_Network_Criticality_and_Percolation.pdf": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+            "results/figures/FigS04_Network_Criticality_and_Percolation.png": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+            "results/figures/FigS05_GA_Reproducibility.pdf": "edbbeea33f30e5a78727339d24d597506e107628f8015deda5d3dd45a04143b3",
+            "results/figures/FigS05_GA_Reproducibility.png": "9db48826aecc64c22f53c08424cc0297c4c67c80d5989e754f24f61cecb5d83e",
             "results/figures/FigS06_Mapping_Robustness.pdf": "9b23b772105f8c1ad51a950656d79c94148cad848f732b4f57e1676d4acbf7a5",
             "results/figures/FigS06_Mapping_Robustness.png": "27f57a4fad546aa78da003a6d003c31615fd27ef41f19328930366be40e5b58c",
-            "results/figures/FigS07_Source_Redundancy.pdf": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5",
-            "results/figures/FigS07_Source_Redundancy.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
+            "results/figures/FigS07_Source_Redundancy.pdf": "5d468b54ebccb395491c59a867071be648bf5086b36f5d608d25a4131b2c9610",
+            "results/figures/FigS07_Source_Redundancy.png": "092a67145877431633515c3b7ef05efe85e5658ac587dca0af96dd83a34723b6",
             "results/figures/FigS08_Capacity_Sensitivity.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
             "results/figures/FigS08_Capacity_Sensitivity.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
             "results/figures/FigS09_Stage7_Diagnostics.pdf": "6dffb5cdbf194d29e8756f8aa4a39710a6fa765dae80891d41f8ad534c4abc0d",
             "results/figures/FigS09_Stage7_Diagnostics.png": "9bfb56b7aa3462c84dec9302e98c33f495fdf80fe52bffbdfc4e1bba9ea1ce54",
             "results/figures/FigS10_Priority_Construction.pdf": "ee643a4def847918938f034de798a9b5cbe06fe2b1c8a64b82f2c508c9f94038",
             "results/figures/FigS10_Priority_Construction.png": "3a40853b607b373ec17d6c5cee78cbea404eb732967667dfaf47327e47fe065e",
-            "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "b354eee4d1a5ffee76138efa78ffc314f92ea954616d7e4e1c8638e24a1168dc",
-            "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png": "e6042cdf33a36b68150b72ad6cd2ba154338c9205142f2be1322307f0020407a",
-            "results/figures/FigS12_Crew_Resource_Contrasts.pdf": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80",
-            "results/figures/FigS12_Crew_Resource_Contrasts.png": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c",
-            "results/figures/FigS13_Repair_Duration_Contrasts.pdf": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3",
-            "results/figures/FigS13_Repair_Duration_Contrasts.png": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d"
+            "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "0b5f0123c4e269aeaa92eb77daf6e91db8097436cdc23f5f3b78ddd64b604559",
+            "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png": "d28705962917b60617e028d76f78c5aa1e59862c5a5612987117d76cb4b436cf",
+            "results/figures/FigS12_Crew_Resource_Contrasts.pdf": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e",
+            "results/figures/FigS12_Crew_Resource_Contrasts.png": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c",
+            "results/figures/FigS13_Repair_Duration_Contrasts.pdf": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
+            "results/figures/FigS13_Repair_Duration_Contrasts.png": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd"
           },
           "source_authority_hashes": {
             "results/figure_review/Main/Fig01.pdf": "c33a693c0bfa7b42c92b1bbec36d0ada55487fbc6e3450fb727439197c451aff",
@@ -762,52 +762,52 @@
             "results/figure_review/Main/Fig02.png": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
             "results/figure_review/Main/Fig03.pdf": "25c4284bc9562e584dd8f43452ceb210fffcad307dff1e4564adb49911981f7f",
             "results/figure_review/Main/Fig03.png": "675d095f57e19fc3f0083dc6a98d9a8f331e64481692e4a4dbdc5159af512ece",
-            "results/figure_review/Main/Fig04.pdf": "e8804df46b9c529805871a23bd24c3a9a601e4ff0babb52c0d65d0880ccf524a",
-            "results/figure_review/Main/Fig04.png": "7e119afc437833e814170125b468e23505639704e84f72dacfdf84df7a706f1c",
-            "results/figure_review/Main/Fig05.pdf": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc",
-            "results/figure_review/Main/Fig05.png": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f",
+            "results/figure_review/Main/Fig04.pdf": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+            "results/figure_review/Main/Fig04.png": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+            "results/figure_review/Main/Fig05.pdf": "ccaa356c8d760da50e06a082d46fe4f4b1641e81e9d80ca46fd6d9b36d847fd2",
+            "results/figure_review/Main/Fig05.png": "45a4cafe6507a37c64248b04f5f1bea694813ec9ec08070ac9106a69494e7475",
             "results/figure_review/Main/Fig06.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
             "results/figure_review/Main/Fig06.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
-            "results/figure_review/Main/Fig07.pdf": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68",
-            "results/figure_review/Main/Fig07.png": "4b29093179d401e00e904277f8e621525542b2456393a8643f573e672d5d735d",
+            "results/figure_review/Main/Fig07.pdf": "9e4f0accbc4d0874b71bb8873cd072c88c7d1aa364c1066de6ad34d8725d286e",
+            "results/figure_review/Main/Fig07.png": "ae7342a38f94260b8dccf0b0448a403d11e8e9ad5933524f44e56bcbb867dca3",
             "results/figure_review/Supplement/FigS01.pdf": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
             "results/figure_review/Supplement/FigS01.png": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
-            "results/figure_review/Supplement/FigS03.pdf": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0",
-            "results/figure_review/Supplement/FigS03.png": "b0c30c6f36b3fae4265d00cc13b568460a66a5a924a48ddac7b351a9f88170b0",
-            "results/figure_review/Supplement/FigS04.pdf": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846",
-            "results/figure_review/Supplement/FigS04.png": "6ba9f583a4ed56461031549e0eec4c71c2e4fcdb7321f0347706a673d4b49a78",
-            "results/figure_review/Supplement/FigS05.pdf": "25ca0d8a26f9fa4c93cc917f1f60dbcebc3e8f1b81edfada8245d46f3fb1ed39",
-            "results/figure_review/Supplement/FigS05.png": "4e23f78a6830505ebddd45938f541e4ac4a282ad7cb57d5e3f351070765d51b5",
+            "results/figure_review/Supplement/FigS03.pdf": "148aefb58c7839bea8b5ca06c52661c0f7589f85207e5969049597bcc6a94ec0",
+            "results/figure_review/Supplement/FigS03.png": "326fa54b2dc6968f57072188cb132e01bd2539fca2368b2158eb6174d0a9cc4d",
+            "results/figure_review/Supplement/FigS04.pdf": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+            "results/figure_review/Supplement/FigS04.png": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+            "results/figure_review/Supplement/FigS05.pdf": "edbbeea33f30e5a78727339d24d597506e107628f8015deda5d3dd45a04143b3",
+            "results/figure_review/Supplement/FigS05.png": "9db48826aecc64c22f53c08424cc0297c4c67c80d5989e754f24f61cecb5d83e",
             "results/figure_review/Supplement/FigS06.pdf": "9b23b772105f8c1ad51a950656d79c94148cad848f732b4f57e1676d4acbf7a5",
             "results/figure_review/Supplement/FigS06.png": "27f57a4fad546aa78da003a6d003c31615fd27ef41f19328930366be40e5b58c",
-            "results/figure_review/Supplement/FigS07.pdf": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5",
-            "results/figure_review/Supplement/FigS07.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
+            "results/figure_review/Supplement/FigS07.pdf": "5d468b54ebccb395491c59a867071be648bf5086b36f5d608d25a4131b2c9610",
+            "results/figure_review/Supplement/FigS07.png": "092a67145877431633515c3b7ef05efe85e5658ac587dca0af96dd83a34723b6",
             "results/figure_review/Supplement/FigS08.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
             "results/figure_review/Supplement/FigS08.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
             "results/figure_review/Supplement/FigS09.pdf": "6dffb5cdbf194d29e8756f8aa4a39710a6fa765dae80891d41f8ad534c4abc0d",
             "results/figure_review/Supplement/FigS09.png": "9bfb56b7aa3462c84dec9302e98c33f495fdf80fe52bffbdfc4e1bba9ea1ce54",
             "results/figure_review/Supplement/FigS10.pdf": "ee643a4def847918938f034de798a9b5cbe06fe2b1c8a64b82f2c508c9f94038",
             "results/figure_review/Supplement/FigS10.png": "3a40853b607b373ec17d6c5cee78cbea404eb732967667dfaf47327e47fe065e",
-            "results/figure_review/Supplement/FigS11.pdf": "b354eee4d1a5ffee76138efa78ffc314f92ea954616d7e4e1c8638e24a1168dc",
-            "results/figure_review/Supplement/FigS11.png": "e6042cdf33a36b68150b72ad6cd2ba154338c9205142f2be1322307f0020407a",
-            "results/figure_review/Supplement/FigS12.pdf": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80",
-            "results/figure_review/Supplement/FigS12.png": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c",
-            "results/figure_review/Supplement/FigS13.pdf": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3",
-            "results/figure_review/Supplement/FigS13.png": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d"
+            "results/figure_review/Supplement/FigS11.pdf": "0b5f0123c4e269aeaa92eb77daf6e91db8097436cdc23f5f3b78ddd64b604559",
+            "results/figure_review/Supplement/FigS11.png": "d28705962917b60617e028d76f78c5aa1e59862c5a5612987117d76cb4b436cf",
+            "results/figure_review/Supplement/FigS12.pdf": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e",
+            "results/figure_review/Supplement/FigS12.png": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c",
+            "results/figure_review/Supplement/FigS13.pdf": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
+            "results/figure_review/Supplement/FigS13.png": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd"
           },
-          "index_sha256": "12342668f72e00df1a7675c0f6cf3a2455c74a6df041845ff2947be857f0051e",
+          "index_sha256": "9a0f5ff9827c085b031f3b1cdd64a61e6f8f69e3cfa33baaf49624c7650c5ff8",
           "unique_content_count": 38,
           "byte_identical_copy_count": 0
         },
         "previous_stage_manifest": {
           "path": "FINAL_REVISION_RUN_SEQUENCE\\09_CAPACITY_ROBUSTNESS\\STAGE_VALIDATION_MANIFEST.json",
-          "sha256": "fdd7e268760261d1231d85150ffd70fc4b7b6b33a060db868160e308dfa9245d",
+          "sha256": "0c20c77f60ec0afc9a1de5d7e958007f3cc845d08ff4f811bf137780489c830f",
           "status": "PASS_REUSE"
         }
       },
       "hashes": {
         "suite.suite_manifest_sha256": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442",
-        "final_figures.figure_hashes.results/figures/FIGURE_INDEX.csv": "12342668f72e00df1a7675c0f6cf3a2455c74a6df041845ff2947be857f0051e",
+        "final_figures.figure_hashes.results/figures/FIGURE_INDEX.csv": "9a0f5ff9827c085b031f3b1cdd64a61e6f8f69e3cfa33baaf49624c7650c5ff8",
         "final_figures.figure_hashes.results/figures/README.md": "a91a67c0a2bc7f06378b9fe1fb07ba2049a8b74cb2b2179cea01b6e8f6a6d9a6",
         "final_figures.figure_hashes.results/figures/FIGURE_REVIEW_GALLERY.html": "c4355cbe95d674d848bfc18cc95b3803fcfda739e5e73bd55635207c00ca4cca",
         "final_figures.figure_hashes.results/figures/Fig01_Methodology_Workflow.pdf": "c33a693c0bfa7b42c92b1bbec36d0ada55487fbc6e3450fb727439197c451aff",
@@ -816,78 +816,78 @@
         "final_figures.figure_hashes.results/figures/Fig02_System_Network_and_Mapping.png": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
         "final_figures.figure_hashes.results/figures/Fig03_Unconstrained_Recovery.pdf": "25c4284bc9562e584dd8f43452ceb210fffcad307dff1e4564adb49911981f7f",
         "final_figures.figure_hashes.results/figures/Fig03_Unconstrained_Recovery.png": "675d095f57e19fc3f0083dc6a98d9a8f331e64481692e4a4dbdc5159af512ece",
-        "final_figures.figure_hashes.results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf": "e8804df46b9c529805871a23bd24c3a9a601e4ff0babb52c0d65d0880ccf524a",
-        "final_figures.figure_hashes.results/figures/Fig04_Restoration_Strategy_Tradeoffs.png": "7e119afc437833e814170125b468e23505639704e84f72dacfdf84df7a706f1c",
-        "final_figures.figure_hashes.results/figures/Fig05_Distributional_Outcomes.pdf": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc",
-        "final_figures.figure_hashes.results/figures/Fig05_Distributional_Outcomes.png": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f",
+        "final_figures.figure_hashes.results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+        "final_figures.figure_hashes.results/figures/Fig04_Restoration_Strategy_Tradeoffs.png": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+        "final_figures.figure_hashes.results/figures/Fig05_Distributional_Outcomes.pdf": "ccaa356c8d760da50e06a082d46fe4f4b1641e81e9d80ca46fd6d9b36d847fd2",
+        "final_figures.figure_hashes.results/figures/Fig05_Distributional_Outcomes.png": "45a4cafe6507a37c64248b04f5f1bea694813ec9ec08070ac9106a69494e7475",
         "final_figures.figure_hashes.results/figures/Fig06_Resource_Dependent_Policy_Contrasts.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
         "final_figures.figure_hashes.results/figures/Fig06_Resource_Dependent_Policy_Contrasts.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
-        "final_figures.figure_hashes.results/figures/Fig07_Community_Typology_and_Hotspots.pdf": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68",
-        "final_figures.figure_hashes.results/figures/Fig07_Community_Typology_and_Hotspots.png": "4b29093179d401e00e904277f8e621525542b2456393a8643f573e672d5d735d",
+        "final_figures.figure_hashes.results/figures/Fig07_Community_Typology_and_Hotspots.pdf": "9e4f0accbc4d0874b71bb8873cd072c88c7d1aa364c1066de6ad34d8725d286e",
+        "final_figures.figure_hashes.results/figures/Fig07_Community_Typology_and_Hotspots.png": "ae7342a38f94260b8dccf0b0448a403d11e8e9ad5933524f44e56bcbb867dca3",
         "final_figures.figure_hashes.results/figures/FigS01_Damage_Severity.pdf": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
         "final_figures.figure_hashes.results/figures/FigS01_Damage_Severity.png": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
-        "final_figures.figure_hashes.results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0",
-        "final_figures.figure_hashes.results/figures/FigS03_Crew_Bases_and_Directed_Travel.png": "b0c30c6f36b3fae4265d00cc13b568460a66a5a924a48ddac7b351a9f88170b0",
-        "final_figures.figure_hashes.results/figures/FigS04_Network_Criticality_and_Percolation.pdf": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846",
-        "final_figures.figure_hashes.results/figures/FigS04_Network_Criticality_and_Percolation.png": "6ba9f583a4ed56461031549e0eec4c71c2e4fcdb7321f0347706a673d4b49a78",
-        "final_figures.figure_hashes.results/figures/FigS05_GA_Reproducibility.pdf": "25ca0d8a26f9fa4c93cc917f1f60dbcebc3e8f1b81edfada8245d46f3fb1ed39",
-        "final_figures.figure_hashes.results/figures/FigS05_GA_Reproducibility.png": "4e23f78a6830505ebddd45938f541e4ac4a282ad7cb57d5e3f351070765d51b5",
+        "final_figures.figure_hashes.results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf": "148aefb58c7839bea8b5ca06c52661c0f7589f85207e5969049597bcc6a94ec0",
+        "final_figures.figure_hashes.results/figures/FigS03_Crew_Bases_and_Directed_Travel.png": "326fa54b2dc6968f57072188cb132e01bd2539fca2368b2158eb6174d0a9cc4d",
+        "final_figures.figure_hashes.results/figures/FigS04_Network_Criticality_and_Percolation.pdf": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+        "final_figures.figure_hashes.results/figures/FigS04_Network_Criticality_and_Percolation.png": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+        "final_figures.figure_hashes.results/figures/FigS05_GA_Reproducibility.pdf": "edbbeea33f30e5a78727339d24d597506e107628f8015deda5d3dd45a04143b3",
+        "final_figures.figure_hashes.results/figures/FigS05_GA_Reproducibility.png": "9db48826aecc64c22f53c08424cc0297c4c67c80d5989e754f24f61cecb5d83e",
         "final_figures.figure_hashes.results/figures/FigS06_Mapping_Robustness.pdf": "9b23b772105f8c1ad51a950656d79c94148cad848f732b4f57e1676d4acbf7a5",
         "final_figures.figure_hashes.results/figures/FigS06_Mapping_Robustness.png": "27f57a4fad546aa78da003a6d003c31615fd27ef41f19328930366be40e5b58c",
-        "final_figures.figure_hashes.results/figures/FigS07_Source_Redundancy.pdf": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5",
-        "final_figures.figure_hashes.results/figures/FigS07_Source_Redundancy.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
+        "final_figures.figure_hashes.results/figures/FigS07_Source_Redundancy.pdf": "5d468b54ebccb395491c59a867071be648bf5086b36f5d608d25a4131b2c9610",
+        "final_figures.figure_hashes.results/figures/FigS07_Source_Redundancy.png": "092a67145877431633515c3b7ef05efe85e5658ac587dca0af96dd83a34723b6",
         "final_figures.figure_hashes.results/figures/FigS08_Capacity_Sensitivity.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
         "final_figures.figure_hashes.results/figures/FigS08_Capacity_Sensitivity.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
         "final_figures.figure_hashes.results/figures/FigS09_Stage7_Diagnostics.pdf": "6dffb5cdbf194d29e8756f8aa4a39710a6fa765dae80891d41f8ad534c4abc0d",
         "final_figures.figure_hashes.results/figures/FigS09_Stage7_Diagnostics.png": "9bfb56b7aa3462c84dec9302e98c33f495fdf80fe52bffbdfc4e1bba9ea1ce54",
         "final_figures.figure_hashes.results/figures/FigS10_Priority_Construction.pdf": "ee643a4def847918938f034de798a9b5cbe06fe2b1c8a64b82f2c508c9f94038",
         "final_figures.figure_hashes.results/figures/FigS10_Priority_Construction.png": "3a40853b607b373ec17d6c5cee78cbea404eb732967667dfaf47327e47fe065e",
-        "final_figures.figure_hashes.results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "b354eee4d1a5ffee76138efa78ffc314f92ea954616d7e4e1c8638e24a1168dc",
-        "final_figures.figure_hashes.results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png": "e6042cdf33a36b68150b72ad6cd2ba154338c9205142f2be1322307f0020407a",
-        "final_figures.figure_hashes.results/figures/FigS12_Crew_Resource_Contrasts.pdf": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80",
-        "final_figures.figure_hashes.results/figures/FigS12_Crew_Resource_Contrasts.png": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c",
-        "final_figures.figure_hashes.results/figures/FigS13_Repair_Duration_Contrasts.pdf": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3",
-        "final_figures.figure_hashes.results/figures/FigS13_Repair_Duration_Contrasts.png": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d",
+        "final_figures.figure_hashes.results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "0b5f0123c4e269aeaa92eb77daf6e91db8097436cdc23f5f3b78ddd64b604559",
+        "final_figures.figure_hashes.results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png": "d28705962917b60617e028d76f78c5aa1e59862c5a5612987117d76cb4b436cf",
+        "final_figures.figure_hashes.results/figures/FigS12_Crew_Resource_Contrasts.pdf": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e",
+        "final_figures.figure_hashes.results/figures/FigS12_Crew_Resource_Contrasts.png": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c",
+        "final_figures.figure_hashes.results/figures/FigS13_Repair_Duration_Contrasts.pdf": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
+        "final_figures.figure_hashes.results/figures/FigS13_Repair_Duration_Contrasts.png": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig01.pdf": "c33a693c0bfa7b42c92b1bbec36d0ada55487fbc6e3450fb727439197c451aff",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig01.png": "7b7c1603d1c28bd99d34fd1ac9db0aba6035679911274cb42369b99f0eafa40a",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig02.pdf": "2ff271d8479a93e71b733178c2880977bb31a74f77b4ea509f1e4b4f326a45de",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig02.png": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig03.pdf": "25c4284bc9562e584dd8f43452ceb210fffcad307dff1e4564adb49911981f7f",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig03.png": "675d095f57e19fc3f0083dc6a98d9a8f331e64481692e4a4dbdc5159af512ece",
-        "final_figures.source_authority_hashes.results/figure_review/Main/Fig04.pdf": "e8804df46b9c529805871a23bd24c3a9a601e4ff0babb52c0d65d0880ccf524a",
-        "final_figures.source_authority_hashes.results/figure_review/Main/Fig04.png": "7e119afc437833e814170125b468e23505639704e84f72dacfdf84df7a706f1c",
-        "final_figures.source_authority_hashes.results/figure_review/Main/Fig05.pdf": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc",
-        "final_figures.source_authority_hashes.results/figure_review/Main/Fig05.png": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f",
+        "final_figures.source_authority_hashes.results/figure_review/Main/Fig04.pdf": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+        "final_figures.source_authority_hashes.results/figure_review/Main/Fig04.png": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+        "final_figures.source_authority_hashes.results/figure_review/Main/Fig05.pdf": "ccaa356c8d760da50e06a082d46fe4f4b1641e81e9d80ca46fd6d9b36d847fd2",
+        "final_figures.source_authority_hashes.results/figure_review/Main/Fig05.png": "45a4cafe6507a37c64248b04f5f1bea694813ec9ec08070ac9106a69494e7475",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig06.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
         "final_figures.source_authority_hashes.results/figure_review/Main/Fig06.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
-        "final_figures.source_authority_hashes.results/figure_review/Main/Fig07.pdf": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68",
-        "final_figures.source_authority_hashes.results/figure_review/Main/Fig07.png": "4b29093179d401e00e904277f8e621525542b2456393a8643f573e672d5d735d",
+        "final_figures.source_authority_hashes.results/figure_review/Main/Fig07.pdf": "9e4f0accbc4d0874b71bb8873cd072c88c7d1aa364c1066de6ad34d8725d286e",
+        "final_figures.source_authority_hashes.results/figure_review/Main/Fig07.png": "ae7342a38f94260b8dccf0b0448a403d11e8e9ad5933524f44e56bcbb867dca3",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS01.pdf": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS01.png": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS03.pdf": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS03.png": "b0c30c6f36b3fae4265d00cc13b568460a66a5a924a48ddac7b351a9f88170b0",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS04.pdf": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS04.png": "6ba9f583a4ed56461031549e0eec4c71c2e4fcdb7321f0347706a673d4b49a78",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS05.pdf": "25ca0d8a26f9fa4c93cc917f1f60dbcebc3e8f1b81edfada8245d46f3fb1ed39",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS05.png": "4e23f78a6830505ebddd45938f541e4ac4a282ad7cb57d5e3f351070765d51b5",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS03.pdf": "148aefb58c7839bea8b5ca06c52661c0f7589f85207e5969049597bcc6a94ec0",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS03.png": "326fa54b2dc6968f57072188cb132e01bd2539fca2368b2158eb6174d0a9cc4d",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS04.pdf": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS04.png": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS05.pdf": "edbbeea33f30e5a78727339d24d597506e107628f8015deda5d3dd45a04143b3",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS05.png": "9db48826aecc64c22f53c08424cc0297c4c67c80d5989e754f24f61cecb5d83e",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS06.pdf": "9b23b772105f8c1ad51a950656d79c94148cad848f732b4f57e1676d4acbf7a5",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS06.png": "27f57a4fad546aa78da003a6d003c31615fd27ef41f19328930366be40e5b58c",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS07.pdf": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS07.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS07.pdf": "5d468b54ebccb395491c59a867071be648bf5086b36f5d608d25a4131b2c9610",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS07.png": "092a67145877431633515c3b7ef05efe85e5658ac587dca0af96dd83a34723b6",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS08.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS08.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS09.pdf": "6dffb5cdbf194d29e8756f8aa4a39710a6fa765dae80891d41f8ad534c4abc0d",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS09.png": "9bfb56b7aa3462c84dec9302e98c33f495fdf80fe52bffbdfc4e1bba9ea1ce54",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS10.pdf": "ee643a4def847918938f034de798a9b5cbe06fe2b1c8a64b82f2c508c9f94038",
         "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS10.png": "3a40853b607b373ec17d6c5cee78cbea404eb732967667dfaf47327e47fe065e",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS11.pdf": "b354eee4d1a5ffee76138efa78ffc314f92ea954616d7e4e1c8638e24a1168dc",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS11.png": "e6042cdf33a36b68150b72ad6cd2ba154338c9205142f2be1322307f0020407a",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS12.pdf": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS12.png": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.pdf": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3",
-        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.png": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d",
-        "final_figures.index_sha256": "12342668f72e00df1a7675c0f6cf3a2455c74a6df041845ff2947be857f0051e",
-        "previous_stage_manifest.sha256": "fdd7e268760261d1231d85150ffd70fc4b7b6b33a060db868160e308dfa9245d"
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS11.pdf": "0b5f0123c4e269aeaa92eb77daf6e91db8097436cdc23f5f3b78ddd64b604559",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS11.png": "d28705962917b60617e028d76f78c5aa1e59862c5a5612987117d76cb4b436cf",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS12.pdf": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS12.png": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.pdf": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
+        "final_figures.source_authority_hashes.results/figure_review/Supplement/FigS13.png": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd",
+        "final_figures.index_sha256": "9a0f5ff9827c085b031f3b1cdd64a61e6f8f69e3cfa33baaf49624c7650c5ff8",
+        "previous_stage_manifest.sha256": "0c20c77f60ec0afc9a1de5d7e958007f3cc845d08ff4f811bf137780489c830f"
       },
       "outputs": [
         {
@@ -916,19 +916,19 @@
         },
         {
           "path": "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf",
-          "sha256": "e8804df46b9c529805871a23bd24c3a9a601e4ff0babb52c0d65d0880ccf524a"
+          "sha256": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4"
         },
         {
           "path": "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png",
-          "sha256": "7e119afc437833e814170125b468e23505639704e84f72dacfdf84df7a706f1c"
+          "sha256": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7"
         },
         {
           "path": "results/figures/Fig05_Distributional_Outcomes.pdf",
-          "sha256": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc"
+          "sha256": "ccaa356c8d760da50e06a082d46fe4f4b1641e81e9d80ca46fd6d9b36d847fd2"
         },
         {
           "path": "results/figures/Fig05_Distributional_Outcomes.png",
-          "sha256": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f"
+          "sha256": "45a4cafe6507a37c64248b04f5f1bea694813ec9ec08070ac9106a69494e7475"
         },
         {
           "path": "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.pdf",
@@ -940,11 +940,11 @@
         },
         {
           "path": "results/figures/Fig07_Community_Typology_and_Hotspots.pdf",
-          "sha256": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68"
+          "sha256": "9e4f0accbc4d0874b71bb8873cd072c88c7d1aa364c1066de6ad34d8725d286e"
         },
         {
           "path": "results/figures/Fig07_Community_Typology_and_Hotspots.png",
-          "sha256": "4b29093179d401e00e904277f8e621525542b2456393a8643f573e672d5d735d"
+          "sha256": "ae7342a38f94260b8dccf0b0448a403d11e8e9ad5933524f44e56bcbb867dca3"
         },
         {
           "path": "results/figures/FigS01_Damage_Severity.pdf",
@@ -956,27 +956,27 @@
         },
         {
           "path": "results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf",
-          "sha256": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0"
+          "sha256": "148aefb58c7839bea8b5ca06c52661c0f7589f85207e5969049597bcc6a94ec0"
         },
         {
           "path": "results/figures/FigS03_Crew_Bases_and_Directed_Travel.png",
-          "sha256": "b0c30c6f36b3fae4265d00cc13b568460a66a5a924a48ddac7b351a9f88170b0"
+          "sha256": "326fa54b2dc6968f57072188cb132e01bd2539fca2368b2158eb6174d0a9cc4d"
         },
         {
           "path": "results/figures/FigS04_Network_Criticality_and_Percolation.pdf",
-          "sha256": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846"
+          "sha256": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56"
         },
         {
           "path": "results/figures/FigS04_Network_Criticality_and_Percolation.png",
-          "sha256": "6ba9f583a4ed56461031549e0eec4c71c2e4fcdb7321f0347706a673d4b49a78"
+          "sha256": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0"
         },
         {
           "path": "results/figures/FigS05_GA_Reproducibility.pdf",
-          "sha256": "25ca0d8a26f9fa4c93cc917f1f60dbcebc3e8f1b81edfada8245d46f3fb1ed39"
+          "sha256": "edbbeea33f30e5a78727339d24d597506e107628f8015deda5d3dd45a04143b3"
         },
         {
           "path": "results/figures/FigS05_GA_Reproducibility.png",
-          "sha256": "4e23f78a6830505ebddd45938f541e4ac4a282ad7cb57d5e3f351070765d51b5"
+          "sha256": "9db48826aecc64c22f53c08424cc0297c4c67c80d5989e754f24f61cecb5d83e"
         },
         {
           "path": "results/figures/FigS06_Mapping_Robustness.pdf",
@@ -988,11 +988,11 @@
         },
         {
           "path": "results/figures/FigS07_Source_Redundancy.pdf",
-          "sha256": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5"
+          "sha256": "5d468b54ebccb395491c59a867071be648bf5086b36f5d608d25a4131b2c9610"
         },
         {
           "path": "results/figures/FigS07_Source_Redundancy.png",
-          "sha256": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6"
+          "sha256": "092a67145877431633515c3b7ef05efe85e5658ac587dca0af96dd83a34723b6"
         },
         {
           "path": "results/figures/FigS08_Capacity_Sensitivity.pdf",
@@ -1020,31 +1020,31 @@
         },
         {
           "path": "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf",
-          "sha256": "b354eee4d1a5ffee76138efa78ffc314f92ea954616d7e4e1c8638e24a1168dc"
+          "sha256": "0b5f0123c4e269aeaa92eb77daf6e91db8097436cdc23f5f3b78ddd64b604559"
         },
         {
           "path": "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png",
-          "sha256": "e6042cdf33a36b68150b72ad6cd2ba154338c9205142f2be1322307f0020407a"
+          "sha256": "d28705962917b60617e028d76f78c5aa1e59862c5a5612987117d76cb4b436cf"
         },
         {
           "path": "results/figures/FigS12_Crew_Resource_Contrasts.pdf",
-          "sha256": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80"
+          "sha256": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e"
         },
         {
           "path": "results/figures/FigS12_Crew_Resource_Contrasts.png",
-          "sha256": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c"
+          "sha256": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c"
         },
         {
           "path": "results/figures/FigS13_Repair_Duration_Contrasts.pdf",
-          "sha256": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3"
+          "sha256": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c"
         },
         {
           "path": "results/figures/FigS13_Repair_Duration_Contrasts.png",
-          "sha256": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d"
+          "sha256": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd"
         },
         {
           "path": "results/figures/FIGURE_INDEX.csv",
-          "sha256": "12342668f72e00df1a7675c0f6cf3a2455c74a6df041845ff2947be857f0051e"
+          "sha256": "9a0f5ff9827c085b031f3b1cdd64a61e6f8f69e3cfa33baaf49624c7650c5ff8"
         },
         {
           "path": "results/figures/README.md",
@@ -1066,39 +1066,39 @@
         "results/figures/Fig02_System_Network_and_Mapping.png": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
         "results/figures/Fig03_Unconstrained_Recovery.pdf": "25c4284bc9562e584dd8f43452ceb210fffcad307dff1e4564adb49911981f7f",
         "results/figures/Fig03_Unconstrained_Recovery.png": "675d095f57e19fc3f0083dc6a98d9a8f331e64481692e4a4dbdc5159af512ece",
-        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf": "e8804df46b9c529805871a23bd24c3a9a601e4ff0babb52c0d65d0880ccf524a",
-        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png": "7e119afc437833e814170125b468e23505639704e84f72dacfdf84df7a706f1c",
-        "results/figures/Fig05_Distributional_Outcomes.pdf": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc",
-        "results/figures/Fig05_Distributional_Outcomes.png": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f",
+        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+        "results/figures/Fig05_Distributional_Outcomes.pdf": "ccaa356c8d760da50e06a082d46fe4f4b1641e81e9d80ca46fd6d9b36d847fd2",
+        "results/figures/Fig05_Distributional_Outcomes.png": "45a4cafe6507a37c64248b04f5f1bea694813ec9ec08070ac9106a69494e7475",
         "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
         "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
-        "results/figures/Fig07_Community_Typology_and_Hotspots.pdf": "8ae62bbb5c44c5d73f7f0f534c942afe9a73570f099cc6f31f0cbde0b5f18b68",
-        "results/figures/Fig07_Community_Typology_and_Hotspots.png": "4b29093179d401e00e904277f8e621525542b2456393a8643f573e672d5d735d",
+        "results/figures/Fig07_Community_Typology_and_Hotspots.pdf": "9e4f0accbc4d0874b71bb8873cd072c88c7d1aa364c1066de6ad34d8725d286e",
+        "results/figures/Fig07_Community_Typology_and_Hotspots.png": "ae7342a38f94260b8dccf0b0448a403d11e8e9ad5933524f44e56bcbb867dca3",
         "results/figures/FigS01_Damage_Severity.pdf": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
         "results/figures/FigS01_Damage_Severity.png": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
-        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf": "b228b2f01161299b2bfd9095335c22c13de77408d16236bf87aec2600ba311b0",
-        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.png": "b0c30c6f36b3fae4265d00cc13b568460a66a5a924a48ddac7b351a9f88170b0",
-        "results/figures/FigS04_Network_Criticality_and_Percolation.pdf": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846",
-        "results/figures/FigS04_Network_Criticality_and_Percolation.png": "6ba9f583a4ed56461031549e0eec4c71c2e4fcdb7321f0347706a673d4b49a78",
-        "results/figures/FigS05_GA_Reproducibility.pdf": "25ca0d8a26f9fa4c93cc917f1f60dbcebc3e8f1b81edfada8245d46f3fb1ed39",
-        "results/figures/FigS05_GA_Reproducibility.png": "4e23f78a6830505ebddd45938f541e4ac4a282ad7cb57d5e3f351070765d51b5",
+        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf": "148aefb58c7839bea8b5ca06c52661c0f7589f85207e5969049597bcc6a94ec0",
+        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.png": "326fa54b2dc6968f57072188cb132e01bd2539fca2368b2158eb6174d0a9cc4d",
+        "results/figures/FigS04_Network_Criticality_and_Percolation.pdf": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+        "results/figures/FigS04_Network_Criticality_and_Percolation.png": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+        "results/figures/FigS05_GA_Reproducibility.pdf": "edbbeea33f30e5a78727339d24d597506e107628f8015deda5d3dd45a04143b3",
+        "results/figures/FigS05_GA_Reproducibility.png": "9db48826aecc64c22f53c08424cc0297c4c67c80d5989e754f24f61cecb5d83e",
         "results/figures/FigS06_Mapping_Robustness.pdf": "9b23b772105f8c1ad51a950656d79c94148cad848f732b4f57e1676d4acbf7a5",
         "results/figures/FigS06_Mapping_Robustness.png": "27f57a4fad546aa78da003a6d003c31615fd27ef41f19328930366be40e5b58c",
-        "results/figures/FigS07_Source_Redundancy.pdf": "876fa4d2a3c784abfec2e0850a295a4551fabdda144d6450c4d4e0a1e53ce0a5",
-        "results/figures/FigS07_Source_Redundancy.png": "204dfd9cbee1961a15d13b174b32189fc198b7201621cce86e27b4f6b47697e6",
+        "results/figures/FigS07_Source_Redundancy.pdf": "5d468b54ebccb395491c59a867071be648bf5086b36f5d608d25a4131b2c9610",
+        "results/figures/FigS07_Source_Redundancy.png": "092a67145877431633515c3b7ef05efe85e5658ac587dca0af96dd83a34723b6",
         "results/figures/FigS08_Capacity_Sensitivity.pdf": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
         "results/figures/FigS08_Capacity_Sensitivity.png": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
         "results/figures/FigS09_Stage7_Diagnostics.pdf": "6dffb5cdbf194d29e8756f8aa4a39710a6fa765dae80891d41f8ad534c4abc0d",
         "results/figures/FigS09_Stage7_Diagnostics.png": "9bfb56b7aa3462c84dec9302e98c33f495fdf80fe52bffbdfc4e1bba9ea1ce54",
         "results/figures/FigS10_Priority_Construction.pdf": "ee643a4def847918938f034de798a9b5cbe06fe2b1c8a64b82f2c508c9f94038",
         "results/figures/FigS10_Priority_Construction.png": "3a40853b607b373ec17d6c5cee78cbea404eb732967667dfaf47327e47fe065e",
-        "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "b354eee4d1a5ffee76138efa78ffc314f92ea954616d7e4e1c8638e24a1168dc",
-        "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png": "e6042cdf33a36b68150b72ad6cd2ba154338c9205142f2be1322307f0020407a",
-        "results/figures/FigS12_Crew_Resource_Contrasts.pdf": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80",
-        "results/figures/FigS12_Crew_Resource_Contrasts.png": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c",
-        "results/figures/FigS13_Repair_Duration_Contrasts.pdf": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3",
-        "results/figures/FigS13_Repair_Duration_Contrasts.png": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d",
-        "results/figures/FIGURE_INDEX.csv": "12342668f72e00df1a7675c0f6cf3a2455c74a6df041845ff2947be857f0051e",
+        "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf": "0b5f0123c4e269aeaa92eb77daf6e91db8097436cdc23f5f3b78ddd64b604559",
+        "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png": "d28705962917b60617e028d76f78c5aa1e59862c5a5612987117d76cb4b436cf",
+        "results/figures/FigS12_Crew_Resource_Contrasts.pdf": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e",
+        "results/figures/FigS12_Crew_Resource_Contrasts.png": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c",
+        "results/figures/FigS13_Repair_Duration_Contrasts.pdf": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
+        "results/figures/FigS13_Repair_Duration_Contrasts.png": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd",
+        "results/figures/FIGURE_INDEX.csv": "9a0f5ff9827c085b031f3b1cdd64a61e6f8f69e3cfa33baaf49624c7650c5ff8",
         "results/figures/README.md": "a91a67c0a2bc7f06378b9fe1fb07ba2049a8b74cb2b2179cea01b6e8f6a6d9a6",
         "results/revised_suite/LA_Grid_Revised_Suite_20260925": "da90bf1f4cf1ac0678ce2d132fe1ca8a8ae52e49029e5fdf049aec697cfcc442"
       },
@@ -1109,8 +1109,8 @@
       },
       "scientific_generation_called": false,
       "stage_manifest_path": "FINAL_REVISION_RUN_SEQUENCE\\10_FINAL_RESULTS_AND_FIGURES\\STAGE_VALIDATION_MANIFEST.json",
-      "stage_manifest_sha256": "3ca5286b85eb80b4b571fe46d8b424dcdcc8421253e096dcdd379fe8acfb9269"
+      "stage_manifest_sha256": "b1dc6cbf21606640e371a329273dac603ac84003a3d5a3057edd9b1b75101333"
     }
   ],
-  "finished_at_utc": "2026-10-09T06:34:03.743252+00:00"
+  "finished_at_utc": "2026-10-09T07:54:12.590633+00:00"
 }

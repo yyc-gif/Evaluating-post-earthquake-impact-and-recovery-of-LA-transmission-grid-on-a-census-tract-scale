@@ -1,0 +1,32 @@
+{
+  "completed_runs": 60,
+  "best": {
+    "seed": 46,
+    "population": 100,
+    "generations": 2000,
+    "unique_candidates_evaluated": 81187,
+    "unique_non_incumbent_candidates": 81180,
+    "retained_service_loss_hr": 33.03813174326729,
+    "best_non_incumbent_service_loss_hr": 33.03813174326729,
+    "impact_service_loss_hr": 33.57830255999924,
+    "delta_J_hr": -0.5401708167319441,
+    "improvement_hr": 0.5401708167319441,
+    "improvement_percent": 1.608690063372746,
+    "strict_improvement": true,
+    "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed",
+    "generation_found": 1985,
+    "displaced_stations": 86,
+    "rank_correlation": 0.7222230784643127,
+    "top10_overlap": 2,
+    "elapsed_seconds": 138.83130999999412,
+    "exact_tie_candidate_count": 0,
+    "near_tie_abs_gap_lt_1e-06_hr": 0,
+    "near_tie_abs_gap_lt_0.0001_hr": 7,
+    "near_tie_abs_gap_lt_0.001_hr": 41,
+    "near_tie_abs_gap_lt_0.01_hr": 307
+  },
+  "formal_strategy_replaced": false,
+  "global_optimality_proven": false,
+  "independent_evaluation_started": false,
+  "execution": "Three independent worker processes; unchanged RNG/operator sequence per seed; completed checkpoints resumed."
+}

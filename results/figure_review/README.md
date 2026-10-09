@@ -2,7 +2,7 @@
 
 This is the single author-review source for the current submission figure set. Do not retrieve submission figures from older review folders.
 
-- **[ALL_FIGURES_WITH_CAPTIONS.pdf](ALL_FIGURES_WITH_CAPTIONS.pdf)**: all 19 current figures, each followed by its caption.
+- **[ALL_FIGURES_WITH_CAPTIONS.pdf](ALL_FIGURES_WITH_CAPTIONS.pdf)**: all 19 numbered figures and two additional evidence candidates, each followed by its caption.
 - **[Main/](Main/)**: Fig01–Fig07, PDF and 600-dpi PNG.
 - **[Supplement/](Supplement/)**: FigS01 and FigS03–FigS13, PDF and 600-dpi PNG. Initial-service maps formerly shown as S02 are integrated into S01.
 - **[MANUSCRIPT_FACING_CAPTIONS.md](MANUSCRIPT_FACING_CAPTIONS.md)**: definitions, references, intervals and interpretation boundaries.
@@ -12,4 +12,6 @@ This is the single author-review source for the current submission figure set. D
 
 Earlier layouts and single-figure edit folders are retained outside this author-facing directory in `provenance/figure_review_history/`.
 
-S05 distinguishes the original five-seed search from the separate 20-seed expanded-budget diagnostic. [Full numerical audit](../../docs/reviewer/GA_SEARCH_BUDGET_SENSITIVITY_20261007.md); the formal evaluation sequence is unchanged. S06 tests dependency and service-model assumptions.
+S05 distinguishes the original five-seed search, the earlier twenty-restart diagnostic, and sixty additional search-budget runs. It also shows the separate evaluation of two planning-selected orders. [Full numerical audit](../../docs/reviewer/EXTENDED_GA_AND_SELECTED_STRATEGY_20261008.md); the formal strategy set remains unchanged. S06 tests dependency and service-model assumptions.
+
+Current manuscript comparisons use six scheduled policies: Degree-first, Betweenness-first, Impact-first, Hospital-first, Vulnerability-first and Random, plus the idealized Unconstrained reference. The original full strategy experiment remains in its source authorities. Fig7B feature labels are explicitly right-aligned. Additional Evidence includes [Degree/betweenness maps and distributions](Additional_Evidence/Degree_and_Betweenness.pdf) and [network/station/community trade-offs](Additional_Evidence/Network_Station_Community_Tradeoffs.pdf).
