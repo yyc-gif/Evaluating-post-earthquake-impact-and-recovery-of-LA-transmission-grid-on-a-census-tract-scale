@@ -50,5 +50,24 @@
   "publication_copy_hash_parity": true,
   "tests": "49 passed",
   "visual_review": "Every affected native PDF rendered and viewed; S07 actual PDF viewed and caption values verified",
-  "canonical_resume": "Pending post-artifact-commit validation"
+  "canonical_resume": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
+  "validated_artwork_commit": "5997c9a02aa383afaeb818b1facb83e1077bf946",
+  "stage_statuses": {
+    "01": "PASS_VALIDATE",
+    "02": "PASS_REUSE",
+    "03": "PASS_REUSE",
+    "04": "PASS_REUSE",
+    "05": "PASS_REUSE",
+    "06": "PASS_REUSE",
+    "07": "PASS_REUSE",
+    "08": "PASS_REUSE",
+    "09": "PASS_REUSE",
+    "10": "PASS_REUSE"
+  },
+  "lfs_verification": {
+    "base_paths": 1394,
+    "current_paths": 1394,
+    "unchanged_non_scope_oid_count": 1373,
+    "unexpected_oid_changes": {}
+  }
 }
