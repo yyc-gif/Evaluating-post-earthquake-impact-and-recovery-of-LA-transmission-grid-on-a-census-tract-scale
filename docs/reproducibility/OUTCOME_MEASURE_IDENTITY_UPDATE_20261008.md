@@ -20,3 +20,5 @@ Fig06 retains the complete tested crew and repair-duration OFAT families. Mappin
 ## Verification
 
 All nine changed native PDFs and rendered previews were opened and inspected. PDF text remains Arial, at least 7 pt; widths remain 185 mm and PNG previews remain 600 dpi. No observed new overlap or clipped labels. Fig01 pixels outside section 5 match the baseline. All 38 current artwork files match their manifest and their flat publication copies; the full packet has 38 pages (figure followed by caption). Existing tests: 49 passed. All 260 protected scientific-file hashes are unchanged. Canonical archive validation is recorded in the companion verification JSON after resume. Unrelated staging is preserved and excluded from these commits.
+
+Final canonical validation: Stage 01 PASS_VALIDATE; Stages 02-10 PASS_REUSE. Overall PASS_ALL_STAGES_REUSE_OR_VALIDATE. The committed LFS path count remains 1,394; all changed OIDs are confined to presentation artwork, figure indexes and review packets. No protected scientific object OID changed.

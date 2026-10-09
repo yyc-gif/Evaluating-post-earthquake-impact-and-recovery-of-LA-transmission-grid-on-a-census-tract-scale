@@ -123,7 +123,7 @@
   "unrelated_index_unchanged": true,
   "pytest": "49 passed in 4.72 s",
   "git_diff_check": "PASS",
-  "canonical_resume": "pending",
+  "canonical_resume": "PASS_ALL_STAGES_REUSE_OR_VALIDATE",
   "cluster_id_colors": {
     "1": "#4f8fb7",
     "2": "#e19243",
@@ -131,5 +131,193 @@
     "4": "#68a9b5",
     "5": "#b45f50"
   },
-  "N_A_color": "#b8b8b8"
+  "N_A_color": "#b8b8b8",
+  "canonical_stage_statuses": {
+    "01": "PASS_VALIDATE",
+    "02": "PASS_REUSE",
+    "03": "PASS_REUSE",
+    "04": "PASS_REUSE",
+    "05": "PASS_REUSE",
+    "06": "PASS_REUSE",
+    "07": "PASS_REUSE",
+    "08": "PASS_REUSE",
+    "09": "PASS_REUSE",
+    "10": "PASS_REUSE"
+  },
+  "artwork_commit": "02f416ee70be656ea39b2153c9a605d10ff1bcec",
+  "lfs_identity_check": {
+    "baseline_LFS_count": 1394,
+    "current_committed_LFS_count": 1394,
+    "changed_LFS_OIDs": {
+      "results/figures/FigS09_Stage7_Diagnostics.pdf": {
+        "old": "b838169a879013af0e59f92ea489c5c8b2b3b4327736da5c5d96121aff74d9b6",
+        "new": "6dffb5cdbf194d29e8756f8aa4a39710a6fa765dae80891d41f8ad534c4abc0d"
+      },
+      "results/figures/FigS12_Crew_Resource_Contrasts.pdf": {
+        "old": "f7349e1052650552d7be43bfdfd699b0ec741c09eb1d9d467aa18ecad5b6fd77",
+        "new": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80"
+      },
+      "results/figures/FIGURE_INDEX.csv": {
+        "old": "e6b7c1828d72108a61ed46873195fbf7c96ebd5ae4c47b4a90dcc4c5d77141e3",
+        "new": "0a21c0a1681ea73061bd6bac90817537ba65558f54646769ac0f9cc4a94ccac5"
+      },
+      "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf": {
+        "old": "8cec9db4cb6a14b1aa5b537dbefeff7792670f3af0bf87bb616d0eb7eef33185",
+        "new": "99bbc8eb0e5c0cd3c8dd17e81189b22aa849cc11b51376f9ae745d243cde8f72"
+      },
+      "results/figure_review/Main/Fig07.png": {
+        "old": "c4ef83ee534db27d91cd7b473bc0e6fc278dbc9696cc450286a8fa08a68f7eb8",
+        "new": "3a1106b8e57ab0b1a2656f52ccba816f467294c585afeb5665808bc1135dd47d"
+      },
+      "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.png": {
+        "old": "8940a81ed43fb6038350cf7bf832834dfdac52a934408659585c3ff2dbb581a0",
+        "new": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574"
+      },
+      "results/figures/FigS04_Network_Criticality_and_Percolation.png": {
+        "old": "f774218bf2b6e1d44917b1b123aea65d3cfb0692aba4aced138f0bab7afb66b7",
+        "new": "b192bf523968e55927f8b0a86a6d8c1ee29c9a32122932afe83723cf9bfb5728"
+      },
+      "results/figure_review/Supplement/FigS04.pdf": {
+        "old": "7ba4daf151040e42fdcd0a5e65116f5aacb0bccd3a2c0592e442ed0cecf959c2",
+        "new": "c58cfe913d8864fc5d6e1ca747373c598647f01d8142244c2ebbe856d42a4170"
+      },
+      "results/figures/Fig07_Community_Typology_and_Hotspots.png": {
+        "old": "c4ef83ee534db27d91cd7b473bc0e6fc278dbc9696cc450286a8fa08a68f7eb8",
+        "new": "3a1106b8e57ab0b1a2656f52ccba816f467294c585afeb5665808bc1135dd47d"
+      },
+      "results/figures/Fig05_Distributional_Outcomes.png": {
+        "old": "43c24c3fcc833ea63e9a27933cac9d9179d24a8a4731adde8391ed50b70efbe1",
+        "new": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f"
+      },
+      "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png": {
+        "old": "42856aae8894c66a2f33f67e26da2e5ff8cd97935e29f291ac133ffd97df25a8",
+        "new": "a398d4ba4b9dcfd50407ff467a01de32f75fe6d38f2f8d212447d85b98e77a72"
+      },
+      "results/figure_review/Supplement/FigS12.png": {
+        "old": "9873f794c0863a8c52616b23cfec414a72880fd9a0f13a6669a83540eaa2d5e9",
+        "new": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c"
+      },
+      "results/figure_review/ALL_MAIN_FIGURES.pdf": {
+        "old": "d7d125abd997bae1c4635c06e937361533481f9cc855713a5d367aa5d5d96dbd",
+        "new": "f9b50e395154ebca5a75b30635bf87057416aa53bae1c4f3baec614f89e41030"
+      },
+      "results/figure_review/Main/Fig01.png": {
+        "old": "b8941091388bb9342df212e104df3c3084a3c74df9c603643128379d92b4030c",
+        "new": "7b7c1603d1c28bd99d34fd1ac9db0aba6035679911274cb42369b99f0eafa40a"
+      },
+      "results/figure_review/Main/Fig04.pdf": {
+        "old": "dbf76b0535298e5c02c04803cb726e718223d045a7450c2fc9548fe577e5334f",
+        "new": "0a3833929ed6fd18174f273a8a39ca9008fc49e58fe796700e3df602d429f02e"
+      },
+      "results/figures/FigS09_Stage7_Diagnostics.png": {
+        "old": "13bc037e97b4b06aa29fcfe06b0c65754d76dc776293417d845087ef90c17b5c",
+        "new": "9bfb56b7aa3462c84dec9302e98c33f495fdf80fe52bffbdfc4e1bba9ea1ce54"
+      },
+      "results/figure_review/Main/Fig07.pdf": {
+        "old": "1e4b6494011ebf52250b4030942e4d97aee25df73d7aa150a6b1fb1da93aa499",
+        "new": "7b2ced59f4148a6f7751931b5bfd666d0f3dcf9bc53e61e6c9c27b935ea1e57a"
+      },
+      "results/figure_review/FIGURE_MANIFEST.csv": {
+        "old": "ef3f436c013a037d1086d0c8515981cb3f33dc35cfe5be9907ad19c84621fdc5",
+        "new": "47129de441a5bd945f987ab1ee490418d1da52ae66e16ff15974fc6dbdd4cfe6"
+      },
+      "results/figures/FigS13_Repair_Duration_Contrasts.png": {
+        "old": "e658e6dcfe3e67ebc38ba6a3ecab1e9bfe9bd7b2f3ac34b10523760aeeecf725",
+        "new": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d"
+      },
+      "results/figures/Fig05_Distributional_Outcomes.pdf": {
+        "old": "05c26fdf97faeada72bc2345d5e1cd3dde3d7cf7971794a604ae4ed3133e016f",
+        "new": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc"
+      },
+      "results/figures/FigS13_Repair_Duration_Contrasts.pdf": {
+        "old": "4d9ab810a1bdaae29bb01b82ff9d31754786205ced84cc7ed87def4ea6713f31",
+        "new": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3"
+      },
+      "results/figure_review/Supplement/FigS12.pdf": {
+        "old": "f7349e1052650552d7be43bfdfd699b0ec741c09eb1d9d467aa18ecad5b6fd77",
+        "new": "1d4938d73067cb9eaf75194792e576c5f1dd7e49d65b74cd56ea3905624ffa80"
+      },
+      "results/figures/Fig07_Community_Typology_and_Hotspots.pdf": {
+        "old": "1e4b6494011ebf52250b4030942e4d97aee25df73d7aa150a6b1fb1da93aa499",
+        "new": "7b2ced59f4148a6f7751931b5bfd666d0f3dcf9bc53e61e6c9c27b935ea1e57a"
+      },
+      "results/figures/FigS04_Network_Criticality_and_Percolation.pdf": {
+        "old": "7ba4daf151040e42fdcd0a5e65116f5aacb0bccd3a2c0592e442ed0cecf959c2",
+        "new": "c58cfe913d8864fc5d6e1ca747373c598647f01d8142244c2ebbe856d42a4170"
+      },
+      "results/figure_review/Main/Fig06.png": {
+        "old": "8940a81ed43fb6038350cf7bf832834dfdac52a934408659585c3ff2dbb581a0",
+        "new": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574"
+      },
+      "results/figure_review/Main/Fig05.png": {
+        "old": "43c24c3fcc833ea63e9a27933cac9d9179d24a8a4731adde8391ed50b70efbe1",
+        "new": "2c476b59c5cdee0c545a18a41961e2659163d8d74a566690a149b3642550340f"
+      },
+      "results/figure_review/Supplement/FigS09.png": {
+        "old": "13bc037e97b4b06aa29fcfe06b0c65754d76dc776293417d845087ef90c17b5c",
+        "new": "9bfb56b7aa3462c84dec9302e98c33f495fdf80fe52bffbdfc4e1bba9ea1ce54"
+      },
+      "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.pdf": {
+        "old": "043e1083d3f60841220f61a35464ac98de25f3849d6ef3be14e96930a4c39236",
+        "new": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7"
+      },
+      "results/figure_review/Main/Fig04.png": {
+        "old": "42856aae8894c66a2f33f67e26da2e5ff8cd97935e29f291ac133ffd97df25a8",
+        "new": "a398d4ba4b9dcfd50407ff467a01de32f75fe6d38f2f8d212447d85b98e77a72"
+      },
+      "results/figure_review/Supplement/FigS04.png": {
+        "old": "f774218bf2b6e1d44917b1b123aea65d3cfb0692aba4aced138f0bab7afb66b7",
+        "new": "b192bf523968e55927f8b0a86a6d8c1ee29c9a32122932afe83723cf9bfb5728"
+      },
+      "results/figure_review/Supplement/FigS13.pdf": {
+        "old": "4d9ab810a1bdaae29bb01b82ff9d31754786205ced84cc7ed87def4ea6713f31",
+        "new": "51f35fc0a0acaf641ac96cccfb007020db91d9020397aed321e5886d0c7da5e3"
+      },
+      "results/figure_review/Main/Fig05.pdf": {
+        "old": "05c26fdf97faeada72bc2345d5e1cd3dde3d7cf7971794a604ae4ed3133e016f",
+        "new": "b3857dfd96995ea7471879c4e50c00a3408ba62f3fc1acb546383a4165de00dc"
+      },
+      "results/figure_review/Main/Fig01.pdf": {
+        "old": "0053bf11ef38edb4178a13f5684f0593fca7f111d93bdbd5e862790a70f65a5e",
+        "new": "c33a693c0bfa7b42c92b1bbec36d0ada55487fbc6e3450fb727439197c451aff"
+      },
+      "results/figures/Fig01_Methodology_Workflow.pdf": {
+        "old": "0053bf11ef38edb4178a13f5684f0593fca7f111d93bdbd5e862790a70f65a5e",
+        "new": "c33a693c0bfa7b42c92b1bbec36d0ada55487fbc6e3450fb727439197c451aff"
+      },
+      "results/figures/Fig01_Methodology_Workflow.png": {
+        "old": "b8941091388bb9342df212e104df3c3084a3c74df9c603643128379d92b4030c",
+        "new": "7b7c1603d1c28bd99d34fd1ac9db0aba6035679911274cb42369b99f0eafa40a"
+      },
+      "results/figures/FigS12_Crew_Resource_Contrasts.png": {
+        "old": "9873f794c0863a8c52616b23cfec414a72880fd9a0f13a6669a83540eaa2d5e9",
+        "new": "59a91cf61251012996d9cd5ae217a44c03720ff1107a7ff6ceba899c9fcec66c"
+      },
+      "results/figure_review/Supplement/FigS09.pdf": {
+        "old": "b838169a879013af0e59f92ea489c5c8b2b3b4327736da5c5d96121aff74d9b6",
+        "new": "6dffb5cdbf194d29e8756f8aa4a39710a6fa765dae80891d41f8ad534c4abc0d"
+      },
+      "results/figure_review/ALL_SUPPLEMENT_FIGURES.pdf": {
+        "old": "400df39b7387d09b742622de5a766f8830eb047bac78a44e07b7e0a3751645a9",
+        "new": "f9e82292b3a1dfe30f1ed3982b8ea7109c525a1d32c4170084cc996e6f935f9b"
+      },
+      "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf": {
+        "old": "dbf76b0535298e5c02c04803cb726e718223d045a7450c2fc9548fe577e5334f",
+        "new": "0a3833929ed6fd18174f273a8a39ca9008fc49e58fe796700e3df602d429f02e"
+      },
+      "results/figure_review/Supplement/FigS13.png": {
+        "old": "e658e6dcfe3e67ebc38ba6a3ecab1e9bfe9bd7b2f3ac34b10523760aeeecf725",
+        "new": "951273176976f2bd3e02a9b5bc750d21ad0beeb1211e667eff37616e2c47922d"
+      },
+      "results/figure_review/Main/Fig06.pdf": {
+        "old": "043e1083d3f60841220f61a35464ac98de25f3849d6ef3be14e96930a4c39236",
+        "new": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7"
+      }
+    },
+    "outside_scope_changed_LFS_objects": 0,
+    "protected_refs": {
+      "main": "8525954d943efe9f06c98c51f218568077788b9b",
+      "archive/ijdrr-submission-20260722": "182686868cffe962739804f6bc0ccecaed73d601"
+    }
+  }
 }
