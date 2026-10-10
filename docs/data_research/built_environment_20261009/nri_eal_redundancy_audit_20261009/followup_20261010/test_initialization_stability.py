@@ -35,8 +35,11 @@ def load():
    raise ValueError("Unhydrated Git LFS input: "+str(p))
  df=pd.read_csv(MATCHED,dtype={"tract_id":str},low_memory=False)
  old=pd.read_csv(STAGE,dtype={"tract_id":str})
- assert len(df)==len(old)==2291 and df.tract_id.equals(old.tract_id)
- assert df.tract_id.is_unique
+ for t in [df,old]:t["tract_id"]=t.tract_id.astype(str).str.zfill(11)
+ assert len(df)==len(old)==2291 and df.tract_id.is_unique and old.tract_id.is_unique
+ assert set(df.tract_id)==set(old.tract_id), "Tract universes differ"
+ # A source-only regrouping may reorder rows; join by GEOID rather than row position.
+ df=old[["tract_id"]].merge(df,on="tract_id",how="left",validate="one_to_one")
  assert "cluster" in df and np.isfinite(df[ORIGINAL].to_numpy(dtype=float)).all()
  for c in ORIGINAL:
   assert np.allclose(df[c],old[c],atol=1e-11,rtol=1e-12)
