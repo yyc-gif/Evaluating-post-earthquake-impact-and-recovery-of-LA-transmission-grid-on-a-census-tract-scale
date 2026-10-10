@@ -1,0 +1,4679 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "Preview payload .gitattributes",
+      "pass": true,
+      "evidence": {
+        "sha256": "1732fba3f643f24b404c53c5680defa32439f299010b437060cf8fb8291d0d62",
+        "bytes": 42
+      }
+    },
+    {
+      "check": "Preview payload .gitignore",
+      "pass": true,
+      "evidence": {
+        "sha256": "c2e336e77e0b336abfdd04448a170229712cc6ec5cb6f9d76c5068bb6c455172",
+        "bytes": 22
+      }
+    },
+    {
+      "check": "Preview payload build_preview.py",
+      "pass": true,
+      "evidence": {
+        "sha256": "a6a4a22194a77dc3bdbf5bd95db6352fea85a8418fdabe349f186af2ddc3f3e1",
+        "bytes": 16792
+      }
+    },
+    {
+      "check": "Preview payload CLASSIFIED_FEATURE_VALUES_2287.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "69304cf3bce849f8554ead2941c81c74391eb12dab29f161a49235a4e7657047",
+        "bytes": 7902719
+      }
+    },
+    {
+      "check": "Preview payload CLASSIFIED_RECOVERY_CORRELATIONS.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "333ee259f4c66893cca1d31693825eccedc68b163f01605b87cc53d577edf5c6",
+        "bytes": 214
+      }
+    },
+    {
+      "check": "Preview payload DOMAIN_WEIGHT_SENSITIVITY.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "dfc12aa3ac84a7e542bce59d147d4665543381907a422a5741d6cf01a38eca96",
+        "bytes": 658
+      }
+    },
+    {
+      "check": "Preview payload EXECUTION_LOG.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "b5db5786170c7a76d2492364d26b963ef71a44189f99ba724244c04938fa84cf",
+        "bytes": 1698
+      }
+    },
+    {
+      "check": "Preview payload FIG_STAGE7_CLUSTER_PROFILE.pdf",
+      "pass": true,
+      "evidence": {
+        "sha256": "5fe844eea0e92c96ff53965e510f8840fdcf1df7cabc1901da75d9ce00fb06b2",
+        "bytes": 46072
+      }
+    },
+    {
+      "check": "Preview payload FIG_STAGE7_CLUSTER_PROFILE.png",
+      "pass": true,
+      "evidence": {
+        "sha256": "b36438e611170260e098d8f46bfbf4c44abd9677f8ea2c66394a18ee699c9a7e",
+        "bytes": 609134
+      }
+    },
+    {
+      "check": "Preview payload FIG_STAGE7_SPATIAL_ROBUSTNESS.pdf",
+      "pass": true,
+      "evidence": {
+        "sha256": "b11cf3053b8313546c98e1cdd32be1eaa253f68ac02a1c64e1df83489153cb8e",
+        "bytes": 275324
+      }
+    },
+    {
+      "check": "Preview payload FIG_STAGE7_SPATIAL_ROBUSTNESS.png",
+      "pass": true,
+      "evidence": {
+        "sha256": "90a7a14747d4c0e2e6c95a79941862ec2ecd5fcd35469582a73de58dc4f7c4da",
+        "bytes": 786491
+      }
+    },
+    {
+      "check": "Preview payload FIG_STAGE7_TYPOLOGY_MAP.pdf",
+      "pass": true,
+      "evidence": {
+        "sha256": "b96bb533177cf85f167d9dbb1d9131c4403efed37f4e56e606df90cc6040d4dd",
+        "bytes": 4073492
+      }
+    },
+    {
+      "check": "Preview payload FIG_STAGE7_TYPOLOGY_MAP.png",
+      "pass": true,
+      "evidence": {
+        "sha256": "304abc24e08cfc8210c50261f3a7eaa50e0a2a60c6e1150ce362baec91b13f9d",
+        "bytes": 2444510
+      }
+    },
+    {
+      "check": "Preview payload FIGURE_CAPTIONS.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "4e4a5abd337c3a7d51aad60fefb956a303c6fb9f31dd34547aec9da29d2530e2",
+        "bytes": 3439
+      }
+    },
+    {
+      "check": "Preview payload FIGURE_STYLE.json",
+      "pass": true,
+      "evidence": {
+        "sha256": "8b0c302ec1ea7990edfe463811985743691b7c49b8ba713738feaa38896f2ebf",
+        "bytes": 588
+      }
+    },
+    {
+      "check": "Preview payload MANUSCRIPT_INTEGRATION_REVIEW.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "11eba9ebbd243191f9ceae79c938be60005a56b6ba54b205419113ba301f6d7f",
+        "bytes": 3435
+      }
+    },
+    {
+      "check": "Preview payload OLD_INTERPRETATION_DISPOSITION.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "47f1c885584faf37b1ab06ad49d4d11566420599c315a8294786954bb0ca3f92",
+        "bytes": 3074
+      }
+    },
+    {
+      "check": "Preview payload OPTIMIZATION_STABILITY_SUMMARY.json",
+      "pass": true,
+      "evidence": {
+        "sha256": "d40f73a8a5ab83caf1a660cf0e4f43db2770ee1c8522c4658eea06dfbbd0daa1",
+        "bytes": 379
+      }
+    },
+    {
+      "check": "Preview payload PRESERVATION_BASELINE.json",
+      "pass": true,
+      "evidence": {
+        "sha256": "521fb91c831b054af4c74d77388e59eb77c590fd3f105849654fe5d53564a55f",
+        "bytes": 141791
+      }
+    },
+    {
+      "check": "Preview payload PRESERVATION_FINAL_QA.json",
+      "pass": true,
+      "evidence": {
+        "sha256": "5750039b635d37875755398817664c16b4f957834075bd55d666bad49de5b277",
+        "bytes": 344
+      }
+    },
+    {
+      "check": "Preview payload PROFILE_VISUAL_STANDARDIZED_MEANS.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "ee9bcc93eacd2a52a63998a7604dab26e1b9a63794a52987e5a21e7ca77c2d64",
+        "bytes": 1316
+      }
+    },
+    {
+      "check": "Preview payload publish_preview.py",
+      "pass": true,
+      "evidence": {
+        "sha256": "b4eceac6d65f1ff1dfc9b26af47954ac1a8a13fdb6be270faae44c7236144d4d",
+        "bytes": 6615
+      }
+    },
+    {
+      "check": "Preview payload README.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "9d34351289b0977710ce274fb81af8c6fca2531311830ca19b2c6d81a9daaa83",
+        "bytes": 1222
+      }
+    },
+    {
+      "check": "Preview payload render_preview.py",
+      "pass": true,
+      "evidence": {
+        "sha256": "b562d6232cfbe76fe40266d8b7bf9c487c49a82deb701caff5e5a3698ebcd0e3",
+        "bytes": 12563
+      }
+    },
+    {
+      "check": "Preview payload SAVED_SENSITIVITY_SUMMARY.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "b9b31e94b2367ab8e15d822d5e5b0c379026e5fb1ce6e0cca04167034dddf3fb",
+        "bytes": 4218
+      }
+    },
+    {
+      "check": "Preview payload SOURCE_HASH_VERIFICATION.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "5d636fd2b388842b4f367e3c55a8bc8ae0b62ad36fa7bf9edb620b8975fa3a29",
+        "bytes": 58840
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_CANDIDATE_FREEZE.json",
+      "pass": true,
+      "evidence": {
+        "sha256": "8e0efc380f722b728d0864a894ade63a8fe89c30f71c0c55bea76748f63296a6",
+        "bytes": 56600
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_CANDIDATE_LABELS_2291.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "02d0a3b5da5cf2bd324a35a14cab67e53026b349da2677cc4983464cd5f27db5",
+        "bytes": 80635
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_CANDIDATE_PARAMETERS.npz",
+      "pass": true,
+      "evidence": {
+        "sha256": "79786c2f6266d11f75eb916edbf59a612cabf3bf5c71b0019bbbf0c3b39e1c5a",
+        "bytes": 196428
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_CLUSTER_PROFILES.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "d41f92003b0145a830083d6f53235124b518a22e9c4c9f7b2bea69e5128f9dc4",
+        "bytes": 10214
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_CLUSTER_PROFILES_LONG.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "b5def6a741ce0b76ed6433dbee530721c4bd90b97b682e494f6bbd8aeea38265",
+        "bytes": 21474
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_DISCUSSION_LIMITATIONS_DRAFT.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "9eb7e534b2449d359b9516f5e91607ac07db9f44e675a2e1fe84169ad73974f8",
+        "bytes": 3933
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_METHODS_DRAFT.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "d8f9c6cb0b863dcecedf5386b494eb921dbc476f18806be89033b3f1d90da71b",
+        "bytes": 7384
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_OLD_NEW_CROSSWALK.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "07edcca8c6183d04af9fe44381a665258cfb6f701e5b836c2c0bb2d88a81ba6f",
+        "bytes": 1667
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_PROFILE_TABLES.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "12abc4a0f3a6f6653db83244edd159d18a57b70e98ea54263b104072189cbbc1",
+        "bytes": 2623
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_RESULTS_DRAFT.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "b89dd58151b7ec6af01bb606fe4be55a56b1c8adf4772808dda4d3829af4a57a",
+        "bytes": 4571
+      }
+    },
+    {
+      "check": "Preview payload STAGE7_SUPPLEMENTARY_DRAFT.md",
+      "pass": true,
+      "evidence": {
+        "sha256": "68133b7ce0c497b692525bc4c3122409adc35548f583f1b58cc01cee587cd4b7",
+        "bytes": 5516
+      }
+    },
+    {
+      "check": "Preview payload test_preview.py",
+      "pass": true,
+      "evidence": {
+        "sha256": "5ce5db7bf35463035a2a84ca9e2e416db4d1e47a51bb39d58a3d1104ee38ca7e",
+        "bytes": 4798
+      }
+    },
+    {
+      "check": "Preview payload TEST_RESULTS.txt",
+      "pass": true,
+      "evidence": {
+        "sha256": "040c675a21adc81e5a8354eed798dbc37ff0744fe19298703ffbcc414c1f03cf",
+        "bytes": 98
+      }
+    },
+    {
+      "check": "Preview payload UNCLASSIFIED_TRACT_CHARACTERISTICS.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "32ed5220fcae44626d7e7bb97a7ed60a639acb7671e53e4b0b6c2d0a7d4b03c0",
+        "bytes": 1898
+      }
+    },
+    {
+      "check": "Preview payload VALIDATED_FEATURE_DEFINITIONS.csv",
+      "pass": true,
+      "evidence": {
+        "sha256": "a9ba528dc36547fa369f4d54518e395379de83e290271cf373da55e03afef68f",
+        "bytes": 3131
+      }
+    },
+    {
+      "check": "Preview payload verify_preview.py",
+      "pass": true,
+      "evidence": {
+        "sha256": "52e3e4c91e0ce6821fbc05f76e9b3d34ef760fb49fa6a6e297cb061dd6c80eca",
+        "bytes": 6963
+      }
+    },
+    {
+      "check": "Preview payload VISUAL_QA.json",
+      "pass": true,
+      "evidence": {
+        "sha256": "91854777944b9529f8bd409d6fcf54aca2131e2405c0fa4b16a9e01cdbce39cd",
+        "bytes": 2678
+      }
+    },
+    {
+      "check": "Preview payload write_drafts.py",
+      "pass": true,
+      "evidence": {
+        "sha256": "0ca46ed4ce7466158007991faa8c64e4991317bb5ec6b21f9cd917daa706e7e9",
+        "bytes": 37961
+      }
+    },
+    {
+      "check": "Full study cohort",
+      "pass": true,
+      "evidence": {
+        "tracts": 2315,
+        "population": 9066522
+      }
+    },
+    {
+      "check": "Saved residential cohort identity",
+      "pass": true,
+      "evidence": {
+        "tracts": 2291,
+        "population": 9049543
+      }
+    },
+    {
+      "check": "Outside cohort is not zero residents",
+      "pass": true,
+      "evidence": {
+        "tracts": 24,
+        "population": 16979
+      }
+    },
+    {
+      "check": "Cohorts and GEOID uniqueness",
+      "pass": true,
+      "evidence": {
+        "residential": 2291,
+        "classified": 2287
+      }
+    },
+    {
+      "check": "Four unclassified GEOIDs",
+      "pass": true,
+      "evidence": [
+        "06037189703",
+        "06037301601",
+        "06037301602",
+        "06037404600"
+      ]
+    },
+    {
+      "check": "Saved order and labels",
+      "pass": true,
+      "evidence": {
+        "saved_labels_sha256": "484be3b577c96ab960e5f044d82dcebec1ecfb160901f7b72276daa4e0e409a7"
+      }
+    },
+    {
+      "check": "Original saved labels",
+      "pass": true,
+      "evidence": "484be3b577c96ab960e5f044d82dcebec1ecfb160901f7b72276daa4e0e409a7"
+    },
+    {
+      "check": "Saved weighted matrix byte hash",
+      "pass": true,
+      "evidence": "55c9b9ae634ac4d39dd311abb420b812118e8154112fdd2bcf41ab9739b64e97"
+    },
+    {
+      "check": "Domain squared-distance budget Recovery and initial service",
+      "pass": true,
+      "evidence": 0.2
+    },
+    {
+      "check": "Domain squared-distance budget Grid dependency",
+      "pass": true,
+      "evidence": 0.19999999999999998
+    },
+    {
+      "check": "Domain squared-distance budget Built environment",
+      "pass": true,
+      "evidence": 0.19999999999999996
+    },
+    {
+      "check": "Domain squared-distance budget Social vulnerability",
+      "pass": true,
+      "evidence": 0.19999999999999998
+    },
+    {
+      "check": "Domain squared-distance budget Economic stock and multi-hazard loss",
+      "pass": true,
+      "evidence": 0.2
+    },
+    {
+      "check": "Raw input preprocessing tolerance",
+      "pass": true,
+      "evidence": {
+        "max_absolute_error": 0.0
+      }
+    },
+    {
+      "check": "Stock log transform",
+      "pass": true,
+      "evidence": "Natural log1p only for stock in primary coordinates"
+    },
+    {
+      "check": "Count C1",
+      "pass": true,
+      "evidence": 850
+    },
+    {
+      "check": "Population C1",
+      "pass": true,
+      "evidence": 3387008
+    },
+    {
+      "check": "C1 B_480_hr_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 B_480_hr_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 32.4239244394359,
+        "recomputed": 32.4239244394359
+      }
+    },
+    {
+      "check": "C1 B_480_hr_median",
+      "pass": true,
+      "evidence": {
+        "saved": 31.21186439240225,
+        "recomputed": 31.21186439240225
+      }
+    },
+    {
+      "check": "C1 B_480_hr_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 28.12841668861926,
+        "recomputed": 28.12841668861926
+      }
+    },
+    {
+      "check": "C1 B_480_hr_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 39.46984782114167,
+        "recomputed": 39.46984782114167
+      }
+    },
+    {
+      "check": "C1 B_480_hr_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 T80_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 T80_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 43.70589701571844,
+        "recomputed": 43.70589701571844
+      }
+    },
+    {
+      "check": "C1 T80_median",
+      "pass": true,
+      "evidence": {
+        "saved": 43.4243496182726,
+        "recomputed": 43.4243496182726
+      }
+    },
+    {
+      "check": "C1 T80_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 40.2935021811722,
+        "recomputed": 40.2935021811722
+      }
+    },
+    {
+      "check": "C1 T80_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 48.534204544484,
+        "recomputed": 48.534204544484
+      }
+    },
+    {
+      "check": "C1 T80_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Init_Supply_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 Init_Supply_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0003378794586318475,
+        "recomputed": 0.0003378794586318475
+      }
+    },
+    {
+      "check": "C1 Init_Supply_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Init_Supply_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Init_Supply_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0008608885931052804,
+        "recomputed": 0.0008608885931052804
+      }
+    },
+    {
+      "check": "C1 Init_Supply_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6305882352941177,
+        "recomputed": 0.6305882352941177
+      }
+    },
+    {
+      "check": "C1 SOVI_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 SOVI_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 79.15567074515293,
+        "recomputed": 79.15567074515293
+      }
+    },
+    {
+      "check": "C1 SOVI_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 81.930000305,
+        "recomputed": 81.930000305
+      }
+    },
+    {
+      "check": "C1 SOVI_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 57.932998659999996,
+        "recomputed": 57.932998659999996
+      }
+    },
+    {
+      "check": "C1 SOVI_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 96.140999604,
+        "recomputed": 96.140999604
+      }
+    },
+    {
+      "check": "C1 SOVI_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 land_use_entropy_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 land_use_entropy_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.28305474099114963,
+        "recomputed": 0.28305474099114963
+      }
+    },
+    {
+      "check": "C1 land_use_entropy_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2802182908376775,
+        "recomputed": 0.2802182908376775
+      }
+    },
+    {
+      "check": "C1 land_use_entropy_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.14413462253070622,
+        "recomputed": 0.14413462253070622
+      }
+    },
+    {
+      "check": "C1 land_use_entropy_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.4326456979096153,
+        "recomputed": 0.4326456979096153
+      }
+    },
+    {
+      "check": "C1 land_use_entropy_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.001176470588235294,
+        "recomputed": 0.001176470588235294
+      }
+    },
+    {
+      "check": "C1 land_use_classified_land_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 land_use_classified_land_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7392076302714159,
+        "recomputed": 0.7392076302714159
+      }
+    },
+    {
+      "check": "C1 land_use_classified_land_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7429540891435604,
+        "recomputed": 0.7429540891435604
+      }
+    },
+    {
+      "check": "C1 land_use_classified_land_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6651303743782361,
+        "recomputed": 0.6651303743782361
+      }
+    },
+    {
+      "check": "C1 land_use_classified_land_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8089370986625039,
+        "recomputed": 0.8089370986625039
+      }
+    },
+    {
+      "check": "C1 land_use_classified_land_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 building_footprint_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 building_footprint_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2654168177358928,
+        "recomputed": 0.2654168177358928
+      }
+    },
+    {
+      "check": "C1 building_footprint_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.262385963336843,
+        "recomputed": 0.262385963336843
+      }
+    },
+    {
+      "check": "C1 building_footprint_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2038681352858587,
+        "recomputed": 0.2038681352858587
+      }
+    },
+    {
+      "check": "C1 building_footprint_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3321973723127246,
+        "recomputed": 0.3321973723127246
+      }
+    },
+    {
+      "check": "C1 building_footprint_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 all_use2014_pre1970_area_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 all_use2014_pre1970_area_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8403660323284313,
+        "recomputed": 0.8403660323284313
+      }
+    },
+    {
+      "check": "C1 all_use2014_pre1970_area_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8778083735327245,
+        "recomputed": 0.8778083735327245
+      }
+    },
+    {
+      "check": "C1 all_use2014_pre1970_area_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6792374869720245,
+        "recomputed": 0.6792374869720245
+      }
+    },
+    {
+      "check": "C1 all_use2014_pre1970_area_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.9652923326447016,
+        "recomputed": 0.9652923326447016
+      }
+    },
+    {
+      "check": "C1 all_use2014_pre1970_area_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 all_use2014_age_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 all_use2014_age_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.948552888704756,
+        "recomputed": 0.948552888704756
+      }
+    },
+    {
+      "check": "C1 all_use2014_age_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.9632177306698779,
+        "recomputed": 0.9632177306698779
+      }
+    },
+    {
+      "check": "C1 all_use2014_age_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8965982486878378,
+        "recomputed": 0.8965982486878378
+      }
+    },
+    {
+      "check": "C1 all_use2014_age_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.9929229262242706,
+        "recomputed": 0.9929229262242706
+      }
+    },
+    {
+      "check": "C1 all_use2014_age_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 NRI_BUILDVALUE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 NRI_BUILDVALUE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 347919205.8847059,
+        "recomputed": 347919205.8847059
+      }
+    },
+    {
+      "check": "C1 NRI_BUILDVALUE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 324228166.0,
+        "recomputed": 324228166.0
+      }
+    },
+    {
+      "check": "C1 NRI_BUILDVALUE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 196780609.2,
+        "recomputed": 196780609.2
+      }
+    },
+    {
+      "check": "C1 NRI_BUILDVALUE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 532891084.0,
+        "recomputed": 532891084.0
+      }
+    },
+    {
+      "check": "C1 NRI_BUILDVALUE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 ALR_NPCTL_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 ALR_NPCTL_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 75.497671346999,
+        "recomputed": 75.497671346999
+      }
+    },
+    {
+      "check": "C1 ALR_NPCTL_median",
+      "pass": true,
+      "evidence": {
+        "saved": 75.66115508373065,
+        "recomputed": 75.66115508373065
+      }
+    },
+    {
+      "check": "C1 ALR_NPCTL_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 66.35801019329682,
+        "recomputed": 66.35801019329682
+      }
+    },
+    {
+      "check": "C1 ALR_NPCTL_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 84.55175329403204,
+        "recomputed": 84.55175329403204
+      }
+    },
+    {
+      "check": "C1 ALR_NPCTL_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 EAL_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 EAL_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 65.6269623616175,
+        "recomputed": 65.6269623616175
+      }
+    },
+    {
+      "check": "C1 EAL_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 67.3180355591047,
+        "recomputed": 67.3180355591047
+      }
+    },
+    {
+      "check": "C1 EAL_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 50.29299856730155,
+        "recomputed": 50.29299856730155
+      }
+    },
+    {
+      "check": "C1 EAL_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 78.318106019682,
+        "recomputed": 78.318106019682
+      }
+    },
+    {
+      "check": "C1 EAL_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Grid_Degree_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 Grid_Degree_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 7.56112751539351,
+        "recomputed": 7.56112751539351
+      }
+    },
+    {
+      "check": "C1 Grid_Degree_median",
+      "pass": true,
+      "evidence": {
+        "saved": 6.88643970582886,
+        "recomputed": 6.88643970582886
+      }
+    },
+    {
+      "check": "C1 Grid_Degree_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 2.78622544073601,
+        "recomputed": 2.78622544073601
+      }
+    },
+    {
+      "check": "C1 Grid_Degree_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 14.744773037554111,
+        "recomputed": 14.744773037554111
+      }
+    },
+    {
+      "check": "C1 Grid_Degree_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Grid_Impact_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 Grid_Impact_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.07432359937294448,
+        "recomputed": 0.07432359937294448
+      }
+    },
+    {
+      "check": "C1 Grid_Impact_median",
+      "pass": true,
+      "evidence": {
+        "saved": 5.2761000715411405e-05,
+        "recomputed": 5.2761000715411405e-05
+      }
+    },
+    {
+      "check": "C1 Grid_Impact_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Grid_Impact_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.20740769129043363,
+        "recomputed": 0.20740769129043363
+      }
+    },
+    {
+      "check": "C1 Grid_Impact_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.45529411764705885,
+        "recomputed": 0.45529411764705885
+      }
+    },
+    {
+      "check": "C1 Grid_Betweenness_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 Grid_Betweenness_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.029584534023303886,
+        "recomputed": 0.029584534023303886
+      }
+    },
+    {
+      "check": "C1 Grid_Betweenness_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.022139193568546,
+        "recomputed": 0.022139193568546
+      }
+    },
+    {
+      "check": "C1 Grid_Betweenness_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.00484312336010581,
+        "recomputed": 0.00484312336010581
+      }
+    },
+    {
+      "check": "C1 Grid_Betweenness_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.05890012095826872,
+        "recomputed": 0.05890012095826872
+      }
+    },
+    {
+      "check": "C1 Grid_Betweenness_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.009411764705882352,
+        "recomputed": 0.009411764705882352
+      }
+    },
+    {
+      "check": "C1 Redundancy_HHI_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 Redundancy_HHI_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6365046658290278,
+        "recomputed": 0.6365046658290278
+      }
+    },
+    {
+      "check": "C1 Redundancy_HHI_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6254045714321574,
+        "recomputed": 0.6254045714321574
+      }
+    },
+    {
+      "check": "C1 Redundancy_HHI_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.36226769552161137,
+        "recomputed": 0.36226769552161137
+      }
+    },
+    {
+      "check": "C1 Redundancy_HHI_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.921976063554423,
+        "recomputed": 0.921976063554423
+      }
+    },
+    {
+      "check": "C1 Redundancy_HHI_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Pop_Density_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 Pop_Density_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 18005.40830585296,
+        "recomputed": 18005.40830585296
+      }
+    },
+    {
+      "check": "C1 Pop_Density_median",
+      "pass": true,
+      "evidence": {
+        "saved": 14828.04641860435,
+        "recomputed": 14828.04641860435
+      }
+    },
+    {
+      "check": "C1 Pop_Density_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 8251.178556106677,
+        "recomputed": 8251.178556106677
+      }
+    },
+    {
+      "check": "C1 Pop_Density_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 29051.083380858032,
+        "recomputed": 29051.083380858032
+      }
+    },
+    {
+      "check": "C1 Pop_Density_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 Pop_Density_per_km2_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 Pop_Density_per_km2_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 6951.927012327912,
+        "recomputed": 6951.927012327912
+      }
+    },
+    {
+      "check": "C1 Pop_Density_per_km2_median",
+      "pass": true,
+      "evidence": {
+        "saved": 5725.14072919072,
+        "recomputed": 5725.14072919072
+      }
+    },
+    {
+      "check": "C1 Pop_Density_per_km2_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 3185.7978510319303,
+        "recomputed": 3185.7978510319303
+      }
+    },
+    {
+      "check": "C1 Pop_Density_per_km2_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 11216.686001345832,
+        "recomputed": 11216.686001345832
+      }
+    },
+    {
+      "check": "C1 Pop_Density_per_km2_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 residential_pre1970_housing_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 residential_pre1970_housing_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.694723299213062,
+        "recomputed": 0.694723299213062
+      }
+    },
+    {
+      "check": "C1 residential_pre1970_housing_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.722290058991913,
+        "recomputed": 0.722290058991913
+      }
+    },
+    {
+      "check": "C1 residential_pre1970_housing_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.473827898838192,
+        "recomputed": 0.473827898838192
+      }
+    },
+    {
+      "check": "C1 residential_pre1970_housing_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8823829531812729,
+        "recomputed": 0.8823829531812729
+      }
+    },
+    {
+      "check": "C1 residential_pre1970_housing_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C1 housing_5plus_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 850.0,
+        "recomputed": 850.0
+      }
+    },
+    {
+      "check": "C1 housing_5plus_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.28123700256456147,
+        "recomputed": 0.28123700256456147
+      }
+    },
+    {
+      "check": "C1 housing_5plus_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.21089633537039149,
+        "recomputed": 0.21089633537039149
+      }
+    },
+    {
+      "check": "C1 housing_5plus_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.023952941176470583,
+        "recomputed": 0.023952941176470583
+      }
+    },
+    {
+      "check": "C1 housing_5plus_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6597491702914833,
+        "recomputed": 0.6597491702914833
+      }
+    },
+    {
+      "check": "C1 housing_5plus_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.042352941176470586,
+        "recomputed": 0.042352941176470586
+      }
+    },
+    {
+      "check": "C1 population weighted B",
+      "pass": true,
+      "evidence": 32.1393700697779
+    },
+    {
+      "check": "Count C2",
+      "pass": true,
+      "evidence": 34
+    },
+    {
+      "check": "Population C2",
+      "pass": true,
+      "evidence": 124158
+    },
+    {
+      "check": "C2 B_480_hr_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 B_480_hr_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 23.601147173812656,
+        "recomputed": 23.601147173812656
+      }
+    },
+    {
+      "check": "C2 B_480_hr_median",
+      "pass": true,
+      "evidence": {
+        "saved": 23.076778463079698,
+        "recomputed": 23.076778463079698
+      }
+    },
+    {
+      "check": "C2 B_480_hr_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 20.95774132724106,
+        "recomputed": 20.95774132724106
+      }
+    },
+    {
+      "check": "C2 B_480_hr_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 26.71362511778132,
+        "recomputed": 26.71362511778132
+      }
+    },
+    {
+      "check": "C2 B_480_hr_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 T80_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 T80_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 38.50311345008733,
+        "recomputed": 38.50311345008733
+      }
+    },
+    {
+      "check": "C2 T80_median",
+      "pass": true,
+      "evidence": {
+        "saved": 37.48078832281795,
+        "recomputed": 37.48078832281795
+      }
+    },
+    {
+      "check": "C2 T80_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 35.6005246326103,
+        "recomputed": 35.6005246326103
+      }
+    },
+    {
+      "check": "C2 T80_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 42.13257381376708,
+        "recomputed": 42.13257381376708
+      }
+    },
+    {
+      "check": "C2 T80_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 Init_Supply_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 Init_Supply_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.018153380924932856,
+        "recomputed": 0.018153380924932856
+      }
+    },
+    {
+      "check": "C2 Init_Supply_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.01807573279347935,
+        "recomputed": 0.01807573279347935
+      }
+    },
+    {
+      "check": "C2 Init_Supply_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.01351414659957792,
+        "recomputed": 0.01351414659957792
+      }
+    },
+    {
+      "check": "C2 Init_Supply_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.02331515036225649,
+        "recomputed": 0.02331515036225649
+      }
+    },
+    {
+      "check": "C2 Init_Supply_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 SOVI_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 SOVI_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 67.98617639276472,
+        "recomputed": 67.98617639276472
+      }
+    },
+    {
+      "check": "C2 SOVI_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 85.04499817,
+        "recomputed": 85.04499817
+      }
+    },
+    {
+      "check": "C2 SOVI_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 27.409000395,
+        "recomputed": 27.409000395
+      }
+    },
+    {
+      "check": "C2 SOVI_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 97.136998746,
+        "recomputed": 97.136998746
+      }
+    },
+    {
+      "check": "C2 SOVI_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 land_use_entropy_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 land_use_entropy_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.38386867301694627,
+        "recomputed": 0.38386867301694627
+      }
+    },
+    {
+      "check": "C2 land_use_entropy_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.4110942311009455,
+        "recomputed": 0.4110942311009455
+      }
+    },
+    {
+      "check": "C2 land_use_entropy_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.144414869205257,
+        "recomputed": 0.144414869205257
+      }
+    },
+    {
+      "check": "C2 land_use_entropy_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6268095241913252,
+        "recomputed": 0.6268095241913252
+      }
+    },
+    {
+      "check": "C2 land_use_entropy_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 land_use_classified_land_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 land_use_classified_land_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.726471413722082,
+        "recomputed": 0.726471413722082
+      }
+    },
+    {
+      "check": "C2 land_use_classified_land_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7231447801024615,
+        "recomputed": 0.7231447801024615
+      }
+    },
+    {
+      "check": "C2 land_use_classified_land_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6322430726400265,
+        "recomputed": 0.6322430726400265
+      }
+    },
+    {
+      "check": "C2 land_use_classified_land_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8297962787813602,
+        "recomputed": 0.8297962787813602
+      }
+    },
+    {
+      "check": "C2 land_use_classified_land_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 building_footprint_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 building_footprint_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2428051784658702,
+        "recomputed": 0.2428051784658702
+      }
+    },
+    {
+      "check": "C2 building_footprint_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.259954518480158,
+        "recomputed": 0.259954518480158
+      }
+    },
+    {
+      "check": "C2 building_footprint_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.1622568878506622,
+        "recomputed": 0.1622568878506622
+      }
+    },
+    {
+      "check": "C2 building_footprint_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3146283354246896,
+        "recomputed": 0.3146283354246896
+      }
+    },
+    {
+      "check": "C2 building_footprint_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 all_use2014_pre1970_area_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 all_use2014_pre1970_area_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7139064142489456,
+        "recomputed": 0.7139064142489456
+      }
+    },
+    {
+      "check": "C2 all_use2014_pre1970_area_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.758829751967774,
+        "recomputed": 0.758829751967774
+      }
+    },
+    {
+      "check": "C2 all_use2014_pre1970_area_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.44386930172301164,
+        "recomputed": 0.44386930172301164
+      }
+    },
+    {
+      "check": "C2 all_use2014_pre1970_area_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.855038343994538,
+        "recomputed": 0.855038343994538
+      }
+    },
+    {
+      "check": "C2 all_use2014_pre1970_area_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 all_use2014_age_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 all_use2014_age_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8985703860886092,
+        "recomputed": 0.8985703860886092
+      }
+    },
+    {
+      "check": "C2 all_use2014_age_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.949555809312241,
+        "recomputed": 0.949555809312241
+      }
+    },
+    {
+      "check": "C2 all_use2014_age_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7353165978225248,
+        "recomputed": 0.7353165978225248
+      }
+    },
+    {
+      "check": "C2 all_use2014_age_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.9899692604042912,
+        "recomputed": 0.9899692604042912
+      }
+    },
+    {
+      "check": "C2 all_use2014_age_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 NRI_BUILDVALUE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 NRI_BUILDVALUE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 491336450.4117647,
+        "recomputed": 491336450.4117647
+      }
+    },
+    {
+      "check": "C2 NRI_BUILDVALUE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 389575077.5,
+        "recomputed": 389575077.5
+      }
+    },
+    {
+      "check": "C2 NRI_BUILDVALUE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 271815520.6,
+        "recomputed": 271815520.6
+      }
+    },
+    {
+      "check": "C2 NRI_BUILDVALUE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 801179375.2,
+        "recomputed": 801179375.2
+      }
+    },
+    {
+      "check": "C2 NRI_BUILDVALUE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 ALR_NPCTL_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 ALR_NPCTL_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 72.84138495100227,
+        "recomputed": 72.84138495100227
+      }
+    },
+    {
+      "check": "C2 ALR_NPCTL_median",
+      "pass": true,
+      "evidence": {
+        "saved": 69.5528102026916,
+        "recomputed": 69.5528102026916
+      }
+    },
+    {
+      "check": "C2 ALR_NPCTL_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 59.6263240716819,
+        "recomputed": 59.6263240716819
+      }
+    },
+    {
+      "check": "C2 ALR_NPCTL_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 88.7731639147897,
+        "recomputed": 88.7731639147897
+      }
+    },
+    {
+      "check": "C2 ALR_NPCTL_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 EAL_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 EAL_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 65.19807020912975,
+        "recomputed": 65.19807020912975
+      }
+    },
+    {
+      "check": "C2 EAL_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 64.01871902670459,
+        "recomputed": 64.01871902670459
+      }
+    },
+    {
+      "check": "C2 EAL_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 41.33675458580924,
+        "recomputed": 41.33675458580924
+      }
+    },
+    {
+      "check": "C2 EAL_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 86.137938323508,
+        "recomputed": 86.137938323508
+      }
+    },
+    {
+      "check": "C2 EAL_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 Grid_Degree_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 Grid_Degree_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 4.851755783108122,
+        "recomputed": 4.851755783108122
+      }
+    },
+    {
+      "check": "C2 Grid_Degree_median",
+      "pass": true,
+      "evidence": {
+        "saved": 5.31995765282852,
+        "recomputed": 5.31995765282852
+      }
+    },
+    {
+      "check": "C2 Grid_Degree_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 2.684579790696259,
+        "recomputed": 2.684579790696259
+      }
+    },
+    {
+      "check": "C2 Grid_Degree_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 6.21909578512663,
+        "recomputed": 6.21909578512663
+      }
+    },
+    {
+      "check": "C2 Grid_Degree_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 Grid_Impact_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 Grid_Impact_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.02870406600890927,
+        "recomputed": 0.02870406600890927
+      }
+    },
+    {
+      "check": "C2 Grid_Impact_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0004183523690552,
+        "recomputed": 0.0004183523690552
+      }
+    },
+    {
+      "check": "C2 Grid_Impact_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.00010822135855525,
+        "recomputed": 0.00010822135855525
+      }
+    },
+    {
+      "check": "C2 Grid_Impact_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.134372035921269,
+        "recomputed": 0.134372035921269
+      }
+    },
+    {
+      "check": "C2 Grid_Impact_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.029411764705882353,
+        "recomputed": 0.029411764705882353
+      }
+    },
+    {
+      "check": "C2 Grid_Betweenness_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 Grid_Betweenness_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.011995823893018145,
+        "recomputed": 0.011995823893018145
+      }
+    },
+    {
+      "check": "C2 Grid_Betweenness_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.01369546489455055,
+        "recomputed": 0.01369546489455055
+      }
+    },
+    {
+      "check": "C2 Grid_Betweenness_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.00319454702664302,
+        "recomputed": 0.00319454702664302
+      }
+    },
+    {
+      "check": "C2 Grid_Betweenness_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.01731744254164663,
+        "recomputed": 0.01731744254164663
+      }
+    },
+    {
+      "check": "C2 Grid_Betweenness_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.029411764705882353,
+        "recomputed": 0.029411764705882353
+      }
+    },
+    {
+      "check": "C2 Redundancy_HHI_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 Redundancy_HHI_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.5817650879346602,
+        "recomputed": 0.5817650879346602
+      }
+    },
+    {
+      "check": "C2 Redundancy_HHI_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.571242820155673,
+        "recomputed": 0.571242820155673
+      }
+    },
+    {
+      "check": "C2 Redundancy_HHI_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3135785994561041,
+        "recomputed": 0.3135785994561041
+      }
+    },
+    {
+      "check": "C2 Redundancy_HHI_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.9002264614282022,
+        "recomputed": 0.9002264614282022
+      }
+    },
+    {
+      "check": "C2 Redundancy_HHI_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 Pop_Density_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 Pop_Density_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 13117.290074593486,
+        "recomputed": 13117.290074593486
+      }
+    },
+    {
+      "check": "C2 Pop_Density_median",
+      "pass": true,
+      "evidence": {
+        "saved": 12040.8337101414,
+        "recomputed": 12040.8337101414
+      }
+    },
+    {
+      "check": "C2 Pop_Density_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 4240.163637519073,
+        "recomputed": 4240.163637519073
+      }
+    },
+    {
+      "check": "C2 Pop_Density_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 23400.05074733064,
+        "recomputed": 23400.05074733064
+      }
+    },
+    {
+      "check": "C2 Pop_Density_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 Pop_Density_per_km2_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 Pop_Density_per_km2_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 5064.614012027949,
+        "recomputed": 5064.614012027949
+      }
+    },
+    {
+      "check": "C2 Pop_Density_per_km2_median",
+      "pass": true,
+      "evidence": {
+        "saved": 4648.991886136235,
+        "recomputed": 4648.991886136235
+      }
+    },
+    {
+      "check": "C2 Pop_Density_per_km2_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 1637.136333019304,
+        "recomputed": 1637.136333019304
+      }
+    },
+    {
+      "check": "C2 Pop_Density_per_km2_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 9034.810103547132,
+        "recomputed": 9034.810103547132
+      }
+    },
+    {
+      "check": "C2 Pop_Density_per_km2_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 residential_pre1970_housing_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 residential_pre1970_housing_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.5786549309646665,
+        "recomputed": 0.5786549309646665
+      }
+    },
+    {
+      "check": "C2 residential_pre1970_housing_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6101782598474994,
+        "recomputed": 0.6101782598474994
+      }
+    },
+    {
+      "check": "C2 residential_pre1970_housing_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.36602926691993803,
+        "recomputed": 0.36602926691993803
+      }
+    },
+    {
+      "check": "C2 residential_pre1970_housing_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7505785657291993,
+        "recomputed": 0.7505785657291993
+      }
+    },
+    {
+      "check": "C2 residential_pre1970_housing_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C2 housing_5plus_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 34.0,
+        "recomputed": 34.0
+      }
+    },
+    {
+      "check": "C2 housing_5plus_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3185859279591857,
+        "recomputed": 0.3185859279591857
+      }
+    },
+    {
+      "check": "C2 housing_5plus_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3266618901707365,
+        "recomputed": 0.3266618901707365
+      }
+    },
+    {
+      "check": "C2 housing_5plus_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.036045488126906375,
+        "recomputed": 0.036045488126906375
+      }
+    },
+    {
+      "check": "C2 housing_5plus_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.5745743826924545,
+        "recomputed": 0.5745743826924545
+      }
+    },
+    {
+      "check": "C2 housing_5plus_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.029411764705882353,
+        "recomputed": 0.029411764705882353
+      }
+    },
+    {
+      "check": "C2 population weighted B",
+      "pass": true,
+      "evidence": 23.540655315248827
+    },
+    {
+      "check": "Count C3",
+      "pass": true,
+      "evidence": 651
+    },
+    {
+      "check": "Population C3",
+      "pass": true,
+      "evidence": 2440001
+    },
+    {
+      "check": "C3 B_480_hr_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 B_480_hr_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 36.339142191851536,
+        "recomputed": 36.339142191851536
+      }
+    },
+    {
+      "check": "C3 B_480_hr_median",
+      "pass": true,
+      "evidence": {
+        "saved": 36.833650165275,
+        "recomputed": 36.833650165275
+      }
+    },
+    {
+      "check": "C3 B_480_hr_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 29.4536755869921,
+        "recomputed": 29.4536755869921
+      }
+    },
+    {
+      "check": "C3 B_480_hr_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 42.4986647682073,
+        "recomputed": 42.4986647682073
+      }
+    },
+    {
+      "check": "C3 B_480_hr_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 T80_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 T80_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 46.78403656440461,
+        "recomputed": 46.78403656440461
+      }
+    },
+    {
+      "check": "C3 T80_median",
+      "pass": true,
+      "evidence": {
+        "saved": 46.2798123731556,
+        "recomputed": 46.2798123731556
+      }
+    },
+    {
+      "check": "C3 T80_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 41.2511460387984,
+        "recomputed": 41.2511460387984
+      }
+    },
+    {
+      "check": "C3 T80_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 53.2256318654834,
+        "recomputed": 53.2256318654834
+      }
+    },
+    {
+      "check": "C3 T80_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Init_Supply_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 Init_Supply_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0003663001502154322,
+        "recomputed": 0.0003663001502154322
+      }
+    },
+    {
+      "check": "C3 Init_Supply_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Init_Supply_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Init_Supply_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0004597019093104,
+        "recomputed": 0.0004597019093104
+      }
+    },
+    {
+      "check": "C3 Init_Supply_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.738863287250384,
+        "recomputed": 0.738863287250384
+      }
+    },
+    {
+      "check": "C3 SOVI_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 SOVI_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 31.05791099440399,
+        "recomputed": 31.05791099440399
+      }
+    },
+    {
+      "check": "C3 SOVI_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 31.29000092,
+        "recomputed": 31.29000092
+      }
+    },
+    {
+      "check": "C3 SOVI_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 8.690000534,
+        "recomputed": 8.690000534
+      }
+    },
+    {
+      "check": "C3 SOVI_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 51.56000137,
+        "recomputed": 51.56000137
+      }
+    },
+    {
+      "check": "C3 SOVI_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 land_use_entropy_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 land_use_entropy_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3350849911377662,
+        "recomputed": 0.3350849911377662
+      }
+    },
+    {
+      "check": "C3 land_use_entropy_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.329364184309812,
+        "recomputed": 0.329364184309812
+      }
+    },
+    {
+      "check": "C3 land_use_entropy_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.161912682469482,
+        "recomputed": 0.161912682469482
+      }
+    },
+    {
+      "check": "C3 land_use_entropy_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.519134312343638,
+        "recomputed": 0.519134312343638
+      }
+    },
+    {
+      "check": "C3 land_use_entropy_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 land_use_classified_land_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 land_use_classified_land_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7720598659016976,
+        "recomputed": 0.7720598659016976
+      }
+    },
+    {
+      "check": "C3 land_use_classified_land_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.762468017361869,
+        "recomputed": 0.762468017361869
+      }
+    },
+    {
+      "check": "C3 land_use_classified_land_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.675141326302915,
+        "recomputed": 0.675141326302915
+      }
+    },
+    {
+      "check": "C3 land_use_classified_land_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.892532355816725,
+        "recomputed": 0.892532355816725
+      }
+    },
+    {
+      "check": "C3 land_use_classified_land_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 building_footprint_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 building_footprint_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.23144552856669193,
+        "recomputed": 0.23144552856669193
+      }
+    },
+    {
+      "check": "C3 building_footprint_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.237728150091406,
+        "recomputed": 0.237728150091406
+      }
+    },
+    {
+      "check": "C3 building_footprint_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.105305593965448,
+        "recomputed": 0.105305593965448
+      }
+    },
+    {
+      "check": "C3 building_footprint_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.33590545661861,
+        "recomputed": 0.33590545661861
+      }
+    },
+    {
+      "check": "C3 building_footprint_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 all_use2014_pre1970_area_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 all_use2014_pre1970_area_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6878783940208335,
+        "recomputed": 0.6878783940208335
+      }
+    },
+    {
+      "check": "C3 all_use2014_pre1970_area_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.762368387187584,
+        "recomputed": 0.762368387187584
+      }
+    },
+    {
+      "check": "C3 all_use2014_pre1970_area_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.298734928046772,
+        "recomputed": 0.298734928046772
+      }
+    },
+    {
+      "check": "C3 all_use2014_pre1970_area_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.936126995589232,
+        "recomputed": 0.936126995589232
+      }
+    },
+    {
+      "check": "C3 all_use2014_pre1970_area_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.010752688172043012,
+        "recomputed": 0.010752688172043012
+      }
+    },
+    {
+      "check": "C3 all_use2014_age_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 all_use2014_age_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.939914810288599,
+        "recomputed": 0.939914810288599
+      }
+    },
+    {
+      "check": "C3 all_use2014_age_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.966096391446141,
+        "recomputed": 0.966096391446141
+      }
+    },
+    {
+      "check": "C3 all_use2014_age_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.888409801590565,
+        "recomputed": 0.888409801590565
+      }
+    },
+    {
+      "check": "C3 all_use2014_age_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.990473460093586,
+        "recomputed": 0.990473460093586
+      }
+    },
+    {
+      "check": "C3 all_use2014_age_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 NRI_BUILDVALUE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 NRI_BUILDVALUE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 758558191.5207373,
+        "recomputed": 758558191.5207373
+      }
+    },
+    {
+      "check": "C3 NRI_BUILDVALUE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 658977571.0,
+        "recomputed": 658977571.0
+      }
+    },
+    {
+      "check": "C3 NRI_BUILDVALUE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 361574649.0,
+        "recomputed": 361574649.0
+      }
+    },
+    {
+      "check": "C3 NRI_BUILDVALUE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 1288726682.0,
+        "recomputed": 1288726682.0
+      }
+    },
+    {
+      "check": "C3 NRI_BUILDVALUE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 ALR_NPCTL_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 ALR_NPCTL_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 79.41032433981452,
+        "recomputed": 79.41032433981452
+      }
+    },
+    {
+      "check": "C3 ALR_NPCTL_median",
+      "pass": true,
+      "evidence": {
+        "saved": 79.1401460882636,
+        "recomputed": 79.1401460882636
+      }
+    },
+    {
+      "check": "C3 ALR_NPCTL_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 67.7584141672734,
+        "recomputed": 67.7584141672734
+      }
+    },
+    {
+      "check": "C3 ALR_NPCTL_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 90.8131150621227,
+        "recomputed": 90.8131150621227
+      }
+    },
+    {
+      "check": "C3 ALR_NPCTL_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 EAL_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 EAL_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 79.19261089702952,
+        "recomputed": 79.19261089702952
+      }
+    },
+    {
+      "check": "C3 EAL_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 81.590999835592,
+        "recomputed": 81.590999835592
+      }
+    },
+    {
+      "check": "C3 EAL_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 62.1932029029758,
+        "recomputed": 62.1932029029758
+      }
+    },
+    {
+      "check": "C3 EAL_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 93.6667684430561,
+        "recomputed": 93.6667684430561
+      }
+    },
+    {
+      "check": "C3 EAL_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Grid_Degree_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 Grid_Degree_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 6.045530806576292,
+        "recomputed": 6.045530806576292
+      }
+    },
+    {
+      "check": "C3 Grid_Degree_median",
+      "pass": true,
+      "evidence": {
+        "saved": 6.23513513701102,
+        "recomputed": 6.23513513701102
+      }
+    },
+    {
+      "check": "C3 Grid_Degree_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 2.06016760024027,
+        "recomputed": 2.06016760024027
+      }
+    },
+    {
+      "check": "C3 Grid_Degree_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 9.60653717107592,
+        "recomputed": 9.60653717107592
+      }
+    },
+    {
+      "check": "C3 Grid_Degree_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Grid_Impact_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 Grid_Impact_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.20994496954906905,
+        "recomputed": 0.20994496954906905
+      }
+    },
+    {
+      "check": "C3 Grid_Impact_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0398831150553295,
+        "recomputed": 0.0398831150553295
+      }
+    },
+    {
+      "check": "C3 Grid_Impact_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Grid_Impact_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.852924727213828,
+        "recomputed": 0.852924727213828
+      }
+    },
+    {
+      "check": "C3 Grid_Impact_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2012288786482335,
+        "recomputed": 0.2012288786482335
+      }
+    },
+    {
+      "check": "C3 Grid_Betweenness_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 Grid_Betweenness_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.036882108752023184,
+        "recomputed": 0.036882108752023184
+      }
+    },
+    {
+      "check": "C3 Grid_Betweenness_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0262654744314899,
+        "recomputed": 0.0262654744314899
+      }
+    },
+    {
+      "check": "C3 Grid_Betweenness_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0025144768974142,
+        "recomputed": 0.0025144768974142
+      }
+    },
+    {
+      "check": "C3 Grid_Betweenness_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0869420441552067,
+        "recomputed": 0.0869420441552067
+      }
+    },
+    {
+      "check": "C3 Grid_Betweenness_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.03686635944700461,
+        "recomputed": 0.03686635944700461
+      }
+    },
+    {
+      "check": "C3 Redundancy_HHI_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 Redundancy_HHI_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6467930525144437,
+        "recomputed": 0.6467930525144437
+      }
+    },
+    {
+      "check": "C3 Redundancy_HHI_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.633445004683492,
+        "recomputed": 0.633445004683492
+      }
+    },
+    {
+      "check": "C3 Redundancy_HHI_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.352489167845692,
+        "recomputed": 0.352489167845692
+      }
+    },
+    {
+      "check": "C3 Redundancy_HHI_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 1.0,
+        "recomputed": 1.0
+      }
+    },
+    {
+      "check": "C3 Redundancy_HHI_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Pop_Density_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 Pop_Density_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 9277.549174200574,
+        "recomputed": 9277.549174200574
+      }
+    },
+    {
+      "check": "C3 Pop_Density_median",
+      "pass": true,
+      "evidence": {
+        "saved": 7369.08664630142,
+        "recomputed": 7369.08664630142
+      }
+    },
+    {
+      "check": "C3 Pop_Density_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 2070.25667777272,
+        "recomputed": 2070.25667777272
+      }
+    },
+    {
+      "check": "C3 Pop_Density_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 17259.2882252666,
+        "recomputed": 17259.2882252666
+      }
+    },
+    {
+      "check": "C3 Pop_Density_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 Pop_Density_per_km2_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 Pop_Density_per_km2_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 3582.081762142528,
+        "recomputed": 3582.081762142528
+      }
+    },
+    {
+      "check": "C3 Pop_Density_per_km2_median",
+      "pass": true,
+      "evidence": {
+        "saved": 2845.22026062329,
+        "recomputed": 2845.22026062329
+      }
+    },
+    {
+      "check": "C3 Pop_Density_per_km2_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 799.330572024961,
+        "recomputed": 799.330572024961
+      }
+    },
+    {
+      "check": "C3 Pop_Density_per_km2_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 6663.84843868164,
+        "recomputed": 6663.84843868164
+      }
+    },
+    {
+      "check": "C3 Pop_Density_per_km2_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 residential_pre1970_housing_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 residential_pre1970_housing_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.5903158217309254,
+        "recomputed": 0.5903158217309254
+      }
+    },
+    {
+      "check": "C3 residential_pre1970_housing_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.626656274356976,
+        "recomputed": 0.626656274356976
+      }
+    },
+    {
+      "check": "C3 residential_pre1970_housing_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.235595390524968,
+        "recomputed": 0.235595390524968
+      }
+    },
+    {
+      "check": "C3 residential_pre1970_housing_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.893343419062027,
+        "recomputed": 0.893343419062027
+      }
+    },
+    {
+      "check": "C3 residential_pre1970_housing_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.004608294930875576,
+        "recomputed": 0.004608294930875576
+      }
+    },
+    {
+      "check": "C3 housing_5plus_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 651.0,
+        "recomputed": 651.0
+      }
+    },
+    {
+      "check": "C3 housing_5plus_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.30134945496672993,
+        "recomputed": 0.30134945496672993
+      }
+    },
+    {
+      "check": "C3 housing_5plus_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.180030257186082,
+        "recomputed": 0.180030257186082
+      }
+    },
+    {
+      "check": "C3 housing_5plus_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C3 housing_5plus_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.823962776269872,
+        "recomputed": 0.823962776269872
+      }
+    },
+    {
+      "check": "C3 housing_5plus_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.14746543778801843,
+        "recomputed": 0.14746543778801843
+      }
+    },
+    {
+      "check": "C3 population weighted B",
+      "pass": true,
+      "evidence": 36.06067405202437
+    },
+    {
+      "check": "Count C4",
+      "pass": true,
+      "evidence": 752
+    },
+    {
+      "check": "Population C4",
+      "pass": true,
+      "evidence": 3085986
+    },
+    {
+      "check": "C4 B_480_hr_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 B_480_hr_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 33.8930520274776,
+        "recomputed": 33.8930520274776
+      }
+    },
+    {
+      "check": "C4 B_480_hr_median",
+      "pass": true,
+      "evidence": {
+        "saved": 33.3192052122361,
+        "recomputed": 33.3192052122361
+      }
+    },
+    {
+      "check": "C4 B_480_hr_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 29.05619656275061,
+        "recomputed": 29.05619656275061
+      }
+    },
+    {
+      "check": "C4 B_480_hr_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 40.60348251340981,
+        "recomputed": 40.60348251340981
+      }
+    },
+    {
+      "check": "C4 B_480_hr_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 T80_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 T80_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 44.76886020173263,
+        "recomputed": 44.76886020173263
+      }
+    },
+    {
+      "check": "C4 T80_median",
+      "pass": true,
+      "evidence": {
+        "saved": 43.701669560720546,
+        "recomputed": 43.701669560720546
+      }
+    },
+    {
+      "check": "C4 T80_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 41.12860354372205,
+        "recomputed": 41.12860354372205
+      }
+    },
+    {
+      "check": "C4 T80_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 49.3554817904973,
+        "recomputed": 49.3554817904973
+      }
+    },
+    {
+      "check": "C4 T80_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Init_Supply_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 Init_Supply_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.00024214053861954402,
+        "recomputed": 0.00024214053861954402
+      }
+    },
+    {
+      "check": "C4 Init_Supply_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Init_Supply_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Init_Supply_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0004157121273483,
+        "recomputed": 0.0004157121273483
+      }
+    },
+    {
+      "check": "C4 Init_Supply_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.675531914893617,
+        "recomputed": 0.675531914893617
+      }
+    },
+    {
+      "check": "C4 SOVI_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 SOVI_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 82.87212757341754,
+        "recomputed": 82.87212757341754
+      }
+    },
+    {
+      "check": "C4 SOVI_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 86.22999954,
+        "recomputed": 86.22999954
+      }
+    },
+    {
+      "check": "C4 SOVI_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 63.460000608,
+        "recomputed": 63.460000608
+      }
+    },
+    {
+      "check": "C4 SOVI_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 97.33999634,
+        "recomputed": 97.33999634
+      }
+    },
+    {
+      "check": "C4 SOVI_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 land_use_entropy_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 land_use_entropy_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.48939703095136855,
+        "recomputed": 0.48939703095136855
+      }
+    },
+    {
+      "check": "C4 land_use_entropy_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.49459547568714246,
+        "recomputed": 0.49459547568714246
+      }
+    },
+    {
+      "check": "C4 land_use_entropy_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3459049965242777,
+        "recomputed": 0.3459049965242777
+      }
+    },
+    {
+      "check": "C4 land_use_entropy_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6294877262897298,
+        "recomputed": 0.6294877262897298
+      }
+    },
+    {
+      "check": "C4 land_use_entropy_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 land_use_classified_land_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 land_use_classified_land_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7511977486219872,
+        "recomputed": 0.7511977486219872
+      }
+    },
+    {
+      "check": "C4 land_use_classified_land_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7578452043339285,
+        "recomputed": 0.7578452043339285
+      }
+    },
+    {
+      "check": "C4 land_use_classified_land_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6605337518602712,
+        "recomputed": 0.6605337518602712
+      }
+    },
+    {
+      "check": "C4 land_use_classified_land_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8344284986381126,
+        "recomputed": 0.8344284986381126
+      }
+    },
+    {
+      "check": "C4 land_use_classified_land_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 building_footprint_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 building_footprint_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2769451446708615,
+        "recomputed": 0.2769451446708615
+      }
+    },
+    {
+      "check": "C4 building_footprint_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2731811638015105,
+        "recomputed": 0.2731811638015105
+      }
+    },
+    {
+      "check": "C4 building_footprint_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.19439401237765883,
+        "recomputed": 0.19439401237765883
+      }
+    },
+    {
+      "check": "C4 building_footprint_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.367047768616561,
+        "recomputed": 0.367047768616561
+      }
+    },
+    {
+      "check": "C4 building_footprint_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 all_use2014_pre1970_area_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 all_use2014_pre1970_area_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6914960381050954,
+        "recomputed": 0.6914960381050954
+      }
+    },
+    {
+      "check": "C4 all_use2014_pre1970_area_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7270563950908765,
+        "recomputed": 0.7270563950908765
+      }
+    },
+    {
+      "check": "C4 all_use2014_pre1970_area_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.4204881983073909,
+        "recomputed": 0.4204881983073909
+      }
+    },
+    {
+      "check": "C4 all_use2014_pre1970_area_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8868719962515703,
+        "recomputed": 0.8868719962515703
+      }
+    },
+    {
+      "check": "C4 all_use2014_pre1970_area_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0013297872340425532,
+        "recomputed": 0.0013297872340425532
+      }
+    },
+    {
+      "check": "C4 all_use2014_age_coverage_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 all_use2014_age_coverage_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8962978158463738,
+        "recomputed": 0.8962978158463738
+      }
+    },
+    {
+      "check": "C4 all_use2014_age_coverage_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.9233447175338605,
+        "recomputed": 0.9233447175338605
+      }
+    },
+    {
+      "check": "C4 all_use2014_age_coverage_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.7961053142536804,
+        "recomputed": 0.7961053142536804
+      }
+    },
+    {
+      "check": "C4 all_use2014_age_coverage_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.9752449549495115,
+        "recomputed": 0.9752449549495115
+      }
+    },
+    {
+      "check": "C4 all_use2014_age_coverage_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 NRI_BUILDVALUE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 NRI_BUILDVALUE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 712454846.518617,
+        "recomputed": 712454846.518617
+      }
+    },
+    {
+      "check": "C4 NRI_BUILDVALUE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 542515496.0,
+        "recomputed": 542515496.0
+      }
+    },
+    {
+      "check": "C4 NRI_BUILDVALUE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 316323843.3,
+        "recomputed": 316323843.3
+      }
+    },
+    {
+      "check": "C4 NRI_BUILDVALUE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 1163075975.2,
+        "recomputed": 1163075975.2
+      }
+    },
+    {
+      "check": "C4 NRI_BUILDVALUE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 ALR_NPCTL_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 ALR_NPCTL_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 88.87277568200592,
+        "recomputed": 88.87277568200592
+      }
+    },
+    {
+      "check": "C4 ALR_NPCTL_median",
+      "pass": true,
+      "evidence": {
+        "saved": 89.3610399981211,
+        "recomputed": 89.3610399981211
+      }
+    },
+    {
+      "check": "C4 ALR_NPCTL_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 82.13084529205908,
+        "recomputed": 82.13084529205908
+      }
+    },
+    {
+      "check": "C4 ALR_NPCTL_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 95.06858162857883,
+        "recomputed": 95.06858162857883
+      }
+    },
+    {
+      "check": "C4 ALR_NPCTL_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 EAL_SCORE_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 EAL_SCORE_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 85.41780717438591,
+        "recomputed": 85.41780717438591
+      }
+    },
+    {
+      "check": "C4 EAL_SCORE_median",
+      "pass": true,
+      "evidence": {
+        "saved": 85.6976771496348,
+        "recomputed": 85.6976771496348
+      }
+    },
+    {
+      "check": "C4 EAL_SCORE_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 74.5078328675106,
+        "recomputed": 74.5078328675106
+      }
+    },
+    {
+      "check": "C4 EAL_SCORE_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 96.96033069497615,
+        "recomputed": 96.96033069497615
+      }
+    },
+    {
+      "check": "C4 EAL_SCORE_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Grid_Degree_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 Grid_Degree_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 7.444372734103637,
+        "recomputed": 7.444372734103637
+      }
+    },
+    {
+      "check": "C4 Grid_Degree_median",
+      "pass": true,
+      "evidence": {
+        "saved": 6.724196967642975,
+        "recomputed": 6.724196967642975
+      }
+    },
+    {
+      "check": "C4 Grid_Degree_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 2.193963093922959,
+        "recomputed": 2.193963093922959
+      }
+    },
+    {
+      "check": "C4 Grid_Degree_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 14.62211777446393,
+        "recomputed": 14.62211777446393
+      }
+    },
+    {
+      "check": "C4 Grid_Degree_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Grid_Impact_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 Grid_Impact_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.07493775521293512,
+        "recomputed": 0.07493775521293512
+      }
+    },
+    {
+      "check": "C4 Grid_Impact_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0001031069887931,
+        "recomputed": 0.0001031069887931
+      }
+    },
+    {
+      "check": "C4 Grid_Impact_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Grid_Impact_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.2042133517687023,
+        "recomputed": 0.2042133517687023
+      }
+    },
+    {
+      "check": "C4 Grid_Impact_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.324468085106383,
+        "recomputed": 0.324468085106383
+      }
+    },
+    {
+      "check": "C4 Grid_Betweenness_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 Grid_Betweenness_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.03203453785539609,
+        "recomputed": 0.03203453785539609
+      }
+    },
+    {
+      "check": "C4 Grid_Betweenness_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.026755227494604447,
+        "recomputed": 0.026755227494604447
+      }
+    },
+    {
+      "check": "C4 Grid_Betweenness_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.00582214136093946,
+        "recomputed": 0.00582214136093946
+      }
+    },
+    {
+      "check": "C4 Grid_Betweenness_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0628670621823677,
+        "recomputed": 0.0628670621823677
+      }
+    },
+    {
+      "check": "C4 Grid_Betweenness_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.018617021276595744,
+        "recomputed": 0.018617021276595744
+      }
+    },
+    {
+      "check": "C4 Redundancy_HHI_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 Redundancy_HHI_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6400709985206657,
+        "recomputed": 0.6400709985206657
+      }
+    },
+    {
+      "check": "C4 Redundancy_HHI_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.6259266606707581,
+        "recomputed": 0.6259266606707581
+      }
+    },
+    {
+      "check": "C4 Redundancy_HHI_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.36089807760069464,
+        "recomputed": 0.36089807760069464
+      }
+    },
+    {
+      "check": "C4 Redundancy_HHI_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 1.0,
+        "recomputed": 1.0
+      }
+    },
+    {
+      "check": "C4 Redundancy_HHI_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Pop_Density_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 Pop_Density_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 14855.034667149439,
+        "recomputed": 14855.034667149439
+      }
+    },
+    {
+      "check": "C4 Pop_Density_median",
+      "pass": true,
+      "evidence": {
+        "saved": 11765.71089570945,
+        "recomputed": 11765.71089570945
+      }
+    },
+    {
+      "check": "C4 Pop_Density_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 4864.357348695906,
+        "recomputed": 4864.357348695906
+      }
+    },
+    {
+      "check": "C4 Pop_Density_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 28730.20166450545,
+        "recomputed": 28730.20166450545
+      }
+    },
+    {
+      "check": "C4 Pop_Density_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 Pop_Density_per_km2_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 Pop_Density_per_km2_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 5735.560950209263,
+        "recomputed": 5735.560950209263
+      }
+    },
+    {
+      "check": "C4 Pop_Density_per_km2_median",
+      "pass": true,
+      "evidence": {
+        "saved": 4542.766373619785,
+        "recomputed": 4542.766373619785
+      }
+    },
+    {
+      "check": "C4 Pop_Density_per_km2_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 1878.138872253297,
+        "recomputed": 1878.138872253297
+      }
+    },
+    {
+      "check": "C4 Pop_Density_per_km2_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 11092.79287802533,
+        "recomputed": 11092.79287802533
+      }
+    },
+    {
+      "check": "C4 Pop_Density_per_km2_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 residential_pre1970_housing_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 residential_pre1970_housing_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.5835025618308001,
+        "recomputed": 0.5835025618308001
+      }
+    },
+    {
+      "check": "C4 residential_pre1970_housing_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.598604436235673,
+        "recomputed": 0.598604436235673
+      }
+    },
+    {
+      "check": "C4 residential_pre1970_housing_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3216110658532418,
+        "recomputed": 0.3216110658532418
+      }
+    },
+    {
+      "check": "C4 residential_pre1970_housing_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8269103228130803,
+        "recomputed": 0.8269103228130803
+      }
+    },
+    {
+      "check": "C4 residential_pre1970_housing_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.0,
+        "recomputed": 0.0
+      }
+    },
+    {
+      "check": "C4 housing_5plus_share_n_observed",
+      "pass": true,
+      "evidence": {
+        "saved": 752.0,
+        "recomputed": 752.0
+      }
+    },
+    {
+      "check": "C4 housing_5plus_share_mean",
+      "pass": true,
+      "evidence": {
+        "saved": 0.4354312485755539,
+        "recomputed": 0.4354312485755539
+      }
+    },
+    {
+      "check": "C4 housing_5plus_share_median",
+      "pass": true,
+      "evidence": {
+        "saved": 0.3858702288283845,
+        "recomputed": 0.3858702288283845
+      }
+    },
+    {
+      "check": "C4 housing_5plus_share_p10",
+      "pass": true,
+      "evidence": {
+        "saved": 0.06431504330224586,
+        "recomputed": 0.06431504330224586
+      }
+    },
+    {
+      "check": "C4 housing_5plus_share_p90",
+      "pass": true,
+      "evidence": {
+        "saved": 0.8794422113803482,
+        "recomputed": 0.8794422113803482
+      }
+    },
+    {
+      "check": "C4 housing_5plus_share_zero_fraction",
+      "pass": true,
+      "evidence": {
+        "saved": 0.026595744680851064,
+        "recomputed": 0.026595744680851064
+      }
+    },
+    {
+      "check": "C4 population weighted B",
+      "pass": true,
+      "evidence": 33.61629979186128
+    },
+    {
+      "check": "Unclassified population",
+      "pass": true,
+      "evidence": 12390
+    },
+    {
+      "check": "Classified population",
+      "pass": true,
+      "evidence": 9037153
+    },
+    {
+      "check": "FEMA composition cohort",
+      "pass": true,
+      "evidence": 2291
+    },
+    {
+      "check": "Pooled earthquake EAL percent",
+      "pass": true,
+      "evidence": 98.1563016157246
+    },
+    {
+      "check": "Median tract earthquake EAL percent",
+      "pass": true,
+      "evidence": 99.27449783795859
+    },
+    {
+      "check": "Crosswalk ARI",
+      "pass": true,
+      "evidence": 0.21662371649602216
+    },
+    {
+      "check": "Old cluster 5 and C2 contingency",
+      "pass": true,
+      "evidence": [
+        0,
+        34,
+        0,
+        0
+      ]
+    },
+    {
+      "check": "D spatial 20 / 17",
+      "pass": true,
+      "evidence": {
+        "cases": 20,
+        "unique_deletions": 17
+      }
+    },
+    {
+      "check": "D median ARI",
+      "pass": true,
+      "evidence": 0.923445461880146
+    },
+    {
+      "check": "EAL spatial 20 / 17",
+      "pass": true,
+      "evidence": {
+        "cases": 20,
+        "unique_deletions": 17
+      }
+    },
+    {
+      "check": "EAL median ARI",
+      "pass": true,
+      "evidence": 0.945764970863636
+    },
+    {
+      "check": "Worst C2 specificity",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "seed": 54,
+        "target": "D_SEED42_34",
+        "reference_seed42_model": "D",
+        "target_original_n": 34,
+        "own_seed_dominant_baseline_cluster": 3,
+        "own_seed_target_in_dominant_class": 34,
+        "training_target_n": 4,
+        "heldout_target_n": 30,
+        "dominant_baseline_training_n": 4,
+        "training_support": "SUPPORTED",
+        "matched_raw_prediction_cluster": 1,
+        "prediction_n": 92,
+        "original_members_in_match": 34,
+        "original_member_retention": 1,
+        "prediction_target_purity": 0.369565217391304,
+        "new_other_members": 58,
+        "original_members_by_raw_prediction": "{\"1\": 34, \"2\": 0, \"3\": 0, \"4\": 0}",
+        "removed_blocks": "7:-23;7:-24",
+        "target_members_removed_by_block": "{\"7:-23\": 0, \"7:-24\": 30}",
+        "majority_of_target_merged_elsewhere": false
+      }
+    },
+    {
+      "check": "Profile direction C1/C4 land_use_entropy",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 1,
+        "display_class_b": 4,
+        "feature": "land_use_entropy",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": -1.40349213785897,
+        "baseline_standardized_difference_max": -1.39123232533331,
+        "post_standardized_difference_min": -1.46479465909427,
+        "post_standardized_difference_max": -1.16976956532604
+      }
+    },
+    {
+      "check": "Profile direction C1/C4 all_use2014_pre1970_area_share",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 1,
+        "display_class_b": 4,
+        "feature": "all_use2014_pre1970_area_share",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": 0.731386098377588,
+        "baseline_standardized_difference_max": 0.733373429395217,
+        "post_standardized_difference_min": 0.679616223619633,
+        "post_standardized_difference_max": 0.842283654271466
+      }
+    },
+    {
+      "check": "Profile direction C1/C4 Grid_Degree",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 1,
+        "display_class_b": 4,
+        "feature": "Grid_Degree",
+        "replicates": 20,
+        "reversal_count": 12,
+        "reversal_fraction": 0.6,
+        "baseline_standardized_difference_min": -0.0133383835882775,
+        "baseline_standardized_difference_max": 0.0290192388669346,
+        "post_standardized_difference_min": -0.151466787872517,
+        "post_standardized_difference_max": 0.374073636888433
+      }
+    },
+    {
+      "check": "Profile direction C1/C4 Grid_Impact",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 1,
+        "display_class_b": 4,
+        "feature": "Grid_Impact",
+        "replicates": 20,
+        "reversal_count": 12,
+        "reversal_fraction": 0.6,
+        "baseline_standardized_difference_min": -0.0025418354344203,
+        "baseline_standardized_difference_max": 0.0236098149223824,
+        "post_standardized_difference_min": -0.213798016514171,
+        "post_standardized_difference_max": 0.0612637170564981
+      }
+    },
+    {
+      "check": "Profile direction C3/C4 all_use2014_pre1970_area_share",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 3,
+        "display_class_b": 4,
+        "feature": "all_use2014_pre1970_area_share",
+        "replicates": 20,
+        "reversal_count": 7,
+        "reversal_fraction": 0.35,
+        "baseline_standardized_difference_min": -0.0177945379051021,
+        "baseline_standardized_difference_max": -0.012813453564202,
+        "post_standardized_difference_min": -0.0680923237391125,
+        "post_standardized_difference_max": 0.150937853404235
+      }
+    },
+    {
+      "check": "Profile direction C1/C3 B_480_hr",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 1,
+        "display_class_b": 3,
+        "feature": "B_480_hr",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": -0.763231661710496,
+        "baseline_standardized_difference_max": -0.738013661303191,
+        "post_standardized_difference_min": -1.03564715970588,
+        "post_standardized_difference_max": -0.651163814798615
+      }
+    },
+    {
+      "check": "Profile direction C1/C3 SOVI_SCORE",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 1,
+        "display_class_b": 3,
+        "feature": "SOVI_SCORE",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": 1.78534625748336,
+        "baseline_standardized_difference_max": 1.7958260544594,
+        "post_standardized_difference_min": 1.71652651934297,
+        "post_standardized_difference_max": 1.87035848663805
+      }
+    },
+    {
+      "check": "Profile direction C1/C3 T80",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 1,
+        "display_class_b": 3,
+        "feature": "T80",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": -0.692532523383691,
+        "baseline_standardized_difference_max": -0.675222919160224,
+        "post_standardized_difference_min": -0.913079059785997,
+        "post_standardized_difference_max": -0.612037960366888
+      }
+    },
+    {
+      "check": "Profile direction C3/C4 B_480_hr",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 3,
+        "display_class_b": 4,
+        "feature": "B_480_hr",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": 0.473348181700929,
+        "baseline_standardized_difference_max": 0.488625679530021,
+        "post_standardized_difference_min": 0.300938762660171,
+        "post_standardized_difference_max": 0.557766233973874
+      }
+    },
+    {
+      "check": "Profile direction C3/C4 SOVI_SCORE",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 3,
+        "display_class_b": 4,
+        "feature": "SOVI_SCORE",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": -1.92414207633581,
+        "baseline_standardized_difference_max": -1.9196719476232,
+        "post_standardized_difference_min": -1.95501785365408,
+        "post_standardized_difference_max": -1.88454352893436
+      }
+    },
+    {
+      "check": "Profile direction C3/C4 T80",
+      "pass": true,
+      "evidence": {
+        "model": "D",
+        "display_class_a": 3,
+        "display_class_b": 4,
+        "feature": "T80",
+        "replicates": 20,
+        "reversal_count": 0,
+        "reversal_fraction": 0.0,
+        "baseline_standardized_difference_min": 0.45069799713627,
+        "baseline_standardized_difference_max": 0.462321820446575,
+        "post_standardized_difference_min": 0.303117868902425,
+        "post_standardized_difference_max": 0.518293342227664
+      }
+    },
+    {
+      "check": "FIG_STAGE7_TYPOLOGY_MAP one page",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "check": "FIG_STAGE7_TYPOLOGY_MAP embedded fonts",
+      "pass": true,
+      "evidence": [
+        true
+      ]
+    },
+    {
+      "check": "FIG_STAGE7_CLUSTER_PROFILE one page",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "check": "FIG_STAGE7_CLUSTER_PROFILE embedded fonts",
+      "pass": true,
+      "evidence": [
+        true
+      ]
+    },
+    {
+      "check": "FIG_STAGE7_SPATIAL_ROBUSTNESS one page",
+      "pass": true,
+      "evidence": 1
+    },
+    {
+      "check": "FIG_STAGE7_SPATIAL_ROBUSTNESS embedded fonts",
+      "pass": true,
+      "evidence": [
+        true
+      ]
+    }
+  ],
+  "new_clustering_fits": 0,
+  "new_physical_samples": 0,
+  "new_simulations": 0,
+  "new_GIS_extraction": 0,
+  "profile_weighting": "equal tract; population weighting only explicitly named statistics",
+  "runtime": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.1"
+  },
+  "note": "Statistics reaggregated from frozen labels and inputs; no model inference or refit."
+}
