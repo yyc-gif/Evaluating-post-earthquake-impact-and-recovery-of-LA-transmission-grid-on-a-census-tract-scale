@@ -1,0 +1,47 @@
+name: Audit formal cumulative burden vs T80 availability
+
+on:
+  push:
+    branches:
+      - analysis/stage7-b-versus-t80-audit-20261009
+    paths:
+      - docs/data_research/built_environment_20261009/B_VS_T80_AUDIT_20261009.py
+      - .github/workflows/stage7-b-versus-t80-audit.yml
+
+permissions:
+  contents: write
+
+jobs:
+  read-only-science:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: analysis/stage7-b-versus-t80-audit-20261009
+          lfs: false
+      - name: Hydrate only metric comparison input tables
+        shell: bash
+        run: |
+          git lfs install --local
+          git lfs pull --include="Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv,Formal_Experiment_20260923/Stage 5 Output_expanded/tract_kpis_2pc50.csv,Formal_Experiment_20260923/Stage 1 Output_expanded/MC_Tract_Supply_2pc50.csv,provenance/legacy_outputs/stage3/tract_kpis_2pc50.csv,provenance/legacy_outputs/stage5/tract_kpis_2pc50.csv,docs/data_research/built_environment_20261009/validation/RESIDENTIAL_VALIDATION_MATRIX.csv"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencies
+        run: python -m pip install numpy==1.26.4 pandas==2.2.2
+      - name: Run provenance-safe B versus T80 audit
+        run: python docs/data_research/built_environment_20261009/B_VS_T80_AUDIT_20261009.py
+      - name: Archive metrics audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: b-vs-t80-provenance-audit
+          path: docs/data_research/built_environment_20261009/B_VS_T80_20261009_AUDIT.json
+      - name: Commit only audit manifest
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data_research/built_environment_20261009/B_VS_T80_20261009_AUDIT.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "results: document formal T80 and cumulative burden source compatibility [skip ci]"
+          git push origin HEAD:analysis/stage7-b-versus-t80-audit-20261009
