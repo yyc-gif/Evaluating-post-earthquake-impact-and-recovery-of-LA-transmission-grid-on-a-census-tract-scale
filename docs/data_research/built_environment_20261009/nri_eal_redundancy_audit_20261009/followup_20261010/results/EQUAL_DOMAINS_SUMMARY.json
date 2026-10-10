@@ -1,0 +1,147 @@
+{
+  "scope": "20 seeds, equal five-domain budgets, k=4 and fixed k=5, original Stage7 features, n_init 10/100",
+  "summary": [
+    {
+      "model": "B",
+      "k": 4,
+      "n_init": 10,
+      "n_seeds": 20,
+      "best_inertia": 1474.1322690853856,
+      "median_inertia_gap_percent": 0.005939949584733343,
+      "worst_inertia_gap_percent": 4.84773570454631,
+      "min_pairwise_ari": 0.539879652835686,
+      "median_pairwise_ari": 0.9283157261843923,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.5472904374005289,
+      "median_ari_to_best": 0.9098455537496292
+    },
+    {
+      "model": "B",
+      "k": 4,
+      "n_init": 100,
+      "n_seeds": 20,
+      "best_inertia": 1474.1322690853856,
+      "median_inertia_gap_percent": 0.0002716458776462906,
+      "worst_inertia_gap_percent": 0.006103804212434816,
+      "min_pairwise_ari": 0.9074615445211913,
+      "median_pairwise_ari": 0.9957760759255876,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.9087602652048582,
+      "median_ari_to_best": 0.9964792848114599
+    },
+    {
+      "model": "B",
+      "k": 5,
+      "n_init": 10,
+      "n_seeds": 20,
+      "best_inertia": 1375.0804009900455,
+      "median_inertia_gap_percent": 0.008799768593961295,
+      "worst_inertia_gap_percent": 1.4503256097809762,
+      "min_pairwise_ari": 0.4796915529120091,
+      "median_pairwise_ari": 0.9507923035799125,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.48369343419859534,
+      "median_ari_to_best": 0.9530788170122926
+    },
+    {
+      "model": "B",
+      "k": 5,
+      "n_init": 100,
+      "n_seeds": 20,
+      "best_inertia": 1375.0804009900455,
+      "median_inertia_gap_percent": 0.0028894636270518728,
+      "worst_inertia_gap_percent": 0.009008817075130965,
+      "min_pairwise_ari": 0.934104424090699,
+      "median_pairwise_ari": 0.9662982770176746,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.951574034255458,
+      "median_ari_to_best": 0.9740842327138796
+    },
+    {
+      "model": "D",
+      "k": 4,
+      "n_init": 10,
+      "n_seeds": 20,
+      "best_inertia": 1525.2164930148479,
+      "median_inertia_gap_percent": 0.0074140458849412585,
+      "worst_inertia_gap_percent": 4.321542083889382,
+      "min_pairwise_ari": 0.24977150192845116,
+      "median_pairwise_ari": 0.8805221212875162,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.35082050328224174,
+      "median_ari_to_best": 0.8782095311340674
+    },
+    {
+      "model": "D",
+      "k": 4,
+      "n_init": 100,
+      "n_seeds": 20,
+      "best_inertia": 1525.2164930148479,
+      "median_inertia_gap_percent": 0.0007335893724985122,
+      "worst_inertia_gap_percent": 0.005311212056891778,
+      "min_pairwise_ari": 0.8818498120840034,
+      "median_pairwise_ari": 0.9763589433896824,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.8855195860619002,
+      "median_ari_to_best": 0.9941786812450952
+    },
+    {
+      "model": "D",
+      "k": 5,
+      "n_init": 10,
+      "n_seeds": 20,
+      "best_inertia": 1416.2516924714168,
+      "median_inertia_gap_percent": 0.0012908051092513616,
+      "worst_inertia_gap_percent": 0.022311069430251462,
+      "min_pairwise_ari": 0.9214950805104366,
+      "median_pairwise_ari": 0.9823460468412122,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.9351234686141164,
+      "median_ari_to_best": 0.9848589105100986
+    },
+    {
+      "model": "D",
+      "k": 5,
+      "n_init": 100,
+      "n_seeds": 20,
+      "best_inertia": 1416.2516924714168,
+      "median_inertia_gap_percent": 0.0007217275770622065,
+      "worst_inertia_gap_percent": 0.0012301074154422939,
+      "min_pairwise_ari": 0.9799290174068216,
+      "median_pairwise_ari": 0.9903823917272752,
+      "max_pairwise_ari": 1.0,
+      "min_ari_to_best": 0.984261843610297,
+      "median_ari_to_best": 0.994653139676891
+    }
+  ],
+  "B_D_ARI": [
+    {
+      "k": 4,
+      "n_init": 10,
+      "median_B_D_ARI": 0.5080622756104946,
+      "min_B_D_ARI": 0.3143035033868775,
+      "max_B_D_ARI": 0.5576457742528658
+    },
+    {
+      "k": 4,
+      "n_init": 100,
+      "median_B_D_ARI": 0.5143367161085433,
+      "min_B_D_ARI": 0.49669341777060066,
+      "max_B_D_ARI": 0.5190005073134324
+    },
+    {
+      "k": 5,
+      "n_init": 10,
+      "median_B_D_ARI": 0.49976109423498594,
+      "min_B_D_ARI": 0.31090214091581886,
+      "max_B_D_ARI": 0.5140991359839849
+    },
+    {
+      "k": 5,
+      "n_init": 100,
+      "median_B_D_ARI": 0.4987716220102719,
+      "min_B_D_ARI": 0.4929924711237596,
+      "max_B_D_ARI": 0.5066616292786023
+    }
+  ]
+}
