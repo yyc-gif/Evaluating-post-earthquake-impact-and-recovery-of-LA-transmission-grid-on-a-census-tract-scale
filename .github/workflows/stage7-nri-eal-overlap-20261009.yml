@@ -1,0 +1,52 @@
+name: Stage 7 FEMA EAL / SOVI / building-value covariance audit
+on:
+  push:
+    branches: [analysis/stage7-nri-eal-overlap-20261009]
+    paths:
+      - docs/data_research/built_environment_20261009/nri_eal_overlap_20261009/audit_eal.py
+      - .github/workflows/stage7-nri-eal-overlap-20261009.yml
+permissions:
+  contents: write
+concurrency:
+  group: stage7-nri-eal-overlap-20261009
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: analysis/stage7-nri-eal-overlap-20261009
+          lfs: false
+          fetch-depth: 1
+      - name: Hydrate two frozen FEMA and Stage 7 LFS inputs
+        run: |
+          git lfs install --local
+          git lfs pull --include="Data/NRI_Table_CensusTracts_California.csv,Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned statistical dependencies
+        run: python -m pip install numpy==1.26.4 pandas==2.2.2 scipy==1.14.1
+      - name: Independently compute correlations and VIF
+        run: |
+          python -m py_compile docs/data_research/built_environment_20261009/nri_eal_overlap_20261009/audit_eal.py
+          python docs/data_research/built_environment_20261009/nri_eal_overlap_20261009/audit_eal.py
+      - name: Archive results even if branch push fails
+        uses: actions/upload-artifact@v4
+        with:
+          name: nri-eal-sovi-buildvalue-correlation-audit
+          path: docs/data_research/built_environment_20261009/nri_eal_overlap_20261009/results
+          if-no-files-found: error
+      - name: Commit results to analysis branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data_research/built_environment_20261009/nri_eal_overlap_20261009/results
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "results: independently quantify FEMA EAL/SOVI/building-value overlap [skip ci]"
+          git push origin HEAD:analysis/stage7-nri-eal-overlap-20261009
