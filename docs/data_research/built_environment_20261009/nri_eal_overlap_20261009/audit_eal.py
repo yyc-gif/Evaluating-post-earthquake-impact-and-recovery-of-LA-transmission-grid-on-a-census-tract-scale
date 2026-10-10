@@ -51,7 +51,8 @@ def read_study():
     if len(raw)!=len(old) or raw.tract_id.duplicated().any():
         raise ValueError("FEMA original source did not exactly match 2291 archived tracts")
     hazard_fields=sorted(c for c in raw.columns if re.fullmatch(r"[A-Z]{4}_EALT",c))
-    original_fields=[x for x in FIELDS if x in raw.columns]+hazard_fields
+    hazard_scores=sorted(c for c in raw.columns if re.fullmatch(r"[A-Z]{4}_(EALS|ALR_NPCTL|RISKS)",c))
+    original_fields=[x for x in FIELDS if x in raw.columns]+hazard_fields+hazard_scores
     source_frame=raw[["tract_id"]+original_fields].rename(columns={"SOVI_SCORE":"FEMA_SOVI_SCORE"})
     available=[("FEMA_SOVI_SCORE" if x=="SOVI_SCORE" else x) for x in original_fields]
     matched=old[["tract_id","SOVI_SCORE","NRI_BUILDVALUE","NRI_RISK_SCORE","Pop_Density"]].merge(
@@ -162,6 +163,10 @@ def main():
           "sum_hazard_eal_minus_total_max_abs":float(residual.abs().max()),
           "sum_hazard_eal_minus_total_median_abs":float(residual.abs().median()),
           "mean_dominant_hazard_share":float(top1[valid].mean()),
+          "dominant_hazard_counts":{
+             str(k):int(v) for k,v in hazard.fillna(-np.inf).idxmax(axis=1).value_counts().items()
+          },
+          "earthquake_share_median":float(shares["ERQK_EALT"].median()) if "ERQK_EALT" in shares else None,
           "median_dominant_hazard_share":float(top1[valid].median()),
           "median_top_three_share":float(np.median(top3[valid.to_numpy()])),
           "median_effective_hazards":(float(np.nanmedian((1/hhi.replace(0,np.nan)).to_numpy())) if hhi.gt(0).any() else None),
@@ -184,6 +189,16 @@ def main():
         pd.DataFrame([{"hazard_column":c,"mean_tract_share":shares[c].mean(),
               "share_of_total_monetary_eal":hazard_composition["aggregate_expected_loss_share"][c]}
               for c in hazard_cols]).to_csv(OUT/"EAL_HAZARD_COMPOSITION.csv",index=False)
+    hazard_score_correlations={}
+    for total_score in ["EAL_SCORE","ALR_NPCTL","RISK_SCORE"]:
+      if total_score not in x:continue
+      for hazard_score in ["ERQK_EALS","ERQK_ALR_NPCTL","ERQK_RISKS",
+         "WFIR_EALS","WFIR_ALR_NPCTL","WFIR_RISKS"]:
+        if hazard_score in x:
+          hazard_score_correlations[total_score+" | "+hazard_score]=cpair(x[total_score],x[hazard_score])
+    if "ERQK_EALT" in x and "EAL_VALT" in x:
+      other=(x["EAL_VALT"]-x["ERQK_EALT"]).clip(lower=0)
+      hazard_score_correlations["EAL_SCORE | log_non_earthquake_EAL"]=cpair(x["EAL_SCORE"],np.log1p(other))
     delta_composition=None
     if all(t in x for t in ["EAL_VALT","EAL_VALB","EAL_VALPE","EAL_VALA"]):
         diff=x["EAL_VALT"]-(x["EAL_VALB"]+x["EAL_VALPE"]+x["EAL_VALA"])
@@ -197,6 +212,7 @@ def main():
       "pairwise_key":{},
       "vif_models":vif_rows,"component_sum_check":delta_composition,
       "hazard_composition":hazard_composition,
+      "hazard_score_correlations":hazard_score_correlations,
       "method":"Pearson and Spearman on same exact tract IDs, monetary values log1p only when nonnegative",
       "decision_status":"DIAGNOSTIC_ONLY; keep SOVI mandatory; no completed model selection"}
     keypairs=[
@@ -223,6 +239,7 @@ def main():
     print(json.dumps({"identity_checks":checks,"pairwise_key":full_summary["pairwise_key"],
        "vif_models":vif_rows,"component_sum_check":delta_composition,
        "hazard_composition":hazard_composition,
+       "hazard_score_correlations":hazard_score_correlations,
        "field_names":fields},indent=2,allow_nan=False))
     print("EAL_AUDIT_END")
 if __name__=="__main__":main()
