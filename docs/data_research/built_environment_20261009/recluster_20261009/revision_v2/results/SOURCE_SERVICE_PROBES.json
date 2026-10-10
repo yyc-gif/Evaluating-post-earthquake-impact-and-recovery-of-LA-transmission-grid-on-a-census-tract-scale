@@ -145,7 +145,105 @@
     "geoid_missing_query_ok": true,
     "geoid_missing": 0,
     "unknown_use_query_ok": true,
-    "unknown_use": 2621
+    "unknown_use": 2621,
+    "land_use_class_counts": {
+      "ok": true,
+      "values": [
+        {
+          "LU19_CLASS": "Single Family Residential",
+          "n": 1491775
+        },
+        {
+          "LU19_CLASS": "Open Space and Recreation",
+          "n": 17190
+        },
+        {
+          "LU19_CLASS": "Water",
+          "n": 1584
+        },
+        {
+          "LU19_CLASS": "General Office",
+          "n": 42479
+        },
+        {
+          "LU19_CLASS": "Education",
+          "n": 9733
+        },
+        {
+          "LU19_CLASS": "Industrial",
+          "n": 52473
+        },
+        {
+          "LU19_CLASS": "Commercial and Services",
+          "n": 68264
+        },
+        {
+          "LU19_CLASS": "Unknown",
+          "n": 2293
+        },
+        {
+          "LU19_CLASS": "Facilities",
+          "n": 28148
+        },
+        {
+          "LU19_CLASS": "Vacant",
+          "n": 114327
+        },
+        {
+          "LU19_CLASS": "Multi-Family Residential",
+          "n": 527605
+        },
+        {
+          "LU19_CLASS": "Mixed Residential and Commercial",
+          "n": 11278
+        },
+        {
+          "LU19_CLASS": "Transportation, Communications, and Utilities",
+          "n": 14234
+        },
+        {
+          "LU19_CLASS": "Agriculture",
+          "n": 7961
+        },
+        {
+          "LU19_CLASS": "None",
+          "n": 1015
+        },
+        {
+          "LU19_CLASS": "Rural Residential",
+          "n": 4278
+        },
+        {
+          "LU19_CLASS": "Mobile Homes and Trailer Parks",
+          "n": 4385
+        },
+        {
+          "LU19_CLASS": "Under Construction",
+          "n": 2760
+        },
+        {
+          "LU19_CLASS": "Undevelopable",
+          "n": 378
+        },
+        {
+          "LU19_CLASS": "Mixed Residential",
+          "n": 3300
+        },
+        {
+          "LU19_CLASS": "Military Installations",
+          "n": 200
+        },
+        {
+          "LU19_CLASS": "Mixed Commercial and Industrial",
+          "n": 385
+        },
+        {
+          "LU19_CLASS": "Specific Plan",
+          "n": 328
+        }
+      ],
+      "transfer_limit": false
+    }
   },
   "SCAG_ALU_2019_NAD83": {
     "source": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use_NAD83/MapServer/0",
@@ -433,7 +531,33 @@
       "status": 200,
       "error": null
     },
-    "query_count": 12099614
+    "query_count": 12099614,
+    "roll_year_counts": {
+      "ok": true,
+      "values": [
+        {
+          "n": 2412244,
+          "RollYear": "2021"
+        },
+        {
+          "n": 2415879,
+          "RollYear": "2022"
+        },
+        {
+          "n": 2419711,
+          "RollYear": "2023"
+        },
+        {
+          "n": 2424770,
+          "RollYear": "2024"
+        },
+        {
+          "n": 2427010,
+          "RollYear": "2025"
+        }
+      ],
+      "transfer_limit": false
+    }
   },
   "LARIAC4_2014_BUILDING_OUTLINES": {
     "source": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines/FeatureServer/1",
@@ -579,7 +703,126 @@
     "yearbuilt_null_query_ok": true,
     "yearbuilt_null": 145242,
     "yearbuilt_0_query_ok": true,
-    "yearbuilt_0": 0
+    "yearbuilt_0": 0,
+    "use_type_totals": {
+      "ok": true,
+      "values": [
+        {
+          "n": 49225,
+          "UseType": null
+        },
+        {
+          "n": 108725,
+          "UseType": "Commercial"
+        },
+        {
+          "n": 56254,
+          "UseType": "Government"
+        },
+        {
+          "n": 67430,
+          "UseType": "Industrial"
+        },
+        {
+          "n": 22253,
+          "UseType": "Institutional"
+        },
+        {
+          "n": 3187,
+          "UseType": "Irrigated Farm"
+        },
+        {
+          "n": 5249,
+          "UseType": "Miscellaneous"
+        },
+        {
+          "n": 5276,
+          "UseType": "Recreational"
+        },
+        {
+          "n": 2801374,
+          "UseType": "Residential"
+        }
+      ],
+      "transfer_limit": false
+    },
+    "use_type_valid_age": {
+      "ok": true,
+      "values": [
+        {
+          "n": 253,
+          "UseType": null
+        },
+        {
+          "n": 102241,
+          "UseType": "Commercial"
+        },
+        {
+          "n": 2414,
+          "UseType": "Government"
+        },
+        {
+          "n": 57464,
+          "UseType": "Industrial"
+        },
+        {
+          "n": 20600,
+          "UseType": "Institutional"
+        },
+        {
+          "n": 945,
+          "UseType": "Irrigated Farm"
+        },
+        {
+          "n": 799,
+          "UseType": "Miscellaneous"
+        },
+        {
+          "n": 4329,
+          "UseType": "Recreational"
+        },
+        {
+          "n": 2769391,
+          "UseType": "Residential"
+        }
+      ],
+      "transfer_limit": false
+    }
+  },
+  "LARIAC6_2020_BUILDING_OUTLINES": {
+    "source": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines_%282020%29/FeatureServer/0",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "name": "LARIAC6_BUILDINGS_2020",
+    "rows_declared": null,
+    "max_record_count": 2000,
+    "all_field_names": [
+      "OBJECTID",
+      "CODE",
+      "BLD_ID",
+      "HEIGHT",
+      "ELEV",
+      "SOURCE",
+      "DATE_",
+      "STATUS",
+      "OLD_BLD_ID",
+      "AREA",
+      "Shape__Area",
+      "Shape__Length"
+    ],
+    "likely_relevant_fields": [
+      "CODE",
+      "HEIGHT",
+      "AREA",
+      "Shape__Area"
+    ],
+    "query_count_status": {
+      "ok": true,
+      "status": 200,
+      "error": null
+    },
+    "query_count": 3293177
   },
   "EPA_SLD_2021": {
     "source": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0",
