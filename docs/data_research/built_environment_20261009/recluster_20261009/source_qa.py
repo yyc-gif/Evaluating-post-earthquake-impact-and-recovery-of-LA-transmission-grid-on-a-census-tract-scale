@@ -17,7 +17,7 @@ def vre(table,orders):
     with zipfile.ZipFile(path) as z:
         csv=z.namelist()[0]
         a=pd.read_csv(z.open(csv),dtype={"GEOID":str})
-    a=a.loc[a.GEOID.str.startswith("1400000US06037")].copy()
+    a=a.loc[a.GEOID.str.startswith("1400000US06037",na=False)].copy()
     a["tract_id"]=a.GEOID.str[-11:]
     a["ORDER"]=a.ORDER.astype(int)
     a=a.loc[a.ORDER.isin([1,*orders])].copy()
