@@ -50,21 +50,23 @@ def read_study():
     raw=raw.loc[raw.tract_id.isin(set(old.tract_id))].copy()
     if len(raw)!=len(old) or raw.tract_id.duplicated().any():
         raise ValueError("FEMA original source did not exactly match 2291 archived tracts")
-    available=[x for x in FIELDS if x in raw.columns]
+    original_fields=[x for x in FIELDS if x in raw.columns]
+    source_frame=raw[["tract_id"]+original_fields].rename(columns={"SOVI_SCORE":"FEMA_SOVI_SCORE"})
+    available=[("FEMA_SOVI_SCORE" if x=="SOVI_SCORE" else x) for x in original_fields]
     matched=old[["tract_id","SOVI_SCORE","NRI_BUILDVALUE","NRI_RISK_SCORE","Pop_Density"]].merge(
-        raw[["tract_id"]+available],on="tract_id",how="inner",validate="one_to_one")
+        source_frame,on="tract_id",how="inner",validate="one_to_one")
     for x in available:
         matched[x]=pd.to_numeric(matched[x],errors="coerce")
     checks={}
-    for archived,official in [("SOVI_SCORE_x","SOVI_SCORE_y"),("NRI_BUILDVALUE","BUILDVALUE"),
+    for archived,official in [("SOVI_SCORE","FEMA_SOVI_SCORE"),("NRI_BUILDVALUE","BUILDVALUE"),
                               ("NRI_RISK_SCORE","RISK_SCORE")]:
         if archived in matched and official in matched:
             delta=(matched[archived]-matched[official]).abs()
             checks[archived]={"max_abs_difference":float(delta.max()),
                               "n_compared":int(delta.notna().sum())}
-    # Make explicit one canonical FEMA social score (the saved version matches original).
-    if "SOVI_SCORE_y" in matched: matched["SOVI_SCORE"]=matched["SOVI_SCORE_y"]
-    elif "SOVI_SCORE" not in matched: raise KeyError("FEMA SOVI is missing")
+    # Retain source FEMA social score as a single canonical input.
+    if "FEMA_SOVI_SCORE" not in matched:raise KeyError("Original FEMA SOVI missing")
+    matched["SOVI_SCORE"]=matched["FEMA_SOVI_SCORE"]
     if "EAL_SCORE" not in matched:raise ValueError("Archived FEMA EAL_SCORE missing")
     return matched,available,checks
 
