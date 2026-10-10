@@ -81,10 +81,28 @@ def main():
     if x in d and y in d:
      v=corr(d,x,y);q.append({"a":x,"b":y,**v})
   report["physical_proxy_correlations"]=q
+  # Separate demographic/economic correlation checks. These are NOT the same as
+  # an R2 that predicts risk from both variables.
+  if "NRI_BUILDVALUE" in d and "SOVI_SCORE" in d:
+   d["log_NRI_BUILDVALUE"]=np.log1p(d["NRI_BUILDVALUE"].astype(float))
+   report["social_economic_overlaps"]={
+    "SOVI_vs_log_BUILDVALUE":corr(d,"SOVI_SCORE","log_NRI_BUILDVALUE"),
+    "SOVI_vs_pre1970":corr(d,"SOVI_SCORE","Pre_1970_Ratio"),
+    "SOVI_vs_5plus":corr(d,"SOVI_SCORE","housing_5plus_share"),
+    "risk_vs_SOVI":corr(d,"NRI_RISK_SCORE","SOVI_SCORE"),
+    "risk_vs_log_BUILDVALUE":corr(d,"NRI_RISK_SCORE","log_NRI_BUILDVALUE"),
+   }
+  if "housing_units_per_km2" in d:
+   d["log_housing_units_per_km2"]=np.log1p(d["housing_units_per_km2"].astype(float))
+   report["density_overlaps"]={"age_vs_log_housing_density":corr(d,"Pre_1970_Ratio","log_housing_units_per_km2"),
+     "5plus_vs_log_housing_density":corr(d,"housing_5plus_share","log_housing_units_per_km2")}
+  if "Pop_Density" in d and "housing_units_per_km2" in d:
+   d["log_Pop_Density"]=np.log1p(d["Pop_Density"].astype(float))
+   report.setdefault("density_overlaps",{})["log_pop_vs_log_housing_density"]=corr(d,"log_Pop_Density","log_housing_units_per_km2")
  out=AUD/"B_VS_T80_20261009_AUDIT.json"
  out.write_text(json.dumps(report,indent=2,allow_nan=False)+"\n")
  print(json.dumps({"status":report["status"],
  "schemas":{k:{"rows":v.get("rows"),"columns":v.get("columns"),"hydrated":v.get("hydrated")} for k,v in report["files"].items()},
  "T80_identity":report.get("stage7_formal_t80_vs_kpi"),
- "pairs":report.get("metric_pairs"),"proxies":report.get("physical_proxy_correlations")},indent=2,allow_nan=False))
+ "pairs":report.get("metric_pairs"),"proxies":report.get("physical_proxy_correlations"), "social_economic":report.get("social_economic_overlaps"),"density":report.get("density_overlaps")},indent=2,allow_nan=False))
 if __name__=="__main__":main()
