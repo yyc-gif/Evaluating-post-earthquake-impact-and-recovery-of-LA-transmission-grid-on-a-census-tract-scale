@@ -118,7 +118,9 @@ def nri_source_inspection(x):
         out["join_status"]="No row identity for original NRI"
         return out,None
     rawids=frame[idcol].astype(str).str.strip().str.replace(r"\.0$","",regex=True)
-    ids=rawids.str.extract(r"(\d{11})$")[0]
+    # Pandas may have inferred TRACTFIPS as an integer and dropped its leading zero.
+    digits=rawids.str.extract(r"(\d+)$")[0].str.zfill(11)
+    ids=digits.str[-11:]
     out["source_id_field"]=idcol
     frame["tract_id"]=ids
     frame=frame.loc[frame.tract_id.isin(set(x.tract_id))].copy()
