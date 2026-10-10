@@ -45,6 +45,31 @@ def run():
                 item["sample_query_error"]=q.get("error")
                 if q["ok"]:item["sample_rows"]=[f.get("attributes",{}) for f in q["data"].get("features",[])]
         result[name]=item
+    # Source-specific schema and coverage questions, not full spatial overlay.
+    for name,base in SOURCES.items():
+        extra=[]
+        if "SCAG_ALU_2019" in name:
+            extra=[("stacked_count","COUNTY_ID='037' AND STACK>1"),
+                   ("geoid_missing","COUNTY_ID='037' AND GEOID20 IS NULL"),
+                   ("unknown_use","COUNTY_ID='037' AND LU19 IN ('9999','7777')")]
+        elif name=="LARIAC4_2014_BUILDING_OUTLINES":
+            extra=[("yearbuilt_valid","YearBuilt1>=1800 AND YearBuilt1<=2014"),
+                   ("yearbuilt_null","YearBuilt1 IS NULL"),
+                   ("yearbuilt_0","YearBuilt1=0")]
+            q=fetch(base+"/query",{"f":"json","where":"1=1","outFields":"YearBuilt1,UseType,UseCode,HEIGHT,AIN,APN",
+                    "returnGeometry":"false","resultRecordCount":5})
+            result[name]["sample_query_ok"]=q["ok"]
+            if q["ok"]:result[name]["sample_rows"]=[p.get("attributes",{}) for p in q["data"].get("features",[])]
+        for metric,where in extra:
+            q=fetch(base+"/query",{"f":"json","where":where,"returnCountOnly":"true"})
+            result[name][metric+"_query_ok"]=q["ok"]
+            if q["ok"]:result[name][metric]=q["data"].get("count")
+            else:result[name][metric+"_error"]=q.get("error")
+    lariac_item_url="https://www.arcgis.com/sharing/rest/content/items/e6a1e375e12a4fe6849d896a26ec028a"
+    z=fetch(lariac_item_url,{"f":"json"})
+    result["LARIAC6_2020_ITEM"]={"ok":z["ok"],"url":lariac_item_url,
+        "item_type":z.get("data",{}).get("type"),"service_url":z.get("data",{}).get("url"),
+        "access":z.get("data",{}).get("access"),"error":z.get("error")}
     (OUT/"SOURCE_SERVICE_PROBES.json").write_text(json.dumps(result,indent=2,allow_nan=False)+"\n")
     print("PROBES_BEGIN")
     print(json.dumps({n:{"ok":v["ok"],"nfields":len(v.get("all_field_names",[])),
