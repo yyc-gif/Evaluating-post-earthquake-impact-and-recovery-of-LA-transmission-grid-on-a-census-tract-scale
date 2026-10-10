@@ -29,6 +29,10 @@ def main():
     base = repo / "docs/data_research/built_environment_20261009"
     out = base / "manuscript_reconciliation_20261010"
     source = base / "manuscript_integration_preview_20261010"
+    # Trim generated display reports only; the exact source/change ledger is untouched.
+    for name in ["MANUSCRIPT_SOURCE_AUDIT.md", "MANUSCRIPT_REVISION_CHANGELOG.md"]:
+        path = out / name
+        path.write_text("\n".join(line.rstrip() for line in path.read_text(encoding="utf-8").splitlines()) + "\n", encoding="utf-8")
     numeric = json.loads((out / "NUMERICAL_QA.json").read_text())
     structure = json.loads((out / "DOCUMENT_STRUCTURE_QA.json").read_text())
     render = json.loads((out / "DOCUMENT_RENDER_QA.json").read_text())

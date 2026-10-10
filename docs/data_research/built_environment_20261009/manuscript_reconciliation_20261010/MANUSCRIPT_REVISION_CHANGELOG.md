@@ -108,7 +108,7 @@ Before:
 
 After:
 
-The saved spatial deletion analysis evaluates partition agreement, class retention, purity, and profile-direction stability, not predictive accuracy (Hubert and Arabie, 1985). The joint typology includes modeled recovery outcomes among its inputs, so between-class recovery differences are descriptive and not independent evidence that community attributes caused recovery differences. The new classes do not update the former hotspot score or establish a restoration priority; vulnerability-quartile policy comparisons remain separate from cluster membership. 
+The saved spatial deletion analysis evaluates partition agreement, class retention, purity, and profile-direction stability, not predictive accuracy (Hubert and Arabie, 1985). The joint typology includes modeled recovery outcomes among its inputs, so between-class recovery differences are descriptive and not independent evidence that community attributes caused recovery differences. The new classes do not update the former hotspot score or establish a restoration priority; vulnerability-quartile policy comparisons remain separate from cluster membership.
 
 ## S19 P0040
 
@@ -206,7 +206,7 @@ After:
 
 Panel A
 
-## After 
+## After
 
 Action: INSERT. Frozen Stage7 integration
 
@@ -242,7 +242,7 @@ After:
 
 The four-class joint typology separates different combinations of modeled recovery, grid dependence, built environment, social vulnerability, and economic stock/multi-hazard expected loss. C1 and C4 share relatively high social vulnerability while differing in classified-land mix and observed age; C3 combines the greatest mean cumulative modeled service loss with substantially lower mean social vulnerability. This descriptive distinction cautions against using either social vulnerability or a single recovery statistic as a complete community characterization. Because recovery enters the clustering space, these differences do not validate a predictive model or identify a causal effect of age, urban form, or vulnerability on recovery.
 
-## After The four-class joint typology separates different 
+## After The four-class joint typology separates different
 
 Action: INSERT. Frozen Stage7 integration
 
@@ -264,7 +264,7 @@ Before:
 
 After:
 
-The old five-class hotspot-by-cluster findings require separate revalidation. Neither new membership nor class-level loss establishes an intervention rank, repair allocation, or optimal priority. The fixed SOVI quartiles and paired restoration-policy comparisons remain independent analyses and are not relabeled as cluster effects. Before making location-specific intervention recommendations, any retained hotspot procedure must be audited against its own saved inputs, geography, and scoring definition; that analysis is outside this manuscript-integration task. 
+The old five-class hotspot-by-cluster findings require separate revalidation. Neither new membership nor class-level loss establishes an intervention rank, repair allocation, or optimal priority. The fixed SOVI quartiles and paired restoration-policy comparisons remain independent analyses and are not relabeled as cluster effects. Before making location-specific intervention recommendations, any retained hotspot procedure must be audited against its own saved inputs, geography, and scoring definition; that analysis is outside this manuscript-integration task.
 
 ## After The code, processed and derived data, and retained
 

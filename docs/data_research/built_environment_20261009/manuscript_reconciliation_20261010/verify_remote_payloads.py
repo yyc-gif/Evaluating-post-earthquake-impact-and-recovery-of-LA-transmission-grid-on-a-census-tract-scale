@@ -1,12 +1,12 @@
 """Verify the pushed branch and download/hash actual LFS review/source payloads."""
 import argparse
+import base64
 import hashlib
 import json
 import os
 from pathlib import Path
 import subprocess
-
-import requests
+from urllib.request import Request, urlopen
 
 
 BASE = "docs/data_research/built_environment_20261009/"
@@ -52,21 +52,23 @@ def main():
                            "local_sha256": hashlib.sha256(local).hexdigest(), "bytes": len(local)})
     credentials = git(repo, "credential", "fill", input=b"protocol=https\nhost=github.com\n\n").decode()
     credentials = dict(line.split("=", 1) for line in credentials.splitlines() if "=" in line)
-    session = requests.Session()
-    session.auth = (credentials["username"], credentials["password"])
-    result = session.post(REMOTE + "/info/lfs/objects/batch", json={"operation": "download", "transfers": ["basic"],
-                          "objects": [{"oid": v["oid"], "size": v["size"]} for v in objects.values()]},
-                          headers={"Accept": "application/vnd.git-lfs+json", "Content-Type": "application/vnd.git-lfs+json"}, timeout=90)
-    result.raise_for_status()
+    auth = base64.b64encode((credentials["username"] + ":" + credentials["password"]).encode()).decode()
+    body = {"operation": "download", "transfers": ["basic"],
+            "objects": [{"oid": v["oid"], "size": v["size"]} for v in objects.values()]}
+    request = Request(REMOTE + "/info/lfs/objects/batch", data=json.dumps(body).encode(),
+                      headers={"Accept": "application/vnd.git-lfs+json", "Content-Type": "application/vnd.git-lfs+json",
+                               "Authorization": "Basic " + auth}, method="POST")
+    with urlopen(request, timeout=90) as response:
+        result = json.load(response)
     verified = []
-    for obj in result.json()["objects"]:
+    for obj in result["objects"]:
         assert "error" not in obj, obj.get("error")
         action = obj["actions"]["download"]
         digest = hashlib.sha256()
         size = 0
-        with requests.get(action["href"], headers=action.get("header", {}), stream=True, timeout=120) as response:
-            response.raise_for_status()
-            for chunk in response.iter_content(chunk_size=1024 * 1024):
+        request = Request(action["href"], headers=action.get("header", {}))
+        with urlopen(request, timeout=120) as response:
+            while chunk := response.read(1024 * 1024):
                 digest.update(chunk)
                 size += len(chunk)
         expected = objects[obj["oid"]]
