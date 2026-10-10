@@ -40,7 +40,61 @@
     "TSUN_EALT",
     "VLCN_EALT",
     "WFIR_EALT",
-    "WNTW_EALT"
+    "WNTW_EALT",
+    "AVLN_ALR_NPCTL",
+    "AVLN_EALS",
+    "AVLN_RISKS",
+    "CFLD_ALR_NPCTL",
+    "CFLD_EALS",
+    "CFLD_RISKS",
+    "CWAV_ALR_NPCTL",
+    "CWAV_EALS",
+    "CWAV_RISKS",
+    "DRGT_ALR_NPCTL",
+    "DRGT_EALS",
+    "DRGT_RISKS",
+    "ERQK_ALR_NPCTL",
+    "ERQK_EALS",
+    "ERQK_RISKS",
+    "HAIL_ALR_NPCTL",
+    "HAIL_EALS",
+    "HAIL_RISKS",
+    "HRCN_ALR_NPCTL",
+    "HRCN_EALS",
+    "HRCN_RISKS",
+    "HWAV_ALR_NPCTL",
+    "HWAV_EALS",
+    "HWAV_RISKS",
+    "ISTM_ALR_NPCTL",
+    "ISTM_EALS",
+    "ISTM_RISKS",
+    "LNDS_ALR_NPCTL",
+    "LNDS_EALS",
+    "LNDS_RISKS",
+    "LTNG_ALR_NPCTL",
+    "LTNG_EALS",
+    "LTNG_RISKS",
+    "RFLD_ALR_NPCTL",
+    "RFLD_EALS",
+    "RFLD_RISKS",
+    "SWND_ALR_NPCTL",
+    "SWND_EALS",
+    "SWND_RISKS",
+    "TRND_ALR_NPCTL",
+    "TRND_EALS",
+    "TRND_RISKS",
+    "TSUN_ALR_NPCTL",
+    "TSUN_EALS",
+    "TSUN_RISKS",
+    "VLCN_ALR_NPCTL",
+    "VLCN_EALS",
+    "VLCN_RISKS",
+    "WFIR_ALR_NPCTL",
+    "WFIR_EALS",
+    "WFIR_RISKS",
+    "WNTW_ALR_NPCTL",
+    "WNTW_EALS",
+    "WNTW_RISKS"
   ],
   "identity_checks": {
     "SOVI_SCORE": {
@@ -304,7 +358,7 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 3.843429845999546,
+      "condition_number": 3.843429845999544,
       "per_input": {
         "SOVI_SCORE": {
           "r2_on_other_inputs": 0.6402979928783219,
@@ -334,8 +388,8 @@
           "vif": 1.001941317264001
         },
         "EAL_SCORE": {
-          "r2_on_other_inputs": 0.0019375558533731851,
-          "vif": 1.0019413172640013
+          "r2_on_other_inputs": 0.001937555853372963,
+          "vif": 1.001941317264001
         }
       }
     },
@@ -347,10 +401,10 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 3.952515050905331,
+      "condition_number": 3.952515050905332,
       "per_input": {
         "SOVI_SCORE": {
-          "r2_on_other_inputs": 0.2697000922456847,
+          "r2_on_other_inputs": 0.2697000922456848,
           "vif": 1.3693004605121986
         },
         "log_BUILDVALUE": {
@@ -371,14 +425,14 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 1.6778041150345187,
+      "condition_number": 1.6778041150345182,
       "per_input": {
         "SOVI_SCORE": {
-          "r2_on_other_inputs": 0.19947079470783502,
-          "vif": 1.2491736633581472
+          "r2_on_other_inputs": 0.19947079470783513,
+          "vif": 1.2491736633581474
         },
         "log_BUILDVALUE": {
-          "r2_on_other_inputs": 0.21104285041227966,
+          "r2_on_other_inputs": 0.21104285041227977,
           "vif": 1.2674959603605378
         },
         "ALR_NPCTL": {
@@ -414,7 +468,7 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 4.959359976195141,
+      "condition_number": 4.959359976195142,
       "per_input": {
         "SOVI_SCORE": {
           "r2_on_other_inputs": 0.34524638026137544,
@@ -461,6 +515,11 @@
     "sum_hazard_eal_minus_total_max_abs": 7.450580596923828e-09,
     "sum_hazard_eal_minus_total_median_abs": 1.1641532182693481e-10,
     "mean_dominant_hazard_share": 0.9836390348840932,
+    "dominant_hazard_counts": {
+      "ERQK_EALT": 2281,
+      "WFIR_EALT": 10
+    },
+    "earthquake_share_median": 0.9927449783795855,
     "median_dominant_hazard_share": 0.9927449783795855,
     "median_top_three_share": 0.9994257916152658,
     "median_effective_hazards": 1.0146361762170077,
@@ -508,6 +567,103 @@
       "median": 7.0,
       "minimum": 6,
       "maximum": 12
+    }
+  },
+  "hazard_score_correlations": {
+    "EAL_SCORE | ERQK_EALS": {
+      "n": 2291,
+      "pearson_r": 0.9822217608037667,
+      "spearman_rho": 0.9885638500725639
+    },
+    "EAL_SCORE | ERQK_ALR_NPCTL": {
+      "n": 2291,
+      "pearson_r": 0.559472120140068,
+      "spearman_rho": 0.5775468634633025
+    },
+    "EAL_SCORE | ERQK_RISKS": {
+      "n": 2291,
+      "pearson_r": 0.8743233233811463,
+      "spearman_rho": 0.8639436018478287
+    },
+    "EAL_SCORE | WFIR_EALS": {
+      "n": 2291,
+      "pearson_r": 0.09948015571185276,
+      "spearman_rho": 0.13819585879280324
+    },
+    "EAL_SCORE | WFIR_ALR_NPCTL": {
+      "n": 2291,
+      "pearson_r": 0.08426427228740824,
+      "spearman_rho": 0.13450477190459145
+    },
+    "EAL_SCORE | WFIR_RISKS": {
+      "n": 2291,
+      "pearson_r": 0.10062762951210905,
+      "spearman_rho": 0.13823374832715166
+    },
+    "ALR_NPCTL | ERQK_EALS": {
+      "n": 2291,
+      "pearson_r": 0.636355596002342,
+      "spearman_rho": 0.631028653769195
+    },
+    "ALR_NPCTL | ERQK_ALR_NPCTL": {
+      "n": 2291,
+      "pearson_r": 0.9527988320116633,
+      "spearman_rho": 0.968411650478306
+    },
+    "ALR_NPCTL | ERQK_RISKS": {
+      "n": 2291,
+      "pearson_r": 0.6727128414524652,
+      "spearman_rho": 0.6876400595337314
+    },
+    "ALR_NPCTL | WFIR_EALS": {
+      "n": 2291,
+      "pearson_r": -0.12615167811055575,
+      "spearman_rho": -0.10311538378829554
+    },
+    "ALR_NPCTL | WFIR_ALR_NPCTL": {
+      "n": 2291,
+      "pearson_r": -0.12666668733458222,
+      "spearman_rho": -0.10308673843959677
+    },
+    "ALR_NPCTL | WFIR_RISKS": {
+      "n": 2291,
+      "pearson_r": -0.12422867794911657,
+      "spearman_rho": -0.10271618837277662
+    },
+    "RISK_SCORE | ERQK_EALS": {
+      "n": 2291,
+      "pearson_r": 0.8790836645817603,
+      "spearman_rho": 0.8912093480504356
+    },
+    "RISK_SCORE | ERQK_ALR_NPCTL": {
+      "n": 2291,
+      "pearson_r": 0.635552262487213,
+      "spearman_rho": 0.6741037589457299
+    },
+    "RISK_SCORE | ERQK_RISKS": {
+      "n": 2291,
+      "pearson_r": 0.9780830855714154,
+      "spearman_rho": 0.9904593264624176
+    },
+    "RISK_SCORE | WFIR_EALS": {
+      "n": 2291,
+      "pearson_r": -0.06516278966730815,
+      "spearman_rho": -0.015235698635591963
+    },
+    "RISK_SCORE | WFIR_ALR_NPCTL": {
+      "n": 2291,
+      "pearson_r": -0.07871996428675487,
+      "spearman_rho": -0.018027534675093247
+    },
+    "RISK_SCORE | WFIR_RISKS": {
+      "n": 2291,
+      "pearson_r": -0.060811495215387354,
+      "spearman_rho": -0.01445683044179047
+    },
+    "EAL_SCORE | log_non_earthquake_EAL": {
+      "n": 2291,
+      "pearson_r": 0.4403481467365207,
+      "spearman_rho": 0.6350547260874441
     }
   },
   "method": "Pearson and Spearman on same exact tract IDs, monetary values log1p only when nonnegative",
