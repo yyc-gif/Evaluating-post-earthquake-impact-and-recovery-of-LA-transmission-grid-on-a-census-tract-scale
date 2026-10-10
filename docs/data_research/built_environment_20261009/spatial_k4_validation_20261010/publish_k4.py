@@ -18,6 +18,8 @@ def publish():
  original=(OUT/'original_state/index.bin').read_bytes();assert git('ls-files','--stage','-z')==original and git('rev-parse','HEAD').decode().strip()==base['head']
  prefix=OUT.relative_to(ROOT).as_posix()+'/'
  paths=[p.decode() for p in git('ls-files','--others','--exclude-standard','-z','--',prefix).split(b'\0') if p];assert paths and all(p.startswith(prefix) for p in paths)
+ required=['INPUT_AND_BASELINE_QA.json','SPATIAL_K4_RUNS.csv','SPATIAL_K4_TRACT_PREDICTIONS.csv','SPATIAL_K4_CLUSTER_MATCHING.csv','SPATIAL_K4_PROFILE_STABILITY.csv','SMALL_CLUSTER_34_AUDIT.csv','SPATIAL_K4_MODEL_SUMMARY.json','STAGE7_K4_DECISION_NOTE.md']
+ assert all(prefix+n in paths for n in required),'Required delivery file ignored or missing'
  assert len([p for p in paths if '/run_records/' in p and p.endswith('.npz')])==40 and len([p for p in paths if '/run_records/' in p and p.endswith('.json')])==40
  assert not any('/original_state/' in p or '/publish_state/' in p for p in paths)
  state=OUT/'publish_state';state.mkdir(exist_ok=True);env=dict(os.environ,GIT_INDEX_FILE=str(state/'index'));subprocess.run(['git','-C',str(ROOT),'read-tree',PARENT],env=env,check=True)

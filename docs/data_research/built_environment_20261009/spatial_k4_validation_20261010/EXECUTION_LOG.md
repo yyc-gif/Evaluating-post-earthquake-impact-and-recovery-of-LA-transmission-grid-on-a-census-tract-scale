@@ -8,3 +8,5 @@
 6. Computed training-only Hungarian assignment, raw cross-tables, class flows, original-unit profiles, center changes, direction reversals, and small-group contamination.
 7. All additional summaries/tests use saved predictions; no more clustering calls.
 8. Scoped separate-branch commit and remote LFS read-back recorded by publish_k4.py.
+
+9. Remote delivery read-back caught the root *audit*.csv ignore rule omitting SMALL_CLUSTER_34_AUDIT.csv. Added a directory-local exception for that exact required table, and verified all manifest paths after the scoped follow-up commit. No numerical calculation or fit repeated.

@@ -54,7 +54,7 @@ def model_spec(model):
  return dom,cols,factors
 def initialize():
  OUT.mkdir(exist_ok=True);(OUT/'run_records').mkdir(exist_ok=True);(OUT/'original_state').mkdir(exist_ok=True)
- (OUT/'.gitignore').write_text('original_state/\npublish_state/\n__pycache__/\n.pytest_cache/\n',encoding='utf-8',newline='\n')
+ (OUT/'.gitignore').write_text('original_state/\npublish_state/\n__pycache__/\n.pytest_cache/\n!SMALL_CLUSTER_34_AUDIT.csv\n',encoding='utf-8',newline='\n')
  (OUT/'.gitattributes').write_text('*.md text eol=lf\n*.py text eol=lf\n*.json text eol=lf\n*.txt text eol=lf\n',encoding='utf-8',newline='\n')
  state=OUT/'original_state'
  if not (OUT/'PRESERVATION_BASELINE.json').exists():
