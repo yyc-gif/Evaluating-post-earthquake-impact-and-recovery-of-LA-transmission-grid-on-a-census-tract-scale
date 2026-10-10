@@ -9,6 +9,10 @@ on:
       - docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/*.py
   workflow_dispatch:
 
+concurrency:
+  group: stage7-built-environment-v2
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
