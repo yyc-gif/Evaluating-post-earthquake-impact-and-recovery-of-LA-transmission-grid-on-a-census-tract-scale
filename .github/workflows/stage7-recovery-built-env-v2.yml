@@ -44,6 +44,8 @@ jobs:
         run: |
           python -m py_compile docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/feature_audit.py
           python docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/feature_audit.py
+          python -m py_compile docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/quake_risk_audit.py
+          python docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/quake_risk_audit.py
           python -m py_compile docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/recluster_v2.py
           python docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/recluster_v2.py
           python -m py_compile docs/data_research/built_environment_20261009/recluster_20261009/revision_v2/source_probe.py
