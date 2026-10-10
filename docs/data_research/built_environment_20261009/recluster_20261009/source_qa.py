@@ -3,6 +3,7 @@ import hashlib, json, zipfile
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from dbfread import DBF
 
 REPO=Path(__file__).resolve().parents[4]
 ROOT=Path(__file__).resolve().parent
@@ -54,6 +55,20 @@ def main():
     orig["tract_id"]=orig.tract_id.str.zfill(11)
     old=pd.read_csv(V/"ACS_TRACT_VALIDATION.csv",dtype={"tract_id":str})
     old["tract_id"]=old.tract_id.str.zfill(11)
+    original_area_file=REPO/"Data/LA_Tracts_With_Population.dbf"
+    expected_area=json.loads((V/"INPUT_FILE_MANIFEST.json").read_text())["Data/LA_Tracts_With_Population.dbf"]
+    if sha(original_area_file)!=expected_area:
+        raise AssertionError("Archived Census area DBF hash mismatch")
+    geom=pd.DataFrame(iter(DBF(str(original_area_file),encoding="latin-1",char_decode_errors="ignore")))
+    if not {"GEOID","ALAND"}.issubset(geom.columns):
+        raise ValueError("Source DBF missing GEOID/ALAND")
+    geom["tract_id"]=geom["GEOID"].astype(str).str.zfill(11)
+    land=pd.read_csv(V/"NLCD_TRACT_EXTRACTION.csv",dtype={"tract_id":str})
+    land["tract_id"]=land.tract_id.str.zfill(11)
+    target=land.merge(geom[["tract_id","ALAND"]],on="tract_id",how="left",validate="one_to_one",suffixes=("_validated","_original"))
+    if len(target)!=2315:raise ValueError("Land area domain mismatch")
+    maxland=float(np.abs(target.ALAND_validated.astype(float)-target.ALAND_original.astype(float)).max())
+    if not np.isfinite(maxland) or maxland>0:raise AssertionError("ALAND source mismatch")
     config=vre("B25024",[6,7,8,9]).set_index("tract_id").loc[orig.tract_id]
     ages=vre("B25034",[8,9,10,11]).set_index("tract_id").loc[orig.tract_id]
     from_old=old.set_index("tract_id").loc[orig.tract_id]
@@ -71,9 +86,12 @@ def main():
             "recomputed_moe_gt10pp":int(np.sum(np.asarray(config.moe90)>.1)),
             "boundary_model_n":int(config.boundary.sum()),
             "recomputed_median_moe_pp":float(np.median(config.moe90)*100),
+            "max_abs_aland_source_difference_m2":maxland,
+            "n_area_records_checked":len(target),
             "source_hashes":actual,
             "readme":"Recomputed from archived original California ACS B25024/B25034 2018-2022 Census 80 replicate ZIPs. This does not independently certify impervious rasters."}
     if result["recomputed_moe_gt10pp"]!=211 or result["boundary_model_n"]!=158:raise AssertionError("ACS VRE discrepancy")
+    result["source_hashes"]["Data/LA_Tracts_With_Population.dbf"]=expected_area
     (OUT/"SOURCE_QA.json").write_text(json.dumps(result,indent=2)+"\n")
     print("SOURCE_QA",json.dumps({k:v for k,v in result.items() if k!="source_hashes"}))
 if __name__=="__main__":main()
