@@ -34,16 +34,24 @@ def main():
   if blob.startswith(b'version https://git-lfs.github.com/spec/v1\n'):
    lines=blob.decode().splitlines();oid=lines[1].removeprefix('oid sha256:');size=int(lines[2].removeprefix('size '))
    assert sha(ROOT/s)==oid and (ROOT/s).stat().st_size==size
+   subprocess.run(['git','-C',str(ROOT),'lfs','pointer','--check','--strict','--stdin'],input=blob,check=True,capture_output=True)
    lfs.append({'path':s,'sha256':oid,'bytes':size})
+  elif s.startswith(OUT.relative_to(ROOT).as_posix()+'/sources/'):
+   assert blob==(ROOT/s).read_bytes(),'Raw source snapshot bytes changed in Git'
  (state/'LFS_POINTER_VERIFICATION.json').write_text(json.dumps(lfs,indent=2)+'\n')
  message=state/'message.txt';message.write_text('analysis: extract joint recovery and built-environment tract candidates\n\nPreserve formal Stage7, mapping, trajectories and GA results; document source and coverage limits without selecting final clustering features.\n',encoding='utf-8')
- commit=cmd('commit-tree',tree,'-p',BASE,'-F',str(message),env=env).decode().strip()
+ prior=subprocess.run(['git','-C',str(ROOT),'rev-parse','--verify','refs/heads/'+BRANCH],capture_output=True)
+ parent=prior.stdout.decode().strip() if prior.returncode==0 else BASE
+ if parent!=BASE:
+  previous=objects(parent)
+  assert not [k for k in set(source)|set(previous) if source.get(k)!=previous.get(k) and not k.startswith(OUT.relative_to(ROOT).as_posix()+'/')],'Existing research branch has unrelated changes'
+ commit=cmd('commit-tree',tree,'-p',parent,'-F',str(message),env=env).decode().strip()
  assert cmd('ls-files','--stage','-z')==original
  # Only create a new branch; never replace an existing ref.
- subprocess.run(['git','-C',str(ROOT),'update-ref','refs/heads/'+BRANCH,commit,'0'*40],check=True)
+ subprocess.run(['git','-C',str(ROOT),'update-ref','refs/heads/'+BRANCH,commit,parent if prior.returncode==0 else '0'*40],check=True)
  (state/'commit.txt').write_text(commit+'\n')
  print('COMMIT',commit,'FILES',len(paths),'LFS',len(lfs),'ORIGINAL_INDEX_UNCHANGED',flush=True)
- subprocess.run(['git','-C',str(ROOT),'lfs','fsck',BASE+'..'+commit],check=True)
+ subprocess.run(['git','-C',str(ROOT),'lfs','fsck','--objects',BASE+'..'+commit],check=True)
  subprocess.run(['git','-C',str(ROOT),'push','origin',BRANCH],check=True)
  remote=cmd('ls-remote','origin','refs/heads/'+BRANCH).decode().split()[0];assert remote==commit
  assert cmd('ls-files','--stage','-z')==original and cmd('rev-parse','HEAD').decode().strip()==BASE
