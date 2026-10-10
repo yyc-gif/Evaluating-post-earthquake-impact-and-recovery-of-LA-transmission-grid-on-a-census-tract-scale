@@ -139,14 +139,14 @@ def schedule_bank(kernel,ctx,decoder,crew_keys,sequence,rng):
         bank.extend(collect_source_events(kernel,ctx,decoder,crew_keys,sequence,sample))
     return bank,choices
 
-def reconstruct(parent,event,rng,mode):
+def reconstruct(parent,event,rng,mode,kernel):
     seq=tuple(parent)
     orig_pos={v:i for i,v in enumerate(seq)}
     k=min(MAX_REPAIR_BUNDLE,len(event["bundle"]))
     if mode=="lns_event_route":
         bundle=list(event["bundle"][:k])
     else:
-        bundle=rng.sample(seq,k)
+        # Control draws from the *same sampled realization's damaged task\n        # pool*. Otherwise moving DS0 tasks would artificially handicap it.\n        eligible=[x for x in seq if kernel.damage[event['sample'],kernel.index[x]]>0]\n        bundle=rng.sample(eligible,k)\n        bundle.sort(key=lambda x:orig_pos[x])
     # Preserve event-route source -> gateway precedence from actual connected
     # path; random comparator shuffles destroyed stations with same p=.35.
     if rng.random()<.35:
@@ -178,6 +178,7 @@ def evaluate_lns(kernel,inc,quality,ctx,decoder,crew_keys,seed,budget,mode):
     sampled_event_count=0
     event_bundle_proposals=0
     fallback_proposals=0
+    bundle_size_counts={}
     bank=[]
     snapshot_samples=[]
     refreshed_at=-1
@@ -190,8 +191,10 @@ def evaluate_lns(kernel,inc,quality,ctx,decoder,crew_keys,seed,budget,mode):
         if bank:
             weights=[max(1e-14,q["weighted_priority"]) for q in bank]
             pick=rng.choices(bank,weights=weights,k=1)[0]
-            candidate=reconstruct(current,pick,rng,mode)
+            candidate=reconstruct(current,pick,rng,mode,kernel)
             event_bundle_proposals+=1
+            k=len(pick['bundle'])
+            bundle_size_counts[str(k)]=bundle_size_counts.get(str(k),0)+1
         else:
             candidate=proposal(current,rng)
             fallback_proposals+=1
@@ -242,6 +245,7 @@ def evaluate_lns(kernel,inc,quality,ctx,decoder,crew_keys,seed,budget,mode):
        restarts=restarts,event_bank_refreshes=event_rebuilds,
        source_reconnection_events_sampled=sampled_event_count,
        event_bundle_proposals=event_bundle_proposals,
+       bundle_size_proposal_counts=bundle_size_counts,
        random_proposal_fallbacks=fallback_proposals,
        sample_snapshot_count=SNAPSHOT_SAMPLES,
        snapshot_refresh_interval_distinct=SNAPSHOT_INTERVAL,
@@ -270,7 +274,7 @@ def main():
         if method=="ga_baseline":result=run_ga(kernel,inc,quality,a.seed,a.budget)
         elif method=="iterated_local":result=local_search(kernel,inc,quality,"iterated_local",a.seed,a.budget)
         else:result=evaluate_lns(kernel,inc,quality,ctx,decoder,crew_keys,a.seed,a.budget,method)
-        assert result["completed_budget"] if "completed_budget" in result else result["distinct_evaluations"]==a.budget
+        assert result["distinct_evaluations"]==a.budget and result.get("completed_budget",True)
         assert len(result["best_sequence"])==92
         assert old.identity(result["best_sequence"])==result["sequence_sha256"]
         result.update(original_model_base_commit=MODEL_BASE,
