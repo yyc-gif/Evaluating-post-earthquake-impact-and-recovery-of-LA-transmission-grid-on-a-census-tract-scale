@@ -422,13 +422,14 @@ def schedule_changes(k, parent, candidate):
         a = native_decode(k, parent, r); b = native_decode(k, candidate, r)
         ac = source_times(np.where(k.damage[r] <= 1, 0., a[0]), k.source_flag,k.neighbor_offset,k.neighbors)[0]
         bc = source_times(np.where(k.damage[r] <= 1, 0., b[0]), k.source_flag,k.neighbor_offset,k.neighbors)[0]
-        for i in np.flatnonzero(k.damage[r] > 0):
+        for i in range(92):
             rows.append(dict(state=r, station_id=k.ids[i], parent_completion_hr=float(a[0][i]),
-                candidate_completion_hr=float(b[0][i]), completion_delta_hr=float(b[0][i]-a[0][i]),
-                parent_origin=int(k.origin_index[a[3][i]]), candidate_origin=int(k.origin_index[b[3][i]]),
+                candidate_completion_hr=float(b[0][i]), completion_delta_hr=float(b[0][i]-a[0][i]) if k.damage[r,i] > 0 else 0.,
+                parent_origin=int(k.origin_index[a[3][i]]) if a[3][i] >= 0 else None,
+                candidate_origin=int(k.origin_index[b[3][i]]) if b[3][i] >= 0 else None,
                 parent_predecessor=k.ids[a[4][i]] if a[4][i] >= 0 else None,
                 candidate_predecessor=k.ids[b[4][i]] if b[4][i] >= 0 else None,
-                directed_travel_delta_hr=float(b[2][i]-a[2][i]),
+                directed_travel_delta_hr=float(b[2][i]-a[2][i]) if k.damage[r,i] > 0 else 0.,
                 source_connection_delta_hr=float(bc[i]-ac[i])))
     return rows
 
@@ -511,9 +512,53 @@ def preservation():
     print('PRESERVATION_PASS',len(current['files_sha256']), 'EVIDENCE',len(hashes),flush=True)
 
 
+def mechanism():
+    """Explain the best feasible warm-start counterexample without promotion."""
+    k, _, _, _ = load()
+    results = read(OUT / 'EXACT_SIX_SLOT_RESULTS.json')['results']
+    selected = min((r for r in results if r['parent'] == 'shared_prior'), key=lambda r:r['conditional_minimum_loss_hr'])
+    ab = read(OUT / 'TASK_AB.json')
+    parent = ab['parents']['shared_prior']['sequence']
+    candidate = selected['best_sequence']
+    context, _, _ = execution_context(k.ids)
+    record = next(r for r in read(OUT / 'CANDIDATE_PRODUCTION_INFLUENCE.json')['candidates'] if r['sequence_sha256'] == selected['sequence_sha256'])
+    events = []
+    for r in range(64):
+        event = components(k,context,candidate,parent,r)
+        event['component_integrals_hr']['shared_prior'] = event['component_integrals_hr'].pop('frozen_ga')
+        event['reference'] = 'shared_prior'
+        events.append(event)
+    means = {field:float(np.mean([e['component_changes_hr'][field] for e in events]))
+        for field in ('L_self','L_threshold','L_source','L_total')}
+    assert abs(means['L_total']-record['comparisons']['shared_prior']['mean_delta_hr']) < TOL
+    positions = [dict(position_zero_based=i, parent_station=parent[i], candidate_station=candidate[i])
+        for i in range(92) if parent[i] != candidate[i]]
+    arrays = np.load(long_path(OUT / 'ACTIONABLE_ARRAYS.npz'))
+    support = []
+    for station in selected['selected_stations']:
+        i = k.index[station]
+        h = arrays['shared_prior_headroom'][:,i]
+        support.append(dict(station_id=station,mean_headroom_hr=float(h.mean()),
+            zero_headroom_states=int((h <= TOL).sum()),
+            mean_individual_optimistic_gain_hr=float(arrays['shared_prior_benefit'][:,i].mean())))
+    save(OUT / 'BEST_PRIOR_MECHANISM.json', dict(selected_case=selected, changed_positions=positions,
+        selected_station_leverage=support, candidate=record, mean_component_delta_hr=means, events=events,
+        interpretation='Exact whole-schedule decomposition relative to shared prior, not causal effects of individual slot edits.',
+        new_native_component_event_evaluations=128, native_decodes=128, extra_setup_mean_calls=8,
+        mean_directed_travel_change_hr=float(np.mean([e['total_directed_travel_change_hr'] for e in events])),
+        mean_earlier_completions=float(np.mean([e['earlier_completions'] for e in events])),
+        mean_later_completions=float(np.mean([e['later_completions'] for e in events]))))
+    # Give physical origin names without altering the original indexed audit.
+    base_names=list(map(str,context['base'].index))
+    save(OUT / 'ACTIVE_ORIGIN_LOOKUP.json', dict(base_row_lookup={i:name for i,name in enumerate(base_names)},
+        active_crew_origins=[base_names[i] for i in k.origin_index],
+        active_origin_counts=dict(Counter(base_names[i] for i in k.origin_index))))
+    print('BEST_PRIOR_MECHANISM',means,record['comparisons']['shared_prior'],flush=True)
+
+
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--task', required=True, choices=['setup','audit','select','exact','candidates','preservation'])
+    p.add_argument('--task', required=True, choices=['setup','audit','select','exact','candidates','mechanism','preservation'])
     p.add_argument('--source', type=Path)
     p.add_argument('--revision', type=Path)
     a = p.parse_args()
@@ -521,7 +566,7 @@ def main():
     if a.task == 'setup':
         setup(a.source,a.revision)
     else:
-        {'audit':audit,'select':select,'exact':exact,'candidates':verify_candidates,'preservation':preservation}[a.task]()
+        {'audit':audit,'select':select,'exact':exact,'candidates':verify_candidates,'mechanism':mechanism,'preservation':preservation}[a.task]()
 
 
 if __name__ == '__main__':

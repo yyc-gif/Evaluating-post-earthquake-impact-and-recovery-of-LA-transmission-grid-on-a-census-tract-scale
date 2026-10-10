@@ -1,0 +1,2664 @@
+[
+  {
+    "sequence_sha256": "87a0ae0b18345fe7d7d751f39b1d7bd470d4f30917ba059c40504dce5bc984b0",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.94227186128057,
+        "L_threshold": 0.8848489224175775,
+        "L_source": 5.935865409713882,
+        "L_total": 33.76298619341203
+      },
+      "frozen_ga": {
+        "L_self": 26.990600442778916,
+        "L_threshold": 0.8899627901151548,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660727
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.04832858149834607,
+      "L_threshold": -0.005113867697577268,
+      "L_source": 0.09623702600067752,
+      "L_total": 0.04279457680475929
+    },
+    "earlier_completions": 32,
+    "later_completions": 24,
+    "total_directed_travel_change_hr": 0.29911090198579515,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.338265617792622,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.0067719342685617565,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.3742949938513,
+        "end_hr": 39.69381983382026,
+        "weighted_loss_change_hr": -0.00419679888837459,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 39.69381983382026,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.00403957090442164,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 9.465193466093208,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.0028027461761714286,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "87a0ae0b18345fe7d7d751f39b1d7bd470d4f30917ba059c40504dce5bc984b0",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.568087674519084,
+        "L_threshold": 0.939837249730233,
+        "L_source": 1.7133327363322266,
+        "L_total": 31.221257660581543
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705679,
+        "L_source": 1.8131220992156016,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.027123454184092566,
+      "L_threshold": 0.001340263459665092,
+      "L_source": -0.09978936288337503,
+      "L_total": -0.07132564523961804
+    },
+    "earlier_completions": 21,
+    "later_completions": 32,
+    "total_directed_travel_change_hr": 2.251281870506954,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "87a0ae0b18345fe7d7d751f39b1d7bd470d4f30917ba059c40504dce5bc984b0",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.71790693718588,
+        "L_threshold": 0.9895993750911662,
+        "L_source": 2.6829559614269334,
+        "L_total": 34.390462273703974
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471503,
+        "L_source": 2.1808528098032376,
+        "L_total": 33.92142488869305
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.03127019115679275,
+      "L_threshold": -0.0017955754559840775,
+      "L_source": 0.5021031516236958,
+      "L_total": 0.46903738501092107
+    },
+    "earlier_completions": 24,
+    "later_completions": 28,
+    "total_directed_travel_change_hr": -0.15019751078059684,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.7362172426775,
+        "weighted_loss_change_hr": -0.01658178058961998,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 51.7362172426775,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.004183562636943143,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 33.308722624634655,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.004049014736915842,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 44.30421162740618,
+        "end_hr": 44.56133196267909,
+        "weighted_loss_change_hr": -0.0033105814799047773,
+        "affected_stations": [
+          "301636",
+          "304040",
+          "307373"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "791e7b935215174451eb7d297682ff3f3581d83ae859986d4238ff315bdab7f9",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.943285033845818,
+        "L_threshold": 0.884887967207806,
+        "L_source": 5.935323388486731,
+        "L_total": 33.76349638954035
+      },
+      "frozen_ga": {
+        "L_self": 26.990600442778913,
+        "L_threshold": 0.8899627901151548,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660727
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.047315408933094716,
+      "L_threshold": -0.0050748229073487305,
+      "L_source": 0.09569500477352655,
+      "L_total": 0.04330477293307666
+    },
+    "earlier_completions": 31,
+    "later_completions": 24,
+    "total_directed_travel_change_hr": 0.4093730108192055,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.338265617792622,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.0067719342685617565,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.69381983382026,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.00403957090442164,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 39.414741613606054,
+        "end_hr": 39.69381983382026,
+        "weighted_loss_change_hr": -0.0036655527766740062,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 9.48488143125577,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.002578297877603594,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "791e7b935215174451eb7d297682ff3f3581d83ae859986d4238ff315bdab7f9",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.567349417050437,
+        "L_threshold": 0.9398107201546966,
+        "L_source": 1.7120550362736076,
+        "L_total": 31.219215173478744
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705678,
+        "L_source": 1.8131220992156016,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.026385196715445147,
+      "L_threshold": 0.0013137338841288093,
+      "L_source": -0.10106706294199408,
+      "L_total": -0.07336813234241646
+    },
+    "earlier_completions": 20,
+    "later_completions": 30,
+    "total_directed_travel_change_hr": 2.200542565811883,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "791e7b935215174451eb7d297682ff3f3581d83ae859986d4238ff315bdab7f9",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.717650925955077,
+        "L_threshold": 0.98959125899942,
+        "L_source": 2.6827122768967406,
+        "L_total": 34.38995446185124
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471503,
+        "L_source": 2.1808528098032376,
+        "L_total": 33.92142488869306
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.03152620238759596,
+      "L_threshold": -0.0018036915477303017,
+      "L_source": 0.501859467093503,
+      "L_total": 0.4685295731581789
+    },
+    "earlier_completions": 23,
+    "later_completions": 27,
+    "total_directed_travel_change_hr": -0.20093681547567144,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.7362172426775,
+        "weighted_loss_change_hr": -0.01658178058961998,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 33.251427530953826,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.004211976999629659,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 51.7362172426775,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.004183562636943143,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 44.30421162740618,
+        "end_hr": 44.56133196267909,
+        "weighted_loss_change_hr": -0.0033105814799047773,
+        "affected_stations": [
+          "301636",
+          "304040",
+          "307373"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "afdc023dbee326aeed4fcd5db6d6364c2a4248aa77bb332621380ea200d66e0d",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.943183056875213,
+        "L_threshold": 0.8848810542832667,
+        "L_source": 5.935877372742342,
+        "L_total": 33.76394148390082
+      },
+      "frozen_ga": {
+        "L_self": 26.990600442778913,
+        "L_threshold": 0.8899627901151549,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660727
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.04741738590369948,
+      "L_threshold": -0.005081735831888201,
+      "L_source": 0.09624898902913781,
+      "L_total": 0.043749867293549016
+    },
+    "earlier_completions": 30,
+    "later_completions": 24,
+    "total_directed_travel_change_hr": 0.4034496913620309,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.338265617792622,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.0067719342685617565,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.69381983382026,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.00403957090442164,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 39.39029273811965,
+        "end_hr": 39.69381983382026,
+        "weighted_loss_change_hr": -0.003986676522400093,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 9.465193466093208,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.0028027461761714286,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "afdc023dbee326aeed4fcd5db6d6364c2a4248aa77bb332621380ea200d66e0d",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.56503421061978,
+        "L_threshold": 0.9397165562704276,
+        "L_source": 1.7208427399386197,
+        "L_total": 31.225593506828826
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705678,
+        "L_source": 1.8131220992156014,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.024069990284786513,
+      "L_threshold": 0.0012195699998598375,
+      "L_source": -0.09227935927698172,
+      "L_total": -0.06698979899233493
+    },
+    "earlier_completions": 20,
+    "later_completions": 31,
+    "total_directed_travel_change_hr": 2.1085715244106744,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "afdc023dbee326aeed4fcd5db6d6364c2a4248aa77bb332621380ea200d66e0d",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.715635129833395,
+        "L_threshold": 0.9895291130080995,
+        "L_source": 2.679775576441515,
+        "L_total": 34.384939819283005
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471503,
+        "L_source": 2.1808528098032376,
+        "L_total": 33.92142488869305
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.033541998509278415,
+      "L_threshold": -0.0018658375390507853,
+      "L_source": 0.4989227666382776,
+      "L_total": 0.46351493058995175
+    },
+    "earlier_completions": 23,
+    "later_completions": 27,
+    "total_directed_travel_change_hr": -0.29290785687688015,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.7362172426775,
+        "weighted_loss_change_hr": -0.01658178058961998,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 51.7362172426775,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.004183562636943143,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 33.48250713423783,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.0035547260449851296,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 44.30421162740618,
+        "end_hr": 44.56133196267909,
+        "weighted_loss_change_hr": -0.0033105814799047773,
+        "affected_stations": [
+          "301636",
+          "304040",
+          "307373"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "29c451a997a2dfbcf41cbb7af9808c86375eb8f4780084ebc833d74e3eb18c04",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.94314324119656,
+        "L_threshold": 0.8848797682488805,
+        "L_source": 5.93546886125616,
+        "L_total": 33.7634918707016
+      },
+      "frozen_ga": {
+        "L_self": 26.990600442778913,
+        "L_threshold": 0.8899627901151548,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660727
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.047457201582354,
+      "L_threshold": -0.005083021866274295,
+      "L_source": 0.09584047754295533,
+      "L_total": 0.04330025409432636
+    },
+    "earlier_completions": 31,
+    "later_completions": 24,
+    "total_directed_travel_change_hr": 0.4169749395788145,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.338265617792622,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.0067719342685617565,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.3742949938513,
+        "end_hr": 39.69381983382026,
+        "weighted_loss_change_hr": -0.00419679888837459,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 39.69381983382026,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.00403957090442164,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 9.465193466093208,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.0028027461761714286,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "29c451a997a2dfbcf41cbb7af9808c86375eb8f4780084ebc833d74e3eb18c04",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.568644663456993,
+        "L_threshold": 0.939853704507703,
+        "L_source": 1.7134075897313714,
+        "L_total": 31.221905957696066
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705677,
+        "L_source": 1.8131220992156016,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.027680443122001464,
+      "L_threshold": 0.001356718237135346,
+      "L_source": -0.09971450948423022,
+      "L_total": -0.07067734812509485
+    },
+    "earlier_completions": 20,
+    "later_completions": 32,
+    "total_directed_travel_change_hr": 2.2666726857549975,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "29c451a997a2dfbcf41cbb7af9808c86375eb8f4780084ebc833d74e3eb18c04",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.717778379891744,
+        "L_threshold": 0.9895866648329468,
+        "L_source": 2.683722462324332,
+        "L_total": 34.39108750704902
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471504,
+        "L_source": 2.1808528098032376,
+        "L_total": 33.92142488869306
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.03139874845092905,
+      "L_threshold": -0.0018082857142036612,
+      "L_source": 0.5028696525210945,
+      "L_total": 0.46966261835596157
+    },
+    "earlier_completions": 23,
+    "later_completions": 28,
+    "total_directed_travel_change_hr": -0.13480669553255353,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.7362172426775,
+        "weighted_loss_change_hr": -0.01658178058961998,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 51.7362172426775,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.004183562636943143,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 33.308722624634655,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.004049014736915842,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 44.30421162740618,
+        "end_hr": 44.56133196267909,
+        "weighted_loss_change_hr": -0.0033105814799047773,
+        "affected_stations": [
+          "301636",
+          "304040",
+          "307373"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "b14f54cb83464d711ec8739e55e740e6f4687fb863de219c27c178edab76c511",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.944231840843308,
+        "L_threshold": 0.8849134909008366,
+        "L_source": 5.935463562956668,
+        "L_total": 33.764608894700814
+      },
+      "frozen_ga": {
+        "L_self": 26.990600442778913,
+        "L_threshold": 0.8899627901151548,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660727
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.04636860193560466,
+      "L_threshold": -0.005049299214318181,
+      "L_source": 0.09583517924346374,
+      "L_total": 0.04441727809354035
+    },
+    "earlier_completions": 29,
+    "later_completions": 24,
+    "total_directed_travel_change_hr": 0.4875647405577368,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.338265617792622,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.0067719342685617565,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.3742949938513,
+        "end_hr": 39.69381983382026,
+        "weighted_loss_change_hr": -0.00419679888837459,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 39.69381983382026,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.00403957090442164,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 9.465193466093208,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.0028027461761714286,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "b14f54cb83464d711ec8739e55e740e6f4687fb863de219c27c178edab76c511",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.564932033867652,
+        "L_threshold": 0.9397388809121564,
+        "L_source": 1.7163116102732396,
+        "L_total": 31.22098252505305
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705677,
+        "L_source": 1.8131220992156014,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.023967813532660642,
+      "L_threshold": 0.0012418946415887477,
+      "L_source": -0.09681048894236177,
+      "L_total": -0.0716007807681116
+    },
+    "earlier_completions": 20,
+    "later_completions": 31,
+    "total_directed_travel_change_hr": 2.050494195310428,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "b14f54cb83464d711ec8739e55e740e6f4687fb863de219c27c178edab76c511",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.716046654602845,
+        "L_threshold": 0.9895562958213238,
+        "L_source": 2.6859044052837797,
+        "L_total": 34.391507355707944
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471503,
+        "L_source": 2.1808528098032376,
+        "L_total": 33.92142488869306
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.03313047373982769,
+      "L_threshold": -0.0018386547258265606,
+      "L_source": 0.5050515954805421,
+      "L_total": 0.4700824670148833
+    },
+    "earlier_completions": 22,
+    "later_completions": 29,
+    "total_directed_travel_change_hr": -0.17493595995998135,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.76078463304832,
+        "weighted_loss_change_hr": -0.016785590166476478,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 33.308722624634655,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.004049014736915842,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 51.76078463304832,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.003979753060086644,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 44.30421162740618,
+        "end_hr": 44.56133196267909,
+        "weighted_loss_change_hr": -0.0033105814799047773,
+        "affected_stations": [
+          "301636",
+          "304040",
+          "307373"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "1165c3a92263d0001b0a6dec3ccb572da4be5ce469921d4ebbfe6b2abdbc0460",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.94380431875483,
+        "L_threshold": 0.884900268568203,
+        "L_source": 5.937913946525919,
+        "L_total": 33.76661853384895
+      },
+      "frozen_ga": {
+        "L_self": 26.990600442778913,
+        "L_threshold": 0.8899627901151548,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660727
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.04679612402408395,
+      "L_threshold": -0.005062521546951748,
+      "L_source": 0.09828556281271439,
+      "L_total": 0.046426917241674914
+    },
+    "earlier_completions": 30,
+    "later_completions": 26,
+    "total_directed_travel_change_hr": 0.31659177382232784,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.338265617792622,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.0067719342685617565,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.3742949938513,
+        "end_hr": 39.69381983382026,
+        "weighted_loss_change_hr": -0.00419679888837459,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 39.69381983382026,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.00403957090442164,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 9.465193466093208,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.0028027461761714286,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "1165c3a92263d0001b0a6dec3ccb572da4be5ce469921d4ebbfe6b2abdbc0460",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.567103129598422,
+        "L_threshold": 0.939797553275488,
+        "L_source": 1.7141890717280073,
+        "L_total": 31.22108975460192
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705678,
+        "L_source": 1.8131220992156016,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.02613890926343032,
+      "L_threshold": 0.0013005670049202056,
+      "L_source": -0.09893302748759436,
+      "L_total": -0.07149355121924117
+    },
+    "earlier_completions": 21,
+    "later_completions": 32,
+    "total_directed_travel_change_hr": 2.222744695534786,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "1165c3a92263d0001b0a6dec3ccb572da4be5ce469921d4ebbfe6b2abdbc0460",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.71736418972919,
+        "L_threshold": 0.9895808098103803,
+        "L_source": 2.6823911968087293,
+        "L_total": 34.389336196348296
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471503,
+        "L_source": 2.1808528098032376,
+        "L_total": 33.92142488869306
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.03181293861348422,
+      "L_threshold": -0.001814140736769998,
+      "L_source": 0.5015383870054917,
+      "L_total": 0.4679113076552355
+    },
+    "earlier_completions": 24,
+    "later_completions": 28,
+    "total_directed_travel_change_hr": -0.1787346857527652,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.7362172426775,
+        "weighted_loss_change_hr": -0.01658178058961998,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 51.7362172426775,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.004183562636943143,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 33.308722624634655,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.004049014736915842,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 44.30421162740618,
+        "end_hr": 44.56133196267909,
+        "weighted_loss_change_hr": -0.0033105814799047773,
+        "affected_stations": [
+          "301636",
+          "304040",
+          "307373"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "5ba74283c8353d6e853d1f864ffbebc690eafd51b3038aefeb98f17ad012937e",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.942405808842516,
+        "L_threshold": 0.8848493826558214,
+        "L_source": 5.935463562956667,
+        "L_total": 33.762718754455
+      },
+      "frozen_ga": {
+        "L_self": 26.990600442778913,
+        "L_threshold": 0.8899627901151548,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660728
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.048194633936397224,
+      "L_threshold": -0.005113407459333419,
+      "L_source": 0.09583517924346285,
+      "L_total": 0.04252713784772055
+    },
+    "earlier_completions": 31,
+    "later_completions": 24,
+    "total_directed_travel_change_hr": 0.2869664813064432,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.23502149353546,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.007512338032659701,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.5905757095631,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.005460482270128083,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 39.3742949938513,
+        "end_hr": 39.5905757095631,
+        "weighted_loss_change_hr": -0.0028407389778031564,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 9.465193466093208,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.0028027461761714286,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "5ba74283c8353d6e853d1f864ffbebc690eafd51b3038aefeb98f17ad012937e",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.57212280771845,
+        "L_threshold": 0.9400796757676317,
+        "L_source": 1.7025176617242137,
+        "L_total": 31.21472014521029
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705678,
+        "L_source": 1.8131220992156014,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.03115858738345878,
+      "L_threshold": 0.0015826894970639716,
+      "L_source": -0.11060443749138771,
+      "L_total": -0.07786316061087106
+    },
+    "earlier_completions": 19,
+    "later_completions": 33,
+    "total_directed_travel_change_hr": 2.4000382393160784,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "5ba74283c8353d6e853d1f864ffbebc690eafd51b3038aefeb98f17ad012937e",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.718459441814332,
+        "L_threshold": 0.9896164628631802,
+        "L_source": 2.682875239159454,
+        "L_total": 34.390951143836965
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471503,
+        "L_source": 2.1808528098032376,
+        "L_total": 33.92142488869305
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.03071768652834095,
+      "L_threshold": -0.0017784876839701536,
+      "L_source": 0.5020224293562165,
+      "L_total": 0.46952625514391144
+    },
+    "earlier_completions": 22,
+    "later_completions": 28,
+    "total_directed_travel_change_hr": -0.19109947142224115,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.7362172426775,
+        "weighted_loss_change_hr": -0.01658178058961998,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 51.7362172426775,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.004183562636943143,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 33.308722624634655,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.004049014736915842,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 43.24373893104847,
+        "end_hr": 43.75963616547953,
+        "weighted_loss_change_hr": -0.0036996996875972295,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "2ccdffdea288ae2b0dbf839b63e7fc01dc526f4453cb8c75cf315e29d6a4347d",
+    "sample": 15,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 26.942710962855593,
+        "L_threshold": 0.8848616983685773,
+        "L_source": 5.935903377622003,
+        "L_total": 33.76347603884617
+      },
+      "frozen_ga": {
+        "L_self": 26.99060044277892,
+        "L_threshold": 0.8899627901151548,
+        "L_source": 5.839628383713205,
+        "L_total": 33.72019161660727
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.04788947992332737,
+      "L_threshold": -0.0051010917465774686,
+      "L_source": 0.09627499390879812,
+      "L_total": 0.043284422238897946
+    },
+    "earlier_completions": 31,
+    "later_completions": 24,
+    "total_directed_travel_change_hr": 0.36870724171565783,
+    "beneficial_intervals": [
+      {
+        "start_hr": 39.98733705837589,
+        "end_hr": 41.07781853824683,
+        "weighted_loss_change_hr": -0.0099929765175322,
+        "affected_stations": [
+          "305885",
+          "307557",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 21.338265617792622,
+        "end_hr": 22.28256446794304,
+        "weighted_loss_change_hr": -0.0067719342685617565,
+        "affected_stations": [
+          "301636"
+        ]
+      },
+      {
+        "start_hr": 39.3742949938513,
+        "end_hr": 39.69381983382026,
+        "weighted_loss_change_hr": -0.00419679888837459,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 39.69381983382026,
+        "end_hr": 39.98733705837589,
+        "weighted_loss_change_hr": -0.00403957090442164,
+        "affected_stations": [
+          "305885",
+          "307557"
+        ]
+      },
+      {
+        "start_hr": 36.480070467434636,
+        "end_hr": 37.21285689582577,
+        "weighted_loss_change_hr": -0.0037060074661535536,
+        "affected_stations": [
+          "301108",
+          "301543",
+          "302297",
+          "302923",
+          "309553"
+        ]
+      },
+      {
+        "start_hr": 9.465193466093208,
+        "end_hr": 9.711042373962258,
+        "weighted_loss_change_hr": -0.0028027461761714286,
+        "affected_stations": [
+          "308581",
+          "309853"
+        ]
+      },
+      {
+        "start_hr": 41.08857238000483,
+        "end_hr": 41.310524647566595,
+        "weighted_loss_change_hr": -0.0018945143020075315,
+        "affected_stations": [
+          "305885",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 47.55460959851723,
+        "end_hr": 47.727321351156476,
+        "weighted_loss_change_hr": -0.0014401881235316823,
+        "affected_stations": [
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "2ccdffdea288ae2b0dbf839b63e7fc01dc526f4453cb8c75cf315e29d6a4347d",
+    "sample": 47,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 28.567596701238138,
+        "L_threshold": 0.9398012141739498,
+        "L_source": 1.7134075897313714,
+        "L_total": 31.22080550514346
+      },
+      "frozen_ga": {
+        "L_self": 28.540964220334992,
+        "L_threshold": 0.9384969862705678,
+        "L_source": 1.8131220992156014,
+        "L_total": 31.29258330582116
+      }
+    },
+    "component_changes_hr": {
+      "L_self": 0.02663248090314596,
+      "L_threshold": 0.001304227903382027,
+      "L_source": -0.09971450948423,
+      "L_total": -0.07177780067770101
+    },
+    "earlier_completions": 20,
+    "later_completions": 32,
+    "total_directed_travel_change_hr": 2.2666726857549975,
+    "beneficial_intervals": [
+      {
+        "start_hr": 28.70014313214466,
+        "end_hr": 29.67874703305557,
+        "weighted_loss_change_hr": -0.062029080118129507,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.353427394704216,
+        "end_hr": 28.649559411994815,
+        "weighted_loss_change_hr": -0.01877041018226452,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 29.67874703305557,
+        "end_hr": 29.88514252571228,
+        "weighted_loss_change_hr": -0.013082435639288804,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.14861335483867,
+        "end_hr": 28.353427394704216,
+        "weighted_loss_change_hr": -0.012982194814788855,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 46.926330739556946,
+        "end_hr": 47.90057050726179,
+        "weighted_loss_change_hr": -0.012796151856335342,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 18.665590432232282,
+        "end_hr": 19.869266392330285,
+        "weighted_loss_change_hr": -0.006625496487168095,
+        "affected_stations": [
+          "309156"
+        ]
+      },
+      {
+        "start_hr": 28.073345309035638,
+        "end_hr": 28.144612518505806,
+        "weighted_loss_change_hr": -0.004517291870496056,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "309663"
+        ]
+      },
+      {
+        "start_hr": 28.649559411994815,
+        "end_hr": 28.70014313214466,
+        "weighted_loss_change_hr": -0.00415212532468428,
+        "affected_stations": [
+          "301100",
+          "301105",
+          "302171",
+          "302297",
+          "303099",
+          "306694",
+          "307564",
+          "309663"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  },
+  {
+    "sequence_sha256": "2ccdffdea288ae2b0dbf839b63e7fc01dc526f4453cb8c75cf315e29d6a4347d",
+    "sample": 58,
+    "component_integrals_hr": {
+      "candidate": {
+        "L_self": 30.717747666073805,
+        "L_threshold": 0.9895944491804833,
+        "L_source": 2.682875239159455,
+        "L_total": 34.39021735441374
+      },
+      "frozen_ga": {
+        "L_self": 30.749177128342673,
+        "L_threshold": 0.9913949505471503,
+        "L_source": 2.180852809803237,
+        "L_total": 33.92142488869306
+      }
+    },
+    "component_changes_hr": {
+      "L_self": -0.03142946226886778,
+      "L_threshold": -0.0018005013666669845,
+      "L_source": 0.5020224293562179,
+      "L_total": 0.4687924657206821
+    },
+    "earlier_completions": 23,
+    "later_completions": 28,
+    "total_directed_travel_change_hr": -0.13480669553255353,
+    "beneficial_intervals": [
+      {
+        "start_hr": 23.33214535713433,
+        "end_hr": 25.104353523785083,
+        "weighted_loss_change_hr": -0.023277067487118875,
+        "affected_stations": [
+          "305885"
+        ]
+      },
+      {
+        "start_hr": 49.73743444222403,
+        "end_hr": 51.7362172426775,
+        "weighted_loss_change_hr": -0.01658178058961998,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 52.29919395751881,
+        "end_hr": 53.621621421428756,
+        "weighted_loss_change_hr": -0.010970777839026538,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 51.7362172426775,
+        "end_hr": 52.24050765938801,
+        "weighted_loss_change_hr": -0.004183562636943143,
+        "affected_stations": [
+          "307274"
+        ]
+      },
+      {
+        "start_hr": 33.308722624634655,
+        "end_hr": 34.7322956335223,
+        "weighted_loss_change_hr": -0.004049014736915842,
+        "affected_stations": [
+          "308367"
+        ]
+      },
+      {
+        "start_hr": 44.56133196267909,
+        "end_hr": 44.8299214542875,
+        "weighted_loss_change_hr": -0.003876947309791773,
+        "affected_stations": [
+          "301636",
+          "304040"
+        ]
+      },
+      {
+        "start_hr": 48.45836428101198,
+        "end_hr": 48.92455953218604,
+        "weighted_loss_change_hr": -0.003557499698695927,
+        "affected_stations": [
+          "302171",
+          "307274",
+          "310204"
+        ]
+      },
+      {
+        "start_hr": 44.30421162740618,
+        "end_hr": 44.56133196267909,
+        "weighted_loss_change_hr": -0.0033105814799047773,
+        "affected_stations": [
+          "301636",
+          "304040",
+          "307373"
+        ]
+      }
+    ],
+    "descriptive_not_station_causality": true
+  }
+]

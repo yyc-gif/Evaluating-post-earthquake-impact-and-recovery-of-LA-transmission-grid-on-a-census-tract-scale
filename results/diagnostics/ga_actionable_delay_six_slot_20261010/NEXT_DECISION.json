@@ -1,0 +1,63 @@
+{
+  "status": "TASK_ABC_COMPLETE",
+  "higher_quality_parent_improving_sets": 0,
+  "new_campaign_started": false,
+  "formal_ga_replaced": false,
+  "new_physical_samples": 0,
+  "summary": [
+    {
+      "parent": "shared_prior",
+      "arm": "targeted",
+      "sets": 20,
+      "improving_sets": 7,
+      "mean_gain_hr": 0.00042843307750146665,
+      "maximum_gain_hr": 0.006168417875315413,
+      "best_loss_hr": 33.03196332539198
+    },
+    {
+      "parent": "shared_prior",
+      "arm": "random_control",
+      "sets": 20,
+      "improving_sets": 2,
+      "mean_gain_hr": 3.541885306788117e-05,
+      "maximum_gain_hr": 0.0005841039986833607,
+      "best_loss_hr": 33.03754763926861
+    },
+    {
+      "parent": "frozen_ga",
+      "arm": "targeted",
+      "sets": 20,
+      "improving_sets": 0,
+      "mean_gain_hr": 0.0,
+      "maximum_gain_hr": 0.0,
+      "best_loss_hr": 32.997840773882714
+    },
+    {
+      "parent": "frozen_ga",
+      "arm": "random_control",
+      "sets": 20,
+      "improving_sets": 0,
+      "mean_gain_hr": 0.0,
+      "maximum_gain_hr": 0.0,
+      "best_loss_hr": 32.997840773882714
+    },
+    {
+      "parent": "refined_ils",
+      "arm": "targeted",
+      "sets": 20,
+      "improving_sets": 0,
+      "mean_gain_hr": 0.0,
+      "maximum_gain_hr": 0.0,
+      "best_loss_hr": 32.99613736538884
+    },
+    {
+      "parent": "refined_ils",
+      "arm": "random_control",
+      "sets": 20,
+      "improving_sets": 0,
+      "mean_gain_hr": 9.237055564881303e-15,
+      "maximum_gain_hr": 9.237055564881302e-14,
+      "best_loss_hr": 32.99613736538875
+    }
+  ]
+}
