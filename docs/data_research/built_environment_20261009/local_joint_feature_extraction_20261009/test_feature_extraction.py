@@ -52,6 +52,9 @@ def test_footprints_counts_and_height():
  assert d.building_height_median_m.dropna().gt(0).all()
  assert meta('LARIAC2020_GEOMETRY_QA.json')['raw_records']==3293177
  assert meta('LARIAC2020_HEIGHT_QA.json')['duplicate_geometry_height_conflicts']==2
+ land=table('TRACT_GEOMETRY_LAND_WATER_QA.csv');f=table('TRACT_FEATURE_CANDIDATES.csv')
+ assert np.allclose(d.building_count_density,d.building_count/(land.census_ALAND_m2/1e6),rtol=1e-12,atol=1e-10)
+ assert np.allclose(d.building_count_density,f.building_count_density,rtol=1e-12,atol=1e-10)
 def test_age_bounds_and_scope():
  for filename,prefix in [('BUILDING_AGE_ALL_USE_TRACTS.csv','all_use'),('BUILDING_AGE_2014_ORIGINAL_TRACTS.csv','all_use2014')]:
   d=table(filename);cov=d[prefix+'_age_coverage'];lo=d[prefix+'_pre1970_lower_bound'];hi=d[prefix+'_pre1970_upper_bound'];share=d[prefix+'_pre1970_area_share']

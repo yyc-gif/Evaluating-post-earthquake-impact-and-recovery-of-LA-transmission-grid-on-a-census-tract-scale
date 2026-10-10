@@ -415,5 +415,6 @@
   "height_weighting": "positive HEIGHT converted feet to m, clipped polygon area; BLD_ID repeats do not erase distinct outlines; exact normalized geometry duplicates removed and conflicting heights withhold height candidates; geometric overlap is quantified, union used for coverage; height is outline-area weighted, not floor-area weighted",
   "seconds": 582.275853395462,
   "zero_building_tracts": [],
-  "minimum_detectable_footprint": "not documented; no arbitrary small-outline exclusion"
+  "minimum_detectable_footprint": "not documented; no arbitrary small-outline exclusion",
+  "count_density_denominator": "Census ALAND km2; matches candidate matrix. Original geometry-land density retained in denominator audit."
 }
