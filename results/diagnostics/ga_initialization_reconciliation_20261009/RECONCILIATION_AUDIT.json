@@ -1,0 +1,25 @@
+{
+  "artifact_count": 50,
+  "sha_verified_archives": 50,
+  "unique_final_run_observations": 610,
+  "replication_20k_runs": 510,
+  "confirmation_100k_runs": 100,
+  "removed_duplicate_representations": 1153,
+  "duplicates_in_individual_json_members": 610,
+  "committed_chunk_duplicates": 543,
+  "matched_20k_prefixes": 100,
+  "max_absolute_prefix_error_hr": 2.2737367544323206e-13,
+  "exact_prefix_matches": 90,
+  "objective_parity_tolerance_hr": 1e-10,
+  "independent_seed_counts": {
+    "20000": 30,
+    "100000": 20
+  },
+  "overlapping_seed_count": 20,
+  "not_50_independent_seeds": true,
+  "nominal_actual_distinct_calls": 20200000,
+  "prefix_replay_calls": 2000000,
+  "unique_per_run_checkpoint_paths_no_replay": 18200000,
+  "globally_unique_physical_inputs": false,
+  "completed_batches_rerun": false
+}

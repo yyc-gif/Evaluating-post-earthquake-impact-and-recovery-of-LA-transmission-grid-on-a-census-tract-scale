@@ -1,0 +1,17 @@
+{
+  "paired_unit": "Complete GA random seed",
+  "bootstrap_replicates": 50000,
+  "bootstrap_seed": 2026100902,
+  "pointwise_ci": "95% paired-seed percentile bootstrap plus paired t interval",
+  "multiplicity": "Bonferroni t intervals:16 initialization contrasts at20k,4 at100k/50k; no equivalence claim from nonsignificance",
+  "scientifically_approved_negligibility_tolerance": null,
+  "tolerance_grid_hr": [
+    0.0005,
+    0.001,
+    0.002,
+    0.005,
+    0.01
+  ],
+  "budget_repeated_measure_not_independent": true,
+  "no_physical_generalization": true
+}

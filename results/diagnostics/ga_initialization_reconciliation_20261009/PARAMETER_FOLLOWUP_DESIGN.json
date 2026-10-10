@@ -1,0 +1,130 @@
+{
+  "status": "DESIGN_FIXED_BEFORE_NEW_PARAMETER_RESULTS",
+  "seed_set": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119
+  ],
+  "distinct_budget_per_run": 100000,
+  "variants": {
+    "crossover060": {
+      "crossover": 0.6
+    },
+    "crossover095": {
+      "crossover": 0.95
+    },
+    "mutation005": {
+      "mutation": 0.05
+    },
+    "mutation020": {
+      "mutation": 0.2
+    },
+    "tournament2": {
+      "tournament": 2
+    },
+    "tournament5": {
+      "tournament": 5
+    },
+    "population50": {
+      "population": 50
+    },
+    "population250": {
+      "population": 250
+    },
+    "population500": {
+      "population": 500
+    }
+  },
+  "baseline_source": "Run38006365076: baseline_7h_1w_25n, seeds100..119; reuse completed100k records",
+  "new_runs": 180,
+  "new_distinct_query_ceiling": 18000000,
+  "new_physical_samples": 0,
+  "primary_metric": "Mean best64-planning-realization population-weighted cumulative modeled service loss at100k expensive distinct evaluations",
+  "comparison": "Variant minus same-seed baseline",
+  "inference": "Paired GA-seed t/bootstrap95% intervals;9-comparison Bonferroni t intervals; no significance-driven seed extension",
+  "precision_target_hr": 0.004,
+  "precision_target_is_negligibility_tolerance": false,
+  "precision_rationale": "0.004h resolves one tenth of the0.040290969h post-warm-start reduction from the final-method audit; an optimizer-estimation precision target, not a claim of negligible community impact",
+  "maximum_20k_five_seed_pilot_paired_sd_hr": 0.007992101762235042,
+  "predicted_pointwise_halfwidth_hr": 0.003740418762299945,
+  "seed_count_justification": "20 common100k-control seeds reach the stated pilot-based expected pointwise precision at bounded18m cost; pilot variance has only5 seeds, may not transfer, and achieved precision must be reported. No automatic reliability claim.",
+  "expected_pointwise_precision_met": true,
+  "variance_estimate_is_uncertain": true,
+  "simultaneous_precision_not_guaranteed": true,
+  "population_scaling": [
+    {
+      "population": 50,
+      "heuristics": 7,
+      "warm": 1,
+      "neighbors": 12,
+      "prior_neighbors": 6,
+      "impact_neighbors": 6,
+      "random": 30,
+      "elite": 1
+    },
+    {
+      "population": 100,
+      "heuristics": 7,
+      "warm": 1,
+      "neighbors": 25,
+      "prior_neighbors": 13,
+      "impact_neighbors": 12,
+      "random": 67,
+      "elite": 1
+    },
+    {
+      "population": 250,
+      "heuristics": 7,
+      "warm": 1,
+      "neighbors": 62,
+      "prior_neighbors": 31,
+      "impact_neighbors": 31,
+      "random": 180,
+      "elite": 1
+    },
+    {
+      "population": 500,
+      "heuristics": 7,
+      "warm": 1,
+      "neighbors": 125,
+      "prior_neighbors": 63,
+      "impact_neighbors": 62,
+      "random": 367,
+      "elite": 1
+    }
+  ],
+  "population_effect_scope": "Conditional population-plus-initialization-mixture package:7 heuristic/1 warm/1 elite are fixed counts, neighbors floor(P/4); not a pure population effect at fixed composition percentages.",
+  "checkpoints": [
+    20000,
+    50000,
+    100000
+  ],
+  "crossover_operator": "ordered",
+  "mutation_operator": "swap",
+  "model_or_objective_changes": false,
+  "formal_method_changes": false,
+  "wall_estimate_minutes": [
+    20,
+    45
+  ],
+  "wall_estimate_status": "Engineering extrapolation from completed40s/20k cloud runs and bounded6 local workers, not measured new batch time",
+  "workers": 6,
+  "early_stopping": "None based on outcomes; safety-cap/failure records remain incomplete and are not promoted"
+}
