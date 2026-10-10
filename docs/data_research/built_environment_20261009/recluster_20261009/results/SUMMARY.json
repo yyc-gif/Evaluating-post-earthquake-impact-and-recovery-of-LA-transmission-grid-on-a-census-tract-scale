@@ -1,0 +1,247 @@
+{
+  "provenance": {
+    "base_commit": "031d2c675f8e7d58035d27448be040b809ced086",
+    "source_sha256": {
+      "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv": "2117360be90914f1584e4ea3d7e1db120638225180fc3a17e669a9d227ff8228",
+      "docs/data_research/built_environment_20261009/validation/ACS_TRACT_VALIDATION.csv": "7464ca9a0299cb1771ec00c690ccd632f900907aa18cad6f1cea4030741a18f0",
+      "docs/data_research/built_environment_20261009/validation/NLCD_TRACT_EXTRACTION.csv": "1107e0feaa95fa96518c37b6a5afc6264be6a6338ab9b3a5ba3045dcf14ffb80"
+    },
+    "original_stage7_k5_ari_reproduction": 1.0,
+    "n_original_clusters": 5,
+    "n_residential": 2291,
+    "n_acs_moe_gt10pp": 211,
+    "impervious_status": "PILOT_ONLY_ESRI_MIRROR_NOT_AUTHORITATIVE"
+  },
+  "rule": "Choose highest whole-sample silhouette among k=2..8 with >=2% of tracts per cluster; if none, highest silhouette with failure flag. Stability and held-out outcomes are not selection criteria.",
+  "models": [
+    {
+      "model": "primary_equal_domain",
+      "status": "PRIMARY_VERIFIED",
+      "n": 2291,
+      "p": 9,
+      "selected_k": 2,
+      "passed_min_cluster_2pct": true,
+      "silhouette": 0.2055157635197998,
+      "smallest_cluster": 868,
+      "bootstrap_median_ari": 0.9712897245659435,
+      "bootstrap_min_ari": 0.9261219382507108,
+      "ari_vs_original_old_labels": 0.3276824033683411,
+      "ari_k5_vs_old_labels": 0.3101630853893556,
+      "features": [
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "Pop_Density",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE"
+      ],
+      "blocks": {
+        "housing_urban_context": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "Pop_Density"
+        ],
+        "electrical_topology": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "social_economic": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE"
+        ]
+      }
+    },
+    {
+      "model": "primary_equal_coordinate",
+      "status": "WEIGHT_SENSITIVITY",
+      "n": 2291,
+      "p": 9,
+      "selected_k": 4,
+      "passed_min_cluster_2pct": true,
+      "silhouette": 0.16963232027728092,
+      "smallest_cluster": 196,
+      "bootstrap_median_ari": 0.9622889214895595,
+      "bootstrap_min_ari": 0.921506631750946,
+      "ari_vs_original_old_labels": 0.3297022428146266,
+      "ari_k5_vs_old_labels": 0.3425841767604318,
+      "features": [
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "Pop_Density",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE"
+      ],
+      "blocks": null
+    },
+    {
+      "model": "primary_plus_nri",
+      "status": "RISK_SENSITIVITY",
+      "n": 2291,
+      "p": 10,
+      "selected_k": 2,
+      "passed_min_cluster_2pct": true,
+      "silhouette": 0.200107086918108,
+      "smallest_cluster": 778,
+      "bootstrap_median_ari": 0.952903185163678,
+      "bootstrap_min_ari": 0.9100568597699743,
+      "ari_vs_original_old_labels": 0.004358077289315762,
+      "ari_k5_vs_old_labels": 0.1708270230813093,
+      "features": [
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "Pop_Density",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": {
+        "housing_urban_context": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "Pop_Density"
+        ],
+        "electrical_topology": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "social_economic": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE"
+        ],
+        "multi_hazard_composite": [
+          "NRI_RISK_SCORE"
+        ]
+      }
+    },
+    {
+      "model": "housing_only",
+      "status": "REDUCED_HOUSING_ONLY",
+      "n": 2291,
+      "p": 2,
+      "selected_k": 2,
+      "passed_min_cluster_2pct": true,
+      "silhouette": 0.48461769231054813,
+      "smallest_cluster": 825,
+      "bootstrap_median_ari": 0.9947386863016372,
+      "bootstrap_min_ari": 0.9293405623631109,
+      "ari_vs_original_old_labels": 0.011025140940882949,
+      "ari_k5_vs_old_labels": 0.019456535569410623,
+      "features": [
+        "Pre_1970_Ratio",
+        "housing_5plus_share"
+      ],
+      "blocks": null
+    },
+    {
+      "model": "pilot_plus_impervious",
+      "status": "PILOT_UNVERIFIED_NLCD",
+      "n": 2291,
+      "p": 10,
+      "selected_k": 2,
+      "passed_min_cluster_2pct": true,
+      "silhouette": 0.21324011559255812,
+      "smallest_cluster": 846,
+      "bootstrap_median_ari": 0.9807877627523747,
+      "bootstrap_min_ari": 0.954886598758415,
+      "ari_vs_original_old_labels": 0.3145273678222223,
+      "ari_k5_vs_old_labels": 0.3049349485876066,
+      "features": [
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "Pop_Density",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "impervious_land_fraction"
+      ],
+      "blocks": {
+        "housing_urban_context": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "Pop_Density",
+          "impervious_land_fraction"
+        ],
+        "electrical_topology": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "social_economic": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE"
+        ]
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "model_a": "primary_equal_domain",
+      "model_b": "primary_equal_coordinate",
+      "ari": 0.3372625994281509
+    },
+    {
+      "model_a": "primary_equal_domain",
+      "model_b": "primary_plus_nri",
+      "ari": 0.006812952501519267
+    },
+    {
+      "model_a": "primary_equal_domain",
+      "model_b": "housing_only",
+      "ari": -0.0049823332323319786
+    },
+    {
+      "model_a": "primary_equal_domain",
+      "model_b": "pilot_plus_impervious",
+      "ari": 0.8909004830463312
+    },
+    {
+      "model_a": "primary_equal_coordinate",
+      "model_b": "primary_plus_nri",
+      "ari": 0.008697531421815027
+    },
+    {
+      "model_a": "primary_equal_coordinate",
+      "model_b": "housing_only",
+      "ari": 0.3268572775599561
+    },
+    {
+      "model_a": "primary_equal_coordinate",
+      "model_b": "pilot_plus_impervious",
+      "ari": 0.3403360809508663
+    },
+    {
+      "model_a": "primary_plus_nri",
+      "model_b": "housing_only",
+      "ari": -0.004560752743450092
+    },
+    {
+      "model_a": "primary_plus_nri",
+      "model_b": "pilot_plus_impervious",
+      "ari": 0.014602295748672292
+    },
+    {
+      "model_a": "housing_only",
+      "model_b": "pilot_plus_impervious",
+      "ari": -0.005757661677305823
+    }
+  ]
+}
