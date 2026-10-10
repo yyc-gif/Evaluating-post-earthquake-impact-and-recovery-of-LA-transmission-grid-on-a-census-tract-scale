@@ -132,9 +132,11 @@ def nri_source_inspection(x):
     out["join_status"]="unique_complete_tract_join"
     for left,right in [("NRI_RISK_SCORE","RISK_SCORE"),("NRI_BUILDVALUE","BUILDVALUE"),("SOVI_SCORE","SOVI_SCORE")]:
         if right in frame:
-            lookup=x[["tract_id",left]].merge(frame[["tract_id",right]],on="tract_id",validate="one_to_one")
-            lhs=pd.to_numeric(lookup[left],errors="coerce")
-            rhs=pd.to_numeric(lookup[right],errors="coerce")
+            lookup=x[["tract_id",left]].rename(columns={left:"_saved"}).merge(
+                frame[["tract_id",right]].rename(columns={right:"_original"}),
+                on="tract_id",validate="one_to_one")
+            lhs=pd.to_numeric(lookup["_saved"],errors="coerce")
+            rhs=pd.to_numeric(lookup["_original"],errors="coerce")
             out[f"max_abs_saved_minus_original_{left}"]=float(np.nanmax(np.abs(lhs-rhs)))
 
     cols=[c for c in fields if c not in ("NRI_ID",)]
