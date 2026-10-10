@@ -1,0 +1,253 @@
+{
+  "base_snapshot": "031d2c675f8e7d58035d27448be040b809ced086",
+  "n_tracts": 2291,
+  "input_sha256": {
+    "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv": "2117360be90914f1584e4ea3d7e1db120638225180fc3a17e669a9d227ff8228",
+    "docs/data_research/built_environment_20261009/validation/ACS_TRACT_VALIDATION.csv": "7464ca9a0299cb1771ec00c690ccd632f900907aa18cad6f1cea4030741a18f0",
+    "docs/data_research/built_environment_20261009/validation/NLCD_TRACT_EXTRACTION.csv": "1107e0feaa95fa96518c37b6a5afc6264be6a6338ab9b3a5ba3045dcf14ffb80",
+    "Data/NRI_Table_CensusTracts_California.csv": "5248639b400f46e85d1fa751e257afcc27b43f1575aa2f9fd986d3eedd6df310"
+  },
+  "nri_source": {
+    "rows": 9106,
+    "columns": 467,
+    "matched_field_names": [
+      "BUILDVALUE",
+      "RISK_VALUE",
+      "RISK_SCORE",
+      "EAL_SCORE",
+      "EAL_VALT",
+      "EAL_VALB",
+      "EAL_VALP",
+      "EAL_VALPE",
+      "EAL_VALA",
+      "SOVI_SCORE",
+      "RESL_SCORE"
+    ],
+    "matched_residential_rows": 0,
+    "unique_residential_rows": 0,
+    "join_status": "NRI source not unique/complete"
+  },
+  "nri_corr": [
+    {
+      "b": "NRI_BUILDVALUE",
+      "pearson_r": 0.6113679388621056,
+      "spearman_rho": 0.6242074737424285
+    },
+    {
+      "b": "SOVI_SCORE",
+      "pearson_r": 0.38048514919996257,
+      "spearman_rho": 0.35301415892124205
+    },
+    {
+      "b": "impervious_land_fraction",
+      "pearson_r": 0.27775799300861514,
+      "spearman_rho": 0.30473117047055714
+    },
+    {
+      "b": "housing_single_unit_share",
+      "pearson_r": -0.22755326243980262,
+      "spearman_rho": -0.22649332389503057
+    },
+    {
+      "b": "housing_5plus_share",
+      "pearson_r": 0.20582755821176107,
+      "spearman_rho": 0.2286212720343728
+    },
+    {
+      "b": "housing_10plus_share",
+      "pearson_r": 0.19257841503725492,
+      "spearman_rho": 0.23371727418257288
+    },
+    {
+      "b": "Pre_1970_Ratio",
+      "pearson_r": -0.14642138993658632,
+      "spearman_rho": -0.19755367940932864
+    },
+    {
+      "b": "Init_Supply",
+      "pearson_r": -0.09816301738967675,
+      "spearman_rho": -0.04652446824939433
+    },
+    {
+      "b": "Redundancy_HHI",
+      "pearson_r": 0.03722068647832934,
+      "spearman_rho": 0.032142325829120216
+    },
+    {
+      "b": "Grid_Impact",
+      "pearson_r": -0.031788505496748214,
+      "spearman_rho": -0.027738941520679825
+    },
+    {
+      "b": "Grid_Betweenness",
+      "pearson_r": -0.027929043539764296,
+      "spearman_rho": -0.01615508889832397
+    },
+    {
+      "b": "housing_units_per_km2",
+      "pearson_r": -0.019729081077801202,
+      "spearman_rho": -0.09066343689491241
+    },
+    {
+      "b": "Pop_Density",
+      "pearson_r": -0.012755280954367034,
+      "spearman_rho": -0.11618010505533453
+    },
+    {
+      "b": "T80",
+      "pearson_r": 0.009435190026897054,
+      "spearman_rho": 0.02094171628866807
+    },
+    {
+      "b": "Grid_Degree",
+      "pearson_r": -0.003042871445191265,
+      "spearman_rho": -0.012730331810395219
+    }
+  ],
+  "housing_corr": [
+    {
+      "b": "housing_10plus_share",
+      "pearson_r": 0.955558031883881,
+      "spearman_rho": 0.9627458726388517
+    },
+    {
+      "b": "housing_single_unit_share",
+      "pearson_r": -0.9429257855222527,
+      "spearman_rho": -0.9452903045902207
+    },
+    {
+      "b": "housing_units_per_km2",
+      "pearson_r": 0.6311460056733984,
+      "spearman_rho": 0.7018849103526448
+    },
+    {
+      "b": "impervious_land_fraction",
+      "pearson_r": 0.5136105908856785,
+      "spearman_rho": 0.54368409101776
+    },
+    {
+      "b": "Pop_Density",
+      "pearson_r": 0.49343150662478863,
+      "spearman_rho": 0.546055439288134
+    },
+    {
+      "b": "Pre_1970_Ratio",
+      "pearson_r": -0.44871068931004765,
+      "spearman_rho": -0.4678009472350564
+    },
+    {
+      "b": "NRI_RISK_SCORE",
+      "pearson_r": 0.20582755821176107,
+      "spearman_rho": 0.2286212720343728
+    },
+    {
+      "b": "SOVI_SCORE",
+      "pearson_r": 0.19999774894761632,
+      "spearman_rho": 0.28497100088159716
+    },
+    {
+      "b": "Grid_Betweenness",
+      "pearson_r": 0.18538251520452198,
+      "spearman_rho": 0.15865821929088866
+    },
+    {
+      "b": "T80",
+      "pearson_r": 0.17801794643694785,
+      "spearman_rho": 0.2210171403781134
+    },
+    {
+      "b": "Grid_Impact",
+      "pearson_r": 0.15531847471383287,
+      "spearman_rho": 0.24966496043072786
+    },
+    {
+      "b": "Grid_Degree",
+      "pearson_r": -0.10242227295788779,
+      "spearman_rho": -0.058435273615654613
+    },
+    {
+      "b": "Redundancy_HHI",
+      "pearson_r": -0.09694918383067146,
+      "spearman_rho": -0.0985299372954022
+    },
+    {
+      "b": "NRI_BUILDVALUE",
+      "pearson_r": -0.03735349986418461,
+      "spearman_rho": -0.05091994097230146
+    },
+    {
+      "b": "Init_Supply",
+      "pearson_r": 0.013009645000909141,
+      "spearman_rho": -0.07184220523068542
+    }
+  ],
+  "selected_density_corr": [
+    {
+      "a": "Pop_Density",
+      "b": "housing_units_per_km2",
+      "n": 2291,
+      "pearson_r": 0.9372331593758045,
+      "spearman_rho": 0.9136423261234459
+    },
+    {
+      "a": "housing_units_per_km2",
+      "b": "housing_5plus_share",
+      "n": 2291,
+      "pearson_r": 0.6311460056733984,
+      "spearman_rho": 0.7018849103526448
+    }
+  ],
+  "conditional": [
+    {
+      "model": "RISK | SOVI_SCORE",
+      "r2": 0.14476894876171775,
+      "conditional_vif": 1.1692746639076166
+    },
+    {
+      "model": "RISK | SOVI_SCORE + log BUILDVALUE",
+      "r2": 0.7482434284234977,
+      "conditional_vif": 3.9720909517395686
+    },
+    {
+      "model": "RISK | other 10 original features",
+      "r2": 0.7741295764852374,
+      "conditional_vif": 4.427317151307512
+    },
+    {
+      "model": "RISK | original features except outcomes",
+      "r2": 0.767827991956571,
+      "conditional_vif": 4.307151445289412
+    },
+    {
+      "model": "FIVEPLUS | log pop density",
+      "r2": 0.24347465173000882,
+      "conditional_vif": 1.3218327743898897
+    },
+    {
+      "model": "FIVEPLUS | log housing density",
+      "r2": 0.3983452804774855,
+      "conditional_vif": 1.6620828650585846
+    },
+    {
+      "model": "FIVEPLUS | age + log population density",
+      "r2": 0.43670122854908877,
+      "conditional_vif": 1.7752568453580324
+    },
+    {
+      "model": "FIVEPLUS | age + log housing density",
+      "r2": 0.5505311904823152,
+      "conditional_vif": 2.224848485199848
+    },
+    {
+      "model": "FIVEPLUS | age + both densities",
+      "r2": 0.5929149790525827,
+      "conditional_vif": 2.4564893045503853
+    },
+    {
+      "model": "FIVEPLUS | age + both densities + impervious PILOT",
+      "r2": 0.6385324190886086,
+      "conditional_vif": 2.7664998268410015
+    }
+  ],
+  "strictly_held_from_admission": "preexisting cluster assignments, historical cluster effect sizes"
+}
