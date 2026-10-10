@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/stage7-pre-event-typology.yml
       - docs/data_research/built_environment_20261009/recluster_20261009/recluster.py
+      - docs/data_research/built_environment_20261009/recluster_20261009/source_qa.py
 
 permissions:
   contents: write
@@ -29,7 +30,7 @@ jobs:
       - name: Pull only necessary previously audited LFS data
         run: |
           git lfs install --local
-          git lfs pull --include="Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv,docs/data_research/built_environment_20261009/validation/ACS_TRACT_VALIDATION.csv,docs/data_research/built_environment_20261009/validation/NLCD_TRACT_EXTRACTION.csv"
+          git lfs pull --include="Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv,docs/data_research/built_environment_20261009/validation/ACS_TRACT_VALIDATION.csv,docs/data_research/built_environment_20261009/validation/NLCD_TRACT_EXTRACTION.csv,docs/data_research/built_environment_20261009/validation/sources/B25024_06.csv.zip,docs/data_research/built_environment_20261009/validation/sources/B25034_06.csv.zip"
           ls -lh "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv" "docs/data_research/built_environment_20261009/validation/ACS_TRACT_VALIDATION.csv" "docs/data_research/built_environment_20261009/validation/NLCD_TRACT_EXTRACTION.csv"
       - uses: actions/setup-python@v5
         with:
@@ -39,6 +40,8 @@ jobs:
       - name: Validate syntax and run independent clustering
         run: |
           python -m py_compile docs/data_research/built_environment_20261009/recluster_20261009/recluster.py
+          python -m py_compile docs/data_research/built_environment_20261009/recluster_20261009/source_qa.py
+          python docs/data_research/built_environment_20261009/recluster_20261009/source_qa.py
           python docs/data_research/built_environment_20261009/recluster_20261009/recluster.py
       - name: Upload complete output even if branch write fails
         if: success()
