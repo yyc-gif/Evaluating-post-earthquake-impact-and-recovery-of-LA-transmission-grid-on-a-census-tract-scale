@@ -163,6 +163,8 @@ def run():
           "RISK_ADDED_AS_FOURTH_DOMAIN"),
         "housing_two_measure":(BUILT[:2],None,"AGE_CONFIGURATION_ONLY"),
         "housing_three_measure":(BUILT,None,"PHYSICAL_HOUSING_ONLY"),
+        "housing_plus_impervious_pilot":([*BUILT,"impervious_land_fraction"],None,
+          "FOUR_DIMENSION_PHYSICAL_PILOT_UNVERIFIED_NLCD"),
         "pilot_plus_impervious":([*PRIMARY,"impervious_land_fraction"],
           {**BLOCKS,"housing_urban_context":[*BUILT,*CONTEXT,"impervious_land_fraction"]},
           "PILOT_UNVERIFIED_NLCD"),
@@ -199,7 +201,8 @@ def run():
             features=cols,blocks=blocks))
         prepared[name]=(x,labels)
     report_models=["primary_equal_domain","housing_three_measure",
-                   "housing_two_measure","pilot_plus_impervious",
+                   "housing_two_measure","housing_plus_impervious_pilot",
+                   "pilot_plus_impervious",
                    "primary_equal_coordinate","population_density_proxy"]
     profile_report={}
     for name in report_models:
