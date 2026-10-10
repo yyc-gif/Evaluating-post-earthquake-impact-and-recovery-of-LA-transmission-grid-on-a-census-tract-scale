@@ -50,12 +50,15 @@ def main():
             row=dict(line.split(' ',1) for line in pointer.decode().splitlines())
             objects[row['oid'][7:]]=int(row['size'])
     endpoint='https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale.git/info/lfs/objects/batch'
-    response=requests.post(endpoint,auth=(fields['username'],fields['password']),
-        headers={'Accept':'application/vnd.git-lfs+json','Content-Type':'application/vnd.git-lfs+json'},
-        json={'operation':'download','transfers':['basic'],'ref':{'name':'refs/heads/'+BRANCH},
-            'objects':[{'oid':oid,'size':size} for oid,size in objects.items()]},timeout=90)
-    response.raise_for_status()
-    payloads=response.json()['objects']
+    requests_list=[{'oid':oid,'size':size} for oid,size in objects.items()]
+    payloads=[]
+    for start in range(0,len(requests_list),40):
+        response=requests.post(endpoint,auth=(fields['username'],fields['password']),
+            headers={'Accept':'application/vnd.git-lfs+json','Content-Type':'application/vnd.git-lfs+json'},
+            json={'operation':'download','transfers':['basic'],'ref':{'name':'refs/heads/'+BRANCH},
+                'objects':requests_list[start:start+40]},timeout=90)
+        response.raise_for_status()
+        payloads.extend(response.json()['objects'])
     assert {o['oid'] for o in payloads}==set(objects)
     for obj in payloads:
         assert 'error' not in obj,obj
