@@ -1,0 +1,327 @@
+{
+  "base": "031d2c675f8e7d58035d27448be040b809ced086",
+  "files": {
+    "formal_stage7": {
+      "path": "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv",
+      "exists": true,
+      "bytes": 984614,
+      "sha256": "2117360be90914f1584e4ea3d7e1db120638225180fc3a17e669a9d227ff8228",
+      "hydrated": true,
+      "rows": 2291,
+      "columns": [
+        "tract_id",
+        "scenario",
+        "cluster",
+        "T50",
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "Pop_Density",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE",
+        "Hotspot_SVI_Score",
+        "Hotspot_T80_RankPct",
+        "Hotspot_Pre1970_RankPct",
+        "Hotspot_NRI_Risk_RankPct",
+        "Hotspot_SVI_RankPct",
+        "SlowVulnerable_Hotspot_Score",
+        "SlowVulnerable_Hotspot_Rank",
+        "SlowVulnerable_Hotspot_Top10",
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5"
+      ],
+      "tract_id_nunique": 2291
+    },
+    "formal_kpis": {
+      "path": "Formal_Experiment_20260923/Stage 5 Output_expanded/tract_kpis_2pc50.csv",
+      "exists": true,
+      "bytes": 154774,
+      "sha256": "a418830b3205c929a483036c65da25fa5026049fa81ee058efcae6acc9af2453",
+      "hydrated": true,
+      "rows": 2315,
+      "columns": [
+        "tract_id",
+        "T50",
+        "T80",
+        "T90"
+      ],
+      "tract_id_nunique": 2315
+    },
+    "formal_supply": {
+      "path": "Formal_Experiment_20260923/Stage 1 Output_expanded/MC_Tract_Supply_2pc50.csv",
+      "exists": true,
+      "bytes": 64502,
+      "sha256": "6cdd3e20f991438c5d8da45dd09486c220bb76752b708e4a155c5acd7559b8e4",
+      "hydrated": true,
+      "rows": 2315,
+      "columns": [
+        "tract_id",
+        "scenario",
+        "supply"
+      ],
+      "tract_id_nunique": 2315
+    },
+    "legacy_kpis": {
+      "path": "provenance/legacy_outputs/stage3/tract_kpis_2pc50.csv",
+      "exists": true,
+      "bytes": 108435,
+      "sha256": "b0cd9aee2d32761a2e433807d8e90f9907120e68b00815a718019045b2049e17",
+      "hydrated": true,
+      "rows": 2315,
+      "columns": [
+        "tract_id",
+        "AUC",
+        "T50",
+        "T80"
+      ],
+      "tract_id_nunique": 2315
+    },
+    "legacy_stage5": {
+      "path": "provenance/legacy_outputs/stage5/tract_kpis_2pc50.csv",
+      "exists": true,
+      "bytes": 115482,
+      "sha256": "90c0b14bce4a239516527f69514a678605de975b137eecc355b2e89291b0d6df",
+      "hydrated": true,
+      "rows": 2315,
+      "columns": [
+        "tract_id",
+        "AUC",
+        "T50",
+        "T80"
+      ],
+      "tract_id_nunique": 2315
+    },
+    "resident_validation": {
+      "path": "docs/data_research/built_environment_20261009/validation/RESIDENTIAL_VALIDATION_MATRIX.csv",
+      "exists": true,
+      "bytes": 2829962,
+      "sha256": "13bba9397a41c6ea671e5521984d2ddf5d96e210040407dc81bab1f422451c76",
+      "hydrated": true,
+      "rows": 2291,
+      "columns": [
+        "tract_id",
+        "scenario",
+        "cluster",
+        "T50",
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "Pop_Density",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE",
+        "Hotspot_SVI_Score",
+        "Hotspot_T80_RankPct",
+        "Hotspot_Pre1970_RankPct",
+        "Hotspot_NRI_Risk_RankPct",
+        "Hotspot_SVI_RankPct",
+        "SlowVulnerable_Hotspot_Score",
+        "SlowVulnerable_Hotspot_Rank",
+        "SlowVulnerable_Hotspot_Top10",
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5",
+        "Housing_Units_Total",
+        "housing_total",
+        "denominator_ci90_includes_zero",
+        "housing_5plus_share",
+        "housing_5plus_share_moe90",
+        "housing_5plus_share_boundary_model",
+        "housing_5plus_share_zero_replicate_denominators",
+        "housing_5plus_share_ci90_low",
+        "housing_5plus_share_ci90_high",
+        "housing_10plus_share",
+        "housing_10plus_share_moe90",
+        "housing_10plus_share_boundary_model",
+        "housing_10plus_share_zero_replicate_denominators",
+        "housing_10plus_share_ci90_low",
+        "housing_10plus_share_ci90_high",
+        "housing_single_unit_share",
+        "housing_single_unit_share_moe90",
+        "housing_single_unit_share_boundary_model",
+        "housing_single_unit_share_zero_replicate_denominators",
+        "housing_single_unit_share_ci90_low",
+        "housing_single_unit_share_ci90_high",
+        "housing_2to4_share",
+        "housing_2to4_share_moe90",
+        "housing_2to4_share_boundary_model",
+        "housing_2to4_share_zero_replicate_denominators",
+        "housing_2to4_share_ci90_low",
+        "housing_2to4_share_ci90_high",
+        "housing_mobile_other_share",
+        "housing_mobile_other_share_moe90",
+        "housing_mobile_other_share_boundary_model",
+        "housing_mobile_other_share_zero_replicate_denominators",
+        "housing_mobile_other_share_ci90_low",
+        "housing_mobile_other_share_ci90_high",
+        "Pre_1970_Ratio_moe90",
+        "Pre_1970_Ratio_boundary_model",
+        "Pre_1970_Ratio_zero_replicate_denominators",
+        "Pre_1970_Ratio_ci90_low",
+        "Pre_1970_Ratio_ci90_high",
+        "housing_5plus_share_approx_moe90",
+        "approx_plus_ratio_fallback",
+        "residential_member",
+        "acs_status",
+        "dominant_configuration",
+        "ALAND",
+        "AWATER",
+        "geometry_area_m2",
+        "valid_area_m2",
+        "water_area_m2",
+        "land_area_m2",
+        "missing_area_m2",
+        "impervious_land_fraction",
+        "impervious_whole_tract_valid_fraction",
+        "impervious_area_m2",
+        "land_valid_pixel_equivalents",
+        "valid_coverage_fraction",
+        "land_mask_fraction",
+        "water_mask_fraction",
+        "coverage_status",
+        "center_cell_land_fraction",
+        "all_touched_land_fraction",
+        "center_minus_exact",
+        "all_touched_minus_exact",
+        "water_mask_mean_change"
+      ],
+      "tract_id_nunique": 2291
+    }
+  },
+  "status": "FORMAL_MATCHED_B_ABSENT",
+  "stage7_formal_t80_vs_kpi": {
+    "n": 2291,
+    "max_abs_diff": 0.0,
+    "num_exceed_1e-8": 0
+  },
+  "physical_proxy_correlations": [
+    {
+      "a": "Pre_1970_Ratio",
+      "b": "housing_5plus_share",
+      "n": 2291,
+      "r": -0.44871068931004776,
+      "rho": -0.46780094723505644
+    },
+    {
+      "a": "Pre_1970_Ratio",
+      "b": "housing_units_per_km2",
+      "n": 2291,
+      "r": -0.18551685008751603,
+      "rho": -0.21836391670672065
+    },
+    {
+      "a": "Pre_1970_Ratio",
+      "b": "Pop_Density",
+      "n": 2291,
+      "r": -0.12196122424954876,
+      "rho": -0.13327995851140667
+    },
+    {
+      "a": "Pre_1970_Ratio",
+      "b": "impervious_land_fraction",
+      "n": 2291,
+      "r": -0.03642991959817055,
+      "rho": -0.15304076414804366
+    },
+    {
+      "a": "housing_5plus_share",
+      "b": "housing_units_per_km2",
+      "n": 2291,
+      "r": 0.6630485410328381,
+      "rho": 0.7018849103526448
+    },
+    {
+      "a": "housing_5plus_share",
+      "b": "Pop_Density",
+      "n": 2291,
+      "r": 0.569902150113126,
+      "rho": 0.546055439288134
+    },
+    {
+      "a": "housing_5plus_share",
+      "b": "impervious_land_fraction",
+      "n": 2291,
+      "r": 0.5136105908856786,
+      "rho": 0.54368409101776
+    },
+    {
+      "a": "housing_units_per_km2",
+      "b": "Pop_Density",
+      "n": 2291,
+      "r": 0.8777694330824319,
+      "rho": 0.9136423261234459
+    },
+    {
+      "a": "housing_units_per_km2",
+      "b": "impervious_land_fraction",
+      "n": 2291,
+      "r": 0.4923274552629168,
+      "rho": 0.6100892162707662
+    },
+    {
+      "a": "Pop_Density",
+      "b": "impervious_land_fraction",
+      "n": 2291,
+      "r": 0.5411881576040012,
+      "rho": 0.6153982919733718
+    }
+  ],
+  "social_economic_overlaps": {
+    "SOVI_vs_log_BUILDVALUE": {
+      "n": 2291,
+      "r": -0.32444262242611915,
+      "rho": -0.3514836264269496
+    },
+    "SOVI_vs_pre1970": {
+      "n": 2291,
+      "r": 0.0335485632564617,
+      "rho": -0.02955430050395614
+    },
+    "SOVI_vs_5plus": {
+      "n": 2291,
+      "r": 0.19999774894761638,
+      "rho": 0.28497100088159716
+    },
+    "risk_vs_SOVI": {
+      "n": 2291,
+      "r": 0.38048514919996257,
+      "rho": 0.35301415892124205
+    },
+    "risk_vs_log_BUILDVALUE": {
+      "n": 2291,
+      "r": 0.6113679388621057,
+      "rho": 0.6242074737424285
+    }
+  },
+  "density_overlaps": {
+    "age_vs_log_housing_density": {
+      "n": 2291,
+      "r": -0.09568384546869439,
+      "rho": -0.21836391670672065
+    },
+    "5plus_vs_log_housing_density": {
+      "n": 2291,
+      "r": 0.6311460056733985,
+      "rho": 0.7018849103526448
+    },
+    "log_pop_vs_log_housing_density": {
+      "n": 2291,
+      "r": 0.9372331593758048,
+      "rho": 0.9136423261234459
+    }
+  }
+}
