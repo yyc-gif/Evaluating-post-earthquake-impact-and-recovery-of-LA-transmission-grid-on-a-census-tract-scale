@@ -1,0 +1,16 @@
+{
+  "n_recomputed": 2291,
+  "max_abs_config_share_difference": 1.1102230246251565e-16,
+  "max_abs_config_moe90_difference": 9.71445146547012e-17,
+  "max_abs_pre1970_share_difference": 1.1102230246251565e-16,
+  "recomputed_moe_gt10pp": 211,
+  "boundary_model_n": 158,
+  "recomputed_median_moe_pp": 6.748201970446716,
+  "source_hashes": {
+    "sources/B25024_06.csv.zip": "4ceecc607150978ce95e846cc3f9d6fb67e1249523cab87c737251343efdeb3d",
+    "sources/B25034_06.csv.zip": "138eef5722ddefb4c04b9aeba4a20f5e1c5656a215d41efa6b7b97943eeabaf2",
+    "ACS_TRACT_VALIDATION.csv": "7464ca9a0299cb1771ec00c690ccd632f900907aa18cad6f1cea4030741a18f0",
+    "NLCD_TRACT_EXTRACTION.csv": "1107e0feaa95fa96518c37b6a5afc6264be6a6338ab9b3a5ba3045dcf14ffb80"
+  },
+  "readme": "Recomputed from archived original California ACS B25024/B25034 2018-2022 Census 80 replicate ZIPs. This does not independently certify impervious rasters."
+}

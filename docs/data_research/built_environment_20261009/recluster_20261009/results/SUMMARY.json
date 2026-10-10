@@ -83,13 +83,57 @@
       "blocks": null
     },
     {
-      "model": "primary_plus_nri",
-      "status": "RISK_SENSITIVITY",
+      "model": "primary_plus_nri_same_blocks",
+      "status": "RISK_WITHIN_FIXED_DOMAINS",
+      "n": 2291,
+      "p": 10,
+      "selected_k": 4,
+      "passed_min_cluster_2pct": true,
+      "silhouette": 0.1614648586665186,
+      "smallest_cluster": 192,
+      "bootstrap_median_ari": 0.9417610352729897,
+      "bootstrap_min_ari": 0.41396203432732287,
+      "ari_vs_original_old_labels": 0.28171084730871887,
+      "ari_k5_vs_old_labels": 0.26907210859126657,
+      "features": [
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "Pop_Density",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": {
+        "housing_urban_context": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "Pop_Density"
+        ],
+        "electrical_topology": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "social_economic": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE",
+          "NRI_RISK_SCORE"
+        ]
+      }
+    },
+    {
+      "model": "primary_plus_nri_separate_block",
+      "status": "RISK_ADDED_AS_FOURTH_DOMAIN",
       "n": 2291,
       "p": 10,
       "selected_k": 2,
       "passed_min_cluster_2pct": true,
-      "silhouette": 0.200107086918108,
+      "silhouette": 0.20010708691810797,
       "smallest_cluster": 778,
       "bootstrap_median_ari": 0.952903185163678,
       "bootstrap_min_ari": 0.9100568597699743,
@@ -200,7 +244,12 @@
     },
     {
       "model_a": "primary_equal_domain",
-      "model_b": "primary_plus_nri",
+      "model_b": "primary_plus_nri_same_blocks",
+      "ari": 0.27528768470052184
+    },
+    {
+      "model_a": "primary_equal_domain",
+      "model_b": "primary_plus_nri_separate_block",
       "ari": 0.006812952501519267
     },
     {
@@ -215,7 +264,12 @@
     },
     {
       "model_a": "primary_equal_coordinate",
-      "model_b": "primary_plus_nri",
+      "model_b": "primary_plus_nri_same_blocks",
+      "ari": 0.6913630112165211
+    },
+    {
+      "model_a": "primary_equal_coordinate",
+      "model_b": "primary_plus_nri_separate_block",
       "ari": 0.008697531421815027
     },
     {
@@ -229,12 +283,27 @@
       "ari": 0.3403360809508663
     },
     {
-      "model_a": "primary_plus_nri",
+      "model_a": "primary_plus_nri_same_blocks",
+      "model_b": "primary_plus_nri_separate_block",
+      "ari": 0.05415989736088974
+    },
+    {
+      "model_a": "primary_plus_nri_same_blocks",
+      "model_b": "housing_only",
+      "ari": 0.307158649383739
+    },
+    {
+      "model_a": "primary_plus_nri_same_blocks",
+      "model_b": "pilot_plus_impervious",
+      "ari": 0.26373195679618733
+    },
+    {
+      "model_a": "primary_plus_nri_separate_block",
       "model_b": "housing_only",
       "ari": -0.004560752743450092
     },
     {
-      "model_a": "primary_plus_nri",
+      "model_a": "primary_plus_nri_separate_block",
       "model_b": "pilot_plus_impervious",
       "ari": 0.014602295748672292
     },
