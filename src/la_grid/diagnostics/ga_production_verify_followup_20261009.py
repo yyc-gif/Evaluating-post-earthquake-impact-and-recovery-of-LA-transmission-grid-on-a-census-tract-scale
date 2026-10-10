@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 from la_grid.paths import REPO_ROOT
-from la_grid.diagnostics.ga_hyperparameter_study_20261009 import load
+from la_grid.diagnostics.ga_init_param_20261009 import load
 from la_grid.diagnostics import ga_search_budget_sensitivity as old
 from la_grid.revision.r1_equity_amendment_execute import execution_context
 from la_grid.revision.r1_realization_scheduling import RealizationInputs
@@ -24,7 +24,7 @@ CANDIDATE=ROOT/"ILS_BEST_SEED304_PLANNING_CANDIDATE.json"
 FROZEN=REPO_ROOT/"results/diagnostics/final_ga_method_20261009/SELECTED_SEQUENCE.json"
 
 def main():
-    kernel,inc,quality=load()
+    kernel,inc,quality,_=load()
     candidate=json.loads(CANDIDATE.read_text(encoding="utf-8"))
     baseline=json.loads(FROZEN.read_text(encoding="utf-8"))
     sequences={
