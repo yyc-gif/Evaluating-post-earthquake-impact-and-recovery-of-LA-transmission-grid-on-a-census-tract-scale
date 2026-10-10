@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/stage7-eal-initialization-stability.yml
       - docs/data_research/built_environment_20261009/nri_eal_redundancy_audit_20261009/followup_20261010/test_initialization_stability.py
+      - docs/data_research/built_environment_20261009/nri_eal_redundancy_audit_20261009/followup_20261010/test_equal_domain_stability.py
 
 permissions:
   contents: write
@@ -42,6 +43,8 @@ jobs:
         run: |
           python -m py_compile docs/data_research/built_environment_20261009/nri_eal_redundancy_audit_20261009/followup_20261010/test_initialization_stability.py
           python docs/data_research/built_environment_20261009/nri_eal_redundancy_audit_20261009/followup_20261010/test_initialization_stability.py
+          python -m py_compile docs/data_research/built_environment_20261009/nri_eal_redundancy_audit_20261009/followup_20261010/test_equal_domain_stability.py
+          python docs/data_research/built_environment_20261009/nri_eal_redundancy_audit_20261009/followup_20261010/test_equal_domain_stability.py
       - name: Save all independent output
         uses: actions/upload-artifact@v4
         with:
