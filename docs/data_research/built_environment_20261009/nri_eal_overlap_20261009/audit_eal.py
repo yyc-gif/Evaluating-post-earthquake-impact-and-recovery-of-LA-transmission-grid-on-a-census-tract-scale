@@ -4,7 +4,7 @@ Scientific guardrails: SOVI_SCORE stays mandatory; no earthquake-only substituti
 no cluster-label-driven feature choice, no edits to Stage 7 scientific outputs.
 """
 from __future__ import annotations
-import json,hashlib,itertools
+import json,hashlib,itertools,re
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -50,7 +50,8 @@ def read_study():
     raw=raw.loc[raw.tract_id.isin(set(old.tract_id))].copy()
     if len(raw)!=len(old) or raw.tract_id.duplicated().any():
         raise ValueError("FEMA original source did not exactly match 2291 archived tracts")
-    original_fields=[x for x in FIELDS if x in raw.columns]
+    hazard_fields=sorted(c for c in raw.columns if re.fullmatch(r"[A-Z]{4}_EALT",c))
+    original_fields=[x for x in FIELDS if x in raw.columns]+hazard_fields
     source_frame=raw[["tract_id"]+original_fields].rename(columns={"SOVI_SCORE":"FEMA_SOVI_SCORE"})
     available=[("FEMA_SOVI_SCORE" if x=="SOVI_SCORE" else x) for x in original_fields]
     matched=old[["tract_id","SOVI_SCORE","NRI_BUILDVALUE","NRI_RISK_SCORE","Pop_Density"]].merge(
@@ -143,6 +144,45 @@ def main():
         rows.append({"measure_a":a,"measure_b":b,**cpair(x[a],x[b])})
     pairs=pd.DataFrame(rows)
     pairs.to_csv(OUT/"PAIRWISE_CORRELATIONS.csv",index=False)
+    hazard_composition=None
+    hazard_cols=sorted(c for c in x.columns if re.fullmatch(r"[A-Z]{4}_EALT",c))
+    if hazard_cols and "EAL_VALT" in x:
+        hazard=x[hazard_cols].apply(pd.to_numeric,errors="coerce")
+        total=x["EAL_VALT"]
+        valid=total.gt(0)&total.notna()
+        hazsum=hazard.sum(axis=1,min_count=1)
+        residual=hazsum-total
+        shares=hazard.div(total,axis=0).where(valid, np.nan)
+        top1=shares.max(axis=1)
+        top3=np.sort(shares.fillna(0).to_numpy(float),axis=1)[:,-3:].sum(axis=1)
+        hhi=np.square(shares.fillna(0)).sum(axis=1).where(valid,np.nan)
+        hazard_composition={
+          "n_source_hazard_columns":len(hazard_cols),
+          "all_columns":hazard_cols,
+          "sum_hazard_eal_minus_total_max_abs":float(residual.abs().max()),
+          "sum_hazard_eal_minus_total_median_abs":float(residual.abs().median()),
+          "mean_dominant_hazard_share":float(top1[valid].mean()),
+          "median_dominant_hazard_share":float(top1[valid].median()),
+          "median_top_three_share":float(np.median(top3[valid.to_numpy()])),
+          "median_effective_hazards":float(np.nanmedian((1/hhi).to_numpy())),
+          "mean_hazard_share":{
+             c:float(shares[c].mean()) for c in hazard_cols
+          },
+          "aggregate_expected_loss_share":{
+             c:float(hazard[c].fillna(0).sum()/total[valid].sum()) for c in hazard_cols
+          },
+          "n_hazards_nonzero_by_tract":{
+             "median":float(hazard.gt(0).sum(axis=1).median()),
+             "minimum":int(hazard.gt(0).sum(axis=1).min()),
+             "maximum":int(hazard.gt(0).sum(axis=1).max())
+          }
+        }
+        pd.DataFrame({"tract_id":x["tract_id"],"EAL_VALT":total,"dominant_hazard_share":top1,
+           "top3_hazard_share":top3,"effective_hazard_count":1/hhi}).to_csv(
+            OUT/"TRACT_HAZARD_CONCENTRATION.csv",index=False)
+        pd.DataFrame([{"hazard_column":c,"mean_tract_share":shares[c].mean(),
+              "share_of_total_monetary_eal":hazard_composition["aggregate_expected_loss_share"][c]}
+              for c in hazard_cols]).to_csv(OUT/"EAL_HAZARD_COMPOSITION.csv",index=False)
     delta_composition=None
     if all(t in x for t in ["EAL_VALT","EAL_VALB","EAL_VALPE","EAL_VALA"]):
         diff=x["EAL_VALT"]-(x["EAL_VALB"]+x["EAL_VALPE"]+x["EAL_VALA"])
@@ -155,6 +195,7 @@ def main():
       "identity_checks":checks,"field_diagnostics":diag,
       "pairwise_key":{},
       "vif_models":vif_rows,"component_sum_check":delta_composition,
+      "hazard_composition":hazard_composition,
       "method":"Pearson and Spearman on same exact tract IDs, monetary values log1p only when nonnegative",
       "decision_status":"DIAGNOSTIC_ONLY; keep SOVI mandatory; no completed model selection"}
     keypairs=[
@@ -180,6 +221,7 @@ def main():
     print("EAL_AUDIT_BEGIN")
     print(json.dumps({"identity_checks":checks,"pairwise_key":full_summary["pairwise_key"],
        "vif_models":vif_rows,"component_sum_check":delta_composition,
+       "hazard_composition":hazard_composition,
        "field_names":fields},indent=2,allow_nan=False))
     print("EAL_AUDIT_END")
 if __name__=="__main__":main()
