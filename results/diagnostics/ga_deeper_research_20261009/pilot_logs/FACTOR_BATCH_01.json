@@ -1,0 +1,775 @@
+{
+  "source_run_id": 38023902724,
+  "seed_count": 4,
+  "seeds": [
+    201,
+    205,
+    206,
+    210
+  ],
+  "distinct_budget": 20000,
+  "expected_configurations": 19,
+  "data_scope": "Search result summaries from successful GitHub Actions logs; full chromosomes in artifacts",
+  "records": [
+    {
+      "case": "p50_k3_m10_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 32.99921792972671,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 237508,
+      "expensive_calls": 20000,
+      "sequence_sha256": "93565948654f46ae192a76ddc1d37521399a58a5cd7d5cfc70f34ba74734b6ad"
+    },
+    {
+      "case": "p50_k3_m10_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 32.99975946594581,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 224243,
+      "expensive_calls": 20000,
+      "sequence_sha256": "9e7c86fd21c3b8d6d1cef5ea0aeae714121d832d8b4662e6716796c2f00f0e11"
+    },
+    {
+      "case": "p50_k3_m20_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.007800141255686,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 124532,
+      "expensive_calls": 20000,
+      "sequence_sha256": "112d2939c2f8d022f0fd6fd48bff14f401b9ac2c6663b9816db8cdda4a58f6d8"
+    },
+    {
+      "case": "p50_k3_m20_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.008418153299175,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 123157,
+      "expensive_calls": 20000,
+      "sequence_sha256": "7337077ed49ee5228895301b3aa62e4a3e8907c8e7ca1b88167c3e803ca2c5cd"
+    },
+    {
+      "case": "p50_k5_m10_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.00146868996784,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 232921,
+      "expensive_calls": 20000,
+      "sequence_sha256": "8e98b3e8d36779f95da69ec29a3cb62079930f3796da801ae09a496c48079710"
+    },
+    {
+      "case": "p50_k5_m10_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.000988549899134,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 258441,
+      "expensive_calls": 20000,
+      "sequence_sha256": "9101dc3d48e010fa89533a55b1f41456dc429e777a18b0e93f822944ba36bad6"
+    },
+    {
+      "case": "p50_k5_m20_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 32.99901198456216,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 139813,
+      "expensive_calls": 20000,
+      "sequence_sha256": "4e9ddaee6ecf1e23fbe6a112e290e933f66cb7c7d19636ee75f1e86eb5797b31"
+    },
+    {
+      "case": "p50_k5_m20_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.00595476430073,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 139023,
+      "expensive_calls": 20000,
+      "sequence_sha256": "eab7f3cc716636f4d5a542ab70b13891480f109c0248a0b6f48d74251b219005"
+    },
+    {
+      "case": "p100_k3_m10_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.0020997161922,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 184092,
+      "expensive_calls": 20000,
+      "sequence_sha256": "559fa06b62f042464a7e49703ef41dc58faad3f8de8a917a608eec08edec64ed"
+    },
+    {
+      "case": "p100_k3_m10_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.00216049845516,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 171491,
+      "expensive_calls": 20000,
+      "sequence_sha256": "9629d53f0986031e12f3be73892151458029a56d8d5e60732e9e768cb0da6e4b"
+    },
+    {
+      "case": "p100_k3_m20_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.00920691447798,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 106836,
+      "expensive_calls": 20000,
+      "sequence_sha256": "e247035185c6c346ec0a89f23b402704bfaa46da653ff4d4337ec4ada1958f33"
+    },
+    {
+      "case": "p100_k3_m20_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.0065766638946,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 116862,
+      "expensive_calls": 20000,
+      "sequence_sha256": "fec9721a8b762d140975ea60173a72cf3ff1ff9e6b6c4086a6601eba0e17034a"
+    },
+    {
+      "case": "p100_k5_m10_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.00309815251494,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 176251,
+      "expensive_calls": 20000,
+      "sequence_sha256": "d896043271e3cbfce52e5beb0f369497975a65ab8a2f8df3de6f063d407278d7"
+    },
+    {
+      "case": "p100_k5_m10_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.000711406553854,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 200480,
+      "expensive_calls": 20000,
+      "sequence_sha256": "fccbc0ff7a2779f50e901c04d0dc190ac8c102782ae05cbd282cb2a981a11317"
+    },
+    {
+      "case": "p100_k5_m20_nnone",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.0006390360952,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 138467,
+      "expensive_calls": 20000,
+      "sequence_sha256": "0afb635d41666c7167ea84eb9e711d7c9143743183f89f5c9423fdf42308cd08"
+    },
+    {
+      "case": "p100_k5_m20_nquarter",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.00019216202446,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 133907,
+      "expensive_calls": 20000,
+      "sequence_sha256": "46e3056b8b99bc5072850850bcbf5d3d104986b813e533518dd7a9955dc55971"
+    },
+    {
+      "case": "heuristic_only_no_quality",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.015881689033975,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 163060,
+      "expensive_calls": 20000,
+      "sequence_sha256": "b0c75517b74be349e6dd1e7327332f5f0a88c28c603374f2984881a4bf9bbef8"
+    },
+    {
+      "case": "impact_only_archive_no_quality",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.013539440175016,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 159810,
+      "expensive_calls": 20000,
+      "sequence_sha256": "1cbcea89809638e0c17c8007a5f88a092f38c4ebd931db241fcfbe44ca962967"
+    },
+    {
+      "case": "random_only_archive_no_quality",
+      "seed": 201,
+      "budget": 20000,
+      "final_loss_hr": 33.038553579569715,
+      "init_best_hr": 36.20154812683113,
+      "attempts": 114664,
+      "expensive_calls": 20000,
+      "sequence_sha256": "4f3cbc478453fb6f288700bcc1c8be50dd1e61c82ef5631c242aef5ea5ef40dd"
+    },
+    {
+      "case": "p50_k3_m10_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.002753737460125,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 236051,
+      "expensive_calls": 20000,
+      "sequence_sha256": "30c83bc6e1c33273ac06bfa667e949a60b0f8404f5a85d78e5ac5fd36db5193b"
+    },
+    {
+      "case": "p50_k3_m10_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00536407201708,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 229557,
+      "expensive_calls": 20000,
+      "sequence_sha256": "eae115a0c004f98c31f50048d192f77b16dd34f26fd09a4d78f8f3efb93632b0"
+    },
+    {
+      "case": "p50_k3_m20_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.001684504013674,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 133137,
+      "expensive_calls": 20000,
+      "sequence_sha256": "0f3e9238f36f7b2bafad24042658087576178e02f76de1ba60ff8abe247118c3"
+    },
+    {
+      "case": "p50_k3_m20_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00238998916139,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 126314,
+      "expensive_calls": 20000,
+      "sequence_sha256": "0b4226ebcdd3f14160e380a85a03fcea173eb6745e01bdf79a7ce4b59238f1b9"
+    },
+    {
+      "case": "p50_k5_m10_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00405068477624,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 232645,
+      "expensive_calls": 20000,
+      "sequence_sha256": "e45ec9cd2ace4dc713dc39341302294831650cdd54e12dfafe0a8cf3ab19875b"
+    },
+    {
+      "case": "p50_k5_m10_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 32.99966132999475,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 255057,
+      "expensive_calls": 20000,
+      "sequence_sha256": "9882f1d8cc5ac1dafb595c957733ebe0b118c71d6185c0abab6dbb74b63aeb25"
+    },
+    {
+      "case": "p50_k5_m20_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00279708288989,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 135708,
+      "expensive_calls": 20000,
+      "sequence_sha256": "02b6cc56d772c88b8bb3de8e79bb36375f613dfb3557582c6b4c939a745005ca"
+    },
+    {
+      "case": "p50_k5_m20_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 32.99928056373866,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 130622,
+      "expensive_calls": 20000,
+      "sequence_sha256": "421fb64bf797d02bdb5badb70b15a25778909aa5c10b6d6930b2bba489114b90"
+    },
+    {
+      "case": "p100_k3_m10_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00569465788941,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 187041,
+      "expensive_calls": 20000,
+      "sequence_sha256": "5b328358b66b06eb028d3847a037be7e446e87348cf28669e40e96da102480d7"
+    },
+    {
+      "case": "p100_k3_m10_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.001906698494146,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 193274,
+      "expensive_calls": 20000,
+      "sequence_sha256": "037ca6776578e2eadb68341310db136879a65e3988ed3516b293f78157abdc62"
+    },
+    {
+      "case": "p100_k3_m20_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.002842622850174,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 124475,
+      "expensive_calls": 20000,
+      "sequence_sha256": "add72e0718ca123b0a959831b7220575f4e2044605c035b00bb61260b580f3b2"
+    },
+    {
+      "case": "p100_k3_m20_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.004880605338194,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 120488,
+      "expensive_calls": 20000,
+      "sequence_sha256": "92ae6c20752c423eca8b249e5fd08bd0ee47c2dbbc95a7e2415a03ffcca97476"
+    },
+    {
+      "case": "p100_k5_m10_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00117242896871,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 209683,
+      "expensive_calls": 20000,
+      "sequence_sha256": "91da047d78f380d0a048b7c64792b54eed02ffb5ccc7f451cbd650cc526feb75"
+    },
+    {
+      "case": "p100_k5_m10_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00484077959736,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 212096,
+      "expensive_calls": 20000,
+      "sequence_sha256": "a0acabbd209a373dc76eaf404729f4bad079b15f7a3b114ec6935391d8bf0c5d"
+    },
+    {
+      "case": "p100_k5_m20_nnone",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 32.998974649203184,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 131888,
+      "expensive_calls": 20000,
+      "sequence_sha256": "f168cb26dc0700f4f639b3088e57dc7c7b481c8fc10e8b728635978da11c2f36"
+    },
+    {
+      "case": "p100_k5_m20_nquarter",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.000658251807394,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 127682,
+      "expensive_calls": 20000,
+      "sequence_sha256": "856864a933e3dd01fac2302b2f3a5ef63d2e1d4dc8d3ea3ae47285c22726ca14"
+    },
+    {
+      "case": "heuristic_only_no_quality",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.00821495230088,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 178011,
+      "expensive_calls": 20000,
+      "sequence_sha256": "872dd3d49ec5722ddeda724cc2abacc0d64d08974f9d8ea41b1a1746d816f6c6"
+    },
+    {
+      "case": "impact_only_archive_no_quality",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.01480589643937,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 139875,
+      "expensive_calls": 20000,
+      "sequence_sha256": "fc38673794834a568392d47ce6fa90abd8f74b554b395594492ae6de2b7c6359"
+    },
+    {
+      "case": "random_only_archive_no_quality",
+      "seed": 205,
+      "budget": 20000,
+      "final_loss_hr": 33.02366747440487,
+      "init_best_hr": 36.55532956574757,
+      "attempts": 114082,
+      "expensive_calls": 20000,
+      "sequence_sha256": "8b266ba24b19d60bceeaaa63ca5802221c06abad5919480a5c4213efc0cc0194"
+    },
+    {
+      "case": "p50_k3_m10_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00444011121631,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 221352,
+      "expensive_calls": 20000,
+      "sequence_sha256": "4b715eb491f72e92fb04f99b0e4adb46260705cc7538de3a199525a00056a6f0"
+    },
+    {
+      "case": "p50_k3_m10_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.004011491443165,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 228612,
+      "expensive_calls": 20000,
+      "sequence_sha256": "b352c9346df339d04682c879f7a4bd678c937afed9df891a65ee40cce62bf41f"
+    },
+    {
+      "case": "p50_k3_m20_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00498014509571,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 131411,
+      "expensive_calls": 20000,
+      "sequence_sha256": "78639bb063281868f6b5b33c4a44b2922f21c20ef9af685be17d8d57932a3f6f"
+    },
+    {
+      "case": "p50_k3_m20_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00148099186512,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 124242,
+      "expensive_calls": 20000,
+      "sequence_sha256": "d9779b3a444d0fb08d59c48753e3cd5505b264c7ff3a3f4f124c17c20644579c"
+    },
+    {
+      "case": "p50_k5_m10_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 32.99995644357499,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 246842,
+      "expensive_calls": 20000,
+      "sequence_sha256": "c05a382f6d7e13aed8f469eec8adfe19b174c1130f932f921e5864ebc2b0d021"
+    },
+    {
+      "case": "p50_k5_m10_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 32.99973019882702,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 241957,
+      "expensive_calls": 20000,
+      "sequence_sha256": "b1658631e4ff042a733bf63f0f761d15ac9904db9e0248cf3a8a8c5a64c2ec29"
+    },
+    {
+      "case": "p50_k5_m20_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 32.99962234904108,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 135915,
+      "expensive_calls": 20000,
+      "sequence_sha256": "e3a94a2dbc4c7e27f791dd899f86a40456299e5f6b844ca7e4726a7437b6553b"
+    },
+    {
+      "case": "p50_k5_m20_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 32.999163225585356,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 133931,
+      "expensive_calls": 20000,
+      "sequence_sha256": "3b8c69b238ad6f616c59b0e6c6085cb05fefce3e45af87d3a920b77ff43e2137"
+    },
+    {
+      "case": "p100_k3_m10_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00520351306533,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 205025,
+      "expensive_calls": 20000,
+      "sequence_sha256": "7e15e6cb9177c763b6ec3317e6641d6e0d23507a275348b5c5de9cb476ce11b9"
+    },
+    {
+      "case": "p100_k3_m10_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.005396189588396,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 195289,
+      "expensive_calls": 20000,
+      "sequence_sha256": "3445202a60098dbe307d3d0665490316979f803c6731131da8a11f3630a7308b"
+    },
+    {
+      "case": "p100_k3_m20_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00437045877932,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 117238,
+      "expensive_calls": 20000,
+      "sequence_sha256": "0d3fa7117ebccc2805b514758724bb39903d6d1894dc2eea7f9b01e8a03c9b18"
+    },
+    {
+      "case": "p100_k3_m20_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00480740686593,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 115420,
+      "expensive_calls": 20000,
+      "sequence_sha256": "9e7215342d47f7bf5e2e35f906cd215edee165da4ec3add28bf1a597882c9cd4"
+    },
+    {
+      "case": "p100_k5_m10_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00539212776798,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 208482,
+      "expensive_calls": 20000,
+      "sequence_sha256": "57da91e2e4b9b2a6cd46037ac5082b11e9a208b52381fb504feb58b7a876000f"
+    },
+    {
+      "case": "p100_k5_m10_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.001452607506934,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 198845,
+      "expensive_calls": 20000,
+      "sequence_sha256": "a5d84a71841186fe192aa757c3f5bf4e745d9d67fc08ac7cc9278135c7594d04"
+    },
+    {
+      "case": "p100_k5_m20_nnone",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00152302814671,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 137291,
+      "expensive_calls": 20000,
+      "sequence_sha256": "522d41f82064b35e2fcf13fbaa6de69129b083b8763bab18a067b39ba946b6f9"
+    },
+    {
+      "case": "p100_k5_m20_nquarter",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.00154037352513,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 137811,
+      "expensive_calls": 20000,
+      "sequence_sha256": "f104b13bcf10396e8c2184b1e534ec8300f6ee778cabfac1f01db81b3a9eefdd"
+    },
+    {
+      "case": "heuristic_only_no_quality",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.01243276037848,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 174213,
+      "expensive_calls": 20000,
+      "sequence_sha256": "0a424656e84024ebf6bf6a733376c400eaf40f9d6aed7f151025a480987d8802"
+    },
+    {
+      "case": "impact_only_archive_no_quality",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.01047523440261,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 165446,
+      "expensive_calls": 20000,
+      "sequence_sha256": "19c38e0d9ce6e48b99edab8856bb4b03e4d627b2d4486ade2b5772536aa96419"
+    },
+    {
+      "case": "random_only_archive_no_quality",
+      "seed": 206,
+      "budget": 20000,
+      "final_loss_hr": 33.021778195912454,
+      "init_best_hr": 36.34967283764641,
+      "attempts": 127259,
+      "expensive_calls": 20000,
+      "sequence_sha256": "4b837b9f9708ec10b733cc6513fd6ad6380f8ed09ddb4f732d82fe8f7518ff5c"
+    },
+    {
+      "case": "p50_k3_m10_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00315301600761,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 226140,
+      "expensive_calls": 20000,
+      "sequence_sha256": "2a5fa1e36928a3cd451d6464c07cdb090616ffd7e46ce4e854c46f0907914b57"
+    },
+    {
+      "case": "p50_k3_m10_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00167867666703,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 193721,
+      "expensive_calls": 20000,
+      "sequence_sha256": "d62c688c58f92eefa0e0f94cb5ea93b751a95951df6a81934603bb2481b19e08"
+    },
+    {
+      "case": "p50_k3_m20_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 32.99863717042626,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 135254,
+      "expensive_calls": 20000,
+      "sequence_sha256": "d0f26d92263b125750225dfab87d3e60d4b4e32886bb562bb2a62ab57f103577"
+    },
+    {
+      "case": "p50_k3_m20_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00140348266006,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 125230,
+      "expensive_calls": 20000,
+      "sequence_sha256": "2fbd21d56080abc196b5784c4646d28d4ebcb544fe0538e24be861903ccef492"
+    },
+    {
+      "case": "p50_k5_m10_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00191498639891,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 233918,
+      "expensive_calls": 20000,
+      "sequence_sha256": "2b3772e7aba6a005537d0d79d6a926c437a9ff859f1cd95adcac3d0e47eef265"
+    },
+    {
+      "case": "p50_k5_m10_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 32.99996456966417,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 221929,
+      "expensive_calls": 20000,
+      "sequence_sha256": "d86258849b08152288a6a18d2d318b7c439a756b1d205c89d997e2fb4cbd4f02"
+    },
+    {
+      "case": "p50_k5_m20_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 32.99904835192491,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 136457,
+      "expensive_calls": 20000,
+      "sequence_sha256": "e47a8b0ff22bcd9f8f51213c333a7bb18b40175c1902f7ac2fb55a892df0ce3a"
+    },
+    {
+      "case": "p50_k5_m20_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00256151347052,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 133943,
+      "expensive_calls": 20000,
+      "sequence_sha256": "12aaf23b9525eb0168230e44f59d33692881a8f2f3b7775ae5cf605f477fb00d"
+    },
+    {
+      "case": "p100_k3_m10_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.007997787404165,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 181039,
+      "expensive_calls": 20000,
+      "sequence_sha256": "6d7513d9898407a6eb665128e0316b0cba1c3105bda8972442fbccf9eb50e8c1"
+    },
+    {
+      "case": "p100_k3_m10_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00940870707005,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 179674,
+      "expensive_calls": 20000,
+      "sequence_sha256": "41cec649606507a3ec3ee0c65030f003ba1b743e3f0d476a79fafcab7ed17ef9"
+    },
+    {
+      "case": "p100_k3_m20_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00125355150437,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 112707,
+      "expensive_calls": 20000,
+      "sequence_sha256": "15f464bdbe2c8e77d97c6cd75f2868787cea3ecaa7304462f5fececcec0447d0"
+    },
+    {
+      "case": "p100_k3_m20_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 32.999775511153764,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 123031,
+      "expensive_calls": 20000,
+      "sequence_sha256": "a15f6c94de00590f70b9e2ac4b029918b9738ea1ccb1f8f15b6d90eafca31852"
+    },
+    {
+      "case": "p100_k5_m10_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00059521193778,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 190087,
+      "expensive_calls": 20000,
+      "sequence_sha256": "4d4c4ab585e997154852873dc3cc682b81d0a792c42464a630b54c908bbf2711"
+    },
+    {
+      "case": "p100_k5_m10_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00124384176805,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 215452,
+      "expensive_calls": 20000,
+      "sequence_sha256": "2a2ef888be8032a48bd443c9e11dc51ac669bc03084f7dbd4db1c070bf92aec7"
+    },
+    {
+      "case": "p100_k5_m20_nnone",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 32.99952194080129,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 123815,
+      "expensive_calls": 20000,
+      "sequence_sha256": "a8380cb043e5968dca418f039bc5443dcb69549047b2e0a2a02e359cd6cba790"
+    },
+    {
+      "case": "p100_k5_m20_nquarter",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00137125499848,
+      "init_best_hr": 33.038131743267435,
+      "attempts": 136612,
+      "expensive_calls": 20000,
+      "sequence_sha256": "6a7fa83bfdebe448b6c180527c751bbfaf1369b2f9a157a0b92ae97bed1bcdea"
+    },
+    {
+      "case": "heuristic_only_no_quality",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.00950684946075,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 166850,
+      "expensive_calls": 20000,
+      "sequence_sha256": "228e2a7d47e34419a52bd23f4a1526d7cc71e3b1c7820b0e11bd6c017f6710cf"
+    },
+    {
+      "case": "impact_only_archive_no_quality",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.012304674080674,
+      "init_best_hr": 33.57830255999933,
+      "attempts": 164063,
+      "expensive_calls": 20000,
+      "sequence_sha256": "bb051879e519fbc815ace2811bf73b9240a717fbe6f90341ee1738b2dd0cbbda"
+    },
+    {
+      "case": "random_only_archive_no_quality",
+      "seed": 210,
+      "budget": 20000,
+      "final_loss_hr": 33.024074970965934,
+      "init_best_hr": 36.36976476465329,
+      "attempts": 109486,
+      "expensive_calls": 20000,
+      "sequence_sha256": "c5c4b9cbe16196e83977edde31b9b7bbfeb47a648d09ff928efd417becaf9f88"
+    }
+  ]
+}
