@@ -1,0 +1,5245 @@
+{
+  "status": "PINNED_BEFORE_MINIMA",
+  "selection": "Top20 individual optimistic benefit centers; one weighted predecessor, origin donor and co-witness if present; fill next benefit rank. Deterministic diversity fallback.",
+  "control": "Uniform six positions without replacement, matched counts in priority bands [0,29),[29,57),[57,92); unique within parent across both arms.",
+  "evidence_sha256": "437e930a90023649a4163e0aa607d8a3d296177f0fc4aa212ab126cd7879cde8",
+  "parents": {
+    "shared_prior": {
+      "sequence": [
+        "309042",
+        "300648",
+        "300408",
+        "308907",
+        "308471",
+        "300232",
+        "306060",
+        "306369",
+        "300105",
+        "305984",
+        "303540",
+        "300558",
+        "301194",
+        "308786",
+        "309843",
+        "307512",
+        "308991",
+        "301558",
+        "307693",
+        "310199",
+        "309569",
+        "308206",
+        "306768",
+        "300829",
+        "306844",
+        "307274",
+        "300493",
+        "302164",
+        "303620",
+        "300429",
+        "309758",
+        "302798",
+        "303899",
+        "303303",
+        "309156",
+        "301105",
+        "303099",
+        "302187",
+        "310179",
+        "304073",
+        "301614",
+        "301517",
+        "307785",
+        "306623",
+        "308494",
+        "310527",
+        "303371",
+        "308581",
+        "307039",
+        "303169",
+        "310504",
+        "301541",
+        "308269",
+        "304137",
+        "306224",
+        "307564",
+        "304450",
+        "300627",
+        "300390",
+        "301637",
+        "309663",
+        "301636",
+        "301745",
+        "305885",
+        "301156",
+        "308806",
+        "310204",
+        "304040",
+        "301214",
+        "306694",
+        "302297",
+        "308540",
+        "306489",
+        "306365",
+        "302171",
+        "301100",
+        "306279",
+        "307373",
+        "308367",
+        "306444",
+        "306450",
+        "309853",
+        "307832",
+        "301543",
+        "309553",
+        "306091",
+        "309703",
+        "301108",
+        "307557",
+        "303344",
+        "302923",
+        "305780"
+      ],
+      "expected_loss_hr": 33.03813174326729,
+      "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed"
+    },
+    "frozen_ga": {
+      "sequence": [
+        "309042",
+        "300105",
+        "300408",
+        "300558",
+        "301541",
+        "302187",
+        "303540",
+        "306060",
+        "306369",
+        "307564",
+        "308907",
+        "310504",
+        "304073",
+        "308206",
+        "300390",
+        "303303",
+        "306768",
+        "303620",
+        "304137",
+        "302164",
+        "300429",
+        "308786",
+        "300627",
+        "306844",
+        "300493",
+        "308494",
+        "300829",
+        "308991",
+        "303899",
+        "307512",
+        "307693",
+        "309569",
+        "309758",
+        "309843",
+        "310199",
+        "308581",
+        "303099",
+        "301194",
+        "301517",
+        "301558",
+        "302798",
+        "301614",
+        "306623",
+        "310179",
+        "307785",
+        "308269",
+        "310527",
+        "303169",
+        "304450",
+        "307039",
+        "300648",
+        "305984",
+        "303371",
+        "301105",
+        "306224",
+        "300232",
+        "308471",
+        "308806",
+        "307274",
+        "310204",
+        "301637",
+        "309663",
+        "301745",
+        "301636",
+        "301156",
+        "309156",
+        "305885",
+        "308540",
+        "304040",
+        "306694",
+        "301214",
+        "306489",
+        "306365",
+        "307373",
+        "306279",
+        "302171",
+        "301100",
+        "302297",
+        "306444",
+        "306450",
+        "308367",
+        "309853",
+        "307832",
+        "301543",
+        "309553",
+        "306091",
+        "309703",
+        "301108",
+        "307557",
+        "303344",
+        "305780",
+        "302923"
+      ],
+      "expected_loss_hr": 32.997840773882714,
+      "sequence_sha256": "8370673fdf0c23009d3c96f3bf2aa8163725bb554056923edd3a161b2251ccab"
+    },
+    "refined_ils": {
+      "sequence": [
+        "309042",
+        "306060",
+        "303540",
+        "302187",
+        "301541",
+        "306369",
+        "300408",
+        "307785",
+        "300558",
+        "300105",
+        "308907",
+        "310504",
+        "304073",
+        "308206",
+        "309758",
+        "308786",
+        "303899",
+        "309843",
+        "303303",
+        "308991",
+        "306844",
+        "301745",
+        "304137",
+        "308494",
+        "306768",
+        "309569",
+        "300829",
+        "300493",
+        "307512",
+        "310199",
+        "301614",
+        "307693",
+        "300429",
+        "303620",
+        "301637",
+        "308581",
+        "303099",
+        "302164",
+        "308269",
+        "302798",
+        "301558",
+        "310179",
+        "310527",
+        "303371",
+        "301194",
+        "301517",
+        "306623",
+        "303169",
+        "304450",
+        "307039",
+        "307564",
+        "300648",
+        "305984",
+        "301105",
+        "306224",
+        "300232",
+        "308471",
+        "307373",
+        "300390",
+        "300627",
+        "307274",
+        "301636",
+        "309663",
+        "301156",
+        "308806",
+        "309156",
+        "310204",
+        "306694",
+        "305885",
+        "304040",
+        "301214",
+        "308540",
+        "306489",
+        "306365",
+        "306279",
+        "302171",
+        "302297",
+        "301100",
+        "306444",
+        "306450",
+        "308367",
+        "309853",
+        "307832",
+        "301543",
+        "309553",
+        "306091",
+        "301108",
+        "309703",
+        "307557",
+        "303344",
+        "305780",
+        "302923"
+      ],
+      "expected_loss_hr": 32.99613736538884,
+      "sequence_sha256": "75a1014c7f921c09b574eed4eebcaa412f86fcbc61487bf4a1277c4eb448ddbd"
+    }
+  },
+  "sets": [
+    {
+      "parent": "shared_prior",
+      "set_number": 0,
+      "arm": "targeted",
+      "slots": [
+        13,
+        16,
+        61,
+        72,
+        75,
+        77
+      ],
+      "selected_stations": [
+        "308786",
+        "308991",
+        "301636",
+        "306489",
+        "301100",
+        "307373"
+      ],
+      "center": "306489",
+      "proposed_members": [
+        {
+          "station_id": "306489",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308991",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308786",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301636",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 0,
+      "arm": "random_control",
+      "slots": [
+        2,
+        7,
+        59,
+        76,
+        82,
+        85
+      ],
+      "selected_stations": [
+        "300408",
+        "306369",
+        "301637",
+        "306279",
+        "307832",
+        "306091"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 1,
+      "arm": "targeted",
+      "slots": [
+        25,
+        47,
+        52,
+        72,
+        75,
+        77
+      ],
+      "selected_stations": [
+        "307274",
+        "308581",
+        "308269",
+        "306489",
+        "301100",
+        "307373"
+      ],
+      "center": "307373",
+      "proposed_members": [
+        {
+          "station_id": "307373",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "307274",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308581",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308269",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 1,
+      "arm": "random_control",
+      "slots": [
+        1,
+        30,
+        53,
+        66,
+        68,
+        83
+      ],
+      "selected_stations": [
+        "300648",
+        "309758",
+        "304137",
+        "310204",
+        "301214",
+        "301543"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 2,
+      "arm": "targeted",
+      "slots": [
+        49,
+        56,
+        59,
+        72,
+        75,
+        77
+      ],
+      "selected_stations": [
+        "303169",
+        "304450",
+        "301637",
+        "306489",
+        "301100",
+        "307373"
+      ],
+      "center": "301100",
+      "proposed_members": [
+        {
+          "station_id": "301100",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303169",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304450",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301637",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 2,
+      "arm": "random_control",
+      "slots": [
+        29,
+        52,
+        57,
+        64,
+        76,
+        78
+      ],
+      "selected_stations": [
+        "300429",
+        "308269",
+        "300627",
+        "301156",
+        "306279",
+        "308367"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 3,
+      "arm": "targeted",
+      "slots": [
+        25,
+        54,
+        56,
+        72,
+        76,
+        77
+      ],
+      "selected_stations": [
+        "307274",
+        "306224",
+        "304450",
+        "306489",
+        "306279",
+        "307373"
+      ],
+      "center": "306279",
+      "proposed_members": [
+        {
+          "station_id": "306279",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "307274",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "306224",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 3,
+      "arm": "random_control",
+      "slots": [
+        4,
+        40,
+        42,
+        74,
+        83,
+        91
+      ],
+      "selected_stations": [
+        "308471",
+        "301614",
+        "307785",
+        "302171",
+        "301543",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 4,
+      "arm": "targeted",
+      "slots": [
+        35,
+        47,
+        56,
+        72,
+        77,
+        80
+      ],
+      "selected_stations": [
+        "301105",
+        "308581",
+        "304450",
+        "306489",
+        "307373",
+        "306450"
+      ],
+      "center": "306450",
+      "proposed_members": [
+        {
+          "station_id": "306450",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308581",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 4,
+      "arm": "random_control",
+      "slots": [
+        40,
+        41,
+        48,
+        71,
+        83,
+        85
+      ],
+      "selected_stations": [
+        "301614",
+        "301517",
+        "307039",
+        "308540",
+        "301543",
+        "306091"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 5,
+      "arm": "targeted",
+      "slots": [
+        4,
+        6,
+        56,
+        66,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308471",
+        "306060",
+        "304450",
+        "310204",
+        "306489",
+        "307373"
+      ],
+      "center": "310204",
+      "proposed_members": [
+        {
+          "station_id": "310204",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "306060",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304450",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308471",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 5,
+      "arm": "random_control",
+      "slots": [
+        18,
+        22,
+        54,
+        73,
+        88,
+        89
+      ],
+      "selected_stations": [
+        "307693",
+        "306768",
+        "306224",
+        "306365",
+        "307557",
+        "303344"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 6,
+      "arm": "targeted",
+      "slots": [
+        31,
+        48,
+        56,
+        65,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "302798",
+        "307039",
+        "304450",
+        "308806",
+        "306489",
+        "307373"
+      ],
+      "center": "308806",
+      "proposed_members": [
+        {
+          "station_id": "308806",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "302798",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304450",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "307039",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 6,
+      "arm": "random_control",
+      "slots": [
+        32,
+        42,
+        44,
+        66,
+        76,
+        87
+      ],
+      "selected_stations": [
+        "303899",
+        "307785",
+        "308494",
+        "310204",
+        "306279",
+        "301108"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 7,
+      "arm": "targeted",
+      "slots": [
+        31,
+        47,
+        71,
+        72,
+        75,
+        77
+      ],
+      "selected_stations": [
+        "302798",
+        "308581",
+        "308540",
+        "306489",
+        "301100",
+        "307373"
+      ],
+      "center": "308540",
+      "proposed_members": [
+        {
+          "station_id": "308540",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "302798",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308581",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 7,
+      "arm": "random_control",
+      "slots": [
+        40,
+        42,
+        59,
+        71,
+        72,
+        74
+      ],
+      "selected_stations": [
+        "301614",
+        "307785",
+        "301637",
+        "308540",
+        "306489",
+        "302171"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 8,
+      "arm": "targeted",
+      "slots": [
+        13,
+        19,
+        36,
+        61,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308786",
+        "310199",
+        "303099",
+        "301636",
+        "306489",
+        "307373"
+      ],
+      "center": "301636",
+      "proposed_members": [
+        {
+          "station_id": "301636",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303099",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308786",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "310199",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 8,
+      "arm": "random_control",
+      "slots": [
+        2,
+        21,
+        41,
+        59,
+        90,
+        91
+      ],
+      "selected_stations": [
+        "300408",
+        "308206",
+        "301517",
+        "301637",
+        "302923",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 9,
+      "arm": "targeted",
+      "slots": [
+        27,
+        47,
+        58,
+        72,
+        73,
+        77
+      ],
+      "selected_stations": [
+        "302164",
+        "308581",
+        "300390",
+        "306489",
+        "306365",
+        "307373"
+      ],
+      "center": "306365",
+      "proposed_members": [
+        {
+          "station_id": "306365",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "302164",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308581",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "300390",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 9,
+      "arm": "random_control",
+      "slots": [
+        18,
+        33,
+        60,
+        70,
+        79,
+        84
+      ],
+      "selected_stations": [
+        "307693",
+        "303303",
+        "309663",
+        "302297",
+        "306444",
+        "309553"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 10,
+      "arm": "targeted",
+      "slots": [
+        13,
+        47,
+        53,
+        64,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308786",
+        "308581",
+        "304137",
+        "301156",
+        "306489",
+        "307373"
+      ],
+      "center": "301156",
+      "proposed_members": [
+        {
+          "station_id": "301156",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308581",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304137",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308786",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 10,
+      "arm": "random_control",
+      "slots": [
+        5,
+        32,
+        53,
+        65,
+        70,
+        89
+      ],
+      "selected_stations": [
+        "300232",
+        "303899",
+        "304137",
+        "308806",
+        "302297",
+        "303344"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 11,
+      "arm": "targeted",
+      "slots": [
+        35,
+        49,
+        53,
+        69,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "301105",
+        "303169",
+        "304137",
+        "306694",
+        "306489",
+        "307373"
+      ],
+      "center": "306694",
+      "proposed_members": [
+        {
+          "station_id": "306694",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303169",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304137",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301105",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 11,
+      "arm": "random_control",
+      "slots": [
+        31,
+        34,
+        43,
+        68,
+        85,
+        89
+      ],
+      "selected_stations": [
+        "302798",
+        "309156",
+        "306623",
+        "301214",
+        "306091",
+        "303344"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 12,
+      "arm": "targeted",
+      "slots": [
+        56,
+        59,
+        72,
+        77,
+        84,
+        87
+      ],
+      "selected_stations": [
+        "304450",
+        "301637",
+        "306489",
+        "307373",
+        "309553",
+        "301108"
+      ],
+      "center": "309553",
+      "proposed_members": [
+        {
+          "station_id": "309553",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "301637",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304450",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301108",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 1,
+        "2": 5
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 12,
+      "arm": "random_control",
+      "slots": [
+        51,
+        65,
+        77,
+        84,
+        85,
+        88
+      ],
+      "selected_stations": [
+        "301541",
+        "308806",
+        "307373",
+        "309553",
+        "306091",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 1,
+        "2": 5
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 13,
+      "arm": "targeted",
+      "slots": [
+        24,
+        27,
+        56,
+        72,
+        77,
+        83
+      ],
+      "selected_stations": [
+        "306844",
+        "302164",
+        "304450",
+        "306489",
+        "307373",
+        "301543"
+      ],
+      "center": "301543",
+      "proposed_members": [
+        {
+          "station_id": "301543",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "306844",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304450",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "302164",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 13,
+      "arm": "random_control",
+      "slots": [
+        23,
+        27,
+        48,
+        62,
+        67,
+        84
+      ],
+      "selected_stations": [
+        "300829",
+        "302164",
+        "307039",
+        "301745",
+        "304040",
+        "309553"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 14,
+      "arm": "targeted",
+      "slots": [
+        17,
+        50,
+        58,
+        67,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "301558",
+        "310504",
+        "300390",
+        "304040",
+        "306489",
+        "307373"
+      ],
+      "center": "304040",
+      "proposed_members": [
+        {
+          "station_id": "304040",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "300390",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "310504",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301558",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 14,
+      "arm": "random_control",
+      "slots": [
+        6,
+        41,
+        58,
+        74,
+        85,
+        86
+      ],
+      "selected_stations": [
+        "306060",
+        "301517",
+        "300390",
+        "302171",
+        "306091",
+        "309703"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 15,
+      "arm": "targeted",
+      "slots": [
+        13,
+        19,
+        44,
+        68,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308786",
+        "310199",
+        "308494",
+        "301214",
+        "306489",
+        "307373"
+      ],
+      "center": "301214",
+      "proposed_members": [
+        {
+          "station_id": "301214",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308494",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308786",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "310199",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 15,
+      "arm": "random_control",
+      "slots": [
+        15,
+        23,
+        33,
+        64,
+        79,
+        91
+      ],
+      "selected_stations": [
+        "307512",
+        "300829",
+        "303303",
+        "301156",
+        "306444",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 16,
+      "arm": "targeted",
+      "slots": [
+        24,
+        35,
+        38,
+        62,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "306844",
+        "301105",
+        "310179",
+        "301745",
+        "306489",
+        "307373"
+      ],
+      "center": "301745",
+      "proposed_members": [
+        {
+          "station_id": "301745",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "306844",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "310179",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 16,
+      "arm": "random_control",
+      "slots": [
+        1,
+        35,
+        54,
+        60,
+        63,
+        76
+      ],
+      "selected_stations": [
+        "300648",
+        "301105",
+        "306224",
+        "309663",
+        "305885",
+        "306279"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 17,
+      "arm": "targeted",
+      "slots": [
+        4,
+        36,
+        53,
+        63,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308471",
+        "303099",
+        "304137",
+        "305885",
+        "306489",
+        "307373"
+      ],
+      "center": "305885",
+      "proposed_members": [
+        {
+          "station_id": "305885",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308471",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304137",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "303099",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 17,
+      "arm": "random_control",
+      "slots": [
+        16,
+        32,
+        48,
+        60,
+        61,
+        71
+      ],
+      "selected_stations": [
+        "308991",
+        "303899",
+        "307039",
+        "309663",
+        "301636",
+        "308540"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 18,
+      "arm": "targeted",
+      "slots": [
+        10,
+        13,
+        53,
+        60,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "303540",
+        "308786",
+        "304137",
+        "309663",
+        "306489",
+        "307373"
+      ],
+      "center": "309663",
+      "proposed_members": [
+        {
+          "station_id": "309663",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303540",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304137",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308786",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 18,
+      "arm": "random_control",
+      "slots": [
+        7,
+        22,
+        51,
+        65,
+        70,
+        81
+      ],
+      "selected_stations": [
+        "306369",
+        "306768",
+        "301541",
+        "308806",
+        "302297",
+        "309853"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 19,
+      "arm": "targeted",
+      "slots": [
+        24,
+        53,
+        63,
+        72,
+        77,
+        79
+      ],
+      "selected_stations": [
+        "306844",
+        "304137",
+        "305885",
+        "306489",
+        "307373",
+        "306444"
+      ],
+      "center": "306444",
+      "proposed_members": [
+        {
+          "station_id": "306444",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "305885",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "304137",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306844",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "shared_prior",
+      "set_number": 19,
+      "arm": "random_control",
+      "slots": [
+        18,
+        31,
+        67,
+        83,
+        87,
+        88
+      ],
+      "selected_stations": [
+        "307693",
+        "302798",
+        "304040",
+        "301543",
+        "301108",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101017
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 0,
+      "arm": "targeted",
+      "slots": [
+        13,
+        38,
+        63,
+        71,
+        73,
+        76
+      ],
+      "selected_stations": [
+        "308206",
+        "301517",
+        "301636",
+        "306489",
+        "307373",
+        "301100"
+      ],
+      "center": "306489",
+      "proposed_members": [
+        {
+          "station_id": "306489",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "301517",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308206",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301636",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "307373",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 0,
+      "arm": "random_control",
+      "slots": [
+        17,
+        41,
+        62,
+        80,
+        82,
+        87
+      ],
+      "selected_stations": [
+        "303620",
+        "301614",
+        "301745",
+        "308367",
+        "307832",
+        "301108"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 1,
+      "arm": "targeted",
+      "slots": [
+        45,
+        56,
+        60,
+        63,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "308269",
+        "308471",
+        "301637",
+        "301636",
+        "306489",
+        "301100"
+      ],
+      "center": "301100",
+      "proposed_members": [
+        {
+          "station_id": "301100",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308269",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301637",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301636",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 1,
+      "arm": "random_control",
+      "slots": [
+        30,
+        36,
+        60,
+        68,
+        79,
+        85
+      ],
+      "selected_stations": [
+        "307693",
+        "303099",
+        "301637",
+        "304040",
+        "306450",
+        "306091"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 2,
+      "arm": "targeted",
+      "slots": [
+        13,
+        15,
+        34,
+        63,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "308206",
+        "303303",
+        "310199",
+        "301636",
+        "306489",
+        "301100"
+      ],
+      "center": "301636",
+      "proposed_members": [
+        {
+          "station_id": "301636",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303303",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308206",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "310199",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 2,
+      "arm": "random_control",
+      "slots": [
+        20,
+        28,
+        30,
+        61,
+        62,
+        90
+      ],
+      "selected_stations": [
+        "300429",
+        "303899",
+        "307693",
+        "309663",
+        "301745",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 3,
+      "arm": "targeted",
+      "slots": [
+        32,
+        45,
+        47,
+        71,
+        73,
+        76
+      ],
+      "selected_stations": [
+        "309758",
+        "308269",
+        "303169",
+        "306489",
+        "307373",
+        "301100"
+      ],
+      "center": "307373",
+      "proposed_members": [
+        {
+          "station_id": "307373",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "309758",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308269",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 3,
+      "arm": "random_control",
+      "slots": [
+        33,
+        38,
+        42,
+        62,
+        67,
+        74
+      ],
+      "selected_stations": [
+        "309843",
+        "301517",
+        "306623",
+        "301745",
+        "308540",
+        "306279"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 4,
+      "arm": "targeted",
+      "slots": [
+        24,
+        35,
+        48,
+        71,
+        76,
+        79
+      ],
+      "selected_stations": [
+        "300493",
+        "308581",
+        "304450",
+        "306489",
+        "301100",
+        "306450"
+      ],
+      "center": "306450",
+      "proposed_members": [
+        {
+          "station_id": "306450",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "300493",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308581",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 4,
+      "arm": "random_control",
+      "slots": [
+        9,
+        45,
+        47,
+        59,
+        67,
+        88
+      ],
+      "selected_stations": [
+        "307564",
+        "308269",
+        "303169",
+        "310204",
+        "308540",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 5,
+      "arm": "targeted",
+      "slots": [
+        18,
+        48,
+        54,
+        71,
+        74,
+        76
+      ],
+      "selected_stations": [
+        "304137",
+        "304450",
+        "306224",
+        "306489",
+        "306279",
+        "301100"
+      ],
+      "center": "306279",
+      "proposed_members": [
+        {
+          "station_id": "306279",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "304137",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "306224",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 5,
+      "arm": "random_control",
+      "slots": [
+        25,
+        36,
+        46,
+        58,
+        65,
+        87
+      ],
+      "selected_stations": [
+        "308494",
+        "303099",
+        "310527",
+        "307274",
+        "309156",
+        "301108"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 6,
+      "arm": "targeted",
+      "slots": [
+        19,
+        23,
+        56,
+        65,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "302164",
+        "306844",
+        "308471",
+        "309156",
+        "306489",
+        "301100"
+      ],
+      "center": "309156",
+      "proposed_members": [
+        {
+          "station_id": "309156",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "306844",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "302164",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 6,
+      "arm": "random_control",
+      "slots": [
+        6,
+        16,
+        48,
+        61,
+        66,
+        74
+      ],
+      "selected_stations": [
+        "303540",
+        "306768",
+        "304450",
+        "309663",
+        "305885",
+        "306279"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 7,
+      "arm": "targeted",
+      "slots": [
+        14,
+        47,
+        64,
+        71,
+        72,
+        76
+      ],
+      "selected_stations": [
+        "300390",
+        "303169",
+        "301156",
+        "306489",
+        "306365",
+        "301100"
+      ],
+      "center": "306365",
+      "proposed_members": [
+        {
+          "station_id": "306365",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "301156",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "300390",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 7,
+      "arm": "random_control",
+      "slots": [
+        7,
+        43,
+        70,
+        75,
+        77,
+        90
+      ],
+      "selected_stations": [
+        "306060",
+        "310179",
+        "301214",
+        "302171",
+        "302297",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 8,
+      "arm": "targeted",
+      "slots": [
+        32,
+        56,
+        62,
+        71,
+        76,
+        83
+      ],
+      "selected_stations": [
+        "309758",
+        "308471",
+        "301745",
+        "306489",
+        "301100",
+        "301543"
+      ],
+      "center": "301543",
+      "proposed_members": [
+        {
+          "station_id": "301543",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "301745",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "309758",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 8,
+      "arm": "random_control",
+      "slots": [
+        38,
+        55,
+        63,
+        65,
+        66,
+        83
+      ],
+      "selected_stations": [
+        "301517",
+        "300232",
+        "301636",
+        "309156",
+        "305885",
+        "301543"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 9,
+      "arm": "targeted",
+      "slots": [
+        0,
+        36,
+        53,
+        66,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "309042",
+        "303099",
+        "301105",
+        "305885",
+        "306489",
+        "301100"
+      ],
+      "center": "305885",
+      "proposed_members": [
+        {
+          "station_id": "305885",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "309042",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "303099",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 9,
+      "arm": "random_control",
+      "slots": [
+        3,
+        39,
+        47,
+        58,
+        76,
+        83
+      ],
+      "selected_stations": [
+        "300558",
+        "301558",
+        "303169",
+        "307274",
+        "301100",
+        "301543"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 10,
+      "arm": "targeted",
+      "slots": [
+        22,
+        47,
+        63,
+        67,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "300627",
+        "303169",
+        "301636",
+        "308540",
+        "306489",
+        "301100"
+      ],
+      "center": "308540",
+      "proposed_members": [
+        {
+          "station_id": "308540",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "300627",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301636",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 10,
+      "arm": "random_control",
+      "slots": [
+        14,
+        36,
+        61,
+        62,
+        65,
+        80
+      ],
+      "selected_stations": [
+        "300390",
+        "303099",
+        "309663",
+        "301745",
+        "309156",
+        "308367"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 11,
+      "arm": "targeted",
+      "slots": [
+        21,
+        35,
+        53,
+        64,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "308786",
+        "308581",
+        "301105",
+        "301156",
+        "306489",
+        "301100"
+      ],
+      "center": "301156",
+      "proposed_members": [
+        {
+          "station_id": "301156",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308581",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308786",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 11,
+      "arm": "random_control",
+      "slots": [
+        22,
+        54,
+        55,
+        59,
+        73,
+        86
+      ],
+      "selected_stations": [
+        "300627",
+        "306224",
+        "300232",
+        "310204",
+        "307373",
+        "309703"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 12,
+      "arm": "targeted",
+      "slots": [
+        2,
+        13,
+        34,
+        70,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "300408",
+        "308206",
+        "310199",
+        "301214",
+        "306489",
+        "301100"
+      ],
+      "center": "301214",
+      "proposed_members": [
+        {
+          "station_id": "301214",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "300408",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308206",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "310199",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 12,
+      "arm": "random_control",
+      "slots": [
+        13,
+        18,
+        33,
+        70,
+        72,
+        79
+      ],
+      "selected_stations": [
+        "308206",
+        "304137",
+        "309843",
+        "301214",
+        "306365",
+        "306450"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 13,
+      "arm": "targeted",
+      "slots": [
+        23,
+        39,
+        50,
+        68,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "306844",
+        "301558",
+        "300648",
+        "304040",
+        "306489",
+        "301100"
+      ],
+      "center": "304040",
+      "proposed_members": [
+        {
+          "station_id": "304040",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "306844",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "300648",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301558",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 13,
+      "arm": "random_control",
+      "slots": [
+        21,
+        31,
+        55,
+        66,
+        89,
+        90
+      ],
+      "selected_stations": [
+        "308786",
+        "309569",
+        "300232",
+        "305885",
+        "303344",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 14,
+      "arm": "targeted",
+      "slots": [
+        47,
+        53,
+        63,
+        69,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "303169",
+        "301105",
+        "301636",
+        "306694",
+        "306489",
+        "301100"
+      ],
+      "center": "306694",
+      "proposed_members": [
+        {
+          "station_id": "306694",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303169",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301636",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 14,
+      "arm": "random_control",
+      "slots": [
+        31,
+        35,
+        60,
+        67,
+        78,
+        89
+      ],
+      "selected_stations": [
+        "309569",
+        "308581",
+        "301637",
+        "308540",
+        "306444",
+        "303344"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 15,
+      "arm": "targeted",
+      "slots": [
+        8,
+        56,
+        71,
+        76,
+        84,
+        87
+      ],
+      "selected_stations": [
+        "306369",
+        "308471",
+        "306489",
+        "301100",
+        "309553",
+        "301108"
+      ],
+      "center": "309553",
+      "proposed_members": [
+        {
+          "station_id": "309553",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "306369",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301108",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 15,
+      "arm": "random_control",
+      "slots": [
+        19,
+        44,
+        61,
+        68,
+        80,
+        88
+      ],
+      "selected_stations": [
+        "302164",
+        "307785",
+        "309663",
+        "304040",
+        "308367",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 16,
+      "arm": "targeted",
+      "slots": [
+        21,
+        47,
+        53,
+        61,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "308786",
+        "303169",
+        "301105",
+        "309663",
+        "306489",
+        "301100"
+      ],
+      "center": "309663",
+      "proposed_members": [
+        {
+          "station_id": "309663",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303169",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308786",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 16,
+      "arm": "random_control",
+      "slots": [
+        28,
+        29,
+        43,
+        59,
+        78,
+        90
+      ],
+      "selected_stations": [
+        "303899",
+        "307512",
+        "310179",
+        "310204",
+        "306444",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 17,
+      "arm": "targeted",
+      "slots": [
+        47,
+        48,
+        60,
+        71,
+        76,
+        80
+      ],
+      "selected_stations": [
+        "303169",
+        "304450",
+        "301637",
+        "306489",
+        "301100",
+        "308367"
+      ],
+      "center": "308367",
+      "proposed_members": [
+        {
+          "station_id": "308367",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "301637",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 17,
+      "arm": "random_control",
+      "slots": [
+        35,
+        55,
+        60,
+        70,
+        75,
+        90
+      ],
+      "selected_stations": [
+        "308581",
+        "300232",
+        "301637",
+        "301214",
+        "302171",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 18,
+      "arm": "targeted",
+      "slots": [
+        14,
+        35,
+        42,
+        62,
+        71,
+        76
+      ],
+      "selected_stations": [
+        "300390",
+        "308581",
+        "306623",
+        "301745",
+        "306489",
+        "301100"
+      ],
+      "center": "301745",
+      "proposed_members": [
+        {
+          "station_id": "301745",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "300390",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308581",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306623",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 18,
+      "arm": "random_control",
+      "slots": [
+        16,
+        42,
+        55,
+        59,
+        76,
+        82
+      ],
+      "selected_stations": [
+        "306768",
+        "306623",
+        "300232",
+        "310204",
+        "301100",
+        "307832"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 19,
+      "arm": "targeted",
+      "slots": [
+        23,
+        53,
+        60,
+        71,
+        76,
+        78
+      ],
+      "selected_stations": [
+        "306844",
+        "301105",
+        "301637",
+        "306489",
+        "301100",
+        "306444"
+      ],
+      "center": "306444",
+      "proposed_members": [
+        {
+          "station_id": "306444",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "301637",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306844",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "frozen_ga",
+      "set_number": 19,
+      "arm": "random_control",
+      "slots": [
+        2,
+        39,
+        63,
+        79,
+        82,
+        87
+      ],
+      "selected_stations": [
+        "300408",
+        "301558",
+        "301636",
+        "306450",
+        "307832",
+        "301108"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101018
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 0,
+      "arm": "targeted",
+      "slots": [
+        13,
+        28,
+        61,
+        66,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308206",
+        "307512",
+        "301636",
+        "310204",
+        "306489",
+        "301100"
+      ],
+      "center": "306489",
+      "proposed_members": [
+        {
+          "station_id": "306489",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "307512",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308206",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301636",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "310204",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 0,
+      "arm": "random_control",
+      "slots": [
+        20,
+        27,
+        57,
+        71,
+        73,
+        84
+      ],
+      "selected_stations": [
+        "306844",
+        "300493",
+        "307373",
+        "308540",
+        "306365",
+        "309553"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 1,
+      "arm": "targeted",
+      "slots": [
+        34,
+        47,
+        56,
+        66,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "301637",
+        "303169",
+        "308471",
+        "310204",
+        "306489",
+        "301100"
+      ],
+      "center": "301100",
+      "proposed_members": [
+        {
+          "station_id": "301100",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303169",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301637",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "310204",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 1,
+      "arm": "random_control",
+      "slots": [
+        29,
+        44,
+        51,
+        63,
+        72,
+        88
+      ],
+      "selected_stations": [
+        "310199",
+        "301194",
+        "300648",
+        "301156",
+        "306489",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 2,
+      "arm": "targeted",
+      "slots": [
+        1,
+        56,
+        66,
+        72,
+        77,
+        79
+      ],
+      "selected_stations": [
+        "306060",
+        "308471",
+        "310204",
+        "306489",
+        "301100",
+        "306450"
+      ],
+      "center": "310204",
+      "proposed_members": [
+        {
+          "station_id": "310204",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "306060",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "306450",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 2,
+      "arm": "random_control",
+      "slots": [
+        26,
+        40,
+        64,
+        68,
+        69,
+        88
+      ],
+      "selected_stations": [
+        "300829",
+        "301558",
+        "308806",
+        "305885",
+        "304040",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 3,
+      "arm": "targeted",
+      "slots": [
+        35,
+        48,
+        57,
+        72,
+        77,
+        79
+      ],
+      "selected_stations": [
+        "308581",
+        "304450",
+        "307373",
+        "306489",
+        "301100",
+        "306450"
+      ],
+      "center": "306450",
+      "proposed_members": [
+        {
+          "station_id": "306450",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "307373",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308581",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 3,
+      "arm": "random_control",
+      "slots": [
+        38,
+        55,
+        71,
+        79,
+        87,
+        88
+      ],
+      "selected_stations": [
+        "308269",
+        "300232",
+        "308540",
+        "306450",
+        "309703",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 4,
+      "arm": "targeted",
+      "slots": [
+        48,
+        54,
+        64,
+        72,
+        74,
+        77
+      ],
+      "selected_stations": [
+        "304450",
+        "306224",
+        "308806",
+        "306489",
+        "306279",
+        "301100"
+      ],
+      "center": "306279",
+      "proposed_members": [
+        {
+          "station_id": "306279",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308806",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "306224",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 4,
+      "arm": "random_control",
+      "slots": [
+        37,
+        56,
+        57,
+        65,
+        69,
+        72
+      ],
+      "selected_stations": [
+        "302164",
+        "308471",
+        "307373",
+        "309156",
+        "304040",
+        "306489"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 5,
+      "arm": "targeted",
+      "slots": [
+        18,
+        49,
+        56,
+        64,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "303303",
+        "307039",
+        "308471",
+        "308806",
+        "306489",
+        "301100"
+      ],
+      "center": "308806",
+      "proposed_members": [
+        {
+          "station_id": "308806",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303303",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "307039",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 5,
+      "arm": "random_control",
+      "slots": [
+        1,
+        33,
+        47,
+        59,
+        76,
+        80
+      ],
+      "selected_stations": [
+        "306060",
+        "303620",
+        "303169",
+        "300627",
+        "302297",
+        "308367"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 6,
+      "arm": "targeted",
+      "slots": [
+        11,
+        47,
+        66,
+        71,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "310504",
+        "303169",
+        "310204",
+        "308540",
+        "306489",
+        "301100"
+      ],
+      "center": "308540",
+      "proposed_members": [
+        {
+          "station_id": "308540",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "310504",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "310204",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 6,
+      "arm": "random_control",
+      "slots": [
+        7,
+        45,
+        67,
+        74,
+        76,
+        89
+      ],
+      "selected_stations": [
+        "307785",
+        "301517",
+        "306694",
+        "306279",
+        "302297",
+        "303344"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 7,
+      "arm": "targeted",
+      "slots": [
+        37,
+        56,
+        65,
+        66,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "302164",
+        "308471",
+        "309156",
+        "310204",
+        "306489",
+        "301100"
+      ],
+      "center": "309156",
+      "proposed_members": [
+        {
+          "station_id": "309156",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "302164",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "310204",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 7,
+      "arm": "random_control",
+      "slots": [
+        48,
+        50,
+        65,
+        68,
+        70,
+        71
+      ],
+      "selected_stations": [
+        "304450",
+        "307564",
+        "309156",
+        "305885",
+        "301214",
+        "308540"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 8,
+      "arm": "targeted",
+      "slots": [
+        36,
+        49,
+        53,
+        68,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "303099",
+        "307039",
+        "301105",
+        "305885",
+        "306489",
+        "301100"
+      ],
+      "center": "305885",
+      "proposed_members": [
+        {
+          "station_id": "305885",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "307039",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "303099",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 8,
+      "arm": "random_control",
+      "slots": [
+        29,
+        31,
+        38,
+        66,
+        80,
+        81
+      ],
+      "selected_stations": [
+        "310199",
+        "307693",
+        "308269",
+        "310204",
+        "308367",
+        "309853"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 9,
+      "arm": "targeted",
+      "slots": [
+        13,
+        29,
+        30,
+        61,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308206",
+        "310199",
+        "301614",
+        "301636",
+        "306489",
+        "301100"
+      ],
+      "center": "301636",
+      "proposed_members": [
+        {
+          "station_id": "301636",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "301614",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308206",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "310199",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 9,
+      "arm": "random_control",
+      "slots": [
+        18,
+        29,
+        30,
+        79,
+        85,
+        86
+      ],
+      "selected_stations": [
+        "303303",
+        "310199",
+        "301614",
+        "306450",
+        "306091",
+        "301108"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 10,
+      "arm": "targeted",
+      "slots": [
+        13,
+        47,
+        58,
+        72,
+        73,
+        77
+      ],
+      "selected_stations": [
+        "308206",
+        "303169",
+        "300390",
+        "306489",
+        "306365",
+        "301100"
+      ],
+      "center": "306365",
+      "proposed_members": [
+        {
+          "station_id": "306365",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308206",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "300390",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 10,
+      "arm": "random_control",
+      "slots": [
+        1,
+        37,
+        63,
+        76,
+        80,
+        91
+      ],
+      "selected_stations": [
+        "306060",
+        "302164",
+        "301156",
+        "302297",
+        "308367",
+        "302923"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 11,
+      "arm": "targeted",
+      "slots": [
+        15,
+        37,
+        53,
+        62,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308786",
+        "302164",
+        "301105",
+        "309663",
+        "306489",
+        "301100"
+      ],
+      "center": "309663",
+      "proposed_members": [
+        {
+          "station_id": "309663",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "302164",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308786",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 11,
+      "arm": "random_control",
+      "slots": [
+        0,
+        36,
+        47,
+        67,
+        77,
+        89
+      ],
+      "selected_stations": [
+        "309042",
+        "303099",
+        "303169",
+        "306694",
+        "301100",
+        "303344"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 12,
+      "arm": "targeted",
+      "slots": [
+        36,
+        40,
+        50,
+        69,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "303099",
+        "301558",
+        "307564",
+        "304040",
+        "306489",
+        "301100"
+      ],
+      "center": "304040",
+      "proposed_members": [
+        {
+          "station_id": "304040",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303099",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "307564",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301558",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 12,
+      "arm": "random_control",
+      "slots": [
+        32,
+        36,
+        47,
+        63,
+        64,
+        71
+      ],
+      "selected_stations": [
+        "300429",
+        "303099",
+        "303169",
+        "301156",
+        "308806",
+        "308540"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 3,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 13,
+      "arm": "targeted",
+      "slots": [
+        37,
+        56,
+        59,
+        72,
+        77,
+        83
+      ],
+      "selected_stations": [
+        "302164",
+        "308471",
+        "300627",
+        "306489",
+        "301100",
+        "301543"
+      ],
+      "center": "301543",
+      "proposed_members": [
+        {
+          "station_id": "301543",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "300627",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308471",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "302164",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 13,
+      "arm": "random_control",
+      "slots": [
+        41,
+        45,
+        75,
+        77,
+        84,
+        87
+      ],
+      "selected_stations": [
+        "310179",
+        "301517",
+        "302171",
+        "301100",
+        "309553",
+        "309703"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 14,
+      "arm": "targeted",
+      "slots": [
+        13,
+        29,
+        33,
+        70,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308206",
+        "310199",
+        "303620",
+        "301214",
+        "306489",
+        "301100"
+      ],
+      "center": "301214",
+      "proposed_members": [
+        {
+          "station_id": "301214",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303620",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "308206",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "310199",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 14,
+      "arm": "random_control",
+      "slots": [
+        4,
+        34,
+        35,
+        65,
+        76,
+        89
+      ],
+      "selected_stations": [
+        "301541",
+        "301637",
+        "308581",
+        "309156",
+        "302297",
+        "303344"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 15,
+      "arm": "targeted",
+      "slots": [
+        15,
+        47,
+        53,
+        63,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308786",
+        "303169",
+        "301105",
+        "301156",
+        "306489",
+        "301100"
+      ],
+      "center": "301156",
+      "proposed_members": [
+        {
+          "station_id": "301156",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "303169",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "308786",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 15,
+      "arm": "random_control",
+      "slots": [
+        16,
+        37,
+        47,
+        59,
+        73,
+        90
+      ],
+      "selected_stations": [
+        "303899",
+        "302164",
+        "303169",
+        "300627",
+        "306365",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 16,
+      "arm": "targeted",
+      "slots": [
+        51,
+        53,
+        66,
+        67,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "300648",
+        "301105",
+        "310204",
+        "306694",
+        "306489",
+        "301100"
+      ],
+      "center": "306694",
+      "proposed_members": [
+        {
+          "station_id": "306694",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "300648",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "310204",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 16,
+      "arm": "random_control",
+      "slots": [
+        41,
+        56,
+        58,
+        62,
+        71,
+        88
+      ],
+      "selected_stations": [
+        "310179",
+        "308471",
+        "300390",
+        "309663",
+        "308540",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 17,
+      "arm": "targeted",
+      "slots": [
+        47,
+        48,
+        65,
+        72,
+        77,
+        80
+      ],
+      "selected_stations": [
+        "303169",
+        "304450",
+        "309156",
+        "306489",
+        "301100",
+        "308367"
+      ],
+      "center": "308367",
+      "proposed_members": [
+        {
+          "station_id": "308367",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "309156",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "304450",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 17,
+      "arm": "random_control",
+      "slots": [
+        34,
+        54,
+        60,
+        77,
+        88,
+        90
+      ],
+      "selected_stations": [
+        "301637",
+        "306224",
+        "307274",
+        "301100",
+        "307557",
+        "305780"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "1": 2,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 18,
+      "arm": "targeted",
+      "slots": [
+        21,
+        35,
+        53,
+        72,
+        77,
+        78
+      ],
+      "selected_stations": [
+        "301745",
+        "308581",
+        "301105",
+        "306489",
+        "301100",
+        "306444"
+      ],
+      "center": "306444",
+      "proposed_members": [
+        {
+          "station_id": "306444",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308581",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "301105",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "301745",
+          "reason": "co-witness gateway"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 18,
+      "arm": "random_control",
+      "slots": [
+        28,
+        30,
+        34,
+        69,
+        72,
+        76
+      ],
+      "selected_stations": [
+        "307512",
+        "301614",
+        "301637",
+        "304040",
+        "306489",
+        "302297"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 19,
+      "arm": "targeted",
+      "slots": [
+        10,
+        47,
+        60,
+        66,
+        72,
+        77
+      ],
+      "selected_stations": [
+        "308907",
+        "303169",
+        "307274",
+        "310204",
+        "306489",
+        "301100"
+      ],
+      "center": "307274",
+      "proposed_members": [
+        {
+          "station_id": "307274",
+          "reason": "optimistic-service-benefit center"
+        },
+        {
+          "station_id": "308907",
+          "reason": "queued dispatch predecessor"
+        },
+        {
+          "station_id": "303169",
+          "reason": "first-wave donor at favorable actual origin"
+        },
+        {
+          "station_id": "306489",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "301100",
+          "reason": "next service-opportunity station"
+        },
+        {
+          "station_id": "310204",
+          "reason": "next service-opportunity station"
+        }
+      ],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    },
+    {
+      "parent": "refined_ils",
+      "set_number": 19,
+      "arm": "random_control",
+      "slots": [
+        2,
+        56,
+        58,
+        80,
+        87,
+        88
+      ],
+      "selected_stations": [
+        "303540",
+        "308471",
+        "300390",
+        "308367",
+        "309703",
+        "307557"
+      ],
+      "center": null,
+      "proposed_members": [],
+      "rank_band_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 4
+      },
+      "control_seed": 2026101019
+    }
+  ],
+  "total_sets": 120,
+  "permutations_per_set": 720,
+  "enumerated_assignment_budget": 86400,
+  "tolerance_hr": 1e-09,
+  "followup": "No adaptive expansion or optimizer campaign authorized by an observed minimum alone."
+}
