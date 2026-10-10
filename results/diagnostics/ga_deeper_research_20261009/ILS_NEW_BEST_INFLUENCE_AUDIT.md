@@ -35,3 +35,19 @@ The aggregate best score is **highly sensitive to a small number of previously o
 - Further algorithm comparison must report not just lowest observed J but per-sample difference distributions, influence and cross-fitting diagnostics, preserving the same 64 training sample authority. Fresh holdout physical sampling remains a distinct author-approved step.
 
 Production-parity observation source: [GitHub Actions verified artifact](https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/actions/runs/38025309567). Hashes and raw 64-row paired outcomes are preserved in its ZIP, not regenerated.
+
+
+## Conditional analysis by DS0 task filtering (exploratory)
+
+The original 64 planning sample schedules contain 90–92 damaged tasks, so the same priority permutation is filtered differently whenever an undamaged DS0 station is omitted. Grouping paired ILS−GA losses *without changing or reweighting the optimization objective*:
+
+| DS0 tasks omitted | Planning realizations | Mean ILS−GA loss (h) | Median (h) |
+|---:|---:|---:|---:|
+| 0 | 46 | +0.033296 | +0.047006 |
+| 1 | 14 | +0.036091 | +0.054451 |
+| 2 | 4 | −0.520732 | −0.034825 |
+
+The extreme realization 15 omits two DS0 tasks, and supplies −2.082523 h paired benefit. The other three two-DS0 realizations are #25 (−0.078629 h), #41 (+0.069245 h) and #52 (+0.008980 h). Of the 60 realizations with zero or one DS0 station, ILS has a worse mean loss; the full mean reverses largely due to the 2-DS0 outlier.
+
+This is an important interaction between the realization-specific task filter, directed travel/crew decoding, and the source-connected gate. **It does not prove that DS0 omission causes the outlier**: the 64 realizations also differ in DS1–DS4 states and repair durations. Small group sizes, especially only four 2-DS0 samples, preclude generalized conditional claims. A separate exact event-time gate-component check was launched to explain whether changed Core-source reachability actually contributes to the large benefit.
+
