@@ -1,0 +1,67 @@
+name: GA method interactions - 100k independently seeded confirmatory screen
+on:
+  push:
+    branches:
+      - diagnostics/ga-algorithm-interaction-and-alternatives-20261009
+    paths:
+      - .github/workflows/ga-deeper-confirm-20261009.yml
+      - src/la_grid/diagnostics/ga_factorial_confirm_20261009.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  confirm:
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        seed: [400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONPATH: src
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      NUMBA_NUM_THREADS: "1"
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: false
+      - name: Pull the frozen objective inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git lfs pull --include="Data/JULY_UTILITY_CONSTRAINED_92.csv,Data/substation_graph_CEC_edges_expanded.csv,Data/source_nodes_core_expanded.csv,Data/stage45_depot_inputs_final_origin_proxy.csv,Data/stage45_active_crew_bases_C57.csv,data/travel/travel_task_to_task.csv,data/travel/travel_base_to_task.csv,Formal_Experiment_20260923/Stage 5 Output_expanded/INCUMBENT_DIRECT_SCORES_2pc50.csv"
+          python - <<'PY'
+          from pathlib import Path
+          for p in ("Data/JULY_UTILITY_CONSTRAINED_92.csv",
+                    "Data/substation_graph_CEC_edges_expanded.csv",
+                    "Data/source_nodes_core_expanded.csv",
+                    "data/travel/travel_task_to_task.csv",
+                    "data/travel/travel_base_to_task.csv",
+                    "Formal_Experiment_20260923/Stage 5 Output_expanded/INCUMBENT_DIRECT_SCORES_2pc50.csv"):
+              assert not Path(p).read_bytes().startswith(b"version https://git-lfs"),p
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned scientific dependencies
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install numba==0.60.0 psutil==5.9.8
+          python -m pip install -e .
+      - name: Run preset 11 configurations at 100k each
+        run: python -m la_grid.diagnostics.ga_factorial_confirm_20261009 --seed ${{ matrix.seed }} --budget 100000
+      - name: Retain chromosomes and histories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ga-factor-confirm-s${{ matrix.seed }}
+          path: results/diagnostics/ga_deeper_research_20261009/factorial_confirm_100k/
+          if-no-files-found: warn
+          retention-days: 21
