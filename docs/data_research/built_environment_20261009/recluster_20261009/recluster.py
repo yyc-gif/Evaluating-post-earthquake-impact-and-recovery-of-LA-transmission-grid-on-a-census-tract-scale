@@ -20,8 +20,8 @@ STAGE7 = REPO / "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clust
 ACS = REPO / "docs/data_research/built_environment_20261009/validation/ACS_TRACT_VALIDATION.csv"
 NLCD = REPO / "docs/data_research/built_environment_20261009/validation/NLCD_TRACT_EXTRACTION.csv"
 NETWORK = ["Grid_Degree","Grid_Impact","Grid_Betweenness","Redundancy_HHI"]
-BUILT = ["Pre_1970_Ratio","housing_5plus_share"]
-CONTEXT = ["Pop_Density"]
+BUILT = ["Pre_1970_Ratio","housing_5plus_share","housing_units_per_km2"]
+CONTEXT = []
 SOCIOECON = ["SOVI_SCORE","NRI_BUILDVALUE"]
 HELDOUT = ["T80","Init_Supply"]
 BASELINE = ["T80","Init_Supply",*NETWORK,"Pre_1970_Ratio",
@@ -50,7 +50,7 @@ def read(path):
 
 def normalized(x,cols,blocks=None):
     x=x[cols].astype(float).copy()
-    for name in ["Pop_Density","NRI_BUILDVALUE"]:
+    for name in ["Pop_Density","housing_units_per_km2","NRI_BUILDVALUE"]:
         if name in x:
             if (x[name]<0).any(): raise ValueError(f"Negative input for log1p: {name}")
             x[name]=np.log1p(x[name])
@@ -104,7 +104,7 @@ def profiles(frame,name,labels,columns):
     g=frame.copy()
     g["new_cluster"]=labels
     rows=[]
-    describe=[*dict.fromkeys([*columns,*HELDOUT,"NRI_RISK_SCORE"])]
+    describe=[*dict.fromkeys([*columns,*HELDOUT,"NRI_RISK_SCORE","Pop_Density","housing_units_per_km2"])]
     for cluster,chunk in g.groupby("new_cluster",sort=True):
         d={"model":name,"new_cluster":int(cluster),"n":len(chunk)}
         for col in describe:
@@ -132,8 +132,11 @@ def run():
         raise ValueError("Domain sizes differ from source snapshot")
     m=old.merge(acs[["tract_id","housing_5plus_share","housing_5plus_share_moe90",
                      "housing_total"]],on="tract_id",how="left",validate="one_to_one")
-    m=m.merge(raster[["tract_id","impervious_land_fraction"]],on="tract_id",
+    m=m.merge(raster[["tract_id","impervious_land_fraction","ALAND"]],on="tract_id",
               how="left",validate="one_to_one")
+    if not (pd.to_numeric(m["ALAND"],errors="coerce")>0).all():
+        raise ValueError("Nonpositive or missing land area for housing-unit density")
+    m["housing_units_per_km2"]=m["housing_total"]/(m["ALAND"]/1e6)
     required=[*dict.fromkeys([*BASELINE,*PRIMARY,"impervious_land_fraction"])]
     if not np.isfinite(m[required].to_numpy(float)).all():
         raise ValueError("Required values missing after source GEOID joins")
@@ -149,13 +152,17 @@ def run():
     models={
         "primary_equal_domain":(PRIMARY,BLOCKS,"PRIMARY_VERIFIED"),
         "primary_equal_coordinate":(PRIMARY,None,"WEIGHT_SENSITIVITY"),
+        "population_density_proxy":([*BUILT[:2],"Pop_Density",*NETWORK,*SOCIOECON],
+          {**BLOCKS,"housing_urban_context":[*BUILT[:2],"Pop_Density"]},
+          "DEMOGRAPHIC_DENSITY_SUBSTITUTION"),
         "primary_plus_nri_same_blocks":([*PRIMARY,"NRI_RISK_SCORE"],
           {**BLOCKS,"social_economic":[*SOCIOECON,"NRI_RISK_SCORE"]},
           "RISK_WITHIN_FIXED_DOMAINS"),
         "primary_plus_nri_separate_block":([*PRIMARY,"NRI_RISK_SCORE"],
           {**BLOCKS,"multi_hazard_composite":["NRI_RISK_SCORE"]},
           "RISK_ADDED_AS_FOURTH_DOMAIN"),
-        "housing_only":(BUILT,None,"REDUCED_HOUSING_ONLY"),
+        "housing_two_measure":(BUILT[:2],None,"AGE_CONFIGURATION_ONLY"),
+        "housing_three_measure":(BUILT,None,"PHYSICAL_HOUSING_ONLY"),
         "pilot_plus_impervious":([*PRIMARY,"impervious_land_fraction"],
           {**BLOCKS,"housing_urban_context":[*BUILT,*CONTEXT,"impervious_land_fraction"]},
           "PILOT_UNVERIFIED_NLCD"),
@@ -224,7 +231,8 @@ def run():
                 housing5plus_mean=float(m.loc[s,"housing_5plus_share"].mean()) if s.any() else None))
     pd.DataFrame(core_sensitivity).to_csv(OUT/"primary_acs_uncertainty_screening.csv",index=False)
     m[["tract_id","cluster","T80","Init_Supply","housing_5plus_share",
-       "housing_5plus_share_moe90","impervious_land_fraction"]].to_csv(
+       "housing_5plus_share_moe90","impervious_land_fraction","ALAND",
+       "housing_units_per_km2","Pop_Density"]].to_csv(
           OUT/"input_audit_and_heldout.csv",index=False)
     summary={"provenance":{"base_commit":"031d2c675f8e7d58035d27448be040b809ced086",
         "source_sha256":{str(p.relative_to(REPO)):digest(p) for p in [STAGE7,ACS,NLCD]},
@@ -241,7 +249,8 @@ def run():
           "pairwise":pairwise,
           "primary_cluster_profiles":profiles(m,"primary_equal_domain",primary_labels,PRIMARY)[
               ["new_cluster","n","Pre_1970_Ratio_mean","housing_5plus_share_mean",
-               "Pop_Density_mean","SOVI_SCORE_mean","T80_mean","Init_Supply_mean"]].to_dict("records")},
+               "housing_units_per_km2_mean","Pop_Density_mean","SOVI_SCORE_mean",
+               "T80_mean","Init_Supply_mean"]].to_dict("records")},
           indent=2,allow_nan=False))
     print("RESULT_END")
 if __name__=="__main__": run()
