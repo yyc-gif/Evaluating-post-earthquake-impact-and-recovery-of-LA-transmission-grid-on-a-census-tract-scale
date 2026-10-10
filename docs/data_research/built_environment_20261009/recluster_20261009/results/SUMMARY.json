@@ -21,7 +21,7 @@
       "p": 9,
       "selected_k": 2,
       "passed_min_cluster_2pct": true,
-      "silhouette": 0.1948789849945603,
+      "silhouette": 0.19487898499456027,
       "smallest_cluster": 858,
       "bootstrap_median_ari": 0.8654138783910648,
       "bootstrap_min_ari": 0.7833725275677145,
@@ -63,7 +63,7 @@
       "p": 9,
       "selected_k": 2,
       "passed_min_cluster_2pct": true,
-      "silhouette": 0.17580246026570986,
+      "silhouette": 0.1758024602657099,
       "smallest_cluster": 804,
       "bootstrap_median_ari": 0.9798620628207484,
       "bootstrap_min_ari": 0.959938565523686,
@@ -175,7 +175,7 @@
       "p": 10,
       "selected_k": 2,
       "passed_min_cluster_2pct": true,
-      "silhouette": 0.20000984047102313,
+      "silhouette": 0.2000098404710231,
       "smallest_cluster": 780,
       "bootstrap_median_ari": 0.9529351683054533,
       "bootstrap_min_ari": 0.91854067115195,
@@ -250,6 +250,27 @@
         "Pre_1970_Ratio",
         "housing_5plus_share",
         "housing_units_per_km2"
+      ],
+      "blocks": null
+    },
+    {
+      "model": "housing_plus_impervious_pilot",
+      "status": "FOUR_DIMENSION_PHYSICAL_PILOT_UNVERIFIED_NLCD",
+      "n": 2291,
+      "p": 4,
+      "selected_k": 3,
+      "passed_min_cluster_2pct": true,
+      "silhouette": 0.3846315746849582,
+      "smallest_cluster": 254,
+      "bootstrap_median_ari": 0.9673759792606802,
+      "bootstrap_min_ari": 0.953938008965962,
+      "ari_vs_original_old_labels": 0.07498880197679494,
+      "ari_k5_vs_old_labels": 0.06484573173613598,
+      "features": [
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "housing_units_per_km2",
+        "impervious_land_fraction"
       ],
       "blocks": null
     },
@@ -331,6 +352,11 @@
     },
     {
       "model_a": "primary_equal_domain",
+      "model_b": "housing_plus_impervious_pilot",
+      "ari": 0.07170234087892888
+    },
+    {
+      "model_a": "primary_equal_domain",
       "model_b": "pilot_plus_impervious",
       "ari": 0.8825618942467736
     },
@@ -361,6 +387,11 @@
     },
     {
       "model_a": "primary_equal_coordinate",
+      "model_b": "housing_plus_impervious_pilot",
+      "ari": 0.5069972376506556
+    },
+    {
+      "model_a": "primary_equal_coordinate",
       "model_b": "pilot_plus_impervious",
       "ari": 0.022903626809505133
     },
@@ -386,6 +417,11 @@
     },
     {
       "model_a": "population_density_proxy",
+      "model_b": "housing_plus_impervious_pilot",
+      "ari": 0.07345613389039118
+    },
+    {
+      "model_a": "population_density_proxy",
       "model_b": "pilot_plus_impervious",
       "ari": 0.8564175938127937
     },
@@ -406,6 +442,11 @@
     },
     {
       "model_a": "primary_plus_nri_same_blocks",
+      "model_b": "housing_plus_impervious_pilot",
+      "ari": 0.5415689901716165
+    },
+    {
+      "model_a": "primary_plus_nri_same_blocks",
       "model_b": "pilot_plus_impervious",
       "ari": 0.03313754449006768
     },
@@ -421,6 +462,11 @@
     },
     {
       "model_a": "primary_plus_nri_separate_block",
+      "model_b": "housing_plus_impervious_pilot",
+      "ari": 0.0016490963494701413
+    },
+    {
+      "model_a": "primary_plus_nri_separate_block",
       "model_b": "pilot_plus_impervious",
       "ari": 0.014855092232545889
     },
@@ -431,13 +477,28 @@
     },
     {
       "model_a": "housing_two_measure",
+      "model_b": "housing_plus_impervious_pilot",
+      "ari": 0.6153000255676789
+    },
+    {
+      "model_a": "housing_two_measure",
       "model_b": "pilot_plus_impervious",
       "ari": -0.005614400786470967
     },
     {
       "model_a": "housing_three_measure",
+      "model_b": "housing_plus_impervious_pilot",
+      "ari": 0.6720048857993577
+    },
+    {
+      "model_a": "housing_three_measure",
       "model_b": "pilot_plus_impervious",
       "ari": 0.001963022108013375
+    },
+    {
+      "model_a": "housing_plus_impervious_pilot",
+      "model_b": "pilot_plus_impervious",
+      "ari": 0.087987465867981
     }
   ]
 }
