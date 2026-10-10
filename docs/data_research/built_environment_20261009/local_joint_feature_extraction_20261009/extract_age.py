@@ -1,0 +1,36 @@
+"""Conservative assessor-age transfer from 2014 to observed 2020 outlines."""
+import sys,time,gc,hashlib,json
+import numpy as np,pandas as pd,geopandas as gpd,pyogrio,shapely
+from shapely import STRtree
+from source_audit import ROOT,OUT,dump,sha
+from extract_gis import tracts,land
+S=OUT/'sources'
+def run():
+ start=time.time();source2014=S/'LARIAC4_BUILDINGS_2014.zip';u='/vsizip/'+str(source2014).replace(chr(92),'/')+'/LARIAC4_BUILDINGS_2014/LARIAC4_BUILDINGS_2014.gdb'
+ old=pyogrio.read_dataframe(u,layer='LARIAC4_BUILDINGS_2014',columns=['CODE','BLD_ID','YearBuilt1','UseType','Roll_Year','SOURCE','DATE_']);print('AGE_2014_READ',len(old),round(time.time()-start,1),flush=True)
+ old=old.loc[old.CODE.eq('Building')].copy();old.BLD_ID=old.BLD_ID.astype('string').str.strip();dup=old.BLD_ID.duplicated(keep=False);duplicated=int(dup.sum());missing_id=old.BLD_ID.isna()|old.BLD_ID.eq('');old['year']=pd.to_numeric(old.YearBuilt1,errors='coerce');old['roll']=pd.to_numeric(old.Roll_Year,errors='coerce');valid=old.year.between(1800,2014)&(old.year.mod(1)==0)&(old.roll.isna()|old.year.le(old.roll));useqa=old.assign(valid_year=valid).groupby('UseType',dropna=False).agg(records=('BLD_ID','size'),valid_years=('valid_year','sum'));useqa['valid_fraction']=useqa.valid_years/useqa.records;useqa.to_csv(OUT/'LARIAC4_COUNTYWIDE_AGE_BY_USE.csv')
+ invalid=int((~old.geometry.is_valid).sum());old.geometry=old.geometry.make_valid();old=old.loc[~dup&~missing_id].copy().to_crs(3310).set_index('BLD_ID');old['year_valid']=old.year.between(1800,2014)&old.year.mod(1).eq(0)&(old.roll.isna()|old.year.le(old.roll));print('AGE_UNIQUE_2014',len(old),duplicated,flush=True)
+ l=land();t=tracts();tree=STRtree(t.geometry.to_numpy());names=['all_area','matched_area','valid_age_area','pre1970_area','residential_area','residential_valid_age_area','residential_pre1970_area'];acc=np.zeros((len(t),len(names)));use_acc={};match_rows=[];seen_geometry=set();n2020=0;matched=0;failed_iou=0;noid=0;geodups=0;idambig=0
+ p6=S/'LARIAC6_Buildings_2020.gdb.zip';u6='/vsizip/'+str(p6).replace(chr(92),'/')+'/LARIAC6_Buildings_2020.gdb';info=pyogrio.read_info(u6,layer='LARIAC6_BUILDINGS_2020')
+ for offset in range(0,info['features'],100000):
+  d=pyogrio.read_dataframe(u6,layer='LARIAC6_BUILDINGS_2020',skip_features=offset,max_features=100000,columns=['CODE','BLD_ID','SOURCE','DATE_','STATUS'],fid_as_index=True);d=d.loc[d.CODE.eq('Building')].copy();d.geometry=d.geometry.make_valid();hashes=[hashlib.sha256(w).digest() for w in shapely.to_wkb(shapely.normalize(d.geometry.to_numpy()))];keep=[]
+  for i,h in enumerate(hashes):
+   if h in seen_geometry:geodups+=1
+   else:seen_geometry.add(h);keep.append(i)
+  d=d.iloc[keep].copy().to_crs(3310);n2020+=len(d);ids=d.BLD_ID.astype('string').str.strip();selected=old.reindex(ids);has=selected.geometry.notna().to_numpy();iou=np.zeros(len(d));match_indices=np.flatnonzero(has)
+  if len(match_indices):
+   gg=d.geometry.iloc[match_indices].to_numpy();oo=selected.geometry.iloc[match_indices].to_numpy();inter=shapely.area(shapely.intersection(gg,oo));union=shapely.area(gg)+shapely.area(oo)-inter;iou[match_indices]=np.divide(inter,union,out=np.zeros_like(inter),where=union>0)
+  accepted=has&(iou>=.9);matched+=int(accepted.sum());failed_iou+=int((has&~accepted).sum());noid+=int((~has).sum());years=selected.year.to_numpy(float);age_ok=accepted&selected.year_valid.fillna(False).to_numpy(bool);uses=selected.UseType.fillna('Unknown').to_numpy();residential=accepted&(uses=='Residential');pairs=tree.query(d.geometry.to_numpy(),predicate='intersects')
+  for ti in np.unique(pairs[1]):
+   bi=pairs[0,pairs[1]==ti];clips=shapely.intersection(d.geometry.iloc[bi].to_numpy(),l.geometry.iloc[ti]);area=shapely.area(clips);matrix=np.c_[np.ones(len(bi)),accepted[bi],age_ok[bi],age_ok[bi]&(years[bi]<1970),residential[bi],residential[bi]&age_ok[bi],residential[bi]&age_ok[bi]&(years[bi]<1970)];acc[ti]+=np.sum(matrix*area[:,None],axis=0)
+   for use in np.unique(uses[bi][accepted[bi]]):
+    mask=(uses[bi]==use)&accepted[bi];k=(str(t.index[ti]),str(use));v=use_acc.setdefault(k,np.zeros(3));v+=np.array([area[mask].sum(),area[mask&age_ok[bi]].sum(),area[mask&age_ok[bi]&(years[bi]<1970)].sum()])
+  # Full record linkage audit retained as compressed chunks; no source attributes altered.
+  record=pd.DataFrame({'OBJECTID2020':d.index,'BLD_ID':ids.to_numpy(),'has_unique2014_id':has,'geometry_IoU':iou,'age_transfer_accepted':accepted,'year_valid':age_ok,'YearBuilt1':np.where(age_ok,years,np.nan),'UseType':np.where(accepted,uses,None),'status2020':d.STATUS.to_numpy()});dest=S/'age_linkage';dest.mkdir(exist_ok=True);record.to_csv(dest/f'{offset:07d}.csv.gz',index=False,compression='gzip');gc.collect();print('AGE_2020',min(offset+100000,info['features']),round(time.time()-start,1),flush=True)
+ rows=[]
+ for i,key in enumerate(t.index):
+  a,m,v,p,r,rv,rp=acc[i];row={'tract_id':key,'all_use_pre1970_area_share':p/v if v>0 else np.nan,'all_use_age_coverage':v/a if a>0 else np.nan,'all_use_2014_2020_match_area_coverage':m/a if a>0 else np.nan,'all_use_missing_age_area_m2':a-v,'all_use_observed_age_area_m2':v,'all_use_pre1970_observed_area_m2':p,'all_use_outline_area_sum_m2':a,'all_use_pre1970_lower_bound':p/a if a>0 else np.nan,'all_use_pre1970_upper_bound':(p+a-v)/a if a>0 else np.nan,'residential_pre1970_area_share':rp/rv if rv>0 else np.nan,'residential_age_coverage':rv/r if r>0 else np.nan,'residential_observed_age_area_m2':rv,'building_age_status':'PARTIALLY_OBSERVED_ASSESSOR_YEAR_2014_TO_2020_STRICT_LINK','age_share_denominator':'valid-age clipped outline area; missing-age area NOT treated as post1970','age_match_method':'exact unique BLD_ID AND geometric IoU>=0.90; duplicated 2014 IDs withheld; YearBuilt1 integer1800..min(2014,Roll_Year), no EffectiveYear substitution'};rows.append(row)
+ out=pd.DataFrame(rows);out.to_csv(OUT/'BUILDING_AGE_ALL_USE_TRACTS.csv',index=False,na_rep='',float_format='%.15g');by=pd.DataFrame([{'tract_id':k[0],'use':k[1],'matched_outline_area_m2':v[0],'valid_age_area_m2':v[1],'pre1970_area_m2':v[2],'age_coverage_within_matched_use':v[1]/v[0] if v[0]>0 else np.nan} for k,v in use_acc.items()]);by.to_csv(OUT/'BUILDING_AGE_BY_USE_COVERAGE.csv',index=False)
+ dump('BUILDING_AGE_QA.json',{'old_source_sha256':sha(source2014),'new_source_sha256':sha(p6),'2014_duplicate_ID_records_withheld':duplicated,'invalid2014_repaired':invalid,'2020_unique_outline_records':n2020,'identical2020_geometries_removed':geodups,'unique_id_and_IoU_accepted':matched,'unique_id_geometry_mismatch':failed_iou,'no_unique2014_id':noid,'age_coverage_quantiles':out.all_use_age_coverage.quantile([0,.01,.5,.99,1]).to_dict(),'missing_age_area_not_imputed':True,'share_is_complete_all_buildings':False,'source_age_type':'parcel-assessor YearBuilt1 associated with building outline; not independent validation of actual construction year and not BRAILS predictions','area_weighting':'sum of distinct clipped outline areas; compare with LARIAC union overlap audit; no inferred floor area','seconds':time.time()-start,'unobserved_age_sensitivity':'lower=observed pre1970/total area; upper=(observed pre1970+missing-age area)/total; not point imputations'})
+ print('AGE_FINISHED',out.all_use_age_coverage.median(),flush=True)
+if __name__=='__main__':run()

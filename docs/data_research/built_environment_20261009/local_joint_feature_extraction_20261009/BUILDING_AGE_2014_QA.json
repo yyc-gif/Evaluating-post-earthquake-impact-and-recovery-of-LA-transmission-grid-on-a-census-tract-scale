@@ -1,0 +1,21 @@
+{
+  "source_sha256": "4bcda70f9b178ef91ac8dd80ca8842d5f8040bbfa839cd2bfe2cf5d0afb53882",
+  "unique_building_geometries": 3087900,
+  "exact_geometry_duplicates_removed": 496,
+  "conflicting_age_or_use_geometries_withheld": 9,
+  "invalid_repaired": 255,
+  "missing_geometry_excluded_from_area": 1,
+  "vintage": 2014,
+  "area_union_implementation": "exact union areas of disjoint positive-overlap components; independent GEOS equivalence audit required",
+  "area_union_rule": "all, valid-age and pre1970 unions clipped to tract land; exact-geometry age/use conflicts withheld from known-age numerator",
+  "coverage_quantiles": {
+    "0.0": 0.0030421106332498074,
+    "0.01": 0.3503980689652314,
+    "0.5": 0.952179905618144,
+    "0.99": 0.9992323534247213,
+    "1.0": 1.0
+  },
+  "missing_age_imputed": false,
+  "not_2020_age_transfer": true,
+  "seconds": 236.0280933380127
+}

@@ -1,0 +1,77 @@
+{
+  "id": "57f5fc977d6a427a978003a6229ab5e7",
+  "owner": "lacounty_isd",
+  "ownerId": "dd82bf6d01d536d497a99d5ab14e05b1",
+  "orgId": "RmCCgQtiZLDCtblq",
+  "created": 1593060116000,
+  "modified": 1768600234000,
+  "guid": null,
+  "name": null,
+  "title": "Countywide Building Outlines (2014)",
+  "type": "Feature Service",
+  "typeKeywords": [
+    "ArcGIS Server",
+    "Data",
+    "Feature Access",
+    "Feature Service",
+    "Metadata",
+    "Multilayer",
+    "Service",
+    "Hosted Service"
+  ],
+  "description": "<p><b><font color='#0000cd'>** <a href='https://apps.gis.lacounty.gov/static/hub/lariac_documents/LARIAC4/LARIAC4_BUILDINGS_2014.zip' target='_blank' rel='nofollow ugc noopener noreferrer'>Download as File Geodatabase</a></font></b><br /></p><p>The Countywide building outline dataset contains building outlines (over \n3,000,000) for all buildings in Los Angeles County, including building height, \nbuilding area, and the parcel number (also known as building footprints). This \ndata was captured from stereo imagery as part of the LARIAC2 Project (2008 \nacquisition) and was updated as part of the LARIAC4 (2014) imagery \nacquisition.<br /></p>\n<p>There are a number of sources. All buildings were updated to include \nchanges between 2008 and 2014.</p>\n<ul>\n<li><strong>City of Palmdale -&nbsp;</strong>building outlines from the LARIAC \n(2006) imagery derived from orthogonal imagery. \n</li><li><strong>City of Pasadena -&nbsp;</strong>building outlines from earlier \nimagery, updated with LARIAC2 (2008) imagery in 2008 \n</li><li><strong>City of Glendale</strong>&nbsp;- building outlines from earlier \nimagery, updated with LARIAC2 (2008) imagery in 2008 \n</li><li><strong>City of Los Angeles</strong>&nbsp;- building outlines from LARIAC2 \n(2008), stereo generated, for all buildings &gt; 64 square feet \n</li><li><strong>The rest of the County</strong>&nbsp;- building outlines from LARIAC2 \n(2008), stereo generated, for all buildings &gt; 400 square feet </li></ul>\n<p>Most of the buildings in this dataset were generated using <a href='http://en.wikipedia.org/wiki/Stereoscopy#Characteristics' target='_blank' rel='nofollow ugc noopener noreferrer'>stereo imagery</a>. This means that the person capturing the \nbuildings actually saw them in 3-D, and therefore was able to more accurately \ncapture the location of the roof line, since this method eliminated the impacts \nof building lean (where the height of the building impacts its apparent \nlocation). Basically this is the most accurate method for capturing \nbuilding outlines. In many cases the location is more accurate than our aerial \nphotography and parcel boundaries.</p><p>This file contains a file geodatabase which has two feature classes:</p><p>\n</p><ul>\n<li>LARIAC4_BUILDINGS_2014 \u2013 this is the current set of buildings as of 2014 \n</li><li>LARIAC2_BUILDINGS_DELETED_2014 \u2013 these are the buildings from LARIAC2 that \nhave been modified or deleted. These can be for change analysis and detection.&nbsp;</li></ul>",
+  "tags": [
+    "Building outlines",
+    "LARIAC",
+    "LARIAC4"
+  ],
+  "snippet": "Building outlines for over 3,000,000 buildings in Los Angeles County, including building height, building area, and the parcel number (also known as building footprints).",
+  "thumbnail": "thumbnail/thumbnail1594244661714.png",
+  "documentation": null,
+  "extent": [
+    [
+      -118.95967840311211,
+      33.3140209348158
+    ],
+    [
+      -117.64842007557537,
+      34.824844650697685
+    ]
+  ],
+  "categories": [
+    "/Categories/Infrastructure"
+  ],
+  "spatialReference": "102100",
+  "accessInformation": "County of Los Angeles Region Imagery Acquisition Consortium (LARIAC) 4",
+  "classification": null,
+  "licenseInfo": "<span style='font-family:&quot;Avenir Next W01&quot;, &quot;Avenir Next W00&quot;, &quot;Avenir Next&quot;, Avenir, &quot;Helvetica Neue&quot;, sans-serif; font-size:16px;'>The data herein is for informational purposes, and may not have been prepared for or be suitable for legal, engineering, or surveying intents. The County of Los Angeles reserves the right to change, restrict, or discontinue access at any time.\u00a0 All users of the maps and data presented on\u00a0</span><a href='https://lacounty.maps.arcgis.com/' style='color:rgb(0, 121, 193); text-decoration-line:none; font-family:&quot;Avenir Next W01&quot;, &quot;Avenir Next W00&quot;, &quot;Avenir Next&quot;, Avenir, &quot;Helvetica Neue&quot;, sans-serif; font-size:16px;' target='_blank' rel='nofollow ugc noopener noreferrer'>https://lacounty.maps.arcgis.com</a><span style='font-family:&quot;Avenir Next W01&quot;, &quot;Avenir Next W00&quot;, &quot;Avenir Next&quot;, Avenir, &quot;Helvetica Neue&quot;, sans-serif; font-size:16px;'>\u00a0or deriving from any LA County REST URLs agree to the &quot;Terms of Use&quot; outlined on the County of LA Enterprise GIS (eGIS) Hub (</span><a href='https://egis-lacounty.hub.arcgis.com/pages/terms-of-use' style='color:rgb(0, 121, 193); text-decoration-line:none; font-family:&quot;Avenir Next W01&quot;, &quot;Avenir Next W00&quot;, &quot;Avenir Next&quot;, Avenir, &quot;Helvetica Neue&quot;, sans-serif; font-size:16px;' target='_blank' rel='nofollow ugc noopener noreferrer'>https://egis-lacounty.hub.arcgis.com/pages/terms-of-use</a><i>).</i>",
+  "culture": "",
+  "properties": {
+    "indexJobId": "",
+    "indexJobUrl": ""
+  },
+  "advancedSettings": null,
+  "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines/FeatureServer",
+  "proxyFilter": null,
+  "access": "public",
+  "size": 4102463488,
+  "subInfo": 0,
+  "appCategories": [],
+  "industries": [],
+  "languages": [],
+  "largeThumbnail": null,
+  "banner": null,
+  "screenshots": [],
+  "listed": false,
+  "commentsEnabled": true,
+  "numComments": 0,
+  "numRatings": 0,
+  "avgRating": 0,
+  "numViews": 519332,
+  "contentStatus": "public_authoritative",
+  "scoreCompleteness": 100,
+  "groupDesignations": null,
+  "apiToken1ExpirationDate": -1,
+  "apiToken2ExpirationDate": -1,
+  "lastViewed": 1791604800000
+}

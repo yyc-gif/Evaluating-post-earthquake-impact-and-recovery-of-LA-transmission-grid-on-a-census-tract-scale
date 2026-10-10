@@ -1,0 +1,101 @@
+[
+  {
+    "source": "SCAG2019",
+    "phase": "metadata",
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0?f=json",
+    "sha256": "8bd3e2bf6c4ff2301894e7defdc1017684a1e3a0cb7dd0fc1a3bff5dc05ceb45",
+    "bytes": 73565,
+    "count": null,
+    "error": null,
+    "record_count": null,
+    "exceededTransferLimit": null
+  },
+  {
+    "source": "SCAG2019",
+    "phase": "count",
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY+%3D+%27Los+Angeles%27&returnCountOnly=true",
+    "sha256": "bf1d16e16e5e216fdf083b5739398ebdd1ef63ec019eb8332b236645fa8fc38f",
+    "bytes": 17,
+    "count": 2406373,
+    "error": null,
+    "record_count": null,
+    "exceededTransferLimit": null
+  },
+  {
+    "source": "SCAG2019",
+    "phase": "geometry_sample",
+    "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use/MapServer/0/query?f=json&where=COUNTY+%3D+%27Los+Angeles%27&outFields=%2A&returnGeometry=true&resultRecordCount=10&outSR=4326",
+    "sha256": "d519e1802e35539ce606c591200e53c04c0b6982fe77b4cfceff2f0b58f1908f",
+    "bytes": 25568,
+    "count": null,
+    "error": null,
+    "record_count": 10,
+    "exceededTransferLimit": true
+  },
+  {
+    "source": "LARIAC6_2020",
+    "phase": "metadata",
+    "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines_%282020%29/FeatureServer/0?f=json",
+    "sha256": "be51f9aa2b9054859fcb6ad8727f5d754e6afb9636b7f9b72df1b222ff968ae8",
+    "bytes": 9632,
+    "count": null,
+    "error": null,
+    "record_count": null,
+    "exceededTransferLimit": null
+  },
+  {
+    "source": "LARIAC6_2020",
+    "phase": "count",
+    "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines_%282020%29/FeatureServer/0/query?f=json&where=1%3D1&returnCountOnly=true",
+    "sha256": "7ea80d3a82914d2bd209dd869e59c7dbc1250523a00b26b935ee6d4fe64537a5",
+    "bytes": 186,
+    "count": 3293177,
+    "error": null,
+    "record_count": null,
+    "exceededTransferLimit": null
+  },
+  {
+    "source": "LARIAC6_2020",
+    "phase": "geometry_sample",
+    "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines_%282020%29/FeatureServer/0/query?f=json&where=1%3D1&outFields=%2A&returnGeometry=true&resultRecordCount=10&outSR=4326",
+    "sha256": "03f68f1ad22238e2218e2161ffa32bda834031b3d1976a64a005298c8a0d377e",
+    "bytes": 7826,
+    "count": null,
+    "error": null,
+    "record_count": 10,
+    "exceededTransferLimit": true
+  },
+  {
+    "source": "LARIAC4_2014",
+    "phase": "metadata",
+    "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines/FeatureServer/1?f=json",
+    "sha256": "6208ab4ca7c9f42713bf57076e1d2e0df81d886c0c9bda71062e2d6e33c90a58",
+    "bytes": 18883,
+    "count": null,
+    "error": null,
+    "record_count": null,
+    "exceededTransferLimit": null
+  },
+  {
+    "source": "LARIAC4_2014",
+    "phase": "count",
+    "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines/FeatureServer/1/query?f=json&where=1%3D1&returnCountOnly=true",
+    "sha256": "770b04e9946be985daab50727c046ec9b7b23a4d7e5e7d0587e2284f0cad2f19",
+    "bytes": 187,
+    "count": 3118973,
+    "error": null,
+    "record_count": null,
+    "exceededTransferLimit": null
+  },
+  {
+    "source": "LARIAC4_2014",
+    "phase": "geometry_sample",
+    "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines/FeatureServer/1/query?f=json&where=1%3D1&outFields=%2A&returnGeometry=true&resultRecordCount=10&outSR=4326",
+    "sha256": "bde02f7cd944758318018f4f2161a52b206548640077c7666f755429c4438203",
+    "bytes": 24367,
+    "count": null,
+    "error": null,
+    "record_count": 10,
+    "exceededTransferLimit": true
+  }
+]

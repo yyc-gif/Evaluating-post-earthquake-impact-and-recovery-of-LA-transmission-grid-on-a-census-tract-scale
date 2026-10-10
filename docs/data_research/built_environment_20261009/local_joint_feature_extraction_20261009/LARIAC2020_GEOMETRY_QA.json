@@ -1,0 +1,419 @@
+{
+  "source_sha256": "0ebad6bfce4e852e071f3ffdfaa4269d75151f2540bfd668417c1a7e1327d520",
+  "feature_class": "LARIAC6_BUILDINGS_2020",
+  "raw_records": 3293177,
+  "code_counts": {
+    "Building": 3115967,
+    "Courtyard": 34364,
+    "Free Standing Solar Structure": 142846
+  },
+  "building_records": 3115964,
+  "duplicate_BLD_ID": 823,
+  "duplicate_id_examples": [
+    {
+      "BLD_ID": "2014121118380000",
+      "SOURCE": "LARIAC2"
+    },
+    {
+      "BLD_ID": "2014121119150000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119160000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119170000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119180000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119210000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119240000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119250000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119280000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119290000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119300000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119310000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119320000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119330000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119360000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119390000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119420000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119440000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119450000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119460000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119130000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119710000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014121119900000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014102531960000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014082821100000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014082834240000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014051567150000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014051567180000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "201404851590000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "201404905360000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "201404965220000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "201404965480000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "201404976690000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "201404941200000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254630000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254640000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254650000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254670000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254680000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254690000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254710000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254720000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254730000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254750000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254780000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254790000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254800000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254820000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254860000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254870000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254890000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254900000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254920000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "2014151254960000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "20142215690000",
+      "SOURCE": "LARIAC4"
+    },
+    {
+      "BLD_ID": "201424331630000",
+      "SOURCE": "LARIAC4"
+    }
+  ],
+  "duplicate_geometry_removed": 3,
+  "duplicate_geometry_conflicting_heights": 2,
+  "invalid_repaired": 149,
+  "repaired_OBJECTIDs": [
+    128138,
+    129881,
+    130698,
+    130733,
+    130963,
+    132867,
+    321699,
+    321923,
+    322244,
+    323692,
+    325264,
+    325983,
+    326351,
+    326400,
+    327429,
+    327825,
+    329812,
+    330067,
+    450956,
+    451691,
+    451766,
+    452507,
+    452672,
+    453459,
+    453534,
+    453594,
+    453630,
+    454153,
+    454392,
+    455072,
+    1342975,
+    1352399,
+    1617543,
+    1626147,
+    1899839,
+    1904021,
+    1904367,
+    1906242,
+    1907119,
+    1907320,
+    1909446,
+    1909705,
+    1909898,
+    1910332,
+    1925220,
+    1925636,
+    1926175,
+    1926328,
+    1930876,
+    1933342,
+    1934322,
+    1934686,
+    1935705,
+    1935717,
+    1935880,
+    1938430,
+    1940833,
+    1946627,
+    1948659,
+    1948832,
+    1954196,
+    1957474,
+    1958041,
+    1959515,
+    1961309,
+    1967684,
+    1968697,
+    1976421,
+    1980087,
+    1983182,
+    1984071,
+    1985873,
+    1987132,
+    1987779,
+    2036931,
+    2044043,
+    2050185,
+    2053532,
+    2061847,
+    2064804,
+    2067151,
+    2068034,
+    2072321,
+    2081557,
+    2096220,
+    2096615,
+    2104454,
+    2109281,
+    2112950,
+    2115165,
+    2122218,
+    2126050,
+    2131307,
+    2133448,
+    2136054,
+    2139847,
+    2149281,
+    2153890,
+    2154021,
+    2154620,
+    2156373,
+    2159563,
+    2166946,
+    2166950,
+    2167841,
+    2167921,
+    2170319,
+    2174130,
+    2180762,
+    2182879,
+    2190452,
+    2195785,
+    2271099,
+    2299644,
+    2439402,
+    2439959,
+    2440905,
+    2441576,
+    2441658,
+    2441901,
+    2441952,
+    2442018,
+    2442186,
+    2444239,
+    2485112,
+    2485663,
+    2488174,
+    2489142,
+    2491984,
+    2498399,
+    2500945,
+    2505234,
+    2507519,
+    2510284,
+    2523225,
+    2526011,
+    2537305,
+    2537566,
+    2545834,
+    2556782,
+    2569751,
+    2576331,
+    2578239,
+    2579097,
+    2582241,
+    2582249,
+    2582778,
+    2755955,
+    3280566
+  ],
+  "empty": 0,
+  "source_date_counts": {
+    "2008": 2446452,
+    "2017": 234415,
+    "2014": 158180,
+    "2020": 210171,
+    "1992": 29616,
+    "2003": 7146,
+    "2006": 29987
+  },
+  "cross_tract_outline_count": 2883,
+  "centroids_outside_study": 305376,
+  "AREA_vs_original_geometry_ratio_quantiles": [
+    0.9798148109260988,
+    0.9999999989991976,
+    1.0,
+    1.0000000010017696,
+    1.0301485615555146
+  ],
+  "total_overlap_removed_m2": 3716.3243563044252,
+  "crs": "EPSG:6424",
+  "analysis_crs": "EPSG3310",
+  "centroid_tie_rule": "lexicographically smallest GEOID for exact boundary ties",
+  "height_weighting": "positive HEIGHT converted feet to m, clipped polygon area; BLD_ID repeats do not erase distinct outlines; exact normalized geometry duplicates removed and conflicting heights withhold height candidates; geometric overlap is quantified, union used for coverage; height is outline-area weighted, not floor-area weighted",
+  "seconds": 582.275853395462,
+  "zero_building_tracts": [],
+  "minimum_detectable_footprint": "not documented; no arbitrary small-outline exclusion"
+}

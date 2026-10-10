@@ -1,0 +1,59 @@
+{
+  "focused_tests_passed": 9,
+  "test_command": "python -m pytest --assert=plain -p no:cacheprovider -q test_feature_extraction.py",
+  "data_tables": [
+    {
+      "file": "TRACT_FEATURE_CANDIDATES.csv",
+      "rows": 2315,
+      "columns": 164,
+      "sha256": "f861c119de34a152bf82af0aa4f5e2acc551bfb3cb24d091b5eaad8289a22107",
+      "bytes": 7363356
+    },
+    {
+      "file": "RESIDENTIAL_2291_FEATURE_MATRIX.csv",
+      "rows": 2291,
+      "columns": 164,
+      "sha256": "eea230dd2f1e6be857bc35470a77d62a867ce9c47b471416cb57dc21e1aec973",
+      "bytes": 7293584
+    },
+    {
+      "file": "FEATURE_CORRELATION_MATRIX.csv",
+      "rows": 1081,
+      "columns": 14,
+      "sha256": "1013d1bee407da444f5ca380ccdec2bc1a605083b5f49e416854f453fa3b4682",
+      "bytes": 392473
+    },
+    {
+      "file": "FEATURE_COVERAGE_QA.csv",
+      "rows": 41,
+      "columns": 16,
+      "sha256": "0d1104866f69a95f9dd34db22210f9d7dfc27d08da77648f93b3fc376ab14e5e",
+      "bytes": 10102
+    },
+    {
+      "file": "RECOVERY_B_T80_INIT_COMPARISON.csv",
+      "rows": 2315,
+      "columns": 10,
+      "sha256": "6f02bc891b4287e56fe0c777402add4b8a910a12e1866ad8572931adcbd9e652",
+      "bytes": 301965
+    },
+    {
+      "file": "FEATURE_VIF.csv",
+      "rows": 41,
+      "columns": 9,
+      "sha256": "945ccdd33f5fdce573e64eebc39fddc58a503f6484919430ed5c8c3e2ffb834b",
+      "bytes": 9297
+    },
+    {
+      "file": "FEATURE_CONDITIONAL_REDUNDANCY.csv",
+      "rows": 59,
+      "columns": 10,
+      "sha256": "966a3b895e34ef11751a307f9b8e77b1fdf1370e19246d3396a79de2a92c6413",
+      "bytes": 16254
+    }
+  ],
+  "scientific_files_changed": 0,
+  "final_clustering_performed": false,
+  "formal_stage7_modified": false,
+  "manuscript_or_figures_modified": false
+}

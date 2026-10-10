@@ -1,0 +1,17 @@
+# Bulk original sources remain local; hashes/URLs and small metadata are published.
+sources/*.zip
+sources/*.gpkg
+sources/SCAG_LA_OBJECT_IDS.json
+sources/scag_la_chunks/
+sources/scag_tract_geometries*/
+sources/lariac6_tract_clips/
+sources/age_linkage/
+sources/age2014_tract_clips*/
+WINDOWS_INVENTORY_DISCOVERY.json
+ORIGINAL_STAGING.bin
+ORIGINAL_STATUS.bin
+__pycache__/
+.pytest_cache/
+publish_state/
+
+BUILDING_AGE_2014_*PARTIAL.csv

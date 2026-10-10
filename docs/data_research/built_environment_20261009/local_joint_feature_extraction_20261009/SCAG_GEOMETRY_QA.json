@@ -1,0 +1,43 @@
+{
+  "raw_records": 2406373,
+  "stack_gt1_records": 336496,
+  "exact_normalized_geometry_duplicate_records": 315495,
+  "duplicate_with_different_LU19": 4609,
+  "different_code_same_broad_class": 4404,
+  "invalid_repaired": 39,
+  "empty_geometry": 1,
+  "missing_geometry": 0,
+  "codes_missing_dictionary": [
+    -1
+  ],
+  "all_area_categories": [
+    "residential",
+    "commercial_office",
+    "industrial",
+    "institutional_public",
+    "transportation_utility",
+    "open_space_recreation",
+    "vacant_undeveloped",
+    "agriculture",
+    "mixed_use",
+    "under_construction",
+    "protected_undevelopable"
+  ],
+  "entropy_K": 11,
+  "entropy_definition": "-sum(p_i log(p_i))/log(11); p_i = exclusive class land area / all exclusive classified land area. Includes undeveloped categories; not developed-only, no record counts.",
+  "stack_rule": "identical geometry same broad class counted once; conflicting broad classes withheld as ambiguous area, not discarded indiscriminately; non-identical STACK>1 polygons retained and unioned",
+  "cross_class_overlap_rule": "all conflicting geographic area removed from exclusive categories and reported separately",
+  "cross_tract_rule": "equal-area EPSG3310 geometry intersection, never GEOID20 prefix allocation",
+  "classified_coverage_quantiles": {
+    "0.0": 0.2291817449720642,
+    "0.01": 0.5609519544816424,
+    "0.5": 0.7514669122693111,
+    "0.99": 0.9535705331969866,
+    "1.0": 0.996990709467607
+  },
+  "ambiguous_overlap_total_m2": 2947947.2208158616,
+  "parcel_gaps_total_m2": 688830698.6816933,
+  "overlay_numeric_repairs": [],
+  "non_areal_intersections": "boundary lines and points excluded before area overlays",
+  "seconds": 518.2063705921173
+}

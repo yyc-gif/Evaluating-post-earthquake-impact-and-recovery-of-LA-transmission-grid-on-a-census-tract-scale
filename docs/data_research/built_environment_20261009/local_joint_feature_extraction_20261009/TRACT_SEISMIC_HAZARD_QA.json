@@ -1,0 +1,29 @@
+{
+  "source_sha256": "e9a7fe19d39c67708dfe1915a4878fe4a01aa5d6e8a49b5b0b5126c412ec6bef",
+  "official_download_exact_byte_match": true,
+  "grid_records": 422176,
+  "original_grid_spacing_degrees": 0.01,
+  "grid_subset_records": 9525,
+  "units": "g",
+  "vintage": "CGS MS48 2025 / USGS NSHM2023 / Vs30 July2022",
+  "no_risk_or_fragility_features_used": true,
+  "station_source_max_error_g": 2.220446049250313e-16,
+  "tract_count": 2315,
+  "grid_coverage_quantiles": {
+    "0.0": 0.9173822216522273,
+    "0.01": 0.9999999999948032,
+    "0.5": 0.9999999999999976,
+    "0.99": 1.0000000000034746,
+    "1.0": 1.000000000007536
+  },
+  "tracts_partial_support": [
+    "06037577504",
+    "06037576602",
+    "06037576700",
+    "06037577200",
+    "06037577300"
+  ],
+  "centroid_IDW": "diagnostic only: original log(g) IDW with k8, power2, 11km; primary area mean uses grid support, not station-PGA interpolation",
+  "land_mask": "Census TIGER2020 county area-water geometry",
+  "source": "https://www.conservation.ca.gov/cgs/Pages/Publications/MS48.aspx"
+}
