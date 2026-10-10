@@ -1,0 +1,32 @@
+{
+  "n": 2291,
+  "fields_present": [
+    "RISK_SCORE",
+    "EAL_SCORE",
+    "SOVI_SCORE",
+    "RESL_SCORE",
+    "BUILDVALUE",
+    "ERQK_RISKS",
+    "ERQK_EALS",
+    "ERQK_EALT",
+    "ERQK_RISKV"
+  ],
+  "n_earthquake_risk_nonmissing": 2291,
+  "n_earthquake_eal_nonmissing": 2291,
+  "mean_earthquake_risk": 93.9475021153382,
+  "original_vs_saved": {
+    "NRI_RISK_SCORE": {
+      "n_compared": 2291,
+      "max_abs_diff": 1.4210854715202004e-14
+    },
+    "NRI_BUILDVALUE": {
+      "n_compared": 2291,
+      "max_abs_diff": 0.0
+    },
+    "SOVI_SCORE": {
+      "n_compared": 2291,
+      "max_abs_diff": 4.824222799015843e-09
+    }
+  },
+  "note": "FEMA overall RISK_SCORE mixes 18 natural hazards; ERQK_RISKS is earthquake-specific; neither directly models this scenario's grid damage"
+}

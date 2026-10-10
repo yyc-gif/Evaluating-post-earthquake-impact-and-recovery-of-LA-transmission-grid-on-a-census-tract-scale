@@ -133,7 +133,7 @@
     },
     {
       "b": "housing_units_per_km2",
-      "pearson_r": 0.6311460056733984,
+      "pearson_r": 0.6311460056733985,
       "spearman_rho": 0.7018849103526448
     },
     {
@@ -143,7 +143,7 @@
     },
     {
       "b": "Pop_Density",
-      "pearson_r": 0.49343150662478863,
+      "pearson_r": 0.4934315066247886,
       "spearman_rho": 0.546055439288134
     },
     {
@@ -188,7 +188,7 @@
     },
     {
       "b": "NRI_BUILDVALUE",
-      "pearson_r": -0.03735349986418461,
+      "pearson_r": -0.037353499864184535,
       "spearman_rho": -0.05091994097230146
     },
     {
@@ -209,7 +209,7 @@
       "a": "housing_units_per_km2",
       "b": "housing_5plus_share",
       "n": 2291,
-      "pearson_r": 0.6311460056733984,
+      "pearson_r": 0.6311460056733985,
       "spearman_rho": 0.7018849103526448
     }
   ],
@@ -231,8 +231,8 @@
     },
     {
       "model": "RISK | original features except outcomes",
-      "r2": 0.767827991956571,
-      "conditional_vif": 4.307151445289412
+      "r2": 0.7678279919565709,
+      "conditional_vif": 4.30715144528941
     },
     {
       "model": "FIVEPLUS | log pop density",
@@ -246,8 +246,8 @@
     },
     {
       "model": "FIVEPLUS | age + log population density",
-      "r2": 0.43670122854908877,
-      "conditional_vif": 1.7752568453580324
+      "r2": 0.43670122854908866,
+      "conditional_vif": 1.7752568453580322
     },
     {
       "model": "FIVEPLUS | age + log housing density",

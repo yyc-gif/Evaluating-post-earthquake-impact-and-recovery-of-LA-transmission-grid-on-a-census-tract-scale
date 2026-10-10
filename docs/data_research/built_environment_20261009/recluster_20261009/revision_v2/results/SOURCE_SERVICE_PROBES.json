@@ -139,7 +139,13 @@
         "APN19": "2004001008",
         "BF_SQFT": 3158.25201339356
       }
-    ]
+    ],
+    "stacked_count_query_ok": true,
+    "stacked_count": 336496,
+    "geoid_missing_query_ok": true,
+    "geoid_missing": 0,
+    "unknown_use_query_ok": true,
+    "unknown_use": 2621
   },
   "SCAG_ALU_2019_NAD83": {
     "source": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2019_Annual_Land_Use_NAD83/MapServer/0",
@@ -281,7 +287,13 @@
         "APN19": "2004001008",
         "BF_SQFT": 3158.25201339356
       }
-    ]
+    ],
+    "stacked_count_query_ok": true,
+    "stacked_count": 336496,
+    "geoid_missing_query_ok": true,
+    "geoid_missing": 0,
+    "unknown_use_query_ok": true,
+    "unknown_use": 2621
   },
   "SCAG_LDX_2024_LA": {
     "source": "https://maps.scag.ca.gov/scaggis/rest/services/LDX/Existinglanduse_poly_LA/MapServer/0",
@@ -518,7 +530,56 @@
       "status": 200,
       "error": null
     },
-    "query_count": 3118973
+    "query_count": 3118973,
+    "sample_query_ok": true,
+    "sample_rows": [
+      {
+        "YearBuilt1": null,
+        "UseType": "Industrial",
+        "UseCode": "300V",
+        "HEIGHT": 25.63,
+        "AIN": "7429018060",
+        "APN": "7429-018-060"
+      },
+      {
+        "YearBuilt1": "1989",
+        "UseType": "Industrial",
+        "UseCode": "3100",
+        "HEIGHT": 20.43,
+        "AIN": "7429028035",
+        "APN": "7429-028-035"
+      },
+      {
+        "YearBuilt1": "1955",
+        "UseType": "Industrial",
+        "UseCode": "3100",
+        "HEIGHT": 10.65,
+        "AIN": "7429028030",
+        "APN": "7429-028-030"
+      },
+      {
+        "YearBuilt1": "1958",
+        "UseType": "Industrial",
+        "UseCode": "3100",
+        "HEIGHT": 15.08,
+        "AIN": "7429029032",
+        "APN": "7429-029-032"
+      },
+      {
+        "YearBuilt1": "1970",
+        "UseType": "Industrial",
+        "UseCode": "300X",
+        "HEIGHT": 35.87,
+        "AIN": "7429029018",
+        "APN": "7429-029-018"
+      }
+    ],
+    "yearbuilt_valid_query_ok": true,
+    "yearbuilt_valid": 2958436,
+    "yearbuilt_null_query_ok": true,
+    "yearbuilt_null": 145242,
+    "yearbuilt_0_query_ok": true,
+    "yearbuilt_0": 0
   },
   "EPA_SLD_2021": {
     "source": "https://services1.arcgis.com/IqEe3YDHhqT8n4KU/ArcGIS/rest/services/EPA_SmartLocationDatabase_V3_Jan_2021_Final/FeatureServer/0",
@@ -659,5 +720,13 @@
       "error": null
     },
     "query_count": 220740
+  },
+  "LARIAC6_2020_ITEM": {
+    "ok": true,
+    "url": "https://www.arcgis.com/sharing/rest/content/items/e6a1e375e12a4fe6849d896a26ec028a",
+    "item_type": "Feature Service",
+    "service_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Countywide_Building_Outlines_(2020)/FeatureServer",
+    "access": "public",
+    "error": null
   }
 }
