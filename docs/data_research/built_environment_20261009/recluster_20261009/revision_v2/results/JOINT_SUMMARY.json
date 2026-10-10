@@ -1,0 +1,563 @@
+{
+  "n": 2291,
+  "baseline": "031d2c675f8e7d58035d27448be040b809ced086",
+  "k_range": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "k_admission": "max silhouette with min cluster >=2 percent",
+  "none_are_paper_ready_without_land_use_geometry": true,
+  "initial_supply_distribution": {
+    "zero_n": 1529,
+    "nonzero_n": 762,
+    "min": 0.0,
+    "median": 0.0,
+    "p95": 0.0025,
+    "p99": 0.017334435975547534,
+    "max": 0.0245,
+    "std": 0.0024566525160744585,
+    "n_distinct": 742
+  },
+  "t80_distribution": {
+    "min": 34.33975324478277,
+    "p50": 43.97285519218917,
+    "p95": 53.00885608278572,
+    "max": 69.68565621755437
+  },
+  "models": [
+    {
+      "model": "archived_11_feature_exact_scaling",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "Pop_Density",
+        "NRI_RISK_SCORE",
+        "NRI_BUILDVALUE",
+        "SOVI_SCORE"
+      ],
+      "blocks": null,
+      "num_domains": null,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": false,
+      "n": 2291,
+      "k": 3,
+      "p": 11,
+      "silhouette": 0.1637674337146451,
+      "sizes": [
+        212,
+        1333,
+        746
+      ],
+      "resample_median_ari": 0.8815089242333334,
+      "resample_min_ari": 0.6137537898659027,
+      "ari_to_archived_historical_clusters": 0.44022404212509963
+    },
+    {
+      "model": "joint_v2_with_nri",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "housing_units_per_km2",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": {
+        "recovery": [
+          "T80",
+          "Init_Supply"
+        ],
+        "electric_grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "built_environment_proxy": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "housing_units_per_km2"
+        ],
+        "social_economic_hazard": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE",
+          "NRI_RISK_SCORE"
+        ]
+      },
+      "num_domains": 4,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": false,
+      "n": 2291,
+      "k": 2,
+      "p": 12,
+      "silhouette": 0.14933203750108456,
+      "sizes": [
+        1441,
+        850
+      ],
+      "resample_median_ari": 0.9566118204469163,
+      "resample_min_ari": 0.9192275513309502,
+      "ari_to_archived_historical_clusters": 0.04501268211248224
+    },
+    {
+      "model": "joint_v2_without_nri",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "housing_units_per_km2",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE"
+      ],
+      "blocks": {
+        "recovery": [
+          "T80",
+          "Init_Supply"
+        ],
+        "electric_grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "built_environment_proxy": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "housing_units_per_km2"
+        ],
+        "social_economic_hazard": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE"
+        ]
+      },
+      "num_domains": 4,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": false,
+      "n": 2291,
+      "k": 2,
+      "p": 11,
+      "silhouette": 0.1726885785423955,
+      "sizes": [
+        834,
+        1457
+      ],
+      "resample_median_ari": 0.9182989540436031,
+      "resample_min_ari": 0.8514400140201664,
+      "ari_to_archived_historical_clusters": 0.3305492943533501
+    },
+    {
+      "model": "joint_v2_population_density_with_nri",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "Pop_Density",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": {
+        "recovery": [
+          "T80",
+          "Init_Supply"
+        ],
+        "electric_grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "built_environment_proxy": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "Pop_Density"
+        ],
+        "social_economic_hazard": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE",
+          "NRI_RISK_SCORE"
+        ]
+      },
+      "num_domains": 4,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": false,
+      "n": 2291,
+      "k": 2,
+      "p": 12,
+      "silhouette": 0.13897452983395348,
+      "sizes": [
+        1419,
+        872
+      ],
+      "resample_median_ari": 0.8786177587818942,
+      "resample_min_ari": 0.3031425166243417,
+      "ari_to_archived_historical_clusters": 0.04830461648176837
+    },
+    {
+      "model": "joint_v2_without_fiveplus_with_nri",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "housing_units_per_km2",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": {
+        "recovery": [
+          "T80",
+          "Init_Supply"
+        ],
+        "electric_grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "built_environment_proxy": [
+          "Pre_1970_Ratio",
+          "housing_units_per_km2"
+        ],
+        "social_economic_hazard": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE",
+          "NRI_RISK_SCORE"
+        ]
+      },
+      "num_domains": 4,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": false,
+      "n": 2291,
+      "k": 2,
+      "p": 11,
+      "silhouette": 0.14823038947233766,
+      "sizes": [
+        910,
+        1381
+      ],
+      "resample_median_ari": 0.9320709837172247,
+      "resample_min_ari": 0.2447517644465928,
+      "ari_to_archived_historical_clusters": 0.229604694751162
+    },
+    {
+      "model": "joint_v2_without_residential_age_with_nri",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "housing_5plus_share",
+        "housing_units_per_km2",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": {
+        "recovery": [
+          "T80",
+          "Init_Supply"
+        ],
+        "electric_grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "built_environment_proxy": [
+          "housing_5plus_share",
+          "housing_units_per_km2"
+        ],
+        "social_economic_hazard": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE",
+          "NRI_RISK_SCORE"
+        ]
+      },
+      "num_domains": 4,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": false,
+      "n": 2291,
+      "k": 2,
+      "p": 11,
+      "silhouette": 0.17723916134556042,
+      "sizes": [
+        1482,
+        809
+      ],
+      "resample_median_ari": 0.9772591427269757,
+      "resample_min_ari": 0.9512903950380533,
+      "ari_to_archived_historical_clusters": 0.039586068341129196
+    },
+    {
+      "model": "joint_v2_pilot_impervious_with_nri",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "housing_units_per_km2",
+        "impervious_land_fraction",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": {
+        "recovery": [
+          "T80",
+          "Init_Supply"
+        ],
+        "electric_grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "built_environment_proxy": [
+          "Pre_1970_Ratio",
+          "housing_5plus_share",
+          "housing_units_per_km2",
+          "impervious_land_fraction"
+        ],
+        "social_economic_hazard": [
+          "SOVI_SCORE",
+          "NRI_BUILDVALUE",
+          "NRI_RISK_SCORE"
+        ]
+      },
+      "num_domains": 4,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": true,
+      "n": 2291,
+      "k": 2,
+      "p": 13,
+      "silhouette": 0.13335423140371758,
+      "sizes": [
+        1416,
+        875
+      ],
+      "resample_median_ari": 0.8926400991451451,
+      "resample_min_ari": -0.005701690248801506,
+      "ari_to_archived_historical_clusters": 0.04468869252487734
+    },
+    {
+      "model": "joint_v2_equal_coordinate_with_nri",
+      "features": [
+        "T80",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "Pre_1970_Ratio",
+        "housing_5plus_share",
+        "housing_units_per_km2",
+        "SOVI_SCORE",
+        "NRI_BUILDVALUE",
+        "NRI_RISK_SCORE"
+      ],
+      "blocks": null,
+      "num_domains": null,
+      "included_recovery": true,
+      "included_initial": true,
+      "uses_unverified_nlcd": false,
+      "n": 2291,
+      "k": 2,
+      "p": 12,
+      "silhouette": 0.14613760804654052,
+      "sizes": [
+        1464,
+        827
+      ],
+      "resample_median_ari": 0.9505769023073161,
+      "resample_min_ari": 0.8789123981261269,
+      "ari_to_archived_historical_clusters": 0.04641349551696676
+    }
+  ],
+  "comparisons": [
+    {
+      "model_a": "archived_11_feature_exact_scaling",
+      "model_b": "joint_v2_with_nri",
+      "ARI": 0.04637638807399737
+    },
+    {
+      "model_a": "archived_11_feature_exact_scaling",
+      "model_b": "joint_v2_without_nri",
+      "ARI": 0.5402583317116871
+    },
+    {
+      "model_a": "archived_11_feature_exact_scaling",
+      "model_b": "joint_v2_population_density_with_nri",
+      "ARI": 0.04662312531953815
+    },
+    {
+      "model_a": "archived_11_feature_exact_scaling",
+      "model_b": "joint_v2_without_fiveplus_with_nri",
+      "ARI": 0.4324013987821369
+    },
+    {
+      "model_a": "archived_11_feature_exact_scaling",
+      "model_b": "joint_v2_without_residential_age_with_nri",
+      "ARI": 0.03550370275874709
+    },
+    {
+      "model_a": "archived_11_feature_exact_scaling",
+      "model_b": "joint_v2_pilot_impervious_with_nri",
+      "ARI": 0.046375418525084144
+    },
+    {
+      "model_a": "archived_11_feature_exact_scaling",
+      "model_b": "joint_v2_equal_coordinate_with_nri",
+      "ARI": 0.053599730798110846
+    },
+    {
+      "model_a": "joint_v2_with_nri",
+      "model_b": "joint_v2_without_nri",
+      "ARI": -0.002614289159289136
+    },
+    {
+      "model_a": "joint_v2_with_nri",
+      "model_b": "joint_v2_population_density_with_nri",
+      "ARI": 0.8942379551897208
+    },
+    {
+      "model_a": "joint_v2_with_nri",
+      "model_b": "joint_v2_without_fiveplus_with_nri",
+      "ARI": 0.12877791761806154
+    },
+    {
+      "model_a": "joint_v2_with_nri",
+      "model_b": "joint_v2_without_residential_age_with_nri",
+      "ARI": 0.752221057224004
+    },
+    {
+      "model_a": "joint_v2_with_nri",
+      "model_b": "joint_v2_pilot_impervious_with_nri",
+      "ARI": 0.8371451993916247
+    },
+    {
+      "model_a": "joint_v2_with_nri",
+      "model_b": "joint_v2_equal_coordinate_with_nri",
+      "ARI": 0.808234352992197
+    },
+    {
+      "model_a": "joint_v2_without_nri",
+      "model_b": "joint_v2_population_density_with_nri",
+      "ARI": -0.00225979029988752
+    },
+    {
+      "model_a": "joint_v2_without_nri",
+      "model_b": "joint_v2_without_fiveplus_with_nri",
+      "ARI": 0.3836325234434061
+    },
+    {
+      "model_a": "joint_v2_without_nri",
+      "model_b": "joint_v2_without_residential_age_with_nri",
+      "ARI": -0.006561648815283101
+    },
+    {
+      "model_a": "joint_v2_without_nri",
+      "model_b": "joint_v2_pilot_impervious_with_nri",
+      "ARI": -0.003143004312825778
+    },
+    {
+      "model_a": "joint_v2_without_nri",
+      "model_b": "joint_v2_equal_coordinate_with_nri",
+      "ARI": -0.006071863677352472
+    },
+    {
+      "model_a": "joint_v2_population_density_with_nri",
+      "model_b": "joint_v2_without_fiveplus_with_nri",
+      "ARI": 0.13425628142851806
+    },
+    {
+      "model_a": "joint_v2_population_density_with_nri",
+      "model_b": "joint_v2_without_residential_age_with_nri",
+      "ARI": 0.6897737438816322
+    },
+    {
+      "model_a": "joint_v2_population_density_with_nri",
+      "model_b": "joint_v2_pilot_impervious_with_nri",
+      "ARI": 0.8468820611444092
+    },
+    {
+      "model_a": "joint_v2_population_density_with_nri",
+      "model_b": "joint_v2_equal_coordinate_with_nri",
+      "ARI": 0.749508537482122
+    },
+    {
+      "model_a": "joint_v2_without_fiveplus_with_nri",
+      "model_b": "joint_v2_without_residential_age_with_nri",
+      "ARI": 0.06052794971300849
+    },
+    {
+      "model_a": "joint_v2_without_fiveplus_with_nri",
+      "model_b": "joint_v2_pilot_impervious_with_nri",
+      "ARI": 0.11738209705161401
+    },
+    {
+      "model_a": "joint_v2_without_fiveplus_with_nri",
+      "model_b": "joint_v2_equal_coordinate_with_nri",
+      "ARI": 0.09245718172493654
+    },
+    {
+      "model_a": "joint_v2_without_residential_age_with_nri",
+      "model_b": "joint_v2_pilot_impervious_with_nri",
+      "ARI": 0.7000601550480905
+    },
+    {
+      "model_a": "joint_v2_without_residential_age_with_nri",
+      "model_b": "joint_v2_equal_coordinate_with_nri",
+      "ARI": 0.7969059548299439
+    },
+    {
+      "model_a": "joint_v2_pilot_impervious_with_nri",
+      "model_b": "joint_v2_equal_coordinate_with_nri",
+      "ARI": 0.7480134844087459
+    }
+  ],
+  "old_labels_reproduction_k5_ARI": 1.0
+}

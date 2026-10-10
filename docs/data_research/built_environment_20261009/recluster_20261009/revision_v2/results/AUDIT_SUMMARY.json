@@ -24,9 +24,24 @@
       "RESL_SCORE"
     ],
     "source_id_field": "TRACTFIPS",
-    "matched_residential_rows": 0,
-    "unique_residential_rows": 0,
-    "join_status": "NRI source not unique/complete"
+    "matched_residential_rows": 2291,
+    "unique_residential_rows": 2291,
+    "join_status": "unique_complete_tract_join",
+    "max_abs_saved_minus_original_NRI_RISK_SCORE": 1.4210854715202004e-14,
+    "max_abs_saved_minus_original_NRI_BUILDVALUE": 0.0,
+    "max_abs_saved_minus_original_SOVI_SCORE": 4.824222799015843e-09,
+    "usable_nri_columns": [
+      "BUILDVALUE",
+      "RISK_VALUE",
+      "RISK_SCORE",
+      "EAL_SCORE",
+      "EAL_VALT",
+      "EAL_VALB",
+      "EAL_VALP",
+      "EAL_VALPE",
+      "EAL_VALA",
+      "SOVI_SCORE"
+    ]
   },
   "nri_corr": [
     {
