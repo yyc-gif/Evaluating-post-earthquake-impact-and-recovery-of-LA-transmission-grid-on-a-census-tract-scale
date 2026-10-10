@@ -34,6 +34,7 @@ def reconcile():
   assert {x['case'] for x in q['cases']}==expected and len(q['cases'])==len(expected)
   for x in q['cases']:
    key=(budget,seed,x['case']);assert key not in records
+   assert x.get('distinct_evaluations',budget)==budget
    assert x['seed']==seed and x['final_best_loss_hr']<=x['initial_best_loss_hr']+1e-10
    h,w,n,prior=CASES[x['case']]
    assert (x['heuristic_count'],x['warm_copy_count'],x['neighbor_count'],x['prior_neighbor_count'])==(h,w,n,prior)
@@ -57,7 +58,7 @@ def reconcile():
    prefix.append(dict(case=case,seed=seed,initial_population_hash_equal=True,initial_best_exact_equal=a['initial_best_loss_hr']==b['initial_best_loss_hr'],initial_best_error_hr=b['initial_best_loss_hr']-a['initial_best_loss_hr'],loss_20k_exact_equal=checkpoint[20000]==a['final_best_loss_hr'],loss_20k_error_hr=checkpoint[20000]-a['final_best_loss_hr'],objective_parity_tolerance_hr=1e-10,within_parity_tolerance=True,loss_20k=checkpoint[20000],loss_50k=checkpoint[50000],loss_100k=checkpoint[100000],prefix_is_independent_observation=False))
  rows=[]
  for (budget,seed,case),x in records.items():
-  row={k:v for k,v in x.items() if k!='checkpoints'};row.update(budget=budget,seed=seed,case=case);rows.append(row)
+  row={k:v for k,v in x.items() if k!='checkpoints'};row.update(budget=budget,seed=seed,case=case,sequence_sha256=x.get('selected_sequence_sha256',x.get('final_sequence_sha256')),search_expensive_calls=budget,reported_generation=x.get('actual_generations',x.get('completed_generations')),generation_scope='Budget-boundary state generation; may be partially evaluated',fully_completed_generation_recorded=False);rows.append(row)
  d=pd.DataFrame(rows).sort_values(['budget','case','seed']);csv('UNIQUE_INITIALIZATION_OBSERVATIONS.csv',d);csv('DUPLICATE_REPRESENTATION_AUDIT.csv',dups);csv('OBSERVATION_SOURCE_INDEX.csv',origins);csv('MATCHED_20K_CHECKPOINT_AUDIT.csv',prefix)
  checkpoints=[]
  for (budget,seed,case),x in records.items():
@@ -73,8 +74,9 @@ def reconcile():
 
 def estimate(values,seed=2026100902,tests=1):
  x=np.asarray(values,dtype=float);n=len(x);mean=x.mean();sd=x.std(ddof=1);se=sd/np.sqrt(n);t=stats.t.ppf(.975,n-1);family=stats.t.ppf(1-.025/tests,n-1)
+ winners=int((x < -1e-10).sum());fraction=winners/n;z=stats.norm.ppf(.975);center=(fraction+z*z/(2*n))/(1+z*z/n);radius=z*np.sqrt(fraction*(1-fraction)/n+z*z/(4*n*n))/(1+z*z/n)
  boot=np.random.default_rng(seed).choice(x,size=(50000,n),replace=True).mean(axis=1);lo,hi=np.quantile(boot,[.025,.975])
- return dict(n_seeds=n,mean_change_hr=mean,median_change_hr=float(np.median(x)),paired_sd_hr=sd,seed_mcse_hr=se,t95_low_hr=mean-t*se,t95_high_hr=mean+t*se,bootstrap95_low_hr=lo,bootstrap95_high_hr=hi,bonferroni95_low_hr=mean-family*se,bonferroni95_high_hr=mean+family*se,win_fraction=float((x<0).mean()),exact_tie_fraction=float((x==0).mean()),p_t_two_sided=float(stats.ttest_1samp(x,0).pvalue) if sd else 1.,bootstrap_unit='GA seed; fixed 64 physical samples')
+ return dict(n_seeds=n,mean_change_hr=mean,median_change_hr=float(np.median(x)),paired_sd_hr=sd,seed_mcse_hr=se,t95_low_hr=mean-t*se,t95_high_hr=mean+t*se,bootstrap95_low_hr=lo,bootstrap95_high_hr=hi,bonferroni95_low_hr=mean-family*se,bonferroni95_high_hr=mean+family*se,win_fraction=float((x<0).mean()),numerical_win_fraction=fraction,numerical_win_count=winners,numerical_win_wilson95_low=center-radius,numerical_win_wilson95_high=center+radius,numerical_parity_threshold_hr=1e-10,exact_tie_fraction=float((x==0).mean()),p_t_two_sided=float(stats.ttest_1samp(x,0).pvalue) if sd else 1.,bootstrap_unit='GA seed; fixed 64 physical samples')
 
 def analyze(d,checkpoints):
  contrasts=[];raw=[]

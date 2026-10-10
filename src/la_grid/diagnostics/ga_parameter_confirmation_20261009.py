@@ -13,7 +13,7 @@ CASES={'crossover060':{'crossover':.6},'crossover095':{'crossover':.95},'mutatio
 SEEDS=list(range(100,120));BUDGET=100000
 
 def dump(path,x):path.write_bytes((json.dumps(x,indent=2,allow_nan=False)+'\n').encode())
-def run_one(case,seed):
+def _run_owned(case,seed):
  p=OUT/'parameter_100k'/f'{case}_s{seed}';p.mkdir(parents=True,exist_ok=True);target=p/'RUN.json'
  if target.exists():
   q=json.loads(target.read_text());assert q['status']=='COMPLETED' and q['distinct_evaluations']==BUDGET
@@ -34,8 +34,22 @@ def run_one(case,seed):
  q=dict(status='COMPLETED',case=case,seed=seed,config=asdict(cfg),budget=BUDGET,distinct_evaluations=len(result['cache']),total_attempts=state['attempts'],duplicate_calls=state['attempts']-len(result['cache']),actual_generation=state['generation'],fully_completed_generation=int(history.generation.max()),partial_generation=state['phase']=='evaluate',initial_best_loss_hr=float(first.population_best_service_loss_hr),final_best_loss_hr=-result['best_fitness'],postinitialization_gain_hr=float(first.population_best_service_loss_hr)+result['best_fitness'],best_sequence=list(result['best_sequence']),sequence_sha256=identity(result['best_sequence']),completed_archive_loss_hr=-result['archive_fitness'],initialization=dict(heuristics=7,warm_copies=1,neighbors=n,prior_neighbors=(n+1)//2,impact_neighbors=n//2,random=cfg.population-8-n,initial_unique=int(first.unique_population)),elapsed_wall_seconds=elapsed,job_wall_seconds=time.perf_counter()-start,process_cpu_seconds=time.process_time()-cpu,objective_cpu_seconds=objective_cpu,peak_rss_mb=state['peak_rss_bytes']/2**20,setup_validation_objective_calls=8,design_sha256=digest(OUT/'PARAMETER_FOLLOWUP_DESIGN.json'),input_identity_sha256=digest(ROOT/'results/diagnostics/ga_optimization_20261009/INPUT_IDENTITY.json'),engine_sha256=digest(ROOT/'src/la_grid/diagnostics/ga_variant_engine.py'),new_physical_samples=0,formal_candidate_replaced=False,files_sha256={x.name:digest(x) for x in p.iterdir() if x.name!='RUN.json'})
  dump(target,q);print('COMPLETE',case,seed,q['final_best_loss_hr'],q['elapsed_wall_seconds'],flush=True)
 
-def batch(workers):
- jobs=[(c,s) for c in CASES for s in SEEDS];pending=jobs.copy();active=[];start=time.perf_counter();logs=OUT/'local_logs';logs.mkdir(exist_ok=True);done=0;tick=0
+def run_one(case,seed):
+ # Process claim prevents two coordinators from evaluating the same observation.
+ # This does not consume GA random numbers or change search behavior.
+ claims=OUT/'local_logs';claims.mkdir(exist_ok=True)
+ lock=claims/f'{case}_s{seed}.lock'
+ while True:
+  try:
+   fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY);os.close(fd);break
+  except FileExistsError:time.sleep(1)
+ try:return _run_owned(case,seed)
+ finally:lock.unlink()
+
+def batch(workers,cases=None):
+ selected=list(CASES) if cases is None else cases
+ assert set(selected)<=set(CASES)
+ jobs=[(c,s) for c in selected for s in SEEDS];pending=jobs.copy();active=[];start=time.perf_counter();logs=OUT/'local_logs';logs.mkdir(exist_ok=True);done=0;tick=0
  while pending or active:
   while pending and len(active)<workers:
    case,seed=pending.pop(0);f=(logs/f'{case}_s{seed}.log').open('w');env=dict(os.environ,PYTHONPATH=str(ROOT/'src'),OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1',NUMBA_NUM_THREADS='1',PYTHONIOENCODING='utf-8')
@@ -45,8 +59,8 @@ def batch(workers):
     f.close();assert p.returncode==0,(c,s);active.remove((p,f,c,s));done+=1
   if time.perf_counter()-tick>35:print('PROGRESS',done,len(jobs),'ACTIVE',len(active),'WALL',time.perf_counter()-start,flush=True);tick=time.perf_counter()
   time.sleep(1)
- dump(OUT/'PARAMETER_BATCH_COST.json',dict(completed_new_runs=done,new_search_queries=18000000,additional_setup_checks=8*done,batch_elapsed_wall_seconds=time.perf_counter()-start,workers=workers))
+ dump(OUT/('PARAMETER_BATCH_COST.json' if cases is None else 'PARAMETER_COORDINATOR_'+selected[0]+'_'+str(workers)+'.json'),dict(completed_process_jobs=done,distinct_results_count=len(list((OUT/'parameter_100k').glob('*/RUN.json'))),job_cases=selected,budget_per_observation=BUDGET,query_count_requires_run_deduplication=True,batch_elapsed_wall_seconds=time.perf_counter()-start,workers=workers))
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--one',nargs=2);p.add_argument('--workers',type=int,default=6);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--one',nargs=2);p.add_argument('--workers',type=int,default=6);p.add_argument('--cases',nargs='+',choices=list(CASES));a=p.parse_args()
  if a.one:run_one(a.one[0],int(a.one[1]))
- else:batch(a.workers)
+ else:batch(a.workers,a.cases)
