@@ -1,0 +1,57 @@
+{
+  "all_checks_passed": true,
+  "independent_acs_checks": [
+    {
+      "tract_id": "06037101110",
+      "share": 0.18401937046004843,
+      "moe90": 0.05908921573104394,
+      "matches": true
+    },
+    {
+      "tract_id": "06037101122",
+      "share": 0.018220042046250877,
+      "moe90": 0.02754364952666335,
+      "matches": true
+    },
+    {
+      "tract_id": "06037980008",
+      "share": 0.23076923076923078,
+      "moe90": 0.5560316112653094,
+      "matches": true
+    },
+    {
+      "tract_id": "06037980014",
+      "share": 0.42857142857142855,
+      "moe90": 0.5079283515242851,
+      "matches": true
+    },
+    {
+      "tract_id": "06037103101",
+      "share": 0.0,
+      "moe90": 0.039759913665003414,
+      "matches": true
+    },
+    {
+      "tract_id": "06037103202",
+      "share": 0.0,
+      "moe90": 0.057089922278171494,
+      "matches": true
+    }
+  ],
+  "study_tracts": 2315,
+  "residential_tracts": 2291,
+  "cluster_labels_unchanged": true,
+  "original_source_cell_checks": 50930,
+  "raster_numeric_extraction_pass": true,
+  "raster_production_provenance_pass": false,
+  "runtime": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "geopandas": "1.1.1",
+    "shapely": "2.1.2",
+    "pyproj": "3.7.2",
+    "pyogrio": "0.10.0",
+    "requests": "2.32.3"
+  }
+}

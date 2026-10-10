@@ -1,0 +1,276 @@
+[
+  {
+    "url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Fractional-Impervious-Surface-Native_conus_year_data/wcs?service=WCS&request=GetCapabilities&version=2.0.1",
+    "file": "sources/Fractional-Impervious-Surface_wcs.xml",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "application/xml",
+    "resolved_url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Fractional-Impervious-Surface-Native_conus_year_data/wcs?service=WCS&request=GetCapabilities&version=2.0.1",
+    "bytes": 637956,
+    "sha256": "b06b9ca6e0ba33e6cc8222e3efb61640840db002d68da20ac541b690a85a9fc7"
+  },
+  {
+    "url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Land-Cover-Native_conus_year_data/wcs?service=WCS&request=GetCapabilities&version=2.0.1",
+    "file": "sources/Land-Cover_wcs.xml",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "application/xml",
+    "resolved_url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Land-Cover-Native_conus_year_data/wcs?service=WCS&request=GetCapabilities&version=2.0.1",
+    "bytes": 637765,
+    "sha256": "542defe7e9e76fcfb4aaa22db4af098ce62aaef1a15bd21c33cda0c83003b49b"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/",
+    "file": "sources/vre_directory.html",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "text/html;charset=ISO-8859-1",
+    "resolved_url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/",
+    "bytes": 1420788,
+    "sha256": "6967ce9c9019070979d258f65034fbe7b8429d6abc44fa6f9bb683c34b5f059d"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25024_06.csv.zip",
+    "file": "sources/B25024_06.csv.zip",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "application/zip",
+    "resolved_url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25024_06.csv.zip",
+    "bytes": 9037245,
+    "sha256": "4ceecc607150978ce95e846cc3f9d6fb67e1249523cab87c737251343efdeb3d",
+    "members": [
+      "140/B25024_06.csv"
+    ]
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25034_06.csv.zip",
+    "file": "sources/B25034_06.csv.zip",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "application/zip",
+    "resolved_url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25034_06.csv.zip",
+    "bytes": 10846744,
+    "sha256": "138eef5722ddefb4c04b9aeba4a20f5e1c5656a215d41efa6b7b97943eeabaf2",
+    "members": [
+      "140/B25034_06.csv"
+    ]
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/2018-2022_Variance_Replicate_Table_Documentation.pdf",
+    "file": "sources/VRE_2022_guide.pdf",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "application/pdf",
+    "resolved_url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/2018-2022_Variance_Replicate_Table_Documentation.pdf",
+    "bytes": 363265,
+    "sha256": "3b0b439a19bf22aa2572d6573f99d608923f50a93b54eb882728e506c27da58c"
+  },
+  {
+    "url": "https://www.census.gov/programs-surveys/acs/data/variance-tables.html",
+    "file": "sources/variance_tables.html",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "resolved_url": "https://www.census.gov/programs-surveys/acs/data/variance-tables.html",
+    "bytes": 352899,
+    "sha256": "6ac2bb8a4995c8c078fbc3ade0f0d86e084eaad00ebdb71594d18b273a37972f"
+  },
+  {
+    "url": "https://www.mrlc.gov/sites/default/files/docs/LSDS-2103%20Annual%20National%20Land%20Cover%20Database%20%28NLCD%29%20Collection%201%20Science%20Product%20User%20Guide%20-v1.1%202025_06_11.pdf",
+    "file": "sources/NLCD_guide_v1_1.pdf",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "application/pdf",
+    "resolved_url": "https://www.mrlc.gov/sites/default/files/docs/LSDS-2103%20Annual%20National%20Land%20Cover%20Database%20%28NLCD%29%20Collection%201%20Science%20Product%20User%20Guide%20-v1.1%202025_06_11.pdf",
+    "bytes": 2177271,
+    "sha256": "158600d9f89cde770478a986303dc1b8453ada164d6b3c947a54a283f1785837"
+  },
+  {
+    "url": "https://www.usgs.gov/centers/eros/science/data-access",
+    "file": "sources/USGS_data_access.html",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "resolved_url": "https://www.usgs.gov/centers/eros/science/annual-nlcd-data-access",
+    "bytes": 123362,
+    "sha256": "9166524e88d0ac12d8e80586c2d659de3280fbde064cf113dab9f77f837a228b"
+  },
+  {
+    "url": "https://www.mrlc.gov/data-services-page",
+    "file": "sources/MRLC_services.html",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "resolved_url": "https://www.mrlc.gov/data-services-page",
+    "bytes": 67164,
+    "sha256": "aaa1149c921364816339ba925e9a1d2d801a4e9ae21fa9c38ebb258c624a9073"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/",
+    "file": "sources/vre_directory.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 1420788,
+    "sha256": "6967ce9c9019070979d258f65034fbe7b8429d6abc44fa6f9bb683c34b5f059d"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25024_06.csv.zip",
+    "file": "sources/B25024_06.csv.zip",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 9037245,
+    "sha256": "4ceecc607150978ce95e846cc3f9d6fb67e1249523cab87c737251343efdeb3d",
+    "members": [
+      "140/B25024_06.csv"
+    ]
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25034_06.csv.zip",
+    "file": "sources/B25034_06.csv.zip",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 10846744,
+    "sha256": "138eef5722ddefb4c04b9aeba4a20f5e1c5656a215d41efa6b7b97943eeabaf2",
+    "members": [
+      "140/B25034_06.csv"
+    ]
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/2018-2022_Variance_Replicate_Table_Documentation.pdf",
+    "file": "sources/VRE_2022_guide.pdf",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 363265,
+    "sha256": "3b0b439a19bf22aa2572d6573f99d608923f50a93b54eb882728e506c27da58c"
+  },
+  {
+    "url": "https://www.census.gov/programs-surveys/acs/data/variance-tables.html",
+    "file": "sources/variance_tables.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 352899,
+    "sha256": "6ac2bb8a4995c8c078fbc3ade0f0d86e084eaad00ebdb71594d18b273a37972f"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/VRE_AVERAGE_WEIGHT_2022.csv",
+    "file": "sources/VRE_AVERAGE_WEIGHT_2022.csv",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "text/csv",
+    "resolved_url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/VRE_AVERAGE_WEIGHT_2022.csv",
+    "bytes": 921,
+    "sha256": "f80db89ed83bd19bb2e42475a208dd8c678ba15e71239935cdbdbcb38b34d01b"
+  },
+  {
+    "url": "https://www.mrlc.gov/sites/default/files/docs/LSDS-2103%20Annual%20National%20Land%20Cover%20Database%20%28NLCD%29%20Collection%201%20Science%20Product%20User%20Guide%20-v1.1%202025_06_11.pdf",
+    "file": "sources/NLCD_guide_v1_1.pdf",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 2177271,
+    "sha256": "158600d9f89cde770478a986303dc1b8453ada164d6b3c947a54a283f1785837"
+  },
+  {
+    "url": "https://www.usgs.gov/centers/eros/science/data-access",
+    "file": "sources/USGS_data_access.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 123362,
+    "sha256": "9166524e88d0ac12d8e80586c2d659de3280fbde064cf113dab9f77f837a228b"
+  },
+  {
+    "url": "https://www.mrlc.gov/data-services-page",
+    "file": "sources/MRLC_services.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 67164,
+    "sha256": "aaa1149c921364816339ba925e9a1d2d801a4e9ae21fa9c38ebb258c624a9073"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/",
+    "file": "sources/vre_directory.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 1420788,
+    "sha256": "6967ce9c9019070979d258f65034fbe7b8429d6abc44fa6f9bb683c34b5f059d"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25024_06.csv.zip",
+    "file": "sources/B25024_06.csv.zip",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 9037245,
+    "sha256": "4ceecc607150978ce95e846cc3f9d6fb67e1249523cab87c737251343efdeb3d",
+    "members": [
+      "140/B25024_06.csv"
+    ]
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25034_06.csv.zip",
+    "file": "sources/B25034_06.csv.zip",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 10846744,
+    "sha256": "138eef5722ddefb4c04b9aeba4a20f5e1c5656a215d41efa6b7b97943eeabaf2",
+    "members": [
+      "140/B25034_06.csv"
+    ]
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/2018-2022_Variance_Replicate_Table_Documentation.pdf",
+    "file": "sources/VRE_2022_guide.pdf",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 363265,
+    "sha256": "3b0b439a19bf22aa2572d6573f99d608923f50a93b54eb882728e506c27da58c"
+  },
+  {
+    "url": "https://www.census.gov/programs-surveys/acs/data/variance-tables.html",
+    "file": "sources/variance_tables.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 352899,
+    "sha256": "6ac2bb8a4995c8c078fbc3ade0f0d86e084eaad00ebdb71594d18b273a37972f"
+  },
+  {
+    "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/VRE_AVERAGE_WEIGHT_2022.csv",
+    "file": "sources/VRE_AVERAGE_WEIGHT_2022.csv",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 921,
+    "sha256": "f80db89ed83bd19bb2e42475a208dd8c678ba15e71239935cdbdbcb38b34d01b"
+  },
+  {
+    "url": "https://www.mrlc.gov/sites/default/files/docs/LSDS-2103%20Annual%20National%20Land%20Cover%20Database%20%28NLCD%29%20Collection%201%20Science%20Product%20User%20Guide%20-v1.1%202025_06_11.pdf",
+    "file": "sources/NLCD_guide_v1_1.pdf",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 2177271,
+    "sha256": "158600d9f89cde770478a986303dc1b8453ada164d6b3c947a54a283f1785837"
+  },
+  {
+    "url": "https://www.mrlc.gov/sites/default/files/docs/LSDS-2103%20Annual%20National%20Land%20Cover%20Database%20%28NLCD%29%20Collection%201%20Science%20Product%20User%20Guide%20-v1.0%202024_10_15.pdf",
+    "file": "sources/NLCD_guide_v1_0.pdf",
+    "accessed": "2026-10-09",
+    "http_status": 200,
+    "content_type": "application/pdf",
+    "resolved_url": "https://www.mrlc.gov/sites/default/files/docs/LSDS-2103%20Annual%20National%20Land%20Cover%20Database%20%28NLCD%29%20Collection%201%20Science%20Product%20User%20Guide%20-v1.0%202024_10_15.pdf",
+    "bytes": 1264541,
+    "sha256": "05e00253ef2944f420b25ba7f757f696f716c5ce636f06c6c6fa2aa97e0f253d"
+  },
+  {
+    "url": "https://www.usgs.gov/centers/eros/science/data-access",
+    "file": "sources/USGS_data_access.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 123362,
+    "sha256": "9166524e88d0ac12d8e80586c2d659de3280fbde064cf113dab9f77f837a228b"
+  },
+  {
+    "url": "https://www.mrlc.gov/data-services-page",
+    "file": "sources/MRLC_services.html",
+    "accessed": "2026-10-09",
+    "cached": true,
+    "bytes": 67164,
+    "sha256": "aaa1149c921364816339ba925e9a1d2d801a4e9ae21fa9c38ebb258c624a9073"
+  }
+]

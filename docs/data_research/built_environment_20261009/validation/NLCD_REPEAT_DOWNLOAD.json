@@ -1,0 +1,76 @@
+{
+  "export_url": "https://di-nlcd.img.arcgis.com/arcgis/rest/services/USA_NLCD_Annual_LandCover_Fractional_Impervious_Surface/ImageServer/exportImage?f=json&bbox=-2039295.0%2C1476045.0%2C-2035455.0%2C1479885.0&bboxSR=%7B%22wkt%22%3A+%22PROJCS%5B%5C%22AEA_WGS84%5C%22%2CGEOGCS%5B%5C%22GCS_WGS_1984%5C%22%2CDATUM%5B%5C%22D_WGS_1984%5C%22%2CSPHEROID%5B%5C%22WGS_1984%5C%22%2C6378137.0%2C298.257223563%5D%5D%2CPRIMEM%5B%5C%22Greenwich%5C%22%2C0.0%5D%2CUNIT%5B%5C%22Degree%5C%22%2C0.0174532925199433%5D%5D%2CPROJECTION%5B%5C%22Albers%5C%22%5D%2CPARAMETER%5B%5C%22False_Easting%5C%22%2C0.0%5D%2CPARAMETER%5B%5C%22False_Northing%5C%22%2C0.0%5D%2CPARAMETER%5B%5C%22Central_Meridian%5C%22%2C-96.0%5D%2CPARAMETER%5B%5C%22Standard_Parallel_1%5C%22%2C29.5%5D%2CPARAMETER%5B%5C%22Standard_Parallel_2%5C%22%2C45.5%5D%2CPARAMETER%5B%5C%22Latitude_Of_Origin%5C%22%2C23.0%5D%2CUNIT%5B%5C%22Meter%5C%22%2C1.0%5D%5D%22%7D&imageSR=%7B%22wkt%22%3A+%22PROJCS%5B%5C%22AEA_WGS84%5C%22%2CGEOGCS%5B%5C%22GCS_WGS_1984%5C%22%2CDATUM%5B%5C%22D_WGS_1984%5C%22%2CSPHEROID%5B%5C%22WGS_1984%5C%22%2C6378137.0%2C298.257223563%5D%5D%2CPRIMEM%5B%5C%22Greenwich%5C%22%2C0.0%5D%2CUNIT%5B%5C%22Degree%5C%22%2C0.0174532925199433%5D%5D%2CPROJECTION%5B%5C%22Albers%5C%22%5D%2CPARAMETER%5B%5C%22False_Easting%5C%22%2C0.0%5D%2CPARAMETER%5B%5C%22False_Northing%5C%22%2C0.0%5D%2CPARAMETER%5B%5C%22Central_Meridian%5C%22%2C-96.0%5D%2CPARAMETER%5B%5C%22Standard_Parallel_1%5C%22%2C29.5%5D%2CPARAMETER%5B%5C%22Standard_Parallel_2%5C%22%2C45.5%5D%2CPARAMETER%5B%5C%22Latitude_Of_Origin%5C%22%2C23.0%5D%2CUNIT%5B%5C%22Meter%5C%22%2C1.0%5D%5D%22%7D&size=128%2C128&format=tiff&pixelType=U8&interpolation=RSP_NearestNeighbor&adjustAspectRatio=false&noData=250&mosaicRule=%7B%22mosaicMethod%22%3A+%22esriMosaicLockRaster%22%2C+%22lockRasterIds%22%3A+%5B38%5D%2C+%22mosaicOperation%22%3A+%22MT_FIRST%22%7D&renderingRule=%7B%22rasterFunction%22%3A+%22None%22%7D",
+  "export_response": {
+    "href": "https://di-nlcd.img.arcgis.com/arcgis/rest/directories/arcgisoutput/USA_NLCD_Annual_LandCover_Fractional_Impervious_Surface_ImageServer/x_____xOA7D5R3HgrceM0Fc4FSzzuqrvFaxH9PvVnjcKvNcD5qzlqo8oVWrJJE8qPLHTvLrx_____x_ags_cdf053de_b779_4f74_817f_8ada23c1bfc7.tif",
+    "width": 128,
+    "height": 128,
+    "extent": {
+      "xmin": -2039295,
+      "ymin": 1476045,
+      "xmax": -2035455,
+      "ymax": 1479885,
+      "spatialReference": {
+        "wkt": "PROJCS[\"AEA_WGS84\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Albers\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",-96.0],PARAMETER[\"Standard_Parallel_1\",29.5],PARAMETER[\"Standard_Parallel_2\",45.5],PARAMETER[\"Latitude_Of_Origin\",23.0],UNIT[\"Meter\",1.0]]"
+      }
+    },
+    "scale": 0
+  },
+  "sha256": "6dd79184c71f1ca9ddca8d0edcc35683644b5458452f0ae8d272eaecd8efdbbc",
+  "bytes": 17630,
+  "product": "fis",
+  "year": 2022,
+  "retrieved": "2026-10-09",
+  "catalog_attributes": {
+    "OBJECTID": 38,
+    "Name": "Annual_NLCD_FctImp_2022_CU_C1V0",
+    "MinPS": 0,
+    "MaxPS": 192000,
+    "LowPS": 30,
+    "HighPS": 1920,
+    "Category": 1,
+    "Tag": "FctImp",
+    "GroupName": "",
+    "ProductName": "AnnualNLCD Fractional Impervious Surface",
+    "CenterX": -15584.999999999069,
+    "CenterY": 1739804.9999999993,
+    "ZOrder": null,
+    "Year": 2022,
+    "Version": "Annual NLCD Collection 1.0: 1985 - 2023",
+    "start_date": 1641038400000,
+    "end_date": 1672488000000,
+    "Shape_Length": 15899999.999999998,
+    "Shape_Area": 15119999999999.998
+  },
+  "host": "Esri numeric mirror of USGS Annual NLCD C1.0",
+  "expected_shape": [
+    128,
+    128
+  ],
+  "actual_shape": [
+    128,
+    128
+  ],
+  "transform": [
+    30.0,
+    0.0,
+    -2039295.0,
+    0.0,
+    -30.0,
+    1479885.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "expected_transform": [
+    30.0,
+    0.0,
+    -2039295.0,
+    0.0,
+    -30.0,
+    1479885.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "pixel_equal": true
+}

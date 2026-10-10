@@ -1,0 +1,26 @@
+{
+  "study_n": 2315,
+  "geoid_unmatched": 0,
+  "valid_coverage_min": 0.999999998496809,
+  "land_fraction_nonmissing": 2315,
+  "coverage_ge_99pct_n": 2315,
+  "nodata_area_m2": 0.0,
+  "water_excluded_area_m2": 83527846.64308746,
+  "max_independent_difference": 1.3203527160499107e-10,
+  "repeat_bitwise_equal": true,
+  "crs": "PROJCS[\"AEA_WGS84\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",23],PARAMETER[\"longitude_of_center\",-96],PARAMETER[\"standard_parallel_1\",29.5],PARAMETER[\"standard_parallel_2\",45.5],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+  "resolution_m": [
+    30.0,
+    30.0
+  ],
+  "geometry_crs_original": "EPSG:4269",
+  "valid_codes": "FIS 0..100; LC != 250; exclude LC 11 only for land mean",
+  "smallest_land_cell_equivalents": 51.016098437132314,
+  "center_abs_difference_max_pp": 0.2914838724575375,
+  "center_abs_difference_p95_pp": 0.09456220411492175,
+  "all_touched_abs_difference_max_pp": 2.5723533861657266,
+  "all_touched_abs_difference_p95_pp": 1.1723061759779483,
+  "water_mask_mean_change_max_pp": 55.6900834158974,
+  "collection_build": "Collection 1.0: 1985-2023, pinned 2022 catalog object; downloaded from Esri numeric mirror; not C1.2",
+  "publication_status": "CONDITIONAL: source mirror has explicit beta/not-recommended-for-production notice; direct USGS reference validation remains open"
+}

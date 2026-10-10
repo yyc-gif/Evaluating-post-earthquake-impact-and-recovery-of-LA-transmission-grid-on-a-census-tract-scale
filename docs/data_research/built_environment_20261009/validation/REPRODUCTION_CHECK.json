@@ -1,0 +1,137 @@
+{
+  "offline_fresh_directory_pass": true,
+  "network_calls": 0,
+  "scientific_pipeline_invocations": 0,
+  "result_files": [
+    {
+      "file": "ACS_TRACT_VALIDATION.csv",
+      "sha256": "7464ca9a0299cb1771ec00c690ccd632f900907aa18cad6f1cea4030741a18f0",
+      "byte_identical": true
+    },
+    {
+      "file": "NLCD_TRACT_EXTRACTION.csv",
+      "sha256": "1107e0feaa95fa96518c37b6a5afc6264be6a6338ab9b3a5ba3045dcf14ffb80",
+      "byte_identical": true
+    },
+    {
+      "file": "NLCD_AGGREGATION_CHECKS.csv",
+      "sha256": "712811bc09f2c679ac0880c826fba56c8960562fce36acb6f64bf6608aa19ee2",
+      "byte_identical": true
+    },
+    {
+      "file": "CLUSTER_COMPARISONS.csv",
+      "sha256": "b02d05b80f6900ad343bb8cd7d83bac3a4d9923ce4eddda020f8147bfb730ca7",
+      "byte_identical": true
+    },
+    {
+      "file": "CLUSTER_PAIRWISE_EFFECTS.csv",
+      "sha256": "60c957d3a4887875d08dfb6aabeea0ccff8e9bd891c04f0ffc33f5da3d71fbf1",
+      "byte_identical": true
+    },
+    {
+      "file": "CLUSTER_EFFECT_SIZES.csv",
+      "sha256": "55eb740874cdd15477880c2b0479397ff9fa8a8982f1f915dd1f388248549621",
+      "byte_identical": true
+    },
+    {
+      "file": "ACS_SCREENING_BIAS.csv",
+      "sha256": "38c9d94a25b5dcae77cea7c3dd13e5a3e7323f536dd81184d1793835d0d33f40",
+      "byte_identical": true
+    },
+    {
+      "file": "ACS_PRECISION_WEIGHTING.csv",
+      "sha256": "252cb97d1ae34e68c703bb1ea9e84f6364731f5c4d3158fdaa62a6e22f06fd5f",
+      "byte_identical": true
+    },
+    {
+      "file": "INDICATOR_CORRELATIONS.csv",
+      "sha256": "88017e59ad3d0d00c67ec40598c3c4a7d21ba2d13d6b0c7de88162ff8cfc9e5d",
+      "byte_identical": true
+    },
+    {
+      "file": "INDICATOR_CORRELATION_SENSITIVITY.csv",
+      "sha256": "ee1ba354d99b94dd29ef35ec37912a5978a9bd53f81ba402e070108ae9332ed4",
+      "byte_identical": true
+    },
+    {
+      "file": "INDICATOR_INCREMENTAL_INFORMATION.csv",
+      "sha256": "cc855456a3b1cfc41e6b71194a17c03840f42da64eb7bebf7e499efc81b6a46f",
+      "byte_identical": true
+    },
+    {
+      "file": "RESIDENTIAL_VALIDATION_MATRIX.csv",
+      "sha256": "13bba9397a41c6ea671e5521984d2ddf5d96e210040407dc81bab1f422451c76",
+      "byte_identical": true
+    },
+    {
+      "file": "BUILT_ENVIRONMENT_TRACT_COVERAGE.csv",
+      "sha256": "9752960b660ad61dd937baa98b36bb9e524fe6895e8972f1e8b5f3348a7090c0",
+      "byte_identical": true
+    },
+    {
+      "file": "BUILT_ENVIRONMENT_DATA_SOURCE_AUDIT.csv",
+      "sha256": "8fe4bfa58c691e3b2cc093c44f1198d53f9a8e8793a0d3f4907552ab62d68fce",
+      "byte_identical": true
+    },
+    {
+      "file": "ACS_VERIFICATION.json",
+      "sha256": "fb26d45962e5ff5e37549e9c256d5ae158feabb6cd090f0020afbca7f8e2e827",
+      "byte_identical": true
+    },
+    {
+      "file": "NLCD_VERIFICATION.json",
+      "sha256": "9831bfca4787978acbf88bb829da025d21c59275a3f97353df2518414ebbac40",
+      "byte_identical": true
+    },
+    {
+      "file": "INDEPENDENT_QA.json",
+      "sha256": "fdebf3b9324d4ebe1e7985859577a43d2e7626a15df77fe4666d11cbdd276c4a",
+      "byte_identical": true
+    },
+    {
+      "file": "INPUT_FILE_MANIFEST.json",
+      "sha256": "17ed7012f3701b86fe829ff59335b9db5db1cf9ab303a24d204b7ce6e98b7e00",
+      "byte_identical": true
+    }
+  ],
+  "phases": [
+    {
+      "script": "validate.py",
+      "flags": [
+        "--phase",
+        "acs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "script": "nlcd.py",
+      "flags": [
+        "--phase",
+        "aggregate"
+      ],
+      "exit_code": 0
+    },
+    {
+      "script": "validate.py",
+      "flags": [
+        "--phase",
+        "compare"
+      ],
+      "exit_code": 0
+    },
+    {
+      "script": "qa.py",
+      "flags": [],
+      "exit_code": 0
+    }
+  ],
+  "existing_input_hashes_unchanged": true,
+  "source_sha256": {
+    "B25024_06.csv.zip": "4ceecc607150978ce95e846cc3f9d6fb67e1249523cab87c737251343efdeb3d",
+    "B25034_06.csv.zip": "138eef5722ddefb4c04b9aeba4a20f5e1c5656a215d41efa6b7b97943eeabaf2",
+    "VRE_AVERAGE_WEIGHT_2022.csv": "f80db89ed83bd19bb2e42475a208dd8c678ba15e71239935cdbdbcb38b34d01b",
+    "Annual_NLCD_2022_fis_study_clip.tif": "01bc05250d5bbcf7bdfb8c73285c723592ded4c97efdd3a5e6789351149095e0",
+    "Annual_NLCD_2022_lc_study_clip.tif": "4ea589c2259a5180874a443f2668591b5230477dd8037227ed7e497f8a29a4ec"
+  },
+  "reference_route_selftest": "PILOT_SELF_TEST_NOT_AUTHORITATIVE; 2315 reference-minus-pilot values exactly zero; source-release gate still open"
+}
