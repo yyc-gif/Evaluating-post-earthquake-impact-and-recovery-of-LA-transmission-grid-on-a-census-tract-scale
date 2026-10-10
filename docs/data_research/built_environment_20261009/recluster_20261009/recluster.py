@@ -208,7 +208,7 @@ def run():
         frame=profiles(m,name,labels,list(models[name][0]))
         profile_report[name]=frame.replace({np.nan:None}).to_dict(orient="records")
     (OUT/"MODEL_PROFILES.json").write_text(
-        json.dumps(profile_report,indent=2,allow_nan=False)+"\\n",encoding="utf-8")
+        json.dumps(profile_report,indent=2,allow_nan=False)+"\n",encoding="utf-8")
     result=pd.DataFrame(members)
     result.to_csv(OUT/"new_cluster_assignments.csv",index=False)
     pd.concat(diagnostics,ignore_index=True).to_csv(OUT/"k_selection_diagnostics.csv",index=False)
