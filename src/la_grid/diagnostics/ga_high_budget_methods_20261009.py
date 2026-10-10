@@ -29,7 +29,7 @@ def one_ga(kernel,inc,quality,seed,name,config,budget):
                  folder=None,quality=quality)
     assert len(r["cache"])==budget and r["state"]["expensive_calls"]==budget
     best=r["best_sequence"]
-    assert abs(kernel.score(best)+r["best_fitness"])<1e-9
+    assert abs(kernel.score(best)-r["best_fitness"])<1e-9
     return dict(method=name,seed=seed,budget=budget,config=asdict(config),
         best_sequence=list(best),sequence_sha256=old.identity(best),
         planning_loss_hr=-float(r["best_fitness"]),
