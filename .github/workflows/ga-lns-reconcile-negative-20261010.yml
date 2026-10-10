@@ -1,0 +1,51 @@
+name: Reconcile all 160 LNS searches and diagnose failed event targeting
+on:
+  push:
+    branches:
+      - diagnostics/scheduling-aware-lns-20261010
+    paths:
+      - .github/workflows/ga-lns-reconcile-negative-20261010.yml
+      - src/la_grid/diagnostics/ga_lns_outcome_reconcile_20261010.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install statistics dependencies only (NO objective runtime)
+        run: python -m pip install numpy==1.26.4 scipy==1.11.4
+      - name: Download exact finished LNS workflow artifacts, not optimizer reruns
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/lga-v1" "$RUNNER_TEMP/lga-v2"
+          gh run download 38033702030 --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/lga-v1"
+          gh run download 38034064901 --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/lga-v2"
+          echo "v1 candidate JSON $(find "$RUNNER_TEMP/lga-v1" -name ALL_METHODS.json | wc -l)"
+          echo "v2 candidate JSON $(find "$RUNNER_TEMP/lga-v2" -name ALL_METHODS.json | wc -l)"
+      - name: Verify all 160 retained chromosomes and summarize outcomes
+        shell: bash
+        run: |
+          python src/la_grid/diagnostics/ga_lns_outcome_reconcile_20261010.py             --v1 "$RUNNER_TEMP/lga-v1" --v2 "$RUNNER_TEMP/lga-v2"             --output results/diagnostics/ga_scheduling_aware_lns_20261010/reconciliation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ga-lns-160-run-negative-audit
+          path: |
+            results/diagnostics/ga_scheduling_aware_lns_20261010/reconciliation/LNS_160_RUN_AUDIT.json
+            results/diagnostics/ga_scheduling_aware_lns_20261010/reconciliation/LNS_160_RUN_AUDIT.md
+          if-no-files-found: warn
+          retention-days: 30
