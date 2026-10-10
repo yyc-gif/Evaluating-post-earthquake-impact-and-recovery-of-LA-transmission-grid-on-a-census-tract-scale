@@ -112,13 +112,14 @@ def nri_source_inspection(x):
                 "RESL_SCORE","BUILDVALUE","RISK_VAL","EAL_VAL"])]
     # Inspection of available original FEMA compound domains, never assert absent fields are verified.
     out={"rows":len(frame),"columns":len(frame.columns),"matched_field_names":fields}
-    if "NRI_ID" in frame:
-        ids=frame.NRI_ID.astype(str).str.strip().str.replace(r"\.0$","",regex=True).str.zfill(11)
-    elif "TRACTFIPS" in frame:
-        ids=frame.TRACTFIPS.astype(str).str.strip().str.replace(r"\.0$","",regex=True).str.zfill(11)
-    else:
+    # NRI_ID often starts with T; TRACTFIPS is numeric when available.
+    idcol="TRACTFIPS" if "TRACTFIPS" in frame else "NRI_ID" if "NRI_ID" in frame else None
+    if idcol is None:
         out["join_status"]="No row identity for original NRI"
         return out,None
+    rawids=frame[idcol].astype(str).str.strip().str.replace(r"\.0$","",regex=True)
+    ids=rawids.str.extract(r"(\d{11})$")[0]
+    out["source_id_field"]=idcol
     frame["tract_id"]=ids
     frame=frame.loc[frame.tract_id.isin(set(x.tract_id))].copy()
     out["matched_residential_rows"]=len(frame)
@@ -126,7 +127,15 @@ def nri_source_inspection(x):
     if len(frame)!=len(x) or frame.tract_id.duplicated().any():
         out["join_status"]="NRI source not unique/complete"
         return out,None
-    cols=[c for c in fields if c not in ("NRI_ID",) and frame[c].dtype!="object"]
+    out["join_status"]="unique_complete_tract_join"
+    for left,right in [("NRI_RISK_SCORE","RISK_SCORE"),("NRI_BUILDVALUE","BUILDVALUE"),("SOVI_SCORE","SOVI_SCORE")]:
+        if right in frame:
+            lookup=x[["tract_id",left]].merge(frame[["tract_id",right]],on="tract_id",validate="one_to_one")
+            lhs=pd.to_numeric(lookup[left],errors="coerce")
+            rhs=pd.to_numeric(lookup[right],errors="coerce")
+            out[f"max_abs_saved_minus_original_{left}"]=float(np.nanmax(np.abs(lhs-rhs)))
+
+    cols=[c for c in fields if c not in ("NRI_ID",)]
     if cols:
         a=x[["tract_id"]].merge(frame[["tract_id"]+cols],on="tract_id",validate="one_to_one")
         for c in cols:
