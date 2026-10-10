@@ -164,9 +164,10 @@ def main():
           "mean_dominant_hazard_share":float(top1[valid].mean()),
           "median_dominant_hazard_share":float(top1[valid].median()),
           "median_top_three_share":float(np.median(top3[valid.to_numpy()])),
-          "median_effective_hazards":float(np.nanmedian((1/hhi).to_numpy())),
+          "median_effective_hazards":(float(np.nanmedian((1/hhi.replace(0,np.nan)).to_numpy())) if hhi.gt(0).any() else None),
           "mean_hazard_share":{
-             c:float(shares[c].mean()) for c in hazard_cols
+             c:(float(shares[c].mean()) if np.isfinite(shares[c].mean()) else None)
+             for c in hazard_cols
           },
           "aggregate_expected_loss_share":{
              c:float(hazard[c].fillna(0).sum()/total[valid].sum()) for c in hazard_cols
