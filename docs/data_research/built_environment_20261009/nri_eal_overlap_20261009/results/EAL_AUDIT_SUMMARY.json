@@ -22,7 +22,25 @@
     "ALR_VALA",
     "ALR_NPCTL",
     "ALR_VRA_NPCTL",
-    "POPULATION"
+    "POPULATION",
+    "AVLN_EALT",
+    "CFLD_EALT",
+    "CWAV_EALT",
+    "DRGT_EALT",
+    "ERQK_EALT",
+    "HAIL_EALT",
+    "HRCN_EALT",
+    "HWAV_EALT",
+    "ISTM_EALT",
+    "LNDS_EALT",
+    "LTNG_EALT",
+    "RFLD_EALT",
+    "SWND_EALT",
+    "TRND_EALT",
+    "TSUN_EALT",
+    "VLCN_EALT",
+    "WFIR_EALT",
+    "WNTW_EALT"
   ],
   "identity_checks": {
     "SOVI_SCORE": {
@@ -100,9 +118,9 @@
       "zeros": 0,
       "negative": 0,
       "min": 11.790670079932442,
-      "median": 13.919563882140109,
+      "median": 13.919563882140107,
       "p95": 15.115959074925177,
-      "max": 17.330414055992176,
+      "max": 17.330414055992172,
       "unique": 2291
     },
     "RISK_SCORE": {
@@ -144,7 +162,7 @@
       "zeros": 0,
       "negative": 0,
       "min": 1.7277688068671493,
-      "median": 9.348607040285703,
+      "median": 9.348607040285701,
       "p95": 10.417489543274431,
       "max": 11.74961892437548,
       "unique": 2291
@@ -208,7 +226,7 @@
   "pairwise_key": {
     "SOVI_SCORE | log_BUILDVALUE": {
       "n": 2291,
-      "pearson_r": -0.324442622422942,
+      "pearson_r": -0.3244426224229421,
       "spearman_rho": -0.3514836264269496
     },
     "SOVI_SCORE | EAL_SCORE": {
@@ -218,12 +236,12 @@
     },
     "SOVI_SCORE | log_EAL_VALT": {
       "n": 2291,
-      "pearson_r": -0.05033441841566177,
+      "pearson_r": -0.050334418415661775,
       "spearman_rho": -0.06847863427601492
     },
     "EAL_SCORE | log_BUILDVALUE": {
       "n": 2291,
-      "pearson_r": 0.8309774288104568,
+      "pearson_r": 0.830977428810457,
       "spearman_rho": 0.8584748142300272
     },
     "EAL_SCORE | RISK_SCORE": {
@@ -238,7 +256,7 @@
     },
     "EAL_SCORE | log_EAL_VALT": {
       "n": 2291,
-      "pearson_r": 0.9374506578375961,
+      "pearson_r": 0.9374506578375956,
       "spearman_rho": 1.0
     },
     "EAL_SCORE | ALR_NPCTL": {
@@ -263,12 +281,12 @@
     },
     "EAL_SCORE | log_Pop_Density": {
       "n": 2291,
-      "pearson_r": -0.2574212417423388,
+      "pearson_r": -0.2574212417423389,
       "spearman_rho": -0.3654882770600007
     },
     "ALR_NPCTL | log_BUILDVALUE": {
       "n": 2291,
-      "pearson_r": 0.24696541191365534,
+      "pearson_r": 0.24696541191365526,
       "spearman_rho": 0.23488967816703363
     },
     "ALR_NPCTL | SOVI_SCORE": {
@@ -286,7 +304,7 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 3.843429845999545,
+      "condition_number": 3.843429845999546,
       "per_input": {
         "SOVI_SCORE": {
           "r2_on_other_inputs": 0.6402979928783219,
@@ -297,8 +315,8 @@
           "vif": 3.7967085055640264
         },
         "RISK_SCORE": {
-          "r2_on_other_inputs": 0.7482434284235727,
-          "vif": 3.972090951740753
+          "r2_on_other_inputs": 0.7482434284235726,
+          "vif": 3.972090951740751
         }
       }
     },
@@ -316,8 +334,8 @@
           "vif": 1.001941317264001
         },
         "EAL_SCORE": {
-          "r2_on_other_inputs": 0.001937555853372963,
-          "vif": 1.001941317264001
+          "r2_on_other_inputs": 0.0019375558533731851,
+          "vif": 1.0019413172640013
         }
       }
     },
@@ -329,11 +347,11 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 3.952515050905332,
+      "condition_number": 3.952515050905331,
       "per_input": {
         "SOVI_SCORE": {
-          "r2_on_other_inputs": 0.2697000922456846,
-          "vif": 1.3693004605121983
+          "r2_on_other_inputs": 0.2697000922456847,
+          "vif": 1.3693004605121986
         },
         "log_BUILDVALUE": {
           "r2_on_other_inputs": 0.7735505728314067,
@@ -353,14 +371,14 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 1.6778041150345184,
+      "condition_number": 1.6778041150345187,
       "per_input": {
         "SOVI_SCORE": {
           "r2_on_other_inputs": 0.19947079470783502,
           "vif": 1.2491736633581472
         },
         "log_BUILDVALUE": {
-          "r2_on_other_inputs": 0.21104285041227977,
+          "r2_on_other_inputs": 0.21104285041227966,
           "vif": 1.2674959603605378
         },
         "ALR_NPCTL": {
@@ -376,7 +394,7 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 1.051667491324027,
+      "condition_number": 1.0516674913240265,
       "per_input": {
         "SOVI_SCORE": {
           "r2_on_other_inputs": 0.00253355367724295,
@@ -396,15 +414,15 @@
       ],
       "n": 2291,
       "status": "ok",
-      "condition_number": 4.959359976195143,
+      "condition_number": 4.959359976195141,
       "per_input": {
         "SOVI_SCORE": {
           "r2_on_other_inputs": 0.34524638026137544,
           "vif": 1.5272920528475988
         },
         "log_BUILDVALUE": {
-          "r2_on_other_inputs": 0.8495672338911068,
-          "vif": 6.647487950039645
+          "r2_on_other_inputs": 0.8495672338911067,
+          "vif": 6.64748795003964
         },
         "log_EAL_VALT": {
           "r2_on_other_inputs": 0.8322952563962989,
@@ -417,6 +435,80 @@
     "n": 2291,
     "max_abs_delta_dollars": 7.450580596923828e-09,
     "median_abs_delta_dollars": 1.1641532182693481e-10
+  },
+  "hazard_composition": {
+    "n_source_hazard_columns": 18,
+    "all_columns": [
+      "AVLN_EALT",
+      "CFLD_EALT",
+      "CWAV_EALT",
+      "DRGT_EALT",
+      "ERQK_EALT",
+      "HAIL_EALT",
+      "HRCN_EALT",
+      "HWAV_EALT",
+      "ISTM_EALT",
+      "LNDS_EALT",
+      "LTNG_EALT",
+      "RFLD_EALT",
+      "SWND_EALT",
+      "TRND_EALT",
+      "TSUN_EALT",
+      "VLCN_EALT",
+      "WFIR_EALT",
+      "WNTW_EALT"
+    ],
+    "sum_hazard_eal_minus_total_max_abs": 7.450580596923828e-09,
+    "sum_hazard_eal_minus_total_median_abs": 1.1641532182693481e-10,
+    "mean_dominant_hazard_share": 0.9836390348840932,
+    "median_dominant_hazard_share": 0.9927449783795855,
+    "median_top_three_share": 0.9994257916152658,
+    "median_effective_hazards": 1.0146361762170077,
+    "mean_hazard_share": {
+      "AVLN_EALT": null,
+      "CFLD_EALT": 3.4249295385745144e-05,
+      "CWAV_EALT": 0.0,
+      "DRGT_EALT": 4.51638402188065e-06,
+      "ERQK_EALT": 0.9826477648619193,
+      "HAIL_EALT": 2.4173082333692765e-05,
+      "HRCN_EALT": null,
+      "HWAV_EALT": 0.0018236823250529254,
+      "ISTM_EALT": null,
+      "LNDS_EALT": 6.513325389520552e-05,
+      "LTNG_EALT": 0.0002665115115408586,
+      "RFLD_EALT": 0.0007958143356530278,
+      "SWND_EALT": 0.00020990844708826284,
+      "TRND_EALT": 0.005053321255529167,
+      "TSUN_EALT": 6.368563457122667e-06,
+      "VLCN_EALT": null,
+      "WFIR_EALT": 0.009064268542386764,
+      "WNTW_EALT": 4.288141736122252e-06
+    },
+    "aggregate_expected_loss_share": {
+      "AVLN_EALT": 0.0,
+      "CFLD_EALT": 1.5827449640294273e-05,
+      "CWAV_EALT": 0.0,
+      "DRGT_EALT": 6.6972413429773365e-06,
+      "ERQK_EALT": 0.9815630161572458,
+      "HAIL_EALT": 1.8767927184107972e-05,
+      "HRCN_EALT": 0.0,
+      "HWAV_EALT": 0.0013481124925324723,
+      "ISTM_EALT": 0.0,
+      "LNDS_EALT": 6.386789804339066e-05,
+      "LTNG_EALT": 0.00018979142667207536,
+      "RFLD_EALT": 0.0006177486074877574,
+      "SWND_EALT": 0.00015257073615352517,
+      "TRND_EALT": 0.004288301337786068,
+      "TSUN_EALT": 9.025212181136602e-06,
+      "VLCN_EALT": 0.0,
+      "WFIR_EALT": 0.011723366796432265,
+      "WNTW_EALT": 2.906717297965144e-06
+    },
+    "n_hazards_nonzero_by_tract": {
+      "median": 7.0,
+      "minimum": 6,
+      "maximum": 12
+    }
   },
   "method": "Pearson and Spearman on same exact tract IDs, monetary values log1p only when nonnegative",
   "decision_status": "DIAGNOSTIC_ONLY; keep SOVI mandatory; no completed model selection"
