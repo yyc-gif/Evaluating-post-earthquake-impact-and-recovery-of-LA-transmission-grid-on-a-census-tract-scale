@@ -1,0 +1,754 @@
+{
+  "sources_verified": {
+    "RESIDENTIAL_2291_FEATURE_MATRIX.csv": "eea230dd2f1e6be857bc35470a77d62a867ce9c47b471416cb57dc21e1aec973",
+    "FEATURE_CORRELATION_MATRIX.csv": "1013d1bee407da444f5ca380ccdec2bc1a605083b5f49e416854f453fa3b4682",
+    "FEATURE_COVERAGE_QA.csv": "0d1104866f69a95f9dd34db22210f9d7dfc27d08da77648f93b3fc376ab14e5e"
+  },
+  "fema_hash": "e046fbc7439394c9fb31fe2048ddae8d4fb3e7bd9e466d30f9b0fcd3c8c00092",
+  "n": 2291,
+  "pairs": [
+    {
+      "a": "land_use_entropy",
+      "b": "building_footprint_coverage",
+      "n": 2276,
+      "r": -0.11831334736886648,
+      "rho": -0.11390074279659364
+    },
+    {
+      "a": "land_use_entropy",
+      "b": "log_building_count_density",
+      "n": 2276,
+      "r": -0.35935944977157597,
+      "rho": -0.45537259510821054
+    },
+    {
+      "a": "land_use_entropy",
+      "b": "all_use2014_pre1970_area_share",
+      "n": 2276,
+      "r": -0.30955257758188526,
+      "rho": -0.38257354931101195
+    },
+    {
+      "a": "building_footprint_coverage",
+      "b": "all_use2014_pre1970_area_share",
+      "n": 2276,
+      "r": 0.05724182792252516,
+      "rho": -0.024126761974409192
+    },
+    {
+      "a": "building_footprint_coverage",
+      "b": "log_building_count_density",
+      "n": 2276,
+      "r": 0.3562414869838164,
+      "rho": 0.30083899646366213
+    },
+    {
+      "a": "building_footprint_coverage",
+      "b": "log_Pop_Density",
+      "n": 2276,
+      "r": 0.7424696381065226,
+      "rho": 0.7210809963832047
+    },
+    {
+      "a": "log_building_count_density",
+      "b": "log_Pop_Density",
+      "n": 2291,
+      "r": 0.5689582846372226,
+      "rho": 0.42520187977873475
+    },
+    {
+      "a": "all_use2014_pre1970_area_share",
+      "b": "residential_pre1970_housing_share",
+      "n": 2291,
+      "r": 0.7801599670848438,
+      "rho": 0.7615166357788518
+    },
+    {
+      "a": "all_use2014_pre1970_area_share",
+      "b": "land_use_classified_land_coverage",
+      "n": 2291,
+      "r": -0.24839563618977306,
+      "rho": -0.2559791001394626
+    },
+    {
+      "a": "housing_5plus_share",
+      "b": "building_footprint_coverage",
+      "n": 2276,
+      "r": 0.5863639883703278,
+      "rho": 0.558700474273443
+    },
+    {
+      "a": "housing_5plus_share",
+      "b": "log_building_count_density",
+      "n": 2291,
+      "r": -0.18367004112069157,
+      "rho": -0.15318372274011116
+    },
+    {
+      "a": "land_use_entropy",
+      "b": "SOVI_SCORE",
+      "n": 2276,
+      "r": 0.18966768312496668,
+      "rho": 0.20530682006096765
+    },
+    {
+      "a": "land_use_entropy",
+      "b": "EAL_SCORE",
+      "n": 2276,
+      "r": 0.48358136061728385,
+      "rho": 0.49172065905618284
+    },
+    {
+      "a": "building_footprint_coverage",
+      "b": "SOVI_SCORE",
+      "n": 2276,
+      "r": 0.29108183540492094,
+      "rho": 0.2758356905649312
+    },
+    {
+      "a": "building_footprint_coverage",
+      "b": "EAL_SCORE",
+      "n": 2276,
+      "r": 0.017357648715359983,
+      "rho": 0.002609783176758037
+    },
+    {
+      "a": "all_use2014_pre1970_area_share",
+      "b": "SOVI_SCORE",
+      "n": 2291,
+      "r": 0.15310647377036601,
+      "rho": 0.09443361216715654
+    },
+    {
+      "a": "all_use2014_pre1970_area_share",
+      "b": "EAL_SCORE",
+      "n": 2291,
+      "r": -0.27231430509237786,
+      "rho": -0.3647161800290423
+    },
+    {
+      "a": "B_480_hr",
+      "b": "T80",
+      "n": 2291,
+      "r": 0.9121500906997393,
+      "rho": 0.9291900330712591
+    },
+    {
+      "a": "B_480_hr",
+      "b": "Init_Supply",
+      "n": 2291,
+      "r": -0.25244214401194265,
+      "rho": -0.2796056191856981
+    }
+  ],
+  "coverage": [
+    {
+      "feature": "land_use_entropy",
+      "n": 2291,
+      "observed": 2276,
+      "missing": 15,
+      "fraction": 0.9934526407682235,
+      "median": 0.3614080698448685,
+      "p10": 0.1730699253194305
+    },
+    {
+      "feature": "land_use_classified_land_coverage",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.751091222177217,
+      "p10": 0.664646165778079
+    },
+    {
+      "feature": "building_footprint_coverage",
+      "n": 2291,
+      "observed": 2276,
+      "missing": 15,
+      "fraction": 0.9934526407682235,
+      "median": 0.260682896621123,
+      "p10": 0.1689158424067635
+    },
+    {
+      "feature": "building_count_density",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 1219.29857702704,
+      "p10": 485.767592084674
+    },
+    {
+      "feature": "building_height_area_weighted_m",
+      "n": 2291,
+      "observed": 2276,
+      "missing": 15,
+      "fraction": 0.9934526407682235,
+      "median": 6.532091233881735,
+      "p10": 5.1433117213703845
+    },
+    {
+      "feature": "all_use2014_pre1970_area_share",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.798911259796918,
+      "p10": 0.461785611539542
+    },
+    {
+      "feature": "all_use2014_age_coverage",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.95251000732905,
+      "p10": 0.849753554264994
+    },
+    {
+      "feature": "all_use_pre1970_area_share",
+      "n": 2291,
+      "observed": 2011,
+      "missing": 280,
+      "fraction": 0.877782627673505,
+      "median": 0.441627200566895,
+      "p10": 0.0
+    },
+    {
+      "feature": "all_use_age_coverage",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.0435244161723966,
+      "p10": 0.0
+    },
+    {
+      "feature": "residential_pre1970_housing_share",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.661276223776224,
+      "p10": 0.340551181102362
+    },
+    {
+      "feature": "housing_5plus_share",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.255196304849884,
+      "p10": 0.0139664804469273
+    },
+    {
+      "feature": "Pop_Density",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 11481.8171979458,
+      "p10": 4138.03430460051
+    },
+    {
+      "feature": "NRI_BUILDVALUE",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 462978838.0,
+      "p10": 241824059.0
+    },
+    {
+      "feature": "SOVI_SCORE",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 74.20999908,
+      "p10": 24.04000092
+    },
+    {
+      "feature": "B_480_hr",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 33.3192052122361,
+      "p10": 28.5215325139955
+    },
+    {
+      "feature": "T80",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 43.9728551921892,
+      "p10": 40.4870453022447
+    },
+    {
+      "feature": "Init_Supply",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.0,
+      "p10": 0.0
+    },
+    {
+      "feature": "EAL_SCORE",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 77.4373488033445,
+      "p10": 57.6320548653029
+    },
+    {
+      "feature": "ALR_NPCTL",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 81.8881086032365,
+      "p10": 68.338539587101
+    },
+    {
+      "feature": "impervious_land_fraction",
+      "n": 2291,
+      "observed": 2291,
+      "missing": 0,
+      "fraction": 1.0,
+      "median": 0.651355239280016,
+      "p10": 0.468733800004253
+    }
+  ],
+  "strata": {
+    "all": {
+      "n": 2291,
+      "pairs": [
+        {
+          "a": "land_use_entropy",
+          "b": "building_footprint_coverage",
+          "n": 2276,
+          "r": -0.11831334736886648,
+          "rho": -0.11390074279659364
+        },
+        {
+          "a": "land_use_entropy",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 2276,
+          "r": -0.30955257758188526,
+          "rho": -0.38257354931101195
+        },
+        {
+          "a": "building_footprint_coverage",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 2276,
+          "r": 0.05724182792252516,
+          "rho": -0.024126761974409192
+        }
+      ],
+      "three_observed": 2276,
+      "mean_age": 0.7458160784888119,
+      "mean_entropy": 0.36678913134301927,
+      "mean_footprint": 0.2594812562229692
+    },
+    "landmask_pass": {
+      "n": 2276,
+      "pairs": [
+        {
+          "a": "land_use_entropy",
+          "b": "building_footprint_coverage",
+          "n": 2276,
+          "r": -0.11831334736886648,
+          "rho": -0.11390074279659364
+        },
+        {
+          "a": "land_use_entropy",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 2276,
+          "r": -0.30955257758188526,
+          "rho": -0.38257354931101195
+        },
+        {
+          "a": "building_footprint_coverage",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 2276,
+          "r": 0.05724182792252516,
+          "rho": -0.024126761974409192
+        }
+      ],
+      "three_observed": 2276,
+      "mean_age": 0.746089809892476,
+      "mean_entropy": 0.36678913134301927,
+      "mean_footprint": 0.2594812562229692
+    },
+    "landmask_and_SCAG_coverage_ge_70pct": {
+      "n": 1830,
+      "pairs": [
+        {
+          "a": "land_use_entropy",
+          "b": "building_footprint_coverage",
+          "n": 1830,
+          "r": -0.17271199642809468,
+          "rho": -0.16115320876268022
+        },
+        {
+          "a": "land_use_entropy",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 1830,
+          "r": -0.2978038121842872,
+          "rho": -0.3687726879750272
+        },
+        {
+          "a": "building_footprint_coverage",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 1830,
+          "r": 0.12504493740272796,
+          "rho": 0.04218564522315889
+        }
+      ],
+      "three_observed": 1830,
+      "mean_age": 0.7411564293013595,
+      "mean_entropy": 0.3639517619694439,
+      "mean_footprint": 0.2548920189599606
+    },
+    "landmask_and_SCAG_coverage_ge_85pct": {
+      "n": 193,
+      "pairs": [
+        {
+          "a": "land_use_entropy",
+          "b": "building_footprint_coverage",
+          "n": 193,
+          "r": 0.007484061849325402,
+          "rho": 0.015333716147641686
+        },
+        {
+          "a": "land_use_entropy",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 193,
+          "r": -0.13622096948456663,
+          "rho": -0.12318019862577306
+        },
+        {
+          "a": "building_footprint_coverage",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 193,
+          "r": -0.07320667164980747,
+          "rho": -0.05313740726289218
+        }
+      ],
+      "three_observed": 193,
+      "mean_age": 0.5601134716557595,
+      "mean_entropy": 0.4253248894462888,
+      "mean_footprint": 0.15102267465084224
+    },
+    "landmask_and_SCAG_coverage_ge_90pct": {
+      "n": 66,
+      "pairs": [
+        {
+          "a": "land_use_entropy",
+          "b": "building_footprint_coverage",
+          "n": 66,
+          "r": -0.25765340010577015,
+          "rho": -0.03383780398705772
+        },
+        {
+          "a": "land_use_entropy",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 66,
+          "r": -0.13488750868437135,
+          "rho": -0.09128864588462927
+        },
+        {
+          "a": "building_footprint_coverage",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 66,
+          "r": -0.013749941263129627,
+          "rho": 0.03989311737606369
+        }
+      ],
+      "three_observed": 66,
+      "mean_age": 0.5299558500948415,
+      "mean_entropy": 0.3984217183021754,
+      "mean_footprint": 0.08904262136496949
+    },
+    "landmask_and_original2014_age_coverage_ge_80pct": {
+      "n": 2149,
+      "pairs": [
+        {
+          "a": "land_use_entropy",
+          "b": "building_footprint_coverage",
+          "n": 2149,
+          "r": -0.14262758778523527,
+          "rho": -0.11968628461905803
+        },
+        {
+          "a": "land_use_entropy",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 2149,
+          "r": -0.3178915978515038,
+          "rho": -0.3879981855058626
+        },
+        {
+          "a": "building_footprint_coverage",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 2149,
+          "r": 0.048843500417301275,
+          "rho": -0.033532861017171185
+        }
+      ],
+      "three_observed": 2149,
+      "mean_age": 0.7507389710643915,
+      "mean_entropy": 0.3605537073894226,
+      "mean_footprint": 0.2600719559754396
+    },
+    "landmask_and_SCAG85_original2014age80": {
+      "n": 166,
+      "pairs": [
+        {
+          "a": "land_use_entropy",
+          "b": "building_footprint_coverage",
+          "n": 166,
+          "r": -0.058343788163702295,
+          "rho": -0.03821185668094261
+        },
+        {
+          "a": "land_use_entropy",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 166,
+          "r": -0.14858467818440324,
+          "rho": -0.13357644127000748
+        },
+        {
+          "a": "building_footprint_coverage",
+          "b": "all_use2014_pre1970_area_share",
+          "n": 166,
+          "r": -0.06313451659857156,
+          "rho": -0.023045845084774547
+        }
+      ],
+      "three_observed": 166,
+      "mean_age": 0.5659372794883287,
+      "mean_entropy": 0.4316918008245635,
+      "mean_footprint": 0.15237689395845525
+    }
+  },
+  "joint_vif": {
+    "built_entropy_footprint_age2014": {
+      "n": 2276,
+      "scope": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "max_vif": 1.1185372228992876,
+      "vif": {
+        "land_use_entropy": {
+          "vif": 1.1185372228992876,
+          "r2": 0.10597521519403252
+        },
+        "building_footprint_coverage": {
+          "vif": 1.0146805858782275,
+          "r2": 0.014468184453850674
+        },
+        "all_use2014_pre1970_area_share": {
+          "vif": 1.1065054905936431,
+          "r2": 0.09625391965881935
+        }
+      }
+    },
+    "built_entropy_footprint": {
+      "n": 2276,
+      "scope": [
+        "land_use_entropy",
+        "building_footprint_coverage"
+      ],
+      "max_vif": 1.014196775310215,
+      "vif": {
+        "land_use_entropy": {
+          "vif": 1.014196775310215,
+          "r2": 0.013998048165626109
+        },
+        "building_footprint_coverage": {
+          "vif": 1.014196775310215,
+          "r2": 0.013998048165626109
+        }
+      }
+    },
+    "built_footprint_age2014": {
+      "n": 2276,
+      "scope": [
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "max_vif": 1.0032873984419592,
+      "vif": {
+        "building_footprint_coverage": {
+          "vif": 1.0032873984419592,
+          "r2": 0.0032766268639119467
+        },
+        "all_use2014_pre1970_area_share": {
+          "vif": 1.0032873984419592,
+          "r2": 0.0032766268639119467
+        }
+      }
+    },
+    "built_entropy_count_age2014": {
+      "n": 2276,
+      "scope": [
+        "land_use_entropy",
+        "log_building_count_density",
+        "all_use2014_pre1970_area_share"
+      ],
+      "max_vif": 1.6081275454024018,
+      "vif": {
+        "land_use_entropy": {
+          "vif": 1.1683292539074752,
+          "r2": 0.14407689728259254
+        },
+        "log_building_count_density": {
+          "vif": 1.6081275454024018,
+          "r2": 0.3781587767344847
+        },
+        "all_use2014_pre1970_area_share": {
+          "vif": 1.5488725166922304,
+          "r2": 0.35436907219736946
+        }
+      }
+    },
+    "core_B_EAL": {
+      "n": 2276,
+      "scope": [
+        "log_B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "EAL_SCORE"
+      ],
+      "max_vif": 2.3218949975649745,
+      "vif": {
+        "log_B_480_hr": {
+          "vif": 2.1239220341624776,
+          "r2": 0.5291729244692693
+        },
+        "Init_Supply": {
+          "vif": 1.2324798057271762,
+          "r2": 0.18862767945314174
+        },
+        "Grid_Degree": {
+          "vif": 2.3218949975649745,
+          "r2": 0.569317302871696
+        },
+        "Grid_Impact": {
+          "vif": 1.2536794697199078,
+          "r2": 0.2023479492541933
+        },
+        "Grid_Betweenness": {
+          "vif": 1.685299023181678,
+          "r2": 0.4066334898170778
+        },
+        "Redundancy_HHI": {
+          "vif": 1.0752552767071646,
+          "r2": 0.06998828867654983
+        },
+        "land_use_entropy": {
+          "vif": 1.6424084938531391,
+          "r2": 0.39113807329748385
+        },
+        "building_footprint_coverage": {
+          "vif": 1.2279836343935555,
+          "r2": 0.18565689965904641
+        },
+        "all_use2014_pre1970_area_share": {
+          "vif": 1.1949479179422478,
+          "r2": 0.16314344333764486
+        },
+        "SOVI_SCORE": {
+          "vif": 1.3736350766630945,
+          "r2": 0.27200461244098995
+        },
+        "EAL_SCORE": {
+          "vif": 1.4582439925172987,
+          "r2": 0.31424370329566964
+        }
+      }
+    },
+    "core_B_D": {
+      "n": 2276,
+      "scope": [
+        "log_B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "max_vif": 2.3434080088228697,
+      "vif": {
+        "log_B_480_hr": {
+          "vif": 2.222390077819353,
+          "r2": 0.5500339881911204
+        },
+        "Init_Supply": {
+          "vif": 1.2290744183952813,
+          "r2": 0.18637961621100874
+        },
+        "Grid_Degree": {
+          "vif": 2.3434080088228697,
+          "r2": 0.5732710666537683
+        },
+        "Grid_Impact": {
+          "vif": 1.2568073161506463,
+          "r2": 0.20433308499285052
+        },
+        "Grid_Betweenness": {
+          "vif": 1.7342514100036015,
+          "r2": 0.4233823341692291
+        },
+        "Redundancy_HHI": {
+          "vif": 1.0810196027778773,
+          "r2": 0.07494739463528943
+        },
+        "land_use_entropy": {
+          "vif": 1.873963377543556,
+          "r2": 0.46637164205907367
+        },
+        "building_footprint_coverage": {
+          "vif": 1.3052542307278354,
+          "r2": 0.2338657278725077
+        },
+        "all_use2014_pre1970_area_share": {
+          "vif": 1.2252678298366024,
+          "r2": 0.18385190923248462
+        },
+        "SOVI_SCORE": {
+          "vif": 1.6096203554041615,
+          "r2": 0.37873549086119207
+        },
+        "log_NRI_BUILDVALUE": {
+          "vif": 1.4727798750205032,
+          "r2": 0.32101190615055186
+        },
+        "ALR_NPCTL": {
+          "vif": 1.8723480934277645,
+          "r2": 0.4659112781911885
+        }
+      }
+    }
+  },
+  "interpretation": "Descriptive tract data only. 2014 original building age is year-specific, not observed 2020 age. SCAG entropy uses classified area only. Census ALAND mask divergences remain. Historical cluster labels were not used."
+}

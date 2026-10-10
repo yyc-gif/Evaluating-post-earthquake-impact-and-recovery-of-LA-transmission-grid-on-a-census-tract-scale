@@ -1,0 +1,29 @@
+{
+  "full_domain": 2315,
+  "residential": 2291,
+  "candidate_complete": 2287,
+  "legacy_complete": 2276,
+  "unresolved_residential": [
+    "06037189703",
+    "06037301601",
+    "06037301602",
+    "06037404600"
+  ],
+  "required": [
+    "B_480_hr",
+    "Init_Supply",
+    "Grid_Degree",
+    "Grid_Impact",
+    "Grid_Betweenness",
+    "Redundancy_HHI",
+    "land_use_entropy",
+    "building_footprint_coverage",
+    "all_use2014_pre1970_area_share",
+    "SOVI_SCORE",
+    "log1p_NRI_BUILDVALUE",
+    "ALR_NPCTL"
+  ],
+  "no_zero_or_median_imputation": true,
+  "fixed_source_recovery_identity": "B mean integral, T80 threshold of mean trajectory, initial mean service; no new trajectories",
+  "geoids_exact_saved_order": true
+}

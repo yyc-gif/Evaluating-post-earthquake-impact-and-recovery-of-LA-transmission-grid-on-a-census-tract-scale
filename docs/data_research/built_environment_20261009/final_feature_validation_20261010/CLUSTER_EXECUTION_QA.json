@@ -1,0 +1,28 @@
+{
+  "models": 20,
+  "n_fit_records": 2800,
+  "seeds": 20,
+  "n_init": 100,
+  "k_range": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "base_sample_n": 2287,
+  "spatial_replicates": 20,
+  "seconds": 34.4397234916687,
+  "formal_files_written": 0,
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "sklearn": "1.5.1"
+  },
+  "duplicate_experiments": "each observed model/seed/k is unique; entropy proportional is an explicitly same-definition sensitivity, not independent replication",
+  "spatial_replicates_per_model": 20,
+  "spatial_total_fits": 80,
+  "seconds_definition": "Elapsed postprocessing and20 initial spatial fits in resumed invocation; per-run elapsed times retain original worker timings. This value is not total historical batch wall time."
+}

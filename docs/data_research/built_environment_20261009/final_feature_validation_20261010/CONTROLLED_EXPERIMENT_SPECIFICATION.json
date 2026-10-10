@@ -1,0 +1,244 @@
+{
+  "status": "EXPLORATORY_NOT_FORMAL_REPLACEMENT",
+  "planned_models": [
+    {
+      "name": "D__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "EAL__inherited",
+      "budget": "inherited",
+      "loss": "EAL",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_T80__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "T80",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_logB__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "log1p_B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_ACS_age__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "residential_pre1970_housing_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_no_age__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": null,
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D__equal_five_domains",
+      "budget": "equal_five_domains",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "EAL__equal_five_domains",
+      "budget": "equal_five_domains",
+      "loss": "EAL",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_T80__equal_five_domains",
+      "budget": "equal_five_domains",
+      "loss": "D",
+      "recovery": "T80",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_logB__equal_five_domains",
+      "budget": "equal_five_domains",
+      "loss": "D",
+      "recovery": "log1p_B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_ACS_age__equal_five_domains",
+      "budget": "equal_five_domains",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "residential_pre1970_housing_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_no_age__equal_five_domains",
+      "budget": "equal_five_domains",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": null,
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_entropy_transport__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "entropy_missing_to_transport",
+      "sample": "complete"
+    },
+    {
+      "name": "D_entropy_dominant__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "entropy_missing_to_dominant",
+      "sample": "complete"
+    },
+    {
+      "name": "D_entropy_proportional__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "entropy_missing_proportional",
+      "sample": "complete"
+    },
+    {
+      "name": "D_age_lower_bound__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "age_lower_bound",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_age_upper_bound__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "age_upper_bound",
+      "entropy": "land_use_entropy",
+      "sample": "complete"
+    },
+    {
+      "name": "D_pop_density__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "complete",
+      "population": true
+    },
+    {
+      "name": "D_legacy2276__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "legacy"
+    },
+    {
+      "name": "D_lowcoverage__inherited",
+      "budget": "inherited",
+      "loss": "D",
+      "recovery": "B_480_hr",
+      "age": "all_use2014_pre1970_area_share",
+      "entropy": "land_use_entropy",
+      "sample": "coverage_top75"
+    }
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "n_init": 100,
+  "k_sweep": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "k_selection": "per-seed maximum distance below normalized k2..k8 inertia endpoint chord; silhouette is reported, never selection criterion",
+  "budget_definitions": {
+    "inherited": {
+      "recovery_service": 0.18181818181818182,
+      "grid": 0.36363636363636365,
+      "physical": 0.18181818181818182,
+      "social": 0.09090909090909091,
+      "loss_exposure": 0.18181818181818182
+    },
+    "equal_five_domains": {
+      "recovery_service": 0.2,
+      "grid": 0.2,
+      "physical": 0.2,
+      "social": 0.2,
+      "loss_exposure": 0.2
+    }
+  },
+  "distance": "z score within cohort then sqrt(domain budget/number of coordinates) weighting, squared Euclidean",
+  "physical_budget": "Three distinct physical subconstructs share fixed physical budget; equal five parent domains keeps risk/exposure definition comparable. It does not mean nine constructs each receive equal weight.",
+  "no_age": "Physical budget redistributed over remaining entropy and footprint coordinates; not removed from entire domain",
+  "pop_density": "Separate demographic domain allocated half existing loss/exposure budget, total remains one; not a second primary physical-density input",
+  "samples": "paired feature comparisons use identical complete cohort; legacy/coverage subset comparisons explicitly change sample and evaluate ARI on common tracts",
+  "formal_labels_used": false,
+  "PCA": "none; direct weighted-coordinate KMeans, exploratory method distinct from stored formal Stage7 PCA",
+  "spatial": "20km EPSG3310 centroid blocks; 20 block deletions, 10% occupied blocks per deletion, original full-data predictions compared on entire complete-case set",
+  "bootstrap": "none; seed variability is optimization variability, not sampling CI"
+}
