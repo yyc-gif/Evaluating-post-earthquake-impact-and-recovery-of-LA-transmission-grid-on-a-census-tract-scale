@@ -39,7 +39,7 @@ def main():
   elif s.startswith(OUT.relative_to(ROOT).as_posix()+'/sources/'):
    assert blob==(ROOT/s).read_bytes(),'Raw source snapshot bytes changed in Git'
  (state/'LFS_POINTER_VERIFICATION.json').write_text(json.dumps(lfs,indent=2)+'\n')
- message=state/'message.txt';message.write_text('analysis: align count-density provenance and verification\n\nKeep the candidate matrix unchanged and retain geometry-denominator diagnostics; preserve all formal scientific files.\n',encoding='utf-8')
+ message=state/'message.txt';message.write_text('analysis: include extraction validation tables\n\nPublish the four small validation tables excluded by inherited ignore rules; preserve all formal scientific files.\n',encoding='utf-8')
  prior=subprocess.run(['git','-C',str(ROOT),'rev-parse','--verify','refs/heads/'+BRANCH],capture_output=True)
  parent=prior.stdout.decode().strip() if prior.returncode==0 else BASE
  if parent!=BASE:

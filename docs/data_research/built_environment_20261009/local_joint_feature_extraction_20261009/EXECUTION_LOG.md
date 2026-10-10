@@ -17,3 +17,5 @@
 15. Focused tests, post-extraction protected/input/index hash verification and scoped alternate-index branch publishing are recorded in QA/test/publish files. Physical damage, repair schedules, GA, mapping, trajectories, storedclusters, figures and manuscript are not modified.
 
 Final consistency check aligned building_count_density in the standalone LARIAC table with the existing candidate matrix: both use Census ALAND. The original geometry-land density remains in LARIAC_COUNT_DENSITY_DENOMINATOR_AUDIT.csv. Counts, footprint areas, candidate-matrix values and formal scientific results did not change.
+
+Packaging verification identified four small validation CSVs excluded by the inherited *audit*.csv ignore rule. The local ignore file explicitly admits them; partial checkpoints remain excluded. No measured values or protected files changed.
