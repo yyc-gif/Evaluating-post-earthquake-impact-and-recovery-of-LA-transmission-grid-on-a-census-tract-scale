@@ -1,0 +1,965 @@
+{
+  "batch": 1,
+  "seeds": [
+    101,
+    104,
+    105,
+    107,
+    108
+  ],
+  "run_id": 38006365076,
+  "base_commit": "b1030f839d522fed4af21e424472e3f8b076797b",
+  "physical_sampling": false,
+  "records": [
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "baseline_7h_1w_25n",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.005772433908746
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.00255708658068
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 33.00255708658068
+        }
+      ],
+      "completed_generations": 4004,
+      "elapsed_wall_seconds": 119.763359098,
+      "final_best_loss_hr": 33.00255708658068,
+      "final_sequence_sha256": "1cdeadb836ea66fa812396e53543a389d67aceae3b82cb308238a8779b6a04a4",
+      "generation0_population_mean_loss_hr": 36.83488818937445,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "61e0d9a767c2d50a6d53c1175f223a709a15fb4afa7fee051a65338cba317e89",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03557465668675519,
+      "prior_neighbor_count": 13,
+      "random_count": 67,
+      "seed": 101,
+      "total_attempted_evaluations": 800869,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_only",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.0193231980453
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.000430501110266
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.999239770024076
+        }
+      ],
+      "completed_generations": 4025,
+      "elapsed_wall_seconds": 119.656125247,
+      "final_best_loss_hr": 32.999239770024076,
+      "final_sequence_sha256": "499c9c9e396d5d1feedb53ed85294929beccf5a49e79b0902899cc8b0caf6291",
+      "generation0_population_mean_loss_hr": 37.974812343179096,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.57830255999933,
+      "initial_population_sha256": "5f6bf4401d3760ef727c97bed98e38d07e608e75d0d3abcb96d5327cec98fae8",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.5790627899752536,
+      "prior_neighbor_count": 0,
+      "random_count": 93,
+      "seed": 101,
+      "total_attempted_evaluations": 805026,
+      "warm_copy_count": 0
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00798259168582
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99959174537787
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.999013152207844
+        }
+      ],
+      "completed_generations": 3979,
+      "elapsed_wall_seconds": 118.95194279399999,
+      "final_best_loss_hr": 32.999013152207844,
+      "final_sequence_sha256": "22f48c713ac0e4286492c80668b950a5163189ccec5e7a975e8254acb4e5363f",
+      "generation0_population_mean_loss_hr": 37.923557220986744,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "66592f9203196126b5cb4c5707816733409780e33a1ee7cdc770bb0e60bf0d48",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03911859105959081,
+      "prior_neighbor_count": 0,
+      "random_count": 92,
+      "seed": 101,
+      "total_attempted_evaluations": 795848,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_50",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00565566401511
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.998366327549945
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.997840773882785
+        }
+      ],
+      "completed_generations": 4116,
+      "elapsed_wall_seconds": 120.43370100300001,
+      "final_best_loss_hr": 32.997840773882785,
+      "final_sequence_sha256": "eef24010bd8da3d820e03436de79838ed0aade1763dd9f5f684102c64af6ef38",
+      "generation0_population_mean_loss_hr": 35.948752930772905,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 25,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "80dddfa76c5adcb797b14b4f19fd66c0526b0491e7d8bfa5b6f45a8610efb034",
+      "neighbor_count": 50,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.0402909693846496,
+      "prior_neighbor_count": 25,
+      "random_count": 42,
+      "seed": 101,
+      "total_attempted_evaluations": 823237,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 32.99987709580805
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99898228390326
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99889869848308
+        }
+      ],
+      "completed_generations": 3927,
+      "elapsed_wall_seconds": 118.72234841399995,
+      "final_best_loss_hr": 32.99889869848308,
+      "final_sequence_sha256": "f201a29d9a8e8128e72714256756d8f5d9fb1b5cee7bbcad51dc3595767d9045",
+      "generation0_population_mean_loss_hr": 37.01086992795087,
+      "heuristic_count": 0,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "e0b617560c741c7259762c85ae25f5832b8579143253a8085c79e39bb4d08a01",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03923304478435341,
+      "prior_neighbor_count": 13,
+      "random_count": 74,
+      "seed": 101,
+      "total_attempted_evaluations": 785427,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "baseline_7h_1w_25n",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00265622510684
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.998958827677136
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.998958827677136
+        }
+      ],
+      "completed_generations": 4046,
+      "elapsed_wall_seconds": 198.47023870700002,
+      "final_best_loss_hr": 32.998958827677136,
+      "final_sequence_sha256": "511ae2951b41fbc088b8ea7f6bf250bb8f4aaf6cfab2c7d48c3b74d3f0c27f02",
+      "generation0_population_mean_loss_hr": 37.10838065106036,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "b7bc7910313b81f10bc255b02a14285250f5d063182e05c2961dc3585dc43ce6",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03917291559029934,
+      "prior_neighbor_count": 13,
+      "random_count": 67,
+      "seed": 104,
+      "total_attempted_evaluations": 809242,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_only",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.01142042169576
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99935585447122
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99918316708759
+        }
+      ],
+      "completed_generations": 3779,
+      "elapsed_wall_seconds": 193.86375756200005,
+      "final_best_loss_hr": 32.99918316708759,
+      "final_sequence_sha256": "22bb95b069775161844fb607d08921ccde2c0e4c265caeea090affc014776b5f",
+      "generation0_population_mean_loss_hr": 38.02959782839291,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.57830255999933,
+      "initial_population_sha256": "2c6251f7f4c10a93cfed6c4f06fb132a5055e03dc8e2c64fa930ced4be06a6d8",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.5791193929117426,
+      "prior_neighbor_count": 0,
+      "random_count": 93,
+      "seed": 104,
+      "total_attempted_evaluations": 755889,
+      "warm_copy_count": 0
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00807112394575
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99900360948442
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99889869848308
+        }
+      ],
+      "completed_generations": 4205,
+      "elapsed_wall_seconds": 200.72022352099998,
+      "final_best_loss_hr": 32.99889869848308,
+      "final_sequence_sha256": "10d2e4e17eddc9d641b1baa0138e653dbd903f42631841a0f71e4f804377f140",
+      "generation0_population_mean_loss_hr": 37.97556895151064,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "a7ab593d7587d34b00136f56115db31c46c4c78794c5e2923fec5184ccaf6352",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03923304478435341,
+      "prior_neighbor_count": 0,
+      "random_count": 92,
+      "seed": 104,
+      "total_attempted_evaluations": 841105,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_50",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00048637226862
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99926445907619
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99926445907619
+        }
+      ],
+      "completed_generations": 4091,
+      "elapsed_wall_seconds": 199.3252529959999,
+      "final_best_loss_hr": 32.99926445907619,
+      "final_sequence_sha256": "e74bdcfca7620ce29c1851d6641ca562e65396447c172f7c497d3caea38dee23",
+      "generation0_population_mean_loss_hr": 36.041306551638655,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 25,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "2d19687bdcc9d6adac3f3c62109027feafa3918dd4191543b782a026abb3fe4c",
+      "neighbor_count": 50,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.038867284191248075,
+      "prior_neighbor_count": 25,
+      "random_count": 42,
+      "seed": 104,
+      "total_attempted_evaluations": 818294,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 32.99940917072021
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99917987812203
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99917987812203
+        }
+      ],
+      "completed_generations": 4177,
+      "elapsed_wall_seconds": 200.62467712000011,
+      "final_best_loss_hr": 32.99917987812203,
+      "final_sequence_sha256": "2f954bb736a5348d35dc4b059a069b9f9496733191ca069f8822293bf15d3296",
+      "generation0_population_mean_loss_hr": 37.28858117745567,
+      "heuristic_count": 0,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "7bf510398d18236c7eaa15fa6e435eb535cd799a0fa88ef8c58a4f5592e42248",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03895186514540683,
+      "prior_neighbor_count": 13,
+      "random_count": 74,
+      "seed": 104,
+      "total_attempted_evaluations": 835440,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "baseline_7h_1w_25n",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00759496234139
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.998492169334746
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.998492169334746
+        }
+      ],
+      "completed_generations": 4093,
+      "elapsed_wall_seconds": 170.26096072400003,
+      "final_best_loss_hr": 32.998492169334746,
+      "final_sequence_sha256": "45192453ef74750269e11a2ff34ce288869324b121e1c1a6acc58050ca88d322",
+      "generation0_population_mean_loss_hr": 37.01540347202719,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "224fec95bb7947aed41d437839521b1c37078918e81a24ecbe73f28136ec7d9d",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03963957393268913,
+      "prior_neighbor_count": 13,
+      "random_count": 67,
+      "seed": 105,
+      "total_attempted_evaluations": 818673,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_only",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00143025374197
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99776832061996
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99774775395254
+        }
+      ],
+      "completed_generations": 4075,
+      "elapsed_wall_seconds": 169.41053866800002,
+      "final_best_loss_hr": 32.99774775395254,
+      "final_sequence_sha256": "8af4f73758b6f4c9f981eaffc3fa0900a9686bc0f6d6c50e8332a7f53399c23a",
+      "generation0_population_mean_loss_hr": 38.073907514877156,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.57830255999933,
+      "initial_population_sha256": "41690cc3dcbcae11ff77756584adc41e297221f7eddeb9af1e0ce46a4884d815",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.5805548060467913,
+      "prior_neighbor_count": 0,
+      "random_count": 93,
+      "seed": 105,
+      "total_attempted_evaluations": 815098,
+      "warm_copy_count": 0
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00254228965551
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.00149439180551
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 33.00122295400095
+        }
+      ],
+      "completed_generations": 3845,
+      "elapsed_wall_seconds": 166.16924840899998,
+      "final_best_loss_hr": 33.00122295400095,
+      "final_sequence_sha256": "bd7fd6c68a35ec9af11ab485c7a883c62f4b422a98634b8c3e658b234fa7ff7e",
+      "generation0_population_mean_loss_hr": 38.01687861809374,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "7be429994ec561bfdf05eac142a5ccadfcc2b209d3b46a279481b78dc24e5a53",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.036908789266483666,
+      "prior_neighbor_count": 0,
+      "random_count": 92,
+      "seed": 105,
+      "total_attempted_evaluations": 769102,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_50",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.0056446481512
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99862684092325
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99862684092325
+        }
+      ],
+      "completed_generations": 3934,
+      "elapsed_wall_seconds": 167.32690527199998,
+      "final_best_loss_hr": 32.99862684092325,
+      "final_sequence_sha256": "e9a83290c7a14bd860244cd5d74d338802ed7582b9ac989673e6ede4cb2bacf3",
+      "generation0_population_mean_loss_hr": 36.223020231700154,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 25,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "1804c08aa10584aab159613b4b6b5dc0a13a2e193bd0c17481c0f61b3e63ab13",
+      "neighbor_count": 50,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.039504902344184245,
+      "prior_neighbor_count": 25,
+      "random_count": 42,
+      "seed": 105,
+      "total_attempted_evaluations": 786850,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00329425684003
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.00165875200835
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 33.00165875200835
+        }
+      ],
+      "completed_generations": 4022,
+      "elapsed_wall_seconds": 168.34950278300005,
+      "final_best_loss_hr": 33.00165875200835,
+      "final_sequence_sha256": "4150b945466849e49fd5114c61dca3a7c3c1cea2a07ef22c5ed1ac6fac0b5bfb",
+      "generation0_population_mean_loss_hr": 37.145070464878316,
+      "heuristic_count": 0,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "6c1af3f98a8f66559976c2e1f6ab7a8164ad6cf385f71de701a6d6a397063c49",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.036472991259081766,
+      "prior_neighbor_count": 13,
+      "random_count": 74,
+      "seed": 105,
+      "total_attempted_evaluations": 804507,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "baseline_7h_1w_25n",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00042235096318
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99869029847251
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99862684092309
+        }
+      ],
+      "completed_generations": 4137,
+      "elapsed_wall_seconds": 160.42066349,
+      "final_best_loss_hr": 32.99862684092309,
+      "final_sequence_sha256": "cb8fec7e739fb8f3f2a88fcc4d02e7e7e113b23d8ed33942e83dfa85fccbbe37",
+      "generation0_population_mean_loss_hr": 36.91574900389189,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267236,
+      "initial_population_sha256": "680e250133c06f3264bc2fb6c88bf87659d5b68a1ae9c3d15aaa4c625e43f273",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03950490234414872,
+      "prior_neighbor_count": 13,
+      "random_count": 67,
+      "seed": 107,
+      "total_attempted_evaluations": 827504,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_only",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.008320616940544
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.004921568425274
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 33.0048657205827
+        }
+      ],
+      "completed_generations": 3955,
+      "elapsed_wall_seconds": 158.44670562099998,
+      "final_best_loss_hr": 33.0048657205827,
+      "final_sequence_sha256": "381f2ff07fe2170c0b0e63df79d476cd57189d695de7165fff56369767d43e8b",
+      "generation0_population_mean_loss_hr": 37.93327418057781,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.578302559999216,
+      "initial_population_sha256": "3e281065f8d15e6825e57dc06c437a060180333d595463f95b57dccd95f3a3c9",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.5734368394165159,
+      "prior_neighbor_count": 0,
+      "random_count": 93,
+      "seed": 107,
+      "total_attempted_evaluations": 791050,
+      "warm_copy_count": 0
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00571185825155
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.0038765346744
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 33.00354792940811
+        }
+      ],
+      "completed_generations": 4329,
+      "elapsed_wall_seconds": 162.84666564599996,
+      "final_best_loss_hr": 33.00354792940811,
+      "final_sequence_sha256": "136ac57c39084cc87fc1a97241fdc3198d8880441c1e9e72fe73fac26c581309",
+      "generation0_population_mean_loss_hr": 37.886124589135136,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.038131743267236,
+      "initial_population_sha256": "2d5bee8b5bf3d06d1bfb94f796cfcaecd9dac426a508b7ac2e0779d78f2a96ad",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03458381385912901,
+      "prior_neighbor_count": 0,
+      "random_count": 92,
+      "seed": 107,
+      "total_attempted_evaluations": 865877,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_50",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00084380290824
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99855181755952
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99855012404738
+        }
+      ],
+      "completed_generations": 4084,
+      "elapsed_wall_seconds": 159.69892768499994,
+      "final_best_loss_hr": 32.99855012404738,
+      "final_sequence_sha256": "73417209b0d2d67151c6825908a5a855263a7ae192ae5ebd501c5aabac890683",
+      "generation0_population_mean_loss_hr": 36.02310128135099,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 25,
+      "initial_best_loss_hr": 33.038131743267236,
+      "initial_population_sha256": "0e04637c773e3383391ce40fb9245734b55ba673da6f1f61362383cb9606e953",
+      "neighbor_count": 50,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.039581619219859476,
+      "prior_neighbor_count": 25,
+      "random_count": 42,
+      "seed": 107,
+      "total_attempted_evaluations": 816887,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.000437055470535
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99863041941536
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99849216933458
+        }
+      ],
+      "completed_generations": 4170,
+      "elapsed_wall_seconds": 160.46452722799995,
+      "final_best_loss_hr": 32.99849216933458,
+      "final_sequence_sha256": "dda3b20c2e75919e915f2b30db392ec9aa98d42ce36b4eddeeaa6f3d97328ef7",
+      "generation0_population_mean_loss_hr": 37.08987219038194,
+      "heuristic_count": 0,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267236,
+      "initial_population_sha256": "b6319a68ca1b14411ce16fd6741316a1c052915ae6a1faa1cc8fbbfd218fe655",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.039639573932653605,
+      "prior_neighbor_count": 13,
+      "random_count": 74,
+      "seed": 107,
+      "total_attempted_evaluations": 834068,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "baseline_7h_1w_25n",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00700128520554
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.001598226983056
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 33.00087326291934
+        }
+      ],
+      "completed_generations": 4153,
+      "elapsed_wall_seconds": 197.83494601599998,
+      "final_best_loss_hr": 33.00087326291934,
+      "final_sequence_sha256": "00aaeb8690d2fbba12903da0b3a58ab503c673b7eb65a0a7f3c7156fedcfc975",
+      "generation0_population_mean_loss_hr": 37.13851468282089,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "2ca18a0f0aedc177adb0e2d31011e608afd39c7471738450afb8f6fd19c068d9",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.037258480348093315,
+      "prior_neighbor_count": 13,
+      "random_count": 67,
+      "seed": 108,
+      "total_attempted_evaluations": 830682,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_only",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.01572709982687
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 33.00119713123674
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 33.00074403781663
+        }
+      ],
+      "completed_generations": 3890,
+      "elapsed_wall_seconds": 192.98723066599996,
+      "final_best_loss_hr": 33.00074403781663,
+      "final_sequence_sha256": "5097c1db908c893a3df221b25b786ecd59305b93e9c438a392bc74b6d508a392",
+      "generation0_population_mean_loss_hr": 37.98478996301195,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.57830255999933,
+      "initial_population_sha256": "37ceddef6364a6dd9da2c3f29e20853470557ac14351f5819ca2d515febe1a8c",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.5775585221826987,
+      "prior_neighbor_count": 0,
+      "random_count": 93,
+      "seed": 108,
+      "total_attempted_evaluations": 778103,
+      "warm_copy_count": 0
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 32.99890927687422
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99883433325047
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99883433325047
+        }
+      ],
+      "completed_generations": 4261,
+      "elapsed_wall_seconds": 199.34032297700003,
+      "final_best_loss_hr": 32.99883433325047,
+      "final_sequence_sha256": "5f869cf74852a194d05f30fb4f549d19f83273d9ee8aafb1f47ab348547ff572",
+      "generation0_population_mean_loss_hr": 37.93667898795917,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 0,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "09f7a3adec56778cbd9f6ef3aedcf0766f0603621447698c78c6a2f505dbf597",
+      "neighbor_count": 0,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03929741001696385,
+      "prior_neighbor_count": 0,
+      "random_count": 92,
+      "seed": 108,
+      "total_attempted_evaluations": 852278,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "neighbors_50",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00603814973655
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99869211670907
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.99846681512093
+        }
+      ],
+      "completed_generations": 3902,
+      "elapsed_wall_seconds": 193.47408747499992,
+      "final_best_loss_hr": 32.99846681512093,
+      "final_sequence_sha256": "0a269ec57ca787c44f987baab9fc81732a4b56f2eb555871f692725541f3a469",
+      "generation0_population_mean_loss_hr": 36.065092140611654,
+      "heuristic_count": 7,
+      "impact_neighbor_count": 25,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "2fa2f4b938a3f8f325f134c3c6b4f6f1739eee64f6fe5ac25042b12bd43a8615",
+      "neighbor_count": 50,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03966492814650735,
+      "prior_neighbor_count": 25,
+      "random_count": 42,
+      "seed": 108,
+      "total_attempted_evaluations": 780475,
+      "warm_copy_count": 1
+    },
+    {
+      "actual_duplicate_chromosomes": 0,
+      "actual_unique_chromosomes": 100,
+      "budget": 100000,
+      "case": "heuristics_0",
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.00204763768233
+        },
+        {
+          "evaluations": 50000,
+          "loss_hr": 32.99907327723222
+        },
+        {
+          "evaluations": 100000,
+          "loss_hr": 32.998881216944085
+        }
+      ],
+      "completed_generations": 4435,
+      "elapsed_wall_seconds": 201.75616711599992,
+      "final_best_loss_hr": 32.998881216944085,
+      "final_sequence_sha256": "4f0972cd474c3aaa0389b0be730efdd986be8e0cb7cf1384860790ec6cebbf41",
+      "generation0_population_mean_loss_hr": 37.32298711847628,
+      "heuristic_count": 0,
+      "impact_neighbor_count": 12,
+      "initial_best_loss_hr": 33.038131743267435,
+      "initial_population_sha256": "b73d11148bbe910df57edad47a74e7026879300b24d4e1342af8137def64afb3",
+      "neighbor_count": 25,
+      "no_new_physical_sampling": true,
+      "objective_planning_realizations": 64,
+      "postinitialization_gain_hr": 0.03925052632335024,
+      "prior_neighbor_count": 13,
+      "random_count": 74,
+      "seed": 108,
+      "total_attempted_evaluations": 887098,
+      "warm_copy_count": 1
+    }
+  ]
+}
