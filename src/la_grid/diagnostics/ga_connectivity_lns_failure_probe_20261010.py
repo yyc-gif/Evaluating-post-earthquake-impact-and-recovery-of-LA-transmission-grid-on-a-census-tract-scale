@@ -36,7 +36,7 @@ def swaps(parent, group, preferred, kernel, rng, meter, effort):
 def schedule_change(kernel, parent, candidate):
     before = np.array([kernel.index[s] for s in parent], np.int64)
     after = np.array([kernel.index[s] for s in candidate], np.int64)
-    crews, first_crews, earlier, later = [], [], [], []
+    crews, first_crews, origins, first_origins, earlier, later, travels, predecessors = [], [], [], [], [], [], [], []
     for r in range(64):
         args = (kernel.damage[r], kernel.duration[r], kernel.origin_index, kernel.base, kernel.travel)
         a, b = _decode(before, *args), _decode(after, *args)
@@ -44,10 +44,20 @@ def schedule_change(kernel, parent, candidate):
         first = (a[5] >= 0) & (a[5] < 57)
         crews.append(int(((a[3] != b[3]) & mask).sum()))
         first_crews.append(int(((a[3] != b[3]) & first).sum()))
+        oa = np.where(a[3] >= 0, kernel.origin_index[np.maximum(a[3], 0)], -1)
+        ob = np.where(b[3] >= 0, kernel.origin_index[np.maximum(b[3], 0)], -1)
+        origins.append(int(((oa != ob) & mask).sum()))
+        first_origins.append(int(((oa != ob) & first).sum()))
+        travels.append(int(((abs(a[2] - b[2]) > 1e-9) & mask).sum()))
+        predecessors.append(int(((a[4] != b[4]) & mask).sum()))
         earlier.append(int(((b[0] < a[0] - 1e-9) & mask).sum()))
         later.append(int(((b[0] > a[0] + 1e-9) & mask).sum()))
     return dict(mean_changed_crews=float(np.mean(crews)),
         mean_changed_firstwave_crews=float(np.mean(first_crews)),
+        mean_changed_crew_origins=float(np.mean(origins)),
+        mean_changed_firstwave_origins=float(np.mean(first_origins)),
+        mean_changed_travel_legs=float(np.mean(travels)),
+        mean_changed_predecessors=float(np.mean(predecessors)),
         mean_earlier_completions=float(np.mean(earlier)), mean_later_completions=float(np.mean(later)))
 
 

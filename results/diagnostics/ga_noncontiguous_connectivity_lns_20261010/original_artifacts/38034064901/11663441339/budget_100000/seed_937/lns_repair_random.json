@@ -1,0 +1,201 @@
+{
+  "distinct_evaluations": 100000,
+  "attempted_evaluations": 100042,
+  "search_best_loss_hr": 33.036004161556896,
+  "best_sequence": [
+    "309042",
+    "308269",
+    "305984",
+    "308471",
+    "300232",
+    "306060",
+    "310504",
+    "303899",
+    "300648",
+    "308907",
+    "306369",
+    "300558",
+    "301194",
+    "308786",
+    "307512",
+    "308991",
+    "306768",
+    "302164",
+    "309843",
+    "308206",
+    "309758",
+    "309569",
+    "303303",
+    "300829",
+    "307274",
+    "300493",
+    "303620",
+    "310199",
+    "309156",
+    "302798",
+    "301614",
+    "304137",
+    "300429",
+    "308494",
+    "307693",
+    "301105",
+    "306623",
+    "301558",
+    "303371",
+    "310527",
+    "307785",
+    "310179",
+    "304073",
+    "301517",
+    "303099",
+    "300408",
+    "302187",
+    "308581",
+    "307039",
+    "303169",
+    "303540",
+    "300105",
+    "301541",
+    "306844",
+    "306224",
+    "307564",
+    "304450",
+    "300627",
+    "300390",
+    "301637",
+    "309663",
+    "301636",
+    "301745",
+    "305885",
+    "301156",
+    "308806",
+    "310204",
+    "308540",
+    "304040",
+    "301214",
+    "306694",
+    "306489",
+    "302297",
+    "306365",
+    "302171",
+    "301100",
+    "306279",
+    "307373",
+    "308367",
+    "306444",
+    "306450",
+    "309853",
+    "307832",
+    "301543",
+    "306091",
+    "309553",
+    "309703",
+    "301108",
+    "307557",
+    "303344",
+    "302923",
+    "305780"
+  ],
+  "sequence_sha256": "ac6f4a331f48d505643588084d6d40b8f5e4987c4abc30ae9e331c2003882677",
+  "strict_improvements": [
+    {
+      "evaluation": 1,
+      "best_loss_hr": 36.15508357398793,
+      "sequence_sha256": "41d3eec40d3d8128fe16bdb37f4f574880ea0141b5170d019af2ca2d8ba3450d"
+    },
+    {
+      "evaluation": 2,
+      "best_loss_hr": 33.57830255999933,
+      "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168"
+    },
+    {
+      "evaluation": 8,
+      "best_loss_hr": 33.038131743267435,
+      "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed"
+    },
+    {
+      "evaluation": 2609,
+      "best_loss_hr": 33.03803510138069,
+      "sequence_sha256": "a13dae771744ed23f2c1f44187c807a07698adea8932b0b86e9942b64edbeda5"
+    },
+    {
+      "evaluation": 5470,
+      "best_loss_hr": 33.03801129821513,
+      "sequence_sha256": "6a604c6e3a1e10d1f455d2a942dfb7087946c37c697697465c610c35e3dcc52b"
+    },
+    {
+      "evaluation": 7518,
+      "best_loss_hr": 33.03785806249832,
+      "sequence_sha256": "6f2daeb5ffeba44b934a8750c08a3a72aa4e93d330d6137407523036ed7c32e2"
+    },
+    {
+      "evaluation": 10022,
+      "best_loss_hr": 33.03694681670715,
+      "sequence_sha256": "5610be436f7bb4034dc8f001970f93dd87e766f6da952eaadc046f90f03ef097"
+    },
+    {
+      "evaluation": 11689,
+      "best_loss_hr": 33.0369173299886,
+      "sequence_sha256": "c196e8c7f5ddd6068f9c675e340afcdf88526c5c4f5de942d79d5ed3a08ff4d7"
+    },
+    {
+      "evaluation": 12752,
+      "best_loss_hr": 33.03615265803365,
+      "sequence_sha256": "93f41669842460706890fb67dcbd2d059cb1fa498b5db7d2104aa8d2cdc25353"
+    },
+    {
+      "evaluation": 13918,
+      "best_loss_hr": 33.03603141922361,
+      "sequence_sha256": "2ca5798bbd7fb5ee67c34a20ab564b5fa2f7ee789444e12422e6668999c8bcd6"
+    },
+    {
+      "evaluation": 31658,
+      "best_loss_hr": 33.036004161556896,
+      "sequence_sha256": "ac6f4a331f48d505643588084d6d40b8f5e4987c4abc30ae9e331c2003882677"
+    }
+  ],
+  "completed_budget": true,
+  "method": "lns_repair_random",
+  "seed": 937,
+  "budget": 100000,
+  "checkpoints": [
+    {
+      "evaluations": 20000,
+      "loss_hr": 33.03603141922361
+    },
+    {
+      "evaluations": 50000,
+      "loss_hr": 33.036004161556896
+    },
+    {
+      "evaluations": 100000,
+      "loss_hr": 33.036004161556896
+    }
+  ],
+  "actual_repair_candidates_evaluated": 100030,
+  "macro_iterations": 5917,
+  "route_macros": 4133,
+  "conventional_local_macros": 1784,
+  "accepted_strict_repairs": 240,
+  "accepted_neutral_repairs": 49,
+  "restart_count": 3,
+  "event_snapshot_refreshes": 53,
+  "event_candidates_built": 14223,
+  "bundle_size_macro_counts": {
+    "3": 1201,
+    "2": 1455,
+    "5": 379,
+    "4": 659,
+    "6": 269,
+    "8": 74,
+    "7": 96
+  },
+  "insertion_rank_cap": 12,
+  "internal_order_cap": 3,
+  "local_mix_probability": 0.3,
+  "elapsed_wall_seconds": 93.88241602799997,
+  "original_model_unchanged": true,
+  "physical_validation_unused": true,
+  "new_physical_realizations": 0,
+  "formal_strategy_replaced": false
+}

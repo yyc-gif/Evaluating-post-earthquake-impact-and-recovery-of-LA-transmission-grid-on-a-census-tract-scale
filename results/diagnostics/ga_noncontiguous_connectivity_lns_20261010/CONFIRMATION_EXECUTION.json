@@ -1,0 +1,40 @@
+{
+  "status": "COMPLETE",
+  "phase": "confirmation",
+  "budget": 100000,
+  "seeds": [
+    1200,
+    1201,
+    1202,
+    1203,
+    1204,
+    1205,
+    1206,
+    1207,
+    1208,
+    1209,
+    1210,
+    1211,
+    1212,
+    1213,
+    1214,
+    1215,
+    1216,
+    1217,
+    1218,
+    1219
+  ],
+  "methods": [
+    "connectivity_lns",
+    "random_lns",
+    "scheduling_lns",
+    "ga_baseline",
+    "iterated_local"
+  ],
+  "count": 100,
+  "workers": 12,
+  "total_elapsed_wall_seconds": 1972.2756459999996,
+  "total_distinct_evaluations": 10000000,
+  "total_attempts": 26695746,
+  "total_worker_wall_seconds": 21947.6170452
+}

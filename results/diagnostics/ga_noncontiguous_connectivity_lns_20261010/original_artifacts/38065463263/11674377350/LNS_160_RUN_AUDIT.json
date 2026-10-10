@@ -1,0 +1,503 @@
+{
+  "status": "ALL_160_COMPLETE_ACTIONS_ARTIFACTS_RECONCILED",
+  "source_base_commit": "409693a68a099e6c1ec2fee093b3bfd2ecf80dd6",
+  "v1": {
+    "source_actions_run_id": 38033702030,
+    "seed_set": [
+      820,
+      821,
+      822,
+      823,
+      824,
+      825,
+      826,
+      827,
+      828,
+      829,
+      830,
+      831,
+      832,
+      833,
+      834,
+      835,
+      836,
+      837,
+      838,
+      839
+    ],
+    "case_count": 80,
+    "distinct_budget_per_case": 100000,
+    "methods": [
+      {
+        "method": "ga_baseline",
+        "loss_hr": {
+          "mean": 32.999892304047236,
+          "median": 32.99925211455013,
+          "sample_sd": 0.0014718251245610442,
+          "minimum": 32.99790432932699,
+          "maximum": 33.00387044628155
+        },
+        "mean_attempted_evaluations": 792410.85,
+        "mean_duplicate_fraction": 0.8738028385148942,
+        "mean_wall_seconds": 173.0107535838,
+        "runs_better_than_old_warm": 20,
+        "runs_better_than_frozen_ga": 0
+      },
+      {
+        "method": "iterated_local",
+        "loss_hr": {
+          "mean": 33.000315358981226,
+          "median": 33.000170304945215,
+          "sample_sd": 0.0022797151975179285,
+          "minimum": 32.996257552869444,
+          "maximum": 33.004788582791974
+        },
+        "mean_attempted_evaluations": 101021.5,
+        "mean_duplicate_fraction": 0.010111708893651317,
+        "mean_wall_seconds": 118.50802318565002,
+        "runs_better_than_old_warm": 20,
+        "runs_better_than_frozen_ga": 3
+      },
+      {
+        "method": "lns_event_route",
+        "loss_hr": {
+          "mean": 33.038041658995745,
+          "median": 33.038131743267435,
+          "sample_sd": 0.0002881056949384083,
+          "minimum": 33.036989693941074,
+          "maximum": 33.038131743267435
+        },
+        "mean_attempted_evaluations": 123329.85,
+        "mean_duplicate_fraction": 0.18916628861544882,
+        "mean_wall_seconds": 179.3806272703,
+        "runs_better_than_old_warm": 2,
+        "runs_better_than_frozen_ga": 0,
+        "strict_moves_mean": 1711.95,
+        "neutral_moves_mean": 450.1,
+        "event_bank_refreshes_mean": 242.9,
+        "source_reconnection_events_sampled_mean": 65248.75,
+        "event_bundle_proposals_mean": 123296.6,
+        "random_proposal_fallbacks_mean": 550.6,
+        "mean_global_best_improvements": 0.25,
+        "runs_with_zero_global_best_improvements": 18,
+        "bundle_size_counts": {
+          "4": 385915,
+          "3": 700007,
+          "2": 907877,
+          "5": 229576,
+          "8": 46322,
+          "6": 154944,
+          "7": 41291
+        }
+      },
+      {
+        "method": "lns_random_bundle",
+        "loss_hr": {
+          "mean": 33.03787846814572,
+          "median": 33.038131743267435,
+          "sample_sd": 0.0007804948283006132,
+          "minimum": 33.03478099043174,
+          "maximum": 33.038131743267435
+        },
+        "mean_attempted_evaluations": 100102.35,
+        "mean_duplicate_fraction": 0.001022453518823574,
+        "mean_wall_seconds": 157.00551815235002,
+        "runs_better_than_old_warm": 3,
+        "runs_better_than_frozen_ga": 0,
+        "strict_moves_mean": 933.6,
+        "neutral_moves_mean": 70.45,
+        "event_bank_refreshes_mean": 136.9,
+        "source_reconnection_events_sampled_mean": 36763.05,
+        "event_bundle_proposals_mean": 100083.2,
+        "random_proposal_fallbacks_mean": 7.3,
+        "mean_global_best_improvements": 0.15,
+        "runs_with_zero_global_best_improvements": 17,
+        "bundle_size_counts": {
+          "4": 316583,
+          "2": 732679,
+          "3": 563561,
+          "5": 183921,
+          "6": 129327,
+          "8": 39080,
+          "7": 36513
+        }
+      }
+    ],
+    "contrasts": [
+      {
+        "n": 20,
+        "mean_delta_hr": 0.00016319085003182465,
+        "median_delta_hr": 0.0,
+        "sd_paired_hr": 0.000860355143800568,
+        "simultaneous_95": [
+          -0.0003418303295982249,
+          0.0006682120296618743
+        ],
+        "pointwise_t95": [
+          -0.000239467751904314,
+          0.0005658494519679633
+        ],
+        "seed_bootstrap_95": [
+          -0.000147186737996563,
+          0.0005800662954602131
+        ],
+        "wins": 2,
+        "losses": 3,
+        "ties": 15,
+        "multiplicity_family_size": 3,
+        "method": "lns_event_route",
+        "reference": "lns_random_bundle"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.03814935494849827,
+        "median_delta_hr": 0.03876271222903327,
+        "sd_paired_hr": 0.001498847109384563,
+        "simultaneous_95": [
+          0.037269544395006717,
+          0.03902916550198982
+        ],
+        "pointwise_t95": [
+          0.037447872908285454,
+          0.038850836988711085
+        ],
+        "seed_bootstrap_95": [
+          0.03748068668186581,
+          0.038759185261612955
+        ],
+        "wins": 0,
+        "losses": 20,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "lns_event_route",
+        "reference": "ga_baseline"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.03772630001452164,
+        "median_delta_hr": 0.037961438322120955,
+        "sd_paired_hr": 0.00225473697150105,
+        "simultaneous_95": [
+          0.03640278851661526,
+          0.03904981151242801
+        ],
+        "pointwise_t95": [
+          0.03667105062917155,
+          0.038781549399871725
+        ],
+        "seed_bootstrap_95": [
+          0.036756546261208736,
+          0.038677877463222564
+        ],
+        "wins": 0,
+        "losses": 20,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "lns_event_route",
+        "reference": "iterated_local"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.037563109164489815,
+        "median_delta_hr": 0.03786449661027902,
+        "sd_paired_hr": 0.002480502159238567,
+        "simultaneous_95": [
+          0.03610707541428779,
+          0.03901914291469184
+        ],
+        "pointwise_t95": [
+          0.036402198418810476,
+          0.038724019910169154
+        ],
+        "seed_bootstrap_95": [
+          0.03650496152953502,
+          0.03861962047568081
+        ],
+        "wins": 0,
+        "losses": 20,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "lns_random_bundle",
+        "reference": "iterated_local"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.00042305493397662983,
+        "median_delta_hr": 0.0001322684235205429,
+        "sd_paired_hr": 0.0018362373954071206,
+        "simultaneous_95": [
+          -0.0006548008587055058,
+          0.0015009107266587655
+        ],
+        "pointwise_t95": [
+          -0.0004363306206808742,
+          0.0012824404886341337
+        ],
+        "seed_bootstrap_95": [
+          -0.0003515603414081525,
+          0.0011961492070077092
+        ],
+        "wins": 8,
+        "losses": 12,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "iterated_local",
+        "reference": "ga_baseline"
+      }
+    ]
+  },
+  "v2": {
+    "source_actions_run_id": 38034064901,
+    "seed_set": [
+      920,
+      921,
+      922,
+      923,
+      924,
+      925,
+      926,
+      927,
+      928,
+      929,
+      930,
+      931,
+      932,
+      933,
+      934,
+      935,
+      936,
+      937,
+      938,
+      939
+    ],
+    "case_count": 80,
+    "distinct_budget_per_case": 100000,
+    "methods": [
+      {
+        "method": "ga_baseline",
+        "loss_hr": {
+          "mean": 32.99979941471569,
+          "median": 32.99917319633647,
+          "sample_sd": 0.00153698836520162,
+          "minimum": 32.99793687926064,
+          "maximum": 33.00335354566785
+        },
+        "mean_attempted_evaluations": 812544.7,
+        "mean_duplicate_fraction": 0.8769298476748417,
+        "mean_wall_seconds": 178.98751140870002,
+        "runs_better_than_old_warm": 20,
+        "runs_better_than_frozen_ga": 0
+      },
+      {
+        "method": "iterated_local",
+        "loss_hr": {
+          "mean": 33.00120335275309,
+          "median": 33.0009834111538,
+          "sample_sd": 0.002079811935455452,
+          "minimum": 32.99741807358888,
+          "maximum": 33.004492492855334
+        },
+        "mean_attempted_evaluations": 101006.7,
+        "mean_duplicate_fraction": 0.00996666557762993,
+        "mean_wall_seconds": 121.64477124364998,
+        "runs_better_than_old_warm": 20,
+        "runs_better_than_frozen_ga": 2
+      },
+      {
+        "method": "lns_repair_route",
+        "loss_hr": {
+          "mean": 33.037022548394255,
+          "median": 33.0380650509195,
+          "sample_sd": 0.001965334266197658,
+          "minimum": 33.030630856212596,
+          "maximum": 33.038131743267435
+        },
+        "mean_attempted_evaluations": 108133.0,
+        "mean_duplicate_fraction": 0.07521293222235581,
+        "mean_wall_seconds": 132.50494327955002,
+        "runs_better_than_old_warm": 12,
+        "runs_better_than_frozen_ga": 0,
+        "accepted_strict_repairs_mean": 233.4,
+        "accepted_neutral_repairs_mean": 143.7,
+        "route_macros_mean": 3585.25,
+        "conventional_local_macros_mean": 1557.9,
+        "event_snapshot_refreshes_mean": 50.05,
+        "event_candidates_built_mean": 13393.55,
+        "actual_repair_candidates_evaluated_mean": 108120.7,
+        "mean_global_best_improvements": 1.5,
+        "runs_with_zero_global_best_improvements": 8,
+        "bundle_size_counts": {
+          "2": 25951,
+          "5": 6510,
+          "4": 11572,
+          "3": 20443,
+          "6": 4583,
+          "8": 1355,
+          "7": 1291
+        }
+      },
+      {
+        "method": "lns_repair_random",
+        "loss_hr": {
+          "mean": 33.03237572314271,
+          "median": 33.03220747703375,
+          "sample_sd": 0.004803415739401195,
+          "minimum": 33.02346011840412,
+          "maximum": 33.0381220237629
+        },
+        "mean_attempted_evaluations": 100060.15,
+        "mean_duplicate_fraction": 0.0006011384152431187,
+        "mean_wall_seconds": 131.62886416415,
+        "runs_better_than_old_warm": 20,
+        "runs_better_than_frozen_ga": 0,
+        "accepted_strict_repairs_mean": 220.7,
+        "accepted_neutral_repairs_mean": 39.2,
+        "route_macros_mean": 4134.45,
+        "conventional_local_macros_mean": 1782.65,
+        "event_snapshot_refreshes_mean": 47.35,
+        "event_candidates_built_mean": 12742.2,
+        "actual_repair_candidates_evaluated_mean": 100048.4,
+        "mean_global_best_improvements": 12.7,
+        "runs_with_zero_global_best_improvements": 0,
+        "bundle_size_counts": {
+          "2": 30378,
+          "3": 22939,
+          "4": 13015,
+          "6": 5461,
+          "7": 1464,
+          "8": 1658,
+          "5": 7774
+        }
+      }
+    ],
+    "contrasts": [
+      {
+        "n": 20,
+        "mean_delta_hr": 0.004646825251547071,
+        "median_delta_hr": 0.005177745710266635,
+        "sd_paired_hr": 0.004350661481710129,
+        "simultaneous_95": [
+          0.0020930238248962427,
+          0.007200626678197899
+        ],
+        "pointwise_t95": [
+          0.002610653000650541,
+          0.0066829975024436
+        ],
+        "seed_bootstrap_95": [
+          0.0028180086335335463,
+          0.006563205074089102
+        ],
+        "wins": 2,
+        "losses": 18,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "lns_repair_route",
+        "reference": "lns_repair_random"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.03722313367856671,
+        "median_delta_hr": 0.03802862266388729,
+        "sd_paired_hr": 0.0025489309926471203,
+        "simultaneous_95": [
+          0.03572693278295071,
+          0.03871933457418271
+        ],
+        "pointwise_t95": [
+          0.03603019725303765,
+          0.03841607010409576
+        ],
+        "seed_bootstrap_95": [
+          0.03608651686527117,
+          0.03824105252340807
+        ],
+        "wins": 0,
+        "losses": 20,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "lns_repair_route",
+        "reference": "ga_baseline"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.03581919564116731,
+        "median_delta_hr": 0.0349716712646746,
+        "sd_paired_hr": 0.0024802066713053217,
+        "simultaneous_95": [
+          0.03436333533987843,
+          0.03727505594245619
+        ],
+        "pointwise_t95": [
+          0.03465842318809765,
+          0.036979968094236974
+        ],
+        "seed_bootstrap_95": [
+          0.03478340595314631,
+          0.036895544042458456
+        ],
+        "wins": 0,
+        "losses": 20,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "lns_repair_route",
+        "reference": "iterated_local"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.03117237038962024,
+        "median_delta_hr": 0.03189263826488897,
+        "sd_paired_hr": 0.005202533284550842,
+        "simultaneous_95": [
+          0.02811852743260353,
+          0.03422621334663695
+        ],
+        "pointwise_t95": [
+          0.028737509862571356,
+          0.033607230916669124
+        ],
+        "seed_bootstrap_95": [
+          0.02888820573944777,
+          0.03336338518068405
+        ],
+        "wins": 0,
+        "losses": 20,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "lns_repair_random",
+        "reference": "iterated_local"
+      },
+      {
+        "n": 20,
+        "mean_delta_hr": 0.0014039380373993993,
+        "median_delta_hr": 0.0017366569610963722,
+        "sd_paired_hr": 0.0025249861826124116,
+        "simultaneous_95": [
+          -7.820745761037218e-05,
+          0.002886083532409171
+        ],
+        "pointwise_t95": [
+          0.00022220812792557855,
+          0.0025856679468732203
+        ],
+        "seed_bootstrap_95": [
+          0.0003014862295051746,
+          0.002467680091112916
+        ],
+        "wins": 7,
+        "losses": 13,
+        "ties": 0,
+        "multiplicity_family_size": 3,
+        "method": "iterated_local",
+        "reference": "ga_baseline"
+      }
+    ]
+  },
+  "no_new_objective_evaluations": true,
+  "no_new_physical_realizations": true,
+  "formal_candidate_unchanged": true,
+  "method_comparison_same_seed_within_study": true,
+  "methods_not_same_random_streams": true,
+  "v1_v2_cohorts_distinct": true,
+  "statistical_scope": "Optimizer random seeds conditional on fixed already-trained 64 planning realizations"
+}

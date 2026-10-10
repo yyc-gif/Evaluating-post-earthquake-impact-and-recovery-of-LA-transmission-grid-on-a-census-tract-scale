@@ -1,0 +1,1644 @@
+{
+  "retrieved_at": "2026-10-10T16:16:37.767377+00:00",
+  "runs": [
+    {
+      "id": 38033702030,
+      "head_sha": "67a9729a147c91143d149acdcfdd66f1f0243f13",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/actions/runs/38033702030"
+    },
+    {
+      "id": 38034064901,
+      "head_sha": "8690aca023d411f67aa419913e5b351434cde8c2",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/actions/runs/38034064901"
+    },
+    {
+      "id": 38065463263,
+      "head_sha": "a60080f4a8a1a0743bac8260bb85fa412cdd96a9",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/actions/runs/38065463263"
+    },
+    {
+      "id": 38065546076,
+      "head_sha": "ee6fa053a729b5f8bdc650ce3651ea980212190d",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/actions/runs/38065546076"
+    }
+  ],
+  "artifacts": [
+    {
+      "run_id": 38033702030,
+      "id": 11664515498,
+      "name": "ga-lns-confirm-s838",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11664515498.zip",
+      "sha256": "0b80d75c64a20acb8b70f02426bf5285fda3e852fab38403f000a06862c359e8",
+      "members": [
+        {
+          "path": "budget_100000/seed_838/ALL_METHODS.json",
+          "sha256": "04e9da00608edaea3f7b0e858789793378beed43fb5642c72ae29740d763a9c7"
+        },
+        {
+          "path": "budget_100000/seed_838/ga_baseline.json",
+          "sha256": "0118615bbcc29a704f7adc68ccb969e523f5e3ba4fc858ba5a6e788c9af8ca55"
+        },
+        {
+          "path": "budget_100000/seed_838/iterated_local.json",
+          "sha256": "7914c52a472e4d7279f5a573f2e0dfb901c877c2e5a94287702b647d55093dff"
+        },
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_838/lns_event_route.json",
+          "sha256": "131f4e64c4c27f184bb379fd49db46332dcf698522a3631221c3cc873d067af4"
+        },
+        {
+          "path": "budget_100000/seed_838/lns_random_bundle.json",
+          "sha256": "4832241ec1aa3acd0465038bbc7e051256d9197c573c0a9825ff05d771800742"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11664275925,
+      "name": "ga-lns-confirm-s839",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11664275925.zip",
+      "sha256": "b109fd6415c41549a61f168a4b45367fd0c94a1f2e634f9f2a65c2a21da1d9ba",
+      "members": [
+        {
+          "path": "budget_100000/seed_839/ALL_METHODS.json",
+          "sha256": "33146de2ed90b64bd16639570658d5fa2dc0e768fca42d13e96b484e41263faa"
+        },
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_839/ga_baseline.json",
+          "sha256": "bb1b4e5953d358d18f69dfcc037c4ecaa98ecd9b50c54114a69c3405fef54be7"
+        },
+        {
+          "path": "budget_100000/seed_839/iterated_local.json",
+          "sha256": "a13aae89e2dc6f51eb9dba7d8e814d07fe4059e441c59273fc12cdbae37b0ddf"
+        },
+        {
+          "path": "budget_100000/seed_839/lns_event_route.json",
+          "sha256": "39e835ffcd96863e270c06b86d7a3ac6faebc989037858854ccf70c7053c9d21"
+        },
+        {
+          "path": "budget_100000/seed_839/lns_random_bundle.json",
+          "sha256": "1eceb7fed87ae9b7595f89f7ca08b5c471b0e49abe21a4c3f2ab8da4fb57b00f"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11664225406,
+      "name": "ga-lns-confirm-s836",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11664225406.zip",
+      "sha256": "6dd0afad881f5640633e431fd5fcfa616862074a542dbfa8cb4ff976587b50dc",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_836/ALL_METHODS.json",
+          "sha256": "7845a7e95c341bc2c873fcc06fc70e281a0fc3810d441e8495b101d9fc420d71"
+        },
+        {
+          "path": "budget_100000/seed_836/ga_baseline.json",
+          "sha256": "2c7bb0a3c6ef00ac1501b66521064ccddf60fd4466dd7e7d40988bb66f1a62c2"
+        },
+        {
+          "path": "budget_100000/seed_836/iterated_local.json",
+          "sha256": "0e7d9fe0d701106b4db35ef207e39fe496241ff4b0d3538b12ad68a141c08c49"
+        },
+        {
+          "path": "budget_100000/seed_836/lns_event_route.json",
+          "sha256": "c2e5634ad1fc746412aede247b7c603a365e2c2c391d30cb501f495bdb21dc19"
+        },
+        {
+          "path": "budget_100000/seed_836/lns_random_bundle.json",
+          "sha256": "ac13cb7b89eb989e6f8321965e76d999c9af9d862d29b2a7a3725a2d933978e7"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11664220090,
+      "name": "ga-lns-confirm-s832",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11664220090.zip",
+      "sha256": "46fe4b452c642d1bed55ac7fe4eafc3009571e7618a9978d6f96157c261192ca",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_832/ALL_METHODS.json",
+          "sha256": "2cfe170dfb765bb991aed6ca3824ac1fba629afbb1647d596700e7c163a0a814"
+        },
+        {
+          "path": "budget_100000/seed_832/ga_baseline.json",
+          "sha256": "c62089b1d41098ec67a5a6e4b6d39c0fdeeed902d44a354968db362852467b0d"
+        },
+        {
+          "path": "budget_100000/seed_832/iterated_local.json",
+          "sha256": "168a4900a12ed30075a414d22cd4202f005f7590234b028af8d87772182c5e18"
+        },
+        {
+          "path": "budget_100000/seed_832/lns_event_route.json",
+          "sha256": "c1caa0f62fcffe0a153b67688763ea954eed6f80480d3615495e9c783bde0eed"
+        },
+        {
+          "path": "budget_100000/seed_832/lns_random_bundle.json",
+          "sha256": "2b4debb5e2a3eb216d47b3a119f06f8f5c5e8e66d4df1599706f03232f68aa89"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11664085887,
+      "name": "ga-lns-confirm-s837",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11664085887.zip",
+      "sha256": "336c23c759b993a0ce87c189f87a50b3ed07a8d99b39cfa38f141418c5839b75",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_837/ALL_METHODS.json",
+          "sha256": "e0b43ffcc3750869c6b2d5f86ba7f86a08353533cfebb0bdc2838fe0d4cf1b06"
+        },
+        {
+          "path": "budget_100000/seed_837/ga_baseline.json",
+          "sha256": "c0553fc5b7fa95e1d3cf831688bd3317840d3e8b14b2655e49effbaadfaa60a6"
+        },
+        {
+          "path": "budget_100000/seed_837/iterated_local.json",
+          "sha256": "9362077200ada72e8e0f24bc8fc1d2d75aa476a4ff37057f94832b9d0429c32e"
+        },
+        {
+          "path": "budget_100000/seed_837/lns_event_route.json",
+          "sha256": "85aeff222e47cf4200a12336e956d24b1d2be31109aaa468ebcc0ad836e180d2"
+        },
+        {
+          "path": "budget_100000/seed_837/lns_random_bundle.json",
+          "sha256": "d517a50c86d5a91e62de825a2db0faecbedd2972a4f3dce02c69a6fcdd90354f"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11664065641,
+      "name": "ga-lns-confirm-s833",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11664065641.zip",
+      "sha256": "4f41aab4e290336132c604c57399b37e481e671ac98825ce96d717bd897f9e15",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_833/ALL_METHODS.json",
+          "sha256": "53cd8d04ff5fd2fb1c13229c7846edf49e1b70d56352f3ed498dafa6cdd8aed3"
+        },
+        {
+          "path": "budget_100000/seed_833/ga_baseline.json",
+          "sha256": "c8ee6628ead1c450b126accbbe7ae05981d2976b0b7f59db2ebf32019dcb3671"
+        },
+        {
+          "path": "budget_100000/seed_833/iterated_local.json",
+          "sha256": "51af4cfd472800ab5bd5242563c0ed84f5631b63f5e1c293558e31e112f30e2a"
+        },
+        {
+          "path": "budget_100000/seed_833/lns_event_route.json",
+          "sha256": "a9ce7bdbda6b48f428cc7513e9049d9590bc13595e800f7c22bd72d07666f000"
+        },
+        {
+          "path": "budget_100000/seed_833/lns_random_bundle.json",
+          "sha256": "9d4d4c904ab9035808e8f89398ee00e715e72c3856de25e09d40fba288ff9849"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663911140,
+      "name": "ga-lns-confirm-s835",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663911140.zip",
+      "sha256": "04ffbc5413506ebe128dd318921c9969899981e128b87cf9edc6933e61a11609",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_835/ALL_METHODS.json",
+          "sha256": "39a7e17ec53fdd9424bd0786171d6f5161b70817174926ff88ce8f932c7d6dae"
+        },
+        {
+          "path": "budget_100000/seed_835/ga_baseline.json",
+          "sha256": "638eecab9f65dadec640122ba8aab968a4d7dba1dbd4d9edfc078236cf870881"
+        },
+        {
+          "path": "budget_100000/seed_835/iterated_local.json",
+          "sha256": "5e3033e6c8f0daff3389fe981fd03ccfe1b1ac8281b9d1af3c7e2e2386f9922e"
+        },
+        {
+          "path": "budget_100000/seed_835/lns_event_route.json",
+          "sha256": "e30735a1663664cf5f94665c83d2f6892a34f8aa8962c5eca5e188b3c294b26b"
+        },
+        {
+          "path": "budget_100000/seed_835/lns_random_bundle.json",
+          "sha256": "2ae862e29be76e9ee1bd60509426ab681eeda3f28a0d09883d0da85bc5fc1009"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663751006,
+      "name": "ga-lns-confirm-s834",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663751006.zip",
+      "sha256": "65358d6903f280aeaad969de21c9726fee6eea28f71f1c5cf8cd052a7a08dcb3",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_834/ALL_METHODS.json",
+          "sha256": "af13c45f631652ff405d78dca2bf8dbbf6b4bc73525e6664e7626e3d14060e66"
+        },
+        {
+          "path": "budget_100000/seed_834/ga_baseline.json",
+          "sha256": "072ba35d034233ab00eeb21a6f991e633f1917fc01ffae6e46e9517d38605747"
+        },
+        {
+          "path": "budget_100000/seed_834/iterated_local.json",
+          "sha256": "226b467a112be5c6b35d606cbb4d6e581fbf926794d50cce5882406f07530393"
+        },
+        {
+          "path": "budget_100000/seed_834/lns_event_route.json",
+          "sha256": "05cec5d3410d70b420ec221f934e2b22131a69f4c6476a5db4408a2ec2950700"
+        },
+        {
+          "path": "budget_100000/seed_834/lns_random_bundle.json",
+          "sha256": "517f78fe937265a7368f3dd6f0aa2d8e55baaebd5940cc1d550a43f0cd826a0b"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663585005,
+      "name": "ga-lns-confirm-s827",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663585005.zip",
+      "sha256": "eadd928b9507f4e405a120ba7ba2d6dc5cbebb70fa4a4324e7cf79a5132c8472",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_827/ALL_METHODS.json",
+          "sha256": "254e3a672f416329402899f74b991b06c45b4e0ac45f839f56cc457c9e95a4bd"
+        },
+        {
+          "path": "budget_100000/seed_827/ga_baseline.json",
+          "sha256": "52ad306aec4be770eceb1780e91891e37dba2dac2eed87c6c4cc1a2ce978d5ff"
+        },
+        {
+          "path": "budget_100000/seed_827/iterated_local.json",
+          "sha256": "5c5094ae43cd821cc664c0ad4dd70d37a850a80759c677456984c130f3b2ae53"
+        },
+        {
+          "path": "budget_100000/seed_827/lns_event_route.json",
+          "sha256": "0b58e345ae8c9ad238643babc59b2e5b68e495873de8c976e9b80eb571c2a28a"
+        },
+        {
+          "path": "budget_100000/seed_827/lns_random_bundle.json",
+          "sha256": "5709863df5cfde320c45f49b4bb6907465a4c3982f11a2a499a4f573572a4d3e"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663339481,
+      "name": "ga-lns-confirm-s822",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663339481.zip",
+      "sha256": "2ce2da12afc794585074cc952a9c28677aab2f9ccab7c1fb77cedf11c98abd6a",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_822/ALL_METHODS.json",
+          "sha256": "d3e92962f5be363d3024df866d4d6d2373a50bc1807fd13f827fa1d6e0288a2d"
+        },
+        {
+          "path": "budget_100000/seed_822/ga_baseline.json",
+          "sha256": "b3b964ea1e4a963fb879ffd3e3e0331c1b3c45585dd9a41a707dfaebf525977d"
+        },
+        {
+          "path": "budget_100000/seed_822/iterated_local.json",
+          "sha256": "17d8ef04a2c25190169b3b9f5c184acc725bf91bd299234006b404d586110f70"
+        },
+        {
+          "path": "budget_100000/seed_822/lns_event_route.json",
+          "sha256": "51dfed60903ef54a092eff7624501bd8f9905476f5c6170adf9cb44b13068e6b"
+        },
+        {
+          "path": "budget_100000/seed_822/lns_random_bundle.json",
+          "sha256": "c5cbc48bcb51f0fd5a0ed782c656a96d869f913db625ec4081fa4caceedc1557"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663314033,
+      "name": "ga-lns-confirm-s830",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663314033.zip",
+      "sha256": "ded53a26f38eaecc395160b28e295915737e4615d4e11bf9b8b517d07a2df061",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_830/ALL_METHODS.json",
+          "sha256": "0e5344b2f5bf74ac0b6d81b1490bcd2df7f12f1429addd0f52b4f64c75d688e5"
+        },
+        {
+          "path": "budget_100000/seed_830/ga_baseline.json",
+          "sha256": "ee63e15c5b28f1a07bf4e74036d54d20c7e5a29c7700763086d826d21f239141"
+        },
+        {
+          "path": "budget_100000/seed_830/iterated_local.json",
+          "sha256": "d977d68d59e0f96d97db03f4b14536074fcabfd7f09c826b5cff7dd737d26b96"
+        },
+        {
+          "path": "budget_100000/seed_830/lns_event_route.json",
+          "sha256": "90f6f42052ac2a99cc9b2c16aea600adba47ee92e489e7d8228f6b16e918be19"
+        },
+        {
+          "path": "budget_100000/seed_830/lns_random_bundle.json",
+          "sha256": "9eab0f778319f88672a883ad419ac80e2936b69db9944e896331e437af99d2e4"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663273195,
+      "name": "ga-lns-smoke-s800",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663273195.zip",
+      "sha256": "9de5a7c83d2dee02b0ff15ac27e91a0a0c1ac907ef50493d604dd68dca4abdd6",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_20000/seed_800/ga_baseline.json",
+          "sha256": "e1381c4df5c26a3319132070f7d83ef5e2af48c52995ec06b5d5cb2955e156aa"
+        },
+        {
+          "path": "budget_20000/seed_800/ALL_METHODS.json",
+          "sha256": "10c4dcb68d3d42face78bd8f238b3d31f27d009d1a41cdc6b94a45ebcd40412a"
+        },
+        {
+          "path": "budget_20000/seed_800/iterated_local.json",
+          "sha256": "c4fecf9b261790ae00b415b7c4181c32973de1718c6510d011e42942adbb2d99"
+        },
+        {
+          "path": "budget_20000/seed_800/lns_event_route.json",
+          "sha256": "50fc3037a50c831fd434c3bc7e9715fa41ba4b7e82a9295f562e5da4ef612951"
+        },
+        {
+          "path": "budget_20000/seed_800/lns_random_bundle.json",
+          "sha256": "a2dc62bacc65f7d16a797ff7752dcd390aac27275afd481d6453e3339b75de24"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663229162,
+      "name": "ga-lns-confirm-s829",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663229162.zip",
+      "sha256": "d442214d75b12d04bc5aab77f7aa69442dda3c0fce4e9bfef947ce34a9eaba61",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_829/ga_baseline.json",
+          "sha256": "43a4a31f7ddfdfec320501a4c9486c9698ba62a384f55cd60748cac81df9ec97"
+        },
+        {
+          "path": "budget_100000/seed_829/ALL_METHODS.json",
+          "sha256": "291e28ab93e7641ff98e2eb16cb0df156e13813bdadc4912948a21a17e7051f8"
+        },
+        {
+          "path": "budget_100000/seed_829/iterated_local.json",
+          "sha256": "213e373422c889440f4f2d9ee92223cdab0a5a650c7d41ee011a1ae449e3cfbc"
+        },
+        {
+          "path": "budget_100000/seed_829/lns_event_route.json",
+          "sha256": "b525e1b71cd9b43cc1a01576e45bcbadc8d2f347ea93bcf0e0453f83f00882d1"
+        },
+        {
+          "path": "budget_100000/seed_829/lns_random_bundle.json",
+          "sha256": "7e281eeeabce5145376657f191eed9a06ebda68b0184422411650d8ea9e372b9"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663104860,
+      "name": "ga-lns-confirm-s825",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663104860.zip",
+      "sha256": "99066b2fdcb28604d6566c926ce0a7bca0890736105c0207fa4564214e24c91b",
+      "members": [
+        {
+          "path": "budget_100000/seed_825/ALL_METHODS.json",
+          "sha256": "2dedb78849bd9cf6383d5be212883fa6bef1b8dc630c049aed2f438d6c3be154"
+        },
+        {
+          "path": "budget_100000/seed_825/ga_baseline.json",
+          "sha256": "952f56722fa61670e5a465c9568ca981e1e42cfb05befc807b69b5e8e5ee86cf"
+        },
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_825/iterated_local.json",
+          "sha256": "fd3fe024db9f927c7ec1462a982eea8c4b31064d73d770e32d03ac6a21efa0dd"
+        },
+        {
+          "path": "budget_100000/seed_825/lns_event_route.json",
+          "sha256": "b25189bfa2446a6d1de2874aa158aa68a5e9ff86d776081d227410a9c737cd0c"
+        },
+        {
+          "path": "budget_100000/seed_825/lns_random_bundle.json",
+          "sha256": "1df0a38bab5a89722cc22c8d00b42dc7ab6fa0c551315a46340aed86020e7b85"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663079710,
+      "name": "ga-lns-confirm-s820",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663079710.zip",
+      "sha256": "653b332899e2093cfe65feb620722a3a781d1f38b540195a8e504861fdef02c5",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_820/ALL_METHODS.json",
+          "sha256": "68a54a280f86ca9bc93cee226654095d42f6d93788caaa6632ef82d065223d85"
+        },
+        {
+          "path": "budget_100000/seed_820/ga_baseline.json",
+          "sha256": "5a09b286b6b1a04b0eefed977ad251b65d1341b194dd080d8cf01abd919009af"
+        },
+        {
+          "path": "budget_100000/seed_820/iterated_local.json",
+          "sha256": "9f51fcda8ce3f2b141aed07311f1397f248dac6b233c4e7a2d20841674f47844"
+        },
+        {
+          "path": "budget_100000/seed_820/lns_event_route.json",
+          "sha256": "2287d76f8c1f62320632e17e97fd67f9621f5e73399b4d88d4d63cb94366d51a"
+        },
+        {
+          "path": "budget_100000/seed_820/lns_random_bundle.json",
+          "sha256": "5b661ea4636096e66e175f2236344e81c3ce1f49d55b2dad8a52c14e139b520d"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663069774,
+      "name": "ga-lns-confirm-s824",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663069774.zip",
+      "sha256": "5f9d61b476f8dea4428f6baed52566396909a28a57206e120cf55a1fdc51283f",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_824/ALL_METHODS.json",
+          "sha256": "bf0b843d2c18c831e70ea3d11f2852fc343138c7c608bd2bd394c49d0ff153bc"
+        },
+        {
+          "path": "budget_100000/seed_824/ga_baseline.json",
+          "sha256": "93eb7bbc041962ce70c6cf79d8e2c23776ba0a8f019702ec71c6ae6016e99c5a"
+        },
+        {
+          "path": "budget_100000/seed_824/iterated_local.json",
+          "sha256": "f40506ee39e06ca3402db4ea353ca7b0739815ec970663ec782ea77775a44962"
+        },
+        {
+          "path": "budget_100000/seed_824/lns_event_route.json",
+          "sha256": "500be495937545af95fcf8a42ef59d01d7db399b86f29f95711e1ed3f116e3d4"
+        },
+        {
+          "path": "budget_100000/seed_824/lns_random_bundle.json",
+          "sha256": "c867b7a51e864dccbaa888855692ce410053e7da424923c8036dd511635d263a"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11663009355,
+      "name": "ga-lns-confirm-s821",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11663009355.zip",
+      "sha256": "a2ee14a3ed4ac8754f6ceedca2075635acff9eda9f09e9c48f811d21267cb11f",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_821/ALL_METHODS.json",
+          "sha256": "709403e39ef05ec760e01a30b3d6d32aabe5a3cc3886776d949f47a3e5bd55f8"
+        },
+        {
+          "path": "budget_100000/seed_821/ga_baseline.json",
+          "sha256": "86c921331500dff0bf93155e07549cb9cd1fa9f25c46ec0aed7a33949d921509"
+        },
+        {
+          "path": "budget_100000/seed_821/iterated_local.json",
+          "sha256": "09bb5c6de39cf966ed44f92cec9b252f1ebf2f813758a3f631313c5af0cbb751"
+        },
+        {
+          "path": "budget_100000/seed_821/lns_event_route.json",
+          "sha256": "5fcea0ac10dba6f3b7420258c890a2b060942b6dddbf76acc4b1170ce4d09414"
+        },
+        {
+          "path": "budget_100000/seed_821/lns_random_bundle.json",
+          "sha256": "c79ad4fd09cf13ea0dbaf185894981b86001f8509adb22c13e3884c10d6ac55a"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11662984681,
+      "name": "ga-lns-confirm-s828",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11662984681.zip",
+      "sha256": "a3c3431e2071241e894028ff9419814f680ec32d918da64a2b30b707a3df72c9",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_828/ga_baseline.json",
+          "sha256": "a900ab015c3edf8617dbf000d547853c9a5e4a0c413161d7429fd0ce2f4eb530"
+        },
+        {
+          "path": "budget_100000/seed_828/ALL_METHODS.json",
+          "sha256": "4bfea3a22471b7c713f176650e765737c9c57e83380603b61e5b19510b5f0922"
+        },
+        {
+          "path": "budget_100000/seed_828/iterated_local.json",
+          "sha256": "00a8dffb08228d236045e41a62e8d14edeaf7a70587faa4c1e8b9f28bbc8b97e"
+        },
+        {
+          "path": "budget_100000/seed_828/lns_event_route.json",
+          "sha256": "4eca10cbcd0493618a2e83c2515155f0ca8bb989764e4d1d1bd20cf948bf7502"
+        },
+        {
+          "path": "budget_100000/seed_828/lns_random_bundle.json",
+          "sha256": "1061c183b09e05d2ba20de3b48f53691c16bf5d244e7a0537c8d883cfe6c09e4"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11662773768,
+      "name": "ga-lns-smoke-s803",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11662773768.zip",
+      "sha256": "70143a98daf899ec61e88846ec7ea0fc965b8c8deb2548f87b27f5ff1261b515",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_20000/seed_803/ALL_METHODS.json",
+          "sha256": "72e766882ce3ffd932ac4c15c79eeb770c3501bd13cc22eb7861602eada0a8d0"
+        },
+        {
+          "path": "budget_20000/seed_803/iterated_local.json",
+          "sha256": "0079ed0fee969cd069478087cf1103e8571ae8430f58b16149718d45a1a0a210"
+        },
+        {
+          "path": "budget_20000/seed_803/ga_baseline.json",
+          "sha256": "c27f82c5735061d743955ea17962543734b3742a5e035117f3d6d1a155f6294e"
+        },
+        {
+          "path": "budget_20000/seed_803/lns_event_route.json",
+          "sha256": "6094d89a5e858bcc06d69b56079fc14cac5d7b7d78824d7cd49c4b74c5134b78"
+        },
+        {
+          "path": "budget_20000/seed_803/lns_random_bundle.json",
+          "sha256": "896e4b6c6c85d6ed8ab20c318ac080adc7e411f7dd89f39f93d5e384ce21406c"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11662539086,
+      "name": "ga-lns-confirm-s826",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11662539086.zip",
+      "sha256": "0ddbcbb40e10bc06f237c93b211345f09d8f2b6ac53b430d15a8ebef7eed237d",
+      "members": [
+        {
+          "path": "budget_100000/seed_826/ALL_METHODS.json",
+          "sha256": "2605674eaa85f4463efae1f02079b7a56187fcb249bec8864abf26779a683591"
+        },
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_826/ga_baseline.json",
+          "sha256": "a50141e8950cbae4f7297f8d6728e57d2f551d123616f86eee9d39a7787831c2"
+        },
+        {
+          "path": "budget_100000/seed_826/iterated_local.json",
+          "sha256": "5af9a8c339d2056df591a7425c0c352f814e17aacc8baa91b6f9d77e1089dd4a"
+        },
+        {
+          "path": "budget_100000/seed_826/lns_event_route.json",
+          "sha256": "d2729ce5ac13b9fd2422fb8f57e51e152ab91c0e6756c5abcdd7dcae6eada4bf"
+        },
+        {
+          "path": "budget_100000/seed_826/lns_random_bundle.json",
+          "sha256": "4b2d707c72d1b4ec7df247bf40cb58fa5529a0a143860042d6c97c80650a04d3"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11662523543,
+      "name": "ga-lns-smoke-s802",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11662523543.zip",
+      "sha256": "b90310976f95eae9141498567c66c0d07712de18b9b7f79ebec364a087fe1edb",
+      "members": [
+        {
+          "path": "budget_20000/seed_802/ALL_METHODS.json",
+          "sha256": "0985c827fc6168ef3860d502af3d7fa718713f05d34aae32b8a12b08c8ee9f85"
+        },
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_20000/seed_802/ga_baseline.json",
+          "sha256": "62340cfa882dc10ca7d3ad06ef9b01c5e9778d0c090f573dbac2562a96e7f295"
+        },
+        {
+          "path": "budget_20000/seed_802/iterated_local.json",
+          "sha256": "3a78965e81fe235d61f274ff9062b59c0275fda76b8cd599da9d1b20708b6df6"
+        },
+        {
+          "path": "budget_20000/seed_802/lns_event_route.json",
+          "sha256": "32f6aad7ec3161e7a17c52d36733a558455a837b9bc03e4cb0d2005b1e011de0"
+        },
+        {
+          "path": "budget_20000/seed_802/lns_random_bundle.json",
+          "sha256": "b06421f852f0d38a72247d5942384d57c0967a8801cd80f14c36843199320fdd"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11662503629,
+      "name": "ga-lns-smoke-s801",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11662503629.zip",
+      "sha256": "c82d916e5c4e743337a0aa8863b4e856762e15f8a861d08bd47c832a2d9fd29d",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_20000/seed_801/ALL_METHODS.json",
+          "sha256": "834e9f2d9024dac516b1da3e62e6e1a7e7831f93e966e5c1160cca62f6d9d3b5"
+        },
+        {
+          "path": "budget_20000/seed_801/ga_baseline.json",
+          "sha256": "47076e5f30d5612f0529fd35e25d53e791158fe8e7b7696f7ca256814e8b0682"
+        },
+        {
+          "path": "budget_20000/seed_801/iterated_local.json",
+          "sha256": "d016bd01728f073b6d9e186e218e62700655673a9d134f5d460c97e8627be5ed"
+        },
+        {
+          "path": "budget_20000/seed_801/lns_event_route.json",
+          "sha256": "66da359fcbed67dc85141493ca0b943758438292ec66c793b1e6ea5e61c38f3f"
+        },
+        {
+          "path": "budget_20000/seed_801/lns_random_bundle.json",
+          "sha256": "2076dad9e4cd89cb7e2fabf5249c1241122d7f56891a11cefa7d78f1ed1ac474"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11662444403,
+      "name": "ga-lns-confirm-s831",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11662444403.zip",
+      "sha256": "57f48bac8239eba1b1b6f47023cc4c22abeb36c1f422dd2e7f7b8e5ee7f99667",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_831/ga_baseline.json",
+          "sha256": "1c1bbda14d40a7f5e6c512a91b5a6bf1eef8b03efc2b35cf04c8d7298f06c2f0"
+        },
+        {
+          "path": "budget_100000/seed_831/ALL_METHODS.json",
+          "sha256": "757664c48d1b4b261e433adab9a9310188f2bbda678b2c8dad943b8c1345d86a"
+        },
+        {
+          "path": "budget_100000/seed_831/iterated_local.json",
+          "sha256": "f7d6a54ee66fdf18d8fdb850fe560badbc68db4190d2ce9eea9e0478222e63f0"
+        },
+        {
+          "path": "budget_100000/seed_831/lns_event_route.json",
+          "sha256": "6a872c4a83ccf8dbb8b3809577b7af8cfc780c29de598f2c23d7adb383e30ee2"
+        },
+        {
+          "path": "budget_100000/seed_831/lns_random_bundle.json",
+          "sha256": "09bc8a7b58d548187021851b337c5058654ba2c189774d3c85244557eb49f89e"
+        }
+      ]
+    },
+    {
+      "run_id": 38033702030,
+      "id": 11662169852,
+      "name": "ga-lns-confirm-s823",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38033702030\\11662169852.zip",
+      "sha256": "d3b242e7afa39bdab6be107c63042bb3f0618bf3f237f43a37d12087595ca51e",
+      "members": [
+        {
+          "path": "DESIGN_AND_DECISION.md",
+          "sha256": "84665863b6749bf57164179986816ada74af40d66e5599d8ad484fd3fbfc5cca"
+        },
+        {
+          "path": "budget_100000/seed_823/ga_baseline.json",
+          "sha256": "bb379732784295266f3c7086cf8156c46251308eff69f35a84c38264d1ee6986"
+        },
+        {
+          "path": "budget_100000/seed_823/ALL_METHODS.json",
+          "sha256": "dc1c8425540aa2e46e3fe8edc4b4c9dc9a633b6ebab5222f892cdd68deb395ad"
+        },
+        {
+          "path": "budget_100000/seed_823/iterated_local.json",
+          "sha256": "2b72b7a6d36551a29186a01258c58f12e115981c4fc96478bbd75e7fb52dd6c5"
+        },
+        {
+          "path": "budget_100000/seed_823/lns_event_route.json",
+          "sha256": "5c34f457b4d6f78e981e24c12bff2a396e57c4d2a597d2a06c7d86f56f41266d"
+        },
+        {
+          "path": "budget_100000/seed_823/lns_random_bundle.json",
+          "sha256": "ba0543c696be78cf97a3a640f28232738b63ff6e8cc59e3ad52643edc6e5689c"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11664265795,
+      "name": "ga-lns-repair-v2-confirm-s934",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11664265795.zip",
+      "sha256": "af8f82335906f1ae0482503afae622d9eb4bb9489620929775673bcb5ede430c",
+      "members": [
+        {
+          "path": "budget_100000/seed_934/ALL_METHODS.json",
+          "sha256": "49b363d3a7f305fa2ee6f624c2d44e38a60de6aee73976dbcb7c8b076d3c3b3c"
+        },
+        {
+          "path": "budget_100000/seed_934/ga_baseline.json",
+          "sha256": "3f8f146bac19832aa370130db99a544dcd98335b321f27a022446914df46698b"
+        },
+        {
+          "path": "budget_100000/seed_934/iterated_local.json",
+          "sha256": "0d6016e70622fd147f4d4db550a192885f0a06c2a9a6b4fca42699a835988478"
+        },
+        {
+          "path": "budget_100000/seed_934/lns_repair_random.json",
+          "sha256": "881c08f7c8138e6f547bc94dc38743ac2406e57ada9d01593dfad31826fd60bd"
+        },
+        {
+          "path": "budget_100000/seed_934/lns_repair_route.json",
+          "sha256": "7b8073fa68b1fd79af68262a9aeb017d830da68b2152f7267678d3f9a8b64b71"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11664221290,
+      "name": "ga-lns-repair-v2-confirm-s939",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11664221290.zip",
+      "sha256": "1a628c07bcf47486542c7578408b86164a818ea8146448a952593c9ed0319210",
+      "members": [
+        {
+          "path": "budget_100000/seed_939/ALL_METHODS.json",
+          "sha256": "b8971c4b04e23a04c9af050cd8c73159c3c67dcad79ac2d037cdf92ba7b80ebd"
+        },
+        {
+          "path": "budget_100000/seed_939/iterated_local.json",
+          "sha256": "cc57e7280af7119e8be768cdd1bd1c40befe2c125e82dc9894fa18a63ffff8de"
+        },
+        {
+          "path": "budget_100000/seed_939/ga_baseline.json",
+          "sha256": "15165a5377ca98b4484c622b877904b8fa56574fc31ada2964af5ee61e6eaa97"
+        },
+        {
+          "path": "budget_100000/seed_939/lns_repair_random.json",
+          "sha256": "953d36acadc21e943a302ff981334567b5bf82888f97113d891acde0a8102f82"
+        },
+        {
+          "path": "budget_100000/seed_939/lns_repair_route.json",
+          "sha256": "8c59dd0b66b8a2197a3805c0f4a2a24e78dc5113d3c48375d03f571c83c15042"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11664065208,
+      "name": "ga-lns-repair-v2-confirm-s920",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11664065208.zip",
+      "sha256": "05ff9dfeb4f123ae86141c80c8421d608c55f8563407ba124de817548028f6e8",
+      "members": [
+        {
+          "path": "budget_100000/seed_920/ALL_METHODS.json",
+          "sha256": "bdd64d686f94c4adb5a7082f5bf126a5fc2d7abb21d71b423dee97275f8c52f9"
+        },
+        {
+          "path": "budget_100000/seed_920/ga_baseline.json",
+          "sha256": "4ae2a6c9384df96f58f51bf19446a40e291f4fd19c293fd72667670f1a2adcc2"
+        },
+        {
+          "path": "budget_100000/seed_920/iterated_local.json",
+          "sha256": "b218ad504ca7ad968be6b42f6ca4e5f2d06c13c76a74cb6fd5649302e154ee82"
+        },
+        {
+          "path": "budget_100000/seed_920/lns_repair_random.json",
+          "sha256": "ce6b571fd65ccf85790ad28c02c9e6129f4c5cf223a677f80d69064028611c0a"
+        },
+        {
+          "path": "budget_100000/seed_920/lns_repair_route.json",
+          "sha256": "9c022b4eb448260a93594765428b44363953a740a88154eb049bdec8d5be21b2"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11664045245,
+      "name": "ga-lns-repair-v2-confirm-s929",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11664045245.zip",
+      "sha256": "f8a2cb4c28e53d14659aa9ad0a44c0371ce612188952009ebd756240640110cd",
+      "members": [
+        {
+          "path": "budget_100000/seed_929/ALL_METHODS.json",
+          "sha256": "25c7b443cc9e610cc411f761b02c57611bdff6e986941f3beb5b7c481fde5eef"
+        },
+        {
+          "path": "budget_100000/seed_929/ga_baseline.json",
+          "sha256": "81b905df1d98d4063a8d22cc716b737f4968e11932ab466f80ee89b9b5866195"
+        },
+        {
+          "path": "budget_100000/seed_929/iterated_local.json",
+          "sha256": "be7fada54a76762dc43d0432ba8582dc5e0b4cd0c19dd148581af3aa855b2ae5"
+        },
+        {
+          "path": "budget_100000/seed_929/lns_repair_random.json",
+          "sha256": "7b5b52ffd8c85064e81adad97e0261b2b37139ffadebc67ef1c58179c027155f"
+        },
+        {
+          "path": "budget_100000/seed_929/lns_repair_route.json",
+          "sha256": "4137e546da705bd78028797f3cb49e1cd2c329a26ae20c5ea2e965d53c1b2fc7"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663960253,
+      "name": "ga-lns-repair-v2-confirm-s933",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663960253.zip",
+      "sha256": "75a5b6a117ffb9eac6717274108b56ee73ec7f7cb32bde07c0009c8b5f990538",
+      "members": [
+        {
+          "path": "budget_100000/seed_933/ga_baseline.json",
+          "sha256": "517293225ded8cba156432a2c85378e9b195cb7966f6a41061b74bc29a9a0731"
+        },
+        {
+          "path": "budget_100000/seed_933/iterated_local.json",
+          "sha256": "e3c74acc8ea0cd116b5c812325b4ae473c6166e40a1310e950c7906b9a42bfff"
+        },
+        {
+          "path": "budget_100000/seed_933/ALL_METHODS.json",
+          "sha256": "8a067309c386237f6272ba10eebad3e062381d8d493cda5b3887761b4cac2076"
+        },
+        {
+          "path": "budget_100000/seed_933/lns_repair_random.json",
+          "sha256": "9165693a5f8c5d7bd7268225af8a6ad1d36c7ecde53db26501d52e625b8e87ed"
+        },
+        {
+          "path": "budget_100000/seed_933/lns_repair_route.json",
+          "sha256": "0daf4bd158b72d3f040ddbd267fcc0e35327e7a1a8bcb28f4dca182a0505b9b1"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663860314,
+      "name": "ga-lns-repair-v2-confirm-s926",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663860314.zip",
+      "sha256": "2ba63896e76b50e1bf86b3cc55b8c83394ad2d799549fd2779fe89fb7999744f",
+      "members": [
+        {
+          "path": "budget_100000/seed_926/ALL_METHODS.json",
+          "sha256": "ed9cb66a27df886b43700bdfd0e95ab3009ece063ecb37cec9432858d0ab7509"
+        },
+        {
+          "path": "budget_100000/seed_926/iterated_local.json",
+          "sha256": "0bb8dc2c0de514582ee387ed5c471aceeedd44ad49fe463f4373cc8b2586df6a"
+        },
+        {
+          "path": "budget_100000/seed_926/ga_baseline.json",
+          "sha256": "1a2d6fe12d55e50cfe38e425f29c569c2d0557002105deef710b792106444336"
+        },
+        {
+          "path": "budget_100000/seed_926/lns_repair_random.json",
+          "sha256": "9f73e59dbfc71bcf9ecdd1e8a87179e01fa59cde8c771ae90b53d731a84b6b71"
+        },
+        {
+          "path": "budget_100000/seed_926/lns_repair_route.json",
+          "sha256": "48df6fa7623697f5a245d4f242bfd0634183c3ec817711b727e1c1ffdb5aec9e"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663835224,
+      "name": "ga-lns-repair-v2-confirm-s924",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663835224.zip",
+      "sha256": "645c27d83d942260a55249c6d8f04da391fce6d25b0c62c6d345b4e2c4d1138d",
+      "members": [
+        {
+          "path": "budget_100000/seed_924/ga_baseline.json",
+          "sha256": "40ca959f4f0a2233101db824bcd20174854bd4ba56bd9c76f69e0896de3214cd"
+        },
+        {
+          "path": "budget_100000/seed_924/iterated_local.json",
+          "sha256": "0c2cdceffb0e9d920f503042e293631191978e94a4e9c4cc708c242ea352094c"
+        },
+        {
+          "path": "budget_100000/seed_924/ALL_METHODS.json",
+          "sha256": "bf8eda6a311245e1126891a9b118b2d489b51155035ed0460d98c73b8d7ceaf9"
+        },
+        {
+          "path": "budget_100000/seed_924/lns_repair_random.json",
+          "sha256": "f447bef30d06c2befe57158369e1a3822af01f350548299a705c35c62d38ada7"
+        },
+        {
+          "path": "budget_100000/seed_924/lns_repair_route.json",
+          "sha256": "fa0664447bf43fa8f93b4abb227ce5ac7d517ef7ed3c2f6209a8dee44f577b8b"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663830786,
+      "name": "ga-lns-repair-v2-confirm-s936",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663830786.zip",
+      "sha256": "abfae6ce532d104eb1540de04d99a9803b2b16b5f8d3c39f9aa171467062266a",
+      "members": [
+        {
+          "path": "budget_100000/seed_936/ALL_METHODS.json",
+          "sha256": "4832b55d2d71dc7f242096ce4b29ff6fd8ee71045e29fbc9776df5e8388cc816"
+        },
+        {
+          "path": "budget_100000/seed_936/ga_baseline.json",
+          "sha256": "f67a82943e1eecb616a4136228d3140d413359d82377d1705b9e01c8a8d23724"
+        },
+        {
+          "path": "budget_100000/seed_936/iterated_local.json",
+          "sha256": "025c4298af686c364b4c423e4445d9f900a8cc5a99eb5eaad9baef10ff6fe126"
+        },
+        {
+          "path": "budget_100000/seed_936/lns_repair_random.json",
+          "sha256": "04a27f35b43f2f1ce903b6f2289a7d1722b0c6551c5f105da62d4a986bd9eecf"
+        },
+        {
+          "path": "budget_100000/seed_936/lns_repair_route.json",
+          "sha256": "e2b16eca05aa38d309fc9d0bcb47d2dca945da5b2ce64b584658692e53de1834"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663810474,
+      "name": "ga-lns-repair-v2-confirm-s932",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663810474.zip",
+      "sha256": "36538587dea97565efafd5d940435584c645970ee3968c8e470d13b152792916",
+      "members": [
+        {
+          "path": "budget_100000/seed_932/ALL_METHODS.json",
+          "sha256": "66e0cec107646c16ffa289c17df611a6408c06577589929376fdad571286cfc4"
+        },
+        {
+          "path": "budget_100000/seed_932/ga_baseline.json",
+          "sha256": "737a93b60e3bf3184f6032d86eec89806fb6227a06d366f23d39ec95a4502b00"
+        },
+        {
+          "path": "budget_100000/seed_932/iterated_local.json",
+          "sha256": "001568b145949db3cca969d68cd146a5546f2df8e0aaeb417a4209e0cf897a3b"
+        },
+        {
+          "path": "budget_100000/seed_932/lns_repair_random.json",
+          "sha256": "15076f39eee4ae846395cc6a6e3aa46ea047154802fdd4d269e015dda19d2f24"
+        },
+        {
+          "path": "budget_100000/seed_932/lns_repair_route.json",
+          "sha256": "5d46132093b9a702874305e9a9e75d99268a6b35f0e1b5fb4670de9b24c75b4f"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663770004,
+      "name": "ga-lns-repair-v2-confirm-s925",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663770004.zip",
+      "sha256": "f3cdc38b7f1b62ff3ba59eee59ddfc4143a5439a7f42dc8b28b864e80ac4c448",
+      "members": [
+        {
+          "path": "budget_100000/seed_925/ALL_METHODS.json",
+          "sha256": "e517bada3041419e8149f3ed056e3d94e25ac90869e1af93b22018af3727d2e4"
+        },
+        {
+          "path": "budget_100000/seed_925/iterated_local.json",
+          "sha256": "ae25a14edcc4d243ba17d8e8bb3f03af5304195f54e9877282123567d190650c"
+        },
+        {
+          "path": "budget_100000/seed_925/ga_baseline.json",
+          "sha256": "525deabe79c979673c363abf2f6a8d9b9e23e5e2c535ed03ef0e401f0c2c3dc7"
+        },
+        {
+          "path": "budget_100000/seed_925/lns_repair_random.json",
+          "sha256": "f5424ad5291dd91e18d4f4a8536a4248e182f6ad79882be6f5d39265794bcbb1"
+        },
+        {
+          "path": "budget_100000/seed_925/lns_repair_route.json",
+          "sha256": "445e8c9f0fb9cddfa9168e49d0bdfbdd9458c2543a5019ef0796c19a84813c1d"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663636572,
+      "name": "ga-lns-repair-v2-confirm-s935",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663636572.zip",
+      "sha256": "3698fa69c93eaf34d810f72550fd4ec1db2fddb80962d635e11ed1e24fffb724",
+      "members": [
+        {
+          "path": "budget_100000/seed_935/ALL_METHODS.json",
+          "sha256": "90710050b067f678e3384fa3d986fb116dca65a4eaa6207900f2cc624250ce23"
+        },
+        {
+          "path": "budget_100000/seed_935/ga_baseline.json",
+          "sha256": "99fb41f388b10e0a3e3f457b30648555346318a164d80193a44822894ccf9a1a"
+        },
+        {
+          "path": "budget_100000/seed_935/iterated_local.json",
+          "sha256": "3be4b1ac9f5087ff70c0ed1583aef52546e4efdcf780ef2648ae0c52a765eb62"
+        },
+        {
+          "path": "budget_100000/seed_935/lns_repair_random.json",
+          "sha256": "e1679529563049053aac2698e35fe3319cbf7cbe4fd4386d883bfd4c13445559"
+        },
+        {
+          "path": "budget_100000/seed_935/lns_repair_route.json",
+          "sha256": "97dc583a182707fb48936bd4915ed1a13c61682d8833e2dc3a2029a63cfafec5"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663586505,
+      "name": "ga-lns-repair-v2-confirm-s938",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663586505.zip",
+      "sha256": "55e6e3acb2021f2a9e9bcf0a0e385e93cc51c427cf0f3b0a916138beb07bdba7",
+      "members": [
+        {
+          "path": "budget_100000/seed_938/ALL_METHODS.json",
+          "sha256": "e3b577eb1c169137899401bcc725e2304787936ab328b50dcd044a18a5799550"
+        },
+        {
+          "path": "budget_100000/seed_938/ga_baseline.json",
+          "sha256": "cb99aa41a7990e98db3232ad1be11e2a6d83911595c5838c7dcfad54a827b924"
+        },
+        {
+          "path": "budget_100000/seed_938/iterated_local.json",
+          "sha256": "d32a9ef667f58100e8f6bfdae6c7cdb655753d36f78bab22b7d5c2a2041a06f9"
+        },
+        {
+          "path": "budget_100000/seed_938/lns_repair_random.json",
+          "sha256": "0c94045a024bacac876a88e4ef7507fc4523f29f3c374b0d1a819ec39fd79e35"
+        },
+        {
+          "path": "budget_100000/seed_938/lns_repair_route.json",
+          "sha256": "58558e98ce9b3a960a912ac8e68e509d33aa12d41f4c5a98403a01336b281f7d"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663471034,
+      "name": "ga-lns-repair-v2-confirm-s930",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663471034.zip",
+      "sha256": "774e0fdd6a6ce4cabb257c19fff68adf12df2be03ad3ae7f8f4ec61ce0cd3a4e",
+      "members": [
+        {
+          "path": "budget_100000/seed_930/ALL_METHODS.json",
+          "sha256": "e56dc2cb01f5b6ff87dbad633131b7d78511b2ac90a619ed895916040cf56ec0"
+        },
+        {
+          "path": "budget_100000/seed_930/ga_baseline.json",
+          "sha256": "8588ec0516718900980fc5a272dd1b3c5147360f5a26c91d913a2316edb8d8a1"
+        },
+        {
+          "path": "budget_100000/seed_930/iterated_local.json",
+          "sha256": "625dec1c746e7a8133221c084137cb6954089248dfaf76ca0796f5bed4a0ce7e"
+        },
+        {
+          "path": "budget_100000/seed_930/lns_repair_random.json",
+          "sha256": "ea89e2bfd916e28e2e202c0353e7a0c9c2869f69c885afe6abfc31d0c04d8574"
+        },
+        {
+          "path": "budget_100000/seed_930/lns_repair_route.json",
+          "sha256": "44e60a563b26814cd787edc3ede35562ea77cc8bb2ab319e35893b17702d97b1"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663441339,
+      "name": "ga-lns-repair-v2-confirm-s937",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663441339.zip",
+      "sha256": "e2d4ff7f734a631308d372311f7e871812d76a76d5825cb6d3c25331b3991c81",
+      "members": [
+        {
+          "path": "budget_100000/seed_937/iterated_local.json",
+          "sha256": "ceabcf808645d8b59fcfdc705c32d9d358790a1ca227ccace07a1f7e2fbc5756"
+        },
+        {
+          "path": "budget_100000/seed_937/ALL_METHODS.json",
+          "sha256": "2147f447f2d3ef4c3ce39304e1fedc7cd9cbb37704a760e9b982ad7e3060525e"
+        },
+        {
+          "path": "budget_100000/seed_937/lns_repair_random.json",
+          "sha256": "176c852a5f7c503139e7fa94389886f14f7d9d2b0d998ab04455fcaf8ea89a8e"
+        },
+        {
+          "path": "budget_100000/seed_937/ga_baseline.json",
+          "sha256": "1199977fca53a5b6f4cb7e33ef99a587af004f110a559d82aa67ec17f7264bca"
+        },
+        {
+          "path": "budget_100000/seed_937/lns_repair_route.json",
+          "sha256": "1837c3ea72179f71486b1991add737d66bfd39078cd5c19326658fa13bd887cd"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663334821,
+      "name": "ga-lns-repair-v2-confirm-s922",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663334821.zip",
+      "sha256": "27536fcee1ea1b6a9d37cc8769035267f191bbbe3e1459938f8707cd8ccc8522",
+      "members": [
+        {
+          "path": "budget_100000/seed_922/ga_baseline.json",
+          "sha256": "2145c471c6d832f14a04e7c7cb9179b744158d553ee66e7859328cd4ff9d7922"
+        },
+        {
+          "path": "budget_100000/seed_922/iterated_local.json",
+          "sha256": "57396cd936a049c2de585422e2fe816c5ffbb455cde034fbbe4a2ddae3162659"
+        },
+        {
+          "path": "budget_100000/seed_922/ALL_METHODS.json",
+          "sha256": "88313f9b83d487faa32d645adbb5c01572c79d3cb0deb8d988578488508d1800"
+        },
+        {
+          "path": "budget_100000/seed_922/lns_repair_random.json",
+          "sha256": "b2b5c823a5d6e06e81934e2497d839d2bd9aabb3bd0b49846f4f07de4b14528e"
+        },
+        {
+          "path": "budget_100000/seed_922/lns_repair_route.json",
+          "sha256": "c3a85427554e16a84ce9512f2542b7a6562cebaa5d6b6fbce6deb9d842a24ad0"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663319916,
+      "name": "ga-lns-repair-v2-confirm-s923",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663319916.zip",
+      "sha256": "a3e505ae34cf2c8b970db3ee64ad9c789493679154599a2d1a34599c401d7e44",
+      "members": [
+        {
+          "path": "budget_100000/seed_923/ALL_METHODS.json",
+          "sha256": "4c31c8002dea60a0c140fdda0ecaeaed6243261ab586a207f3583dee7a1ba471"
+        },
+        {
+          "path": "budget_100000/seed_923/ga_baseline.json",
+          "sha256": "8d6dd37daa990b20e3c8b4d76319409bfa44f9cf7aca63e635d5d926cff7935f"
+        },
+        {
+          "path": "budget_100000/seed_923/iterated_local.json",
+          "sha256": "5e3cfa7522d85ddef0df4b876dda6c8908cc3fd3e1df8890680bc34d83daaf45"
+        },
+        {
+          "path": "budget_100000/seed_923/lns_repair_random.json",
+          "sha256": "666f9ce9bb2b76121f5e967360d381012785193922d05d8e790bf8017f7e7685"
+        },
+        {
+          "path": "budget_100000/seed_923/lns_repair_route.json",
+          "sha256": "fa96833d288552bedfa2623939423d04dd302f4ff71f1952fbdedda8b8345dcc"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663258737,
+      "name": "ga-lns-repair-v2-smoke-s900",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663258737.zip",
+      "sha256": "20b2313d98d8ff47c2e06374d572c551a3d69bca34babd31c408b252d3485fc7",
+      "members": [
+        {
+          "path": "budget_20000/seed_900/ALL_METHODS.json",
+          "sha256": "68e44b5cbb693d7afd6e3953c89e16812a53573df6dc2ae36a2c58ccb067b948"
+        },
+        {
+          "path": "budget_20000/seed_900/ga_baseline.json",
+          "sha256": "eb32877a4e12d14983e4d2ba1c82c28d16c04a918b69f003130a1356d2662030"
+        },
+        {
+          "path": "budget_20000/seed_900/iterated_local.json",
+          "sha256": "c70d7ae5d1e60db9ede692f4fdf969044e512168932d185d14c5b32f06ddcccf"
+        },
+        {
+          "path": "budget_20000/seed_900/lns_repair_random.json",
+          "sha256": "560b786260dbad0d65602d426d33d4d1d50a9c30893b6e0cd0807790e0bd7fb9"
+        },
+        {
+          "path": "budget_20000/seed_900/lns_repair_route.json",
+          "sha256": "2a505b2576a1f1d2e3ccbe55972e1d4dbffbf0cb1aac71739502766584249058"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663228799,
+      "name": "ga-lns-repair-v2-smoke-s902",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663228799.zip",
+      "sha256": "eba23277b5161d6525087a818f62179cc766d3faf054ebe1d9fc281a72e7b9b9",
+      "members": [
+        {
+          "path": "budget_20000/seed_902/ga_baseline.json",
+          "sha256": "2ae89dea30d50a015460e95729391e7fff0da264a32260a6e181fd1d0c1abcd5"
+        },
+        {
+          "path": "budget_20000/seed_902/iterated_local.json",
+          "sha256": "bbec1b582587630502ec0c0a40042f0ead3b7ce61a0f653f27e5693edd959a88"
+        },
+        {
+          "path": "budget_20000/seed_902/lns_repair_random.json",
+          "sha256": "ef18263264130e2a5c05669e1ac9744e4dd62f0e6e557eb07cadff09240c062e"
+        },
+        {
+          "path": "budget_20000/seed_902/ALL_METHODS.json",
+          "sha256": "a44dc83df64e67fe8b3c5df3c3c352baf9162e38224917bbaaeba1fea435a8db"
+        },
+        {
+          "path": "budget_20000/seed_902/lns_repair_route.json",
+          "sha256": "c0255feb22df30f28ce9c59e350c589ebd75cc205716f8f0ce8c7d481024e5c6"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11663224637,
+      "name": "ga-lns-repair-v2-confirm-s927",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11663224637.zip",
+      "sha256": "4b2adbf82f7487c50e3440242a4673af4836695518583c6ecdcc0fa0f9f11be6",
+      "members": [
+        {
+          "path": "budget_100000/seed_927/ga_baseline.json",
+          "sha256": "2dd3256352fe9b7a49be1e4b522f7758a570f1bee204cbb9d5ffc67692470789"
+        },
+        {
+          "path": "budget_100000/seed_927/iterated_local.json",
+          "sha256": "c43c36518b72ec4c9d7c0de662ec7d34bd68d68fe4db3957a9a2af0f05e5b9fc"
+        },
+        {
+          "path": "budget_100000/seed_927/lns_repair_random.json",
+          "sha256": "d09bb2c87f52604f7a57cff4978b59325ef36a6c41c0ad7acfbe6aa5519d2128"
+        },
+        {
+          "path": "budget_100000/seed_927/ALL_METHODS.json",
+          "sha256": "e705a7f8fcc417b82ed7aee630f448a9eac4511ac567a3e02c9b5b8d5b864437"
+        },
+        {
+          "path": "budget_100000/seed_927/lns_repair_route.json",
+          "sha256": "0cc721aa7e3c20c050997afc656e6cc88208946f3f13ef5ae76a8cb6facda11e"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11662994758,
+      "name": "ga-lns-repair-v2-confirm-s931",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11662994758.zip",
+      "sha256": "c13d1a861da1210f073da407f65a71684fb31e74315962d9cebb92bf55130714",
+      "members": [
+        {
+          "path": "budget_100000/seed_931/ALL_METHODS.json",
+          "sha256": "ddcb3538c9eb242d892844d36f1e94d421b358699d83260de2449a226df7489c"
+        },
+        {
+          "path": "budget_100000/seed_931/ga_baseline.json",
+          "sha256": "83fbed302720cb1a5c81c2c6b5412f846c6ea00e2b0417b62385333e911cc43d"
+        },
+        {
+          "path": "budget_100000/seed_931/iterated_local.json",
+          "sha256": "2b7fe001c7880a8892258fa1c947f61582c1f16fba01de0f9f379e1ac51606a0"
+        },
+        {
+          "path": "budget_100000/seed_931/lns_repair_random.json",
+          "sha256": "2afda9f245c890d5f19bc01dcb0edc59d1a8650247130504a2c3113ea1007115"
+        },
+        {
+          "path": "budget_100000/seed_931/lns_repair_route.json",
+          "sha256": "6eed6ce0089f8ff391292d1e838bacb6230358a90bcd911b2f40bbf33e5ee887"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11662889091,
+      "name": "ga-lns-repair-v2-smoke-s901",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11662889091.zip",
+      "sha256": "16e2e0bfd7d702d156513077cd59469748a0149d2f950327e68af79341c83c42",
+      "members": [
+        {
+          "path": "budget_20000/seed_901/ALL_METHODS.json",
+          "sha256": "8716d485faa0401ccba21a7befbd6ee1154a4f81a82c4f58eb379f3817002b78"
+        },
+        {
+          "path": "budget_20000/seed_901/ga_baseline.json",
+          "sha256": "7e5d90fbb0396c5e080e5d5490114e7103203079ae60344a9fe311bde08fd94d"
+        },
+        {
+          "path": "budget_20000/seed_901/iterated_local.json",
+          "sha256": "f7b5e987015e755e3455dd5914a79229a7970021b4b65505bfa5b7b698beecca"
+        },
+        {
+          "path": "budget_20000/seed_901/lns_repair_random.json",
+          "sha256": "d2f7f201a501e94c767d8c54fa61f9d9535431f20dac6aac79ad59174e6137e6"
+        },
+        {
+          "path": "budget_20000/seed_901/lns_repair_route.json",
+          "sha256": "6c2cbfb7a36ca47827c43c6ff1f8c194c686466b0cff6c8e09ca9d86e4f6c2b2"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11662524443,
+      "name": "ga-lns-repair-v2-confirm-s928",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11662524443.zip",
+      "sha256": "e3d10ce64ee34d3662c808498004c3117a99eab28d0f9a8cafc627d8faaa2ea0",
+      "members": [
+        {
+          "path": "budget_100000/seed_928/ALL_METHODS.json",
+          "sha256": "2654c688f65c82aeb0f0f10342630238724b9fec87ddc66be1d8966df32ebffa"
+        },
+        {
+          "path": "budget_100000/seed_928/ga_baseline.json",
+          "sha256": "c5113960d09c0ea733b62672e408e2b7203b510ec5095557d69c7d6818b7ab08"
+        },
+        {
+          "path": "budget_100000/seed_928/iterated_local.json",
+          "sha256": "9601483a8cd2b3df05f53c3d6afad86bf691948d20e4f0b9098e7c07acefcf90"
+        },
+        {
+          "path": "budget_100000/seed_928/lns_repair_random.json",
+          "sha256": "f2270e7a5bced7fb0d5b2ce9bf5d527c4f4d4a07f43a8d17de4998fa4500a01f"
+        },
+        {
+          "path": "budget_100000/seed_928/lns_repair_route.json",
+          "sha256": "eca02bfa84fbf42c18064e4644c2d7158577268fb0a88cfa3bc5fef5098709f5"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11662448875,
+      "name": "ga-lns-repair-v2-smoke-s903",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11662448875.zip",
+      "sha256": "c659051cca6772d093c7015fc72abe15b5e13bb3daf4f10c2b45704f3cf901c6",
+      "members": [
+        {
+          "path": "budget_20000/seed_903/ALL_METHODS.json",
+          "sha256": "6b5c02d293ffc6d6b7e0b9a421949d69bd5d4adc29dd0d3d25d2e7ca509b2788"
+        },
+        {
+          "path": "budget_20000/seed_903/iterated_local.json",
+          "sha256": "7b0e70180b62ca3a4273f9d83b103676fc01fb0296d798a5a254ec8508b1c2b1"
+        },
+        {
+          "path": "budget_20000/seed_903/ga_baseline.json",
+          "sha256": "5b20c1ffaef1fe6f019ddfcbf432ba0a7771ef16b74c090f1ab6f6e854278888"
+        },
+        {
+          "path": "budget_20000/seed_903/lns_repair_random.json",
+          "sha256": "503ab415aa34c1df047d3f938b2341362047ffd56c2e9233f449269c6f9d2ef7"
+        },
+        {
+          "path": "budget_20000/seed_903/lns_repair_route.json",
+          "sha256": "6ec5f1760e246cfc3b1ccd7ba8a54575f526c72ecd71c45125092fc2afbedb19"
+        }
+      ]
+    },
+    {
+      "run_id": 38034064901,
+      "id": 11662289897,
+      "name": "ga-lns-repair-v2-confirm-s921",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38034064901\\11662289897.zip",
+      "sha256": "c469f85ca823896a27987b60ec586323ada810ea0cd22bba0580a2c21218f33a",
+      "members": [
+        {
+          "path": "budget_100000/seed_921/ALL_METHODS.json",
+          "sha256": "76e970756a0f9e734e0a7c0ecdcdc965c58f87928fbf6cd1c6a5259f159bd1cc"
+        },
+        {
+          "path": "budget_100000/seed_921/ga_baseline.json",
+          "sha256": "37208ec8beabb03983d05565247f06368c1279c4a7b74f68793528c374846c20"
+        },
+        {
+          "path": "budget_100000/seed_921/iterated_local.json",
+          "sha256": "5d0b00dcfbdc867b90b04fdd38d32510ca8313fceeb708361a4be2b16ba56b24"
+        },
+        {
+          "path": "budget_100000/seed_921/lns_repair_random.json",
+          "sha256": "2d782a5b1c9c8400e49963aedbed9d63ddc2dab48a1508dc6685f6e2711763a1"
+        },
+        {
+          "path": "budget_100000/seed_921/lns_repair_route.json",
+          "sha256": "d8886e6bfeb4b25a362b3c80a05c6aca569e2550bb1ee06e60a5f60c5dde5a6b"
+        }
+      ]
+    },
+    {
+      "run_id": 38065463263,
+      "id": 11674377350,
+      "name": "ga-lns-160-run-negative-audit",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065463263\\11674377350.zip",
+      "sha256": "d42eac34d7d7794b8ba5f772944f38ddd8dc39a13ed23932580e9fd480cbf803",
+      "members": [
+        {
+          "path": "LNS_160_RUN_AUDIT.json",
+          "sha256": "77afae914c2b78c209b3761d22a057b0a7009b1875054f1a38063f9fb92471b7"
+        },
+        {
+          "path": "LNS_160_RUN_AUDIT.md",
+          "sha256": "29f8e5376b188b5910eb016cc204c733c4a8fae6279e3126eb1dcdbe00755c30"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11675232098,
+      "name": "ga-lns-transfer-s1001",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11675232098.zip",
+      "sha256": "95891c9e2fe2ccbe0b7088a03511ef65c5cc8d8867472eba243bae7140106d07",
+      "members": [
+        {
+          "path": "seed_1001/RESULTS.json",
+          "sha256": "55e35e24750e38c4d7e162f355ce3374beeee71995e1d18b50b497d3f8ce238b"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11675057424,
+      "name": "ga-lns-transfer-s1003",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11675057424.zip",
+      "sha256": "5211ed16ed987cb90308388e0047500e4f7ecb3ec071020d2c9e11adf9710563",
+      "members": [
+        {
+          "path": "seed_1003/RESULTS.json",
+          "sha256": "7c591d3be1cacf1a12e52ac3288e9cde7065dc33a79c85410cb36bccacc0ff6b"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11675042452,
+      "name": "ga-lns-transfer-s1007",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11675042452.zip",
+      "sha256": "cec020b015df00860b8c866a44bb588c4eecc0b5a16751f5e77bf10d19a4b33b",
+      "members": [
+        {
+          "path": "seed_1007/RESULTS.json",
+          "sha256": "8f487655ce7b7264826ac8b41fe889634dce9ac7a4d55caf14900f66710a852c"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11675042430,
+      "name": "ga-lns-transfer-s1004",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11675042430.zip",
+      "sha256": "c6bc1d860c2372c97543e58408f6486a8a2fb07f370466712ad25dc9e43d64b4",
+      "members": [
+        {
+          "path": "seed_1004/RESULTS.json",
+          "sha256": "2b8d89b843c24e05cdeaa22924bedc6c0371e018165b4f3e9bb7334af0022373"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11674917440,
+      "name": "ga-lns-transfer-s1006",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11674917440.zip",
+      "sha256": "20f526b5b0dc9f847141a4b432e29f73a275b1889f1f97fc97269b9d3a6c3e4a",
+      "members": [
+        {
+          "path": "seed_1006/RESULTS.json",
+          "sha256": "6db5b998b9e16517d582683a6449ecffac7cc0e76019b513b699de36b84b6f51"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11674782881,
+      "name": "ga-lns-transfer-s1005",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11674782881.zip",
+      "sha256": "86c98573c33e22f7330e0fa530306b20a4e31fe746adf014d1c730a5820742e6",
+      "members": [
+        {
+          "path": "seed_1005/RESULTS.json",
+          "sha256": "093be8ffcfc1c4495ce9a20980de99eb594747f518a418b87a16d4fd2bfc3694"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11674563492,
+      "name": "ga-lns-transfer-s1000",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11674563492.zip",
+      "sha256": "b8df284fc69a0c0051715059f31cc80e337c5766061eeb8f40f05b1769b8fe7c",
+      "members": [
+        {
+          "path": "seed_1000/RESULTS.json",
+          "sha256": "ab2d0007ac8bb1fb3d6fa8b56535f64f7924908b5a57324750b1768de3950046"
+        }
+      ]
+    },
+    {
+      "run_id": 38065546076,
+      "id": 11674217695,
+      "name": "ga-lns-transfer-s1002",
+      "archive": "results\\diagnostics\\ga_noncontiguous_connectivity_lns_20261010\\original_artifacts\\38065546076\\11674217695.zip",
+      "sha256": "ac2fae6487f0daa25a7b31d9858f25b91f996d35aac86a9cd81b4c1ca084ef1e",
+      "members": [
+        {
+          "path": "seed_1002/RESULTS.json",
+          "sha256": "1a3b654b3fcb358c4274f65daf4e2555da19bc7b3764cb3c237d6c1dbba902bf"
+        }
+      ]
+    }
+  ]
+}

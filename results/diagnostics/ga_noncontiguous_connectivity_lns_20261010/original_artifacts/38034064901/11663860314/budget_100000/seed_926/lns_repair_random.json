@@ -1,0 +1,206 @@
+{
+  "distinct_evaluations": 100000,
+  "attempted_evaluations": 100043,
+  "search_best_loss_hr": 33.03057056415029,
+  "best_sequence": [
+    "309042",
+    "302187",
+    "301517",
+    "302164",
+    "310504",
+    "301541",
+    "300408",
+    "304450",
+    "303540",
+    "306060",
+    "304073",
+    "305984",
+    "308581",
+    "307274",
+    "300493",
+    "308786",
+    "308991",
+    "306844",
+    "300627",
+    "303371",
+    "303899",
+    "307512",
+    "300829",
+    "301614",
+    "308206",
+    "306768",
+    "300429",
+    "301558",
+    "309569",
+    "303620",
+    "310199",
+    "309843",
+    "307693",
+    "301637",
+    "308494",
+    "303099",
+    "308471",
+    "306224",
+    "307785",
+    "304137",
+    "310527",
+    "302798",
+    "308269",
+    "300558",
+    "307564",
+    "306623",
+    "301194",
+    "310179",
+    "303169",
+    "307039",
+    "300648",
+    "308907",
+    "300105",
+    "301105",
+    "306369",
+    "300232",
+    "309758",
+    "300390",
+    "303303",
+    "309156",
+    "301745",
+    "310204",
+    "305885",
+    "301636",
+    "309663",
+    "301156",
+    "308806",
+    "301100",
+    "308540",
+    "306694",
+    "304040",
+    "301214",
+    "306365",
+    "306489",
+    "306279",
+    "302297",
+    "307373",
+    "302171",
+    "306444",
+    "307832",
+    "306450",
+    "301543",
+    "308367",
+    "309553",
+    "309853",
+    "306091",
+    "301108",
+    "307557",
+    "309703",
+    "303344",
+    "305780",
+    "302923"
+  ],
+  "sequence_sha256": "f66039a72d03845bb7ce27aa9a7e670053dbe78fd030e4203247f3156bf0be00",
+  "strict_improvements": [
+    {
+      "evaluation": 1,
+      "best_loss_hr": 36.15508357398793,
+      "sequence_sha256": "41d3eec40d3d8128fe16bdb37f4f574880ea0141b5170d019af2ca2d8ba3450d"
+    },
+    {
+      "evaluation": 2,
+      "best_loss_hr": 33.57830255999933,
+      "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168"
+    },
+    {
+      "evaluation": 8,
+      "best_loss_hr": 33.038131743267435,
+      "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed"
+    },
+    {
+      "evaluation": 2762,
+      "best_loss_hr": 33.03560400214059,
+      "sequence_sha256": "5394e5a9d34df21e7600d5fa3fbfd0a4ee191b993259b577305ed1c857b7149d"
+    },
+    {
+      "evaluation": 92527,
+      "best_loss_hr": 33.03558264019689,
+      "sequence_sha256": "493353c144edfea87fd306081525350c235454cd302b6e2db0f09241a111612b"
+    },
+    {
+      "evaluation": 92978,
+      "best_loss_hr": 33.033731005473875,
+      "sequence_sha256": "0d374183e70589bd918c5908d8528068a11101e8a572fa782e3cf72da5648126"
+    },
+    {
+      "evaluation": 93363,
+      "best_loss_hr": 33.03372713880642,
+      "sequence_sha256": "7bee4fce5e55eb6ba68dee0bcbaac1e8c77bf0d31f6caa8a2fa7934623a68f18"
+    },
+    {
+      "evaluation": 93664,
+      "best_loss_hr": 33.03287136526618,
+      "sequence_sha256": "6546dfb2cba215c31cef21875b693e0f09141a98d9773eda43adfba265b138df"
+    },
+    {
+      "evaluation": 93828,
+      "best_loss_hr": 33.031158846390504,
+      "sequence_sha256": "d408a4b117b60c149b87265573598dc56f4c16dbaaf18dcd0ced3d7db26f5299"
+    },
+    {
+      "evaluation": 95158,
+      "best_loss_hr": 33.03097303118116,
+      "sequence_sha256": "d4427e0abe9c0eff3f198aee20ea35df868f8be9b7a0da617c1d7ffad330930e"
+    },
+    {
+      "evaluation": 97024,
+      "best_loss_hr": 33.030855437646224,
+      "sequence_sha256": "09da5845c8dcca98ed8958635169b20cf8fd889c15c34c779220b77cba9f5601"
+    },
+    {
+      "evaluation": 99954,
+      "best_loss_hr": 33.03057056415029,
+      "sequence_sha256": "f66039a72d03845bb7ce27aa9a7e670053dbe78fd030e4203247f3156bf0be00"
+    }
+  ],
+  "completed_budget": true,
+  "method": "lns_repair_random",
+  "seed": 926,
+  "budget": 100000,
+  "checkpoints": [
+    {
+      "evaluations": 20000,
+      "loss_hr": 33.03560400214059
+    },
+    {
+      "evaluations": 50000,
+      "loss_hr": 33.03560400214059
+    },
+    {
+      "evaluations": 100000,
+      "loss_hr": 33.03057056415029
+    }
+  ],
+  "actual_repair_candidates_evaluated": 100032,
+  "macro_iterations": 5936,
+  "route_macros": 4137,
+  "conventional_local_macros": 1799,
+  "accepted_strict_repairs": 270,
+  "accepted_neutral_repairs": 36,
+  "restart_count": 2,
+  "event_snapshot_refreshes": 53,
+  "event_candidates_built": 14273,
+  "bundle_size_macro_counts": {
+    "6": 259,
+    "2": 1539,
+    "3": 1151,
+    "4": 662,
+    "5": 368,
+    "8": 111,
+    "7": 47
+  },
+  "insertion_rank_cap": 12,
+  "internal_order_cap": 3,
+  "local_mix_probability": 0.3,
+  "elapsed_wall_seconds": 137.771044588,
+  "original_model_unchanged": true,
+  "physical_validation_unused": true,
+  "new_physical_realizations": 0,
+  "formal_strategy_replaced": false
+}

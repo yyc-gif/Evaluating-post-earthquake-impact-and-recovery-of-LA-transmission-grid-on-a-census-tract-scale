@@ -1,0 +1,927 @@
+{
+  "status": "COMPLETE",
+  "seed": 802,
+  "budget": 20000,
+  "method_count": 4,
+  "methods": [
+    {
+      "method": "ga_baseline",
+      "seed": 802,
+      "budget": 20000,
+      "distinct_evaluations": 20000,
+      "attempted_evaluations": 192064,
+      "search_best_loss_hr": 33.005215844022494,
+      "best_sequence": [
+        "309042",
+        "300105",
+        "300408",
+        "300558",
+        "302187",
+        "301541",
+        "303540",
+        "306060",
+        "308269",
+        "308907",
+        "310504",
+        "307564",
+        "304073",
+        "300429",
+        "300829",
+        "302798",
+        "308494",
+        "300493",
+        "306844",
+        "308991",
+        "309569",
+        "307693",
+        "303620",
+        "309758",
+        "310199",
+        "307512",
+        "306768",
+        "308206",
+        "308786",
+        "309843",
+        "303899",
+        "301636",
+        "302164",
+        "304137",
+        "300390",
+        "308581",
+        "303099",
+        "301517",
+        "310179",
+        "300627",
+        "301614",
+        "307785",
+        "301194",
+        "301558",
+        "306369",
+        "310527",
+        "306623",
+        "303169",
+        "304450",
+        "307039",
+        "300648",
+        "303371",
+        "305984",
+        "301105",
+        "300232",
+        "306224",
+        "308471",
+        "307274",
+        "303303",
+        "301637",
+        "309663",
+        "301745",
+        "305885",
+        "301156",
+        "309156",
+        "308806",
+        "304040",
+        "310204",
+        "301214",
+        "306694",
+        "306489",
+        "308540",
+        "306365",
+        "302297",
+        "306279",
+        "301100",
+        "302171",
+        "307373",
+        "306444",
+        "306450",
+        "308367",
+        "309853",
+        "307832",
+        "301543",
+        "309553",
+        "306091",
+        "309703",
+        "301108",
+        "307557",
+        "303344",
+        "305780",
+        "302923"
+      ],
+      "sequence_sha256": "f2072be5880fa0485ac854d9ecbdd4059539574c46caa13fadb5564fef089680",
+      "completed_budget": true,
+      "elapsed_wall_seconds": 42.875989066,
+      "generation0_loss_hr": 33.038131743267435,
+      "actual_generations": 960,
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.005215844022494
+        }
+      ],
+      "strict_improvements": [],
+      "original_model_base_commit": "409693a68a099e6c1ec2fee093b3bfd2ecf80dd6",
+      "new_physical_realizations": 0,
+      "formal_strategy_changed": false
+    },
+    {
+      "distinct_evaluations": 20000,
+      "attempted_evaluations": 20200,
+      "search_best_loss_hr": 33.002786633446874,
+      "best_sequence": [
+        "309042",
+        "301541",
+        "302187",
+        "308269",
+        "308907",
+        "303540",
+        "303169",
+        "306060",
+        "300105",
+        "310504",
+        "300558",
+        "307564",
+        "306623",
+        "303899",
+        "308206",
+        "300390",
+        "306768",
+        "300627",
+        "300493",
+        "306844",
+        "309569",
+        "310199",
+        "307693",
+        "301517",
+        "308991",
+        "307512",
+        "303303",
+        "309843",
+        "304137",
+        "308786",
+        "303620",
+        "300429",
+        "308494",
+        "300829",
+        "302164",
+        "308471",
+        "303099",
+        "302798",
+        "306224",
+        "301194",
+        "307785",
+        "301558",
+        "303371",
+        "309758",
+        "310527",
+        "304073",
+        "301614",
+        "310179",
+        "307039",
+        "304450",
+        "300408",
+        "305984",
+        "300648",
+        "301105",
+        "306369",
+        "300232",
+        "308581",
+        "308806",
+        "307274",
+        "301637",
+        "301636",
+        "310204",
+        "301745",
+        "309663",
+        "301156",
+        "309156",
+        "306694",
+        "305885",
+        "304040",
+        "301214",
+        "308540",
+        "306489",
+        "306365",
+        "307373",
+        "302171",
+        "306279",
+        "301100",
+        "302297",
+        "306444",
+        "306450",
+        "308367",
+        "309853",
+        "307832",
+        "301543",
+        "309553",
+        "306091",
+        "309703",
+        "301108",
+        "307557",
+        "303344",
+        "302923",
+        "305780"
+      ],
+      "sequence_sha256": "4afcdec4943b820156fb4ef6e04b7ac47ef687dd213bc9ceb49357ab214848c3",
+      "strict_improvements": [
+        {
+          "evaluation": 1,
+          "best_loss_hr": 36.15508357398793,
+          "sequence_sha256": "41d3eec40d3d8128fe16bdb37f4f574880ea0141b5170d019af2ca2d8ba3450d"
+        },
+        {
+          "evaluation": 2,
+          "best_loss_hr": 33.57830255999933,
+          "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168"
+        },
+        {
+          "evaluation": 8,
+          "best_loss_hr": 33.038131743267435,
+          "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed"
+        },
+        {
+          "evaluation": 14,
+          "best_loss_hr": 33.0380070834263,
+          "sequence_sha256": "7448356959852ab8191e7d1cbe929ca6e5fe7211e40c1f544734c07613c1fd7e"
+        },
+        {
+          "evaluation": 30,
+          "best_loss_hr": 33.03798940970128,
+          "sequence_sha256": "67ff04ae7ae6042186876ce60f67557e3bae69016d4348b790fbc18841939c74"
+        },
+        {
+          "evaluation": 448,
+          "best_loss_hr": 33.03723972789539,
+          "sequence_sha256": "d7b521f8d84d2bf6a8e0268d07b85fc92f640b919299aa14517c372f6a6d3590"
+        },
+        {
+          "evaluation": 468,
+          "best_loss_hr": 33.03670671505106,
+          "sequence_sha256": "b7ee2471b08ab40cbd302137f912e0059e1bd6c67b6c99d9197c7a03a5eed167"
+        },
+        {
+          "evaluation": 510,
+          "best_loss_hr": 33.03606212915454,
+          "sequence_sha256": "4a3c819a0181b4d9e46ac4134e385aad4ec74a5efbe242f43e42a95208add670"
+        },
+        {
+          "evaluation": 707,
+          "best_loss_hr": 33.03470136806392,
+          "sequence_sha256": "112a9374a9670d8e14ef58a1f89fa882d42d47857810c3c689134622f5b0f81d"
+        },
+        {
+          "evaluation": 805,
+          "best_loss_hr": 33.03458455575903,
+          "sequence_sha256": "bac56b60133072d9ffcdaa449505c7ec6528a9c3be71a2369f5495cc1f9fe3d8"
+        },
+        {
+          "evaluation": 851,
+          "best_loss_hr": 33.03452689656325,
+          "sequence_sha256": "19b2a2daf386d97612743c7d2865407b75c56c34b9ca31e075d966237566a81d"
+        },
+        {
+          "evaluation": 901,
+          "best_loss_hr": 33.0345089960463,
+          "sequence_sha256": "a7eb517fd22fab160ad3939ac276410db59cd47bc04d0cd5ed5f5c1e2edb11f7"
+        },
+        {
+          "evaluation": 1036,
+          "best_loss_hr": 33.03431740131665,
+          "sequence_sha256": "e6040c1a3107952cebe7382f7fce722a6281898bb5d8a84285a88465785ec0cf"
+        },
+        {
+          "evaluation": 1112,
+          "best_loss_hr": 33.03412950932913,
+          "sequence_sha256": "325c68fbac22bcc54258c51c97e89ef02ee2da5f559294dd08f31dd3023d8ff5"
+        },
+        {
+          "evaluation": 1290,
+          "best_loss_hr": 33.033980974200034,
+          "sequence_sha256": "7a25e089ab729aaedf70d0408d1c5df23816777f72b0945b8b756e56190f18e2"
+        },
+        {
+          "evaluation": 1393,
+          "best_loss_hr": 33.03396391352704,
+          "sequence_sha256": "9fc9e455d23cb8f66385ef794da7d4290e75b1603bbf25d9963cf81d40743b99"
+        },
+        {
+          "evaluation": 1499,
+          "best_loss_hr": 33.03388257864967,
+          "sequence_sha256": "f3e41413a1c2e3e9d7f3cb0b3c6a5546188ada1c6d614d4a05e8b134ae80140a"
+        },
+        {
+          "evaluation": 1534,
+          "best_loss_hr": 33.0332624440092,
+          "sequence_sha256": "3b90c763c41fd16244ec5ea6d027533bf61cf7a622f299db416cd9faa2f930e2"
+        },
+        {
+          "evaluation": 1874,
+          "best_loss_hr": 33.03319002679954,
+          "sequence_sha256": "f12bfd908dff4ca1c8557eeba2b64ddfd6493bdd6be14ed6515747beb607eb52"
+        },
+        {
+          "evaluation": 1905,
+          "best_loss_hr": 33.03265253887618,
+          "sequence_sha256": "50b0aa524577bf30fc68e79bfec801f2e4d7a796bbb7f8853e2914e8f0cfb49a"
+        },
+        {
+          "evaluation": 1967,
+          "best_loss_hr": 33.032443161699355,
+          "sequence_sha256": "2d33ca86bcbb0b5d5ff9abe4905a42fcb30b970c3f1a5512964a7961bde65206"
+        },
+        {
+          "evaluation": 2104,
+          "best_loss_hr": 33.03235822435773,
+          "sequence_sha256": "11878fc477a12ad55fdb71c95c6411df141ecdae092d4a70a63407b1faeb7c58"
+        },
+        {
+          "evaluation": 2544,
+          "best_loss_hr": 33.0321192015723,
+          "sequence_sha256": "06c3170811ce5f897b9dec1fa588b4e596b110cb268f875ad8e8396d98cc1833"
+        },
+        {
+          "evaluation": 2739,
+          "best_loss_hr": 33.03107668897914,
+          "sequence_sha256": "c423b7a492657c39717297d2da4411864803ef6e3343f6f46d53d9b5f45222de"
+        },
+        {
+          "evaluation": 2829,
+          "best_loss_hr": 33.031065942353486,
+          "sequence_sha256": "a98fdedc4373483a0ad461961ffbab18ff35a94a7ade8bae51520eb104a0990b"
+        },
+        {
+          "evaluation": 2861,
+          "best_loss_hr": 33.03098766147925,
+          "sequence_sha256": "3d0f3f6aeabd74456aef3b36df1f45e24a2c5e70febe4ad918085135ee901a38"
+        },
+        {
+          "evaluation": 2976,
+          "best_loss_hr": 33.03093892410382,
+          "sequence_sha256": "fde63a0d42a043ac0d961212d0cb524ebb1e947f686422f43d5674602fea3fdc"
+        },
+        {
+          "evaluation": 3257,
+          "best_loss_hr": 33.0295374435511,
+          "sequence_sha256": "bfda51cf54694b27a6e2b210224a115be05c581f5fa0df47caffd821891c1faa"
+        },
+        {
+          "evaluation": 3344,
+          "best_loss_hr": 33.02839434161515,
+          "sequence_sha256": "0bf2ede7dc487c99011433974f188803bffa31c2dcbceda1baf3613dd6d03733"
+        },
+        {
+          "evaluation": 3357,
+          "best_loss_hr": 33.027892195475275,
+          "sequence_sha256": "67cb7c012ff0dd74b5a95ba68ffa7e2343fd037df2f4759128a04096fecff80c"
+        },
+        {
+          "evaluation": 3390,
+          "best_loss_hr": 33.0273051007279,
+          "sequence_sha256": "d5fb352c12f8e210dc713c74a9a43f3170796164bd0d816acab6bc56f7a7d742"
+        },
+        {
+          "evaluation": 3499,
+          "best_loss_hr": 33.02728356815387,
+          "sequence_sha256": "47d2e9bce44cc8b95847b80b615b97955cf5a7a6c5cbeefd968fb09976a5c4c2"
+        },
+        {
+          "evaluation": 3504,
+          "best_loss_hr": 33.027172076340655,
+          "sequence_sha256": "658b766abc7ad0fdb2c4609f4dcfb7a78ff9d4da2d1a96b99cfb0572084394a5"
+        },
+        {
+          "evaluation": 4002,
+          "best_loss_hr": 33.02151563809583,
+          "sequence_sha256": "af502998c4dc1b819b2d8d7dff1373ddc190c0b4108514cded2f66a363fefadf"
+        },
+        {
+          "evaluation": 4020,
+          "best_loss_hr": 33.020980483569254,
+          "sequence_sha256": "bbe829d2a7470c41808e2a6b78658e55438d3b0f7f2659a436e0f49d69ef54cd"
+        },
+        {
+          "evaluation": 4350,
+          "best_loss_hr": 33.02094943384639,
+          "sequence_sha256": "c6d053024110438f90c990ab97e083f3a6d681a62869f6f6593d17ca0793cc4b"
+        },
+        {
+          "evaluation": 4486,
+          "best_loss_hr": 33.02083259979482,
+          "sequence_sha256": "faf8c8aec251731af274bebae87abb6d805ab58ede15625a8ce2d5d3516febbf"
+        },
+        {
+          "evaluation": 4666,
+          "best_loss_hr": 33.02077343549618,
+          "sequence_sha256": "e433016d7db7dfffc4d2cf5c97afb8a60ad3b8882370e70610e024f6276955b0"
+        },
+        {
+          "evaluation": 4674,
+          "best_loss_hr": 33.01916358412403,
+          "sequence_sha256": "b59dae491c7540969f7df6789c8928edc3e93b0f45ef884edffcb953b781b7a3"
+        },
+        {
+          "evaluation": 4707,
+          "best_loss_hr": 33.01793626722546,
+          "sequence_sha256": "b81275761bb1506cccfc08c90dcfa049b634da6df1e4400a5a6b5a15b1e72340"
+        },
+        {
+          "evaluation": 4974,
+          "best_loss_hr": 33.017539863978044,
+          "sequence_sha256": "ba57c098626119ee8f3960b4d97ada97ce545d33ebd505f03f9f79e4946167a8"
+        },
+        {
+          "evaluation": 5123,
+          "best_loss_hr": 33.01753913588503,
+          "sequence_sha256": "201714e0fdc668587699ef847124a9387b7d6b251fc0974597e21e29b7b9acd8"
+        },
+        {
+          "evaluation": 5427,
+          "best_loss_hr": 33.01730241167155,
+          "sequence_sha256": "a14754ea26996cb8e26380ad575f7ee4e95a336b98f0942ab1e4813b00f70cf4"
+        },
+        {
+          "evaluation": 5453,
+          "best_loss_hr": 33.01724571623147,
+          "sequence_sha256": "145b885f06fc15272c838eda119991ef9214c2cffecdbf6c07d25e92b20e7d51"
+        },
+        {
+          "evaluation": 5722,
+          "best_loss_hr": 33.01697425707517,
+          "sequence_sha256": "fff6ee0f3bc6baca7bc0738c83d8651754d068ef5d747142b0f3952e2d3f97d1"
+        },
+        {
+          "evaluation": 5946,
+          "best_loss_hr": 33.01651776046582,
+          "sequence_sha256": "4549e86d8bdb4ffd6f6a24b58f56122933f6e1ddc1b7cc704d31ac3a27d48c0d"
+        },
+        {
+          "evaluation": 13049,
+          "best_loss_hr": 33.01593930648497,
+          "sequence_sha256": "defdcb9b43fd59c0e0f9678ae5d1ead90cecff3977d2e96417091aa9d44582b8"
+        },
+        {
+          "evaluation": 13129,
+          "best_loss_hr": 33.01587777250868,
+          "sequence_sha256": "843886b6f28c542850862955583ccb5ac437fdda5e88371a7eb845d165cceb40"
+        },
+        {
+          "evaluation": 13142,
+          "best_loss_hr": 33.015852880190685,
+          "sequence_sha256": "fc315f8398f4ebe866c81b196aeca895c6eb3e63cc0ed894ea558deb8c2f0e2b"
+        },
+        {
+          "evaluation": 13780,
+          "best_loss_hr": 33.01539227439142,
+          "sequence_sha256": "a7522998cfdf480a558f93673723ce5eaae259a8439402a1c9a782ceb1461d2d"
+        },
+        {
+          "evaluation": 13881,
+          "best_loss_hr": 33.01537356736651,
+          "sequence_sha256": "fc5f99cacc405612afa3959b87d90063dde44388a1601d94bd1b93d471b29f55"
+        },
+        {
+          "evaluation": 13902,
+          "best_loss_hr": 33.01529528416501,
+          "sequence_sha256": "9fe8d6420909157d70de868c49fd34e6ebf2a8e4be106986bcc632d61c436880"
+        },
+        {
+          "evaluation": 14083,
+          "best_loss_hr": 33.01503824991383,
+          "sequence_sha256": "387a8439d5194442258c3837794410ec0c79c56ee756dc9195a826e82d51f339"
+        },
+        {
+          "evaluation": 14422,
+          "best_loss_hr": 33.01457458061991,
+          "sequence_sha256": "3b60dfb289c9e2d454b85cf0201eebd326c4dbc963b843ca4bc18d3d276e919e"
+        },
+        {
+          "evaluation": 14425,
+          "best_loss_hr": 33.01447128417023,
+          "sequence_sha256": "bc3285746d50c99618a7214ce2739cee836e539a24eb3065d243b867d482a050"
+        },
+        {
+          "evaluation": 14438,
+          "best_loss_hr": 33.01117809889417,
+          "sequence_sha256": "3ab03ee9393ea5e4de8e38209a3f25e0eb56fd8cb24f82110ea7f0d26e19a6fc"
+        },
+        {
+          "evaluation": 14767,
+          "best_loss_hr": 33.0111209341717,
+          "sequence_sha256": "511fda561dd95c857aa0dd3ca3f7a28b863dc37bdc19e2a8149ea47fc0f2c365"
+        },
+        {
+          "evaluation": 15439,
+          "best_loss_hr": 33.01028883051071,
+          "sequence_sha256": "511de96ee5d005662ceac80f580cbd5c45f7ebdcf7342430d223e5441537e405"
+        },
+        {
+          "evaluation": 15582,
+          "best_loss_hr": 33.00922063391785,
+          "sequence_sha256": "6384c1f466817042932edc94aa0dd5b65e473175e8e84d47be657394de3044cf"
+        },
+        {
+          "evaluation": 15771,
+          "best_loss_hr": 33.00859220904711,
+          "sequence_sha256": "b3a9766fbba5ec7f43e5ae5c7a6543005580dc3a3836a3587501b492e1cc430f"
+        },
+        {
+          "evaluation": 15894,
+          "best_loss_hr": 33.00856322524179,
+          "sequence_sha256": "6a7bd2c95f3e9eb5c780bce40d086f4487aec59fd899ad99ea2a58aad9cf76e0"
+        },
+        {
+          "evaluation": 15897,
+          "best_loss_hr": 33.0084416935352,
+          "sequence_sha256": "0043ea85f26270f1ecad42527682f28c40be80dd3d5046052af9f6de81469cf6"
+        },
+        {
+          "evaluation": 15923,
+          "best_loss_hr": 33.00837808494471,
+          "sequence_sha256": "157fc77da96b627033f767211986f4fe8090a95725bce7c3045d11b4be2290c9"
+        },
+        {
+          "evaluation": 15965,
+          "best_loss_hr": 33.00824796085779,
+          "sequence_sha256": "8d7e83aed58e0cf7fa6c2e200361aa39d344295205febcd771b1cc2fe9835347"
+        },
+        {
+          "evaluation": 15977,
+          "best_loss_hr": 33.0077938792156,
+          "sequence_sha256": "a6d4c4b563c94f3bda7796c31ca357f9292de9f896ca7eead5b49dbcda4a4ec1"
+        },
+        {
+          "evaluation": 15989,
+          "best_loss_hr": 33.00775446793252,
+          "sequence_sha256": "5375a875eae6ce1607dfedc3da48a40031b19f4d2367ab34d6508b1f48fc4e1c"
+        },
+        {
+          "evaluation": 16066,
+          "best_loss_hr": 33.007739418747406,
+          "sequence_sha256": "da222ce86e29576026e34a85812d5ab45c660107ba7fb64e687627c089b300ed"
+        },
+        {
+          "evaluation": 16095,
+          "best_loss_hr": 33.006685297857786,
+          "sequence_sha256": "8105e3c207807cfa2bd8585b7bf67a191e3db23bffe4d1137f74d6181418e24b"
+        },
+        {
+          "evaluation": 16512,
+          "best_loss_hr": 33.003263270801085,
+          "sequence_sha256": "62eb0464719bc58129968981affb6d48fcb34f463b76d7ff5683d9df926901db"
+        },
+        {
+          "evaluation": 16623,
+          "best_loss_hr": 33.00322559184972,
+          "sequence_sha256": "8a2d9ee5838235a0212d124f9651c0eed43ed29724f5e0c01f7946426e5e7e17"
+        },
+        {
+          "evaluation": 16663,
+          "best_loss_hr": 33.00287980327989,
+          "sequence_sha256": "b848b15905ce83f40189c159b04cdcb1a406b1cf8e6ec81f2e0c841e60df6a50"
+        },
+        {
+          "evaluation": 16947,
+          "best_loss_hr": 33.0028749433585,
+          "sequence_sha256": "dcccaf86e53742491eb081c77ca726cc14ecb6ce47096c28ffe25a429d9e4cee"
+        },
+        {
+          "evaluation": 17314,
+          "best_loss_hr": 33.00281265962577,
+          "sequence_sha256": "c9065cb74f649593d5a5ba47c1fe5c50ae6f3025e3aaec83bc3112f213a0d31a"
+        },
+        {
+          "evaluation": 17724,
+          "best_loss_hr": 33.002786633446874,
+          "sequence_sha256": "4afcdec4943b820156fb4ef6e04b7ac47ef687dd213bc9ceb49357ab214848c3"
+        }
+      ],
+      "completed_budget": true,
+      "method": "iterated_local",
+      "seed": 802,
+      "budget": 20000,
+      "elapsed_wall_seconds": 27.020465110000004,
+      "generation0_loss_hr": 33.038131743267435,
+      "accepted_moves": 202,
+      "accepted_worse_moves": 0,
+      "restart_count": 2,
+      "annealing_initial_temperature_hr": null,
+      "annealing_final_temperature_hr": null,
+      "calibration_positive_count": 0,
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.002786633446874
+        }
+      ],
+      "original_model_base_commit": "409693a68a099e6c1ec2fee093b3bfd2ecf80dd6",
+      "new_physical_realizations": 0,
+      "formal_strategy_changed": false
+    },
+    {
+      "distinct_evaluations": 20000,
+      "attempted_evaluations": 25112,
+      "search_best_loss_hr": 33.038131743267435,
+      "best_sequence": [
+        "309042",
+        "300648",
+        "300408",
+        "308907",
+        "308471",
+        "300232",
+        "306060",
+        "306369",
+        "300105",
+        "305984",
+        "303540",
+        "300558",
+        "301194",
+        "308786",
+        "309843",
+        "307512",
+        "308991",
+        "301558",
+        "307693",
+        "310199",
+        "309569",
+        "308206",
+        "306768",
+        "300829",
+        "306844",
+        "307274",
+        "300493",
+        "302164",
+        "303620",
+        "300429",
+        "309758",
+        "302798",
+        "303899",
+        "303303",
+        "309156",
+        "301105",
+        "303099",
+        "302187",
+        "310179",
+        "304073",
+        "301614",
+        "301517",
+        "307785",
+        "306623",
+        "308494",
+        "310527",
+        "303371",
+        "308581",
+        "307039",
+        "303169",
+        "310504",
+        "301541",
+        "308269",
+        "304137",
+        "306224",
+        "307564",
+        "304450",
+        "300627",
+        "300390",
+        "301637",
+        "309663",
+        "301636",
+        "301745",
+        "305885",
+        "301156",
+        "308806",
+        "310204",
+        "304040",
+        "301214",
+        "306694",
+        "302297",
+        "308540",
+        "306489",
+        "306365",
+        "302171",
+        "301100",
+        "306279",
+        "307373",
+        "308367",
+        "306444",
+        "306450",
+        "309853",
+        "307832",
+        "301543",
+        "309553",
+        "306091",
+        "309703",
+        "301108",
+        "307557",
+        "303344",
+        "302923",
+        "305780"
+      ],
+      "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed",
+      "strict_improvements": [
+        {
+          "evaluation": 1,
+          "best_loss_hr": 36.15508357398793,
+          "sequence_sha256": "41d3eec40d3d8128fe16bdb37f4f574880ea0141b5170d019af2ca2d8ba3450d"
+        },
+        {
+          "evaluation": 2,
+          "best_loss_hr": 33.57830255999933,
+          "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168"
+        },
+        {
+          "evaluation": 8,
+          "best_loss_hr": 33.038131743267435,
+          "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed"
+        }
+      ],
+      "completed_budget": true,
+      "method": "lns_event_route",
+      "seed": 802,
+      "budget": 20000,
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.038131743267435
+        }
+      ],
+      "strict_moves": 464,
+      "neutral_moves": 86,
+      "restarts": 7,
+      "event_bank_refreshes": 66,
+      "source_reconnection_events_sampled": 17757,
+      "event_bundle_proposals": 25097,
+      "bundle_size_proposal_counts": {
+        "2": 9405,
+        "4": 3807,
+        "7": 514,
+        "6": 1593,
+        "3": 6950,
+        "5": 2225,
+        "8": 603
+      },
+      "random_proposal_fallbacks": 103,
+      "sample_snapshot_count": 4,
+      "snapshot_refresh_interval_distinct": 2500,
+      "bundle_max_nodes": 8,
+      "acceptance_neutral_probability": 0.15,
+      "elapsed_wall_seconds": 46.88025793899999,
+      "original_model_unchanged": true,
+      "physical_validation_unused": true,
+      "original_model_base_commit": "409693a68a099e6c1ec2fee093b3bfd2ecf80dd6",
+      "new_physical_realizations": 0,
+      "formal_strategy_changed": false
+    },
+    {
+      "distinct_evaluations": 20000,
+      "attempted_evaluations": 20012,
+      "search_best_loss_hr": 33.038131743267435,
+      "best_sequence": [
+        "309042",
+        "300648",
+        "300408",
+        "308907",
+        "308471",
+        "300232",
+        "306060",
+        "306369",
+        "300105",
+        "305984",
+        "303540",
+        "300558",
+        "301194",
+        "308786",
+        "309843",
+        "307512",
+        "308991",
+        "301558",
+        "307693",
+        "310199",
+        "309569",
+        "308206",
+        "306768",
+        "300829",
+        "306844",
+        "307274",
+        "300493",
+        "302164",
+        "303620",
+        "300429",
+        "309758",
+        "302798",
+        "303899",
+        "303303",
+        "309156",
+        "301105",
+        "303099",
+        "302187",
+        "310179",
+        "304073",
+        "301614",
+        "301517",
+        "307785",
+        "306623",
+        "308494",
+        "310527",
+        "303371",
+        "308581",
+        "307039",
+        "303169",
+        "310504",
+        "301541",
+        "308269",
+        "304137",
+        "306224",
+        "307564",
+        "304450",
+        "300627",
+        "300390",
+        "301637",
+        "309663",
+        "301636",
+        "301745",
+        "305885",
+        "301156",
+        "308806",
+        "310204",
+        "304040",
+        "301214",
+        "306694",
+        "302297",
+        "308540",
+        "306489",
+        "306365",
+        "302171",
+        "301100",
+        "306279",
+        "307373",
+        "308367",
+        "306444",
+        "306450",
+        "309853",
+        "307832",
+        "301543",
+        "309553",
+        "306091",
+        "309703",
+        "301108",
+        "307557",
+        "303344",
+        "302923",
+        "305780"
+      ],
+      "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed",
+      "strict_improvements": [
+        {
+          "evaluation": 1,
+          "best_loss_hr": 36.15508357398793,
+          "sequence_sha256": "41d3eec40d3d8128fe16bdb37f4f574880ea0141b5170d019af2ca2d8ba3450d"
+        },
+        {
+          "evaluation": 2,
+          "best_loss_hr": 33.57830255999933,
+          "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168"
+        },
+        {
+          "evaluation": 8,
+          "best_loss_hr": 33.038131743267435,
+          "sequence_sha256": "3bfeafdd1adf950749e63fdbbe3b7efc21b1efd04c3b3d64c28c3d118717bbed"
+        }
+      ],
+      "completed_budget": true,
+      "method": "lns_random_bundle",
+      "seed": 802,
+      "budget": 20000,
+      "checkpoints": [
+        {
+          "evaluations": 20000,
+          "loss_hr": 33.038131743267435
+        }
+      ],
+      "strict_moves": 263,
+      "neutral_moves": 13,
+      "restarts": 3,
+      "event_bank_refreshes": 36,
+      "source_reconnection_events_sampled": 9669,
+      "event_bundle_proposals": 20001,
+      "bundle_size_proposal_counts": {
+        "2": 7117,
+        "4": 3200,
+        "6": 1192,
+        "3": 5882,
+        "5": 1626,
+        "8": 482,
+        "7": 502
+      },
+      "random_proposal_fallbacks": 1,
+      "sample_snapshot_count": 4,
+      "snapshot_refresh_interval_distinct": 2500,
+      "bundle_max_nodes": 8,
+      "acceptance_neutral_probability": 0.15,
+      "elapsed_wall_seconds": 38.58930100799998,
+      "original_model_unchanged": true,
+      "physical_validation_unused": true,
+      "original_model_base_commit": "409693a68a099e6c1ec2fee093b3bfd2ecf80dd6",
+      "new_physical_realizations": 0,
+      "formal_strategy_changed": false
+    }
+  ],
+  "original_physical_samples": 64,
+  "new_physical_samples": 0,
+  "formal_policy_replaced": false
+}

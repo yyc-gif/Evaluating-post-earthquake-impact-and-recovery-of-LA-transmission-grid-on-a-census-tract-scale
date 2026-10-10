@@ -1,0 +1,22 @@
+{
+  "status": "COMPLETE",
+  "phase": "smoke",
+  "budget": 1000,
+  "seeds": [
+    1180,
+    1181
+  ],
+  "methods": [
+    "connectivity_lns",
+    "random_lns",
+    "scheduling_lns",
+    "ga_baseline",
+    "iterated_local"
+  ],
+  "count": 10,
+  "workers": 2,
+  "total_elapsed_wall_seconds": 12.742364400000042,
+  "total_distinct_evaluations": 10000,
+  "total_attempts": 19455,
+  "total_worker_wall_seconds": 27.13712549999991
+}

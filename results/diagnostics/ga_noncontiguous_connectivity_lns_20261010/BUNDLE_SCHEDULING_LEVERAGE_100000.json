@@ -1,0 +1,1247 @@
+[
+  {
+    "label": "shared_prior",
+    "top20": [
+      {
+        "group": [
+          "300493",
+          "307693"
+        ],
+        "weight": 0.15294874881103399,
+        "support": 16,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.15537650672866948,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 1.9088779533641263e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300493",
+          "303620",
+          "307693"
+        ],
+        "weight": 0.14797179927547247,
+        "support": 14,
+        "sample15_fraction": 0.03981588217351056,
+        "weight_without15": 0.14433541236878006,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 2.1196778680794837e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "307693"
+        ],
+        "weight": 0.05720580464864069,
+        "support": 7,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.058113833293857206,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0015109991448507172,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "303620",
+          "309843"
+        ],
+        "weight": 0.04967113591681461,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.05045956664565294,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.004792803954428433,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "309843"
+        ],
+        "weight": 0.04822264319911761,
+        "support": 4,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.048988081980055984,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.007208075238549834,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300429",
+          "301105",
+          "309569"
+        ],
+        "weight": 0.027108643828317295,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02753893976210011,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0027980596106975315,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301194",
+          "303899",
+          "306768",
+          "308206"
+        ],
+        "weight": 0.026509739884077864,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.026930529406047354,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.004026205932527655,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "308206"
+        ],
+        "weight": 0.026313083399152237,
+        "support": 3,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02673075138961497,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.005506907058632501,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300390",
+          "307039"
+        ],
+        "weight": 0.02539182372883956,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02579486854993225,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 0.49206349206349204,
+        "relaxed_queue_travel_delay_fraction_mean": 0.10459012746825905,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301100",
+          "301105",
+          "302297",
+          "303099"
+        ],
+        "weight": 0.02485423682793176,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.025248748523613217,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 0.5019762845849802,
+        "relaxed_queue_travel_delay_fraction_mean": 0.20119084939208895,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300105",
+          "300390",
+          "300408",
+          "307039"
+        ],
+        "weight": 0.024197421825375598,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.024581507886095845,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 0.746031746031746,
+        "relaxed_queue_travel_delay_fraction_mean": 0.05424468619262474,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "307039",
+          "308471",
+          "308907",
+          "310504"
+        ],
+        "weight": 0.023653531688087374,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.024028984572025267,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.007821840903680278,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "308786",
+          "309843",
+          "310204"
+        ],
+        "weight": 0.02225395607846911,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022607193476540048,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 0.7480314960629921,
+        "relaxed_queue_travel_delay_fraction_mean": 0.08655954157812894,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300408",
+          "305984"
+        ],
+        "weight": 0.02193351465508858,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022281665681359825,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0036476762955277263,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "304450",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021906446755203812,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02225416813227054,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.011588631087906013,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "301614",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021507059391031653,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.021848441286127392,
+        "functional_at_t0_fraction": 0.02734375,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.01078794815221137,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "303899",
+          "306768",
+          "307693",
+          "308206"
+        ],
+        "weight": 0.020960623766352937,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02129333208010457,
+        "functional_at_t0_fraction": 0.00390625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.003966340318425291,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "303899",
+          "307693",
+          "308206"
+        ],
+        "weight": 0.020767081285633295,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.021096717496516364,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.004282769061034332,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300232",
+          "300648",
+          "303540",
+          "307564"
+        ],
+        "weight": 0.02059101410599299,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02091785559973891,
+        "functional_at_t0_fraction": 0.01953125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.007025590773878781,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301194",
+          "303899",
+          "306768",
+          "307785"
+        ],
+        "weight": 0.01950476242686816,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.01981436183046924,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0023787035092085536,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      }
+    ],
+    "top10_group_overlap_without15": 10,
+    "weighted_sample15_share": 0.033527878846694635,
+    "mean_bundle_sample_support": 1.828125
+  },
+  {
+    "label": "connectivity_lns",
+    "top20": [
+      {
+        "group": [
+          "300493",
+          "307693"
+        ],
+        "weight": 0.15294874881103399,
+        "support": 16,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.15537650672866948,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 1.9088779533641263e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300493",
+          "303620",
+          "307693"
+        ],
+        "weight": 0.14797179927547247,
+        "support": 14,
+        "sample15_fraction": 0.03981588217351056,
+        "weight_without15": 0.14433541236878006,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 2.1196778680794837e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "307693"
+        ],
+        "weight": 0.05727498723801679,
+        "support": 7,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.058184114019572616,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0015109991448507172,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "303620",
+          "309843"
+        ],
+        "weight": 0.049541279766889976,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.05032764928699934,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0025614134165999037,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "309843"
+        ],
+        "weight": 0.04803240957341012,
+        "support": 4,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.04879482877298806,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0038522044296896056,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300429",
+          "301105",
+          "307693"
+        ],
+        "weight": 0.03451555153681868,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.0350634174342285,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0005666690728689927,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301194",
+          "303899",
+          "306768",
+          "308206"
+        ],
+        "weight": 0.03111216124154078,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.03160600507077158,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.003981955831489964,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300390",
+          "307039"
+        ],
+        "weight": 0.02833409016547888,
+        "support": 7,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.028783837628422987,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.017373701590652844,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300429",
+          "301105",
+          "309569"
+        ],
+        "weight": 0.026722271182825986,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02714643421747402,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.000566669072869003,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "308206"
+        ],
+        "weight": 0.026333233702570527,
+        "support": 3,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.026751221539119265,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.005506907058632501,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300105",
+          "300390",
+          "300408",
+          "307039"
+        ],
+        "weight": 0.025593602791503484,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.025999850454860682,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.010925190122419676,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301100",
+          "301105",
+          "302297",
+          "303099"
+        ],
+        "weight": 0.024772835323461955,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.025166054931770876,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 0.5019762845849802,
+        "relaxed_queue_travel_delay_fraction_mean": 0.20523509436629273,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "307039",
+          "308471",
+          "308907",
+          "310504"
+        ],
+        "weight": 0.02366690294940282,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.024042568075583817,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0023533866470923574,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "308786",
+          "309843",
+          "310204"
+        ],
+        "weight": 0.022127199918138076,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022478425313664077,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 0.7480314960629921,
+        "relaxed_queue_travel_delay_fraction_mean": 0.08546882577367021,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300408",
+          "305984"
+        ],
+        "weight": 0.02193351465508858,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022281665681359825,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0036476762955277263,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "304450",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021816307495576587,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02216259809074447,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.00705129268433778,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "301614",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021377835129902337,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.021717165846249994,
+        "functional_at_t0_fraction": 0.02734375,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.00835135730253222,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "303899",
+          "306768",
+          "307693",
+          "308206"
+        ],
+        "weight": 0.021000924373189525,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02133427237911317,
+        "functional_at_t0_fraction": 0.00390625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.003966340318425291,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300232",
+          "300648",
+          "303540",
+          "307564"
+        ],
+        "weight": 0.02065214161774836,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02097995338945865,
+        "functional_at_t0_fraction": 0.01953125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.005170079523358637,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301194",
+          "303899",
+          "306768",
+          "307785"
+        ],
+        "weight": 0.01970151764839662,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02001424015075212,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0023344534081708637,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      }
+    ],
+    "top10_group_overlap_without15": 10,
+    "weighted_sample15_share": 0.032906630576657284,
+    "mean_bundle_sample_support": 1.8828125
+  },
+  {
+    "label": "random_lns",
+    "top20": [
+      {
+        "group": [
+          "300493",
+          "307693"
+        ],
+        "weight": 0.15294874881103399,
+        "support": 16,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.15537650672866948,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 1.9088779533641263e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300493",
+          "303620",
+          "307693"
+        ],
+        "weight": 0.14797179927547247,
+        "support": 14,
+        "sample15_fraction": 0.03981588217351056,
+        "weight_without15": 0.14433541236878006,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 2.1196778680794837e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "307693"
+        ],
+        "weight": 0.05700477079911106,
+        "support": 7,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.05790960843084298,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0015109991448507172,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "303620",
+          "309843"
+        ],
+        "weight": 0.049541279766889976,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.05032764928699934,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0028700458091687063,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "309843"
+        ],
+        "weight": 0.04803240957341012,
+        "support": 4,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.04879482877298806,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.004316368106702531,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300429",
+          "301105",
+          "307693"
+        ],
+        "weight": 0.03401433784161397,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.034554247966084035,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0008753014654377956,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300429",
+          "301105",
+          "309569"
+        ],
+        "weight": 0.027050449552941596,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.027479821768067653,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0008753014654378058,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301194",
+          "303899",
+          "306768",
+          "308206"
+        ],
+        "weight": 0.02621087548485486,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.026626921127471604,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.00402338199655404,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300105",
+          "300390",
+          "300408",
+          "307039"
+        ],
+        "weight": 0.025581278030090755,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.025987330062314417,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.010372827884425947,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "308206"
+        ],
+        "weight": 0.025122771559177765,
+        "support": 3,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.025521545710910747,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.005506907058632501,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300390",
+          "307039"
+        ],
+        "weight": 0.02428300510331886,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.024668449628768366,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.01684641085186148,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301100",
+          "301105",
+          "302297",
+          "303099"
+        ],
+        "weight": 0.02423591019186751,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02462060717904001,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 0.5019762845849802,
+        "relaxed_queue_travel_delay_fraction_mean": 0.2149824657554807,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "307039",
+          "308471",
+          "308907",
+          "310504"
+        ],
+        "weight": 0.023683429220288012,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02405935666822909,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.010844735880763717,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "308786",
+          "309843",
+          "310204"
+        ],
+        "weight": 0.022365778908464043,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022720791272090455,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 0.7480314960629921,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0853281685726695,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301100",
+          "301105",
+          "301637"
+        ],
+        "weight": 0.022304162412127113,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022658196736129132,
+        "functional_at_t0_fraction": 0.010416666666666666,
+        "ds2plus_first_wave_fraction": 0.33157894736842103,
+        "relaxed_queue_travel_delay_fraction_mean": 0.23240878607019833,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300408",
+          "305984"
+        ],
+        "weight": 0.02193556698620026,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02228375058915582,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.002086219999096046,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "304450",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021776006888740006,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022121657791735878,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.007375398498309574,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "301614",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021357684826484043,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.021696695696745694,
+        "functional_at_t0_fraction": 0.02734375,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.00748784745509081,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "303899",
+          "306768",
+          "307693",
+          "308206"
+        ],
+        "weight": 0.020960623766352937,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02129333208010457,
+        "functional_at_t0_fraction": 0.00390625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.003966340318425291,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "308786"
+        ],
+        "weight": 0.02088043307671754,
+        "support": 3,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02121186852237972,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.008069185838661017,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      }
+    ],
+    "top10_group_overlap_without15": 10,
+    "weighted_sample15_share": 0.025112838068007737,
+    "mean_bundle_sample_support": 1.8046875
+  },
+  {
+    "label": "scheduling_lns",
+    "top20": [
+      {
+        "group": [
+          "300493",
+          "307693"
+        ],
+        "weight": 0.15294874881103399,
+        "support": 16,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.15537650672866948,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 1.9088779533641263e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300493",
+          "303620",
+          "307693"
+        ],
+        "weight": 0.14797179927547247,
+        "support": 14,
+        "sample15_fraction": 0.03981588217351056,
+        "weight_without15": 0.14433541236878006,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 2.1196778680794837e-17,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "307693"
+        ],
+        "weight": 0.05707696720315546,
+        "support": 7,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.05798295080955475,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0015109991448507172,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "303620",
+          "309843"
+        ],
+        "weight": 0.049541279766889976,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.05032764928699934,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.00282505547310173,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "309843"
+        ],
+        "weight": 0.04803240957341012,
+        "support": 4,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.04879482877298806,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.004248705475294716,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300429",
+          "301105",
+          "307693"
+        ],
+        "weight": 0.03419878142551358,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.034741619225918556,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0008303111293708193,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300390",
+          "307039"
+        ],
+        "weight": 0.028284715193768132,
+        "support": 7,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.028733678927002543,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.01684641085186148,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300429",
+          "301105",
+          "309569"
+        ],
+        "weight": 0.0269577748369883,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.027385676024877,
+        "functional_at_t0_fraction": 0.005208333333333333,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0008303111293708297,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301194",
+          "303899",
+          "306768",
+          "308206"
+        ],
+        "weight": 0.026366384947582068,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.026784898994369085,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.003981955831489964,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300105",
+          "300390",
+          "300408",
+          "307039"
+        ],
+        "weight": 0.025752047650536833,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.026160810311656464,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.010372827884425947,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "306768",
+          "308206"
+        ],
+        "weight": 0.025122771559177765,
+        "support": 3,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.025521545710910747,
+        "functional_at_t0_fraction": 0.0,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.005506907058632501,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301100",
+          "301105",
+          "302297",
+          "303099"
+        ],
+        "weight": 0.024639292790263487,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.025030392675823226,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 0.5019762845849802,
+        "relaxed_queue_travel_delay_fraction_mean": 0.2075007034343561,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "307039",
+          "308471",
+          "308907",
+          "310504"
+        ],
+        "weight": 0.02366520586610874,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02404084405445967,
+        "functional_at_t0_fraction": 0.01171875,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.00750583841413691,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "308786",
+          "309843",
+          "310204"
+        ],
+        "weight": 0.022365778908464043,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022720791272090455,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 0.7480314960629921,
+        "relaxed_queue_travel_delay_fraction_mean": 0.05762329871630189,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300408",
+          "305984"
+        ],
+        "weight": 0.02193556698620026,
+        "support": 5,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02228375058915582,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.002086219999096046,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "304450",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021776006888740006,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.022121657791735878,
+        "functional_at_t0_fraction": 0.015625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.009065707739917505,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301105",
+          "301614",
+          "306844",
+          "308786"
+        ],
+        "weight": 0.021357684826484043,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.021696695696745694,
+        "functional_at_t0_fraction": 0.02734375,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.009637300738499565,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "303899",
+          "306768",
+          "307693",
+          "308206"
+        ],
+        "weight": 0.020960623766352937,
+        "support": 2,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.02129333208010457,
+        "functional_at_t0_fraction": 0.00390625,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.003966340318425291,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "300232",
+          "300648",
+          "303540",
+          "307564"
+        ],
+        "weight": 0.020658923676700837,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.020986843100140533,
+        "functional_at_t0_fraction": 0.01953125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0024424702301767388,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      },
+      {
+        "group": [
+          "301194",
+          "303899",
+          "306768",
+          "307785"
+        ],
+        "weight": 0.018868564650354483,
+        "support": 1,
+        "sample15_fraction": 0.0,
+        "weight_without15": 0.019168065676550584,
+        "functional_at_t0_fraction": 0.0078125,
+        "ds2plus_first_wave_fraction": 1.0,
+        "relaxed_queue_travel_delay_fraction_mean": 0.0023344534081708637,
+        "interpretation": "Witness wait includes irreducible sampled repair duration; high mass-wait is not automatically high dispatch leverage"
+      }
+    ],
+    "top10_group_overlap_without15": 10,
+    "weighted_sample15_share": 0.034919490670468366,
+    "mean_bundle_sample_support": 1.8359375
+  }
+]

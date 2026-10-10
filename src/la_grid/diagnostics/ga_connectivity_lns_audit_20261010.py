@@ -152,6 +152,8 @@ def old_proposal_mechanism(kernel, quality):
                 tb, _ = source_times(ab, kernel.source_flag, kernel.neighbor_offset, kernel.neighbors)
                 scheduled = ds > 0
                 first = (before[5] >= 0) & (before[5] < 57)
+                origin_before = np.where(before[3] >= 0, kernel.origin_index[np.maximum(0, before[3])], -1)
+                origin_after = np.where(after[3] >= 0, kernel.origin_index[np.maximum(0, after[3])], -1)
                 group = [kernel.index[s] for s in event['bundle']]
                 gateway = kernel.index[event['gateway']]
                 rows.append(dict(start=start['start'], outer_seed=d['seed'], method=mode, sample=r,
@@ -160,6 +162,9 @@ def old_proposal_mechanism(kernel, quality):
                     route_bundle=event['bundle'], route_members_already_functional=int((ds[group] <= 1).sum()),
                     changed_crew_assignments=int(((before[3] != after[3]) & scheduled).sum()),
                     changed_first_wave_crews=int(((before[3] != after[3]) & first).sum()),
+                    changed_crew_origins=int(((origin_before != origin_after) & scheduled).sum()),
+                    changed_first_wave_origins=int(((origin_before != origin_after) & first).sum()),
+                    changed_travel_legs=int(((abs(before[2] - after[2]) > 1e-9) & scheduled).sum()),
                     changed_predecessors=int(((before[4] != after[4]) & scheduled).sum()),
                     earlier_completions=int(((fb < fa - 1e-9) & scheduled).sum()),
                     later_completions=int(((fb > fa + 1e-9) & scheduled).sum()),
@@ -180,6 +185,8 @@ def old_proposal_mechanism(kernel, quality):
                 mean64_improving=int(sum(x['mean64_delta_hr'] < -1e-9 for x in selected)),
                 replayed_macro0_count=len(details),
                 mean_changed_firstwave_crews=float(np.mean([x['changed_first_wave_crews'] for x in details])),
+                mean_changed_firstwave_origins=float(np.mean([x['changed_first_wave_origins'] for x in details])),
+                mean_changed_travel_legs=float(np.mean([x['changed_travel_legs'] for x in details])),
                 mean_changed_predecessors=float(np.mean([x['changed_predecessors'] for x in details])),
                 mean_earlier_completions=float(np.mean([x['earlier_completions'] for x in details])),
                 mean_later_completions=float(np.mean([x['later_completions'] for x in details]))))
@@ -234,15 +241,42 @@ def validation_readiness():
     print('VALIDATION_READINESS_ONLY', len(items), 'ordered + unconstrained; zero physical draws', flush=True)
 
 
+def cutset_context():
+    kernel, _, quality, _ = load()
+    context, _, _ = execution_context(kernel.ids)
+    graph = context['graph'].copy()
+    root = '__diagnostic_all_core__'
+    graph.add_edges_from((root, source) for source in sorted(context['sources']))
+    rows = []
+    for target in sorted(set(kernel.ids) - context['sources']):
+        cut = sorted(nx.minimum_node_cut(graph, root, target))
+        reduced = graph.copy()
+        reduced.remove_nodes_from(cut)
+        assert not nx.has_path(reduced, root, target)
+        ids = [kernel.index[s] for s in cut]
+        rows.append(dict(target=target, dependency_mass=float(kernel.station_mass[kernel.index[target]]),
+            minimum_internal_vertex_cut_size=len(cut), one_minimum_cut=cut,
+            source_members=sorted(set(cut) & context['sources']),
+            planning_states_all_cut_members_initially_below_threshold=int((kernel.damage[:, ids] >= 2).all(axis=1).sum())))
+    save(OUT / 'STATIC_SOURCE_CUTSET_CONTEXT.json', dict(status='78_STATIC_SOURCE_TARGET_CUTS_VERIFIED',
+        targets=rows, graph_edges=context['graph'].number_of_edges(), core_sources=14,
+        authority_graph_modified=False, optimizer_unchanged=True,
+        meaning='One minimum internal vertex separator per non-Core target. Not enumeration of every cut, not a time-dependent causal repair bundle.',
+        no_new_physical_samples=True))
+    print('STATIC_CUTSETS_VERIFIED', len(rows), flush=True)
+
+
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--task', choices=('mechanism', 'readiness', 'summary'), required=True)
+    p.add_argument('--task', choices=('mechanism', 'readiness', 'summary', 'cutsets'), required=True)
     p.add_argument('--budget', type=int, default=100000)
     a = p.parse_args()
     if a.task == 'summary':
         results(a.budget)
     elif a.task == 'readiness':
         validation_readiness()
+    elif a.task == 'cutsets':
+        cutset_context()
     else:
         kernel, _, quality, _ = load()
         correctness(kernel, quality)
