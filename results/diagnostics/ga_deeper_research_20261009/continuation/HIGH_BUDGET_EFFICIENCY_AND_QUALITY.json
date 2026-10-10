@@ -1,0 +1,41 @@
+[
+  {
+    "configuration": "ga_k3",
+    "seeds": 10,
+    "mean_loss_hr": 32.99913207973846,
+    "sd_loss_hr": 0.0009425399773619414,
+    "best_loss_hr": 32.99793687926064,
+    "median_loss_hr": 32.99911518992387,
+    "seeds_better_than_ga_k3": 0,
+    "seeds_better_than_formal": 0,
+    "mean_attempts_per_distinct": 9.141165599999999,
+    "paired_mean_wall_ratio_to_ga_k3": 1.0,
+    "paired_mean_attempt_ratio_to_ga_k3": 1.0
+  },
+  {
+    "configuration": "ga_k5",
+    "seeds": 10,
+    "mean_loss_hr": 32.99982529623396,
+    "sd_loss_hr": 0.0015666806503076619,
+    "best_loss_hr": 32.99828590331794,
+    "median_loss_hr": 32.99926445907619,
+    "seeds_better_than_ga_k3": 4,
+    "seeds_better_than_formal": 0,
+    "mean_attempts_per_distinct": 9.257514600000002,
+    "paired_mean_wall_ratio_to_ga_k3": 1.004121155683944,
+    "paired_mean_attempt_ratio_to_ga_k3": 1.018056605870755
+  },
+  {
+    "configuration": "iterated_local",
+    "seeds": 10,
+    "mean_loss_hr": 32.9980308554682,
+    "sd_loss_hr": 0.0014207882323630167,
+    "best_loss_hr": 32.996457712774685,
+    "median_loss_hr": 32.99768765695362,
+    "seeds_better_than_ga_k3": 7,
+    "seeds_better_than_formal": 5,
+    "mean_attempts_per_distinct": 1.0099596000000002,
+    "paired_mean_wall_ratio_to_ga_k3": 0.6537504577705981,
+    "paired_mean_attempt_ratio_to_ga_k3": 0.1110667251913777
+  }
+]

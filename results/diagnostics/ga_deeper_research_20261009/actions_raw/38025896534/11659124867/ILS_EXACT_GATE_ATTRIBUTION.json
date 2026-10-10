@@ -1,0 +1,2453 @@
+{
+  "status": "INDEPENDENT_EVENT_AND_GATE_COMPONENT_PARITY_PASS",
+  "no_new_physical_realizations": true,
+  "no_revised_optimization_objective": true,
+  "no_formal_replacement": true,
+  "kernel_and_model_unchanged": true,
+  "candidate_ils_sha256": "bb3492142cee275f948247a5d289fa54fbc1bba67133de6e1bc598cb571052e3",
+  "frozen_ga_sha256": "8370673fdf0c23009d3c96f3bf2aa8163725bb554056923edd3a161b2251ccab",
+  "sample_ids": [
+    15,
+    55,
+    13,
+    58,
+    50
+  ],
+  "results": [
+    {
+      "realization": 15,
+      "loss_ils_hr": 31.63766816254406,
+      "loss_frozen_ga_hr": 33.72019161660728,
+      "loss_delta_ils_minus_ga_hr": -2.082523454063221,
+      "component_changes_hr": {
+        "L_self": 0.189305441326038,
+        "L_threshold": 0.007410949723733573,
+        "L_source": -2.2792398451129854,
+        "L_total": -2.082523454063221
+      },
+      "component_integrals_by_strategy": {
+        "ILS": {
+          "L_self": 27.17990588410495,
+          "L_threshold": 0.8973737398388884,
+          "L_source": 3.56038853860022,
+          "L_total": 31.63766816254406,
+          "loss_norm_from_e": 31.63766816254406
+        },
+        "FrozenGA": {
+          "L_self": 26.990600442778913,
+          "L_threshold": 0.8899627901151548,
+          "L_source": 5.8396283837132055,
+          "L_total": 33.72019161660728,
+          "loss_norm_from_e": 33.72019161660728
+        }
+      },
+      "event_time_count": 136,
+      "largest_beneficial_intervals": [
+        {
+          "start_hr": 19.16668918708451,
+          "end_hr": 21.04291899051733,
+          "loss_change_contribution_hr": -0.5718192582927225,
+          "mean_effective_service_ILS": 0.3223905511376595,
+          "mean_effective_service_GA": 0.017620177462483136
+        },
+        {
+          "start_hr": 23.136553473535596,
+          "end_hr": 24.650677941610695,
+          "loss_change_contribution_hr": -0.495442621709375,
+          "mean_effective_service_ILS": 0.35200549898008643,
+          "mean_effective_service_GA": 0.024791566337396046
+        },
+        {
+          "start_hr": 22.418409470484047,
+          "end_hr": 23.136553473535596,
+          "loss_change_contribution_hr": -0.23498672344226157,
+          "mean_effective_service_ILS": 0.35200549898008643,
+          "mean_effective_service_GA": 0.024791566337396046
+        },
+        {
+          "start_hr": 21.597853410664623,
+          "end_hr": 22.28256446794304,
+          "loss_change_contribution_hr": -0.22404699777600517,
+          "mean_effective_service_ILS": 0.34483411010517356,
+          "mean_effective_service_GA": 0.017620177462483136
+        },
+        {
+          "start_hr": 24.67189841858088,
+          "end_hr": 25.242654999269355,
+          "loss_change_contribution_hr": -0.18965178712926567,
+          "mean_effective_service_ILS": 0.357072951337808,
+          "mean_effective_service_GA": 0.024791566337396046
+        },
+        {
+          "start_hr": 21.11668105088438,
+          "end_hr": 21.597853410664623,
+          "loss_change_contribution_hr": -0.15349687166117887,
+          "mean_effective_service_ILS": 0.3366261813220627,
+          "mean_effective_service_GA": 0.017620177462483136
+        },
+        {
+          "start_hr": 22.28256446794304,
+          "end_hr": 22.418409470484047,
+          "loss_change_contribution_hr": -0.044450377511299224,
+          "mean_effective_service_ILS": 0.34483411010517356,
+          "mean_effective_service_GA": 0.017620177462483136
+        },
+        {
+          "start_hr": 19.043563693510887,
+          "end_hr": 19.16668918708451,
+          "loss_change_contribution_hr": -0.03765897848117696,
+          "mean_effective_service_ILS": 0.3223905511376595,
+          "mean_effective_service_GA": 0.016532053533682284
+        },
+        {
+          "start_hr": 18.246427827512356,
+          "end_hr": 18.943137641592745,
+          "loss_change_contribution_hr": -0.03399203781279397,
+          "mean_effective_service_ILS": 0.06532143058252032,
+          "mean_effective_service_GA": 0.016532053533682284
+        },
+        {
+          "start_hr": 25.376919061084568,
+          "end_hr": 26.106627862462766,
+          "loss_change_contribution_hr": -0.03253962596089217,
+          "mean_effective_service_ILS": 0.3727569288738887,
+          "mean_effective_service_GA": 0.32816431069601454
+        },
+        {
+          "start_hr": 15.320528258584348,
+          "end_hr": 16.28469052490876,
+          "loss_change_contribution_hr": -0.025756948689640683,
+          "mean_effective_service_ILS": 0.04324638325727904,
+          "mean_effective_service_GA": 0.016532053533682284
+        },
+        {
+          "start_hr": 21.04291899051733,
+          "end_hr": 21.11668105088438,
+          "loss_change_contribution_hr": -0.022480490701117392,
+          "mean_effective_service_ILS": 0.3223905511376595,
+          "mean_effective_service_GA": 0.017620177462483136
+        },
+        {
+          "start_hr": 16.64965814364438,
+          "end_hr": 17.301476626357143,
+          "loss_change_contribution_hr": -0.017412893867123296,
+          "mean_effective_service_ILS": 0.04324638325727904,
+          "mean_effective_service_GA": 0.016532053533682284
+        },
+        {
+          "start_hr": 17.512259599416545,
+          "end_hr": 17.801910262220897,
+          "loss_change_contribution_hr": -0.014131875400007373,
+          "mean_effective_service_ILS": 0.06532143058252032,
+          "mean_effective_service_GA": 0.016532053533682284
+        },
+        {
+          "start_hr": 17.807826159199347,
+          "end_hr": 18.093946914541274,
+          "loss_change_contribution_hr": -0.013959653413875586,
+          "mean_effective_service_ILS": 0.06532143058252032,
+          "mean_effective_service_GA": 0.016532053533682284
+        }
+      ],
+      "largest_harmful_intervals": [
+        {
+          "start_hr": 42.66517842548269,
+          "end_hr": 43.100781868819624,
+          "loss_change_contribution_hr": 0.009438269866443123,
+          "mean_effective_service_ILS": 0.8162872925462458,
+          "mean_effective_service_GA": 0.8379544074665075
+        },
+        {
+          "start_hr": 41.65157849993061,
+          "end_hr": 42.17482429627255,
+          "loss_change_contribution_hr": 0.009278882927771957,
+          "mean_effective_service_ILS": 0.7465887857785584,
+          "mean_effective_service_GA": 0.7643221015407518
+        },
+        {
+          "start_hr": 48.61320217608315,
+          "end_hr": 49.65392872277228,
+          "loss_change_contribution_hr": 0.008312873248265495,
+          "mean_effective_service_ILS": 0.8856909145251779,
+          "mean_effective_service_GA": 0.8936784817441668
+        },
+        {
+          "start_hr": 42.17482429627255,
+          "end_hr": 42.63238871592427,
+          "loss_change_contribution_hr": 0.00811413433522881,
+          "mean_effective_service_ILS": 0.7712891731773174,
+          "mean_effective_service_GA": 0.7890224889395108
+        },
+        {
+          "start_hr": 43.97202306082903,
+          "end_hr": 44.8456041452794,
+          "loss_change_contribution_hr": 0.00761327271258183,
+          "mean_effective_service_ILS": 0.8333555913218785,
+          "mean_effective_service_GA": 0.8420706068460204
+        },
+        {
+          "start_hr": 47.727321351156476,
+          "end_hr": 48.61320217608315,
+          "loss_change_contribution_hr": 0.007387077158488286,
+          "mean_effective_service_ILS": 0.8853398012460312,
+          "mean_effective_service_GA": 0.8936784817441668
+        },
+        {
+          "start_hr": 26.66365464262893,
+          "end_hr": 27.650096335608705,
+          "loss_change_contribution_hr": 0.0066457357518656165,
+          "mean_effective_service_ILS": 0.39785604378155937,
+          "mean_effective_service_GA": 0.40459312292081456
+        },
+        {
+          "start_hr": 41.310524647566595,
+          "end_hr": 41.65157849993061,
+          "loss_change_contribution_hr": 0.006048015655883534,
+          "mean_effective_service_ILS": 0.7465887857785584,
+          "mean_effective_service_GA": 0.7643221015407518
+        },
+        {
+          "start_hr": 45.39695475396563,
+          "end_hr": 46.637581355616305,
+          "loss_change_contribution_hr": 0.005106666447921902,
+          "mean_effective_service_ILS": 0.8618296190483814,
+          "mean_effective_service_GA": 0.8659458184278945
+        },
+        {
+          "start_hr": 53.470786787946224,
+          "end_hr": 54.67832758929299,
+          "loss_change_contribution_hr": 0.004919456101230046,
+          "mean_effective_service_ILS": 0.931550036158256,
+          "mean_effective_service_GA": 0.9356239822276089
+        },
+        {
+          "start_hr": 44.8456041452794,
+          "end_hr": 45.37250587847922,
+          "loss_change_contribution_hr": 0.00459195678453373,
+          "mean_effective_service_ILS": 0.8472005920573785,
+          "mean_effective_service_GA": 0.8559156075815206
+        },
+        {
+          "start_hr": 43.30428168425947,
+          "end_hr": 43.97202306082903,
+          "loss_change_contribution_hr": 0.0030708198230048702,
+          "mean_effective_service_ILS": 0.8333555913218785,
+          "mean_effective_service_GA": 0.8379544074665075
+        },
+        {
+          "start_hr": 39.98733705837589,
+          "end_hr": 40.675219071499434,
+          "loss_change_contribution_hr": 0.00273135875910107,
+          "mean_effective_service_ILS": 0.7398628126842383,
+          "mean_effective_service_GA": 0.7438334918225087
+        },
+        {
+          "start_hr": 29.37241510829,
+          "end_hr": 29.845872887747603,
+          "loss_change_contribution_hr": 0.0026380693855945023,
+          "mean_effective_service_ILS": 0.4673427047863341,
+          "mean_effective_service_GA": 0.4729146258742434
+        },
+        {
+          "start_hr": 50.05449615986144,
+          "end_hr": 50.72438787083748,
+          "loss_change_contribution_hr": 0.0020362072541356114,
+          "mean_effective_service_ILS": 0.8940295950233135,
+          "mean_effective_service_GA": 0.8970692016056503
+        }
+      ],
+      "largest_beneficial_station_contributions": [
+        {
+          "station": "304073",
+          "mass_weight": 228072.6191047347,
+          "service_loss_change_contribution_hr": -0.27708514566742287,
+          "recovered_service_improvement_hr": 0.27708514566742287
+        },
+        {
+          "station": "300558",
+          "mass_weight": 271370.3410449306,
+          "service_loss_change_contribution_hr": -0.18554518720765692,
+          "recovered_service_improvement_hr": 0.18554518720765692
+        },
+        {
+          "station": "300232",
+          "mass_weight": 242611.84811629835,
+          "service_loss_change_contribution_hr": -0.1658820216100219,
+          "recovered_service_improvement_hr": 0.1658820216100219
+        },
+        {
+          "station": "303169",
+          "mass_weight": 232098.41450316424,
+          "service_loss_change_contribution_hr": -0.15869362732775485,
+          "recovered_service_improvement_hr": 0.15869362732775485
+        },
+        {
+          "station": "300648",
+          "mass_weight": 206798.65106198395,
+          "service_loss_change_contribution_hr": -0.14139531342238226,
+          "recovered_service_improvement_hr": 0.14139531342238226
+        },
+        {
+          "station": "306623",
+          "mass_weight": 135493.40546170034,
+          "service_loss_change_contribution_hr": -0.13289727913997043,
+          "recovered_service_improvement_hr": 0.13289727913997043
+        },
+        {
+          "station": "307564",
+          "mass_weight": 169534.39079026898,
+          "service_loss_change_contribution_hr": -0.11591646366434835,
+          "recovered_service_improvement_hr": 0.11591646366434835
+        },
+        {
+          "station": "302187",
+          "mass_weight": 157370.69767311102,
+          "service_loss_change_contribution_hr": -0.10759973049494911,
+          "recovered_service_improvement_hr": 0.10759973049494911
+        },
+        {
+          "station": "303540",
+          "mass_weight": 141825.0482706742,
+          "service_loss_change_contribution_hr": -0.09697063809843637,
+          "recovered_service_improvement_hr": 0.09697063809843637
+        },
+        {
+          "station": "301517",
+          "mass_weight": 130622.05291721827,
+          "service_loss_change_contribution_hr": -0.08931076686070473,
+          "recovered_service_improvement_hr": 0.08931076686070473
+        },
+        {
+          "station": "306224",
+          "mass_weight": 103153.6240669351,
+          "service_loss_change_contribution_hr": -0.0705296622134502,
+          "recovered_service_improvement_hr": 0.0705296622134502
+        },
+        {
+          "station": "300627",
+          "mass_weight": 64650.49676364102,
+          "service_loss_change_contribution_hr": -0.06341175856978519,
+          "recovered_service_improvement_hr": 0.06341175856978519
+        },
+        {
+          "station": "309758",
+          "mass_weight": 90853.97463357005,
+          "service_loss_change_contribution_hr": -0.06211997105886519,
+          "recovered_service_improvement_hr": 0.06211997105886519
+        },
+        {
+          "station": "306369",
+          "mass_weight": 129067.65425075544,
+          "service_loss_change_contribution_hr": -0.05873583927969028,
+          "recovered_service_improvement_hr": 0.05873583927969028
+        },
+        {
+          "station": "302798",
+          "mass_weight": 82084.25061776134,
+          "service_loss_change_contribution_hr": -0.056123810689949635,
+          "recovered_service_improvement_hr": 0.056123810689949635
+        },
+        {
+          "station": "307785",
+          "mass_weight": 81280.40955979226,
+          "service_loss_change_contribution_hr": -0.05557419705490106,
+          "recovered_service_improvement_hr": 0.05557419705490106
+        },
+        {
+          "station": "302164",
+          "mass_weight": 80858.03303427379,
+          "service_loss_change_contribution_hr": -0.055285403772637146,
+          "recovered_service_improvement_hr": 0.055285403772637146
+        },
+        {
+          "station": "306844",
+          "mass_weight": 65740.6214512398,
+          "service_loss_change_contribution_hr": -0.04494911222556337,
+          "recovered_service_improvement_hr": 0.04494911222556337
+        },
+        {
+          "station": "301637",
+          "mass_weight": 60342.80645355259,
+          "service_loss_change_contribution_hr": -0.041258441423434905,
+          "recovered_service_improvement_hr": 0.041258441423434905
+        },
+        {
+          "station": "309156",
+          "mass_weight": 49905.63212456393,
+          "service_loss_change_contribution_hr": -0.03412218822297732,
+          "recovered_service_improvement_hr": 0.03412218822297732
+        }
+      ],
+      "largest_harmful_station_contributions": [
+        {
+          "station": "310204",
+          "mass_weight": 41695.26774923387,
+          "service_loss_change_contribution_hr": 0.024872256194283182,
+          "recovered_service_improvement_hr": -0.024872256194283182
+        },
+        {
+          "station": "305885",
+          "mass_weight": 119084.2297416395,
+          "service_loss_change_contribution_hr": 0.023514132787889868,
+          "recovered_service_improvement_hr": -0.023514132787889868
+        },
+        {
+          "station": "307274",
+          "mass_weight": 75215.31528130754,
+          "service_loss_change_contribution_hr": 0.020104119509102944,
+          "recovered_service_improvement_hr": -0.020104119509102944
+        },
+        {
+          "station": "309663",
+          "mass_weight": 75602.83018731697,
+          "service_loss_change_contribution_hr": 0.016065363317256887,
+          "recovered_service_improvement_hr": -0.016065363317256887
+        },
+        {
+          "station": "306489",
+          "mass_weight": 37319.61223074149,
+          "service_loss_change_contribution_hr": 0.010971969399059265,
+          "recovered_service_improvement_hr": -0.010971969399059265
+        },
+        {
+          "station": "306279",
+          "mass_weight": 30742.036219977424,
+          "service_loss_change_contribution_hr": 0.006326436556453452,
+          "recovered_service_improvement_hr": -0.006326436556453452
+        },
+        {
+          "station": "301214",
+          "mass_weight": 50517.94512579299,
+          "service_loss_change_contribution_hr": 0.005979842023591226,
+          "recovered_service_improvement_hr": -0.005979842023591226
+        },
+        {
+          "station": "308540",
+          "mass_weight": 36936.52166460261,
+          "service_loss_change_contribution_hr": 0.004919456101230046,
+          "recovered_service_improvement_hr": -0.004919456101230046
+        },
+        {
+          "station": "302171",
+          "mass_weight": 35665.87661020749,
+          "service_loss_change_contribution_hr": 0.002643091993149004,
+          "recovered_service_improvement_hr": -0.002643091993149004
+        },
+        {
+          "station": "303371",
+          "mass_weight": 142199.12737838132,
+          "service_loss_change_contribution_hr": 0.0012445393354020375,
+          "recovered_service_improvement_hr": -0.0012445393354020375
+        },
+        {
+          "station": "308907",
+          "mass_weight": 114219.92642284495,
+          "service_loss_change_contribution_hr": 0.0003080066158974147,
+          "recovered_service_improvement_hr": -0.0003080066158974147
+        },
+        {
+          "station": "300105",
+          "mass_weight": 125531.30432479398,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300390",
+          "mass_weight": 46005.931707293865,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300408",
+          "mass_weight": 127746.05651996302,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300429",
+          "mass_weight": 277159.3062871533,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300493",
+          "mass_weight": 204308.1001126351,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300829",
+          "mass_weight": 59165.53034643048,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301105",
+          "mass_weight": 143966.96874120558,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301194",
+          "mass_weight": 223946.60575936965,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301541",
+          "mass_weight": 132741.33749205753,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        }
+      ]
+    },
+    {
+      "realization": 55,
+      "loss_ils_hr": 34.258209115883844,
+      "loss_frozen_ga_hr": 34.934902576203605,
+      "loss_delta_ils_minus_ga_hr": -0.6766934603197612,
+      "component_changes_hr": {
+        "L_self": 0.07355583392227416,
+        "L_threshold": 0.003052279497407495,
+        "L_source": -0.7533015737394377,
+        "L_total": -0.6766934603197612
+      },
+      "component_integrals_by_strategy": {
+        "ILS": {
+          "L_self": 31.470186312945778,
+          "L_threshold": 1.0190191212571034,
+          "L_source": 1.7690036816809682,
+          "L_total": 34.258209115883844,
+          "loss_norm_from_e": 34.258209115883844
+        },
+        "FrozenGA": {
+          "L_self": 31.396630479023504,
+          "L_threshold": 1.0159668417596959,
+          "L_source": 2.522305255420406,
+          "L_total": 34.934902576203605,
+          "loss_norm_from_e": 34.934902576203605
+        }
+      },
+      "event_time_count": 136,
+      "largest_beneficial_intervals": [
+        {
+          "start_hr": 19.468537193443357,
+          "end_hr": 20.529933020575555,
+          "loss_change_contribution_hr": -0.08784959966699837,
+          "mean_effective_service_ILS": 0.17615184565471673,
+          "mean_effective_service_GA": 0.09338385522049712
+        },
+        {
+          "start_hr": 18.444338580644967,
+          "end_hr": 19.468537193443357,
+          "loss_change_contribution_hr": -0.07746762507100974,
+          "mean_effective_service_ILS": 0.16902116238238352,
+          "mean_effective_service_GA": 0.09338385522049712
+        },
+        {
+          "start_hr": 16.380917715498743,
+          "end_hr": 17.32536766224512,
+          "loss_change_contribution_hr": -0.06120831186680167,
+          "mean_effective_service_ILS": 0.15819227844892106,
+          "mean_effective_service_GA": 0.09338385522049712
+        },
+        {
+          "start_hr": 20.529933020575555,
+          "end_hr": 21.278347706569694,
+          "loss_change_contribution_hr": -0.058344186923891365,
+          "mean_effective_service_ILS": 0.17615184565471673,
+          "mean_effective_service_GA": 0.09819481459192925
+        },
+        {
+          "start_hr": 14.111377027920927,
+          "end_hr": 15.319547328360649,
+          "loss_change_contribution_hr": -0.05653025776571646,
+          "mean_effective_service_ILS": 0.12879641041435513,
+          "mean_effective_service_GA": 0.08200643573517132
+        },
+        {
+          "start_hr": 17.440450680025332,
+          "end_hr": 18.176973294206874,
+          "loss_change_contribution_hr": -0.055708587200524816,
+          "mean_effective_service_ILS": 0.16902116238238352,
+          "mean_effective_service_GA": 0.09338385522049712
+        },
+        {
+          "start_hr": 21.604128898375357,
+          "end_hr": 22.31825686582053,
+          "loss_change_contribution_hr": -0.049746933940893336,
+          "mean_effective_service_ILS": 0.17615184565471673,
+          "mean_effective_service_GA": 0.10649075379345631
+        },
+        {
+          "start_hr": 15.421323017104106,
+          "end_hr": 16.184031672232848,
+          "loss_change_contribution_hr": -0.04942994532156554,
+          "mean_effective_service_ILS": 0.14681485896359522,
+          "mean_effective_service_GA": 0.08200643573517132
+        },
+        {
+          "start_hr": 12.590750815788477,
+          "end_hr": 13.567789371146704,
+          "loss_change_contribution_hr": -0.030397251540256336,
+          "mean_effective_service_ILS": 0.09089228826003312,
+          "mean_effective_service_GA": 0.05978066899633752
+        },
+        {
+          "start_hr": 21.278347706569694,
+          "end_hr": 21.588769835124893,
+          "loss_change_contribution_hr": -0.02419958751835428,
+          "mean_effective_service_ILS": 0.17615184565471673,
+          "mean_effective_service_GA": 0.09819481459192925
+        },
+        {
+          "start_hr": 13.651485653055346,
+          "end_hr": 14.111377027920927,
+          "loss_change_contribution_hr": -0.02151830578513556,
+          "mean_effective_service_ILS": 0.11877559155641049,
+          "mean_effective_service_GA": 0.07198561687722667
+        },
+        {
+          "start_hr": 18.176973294206874,
+          "end_hr": 18.444338580644967,
+          "loss_change_contribution_hr": -0.020222790294743744,
+          "mean_effective_service_ILS": 0.16902116238238352,
+          "mean_effective_service_GA": 0.09338385522049712
+        },
+        {
+          "start_hr": 10.840196690889298,
+          "end_hr": 12.410079368243137,
+          "loss_change_contribution_hr": -0.018193481666108142,
+          "mean_effective_service_ILS": 0.06054085597152073,
+          "mean_effective_service_GA": 0.048951785062875064
+        },
+        {
+          "start_hr": 22.31825686582053,
+          "end_hr": 22.55906024888387,
+          "loss_change_contribution_hr": -0.01793312188049879,
+          "mean_effective_service_ILS": 0.18096280502614884,
+          "mean_effective_service_GA": 0.10649075379345631
+        },
+        {
+          "start_hr": 9.464168520962195,
+          "end_hr": 10.58037283582909,
+          "loss_change_contribution_hr": -0.0129357709535287,
+          "mean_effective_service_ILS": 0.044282690641470154,
+          "mean_effective_service_GA": 0.032693619732824496
+        }
+      ],
+      "largest_harmful_intervals": [
+        {
+          "start_hr": 69.80714695117962,
+          "end_hr": 70.8132567699054,
+          "loss_change_contribution_hr": 0.008389628324391323,
+          "mean_effective_service_ILS": 0.9794689725343966,
+          "mean_effective_service_GA": 0.9878076530325322
+        },
+        {
+          "start_hr": 23.01202292749455,
+          "end_hr": 23.854631556093864,
+          "loss_change_contribution_hr": 0.006990229953542015,
+          "mean_effective_service_ILS": 0.18096280502614884,
+          "mean_effective_service_GA": 0.1892587442276759
+        },
+        {
+          "start_hr": 48.14831970948512,
+          "end_hr": 49.28560017190348,
+          "loss_change_contribution_hr": 0.0061920387791197014,
+          "mean_effective_service_ILS": 0.8605840344311372,
+          "mean_effective_service_GA": 0.8660286358146453
+        },
+        {
+          "start_hr": 49.28560017190348,
+          "end_hr": 50.03201455460447,
+          "loss_change_contribution_hr": 0.004063928780724135,
+          "mean_effective_service_ILS": 0.870499955211642,
+          "mean_effective_service_GA": 0.8759445565951499
+        },
+        {
+          "start_hr": 78.49077673598792,
+          "end_hr": 79.29821570439458,
+          "loss_change_contribution_hr": 0.0031763027341096253,
+          "mean_effective_service_ILS": 0.9960662008419316,
+          "mean_effective_service_GA": 1.0
+        },
+        {
+          "start_hr": 22.660697294422157,
+          "end_hr": 23.01202292749455,
+          "loss_change_contribution_hr": 0.002914576091906569,
+          "mean_effective_service_ILS": 0.18096280502614884,
+          "mean_effective_service_GA": 0.1892587442276759
+        },
+        {
+          "start_hr": 50.15322345595201,
+          "end_hr": 50.61302342750981,
+          "loss_change_contribution_hr": 0.0025034275612805684,
+          "mean_effective_service_ILS": 0.8760043406997667,
+          "mean_effective_service_GA": 0.8814489420832748
+        },
+        {
+          "start_hr": 44.96121071759119,
+          "end_hr": 46.64914661984534,
+          "loss_change_contribution_hr": 0.0022709844989143536,
+          "mean_effective_service_ILS": 0.839002253223288,
+          "mean_effective_service_GA": 0.8403476742762329
+        },
+        {
+          "start_hr": 43.32675598132846,
+          "end_hr": 44.96121071759119,
+          "loss_change_contribution_hr": 0.0021990298122534615,
+          "mean_effective_service_ILS": 0.8305614225754768,
+          "mean_effective_service_GA": 0.8319068436284217
+        },
+        {
+          "start_hr": 77.12350764156268,
+          "end_hr": 77.40075992401614,
+          "loss_change_contribution_hr": 0.0015434545064611188,
+          "mean_effective_service_ILS": 0.9904992331228464,
+          "mean_effective_service_GA": 0.9960662008419316
+        },
+        {
+          "start_hr": 50.03201455460447,
+          "end_hr": 50.15322345595201,
+          "loss_change_contribution_hr": 0.0013271146695792153,
+          "mean_effective_service_ILS": 0.870499955211642,
+          "mean_effective_service_GA": 0.8814489420832748
+        },
+        {
+          "start_hr": 46.96178772787025,
+          "end_hr": 47.93635990557838,
+          "loss_change_contribution_hr": 0.001311209925502917,
+          "mean_effective_service_ILS": 0.8411900516130005,
+          "mean_effective_service_GA": 0.8425354726659454
+        },
+        {
+          "start_hr": 42.44666961568171,
+          "end_hr": 43.3231680037124,
+          "loss_change_contribution_hr": 0.0011792593841288,
+          "mean_effective_service_ILS": 0.7965829118834632,
+          "mean_effective_service_GA": 0.7979283329364083
+        },
+        {
+          "start_hr": 40.77464854726193,
+          "end_hr": 41.63509190917593,
+          "loss_change_contribution_hr": 0.0011576586139858162,
+          "mean_effective_service_ILS": 0.7486384904828992,
+          "mean_effective_service_GA": 0.7499839115358441
+        },
+        {
+          "start_hr": 46.64914661984534,
+          "end_hr": 46.96178772787025,
+          "loss_change_contribution_hr": 0.0011046296414475942,
+          "mean_effective_service_ILS": 0.839002253223288,
+          "mean_effective_service_GA": 0.8425354726659454
+        }
+      ],
+      "largest_beneficial_station_contributions": [
+        {
+          "station": "300648",
+          "mass_weight": 206798.65106198395,
+          "service_loss_change_contribution_hr": -0.20607474401648207,
+          "recovered_service_improvement_hr": 0.20607474401648207
+        },
+        {
+          "station": "310504",
+          "mass_weight": 160962.00215246298,
+          "service_loss_change_contribution_hr": -0.17958658145209494,
+          "recovered_service_improvement_hr": 0.17958658145209494
+        },
+        {
+          "station": "308269",
+          "mass_weight": 90939.12730328669,
+          "service_loss_change_contribution_hr": -0.13305192637456473,
+          "recovered_service_improvement_hr": 0.13305192637456473
+        },
+        {
+          "station": "308907",
+          "mass_weight": 114219.92642284495,
+          "service_loss_change_contribution_hr": -0.12743607712184926,
+          "recovered_service_improvement_hr": 0.12743607712184926
+        },
+        {
+          "station": "302798",
+          "mass_weight": 82084.25061776134,
+          "service_loss_change_contribution_hr": -0.06646350095844504,
+          "recovered_service_improvement_hr": 0.06646350095844504
+        },
+        {
+          "station": "307785",
+          "mass_weight": 81280.40955979226,
+          "service_loss_change_contribution_hr": -0.06581263199729007,
+          "recovered_service_improvement_hr": 0.06581263199729007
+        },
+        {
+          "station": "301637",
+          "mass_weight": 60342.80645355259,
+          "service_loss_change_contribution_hr": -0.053426532426494894,
+          "recovered_service_improvement_hr": 0.053426532426494894
+        },
+        {
+          "station": "301745",
+          "mass_weight": 37165.308649017825,
+          "service_loss_change_contribution_hr": -0.03898685433560816,
+          "recovered_service_improvement_hr": 0.03898685433560816
+        },
+        {
+          "station": "307373",
+          "mass_weight": 14133.439049509232,
+          "service_loss_change_contribution_hr": -0.020678462039372757,
+          "recovered_service_improvement_hr": 0.020678462039372757
+        },
+        {
+          "station": "308367",
+          "mass_weight": 25787.564783387297,
+          "service_loss_change_contribution_hr": -0.002497985354930643,
+          "recovered_service_improvement_hr": 0.002497985354930643
+        },
+        {
+          "station": "302164",
+          "mass_weight": 80858.03303427379,
+          "service_loss_change_contribution_hr": -0.002130742829716009,
+          "recovered_service_improvement_hr": 0.002130742829716009
+        },
+        {
+          "station": "306694",
+          "mass_weight": 82473.7760352835,
+          "service_loss_change_contribution_hr": -0.001808811094609255,
+          "recovered_service_improvement_hr": 0.001808811094609255
+        },
+        {
+          "station": "309553",
+          "mass_weight": 10458.394782930944,
+          "service_loss_change_contribution_hr": -0.0013659377140796097,
+          "recovered_service_improvement_hr": 0.0013659377140796097
+        },
+        {
+          "station": "307564",
+          "mass_weight": 169534.39079026898,
+          "service_loss_change_contribution_hr": -0.0010576813366524117,
+          "recovered_service_improvement_hr": 0.0010576813366524117
+        },
+        {
+          "station": "301543",
+          "mass_weight": 12597.237721313557,
+          "service_loss_change_contribution_hr": -0.0006598349420403551,
+          "recovered_service_improvement_hr": 0.0006598349420403551
+        },
+        {
+          "station": "306450",
+          "mass_weight": 24403.27010359583,
+          "service_loss_change_contribution_hr": -0.0005976257400777312,
+          "recovered_service_improvement_hr": 0.0005976257400777312
+        },
+        {
+          "station": "303540",
+          "mass_weight": 141825.0482706742,
+          "service_loss_change_contribution_hr": -0.0003077943319820442,
+          "recovered_service_improvement_hr": 0.0003077943319820442
+        },
+        {
+          "station": "300105",
+          "mass_weight": 125531.30432479398,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300232",
+          "mass_weight": 242611.84811629835,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300390",
+          "mass_weight": 46005.931707293865,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        }
+      ],
+      "largest_harmful_station_contributions": [
+        {
+          "station": "303303",
+          "mass_weight": 98180.31441818397,
+          "service_loss_change_contribution_hr": 0.05447330707750872,
+          "recovered_service_improvement_hr": -0.05447330707750872
+        },
+        {
+          "station": "308806",
+          "mass_weight": 49363.59822480636,
+          "service_loss_change_contribution_hr": 0.05356602948446863,
+          "recovered_service_improvement_hr": -0.05356602948446863
+        },
+        {
+          "station": "300627",
+          "mass_weight": 64650.49676364102,
+          "service_loss_change_contribution_hr": 0.041479552113344906,
+          "recovered_service_improvement_hr": -0.041479552113344906
+        },
+        {
+          "station": "310204",
+          "mass_weight": 41695.26774923387,
+          "service_loss_change_contribution_hr": 0.021625141127152223,
+          "recovered_service_improvement_hr": -0.021625141127152223
+        },
+        {
+          "station": "307274",
+          "mass_weight": 75215.31528130754,
+          "service_loss_change_contribution_hr": 0.01977797553560065,
+          "recovered_service_improvement_hr": -0.01977797553560065
+        },
+        {
+          "station": "306365",
+          "mass_weight": 43618.66898219545,
+          "service_loss_change_contribution_hr": 0.008603553362436827,
+          "recovered_service_improvement_hr": -0.008603553362436827
+        },
+        {
+          "station": "309663",
+          "mass_weight": 75602.83018731697,
+          "service_loss_change_contribution_hr": 0.008389628324391323,
+          "recovered_service_improvement_hr": -0.008389628324391323
+        },
+        {
+          "station": "308540",
+          "mass_weight": 36936.52166460261,
+          "service_loss_change_contribution_hr": 0.005061973270171683,
+          "recovered_service_improvement_hr": -0.005061973270171683
+        },
+        {
+          "station": "302171",
+          "mass_weight": 35665.87661020749,
+          "service_loss_change_contribution_hr": 0.0031763027341096253,
+          "recovered_service_improvement_hr": -0.0031763027341096253
+        },
+        {
+          "station": "306489",
+          "mass_weight": 37319.61223074149,
+          "service_loss_change_contribution_hr": 0.0019081853009913065,
+          "recovered_service_improvement_hr": -0.0019081853009913065
+        },
+        {
+          "station": "309853",
+          "mass_weight": 19730.999078398774,
+          "service_loss_change_contribution_hr": 0.001779610633256429,
+          "recovered_service_improvement_hr": -0.001779610633256429
+        },
+        {
+          "station": "303371",
+          "mass_weight": 142199.12737838132,
+          "service_loss_change_contribution_hr": 0.0012445393354020375,
+          "recovered_service_improvement_hr": -0.0012445393354020375
+        },
+        {
+          "station": "306279",
+          "mass_weight": 30742.036219977424,
+          "service_loss_change_contribution_hr": 0.0009400848207565914,
+          "recovered_service_improvement_hr": -0.0009400848207565914
+        },
+        {
+          "station": "301614",
+          "mass_weight": 19835.72223189311,
+          "service_loss_change_contribution_hr": 0.0006839957126948411,
+          "recovered_service_improvement_hr": -0.0006839957126948411
+        },
+        {
+          "station": "307832",
+          "mass_weight": 25116.199590094824,
+          "service_loss_change_contribution_hr": 0.0006761036992284583,
+          "recovered_service_improvement_hr": -0.0006761036992284583
+        },
+        {
+          "station": "309156",
+          "mass_weight": 49905.63212456393,
+          "service_loss_change_contribution_hr": 0.0006671805176089256,
+          "recovered_service_improvement_hr": -0.0006671805176089256
+        },
+        {
+          "station": "308581",
+          "mass_weight": 93495.38209713175,
+          "service_loss_change_contribution_hr": 0.0005617736458435937,
+          "recovered_service_improvement_hr": -0.0005617736458435937
+        },
+        {
+          "station": "306091",
+          "mass_weight": 13965.577707562508,
+          "service_loss_change_contribution_hr": 0.00029909524000810327,
+          "recovered_service_improvement_hr": -0.00029909524000810327
+        },
+        {
+          "station": "307557",
+          "mass_weight": 5695.0179871645305,
+          "service_loss_change_contribution_hr": 8.299363347879372e-05,
+          "recovered_service_improvement_hr": -8.299363347879372e-05
+        },
+        {
+          "station": "301108",
+          "mass_weight": 11331.143906252915,
+          "service_loss_change_contribution_hr": 7.399011168486893e-05,
+          "recovered_service_improvement_hr": -7.399011168486893e-05
+        }
+      ]
+    },
+    {
+      "realization": 13,
+      "loss_ils_hr": 29.92535046180974,
+      "loss_frozen_ga_hr": 30.435630293841196,
+      "loss_delta_ils_minus_ga_hr": -0.5102798320314577,
+      "component_changes_hr": {
+        "L_self": 0.011659182319476713,
+        "L_threshold": -8.93244366182433e-05,
+        "L_source": -0.5218496899143137,
+        "L_total": -0.5102798320314577
+      },
+      "component_integrals_by_strategy": {
+        "ILS": {
+          "L_self": 26.77538050142514,
+          "L_threshold": 0.877358833409282,
+          "L_source": 2.2726111269753133,
+          "L_total": 29.92535046180974,
+          "loss_norm_from_e": 29.92535046180974
+        },
+        "FrozenGA": {
+          "L_self": 26.763721319105663,
+          "L_threshold": 0.8774481578459002,
+          "L_source": 2.794460816889627,
+          "L_total": 30.435630293841196,
+          "loss_norm_from_e": 30.435630293841196
+        }
+      },
+      "event_time_count": 135,
+      "largest_beneficial_intervals": [
+        {
+          "start_hr": 13.630892747144612,
+          "end_hr": 14.621068776929256,
+          "loss_change_contribution_hr": -0.10498709613410771,
+          "mean_effective_service_ILS": 0.1163408743246558,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 15.14219257250892,
+          "end_hr": 15.772557926841591,
+          "loss_change_contribution_hr": -0.10154290978031397,
+          "mean_effective_service_ILS": 0.17139795899609195,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 20.397026557420418,
+          "end_hr": 20.892810548833666,
+          "loss_change_contribution_hr": -0.07031133989546114,
+          "mean_effective_service_ILS": 0.33316874976764677,
+          "mean_effective_service_GA": 0.19135025398476269
+        },
+        {
+          "start_hr": 14.621068776929256,
+          "end_hr": 15.14219257250892,
+          "loss_change_contribution_hr": -0.068594596262154,
+          "mean_effective_service_ILS": 0.14194037262214676,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 12.352534980898039,
+          "end_hr": 13.093332925200457,
+          "loss_change_contribution_hr": -0.05908091194494227,
+          "mean_effective_service_ILS": 0.09006522742197527,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 11.422036069731133,
+          "end_hr": 12.049626036270132,
+          "loss_change_contribution_hr": -0.033094660643544854,
+          "mean_effective_service_ILS": 0.06304508978401341,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 13.093332925200457,
+          "end_hr": 13.332250766966085,
+          "loss_change_contribution_hr": -0.021185174716298508,
+          "mean_effective_service_ILS": 0.09898353512963581,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 13.38498067049185,
+          "end_hr": 13.618237272825285,
+          "loss_change_contribution_hr": -0.020683184803801886,
+          "mean_effective_service_ILS": 0.09898353512963581,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 12.049626036270132,
+          "end_hr": 12.332858456078075,
+          "loss_change_contribution_hr": -0.018158130714400443,
+          "mean_effective_service_ILS": 0.07442250926933922,
+          "mean_effective_service_GA": 0.010312155212013134
+        },
+        {
+          "start_hr": 20.27944514685058,
+          "end_hr": 20.388940585353524,
+          "loss_change_contribution_hr": -0.015528478383574695,
+          "mean_effective_service_ILS": 0.327664364279522,
+          "mean_effective_service_GA": 0.1858458684966379
+        },
+        {
+          "start_hr": 18.04755487585673,
+          "end_hr": 18.944270871010193,
+          "loss_change_contribution_hr": -0.01301423859649228,
+          "mean_effective_service_ILS": 0.1903288799713012,
+          "mean_effective_service_GA": 0.1758156576502641
+        },
+        {
+          "start_hr": 18.944270871010193,
+          "end_hr": 19.504078689207716,
+          "loss_change_contribution_hr": -0.008124615322555392,
+          "mean_effective_service_ILS": 0.1903288799713012,
+          "mean_effective_service_GA": 0.1758156576502641
+        },
+        {
+          "start_hr": 21.43968234328804,
+          "end_hr": 22.518729246535123,
+          "loss_change_contribution_hr": -0.007181664417396658,
+          "mean_effective_service_ILS": 0.34740437995205,
+          "mean_effective_service_GA": 0.34074881716253125
+        },
+        {
+          "start_hr": 16.10609051780013,
+          "end_hr": 16.84858632499079,
+          "loss_change_contribution_hr": -0.006638951350317827,
+          "mean_effective_service_ILS": 0.17812393209041205,
+          "mean_effective_service_GA": 0.16918253297943628
+        },
+        {
+          "start_hr": 45.30633114009645,
+          "end_hr": 46.88453643253425,
+          "loss_change_contribution_hr": -0.006564760595174856,
+          "mean_effective_service_ILS": 0.8708549082899368,
+          "mean_effective_service_GA": 0.8666952716275642
+        }
+      ],
+      "largest_harmful_intervals": [
+        {
+          "start_hr": 32.05447429492173,
+          "end_hr": 33.85306739169637,
+          "loss_change_contribution_hr": 0.01947675588849938,
+          "mean_effective_service_ILS": 0.640855451908878,
+          "mean_effective_service_GA": 0.6516843358423405
+        },
+        {
+          "start_hr": 59.61744866315789,
+          "end_hr": 63.795454320766154,
+          "loss_change_contribution_hr": 0.019213879870560138,
+          "mean_effective_service_ILS": 0.9879794806214358,
+          "mean_effective_service_GA": 0.9925782967660648
+        },
+        {
+          "start_hr": 34.51789961018032,
+          "end_hr": 35.97399574449875,
+          "loss_change_contribution_hr": 0.015767896034497637,
+          "mean_effective_service_ILS": 0.6524320564705517,
+          "mean_effective_service_GA": 0.6632609404040142
+        },
+        {
+          "start_hr": 36.341598996195515,
+          "end_hr": 37.225577531878486,
+          "loss_change_contribution_hr": 0.013173781843421068,
+          "mean_effective_service_ILS": 0.6932810065570636,
+          "mean_effective_service_GA": 0.7081838365598789
+        },
+        {
+          "start_hr": 43.74058538927121,
+          "end_hr": 45.17684121926647,
+          "loss_change_contribution_hr": 0.011915091043479474,
+          "mean_effective_service_ILS": 0.858399332426037,
+          "mean_effective_service_GA": 0.8666952716275642
+        },
+        {
+          "start_hr": 47.59451282448782,
+          "end_hr": 49.16548877552676,
+          "loss_change_contribution_hr": 0.008553337836484513,
+          "mean_effective_service_ILS": 0.8985353743926685,
+          "mean_effective_service_GA": 0.9039799757761766
+        },
+        {
+          "start_hr": 33.85306739169637,
+          "end_hr": 34.51789961018032,
+          "loss_change_contribution_hr": 0.0071993909291890685,
+          "mean_effective_service_ILS": 0.65025580861295,
+          "mean_effective_service_GA": 0.6610846925464124
+        },
+        {
+          "start_hr": 50.08003488117181,
+          "end_hr": 50.859468484004715,
+          "loss_change_contribution_hr": 0.004243705272336702,
+          "mean_effective_service_ILS": 0.9402129718943184,
+          "mean_effective_service_GA": 0.9456575732778265
+        },
+        {
+          "start_hr": 36.13422382505015,
+          "end_hr": 36.341598996195515,
+          "loss_change_contribution_hr": 0.0030904769223841443,
+          "mean_effective_service_ILS": 0.6791911431541001,
+          "mean_effective_service_GA": 0.6940939731569156
+        },
+        {
+          "start_hr": 58.99143692320737,
+          "end_hr": 59.61744866315789,
+          "loss_change_contribution_hr": 0.002878912896411735,
+          "mean_effective_service_ILS": 0.9859456598769764,
+          "mean_effective_service_GA": 0.9905444760216053
+        },
+        {
+          "start_hr": 50.859468484004715,
+          "end_hr": 51.402784859266035,
+          "loss_change_contribution_hr": 0.0024416733204732826,
+          "mean_effective_service_ILS": 0.9411635557373117,
+          "mean_effective_service_GA": 0.9456575732778265
+        },
+        {
+          "start_hr": 31.869126005495065,
+          "end_hr": 32.05447429492173,
+          "loss_change_contribution_hr": 0.0020071151134671843,
+          "mean_effective_service_ILS": 0.640855451908878,
+          "mean_effective_service_GA": 0.6516843358423405
+        },
+        {
+          "start_hr": 35.97399574449875,
+          "end_hr": 36.13422382505015,
+          "loss_change_contribution_hr": 0.0017350912871725685,
+          "mean_effective_service_ILS": 0.6791911431541001,
+          "mean_effective_service_GA": 0.6900200270875625
+        },
+        {
+          "start_hr": 31.43488239291139,
+          "end_hr": 31.616355908397473,
+          "loss_change_contribution_hr": 0.0014489973963478368,
+          "mean_effective_service_ILS": 0.588414257478892,
+          "mean_effective_service_GA": 0.5963988793255932
+        },
+        {
+          "start_hr": 53.08818529582523,
+          "end_hr": 53.21934894820335,
+          "loss_change_contribution_hr": 0.0010937317901496633,
+          "mean_effective_service_ILS": 0.9537795459957326,
+          "mean_effective_service_GA": 0.9621182264938681
+        }
+      ],
+      "largest_beneficial_station_contributions": [
+        {
+          "station": "309042",
+          "mass_weight": 227561.6774909241,
+          "service_loss_change_contribution_hr": -0.11028702926134941,
+          "recovered_service_improvement_hr": 0.11028702926134941
+        },
+        {
+          "station": "300105",
+          "mass_weight": 125531.30432479398,
+          "service_loss_change_contribution_hr": -0.060838339679738354,
+          "recovered_service_improvement_hr": 0.060838339679738354
+        },
+        {
+          "station": "303540",
+          "mass_weight": 141825.0482706742,
+          "service_loss_change_contribution_hr": -0.05408732882338165,
+          "recovered_service_improvement_hr": 0.05408732882338165
+        },
+        {
+          "station": "301637",
+          "mass_weight": 60342.80645355259,
+          "service_loss_change_contribution_hr": -0.04980114505109753,
+          "recovered_service_improvement_hr": 0.04980114505109753
+        },
+        {
+          "station": "308471",
+          "mass_weight": 91042.16832448068,
+          "service_loss_change_contribution_hr": -0.044123291727884005,
+          "recovered_service_improvement_hr": 0.044123291727884005
+        },
+        {
+          "station": "306224",
+          "mass_weight": 103153.6240669351,
+          "service_loss_change_contribution_hr": -0.042561795390234615,
+          "recovered_service_improvement_hr": 0.042561795390234615
+        },
+        {
+          "station": "302187",
+          "mass_weight": 157370.69767311102,
+          "service_loss_change_contribution_hr": -0.03770516332802251,
+          "recovered_service_improvement_hr": 0.03770516332802251
+        },
+        {
+          "station": "303169",
+          "mass_weight": 232098.41450316424,
+          "service_loss_change_contribution_hr": -0.029937534504221593,
+          "recovered_service_improvement_hr": 0.029937534504221593
+        },
+        {
+          "station": "302164",
+          "mass_weight": 80858.03303427379,
+          "service_loss_change_contribution_hr": -0.024054403471208696,
+          "recovered_service_improvement_hr": 0.024054403471208696
+        },
+        {
+          "station": "301745",
+          "mass_weight": 37165.308649017825,
+          "service_loss_change_contribution_hr": -0.02357282009713311,
+          "recovered_service_improvement_hr": 0.02357282009713311
+        },
+        {
+          "station": "308786",
+          "mass_weight": 34076.33436200382,
+          "service_loss_change_contribution_hr": -0.021613578056656323,
+          "recovered_service_improvement_hr": 0.021613578056656323
+        },
+        {
+          "station": "300558",
+          "mass_weight": 271370.3410449306,
+          "service_loss_change_contribution_hr": -0.01835865818461707,
+          "recovered_service_improvement_hr": 0.01835865818461707
+        },
+        {
+          "station": "301194",
+          "mass_weight": 223946.60575936965,
+          "service_loss_change_contribution_hr": -0.015150363045977631,
+          "recovered_service_improvement_hr": 0.015150363045977631
+        },
+        {
+          "station": "307373",
+          "mass_weight": 14133.439049509232,
+          "service_loss_change_contribution_hr": -0.012618287387093755,
+          "recovered_service_improvement_hr": 0.012618287387093755
+        },
+        {
+          "station": "306623",
+          "mass_weight": 135493.40546170034,
+          "service_loss_change_contribution_hr": -0.009688940291365121,
+          "recovered_service_improvement_hr": 0.009688940291365121
+        },
+        {
+          "station": "303371",
+          "mass_weight": 142199.12737838132,
+          "service_loss_change_contribution_hr": -0.009620009186111804,
+          "recovered_service_improvement_hr": 0.009620009186111804
+        },
+        {
+          "station": "301614",
+          "mass_weight": 19835.72223189311,
+          "service_loss_change_contribution_hr": -0.00961331847404774,
+          "recovered_service_improvement_hr": 0.00961331847404774
+        },
+        {
+          "station": "301517",
+          "mass_weight": 130622.05291721827,
+          "service_loss_change_contribution_hr": -0.008836800704330215,
+          "recovered_service_improvement_hr": 0.008836800704330215
+        },
+        {
+          "station": "308494",
+          "mass_weight": 128961.55400990194,
+          "service_loss_change_contribution_hr": -0.008724465171500917,
+          "recovered_service_improvement_hr": 0.008724465171500917
+        },
+        {
+          "station": "301156",
+          "mass_weight": 74417.36688650785,
+          "service_loss_change_contribution_hr": -0.008549080617208321,
+          "recovered_service_improvement_hr": 0.008549080617208321
+        }
+      ],
+      "largest_harmful_station_contributions": [
+        {
+          "station": "303303",
+          "mass_weight": 98180.31441818397,
+          "service_loss_change_contribution_hr": 0.06270676555393997,
+          "recovered_service_improvement_hr": -0.06270676555393997
+        },
+        {
+          "station": "308806",
+          "mass_weight": 49363.59822480636,
+          "service_loss_change_contribution_hr": 0.026874633969371314,
+          "recovered_service_improvement_hr": -0.026874633969371314
+        },
+        {
+          "station": "310204",
+          "mass_weight": 41695.26774923387,
+          "service_loss_change_contribution_hr": 0.02209279276697187,
+          "recovered_service_improvement_hr": -0.02209279276697187
+        },
+        {
+          "station": "300627",
+          "mass_weight": 64650.49676364102,
+          "service_loss_change_contribution_hr": 0.016094153506229697,
+          "recovered_service_improvement_hr": -0.016094153506229697
+        },
+        {
+          "station": "307274",
+          "mass_weight": 75215.31528130754,
+          "service_loss_change_contribution_hr": 0.012989331553895502,
+          "recovered_service_improvement_hr": -0.012989331553895502
+        },
+        {
+          "station": "308540",
+          "mass_weight": 36936.52166460261,
+          "service_loss_change_contribution_hr": 0.006573613378027427,
+          "recovered_service_improvement_hr": -0.006573613378027427
+        },
+        {
+          "station": "309663",
+          "mass_weight": 75602.83018731697,
+          "service_loss_change_contribution_hr": 0.0010937317901496633,
+          "recovered_service_improvement_hr": -0.0010937317901496633
+        },
+        {
+          "station": "308581",
+          "mass_weight": 93495.38209713175,
+          "service_loss_change_contribution_hr": 0.0005617736458436028,
+          "recovered_service_improvement_hr": -0.0005617736458436028
+        },
+        {
+          "station": "308907",
+          "mass_weight": 114219.92642284495,
+          "service_loss_change_contribution_hr": 0.0003080066158974147,
+          "recovered_service_improvement_hr": -0.0003080066158974147
+        },
+        {
+          "station": "309156",
+          "mass_weight": 49905.63212456393,
+          "service_loss_change_contribution_hr": 4.450830730239348e-05,
+          "recovered_service_improvement_hr": -4.450830730239348e-05
+        },
+        {
+          "station": "300232",
+          "mass_weight": 242611.84811629835,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300390",
+          "mass_weight": 46005.931707293865,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300408",
+          "mass_weight": 127746.05651996302,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300429",
+          "mass_weight": 277159.3062871533,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300493",
+          "mass_weight": 204308.1001126351,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300648",
+          "mass_weight": 206798.65106198395,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300829",
+          "mass_weight": 59165.53034643048,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301100",
+          "mass_weight": 18439.680523696858,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301105",
+          "mass_weight": 143966.96874120558,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301541",
+          "mass_weight": 132741.33749205753,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        }
+      ]
+    },
+    {
+      "realization": 58,
+      "loss_ils_hr": 34.41915405812141,
+      "loss_frozen_ga_hr": 33.92142488869306,
+      "loss_delta_ils_minus_ga_hr": 0.49772916942834655,
+      "component_changes_hr": {
+        "L_self": 0.0773370612701676,
+        "L_threshold": 0.006344235925748176,
+        "L_source": 0.414047872232425,
+        "L_total": 0.49772916942834655
+      },
+      "component_integrals_by_strategy": {
+        "ILS": {
+          "L_self": 30.82651418961284,
+          "L_threshold": 0.9977391864728986,
+          "L_source": 2.594900682035662,
+          "L_total": 34.41915405812141,
+          "loss_norm_from_e": 34.41915405812141
+        },
+        "FrozenGA": {
+          "L_self": 30.749177128342673,
+          "L_threshold": 0.9913949505471504,
+          "L_source": 2.180852809803237,
+          "L_total": 33.92142488869306,
+          "loss_norm_from_e": 33.92142488869306
+        }
+      },
+      "event_time_count": 135,
+      "largest_beneficial_intervals": [
+        {
+          "start_hr": 39.09429229772521,
+          "end_hr": 39.892894427409985,
+          "loss_change_contribution_hr": -0.006771451039859928,
+          "mean_effective_service_ILS": 0.6772989046314027,
+          "mean_effective_service_GA": 0.668819774926937
+        },
+        {
+          "start_hr": 38.235434263124596,
+          "end_hr": 38.7968949572829,
+          "loss_change_contribution_hr": -0.004760698049727762,
+          "mean_effective_service_ILS": 0.5951458141600591,
+          "mean_effective_service_GA": 0.5866666844555931
+        },
+        {
+          "start_hr": 44.30421162740618,
+          "end_hr": 44.8299214542875,
+          "loss_change_contribution_hr": -0.003770069603929076,
+          "mean_effective_service_ILS": 0.7957615554478393,
+          "mean_effective_service_GA": 0.7885901665729266
+        },
+        {
+          "start_hr": 43.81858460610737,
+          "end_hr": 44.30421162740618,
+          "loss_change_contribution_hr": -0.0034826202178993857,
+          "mean_effective_service_ILS": 0.789815545329802,
+          "mean_effective_service_GA": 0.782644156454889
+        },
+        {
+          "start_hr": 40.22359302998654,
+          "end_hr": 41.74977590926623,
+          "loss_change_contribution_hr": -0.0023791055382321987,
+          "mean_effective_service_ILS": 0.6937107826734078,
+          "mean_effective_service_GA": 0.692151922611136
+        },
+        {
+          "start_hr": 33.251427530953826,
+          "end_hr": 34.707846758035885,
+          "loss_change_contribution_hr": -0.002270353767023079,
+          "mean_effective_service_ILS": 0.4175862406725391,
+          "mean_effective_service_GA": 0.41602738061026723
+        },
+        {
+          "start_hr": 38.855374455959584,
+          "end_hr": 38.948748370378,
+          "loss_change_contribution_hr": -0.0016244668320196194,
+          "mean_effective_service_ILS": 0.6360154287978311,
+          "mean_effective_service_GA": 0.6186179913857047
+        },
+        {
+          "start_hr": 42.52982857145113,
+          "end_hr": 42.66573431426384,
+          "loss_change_contribution_hr": -0.0013273626929266313,
+          "mean_effective_service_ILS": 0.7204009168629745,
+          "mean_effective_service_GA": 0.7106341280175917
+        },
+        {
+          "start_hr": 34.84982927872648,
+          "end_hr": 35.68303610407499,
+          "loss_change_contribution_hr": -0.0012988528436481239,
+          "mean_effective_service_ILS": 0.43046071360567423,
+          "mean_effective_service_GA": 0.4289018535434023
+        },
+        {
+          "start_hr": 39.02809937254177,
+          "end_hr": 39.09429229772521,
+          "loss_change_contribution_hr": -0.0011515872730045314,
+          "mean_effective_service_ILS": 0.6772989046314027,
+          "mean_effective_service_GA": 0.6599014672192763
+        },
+        {
+          "start_hr": 42.66573431426384,
+          "end_hr": 42.77123992872512,
+          "loss_change_contribution_hr": -0.001030451058445741,
+          "mean_effective_service_ILS": 0.7304217357209192,
+          "mean_effective_service_GA": 0.7206549468755364
+        },
+        {
+          "start_hr": 38.03402678286001,
+          "end_hr": 38.09059047511766,
+          "loss_change_contribution_hr": -0.0010227596033937471,
+          "mean_effective_service_ILS": 0.5860492966602634,
+          "mean_effective_service_GA": 0.5679677400543918
+        },
+        {
+          "start_hr": 37.39024246287158,
+          "end_hr": 38.01293405060403,
+          "loss_change_contribution_hr": -0.0009706890472287691,
+          "mean_effective_service_ILS": 0.5673503522590619,
+          "mean_effective_service_GA": 0.56579149219679
+        },
+        {
+          "start_hr": 32.70607116191194,
+          "end_hr": 33.251427530953826,
+          "loss_change_contribution_hr": -0.0008501342634049881,
+          "mean_effective_service_ILS": 0.4126339314304868,
+          "mean_effective_service_GA": 0.4110750713682149
+        },
+        {
+          "start_hr": 43.24373893104847,
+          "end_hr": 43.75963616547953,
+          "loss_change_contribution_hr": -0.0008042115949910825,
+          "mean_effective_service_ILS": 0.7574886867935643,
+          "mean_effective_service_GA": 0.7559298267312923
+        }
+      ],
+      "largest_harmful_intervals": [
+        {
+          "start_hr": 16.18969305339893,
+          "end_hr": 17.601452968404608,
+          "loss_change_contribution_hr": 0.17087091733133766,
+          "mean_effective_service_ILS": 0.10692098711223268,
+          "mean_effective_service_GA": 0.22795496428862133
+        },
+        {
+          "start_hr": 14.5286663590807,
+          "end_hr": 15.590029517893598,
+          "loss_change_contribution_hr": 0.1289654616747779,
+          "mean_effective_service_ILS": 0.10644569519073603,
+          "mean_effective_service_GA": 0.22795496428862133
+        },
+        {
+          "start_hr": 15.590029517893598,
+          "end_hr": 16.18969305339893,
+          "loss_change_contribution_hr": 0.0728646779039067,
+          "mean_effective_service_ILS": 0.10644569519073603,
+          "mean_effective_service_GA": 0.22795496428862133
+        },
+        {
+          "start_hr": 17.601452968404608,
+          "end_hr": 18.072076756338223,
+          "loss_change_contribution_hr": 0.06031741866272505,
+          "mean_effective_service_ILS": 0.10692098711223268,
+          "mean_effective_service_GA": 0.23508581899963668
+        },
+        {
+          "start_hr": 18.072076756338223,
+          "end_hr": 18.312654239519663,
+          "loss_change_contribution_hr": 0.030947917222094133,
+          "mean_effective_service_ILS": 0.10692098711223268,
+          "mean_effective_service_GA": 0.23556111092113333
+        },
+        {
+          "start_hr": 20.431225564483007,
+          "end_hr": 22.3284373648583,
+          "loss_change_contribution_hr": 0.010329561993131151,
+          "mean_effective_service_ILS": 0.2813186488980096,
+          "mean_effective_service_GA": 0.2867632502815177
+        },
+        {
+          "start_hr": 46.33709109071367,
+          "end_hr": 46.94876147695361,
+          "loss_change_contribution_hr": 0.007378874740498549,
+          "mean_effective_service_ILS": 0.8592004976870203,
+          "mean_effective_service_GA": 0.8712639797624859
+        },
+        {
+          "start_hr": 25.104353523785083,
+          "end_hr": 25.573081544304543,
+          "loss_change_contribution_hr": 0.006156508006254585,
+          "mean_effective_service_ILS": 0.2867632502815177,
+          "mean_effective_service_GA": 0.29989774989908213
+        },
+        {
+          "start_hr": 18.332330764339627,
+          "end_hr": 19.22918782198854,
+          "loss_change_contribution_hr": 0.004883029176884244,
+          "mean_effective_service_ILS": 0.24575922769026132,
+          "mean_effective_service_GA": 0.25120382907376937
+        },
+        {
+          "start_hr": 47.43575039123445,
+          "end_hr": 48.45836428101198,
+          "loss_change_contribution_hr": 0.004702813266030757,
+          "mean_effective_service_ILS": 0.866665163617857,
+          "mean_effective_service_GA": 0.8712639797624859
+        },
+        {
+          "start_hr": 53.798759118320135,
+          "end_hr": 54.345867862608785,
+          "loss_change_contribution_hr": 0.004538780879242457,
+          "mean_effective_service_ILS": 0.9068454366723078,
+          "mean_effective_service_GA": 0.9151413758738349
+        },
+        {
+          "start_hr": 46.94876147695361,
+          "end_hr": 47.43575039123445,
+          "loss_change_contribution_hr": 0.004223539054403014,
+          "mean_effective_service_ILS": 0.8625912175485039,
+          "mean_effective_service_GA": 0.8712639797624859
+        },
+        {
+          "start_hr": 48.45836428101198,
+          "end_hr": 49.25967250667392,
+          "loss_change_contribution_hr": 0.003685069204998141,
+          "mean_effective_service_ILS": 0.8765810843983618,
+          "mean_effective_service_GA": 0.8811799005429908
+        },
+        {
+          "start_hr": 45.94713356710908,
+          "end_hr": 46.333582876981424,
+          "loss_change_contribution_hr": 0.0028847149973994057,
+          "mean_effective_service_ILS": 0.8363914589991991,
+          "mean_effective_service_GA": 0.8438561249300355
+        },
+        {
+          "start_hr": 59.5530238305013,
+          "end_hr": 60.869504191837066,
+          "loss_change_contribution_hr": 0.002677485068557985,
+          "mean_effective_service_ILS": 0.9704169235529514,
+          "mean_effective_service_GA": 0.9724507442974106
+        }
+      ],
+      "largest_beneficial_station_contributions": [
+        {
+          "station": "301637",
+          "mass_weight": 60342.80645355259,
+          "service_loss_change_contribution_hr": -0.02045112421714751,
+          "recovered_service_improvement_hr": 0.02045112421714751
+        },
+        {
+          "station": "307373",
+          "mass_weight": 14133.439049509232,
+          "service_loss_change_contribution_hr": -0.017282479948039695,
+          "recovered_service_improvement_hr": 0.017282479948039695
+        },
+        {
+          "station": "306694",
+          "mass_weight": 82473.7760352835,
+          "service_loss_change_contribution_hr": -0.015077115389636445,
+          "recovered_service_improvement_hr": 0.015077115389636445
+        },
+        {
+          "station": "301636",
+          "mass_weight": 65019.55500495314,
+          "service_loss_change_contribution_hr": -0.011290650047373037,
+          "recovered_service_improvement_hr": 0.011290650047373037
+        },
+        {
+          "station": "309156",
+          "mass_weight": 49905.63212456393,
+          "service_loss_change_contribution_hr": -0.00540981334498509,
+          "recovered_service_improvement_hr": 0.00540981334498509
+        },
+        {
+          "station": "302297",
+          "mass_weight": 8618.48932534319,
+          "service_loss_change_contribution_hr": -0.0023551524190587015,
+          "recovered_service_improvement_hr": 0.0023551524190587015
+        },
+        {
+          "station": "302164",
+          "mass_weight": 80858.03303427379,
+          "service_loss_change_contribution_hr": -0.002130742829716009,
+          "recovered_service_improvement_hr": 0.002130742829716009
+        },
+        {
+          "station": "301156",
+          "mass_weight": 74417.36688650785,
+          "service_loss_change_contribution_hr": -0.0019814872279390948,
+          "recovered_service_improvement_hr": 0.0019814872279390948
+        },
+        {
+          "station": "307564",
+          "mass_weight": 169534.39079026898,
+          "service_loss_change_contribution_hr": -0.0010576813366524117,
+          "recovered_service_improvement_hr": 0.0010576813366524117
+        },
+        {
+          "station": "303540",
+          "mass_weight": 141825.0482706742,
+          "service_loss_change_contribution_hr": -0.0003077943319820442,
+          "recovered_service_improvement_hr": 0.0003077943319820442
+        },
+        {
+          "station": "308269",
+          "mass_weight": 90939.12730328669,
+          "service_loss_change_contribution_hr": -0.00024522737608546837,
+          "recovered_service_improvement_hr": 0.00024522737608546837
+        },
+        {
+          "station": "307785",
+          "mass_weight": 81280.40955979226,
+          "service_loss_change_contribution_hr": -0.0002048044676506438,
+          "recovered_service_improvement_hr": 0.0002048044676506438
+        },
+        {
+          "station": "300390",
+          "mass_weight": 46005.931707293865,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300429",
+          "mass_weight": 277159.3062871533,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300493",
+          "mass_weight": 204308.1001126351,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300558",
+          "mass_weight": 271370.3410449306,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300627",
+          "mass_weight": 64650.49676364102,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300648",
+          "mass_weight": 206798.65106198395,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300829",
+          "mass_weight": 59165.53034643048,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301105",
+          "mass_weight": 143966.96874120558,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        }
+      ],
+      "largest_harmful_station_contributions": [
+        {
+          "station": "300232",
+          "mass_weight": 242611.84811629835,
+          "service_loss_change_contribution_hr": 0.10125605970216267,
+          "recovered_service_improvement_hr": -0.10125605970216267
+        },
+        {
+          "station": "309042",
+          "mass_weight": 227561.6774909241,
+          "service_loss_change_contribution_hr": 0.0949747466203707,
+          "recovered_service_improvement_hr": -0.0949747466203707
+        },
+        {
+          "station": "310504",
+          "mass_weight": 160962.00215246298,
+          "service_loss_change_contribution_hr": 0.06717882175282981,
+          "recovered_service_improvement_hr": -0.06717882175282981
+        },
+        {
+          "station": "301517",
+          "mass_weight": 130622.05291721827,
+          "service_loss_change_contribution_hr": 0.054516193216848835,
+          "recovered_service_improvement_hr": -0.054516193216848835
+        },
+        {
+          "station": "300408",
+          "mass_weight": 127746.05651996302,
+          "service_loss_change_contribution_hr": 0.05331587235385418,
+          "recovered_service_improvement_hr": -0.05331587235385418
+        },
+        {
+          "station": "300105",
+          "mass_weight": 125531.30432479398,
+          "service_loss_change_contribution_hr": 0.05239152722297652,
+          "recovered_service_improvement_hr": -0.05239152722297652
+        },
+        {
+          "station": "308806",
+          "mass_weight": 49363.59822480636,
+          "service_loss_change_contribution_hr": 0.04246664400910285,
+          "recovered_service_improvement_hr": -0.04246664400910285
+        },
+        {
+          "station": "302798",
+          "mass_weight": 82084.25061776134,
+          "service_loss_change_contribution_hr": 0.034258540321473144,
+          "recovered_service_improvement_hr": -0.034258540321473144
+        },
+        {
+          "station": "310204",
+          "mass_weight": 41695.26774923387,
+          "service_loss_change_contribution_hr": 0.01809218457255111,
+          "recovered_service_improvement_hr": -0.01809218457255111
+        },
+        {
+          "station": "301614",
+          "mass_weight": 19835.72223189311,
+          "service_loss_change_contribution_hr": 0.008278602591516042,
+          "recovered_service_improvement_hr": -0.008278602591516042
+        },
+        {
+          "station": "308540",
+          "mass_weight": 36936.52166460261,
+          "service_loss_change_contribution_hr": 0.006776644596609214,
+          "recovered_service_improvement_hr": -0.006776644596609214
+        },
+        {
+          "station": "305885",
+          "mass_weight": 119084.2297416395,
+          "service_loss_change_contribution_hr": 0.006156508006254585,
+          "recovered_service_improvement_hr": -0.006156508006254585
+        },
+        {
+          "station": "304040",
+          "mass_weight": 65850.89665186575,
+          "service_loss_change_contribution_hr": 0.006120148013095443,
+          "recovered_service_improvement_hr": -0.006120148013095443
+        },
+        {
+          "station": "307274",
+          "mass_weight": 75215.31528130754,
+          "service_loss_change_contribution_hr": 0.006008304442951862,
+          "recovered_service_improvement_hr": -0.006008304442951862
+        },
+        {
+          "station": "309853",
+          "mass_weight": 19730.999078398774,
+          "service_loss_change_contribution_hr": 0.004443768176068137,
+          "recovered_service_improvement_hr": -0.004443768176068137
+        },
+        {
+          "station": "306279",
+          "mass_weight": 30742.036219977424,
+          "service_loss_change_contribution_hr": 0.003396239647726086,
+          "recovered_service_improvement_hr": -0.003396239647726086
+        },
+        {
+          "station": "301100",
+          "mass_weight": 18439.680523696858,
+          "service_loss_change_contribution_hr": 0.002677485068557985,
+          "recovered_service_improvement_hr": -0.002677485068557985
+        },
+        {
+          "station": "306450",
+          "mass_weight": 24403.27010359583,
+          "service_loss_change_contribution_hr": 0.0025026034495074408,
+          "recovered_service_improvement_hr": -0.0025026034495074408
+        },
+        {
+          "station": "306365",
+          "mass_weight": 43618.66898219545,
+          "service_loss_change_contribution_hr": 0.0024988541142775254,
+          "recovered_service_improvement_hr": -0.0024988541142775254
+        },
+        {
+          "station": "302171",
+          "mass_weight": 35665.87661020749,
+          "service_loss_change_contribution_hr": 0.001809837687733376,
+          "recovered_service_improvement_hr": -0.001809837687733376
+        }
+      ]
+    },
+    {
+      "realization": 50,
+      "loss_ils_hr": 30.680423274855187,
+      "loss_frozen_ga_hr": 30.271628047321595,
+      "loss_delta_ils_minus_ga_hr": 0.40879522753359154,
+      "component_changes_hr": {
+        "L_self": 0.13650900139954203,
+        "L_threshold": 0.005669500198692723,
+        "L_source": 0.26661672593534735,
+        "L_total": 0.40879522753359154
+      },
+      "component_integrals_by_strategy": {
+        "ILS": {
+          "L_self": 27.637729059186768,
+          "L_threshold": 0.9042430027001525,
+          "L_source": 2.1384512129682585,
+          "L_total": 30.680423274855187,
+          "loss_norm_from_e": 30.680423274855187
+        },
+        "FrozenGA": {
+          "L_self": 27.501220057787226,
+          "L_threshold": 0.8985735025014597,
+          "L_source": 1.871834487032911,
+          "L_total": 30.271628047321595,
+          "loss_norm_from_e": 30.271628047321595
+        }
+      },
+      "event_time_count": 138,
+      "largest_beneficial_intervals": [
+        {
+          "start_hr": 46.79620232345989,
+          "end_hr": 48.83824741958323,
+          "loss_change_contribution_hr": -0.01359095935627766,
+          "mean_effective_service_ILS": 0.8925998902442777,
+          "mean_effective_service_GA": 0.8859443274547589
+        },
+        {
+          "start_hr": 75.85568066633189,
+          "end_hr": 82.26410650268255,
+          "loss_change_contribution_hr": -0.009989839098318215,
+          "mean_effective_service_ILS": 1.0,
+          "mean_effective_service_GA": 0.998441139937728
+        },
+        {
+          "start_hr": 69.62322354888178,
+          "end_hr": 75.85568066633189,
+          "loss_change_contribution_hr": -0.009715528490215005,
+          "mean_effective_service_ILS": 0.9900840792194952,
+          "mean_effective_service_GA": 0.9885252191572234
+        },
+        {
+          "start_hr": 45.142322540297336,
+          "end_hr": 46.35650216300417,
+          "loss_change_contribution_hr": -0.008060384534246607,
+          "mean_effective_service_ILS": 0.8799456737633776,
+          "mean_effective_service_GA": 0.8733071300228088
+        },
+        {
+          "start_hr": 44.02386760637658,
+          "end_hr": 45.142322540297336,
+          "loss_change_contribution_hr": -0.007424912000687898,
+          "mean_effective_service_ILS": 0.8543461754658866,
+          "mean_effective_service_GA": 0.8477076317253179
+        },
+        {
+          "start_hr": 42.965983086758875,
+          "end_hr": 43.42995002518343,
+          "loss_change_contribution_hr": -0.004989845238966907,
+          "mean_effective_service_ILS": 0.7639549270832199,
+          "mean_effective_service_GA": 0.753200183963138
+        },
+        {
+          "start_hr": 41.63200037054988,
+          "end_hr": 42.83919614534356,
+          "loss_change_contribution_hr": -0.004948513175173142,
+          "mean_effective_service_ILS": 0.752167589900833,
+          "mean_effective_service_GA": 0.7480684095702698
+        },
+        {
+          "start_hr": 39.081716932827305,
+          "end_hr": 40.167056729259514,
+          "loss_change_contribution_hr": -0.0044490035455122924,
+          "mean_effective_service_ILS": 0.7156455536119206,
+          "mean_effective_service_GA": 0.7115463732813575
+        },
+        {
+          "start_hr": 67.47928942207938,
+          "end_hr": 69.62322354888178,
+          "loss_change_contribution_hr": -0.0033420932864139754,
+          "mean_effective_service_ILS": 0.9891334953765019,
+          "mean_effective_service_GA": 0.9875746353142301
+        },
+        {
+          "start_hr": 58.976935633872614,
+          "end_hr": 59.34018322737753,
+          "loss_change_contribution_hr": -0.003304288091076173,
+          "mean_effective_service_ILS": 0.9809347240740229,
+          "mean_effective_service_GA": 0.971838206574227
+        },
+        {
+          "start_hr": 43.42995002518343,
+          "end_hr": 43.71648228147372,
+          "loss_change_contribution_hr": -0.00308158081201955,
+          "mean_effective_service_ILS": 0.7639549270832199,
+          "mean_effective_service_GA": 0.753200183963138
+        },
+        {
+          "start_hr": 46.46043956800223,
+          "end_hr": 46.72931933401223,
+          "loss_change_contribution_hr": -0.0028917328136252793,
+          "mean_effective_service_ILS": 0.8870955047561528,
+          "mean_effective_service_GA": 0.8763407616360711
+        },
+        {
+          "start_hr": 48.866572588465374,
+          "end_hr": 49.20912911981242,
+          "loss_change_contribution_hr": -0.002279906503339972,
+          "mean_effective_service_ILS": 0.8932280272506362,
+          "mean_effective_service_GA": 0.8865724644611176
+        },
+        {
+          "start_hr": 43.86370112393729,
+          "end_hr": 44.02386760637658,
+          "loss_change_contribution_hr": -0.0010632721994462443,
+          "mean_effective_service_ILS": 0.7771468111313425,
+          "mean_effective_service_GA": 0.7705082673907738
+        },
+        {
+          "start_hr": 38.845649768326986,
+          "end_hr": 38.90221346058463,
+          "loss_change_contribution_hr": -0.0010576813366524117,
+          "mean_effective_service_ILS": 0.7115463732813575,
+          "mean_effective_service_GA": 0.6928474288801562
+        }
+      ],
+      "largest_harmful_intervals": [
+        {
+          "start_hr": 34.11692509530423,
+          "end_hr": 35.392913125629136,
+          "loss_change_contribution_hr": 0.14194066642136777,
+          "mean_effective_service_ILS": 0.5136076822397212,
+          "mean_effective_service_GA": 0.6248474925263628
+        },
+        {
+          "start_hr": 32.965867821464514,
+          "end_hr": 33.981171631090476,
+          "loss_change_contribution_hr": 0.11020943164648711,
+          "mean_effective_service_ILS": 0.5136076822397212,
+          "mean_effective_service_GA": 0.6221559124360486
+        },
+        {
+          "start_hr": 31.889234208162122,
+          "end_hr": 32.63784547604688,
+          "loss_change_contribution_hr": 0.08212396467914994,
+          "mean_effective_service_ILS": 0.48858776018567507,
+          "mean_effective_service_GA": 0.5982895082119852
+        },
+        {
+          "start_hr": 32.63784547604688,
+          "end_hr": 32.812752679088135,
+          "loss_change_contribution_hr": 0.01898586733871822,
+          "mean_effective_service_ILS": 0.4897412780156578,
+          "mean_effective_service_GA": 0.5982895082119852
+        },
+        {
+          "start_hr": 32.812752679088135,
+          "end_hr": 32.965867821464514,
+          "loss_change_contribution_hr": 0.01662037772121461,
+          "mean_effective_service_ILS": 0.49976209687360246,
+          "mean_effective_service_GA": 0.6083103270699299
+        },
+        {
+          "start_hr": 33.981171631090476,
+          "end_hr": 34.11692509530423,
+          "loss_change_contribution_hr": 0.015101189604892672,
+          "mean_effective_service_ILS": 0.5136076822397212,
+          "mean_effective_service_GA": 0.6248474925263628
+        },
+        {
+          "start_hr": 22.252136318457044,
+          "end_hr": 23.70078873190424,
+          "loss_change_contribution_hr": 0.007887334934476907,
+          "mean_effective_service_ILS": 0.35104695568062405,
+          "mean_effective_service_GA": 0.3564915570641321
+        },
+        {
+          "start_hr": 6.5612831176621045,
+          "end_hr": 7.643301327948978,
+          "loss_change_contribution_hr": 0.007715529152452527,
+          "mean_effective_service_ILS": 0.03076715209960708,
+          "mean_effective_service_GA": 0.03789783537194028
+        },
+        {
+          "start_hr": 7.643301327948978,
+          "end_hr": 8.52794057350382,
+          "loss_change_contribution_hr": 0.0063080822703273755,
+          "mean_effective_service_ILS": 0.04500278228401025,
+          "mean_effective_service_GA": 0.05213346555634346
+        },
+        {
+          "start_hr": 20.799500444617408,
+          "end_hr": 21.93747804919829,
+          "loss_change_contribution_hr": 0.006195834440302273,
+          "mean_effective_service_ILS": 0.35104695568062405,
+          "mean_effective_service_GA": 0.3564915570641321
+        },
+        {
+          "start_hr": 27.527919737070512,
+          "end_hr": 27.94424060387493,
+          "loss_change_contribution_hr": 0.005290473940888186,
+          "mean_effective_service_ILS": 0.38248387730427325,
+          "mean_effective_service_GA": 0.39519156111915527
+        },
+        {
+          "start_hr": 26.56984345584727,
+          "end_hr": 27.527919737070512,
+          "loss_change_contribution_hr": 0.005216343446254331,
+          "mean_effective_service_ILS": 0.38248387730427325,
+          "mean_effective_service_GA": 0.3879284786877813
+        },
+        {
+          "start_hr": 23.819600926404867,
+          "end_hr": 24.765775069020442,
+          "loss_change_contribution_hr": 0.005151541045924324,
+          "mean_effective_service_ILS": 0.35104695568062405,
+          "mean_effective_service_GA": 0.3564915570641321
+        },
+        {
+          "start_hr": 18.143048988160754,
+          "end_hr": 19.37996547943637,
+          "loss_change_contribution_hr": 0.00503913107775021,
+          "mean_effective_service_ILS": 0.31412506223086056,
+          "mean_effective_service_GA": 0.3181990083002135
+        },
+        {
+          "start_hr": 27.94424060387493,
+          "end_hr": 28.764605173506492,
+          "loss_change_contribution_hr": 0.004466558070797,
+          "mean_effective_service_ILS": 0.3897469597356472,
+          "mean_effective_service_GA": 0.39519156111915527
+        }
+      ],
+      "largest_beneficial_station_contributions": [
+        {
+          "station": "301637",
+          "mass_weight": 60342.80645355259,
+          "service_loss_change_contribution_hr": -0.04155165042712239,
+          "recovered_service_improvement_hr": 0.04155165042712239
+        },
+        {
+          "station": "301745",
+          "mass_weight": 37165.308649017825,
+          "service_loss_change_contribution_hr": -0.03162306677369765,
+          "recovered_service_improvement_hr": 0.03162306677369765
+        },
+        {
+          "station": "307373",
+          "mass_weight": 14133.439049509232,
+          "service_loss_change_contribution_hr": -0.024375087842766607,
+          "recovered_service_improvement_hr": 0.024375087842766607
+        },
+        {
+          "station": "306694",
+          "mass_weight": 82473.7760352835,
+          "service_loss_change_contribution_hr": -0.003304288091076173,
+          "recovered_service_improvement_hr": 0.003304288091076173
+        },
+        {
+          "station": "302164",
+          "mass_weight": 80858.03303427379,
+          "service_loss_change_contribution_hr": -0.002130742829716009,
+          "recovered_service_improvement_hr": 0.002130742829716009
+        },
+        {
+          "station": "307564",
+          "mass_weight": 169534.39079026898,
+          "service_loss_change_contribution_hr": -0.0010576813366524117,
+          "recovered_service_improvement_hr": 0.0010576813366524117
+        },
+        {
+          "station": "301517",
+          "mass_weight": 130622.05291721827,
+          "service_loss_change_contribution_hr": -0.0003522367571105956,
+          "recovered_service_improvement_hr": 0.0003522367571105956
+        },
+        {
+          "station": "303540",
+          "mass_weight": 141825.0482706742,
+          "service_loss_change_contribution_hr": -0.0003077943319820442,
+          "recovered_service_improvement_hr": 0.0003077943319820442
+        },
+        {
+          "station": "308269",
+          "mass_weight": 90939.12730328669,
+          "service_loss_change_contribution_hr": -0.0002452273760854327,
+          "recovered_service_improvement_hr": 0.0002452273760854327
+        },
+        {
+          "station": "307785",
+          "mass_weight": 81280.40955979226,
+          "service_loss_change_contribution_hr": -0.0002048044676506438,
+          "recovered_service_improvement_hr": 0.0002048044676506438
+        },
+        {
+          "station": "302923",
+          "mass_weight": 2847.9282129296744,
+          "service_loss_change_contribution_hr": -7.67975219959341e-06,
+          "recovered_service_improvement_hr": 7.67975219959341e-06
+        },
+        {
+          "station": "300105",
+          "mass_weight": 125531.30432479398,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300232",
+          "mass_weight": 242611.84811629835,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300390",
+          "mass_weight": 46005.931707293865,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300408",
+          "mass_weight": 127746.05651996302,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300429",
+          "mass_weight": 277159.3062871533,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300558",
+          "mass_weight": 271370.3410449306,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300648",
+          "mass_weight": 206798.65106198395,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "300829",
+          "mass_weight": 59165.53034643048,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        },
+        {
+          "station": "301194",
+          "mass_weight": 223946.60575936965,
+          "service_loss_change_contribution_hr": 0.0,
+          "recovered_service_improvement_hr": -0.0
+        }
+      ],
+      "largest_harmful_station_contributions": [
+        {
+          "station": "308991",
+          "mass_weight": 213645.9426599296,
+          "service_loss_change_contribution_hr": 0.08267114677027369,
+          "recovered_service_improvement_hr": -0.08267114677027369
+        },
+        {
+          "station": "300493",
+          "mass_weight": 204308.1001126351,
+          "service_loss_change_contribution_hr": 0.07905783147800123,
+          "recovered_service_improvement_hr": -0.07905783147800123
+        },
+        {
+          "station": "303620",
+          "mass_weight": 194330.49655708723,
+          "service_loss_change_contribution_hr": 0.07519695812048902,
+          "recovered_service_improvement_hr": -0.07519695812048902
+        },
+        {
+          "station": "301105",
+          "mass_weight": 143966.96874120558,
+          "service_loss_change_contribution_hr": 0.055708590833482174,
+          "recovered_service_improvement_hr": -0.055708590833482174
+        },
+        {
+          "station": "308806",
+          "mass_weight": 49363.59822480636,
+          "service_loss_change_contribution_hr": 0.04737757188321454,
+          "recovered_service_improvement_hr": -0.04737757188321454
+        },
+        {
+          "station": "309843",
+          "mass_weight": 76528.97676665468,
+          "service_loss_change_contribution_hr": 0.029613191768053118,
+          "recovered_service_improvement_hr": -0.029613191768053118
+        },
+        {
+          "station": "309663",
+          "mass_weight": 75602.83018731697,
+          "service_loss_change_contribution_hr": 0.02925481566767901,
+          "recovered_service_improvement_hr": -0.02925481566767901
+        },
+        {
+          "station": "310204",
+          "mass_weight": 41695.26774923387,
+          "service_loss_change_contribution_hr": 0.021853382256902847,
+          "recovered_service_improvement_hr": -0.021853382256902847
+        },
+        {
+          "station": "308540",
+          "mass_weight": 36936.52166460261,
+          "service_loss_change_contribution_hr": 0.014791944737133892,
+          "recovered_service_improvement_hr": -0.014791944737133892
+        },
+        {
+          "station": "300627",
+          "mass_weight": 64650.49676364102,
+          "service_loss_change_contribution_hr": 0.014649517776263617,
+          "recovered_service_improvement_hr": -0.014649517776263617
+        },
+        {
+          "station": "308786",
+          "mass_weight": 34076.33436200382,
+          "service_loss_change_contribution_hr": 0.013185973037261456,
+          "recovered_service_improvement_hr": -0.013185973037261456
+        },
+        {
+          "station": "306489",
+          "mass_weight": 37319.61223074149,
+          "service_loss_change_contribution_hr": 0.011291857496028826,
+          "recovered_service_improvement_hr": -0.011291857496028826
+        },
+        {
+          "station": "301214",
+          "mass_weight": 50517.94512579299,
+          "service_loss_change_contribution_hr": 0.006685849424525529,
+          "recovered_service_improvement_hr": -0.006685849424525529
+        },
+        {
+          "station": "306365",
+          "mass_weight": 43618.66898219545,
+          "service_loss_change_contribution_hr": 0.006044545740544577,
+          "recovered_service_improvement_hr": -0.006044545740544577
+        },
+        {
+          "station": "306450",
+          "mass_weight": 24403.27010359583,
+          "service_loss_change_contribution_hr": 0.0037998152993706934,
+          "recovered_service_improvement_hr": -0.0037998152993706934
+        },
+        {
+          "station": "302171",
+          "mass_weight": 35665.87661020749,
+          "service_loss_change_contribution_hr": 0.003516917853489255,
+          "recovered_service_improvement_hr": -0.003516917853489255
+        },
+        {
+          "station": "304040",
+          "mass_weight": 65850.89665186575,
+          "service_loss_change_contribution_hr": 0.003023772773501567,
+          "recovered_service_improvement_hr": -0.003023772773501567
+        },
+        {
+          "station": "306091",
+          "mass_weight": 13965.577707562508,
+          "service_loss_change_contribution_hr": 0.0025462645999973343,
+          "recovered_service_improvement_hr": -0.0025462645999973343
+        },
+        {
+          "station": "306279",
+          "mass_weight": 30742.036219977424,
+          "service_loss_change_contribution_hr": 0.0021762024412561643,
+          "recovered_service_improvement_hr": -0.0021762024412561643
+        },
+        {
+          "station": "301543",
+          "mass_weight": 12597.237721313557,
+          "service_loss_change_contribution_hr": 0.001556079632664637,
+          "recovered_service_improvement_hr": -0.001556079632664637
+        }
+      ]
+    }
+  ]
+}
