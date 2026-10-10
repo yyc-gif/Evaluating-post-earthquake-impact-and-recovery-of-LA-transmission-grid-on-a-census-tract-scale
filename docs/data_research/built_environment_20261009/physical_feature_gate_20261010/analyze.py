@@ -5,7 +5,7 @@ from pathlib import Path
 import json,hashlib,itertools
 import numpy as np,pandas as pd
 from scipy.stats import pearsonr,spearmanr
-ROOT=Path(__file__).resolve().parents[3]
+ROOT=Path(__file__).resolve().parents[4]
 SRC=ROOT/"docs/data_research/built_environment_20261009/local_joint_feature_extraction_20261009"
 FEMA=ROOT/"docs/data_research/built_environment_20261009/nri_eal_redundancy_audit_20261009/MATCHED_FEMA_STAGE7_FEATURES.csv"
 OUT=Path(__file__).resolve().parent/"results"
