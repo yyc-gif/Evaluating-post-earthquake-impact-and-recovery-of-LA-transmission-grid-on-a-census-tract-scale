@@ -146,7 +146,11 @@ def reconstruct(parent,event,rng,mode,kernel):
     if mode=="lns_event_route":
         bundle=list(event["bundle"][:k])
     else:
-        # Control draws from the *same sampled realization's damaged task\n        # pool*. Otherwise moving DS0 tasks would artificially handicap it.\n        eligible=[x for x in seq if kernel.damage[event['sample'],kernel.index[x]]>0]\n        bundle=rng.sample(eligible,k)\n        bundle.sort(key=lambda x:orig_pos[x])
+        # Control draws from the *same sampled realization's damaged task
+        # pool*. Otherwise moving DS0 tasks would artificially handicap it.
+        eligible=[x for x in seq if kernel.damage[event['sample'],kernel.index[x]]>0]
+        bundle=rng.sample(eligible,k)
+        bundle.sort(key=lambda x:orig_pos[x])
     # Preserve event-route source -> gateway precedence from actual connected
     # path; random comparator shuffles destroyed stations with same p=.35.
     if rng.random()<.35:
