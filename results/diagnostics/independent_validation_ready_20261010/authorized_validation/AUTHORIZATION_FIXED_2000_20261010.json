@@ -1,0 +1,20 @@
+{
+  "authorization_type": "EXPLICIT_AUTHOR_APPROVAL_FOR_FIXED_2000_VALIDATION",
+  "author": "Yinchen Yi",
+  "authorized_at_utc": "2026-10-10T22:51:01Z",
+  "verbatim_author_request": "yes",
+  "authorization_context": "Explicit approval in the ChatGPT conversation immediately after: '是否授权本地 Agent 严格按照 c178bff 冻结的方案，一次性生成并评估 2,000 个新物理实现？'",
+  "authorization_scope": "One fixed 2,000-realization independent Monte Carlo validation under the pre-frozen 2pc50/C57_D1 model, using exactly 13 frozen policy conditions, unchanged primary Frozen GA minus Impact-first and unchanged statistical specification.",
+  "freeze_sha256": "45d157c0a3b9460d7c29e389b649afef0f0e6bc568bfba8eb773f9b5b974ae15",
+  "source_commit": "c178bff7f924257b33f1e8c17e0d5e59a1fe68e9",
+  "sample_size": 2000,
+  "allow_policy_reselection": false,
+  "allow_parameter_tuning_with_validation": false,
+  "allow_optional_stopping_or_extension": false,
+  "primary_comparison": "ga-final-method-candidate minus impact-first",
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 2026100901,
+  "validation_sample_entropy_prefix": [202610091, 3, 2],
+  "evaluation_horizon_hr": 480,
+  "no_formal_candidate_replacement": true
+}
