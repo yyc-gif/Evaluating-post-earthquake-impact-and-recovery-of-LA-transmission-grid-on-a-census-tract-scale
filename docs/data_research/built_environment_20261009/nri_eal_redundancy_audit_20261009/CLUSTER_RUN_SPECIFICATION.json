@@ -1,0 +1,83 @@
+{
+  "sets": {
+    "A": [
+      "NRI_BUILDVALUE",
+      "NRI_RISK_SCORE"
+    ],
+    "B": [
+      "EAL_SCORE"
+    ],
+    "C": [
+      "NRI_BUILDVALUE",
+      "EAL_SCORE"
+    ],
+    "D": [
+      "NRI_BUILDVALUE",
+      "ALR_NPCTL"
+    ],
+    "B_value": [
+      "EAL_VALT"
+    ],
+    "C_value": [
+      "NRI_BUILDVALUE",
+      "EAL_VALT"
+    ]
+  },
+  "common_frozen_columns": [
+    "T80",
+    "Init_Supply",
+    "Grid_Degree",
+    "Grid_Impact",
+    "Grid_Betweenness",
+    "Redundancy_HHI",
+    "Pre_1970_Ratio",
+    "Pop_Density"
+  ],
+  "mandatory_social": "SOVI_SCORE",
+  "recovery": "T80 unchanged; B selection not made here",
+  "built_environment": "formal Pre_1970_Ratio and Pop_Density unchanged; new physical-form metrics only correlated",
+  "domain_budgets": {
+    "original_domain_totals": {
+      "recovery": 0.18181818181818182,
+      "grid": 0.36363636363636365,
+      "built": 0.18181818181818182,
+      "social": 0.09090909090909091,
+      "loss_exposure": 0.18181818181818182
+    },
+    "equal_domains": {
+      "recovery": 0.2,
+      "grid": 0.2,
+      "built": 0.2,
+      "social": 0.2,
+      "loss_exposure": 0.2
+    }
+  },
+  "distance": "weighted squared Euclidean; standardized coordinate multiplied by sqrt(domain budget / coordinate count)",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "n_init": 10,
+  "k_sweep": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "selection_rule": "maximum perpendicular distance to line from k1 inertia to k10 inertia; seed42",
+  "compare_k": "fixed5 and separately selected elbow k; reuse identical fit if selected5",
+  "bootstrap_for_clustering": "none",
+  "silhouette": "exact all2291 precomputed Euclidean distances",
+  "old_labels": "ARI diagnostic only; no choice uses labels",
+  "original_benchmark_ARI": 1.0,
+  "sklearn_version": "1.5.1"
+}

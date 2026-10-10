@@ -1,0 +1,25 @@
+CLUSTER original_domain_totals raw A selected_k 5 seconds 0.8
+CLUSTER original_domain_totals raw B selected_k 5 seconds 0.76
+CLUSTER original_domain_totals raw C selected_k 5 seconds 0.94
+CLUSTER original_domain_totals raw D selected_k 5 seconds 0.79
+CLUSTER original_domain_totals raw B_value selected_k 6 seconds 0.96
+CLUSTER original_domain_totals raw C_value selected_k 6 seconds 1.07
+CLUSTER original_domain_totals log_exposures A selected_k 5 seconds 0.75
+CLUSTER original_domain_totals log_exposures B selected_k 6 seconds 1.14
+CLUSTER original_domain_totals log_exposures C selected_k 5 seconds 0.82
+CLUSTER original_domain_totals log_exposures D selected_k 5 seconds 0.81
+CLUSTER original_domain_totals log_exposures B_value selected_k 5 seconds 0.75
+CLUSTER original_domain_totals log_exposures C_value selected_k 5 seconds 0.73
+CLUSTER equal_domains raw A selected_k 4 seconds 1.01
+CLUSTER equal_domains raw B selected_k 4 seconds 0.96
+CLUSTER equal_domains raw C selected_k 4 seconds 1.0
+CLUSTER equal_domains raw D selected_k 4 seconds 0.97
+CLUSTER equal_domains raw B_value selected_k 4 seconds 0.94
+CLUSTER equal_domains raw C_value selected_k 4 seconds 0.95
+CLUSTER equal_domains log_exposures A selected_k 4 seconds 1.03
+CLUSTER equal_domains log_exposures B selected_k 4 seconds 0.98
+CLUSTER equal_domains log_exposures C selected_k 4 seconds 1.14
+CLUSTER equal_domains log_exposures D selected_k 4 seconds 1.19
+CLUSTER equal_domains log_exposures B_value selected_k 4 seconds 1.15
+CLUSTER equal_domains log_exposures C_value selected_k 4 seconds 1.19
+AUDIT_CALCULATIONS_COMPLETE

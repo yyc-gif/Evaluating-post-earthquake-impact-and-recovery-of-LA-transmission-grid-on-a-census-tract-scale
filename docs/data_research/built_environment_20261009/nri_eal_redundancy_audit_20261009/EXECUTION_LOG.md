@@ -1,0 +1,11 @@
+# Execution log
+
+1. Confirmed baseline031d2c675f8e7d58035d27448be040b809ced086 and remote revision HEAD; inspected branch,862 staged additions, unrelated untracked work and LFS state. No reset, checkout, stash or change to the original Git index.
+2. Snapshotted950 protected paths including212 original protection records. All measurements use the exact2,291 residential GEOIDs, preserving original order and11-character identity.
+3. Retrieved FEMA March2023 v1.19 technical documentation from Ohio Emergency Management's preserved primary FEMA document. Current generic FEMA technical documentation is v1.20, so excluded. Dictionary endpoint returned a non-document response; definitions and actual composition verified against the archived release and v1.19 equations.
+4. Reproduced Stage7 risk, stock and SOVI source values and checked the EAL sum,18-hazard total,11.6-million population monetization,CRF multiplication and consequence-rate identities. No new FEMA release merged.
+5. Calculated990 pairwise raw/rank correlations,2000 descriptive paired-tract bootstrap resamples for overlap reduction, VIF/standardized condition numbers and explicit conditional/stock-reconstruction variance fractions.
+6. Ran bounded controlled KMeans comparisons at24 matrix conditions with common domain budgets and five seeds. Saved195 distinct fixed/selected-k records and240 seed42 k-sweep records. Reused fits when fixed k5 equals selected k. Reproduced saved formal labels for benchmark seed42 without modifying them.
+7. Initial audit-script Index API and DataFrame column-name lookups failed; corrected only the new analysis script. The final complete run supersedes partial outputs. No scientific input was changed. Runtime and algorithm versions are recorded separately.
+8. Wrote decision and field-composition reports from completed numerical tables. No variable was chosen for a silhouette improvement or agreement with old clusters. Recommendation remains provisional.
+9. Verified950 protected files,2008 formal numerical/GIS/trajectory inputs, all used-source hashes and original staged index unchanged. Focused numerical tests and scoped Git/LFS publication verification are recorded in separate artifacts.
