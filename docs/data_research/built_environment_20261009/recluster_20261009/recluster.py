@@ -198,6 +198,17 @@ def run():
             ari_k5_vs_old_labels=compare(m.cluster,k5.labels_),
             features=cols,blocks=blocks))
         prepared[name]=(x,labels)
+    report_models=["primary_equal_domain","housing_three_measure",
+                   "housing_two_measure","pilot_plus_impervious",
+                   "primary_equal_coordinate","population_density_proxy"]
+    profile_report={}
+    for name in report_models:
+        if name not in prepared: continue
+        labels=prepared[name][1]
+        frame=profiles(m,name,labels,list(models[name][0]))
+        profile_report[name]=frame.replace({np.nan:None}).to_dict(orient="records")
+    (OUT/"MODEL_PROFILES.json").write_text(
+        json.dumps(profile_report,indent=2,allow_nan=False)+"\\n",encoding="utf-8")
     result=pd.DataFrame(members)
     result.to_csv(OUT/"new_cluster_assignments.csv",index=False)
     pd.concat(diagnostics,ignore_index=True).to_csv(OUT/"k_selection_diagnostics.csv",index=False)
