@@ -1,0 +1,116 @@
+{
+  "spec": {
+    "model": "D",
+    "seed": 44,
+    "baseline_commit": "50df10481815f3dd94c46dc9443f93cfdb1c5014",
+    "source_matrix_sha256": "55c9b9ae634ac4d39dd311abb420b812118e8154112fdd2bcf41ab9739b64e97",
+    "sample_sha256": "1efa46713fbf2985ab3d8e537930deb171696a1bc422a0cd539b787e9272679d",
+    "removed_blocks": [
+      "6:-22",
+      "8:-22"
+    ],
+    "feature_columns": [
+      "B_480_hr",
+      "Init_Supply",
+      "Grid_Degree",
+      "Grid_Impact",
+      "Grid_Betweenness",
+      "Redundancy_HHI",
+      "land_use_entropy",
+      "building_footprint_coverage",
+      "all_use2014_pre1970_area_share",
+      "SOVI_SCORE",
+      "log1p_NRI_BUILDVALUE",
+      "ALR_NPCTL"
+    ],
+    "coordinate_factors": [
+      0.31622776601683794,
+      0.31622776601683794,
+      0.22360679774997896,
+      0.22360679774997896,
+      0.22360679774997896,
+      0.22360679774997896,
+      0.2581988897471611,
+      0.2581988897471611,
+      0.2581988897471611,
+      0.4472135954999579,
+      0.31622776601683794,
+      0.31622776601683794
+    ],
+    "domains": {
+      "recovery_service": [
+        "B_480_hr",
+        "Init_Supply"
+      ],
+      "grid": [
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI"
+      ],
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "social": [
+        "SOVI_SCORE"
+      ],
+      "loss_exposure": [
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ]
+    },
+    "KMeans": {
+      "n_clusters": 4,
+      "n_init": 100,
+      "max_iter": 500,
+      "tol": 0.0001,
+      "algorithm": "lloyd",
+      "random_state": 44
+    },
+    "training_sample_sha256": "eab4c8d24411f7e9e095751825e58d58e5083db9121f5548b0f409f300eaade9",
+    "input_files": {
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/STAGE7_FEATURE_DECISION_PACKET.md": "33ec7383d457cd9dc19827019ad26b487adf8f11658b44be975c521d5bb11bd0",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/FEATURE_MATRIX_QA.json": "695887964360b85117f931bf017606c247dedd7a86bee2f117437b06bcf368fc",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/CONTROLLED_EXPERIMENT_SPECIFICATION.json": "e6ae21f9cc67be26946ca5e17228247aa691f078d24bcd19eeca891fc6616e82",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/controlled_clustering.py": "86eb0045131676bd3dc29d93fe02233446192fe760ab0d5da59419cf36cc044e",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/summarize_and_verify.py": "36c0f554dec2e2f65ab2dab90c4e0fd058b83c2c5cd69fb3ba6c7a98a4637401",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/FINAL_CANDIDATE_FEATURE_MATRIX.csv": "340f7fc2d50ecae003379b7c1c2d6b075859e31b6456b48db8d3e95ab85ed853",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/COMPLETE_CASE_FEATURE_MATRIX.csv": "03cf3542e0cd6f81257da8d5aa28da7ed0e766790b0b68d173e128db8d3562a2",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/CONTROLLED_CLUSTERING_COMPARISON.csv": "554479af2549d3ef01930c17ecbf70f4423f4bf04b0a14d6ff782ccc2506ac94",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/SPATIAL_BLOCK_STABILITY.csv": "ff25a10a5f5c538b8c67b5f6e6f01e2cb2345104d28c3ce8bf5d0210da90ae73",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/TRACT_SPATIAL_BLOCKS.csv": "cdc3144acb9c5c683c9d3b30ff16821243c7ac85d2c57918f743f28a31b71f18",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/CLUSTER_EXECUTION_QA.json": "c1eec1c8b119f74eeacbe95e12cf033d65d2db0f9e4bf591446deafab006e275",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/run_records/D__equal_five_domains.npz": "dfd148327515dd921950e1deecbd56644b4bc68d1823025b6ad5f8069e4c2625",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/run_records/D__equal_five_domains.json": "1716411e80e97ec42611dd0529dce580c5bec95789471fa5bdd731a60a7d5020",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/run_records/EAL__equal_five_domains.npz": "c55534b0f6ee5013cb4681927a611e43b39bda5a1b08783e119f2cd233d2dfbb",
+      "docs/data_research/built_environment_20261009/final_feature_validation_20261010/run_records/EAL__equal_five_domains.json": "8e95606be11b11403073d422d64e764469e352ff693cab4551ec3c7cc83df6e1"
+    }
+  },
+  "inertia": 1231.0146243253319,
+  "iterations": 14,
+  "fit_elapsed_s": 0.1456426000004285,
+  "n_training": 1876,
+  "n_heldout": 411,
+  "training_sizes": [
+    542,
+    618,
+    682,
+    34
+  ],
+  "full_prediction_sizes": [
+    668,
+    753,
+    832,
+    34
+  ],
+  "versions": {
+    "python": "3.12.3 | packaged by conda-forge | (main, Apr 15 2024, 18:20:11) [MSC v.1938 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "sklearn": "1.5.1",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}
