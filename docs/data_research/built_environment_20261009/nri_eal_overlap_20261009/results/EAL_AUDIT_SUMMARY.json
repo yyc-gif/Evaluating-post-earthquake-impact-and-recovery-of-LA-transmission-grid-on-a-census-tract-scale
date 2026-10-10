@@ -1,0 +1,423 @@
+{
+  "source_version": "FEMA v1.19 March 2023, 2291 residential tracts",
+  "n": 2291,
+  "source_sha256": {
+    "Data/NRI_Table_CensusTracts_California.csv": "5248639b400f46e85d1fa751e257afcc27b43f1575aa2f9fd986d3eedd6df310",
+    "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/clusters_labels_final.csv": "2117360be90914f1584e4ea3d7e1db120638225180fc3a17e669a9d227ff8228"
+  },
+  "original_source_field_names": [
+    "RISK_SCORE",
+    "RISK_VALUE",
+    "EAL_SCORE",
+    "EAL_VALT",
+    "EAL_VALB",
+    "EAL_VALP",
+    "EAL_VALPE",
+    "EAL_VALA",
+    "FEMA_SOVI_SCORE",
+    "RESL_SCORE",
+    "BUILDVALUE",
+    "ALR_VALB",
+    "ALR_VALP",
+    "ALR_VALA",
+    "ALR_NPCTL",
+    "ALR_VRA_NPCTL",
+    "POPULATION"
+  ],
+  "identity_checks": {
+    "SOVI_SCORE": {
+      "max_abs_difference": 4.824222799015843e-09,
+      "n_compared": 2291
+    },
+    "NRI_BUILDVALUE": {
+      "max_abs_difference": 0.0,
+      "n_compared": 2291
+    },
+    "NRI_RISK_SCORE": {
+      "max_abs_difference": 1.4210854715202004e-14,
+      "n_compared": 2291
+    }
+  },
+  "field_diagnostics": {
+    "SOVI_SCORE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 0.109999999403954,
+      "median": 74.20999908447266,
+      "p95": 97.80500030517578,
+      "max": 99.9800033569336,
+      "unique": 1997
+    },
+    "log_BUILDVALUE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 17.571911104362634,
+      "median": 19.953191906902372,
+      "p95": 21.02686153002518,
+      "max": 22.96601241365584,
+      "unique": 2291
+    },
+    "BUILDVALUE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 42794112.0,
+      "median": 462978838.0,
+      "p95": 1354721352.0,
+      "max": 9419166254.0,
+      "unique": 2291
+    },
+    "EAL_SCORE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 9.980740775536088,
+      "median": 77.43734880334453,
+      "p95": 96.64842520609717,
+      "max": 99.98708222749373,
+      "unique": 2291
+    },
+    "EAL_VALT": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 132013.9007850116,
+      "median": 1109658.6250229303,
+      "p95": 3670942.78156106,
+      "max": 33612683.077105455,
+      "unique": 2291
+    },
+    "log_EAL_VALT": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 11.790670079932442,
+      "median": 13.919563882140109,
+      "p95": 15.115959074925177,
+      "max": 17.330414055992176,
+      "unique": 2291
+    },
+    "RISK_SCORE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 2.777909908195785,
+      "median": 81.89245112495837,
+      "p95": 97.70667839984779,
+      "max": 99.98929743614136,
+      "unique": 2291
+    },
+    "RISK_VALUE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 71192.45606534387,
+      "median": 1548765.2602320416,
+      "p95": 5192491.802693099,
+      "max": 47480660.404487886,
+      "unique": 2291
+    },
+    "RESL_SCORE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 15.4399995803833,
+      "median": 15.4399995803833,
+      "p95": 15.4399995803833,
+      "max": 15.4399995803833,
+      "unique": 1
+    },
+    "log_Pop_Density": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 1.7277688068671493,
+      "median": 9.348607040285703,
+      "p95": 10.417489543274431,
+      "max": 11.74961892437548,
+      "unique": 2291
+    },
+    "EAL_VALB": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 82523.33473096673,
+      "median": 755947.9871379331,
+      "p95": 2575628.911172392,
+      "max": 28324855.34865285,
+      "unique": 2291
+    },
+    "EAL_VALPE": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 22786.472339790296,
+      "median": 348869.46689202194,
+      "p95": 1050416.5036473786,
+      "max": 12630054.336606672,
+      "unique": 2291
+    },
+    "EAL_VALA": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 1823,
+      "negative": 0,
+      "min": 0.0,
+      "median": 0.0,
+      "p95": 0.701117683531989,
+      "max": 19071.01732015404,
+      "unique": 430
+    },
+    "ALR_NPCTL": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 51.556004415529515,
+      "median": 81.88810860323649,
+      "p95": 94.76595344904524,
+      "max": 99.10632501115626,
+      "unique": 2291
+    },
+    "ALR_VRA_NPCTL": {
+      "n": 2291,
+      "missing": 0,
+      "zeros": 0,
+      "negative": 0,
+      "min": 44.13380583170813,
+      "median": 86.09736954763832,
+      "p95": 97.5984635874994,
+      "max": 99.406602292727,
+      "unique": 2291
+    }
+  },
+  "pairwise_key": {
+    "SOVI_SCORE | log_BUILDVALUE": {
+      "n": 2291,
+      "pearson_r": -0.324442622422942,
+      "spearman_rho": -0.3514836264269496
+    },
+    "SOVI_SCORE | EAL_SCORE": {
+      "n": 2291,
+      "pearson_r": -0.044017676601258965,
+      "spearman_rho": -0.06847863427601492
+    },
+    "SOVI_SCORE | log_EAL_VALT": {
+      "n": 2291,
+      "pearson_r": -0.05033441841566177,
+      "spearman_rho": -0.06847863427601492
+    },
+    "EAL_SCORE | log_BUILDVALUE": {
+      "n": 2291,
+      "pearson_r": 0.8309774288104568,
+      "spearman_rho": 0.8584748142300272
+    },
+    "EAL_SCORE | RISK_SCORE": {
+      "n": 2291,
+      "pearson_r": 0.8932795257195177,
+      "spearman_rho": 0.886383558541461
+    },
+    "EAL_SCORE | RESL_SCORE": {
+      "n": 2291,
+      "pearson_r": null,
+      "spearman_rho": null
+    },
+    "EAL_SCORE | log_EAL_VALT": {
+      "n": 2291,
+      "pearson_r": 0.9374506578375961,
+      "spearman_rho": 1.0
+    },
+    "EAL_SCORE | ALR_NPCTL": {
+      "n": 2291,
+      "pearson_r": 0.6267265451133335,
+      "spearman_rho": 0.6275074641452034
+    },
+    "log_EAL_VALT | log_BUILDVALUE": {
+      "n": 2291,
+      "pearson_r": 0.877967725985276,
+      "spearman_rho": 0.8584748142300272
+    },
+    "RISK_SCORE | SOVI_SCORE": {
+      "n": 2291,
+      "pearson_r": 0.3804851492026299,
+      "spearman_rho": 0.35301415892124205
+    },
+    "RISK_SCORE | log_BUILDVALUE": {
+      "n": 2291,
+      "pearson_r": 0.6113679388621056,
+      "spearman_rho": 0.6242074737424285
+    },
+    "EAL_SCORE | log_Pop_Density": {
+      "n": 2291,
+      "pearson_r": -0.2574212417423388,
+      "spearman_rho": -0.3654882770600007
+    },
+    "ALR_NPCTL | log_BUILDVALUE": {
+      "n": 2291,
+      "pearson_r": 0.24696541191365534,
+      "spearman_rho": 0.23488967816703363
+    },
+    "ALR_NPCTL | SOVI_SCORE": {
+      "n": 2291,
+      "pearson_r": 0.21729929083390045,
+      "spearman_rho": 0.22627765203487304
+    }
+  },
+  "vif_models": [
+    {
+      "features": [
+        "SOVI_SCORE",
+        "log_BUILDVALUE",
+        "RISK_SCORE"
+      ],
+      "n": 2291,
+      "status": "ok",
+      "condition_number": 3.843429845999545,
+      "per_input": {
+        "SOVI_SCORE": {
+          "r2_on_other_inputs": 0.6402979928783219,
+          "vif": 2.7800790104063147
+        },
+        "log_BUILDVALUE": {
+          "r2_on_other_inputs": 0.7366139648238696,
+          "vif": 3.7967085055640264
+        },
+        "RISK_SCORE": {
+          "r2_on_other_inputs": 0.7482434284235727,
+          "vif": 3.972090951740753
+        }
+      }
+    },
+    {
+      "features": [
+        "SOVI_SCORE",
+        "EAL_SCORE"
+      ],
+      "n": 2291,
+      "status": "ok",
+      "condition_number": 1.0450305700224922,
+      "per_input": {
+        "SOVI_SCORE": {
+          "r2_on_other_inputs": 0.001937555853372963,
+          "vif": 1.001941317264001
+        },
+        "EAL_SCORE": {
+          "r2_on_other_inputs": 0.001937555853372963,
+          "vif": 1.001941317264001
+        }
+      }
+    },
+    {
+      "features": [
+        "SOVI_SCORE",
+        "log_BUILDVALUE",
+        "EAL_SCORE"
+      ],
+      "n": 2291,
+      "status": "ok",
+      "condition_number": 3.952515050905332,
+      "per_input": {
+        "SOVI_SCORE": {
+          "r2_on_other_inputs": 0.2697000922456846,
+          "vif": 1.3693004605121983
+        },
+        "log_BUILDVALUE": {
+          "r2_on_other_inputs": 0.7735505728314067,
+          "vif": 4.4159970396193255
+        },
+        "EAL_SCORE": {
+          "r2_on_other_inputs": 0.7473998810753364,
+          "vif": 3.958826323032111
+        }
+      }
+    },
+    {
+      "features": [
+        "SOVI_SCORE",
+        "log_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "n": 2291,
+      "status": "ok",
+      "condition_number": 1.6778041150345184,
+      "per_input": {
+        "SOVI_SCORE": {
+          "r2_on_other_inputs": 0.19947079470783502,
+          "vif": 1.2491736633581472
+        },
+        "log_BUILDVALUE": {
+          "r2_on_other_inputs": 0.21104285041227977,
+          "vif": 1.2674959603605378
+        },
+        "ALR_NPCTL": {
+          "r2_on_other_inputs": 0.15986104395991574,
+          "vif": 1.190279289884861
+        }
+      }
+    },
+    {
+      "features": [
+        "SOVI_SCORE",
+        "log_EAL_VALT"
+      ],
+      "n": 2291,
+      "status": "ok",
+      "condition_number": 1.051667491324027,
+      "per_input": {
+        "SOVI_SCORE": {
+          "r2_on_other_inputs": 0.00253355367724295,
+          "vif": 1.0025399888753983
+        },
+        "log_EAL_VALT": {
+          "r2_on_other_inputs": 0.00253355367724295,
+          "vif": 1.0025399888753983
+        }
+      }
+    },
+    {
+      "features": [
+        "SOVI_SCORE",
+        "log_BUILDVALUE",
+        "log_EAL_VALT"
+      ],
+      "n": 2291,
+      "status": "ok",
+      "condition_number": 4.959359976195143,
+      "per_input": {
+        "SOVI_SCORE": {
+          "r2_on_other_inputs": 0.34524638026137544,
+          "vif": 1.5272920528475988
+        },
+        "log_BUILDVALUE": {
+          "r2_on_other_inputs": 0.8495672338911068,
+          "vif": 6.647487950039645
+        },
+        "log_EAL_VALT": {
+          "r2_on_other_inputs": 0.8322952563962989,
+          "vif": 5.962860551893957
+        }
+      }
+    }
+  ],
+  "component_sum_check": {
+    "n": 2291,
+    "max_abs_delta_dollars": 7.450580596923828e-09,
+    "median_abs_delta_dollars": 1.1641532182693481e-10
+  },
+  "method": "Pearson and Spearman on same exact tract IDs, monetary values log1p only when nonnegative",
+  "decision_status": "DIAGNOSTIC_ONLY; keep SOVI mandatory; no completed model selection"
+}
