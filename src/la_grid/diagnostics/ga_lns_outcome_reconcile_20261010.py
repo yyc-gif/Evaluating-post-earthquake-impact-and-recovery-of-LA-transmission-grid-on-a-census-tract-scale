@@ -105,7 +105,11 @@ def summary(version,records):
         mean_wall=mean([r["elapsed_wall_seconds"] for r in recs])
         global_best_counts=[]
         for r in recs:
-            global_best_counts.append(len(r.get("strict_improvements",[])))
+            # Ignore setup-incumbent improvements at evaluations 1..8.
+            # Count strictly new best-so-far values below the inherited best.
+            global_best_counts.append(sum(
+                1 for item in r.get("strict_improvements",[])
+                if item["best_loss_hr"] < WARM_J - 1e-9))
         extra={}
         if name.startswith("lns_"):
             fields=(("v1",["strict_moves","neutral_moves","event_bank_refreshes",
@@ -120,7 +124,7 @@ def summary(version,records):
                           for key in fields})
             extra["mean_global_best_improvements"]=mean(global_best_counts)
             extra["runs_with_zero_global_best_improvements"]=sum(
-                int(len(r.get("strict_improvements",[]))==1) for r in recs)
+                1 for n in global_best_counts if n==0)
             sizes={}
             key="bundle_size_proposal_counts" if version=="v1" else "bundle_size_macro_counts"
             for row in recs:
