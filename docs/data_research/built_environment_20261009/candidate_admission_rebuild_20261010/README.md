@@ -9,3 +9,5 @@ Reproduction order: probe_sources.py; acquire_assessor.py; acquire_jrc.py; measu
 Pending: certified gross FAR/building-line attribution, EPA tract activity mix crosswalk, numerical SCAG2020 overlay. Official NLCD C1.2 numerical acquisition and verification are complete; the retained study GeoTIFF is in source_evidence with its official parent hash and XML. They do not block delivery of the acquired candidate pool; they block claims of comprehensive current-year all-use measurement.
 
 Official C1.2 versus retained C1.0 numeric identity: same native30m grid, 6,916,982 common valid pixels, zero value/mask differences, and zero differences in all2,311 same-geometry tract means. Release provenance remains separate; no duplicate measurement is added. See NLCD_PIXEL_AND_TRACT_IDENTITY_QA.json.
+
+Delivery verification: REMOTE_LFS_BYTE_VERIFICATION.json records actual GitHub downloads of all 30 new LFS files (91,578,967 bytes), matching each committed SHA-256 and size. The final metadata-only verification commit preserves these same payload objects. verify_remote_delivery.py can repeat the audit against the current branch HEAD.

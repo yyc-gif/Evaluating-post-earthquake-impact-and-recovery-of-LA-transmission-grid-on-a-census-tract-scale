@@ -96,3 +96,4 @@
 - 2026-10-11T03:52:57.085548+00:00: Candidate pool frozen: 64 constructs/alternative measurements; dispositions {'CONDITIONAL': 30, 'DESCRIPTIVE_ONLY': 13, 'ADMIT': 9, 'REJECT': 9, 'PENDING_DATA': 3}
 - 2026-10-11T03:53:02.173357+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
 - 2026-10-11T03:55:13.357507+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
+- 2026-10-11T04:00:50.404759+00:00: Remote LFS actual-byte verification: 30 files, 91578967 bytes, all_pass=True; payload commit 0e00034451ad58baa7467bdfdff54dec0ff2880a.
