@@ -12,6 +12,16 @@ def main():
  contributions=dist.loc[dist.model.eq('BE0')].groupby(['domain','feature']).agg(squared_weight=('coordinate_squared_weight','median'),between_class_fraction=('between_class_fraction','median'),variance_explained=('variance_explained_by_partition','median'))
  wtable=weight.groupby(['equal_domain_model','inherited_domain_model']).agg(ARI_median=('ARI','median'),ARI_min=('ARI','min'),reassigned_median=('aligned_reassigned_n','median'))
  within_table=within.groupby(['model','reference_model']).agg(ARI_median=('ARI_vs_same_weight_reference','median'),reassigned_median=('aligned_reassigned_n','median'),spatial_ARI_difference_median=('spatial_ARI_difference_vs_same_weight_reference','median'))
+ profiles=pd.read_csv(OUT/'CLASS_PROFILE_CHANGES.csv');profile_checks=[]
+ for model in ['BE1_EQUAL','BE7_ACS_EQUAL','BE8_LOWER_EQUAL','BE8_UPPER_EQUAL','SCAG_TRANSPORT_EQUAL','SCAG_DOMINANT_EQUAL']:
+  q=profiles.loc[profiles.model.eq(model)&profiles.scope.eq('feature_change_vs_BE0')]
+  for feature in ['B_480_hr','SOVI_SCORE']:
+   for a,b in itertools.combinations(range(1,5),2):
+    qa=q.loc[q.feature.eq(feature)&q.reference_display_seed42_class.eq(a)].set_index('seed');qb=q.loc[q.feature.eq(feature)&q.reference_display_seed42_class.eq(b)].set_index('seed')
+    before=qa.baseline_mean-qb.baseline_mean;after=qa['mean']-qb['mean']
+    profile_checks.append({'model':model,'feature':feature,'BE0_seed42_display_class_a':a,'BE0_seed42_display_class_b':b,'cases':20,'ranking_reversals':int((np.sign(before)!=np.sign(after)).sum()),'median_baseline_difference':before.median(),'median_model_difference':after.median()})
+ save('CORE_PROFILE_INTERPRETATION_AUDIT.csv',profile_checks)
+ pc=pd.DataFrame(profile_checks);core=pc.loc[pc.BE0_seed42_display_class_a.eq(3)|pc.BE0_seed42_display_class_b.eq(3)]
  words=f'''# Built-environment redundancy and scientific-validity decision
 
 ## Recommendation
@@ -58,6 +68,8 @@ Deleting age with physical budget fixed at20% changes a median {r.loc['BE1_EQUAL
 ACS substitution changes a median {r.loc['BE7_ACS_EQUAL','reassigned_median']:.0f} tracts and is a change in population/denominator/vintage. Age lower/upper scenarios change {r.loc['BE8_LOWER_EQUAL','reassigned_median']:.0f}/{r.loc['BE8_UPPER_EQUAL','reassigned_median']:.0f} tracts. Equal-domain transport/dominant missing-land scenarios change {r.loc['SCAG_TRANSPORT_EQUAL','reassigned_median']:.0f}/{r.loc['SCAG_DOMINANT_EQUAL','reassigned_median']:.0f}. These tests close the earlier **equal-domain SCAG evidence gap**, while showing residual lower-tail geographic sensitivity. They do not fill missing land or certify a fully observed entropy field.
 
 The original34-member set is audited by membership, not a hard-coded class ID. Under BE0 deletion seed54, only4 target training members remain; all34 original members are in a92-member predicted class, retention100% but purity36.96%. EAL has90 members and37.78% purity. Some age-deleted/inherited specifications do not retain a distinct one-to-one-matched minority class under the same cases. A zero matching purity is a merging/matching failure, not proof that the original tracts vanished; destinations are retained in SMALL_34_GROUP_SENSITIVITY.csv and raw cross-tabs. Median ARI cannot hide this failure. Original-unit profiles, deletion-only shifts, reclassification shifts, common-BE0-coordinate center shifts and ranking reversals are supplied. Small differences and changes involving sparse support must not become stable archetype names or built-environment causation.
+
+The recovery/SOVI profile audit explicitly tests class ordering across the six equal-domain no-age/ACS/age-bound/SCAG scenarios and all20 seeds. Among C3's pairwise B/SOVI contrasts, there are {int(core.ranking_reversals.sum())} reversals over {int(core.cases.sum())} tested comparisons. The full-cohort seed42 no-age comparison shifts C1 service loss32.424 to32.875h and C4 from33.893 to33.486h, while C3 changes36.339 to36.244h and mean SOVI31.058 to30.852. Thus those particular full-cohort changes largely modify high-SOVI subgroup separation rather than remove the lower-SOVI/higher-loss C3 contrast. This narrow observation does not validate geographic prediction, all single-coordinate ablations, inherited weights, or stable archetype names. CORE_PROFILE_INTERPRETATION_AUDIT.csv retains all pairwise directions, including any reversals in finer contrasts.
 
 ## Risk/exposure content versus domain weights
 
