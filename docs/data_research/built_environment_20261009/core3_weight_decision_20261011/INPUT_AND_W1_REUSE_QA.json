@@ -1,0 +1,30 @@
+{
+  "all_actual_source_bytes_verified": true,
+  "primary_n": 2287,
+  "master_n": 2291,
+  "unclassified_GEOIDs": [
+    "06037189703",
+    "06037301601",
+    "06037301602",
+    "06037404600"
+  ],
+  "exact_W1_matrix_match": true,
+  "exact_W1_scaler_factor_seed_case_prediction_match": true,
+  "full_centers": "ACTUAL_SAVED_ESTIMATOR_CENTERS",
+  "raw_matrix_sha256": "32ee856e92b4372b7d348ad93003f1c752e6221cee99fb430e82805c74f6d354",
+  "W1_matrix_sha256": "5f8bfafbe64a77e95b1eef7c10f3bac97673f33ae342220f17344404aa1a4831",
+  "settings": {
+    "n_clusters": 4,
+    "n_init": 100,
+    "max_iter": 500,
+    "tol": 0.0001,
+    "algorithm": "lloyd"
+  },
+  "version": {
+    "python": "3.12.3 | packaged by conda-forge | (main, Apr 15 2024, 18:20:11) [MSC v.1938 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "sklearn": "1.5.1"
+  }
+}

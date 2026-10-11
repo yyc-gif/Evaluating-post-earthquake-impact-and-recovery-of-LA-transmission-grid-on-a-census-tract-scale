@@ -1,0 +1,81 @@
+{
+  "reference_scheme": "W1",
+  "domain_squared_budgets": {
+    "Recovery": 0.2,
+    "Grid": 0.2,
+    "Physical": 0.2,
+    "Social": 0.2,
+    "Stock": 0.1,
+    "ALR": 0.1
+  },
+  "coordinate_squared_weights": {
+    "B_480_hr": 0.1,
+    "Init_Supply": 0.1,
+    "Grid_Degree": 0.049999999999999996,
+    "Grid_Impact": 0.049999999999999996,
+    "Grid_Betweenness": 0.049999999999999996,
+    "Redundancy_HHI": 0.049999999999999996,
+    "emc2022_total_built_land_fraction": 0.06666666666666665,
+    "housing_5plus_share": 0.06666666666666665,
+    "scag2020_classified_land_entropy": 0.06666666666666665,
+    "SOVI_SCORE": 0.19999999999999998,
+    "log1p_BUILDVALUE": 0.1,
+    "ALR_NPCTL": 0.1
+  },
+  "standardized_multipliers": {
+    "B_480_hr": 0.31622776601683794,
+    "Init_Supply": 0.31622776601683794,
+    "Grid_Degree": 0.22360679774997896,
+    "Grid_Impact": 0.22360679774997896,
+    "Grid_Betweenness": 0.22360679774997896,
+    "Redundancy_HHI": 0.22360679774997896,
+    "emc2022_total_built_land_fraction": 0.2581988897471611,
+    "housing_5plus_share": 0.2581988897471611,
+    "scag2020_classified_land_entropy": 0.2581988897471611,
+    "SOVI_SCORE": 0.4472135954999579,
+    "log1p_BUILDVALUE": 0.31622776601683794,
+    "ALR_NPCTL": 0.31622776601683794
+  },
+  "measurement_baseline": "22e77dd2cfd6adaee5a1be6bb2feeb34da27eeb2",
+  "primary_n": 2287,
+  "master_n": 2291,
+  "unclassified": [
+    "06037189703",
+    "06037301601",
+    "06037301602",
+    "06037404600"
+  ],
+  "KMeans": {
+    "n_clusters": 4,
+    "n_init": 100,
+    "max_iter": 500,
+    "tol": 0.0001,
+    "algorithm": "lloyd"
+  },
+  "diagnostic_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "reference_display_seed": 42,
+  "weight_choice_basis": "Balanced five-parent representation, not numerical optimization.",
+  "formal_promotion": false,
+  "scientific_interpretation": "Descriptive specification-conditional joint typology; fragile34-member subgroup."
+}

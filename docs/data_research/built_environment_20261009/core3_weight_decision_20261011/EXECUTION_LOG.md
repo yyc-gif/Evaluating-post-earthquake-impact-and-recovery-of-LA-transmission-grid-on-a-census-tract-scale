@@ -1,0 +1,33 @@
+- 2026-10-11T19:56:17.837406+00:00: Five schemes preregistered; W1 exact matrix/scalers/factors/predictions verified; 950 protected files and 862 staged items recorded. No new fit yet.
+- 2026-10-11T19:57:14.683416+00:00: W1 seed 42: full/spatial complete; ARI=0.9374, sizes=[650, 802, 801, 34]
+- 2026-10-11T19:57:14.729393+00:00: W1 seed 51: full/spatial complete; ARI=0.7208, sizes=[802, 650, 801, 34]
+- 2026-10-11T19:57:14.780308+00:00: W1 seed 61: full/spatial complete; ARI=0.7369, sizes=[650, 801, 802, 34]
+- 2026-10-11T19:57:15.156308+00:00: W2 seed 42: full/spatial complete; ARI=0.9547, sizes=[614, 857, 782, 34]
+- 2026-10-11T19:57:18.216168+00:00: W2 seed 51: full/spatial complete; ARI=0.9304, sizes=[789, 613, 34, 851]
+- 2026-10-11T19:57:21.771149+00:00: W2 seed 61: full/spatial complete; ARI=0.9078, sizes=[861, 610, 782, 34]
+- 2026-10-11T19:57:22.126169+00:00: W3 seed 42: full/spatial complete; ARI=0.3308, sizes=[37, 771, 816, 663]
+- 2026-10-11T19:57:25.316150+00:00: W3 seed 51: full/spatial complete; ARI=0.6990, sizes=[650, 775, 39, 823]
+- 2026-10-11T19:57:29.101847+00:00: W3 seed 61: full/spatial complete; ARI=0.6927, sizes=[823, 775, 38, 651]
+- 2026-10-11T19:57:29.429854+00:00: W4 seed 42: full/spatial complete; ARI=0.9740, sizes=[627, 745, 34, 881]
+- 2026-10-11T19:57:32.400844+00:00: W4 seed 51: full/spatial complete; ARI=0.8213, sizes=[878, 748, 34, 627]
+- 2026-10-11T19:57:35.733939+00:00: W4 seed 61: full/spatial complete; ARI=0.8263, sizes=[627, 745, 34, 881]
+- 2026-10-11T19:57:36.065907+00:00: W5 seed 42: full/spatial complete; ARI=0.9387, sizes=[681, 927, 645, 34]
+- 2026-10-11T19:57:39.014907+00:00: W5 seed 51: full/spatial complete; ARI=0.9499, sizes=[930, 677, 34, 646]
+- 2026-10-11T19:57:42.384171+00:00: W5 seed 61: full/spatial complete; ARI=0.9493, sizes=[679, 652, 922, 34]
+- 2026-10-11T19:57:42.389171+00:00: Five schemes complete. 40 W1 fits reused; 160 new fits total. No further fits authorized.
+- 2026-10-11T19:59:42.756017+00:00: W1: membership/profile/domain/minority diagnostics summarized without fitting.
+- 2026-10-11T19:59:45.854067+00:00: W2: membership/profile/domain/minority diagnostics summarized without fitting.
+- 2026-10-11T19:59:48.941072+00:00: W3: membership/profile/domain/minority diagnostics summarized without fitting.
+- 2026-10-11T19:59:51.988067+00:00: W4: membership/profile/domain/minority diagnostics summarized without fitting.
+- 2026-10-11T19:59:55.063069+00:00: W5: membership/profile/domain/minority diagnostics summarized without fitting.
+- 2026-10-11T19:59:56.100067+00:00: All controlled-weight summaries completed. No new fits.
+- 2026-10-11T20:01:59.135899+00:00: Class-meaning shifts and minority destination splits audited; no held-out rematching and no new fit.
+- 2026-10-11T20:04:32.749456+00:00: Four 185-mm diagnostic PDFs and 600-dpi PNGs generated from completed tables only.
+- 2026-10-11T20:06:42.312550+00:00: Four 185-mm diagnostic PDFs and 600-dpi PNGs generated from completed tables only.
+- 2026-10-11T20:06:42.732643+00:00: All four native PDFs rendered; 185-mm width, minimum7.5-pt font and page bounds checked.
+- 2026-10-11T20:09:12.544971+00:00: W1 reference decision and specification-qualified scientific interpretation written; no model selected by a fit-metric ranking.
+- 2026-10-11T20:11:35.180157+00:00: All source bytes and variance identities verified; 950 protected files and original862 staged items/index unchanged.
+- 2026-10-11T20:16:21.613531+00:00: 12 consequential numerical/protection/PDF tests passed without new KMeans fits.
+- 2026-10-11T20:16:32.560506+00:00: W1 reference decision and specification-qualified scientific interpretation written; no model selected by a fit-metric ranking.
+- 2026-10-11T20:16:40.308480+00:00: 12 consequential numerical/protection/PDF tests passed without new KMeans fits.
+- 2026-10-11T20:17:03.894508+00:00: All source bytes and variance identities verified; 950 protected files and original862 staged items/index unchanged.

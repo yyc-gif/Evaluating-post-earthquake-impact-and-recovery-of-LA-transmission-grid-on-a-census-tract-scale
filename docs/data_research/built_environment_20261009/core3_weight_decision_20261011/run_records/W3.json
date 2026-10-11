@@ -1,0 +1,736 @@
+{
+  "signature": {
+    "scheme": "W3",
+    "weighted_matrix_sha256": "f959035d9a9ee232c4e322b31bd5959ffe05a656c852d820968aabe247e1e6e8",
+    "GEOID_order_sha256": "1efa46713fbf2985ab3d8e537930deb171696a1bc422a0cd539b787e9272679d",
+    "preregistration_sha256": "c3eb79dbae2f51106facdca1e73d5c50898f592eba34ce079ccdb47c6baa30bc",
+    "features": [
+      "B_480_hr",
+      "Init_Supply",
+      "Grid_Degree",
+      "Grid_Impact",
+      "Grid_Betweenness",
+      "Redundancy_HHI",
+      "emc2022_total_built_land_fraction",
+      "housing_5plus_share",
+      "scag2020_classified_land_entropy",
+      "SOVI_SCORE",
+      "log1p_BUILDVALUE",
+      "ALR_NPCTL"
+    ],
+    "settings": {
+      "n_clusters": 4,
+      "n_init": 100,
+      "max_iter": 500,
+      "tol": 0.0001,
+      "algorithm": "lloyd"
+    }
+  },
+  "completed_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "rows": [
+    {
+      "scheme": "W3",
+      "seed": 42,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5748135406093,
+      "full_iterations": 25,
+      "full_class_sizes": [
+        37,
+        771,
+        816,
+        663
+      ],
+      "spatial_inertia": 1503.3603344380456,
+      "spatial_iterations": 12,
+      "training_n": 2073,
+      "heldout_n": 214,
+      "removed_blocks": [
+        "6:-22",
+        "9:-23"
+      ],
+      "spatial_ARI_all": 0.33077937477238095,
+      "spatial_ARI_training": 0.31800867936246535,
+      "spatial_ARI_heldout": 0.4685884816832842,
+      "aligned_reassigned_n": 899,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "0": 1,
+        "2": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.34835780000048544
+    },
+    {
+      "scheme": "W3",
+      "seed": 43,
+      "cohort_n": 2287,
+      "full_inertia": 1655.551107638444,
+      "full_iterations": 20,
+      "full_class_sizes": [
+        819,
+        37,
+        777,
+        654
+      ],
+      "spatial_inertia": 1295.6211574761578,
+      "spatial_iterations": 32,
+      "training_n": 1845,
+      "heldout_n": 442,
+      "removed_blocks": [
+        "8:-24",
+        "8:-22"
+      ],
+      "spatial_ARI_all": 0.9151556565282255,
+      "spatial_ARI_training": 0.9266398032484389,
+      "spatial_ARI_heldout": 0.8742341349294284,
+      "aligned_reassigned_n": 66,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "0": 0,
+        "3": 1,
+        "2": 2,
+        "1": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3198546000003262
+    },
+    {
+      "scheme": "W3",
+      "seed": 44,
+      "cohort_n": 2287,
+      "full_inertia": 1655.574537698389,
+      "full_iterations": 18,
+      "full_class_sizes": [
+        771,
+        664,
+        815,
+        37
+      ],
+      "spatial_inertia": 1347.299598765821,
+      "spatial_iterations": 25,
+      "training_n": 1876,
+      "heldout_n": 411,
+      "removed_blocks": [
+        "6:-22",
+        "8:-22"
+      ],
+      "spatial_ARI_all": 0.9088060801335256,
+      "spatial_ARI_training": 0.9164813341761022,
+      "spatial_ARI_heldout": 0.8716346804928868,
+      "aligned_reassigned_n": 74,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "0": 1,
+        "2": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.32661499999994703
+    },
+    {
+      "scheme": "W3",
+      "seed": 45,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5682228526834,
+      "full_iterations": 20,
+      "full_class_sizes": [
+        775,
+        822,
+        651,
+        39
+      ],
+      "spatial_inertia": 1282.1770440710611,
+      "spatial_iterations": 22,
+      "training_n": 1789,
+      "heldout_n": 498,
+      "removed_blocks": [
+        "8:-23",
+        "9:-22"
+      ],
+      "spatial_ARI_all": 0.109172431728337,
+      "spatial_ARI_training": 0.11792814458573492,
+      "spatial_ARI_heldout": 0.09550811578187639,
+      "aligned_reassigned_n": 1117,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "2": 0,
+        "1": 1,
+        "3": 2,
+        "0": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.35255310000047757
+    },
+    {
+      "scheme": "W3",
+      "seed": 46,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5755612114865,
+      "full_iterations": 43,
+      "full_class_sizes": [
+        820,
+        773,
+        657,
+        37
+      ],
+      "spatial_inertia": 1509.2456892696214,
+      "spatial_iterations": 18,
+      "training_n": 2132,
+      "heldout_n": 155,
+      "removed_blocks": [
+        "8:-24",
+        "10:-23"
+      ],
+      "spatial_ARI_all": 0.9305672901770603,
+      "spatial_ARI_training": 0.9415191316625698,
+      "spatial_ARI_heldout": 0.8075680836988764,
+      "aligned_reassigned_n": 53,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "3": 0,
+        "1": 1,
+        "0": 2,
+        "2": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3583314999996219
+    },
+    {
+      "scheme": "W3",
+      "seed": 47,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5512753545509,
+      "full_iterations": 24,
+      "full_class_sizes": [
+        818,
+        777,
+        655,
+        37
+      ],
+      "spatial_inertia": 1503.3124663343378,
+      "spatial_iterations": 17,
+      "training_n": 2073,
+      "heldout_n": 214,
+      "removed_blocks": [
+        "6:-22",
+        "9:-23"
+      ],
+      "spatial_ARI_all": 0.3349823005431635,
+      "spatial_ARI_training": 0.32267151650312936,
+      "spatial_ARI_heldout": 0.4637701808524733,
+      "aligned_reassigned_n": 882,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "3": 0,
+        "1": 1,
+        "0": 2,
+        "2": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3643488999996407
+    },
+    {
+      "scheme": "W3",
+      "seed": 48,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5755612114865,
+      "full_iterations": 46,
+      "full_class_sizes": [
+        657,
+        773,
+        820,
+        37
+      ],
+      "spatial_inertia": 1271.2566539569693,
+      "spatial_iterations": 22,
+      "training_n": 1753,
+      "heldout_n": 534,
+      "removed_blocks": [
+        "6:-22",
+        "7:-22"
+      ],
+      "spatial_ARI_all": 0.4845786795553279,
+      "spatial_ARI_training": 0.5978626225704636,
+      "spatial_ARI_heldout": 0.18012839743887885,
+      "aligned_reassigned_n": 555,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.33741439999994327
+    },
+    {
+      "scheme": "W3",
+      "seed": 49,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5740320113437,
+      "full_iterations": 19,
+      "full_class_sizes": [
+        657,
+        819,
+        774,
+        37
+      ],
+      "spatial_inertia": 1345.1966517822789,
+      "spatial_iterations": 10,
+      "training_n": 1856,
+      "heldout_n": 431,
+      "removed_blocks": [
+        "6:-23",
+        "7:-22"
+      ],
+      "spatial_ARI_all": 0.6798473613461632,
+      "spatial_ARI_training": 0.704554305491227,
+      "spatial_ARI_heldout": 0.5666358527665798,
+      "aligned_reassigned_n": 274,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "3": 1,
+        "0": 2,
+        "2": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.353965899999821
+    },
+    {
+      "scheme": "W3",
+      "seed": 50,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5520566009263,
+      "full_iterations": 20,
+      "full_class_sizes": [
+        778,
+        817,
+        655,
+        37
+      ],
+      "spatial_inertia": 1579.1243619650536,
+      "spatial_iterations": 17,
+      "training_n": 2183,
+      "heldout_n": 104,
+      "removed_blocks": [
+        "8:-21",
+        "9:-23"
+      ],
+      "spatial_ARI_all": 0.9286886653386072,
+      "spatial_ARI_training": 0.9286603526609095,
+      "spatial_ARI_heldout": 0.9110570650686108,
+      "aligned_reassigned_n": 55,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "0": 0,
+        "2": 1,
+        "1": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.35050410000076226
+    },
+    {
+      "scheme": "W3",
+      "seed": 51,
+      "cohort_n": 2287,
+      "full_inertia": 1655.565672231267,
+      "full_iterations": 14,
+      "full_class_sizes": [
+        650,
+        775,
+        39,
+        823
+      ],
+      "spatial_inertia": 1311.4376418205798,
+      "spatial_iterations": 11,
+      "training_n": 1815,
+      "heldout_n": 472,
+      "removed_blocks": [
+        "7:-22",
+        "10:-22"
+      ],
+      "spatial_ARI_all": 0.6989602838552366,
+      "spatial_ARI_training": 0.7149938268012246,
+      "spatial_ARI_heldout": 0.6475899634219117,
+      "aligned_reassigned_n": 255,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "0": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3605847000007998
+    },
+    {
+      "scheme": "W3",
+      "seed": 52,
+      "cohort_n": 2287,
+      "full_inertia": 1655.554461966547,
+      "full_iterations": 15,
+      "full_class_sizes": [
+        779,
+        652,
+        819,
+        37
+      ],
+      "spatial_inertia": 1422.5564088302756,
+      "spatial_iterations": 19,
+      "training_n": 1982,
+      "heldout_n": 305,
+      "removed_blocks": [
+        "8:-22",
+        "10:-23"
+      ],
+      "spatial_ARI_all": 0.934882791022211,
+      "spatial_ARI_training": 0.9364342226373571,
+      "spatial_ARI_heldout": 0.9317479960730178,
+      "aligned_reassigned_n": 51,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "2": 0,
+        "1": 1,
+        "0": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3996777000002112
+    },
+    {
+      "scheme": "W3",
+      "seed": 53,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5396829993615,
+      "full_iterations": 12,
+      "full_class_sizes": [
+        651,
+        824,
+        37,
+        775
+      ],
+      "spatial_inertia": 1643.1645890595319,
+      "spatial_iterations": 18,
+      "training_n": 2270,
+      "heldout_n": 17,
+      "removed_blocks": [
+        "6:-23",
+        "8:-21"
+      ],
+      "spatial_ARI_all": 0.9735700331861322,
+      "spatial_ARI_training": 0.9733955930217444,
+      "spatial_ARI_heldout": 1.0,
+      "aligned_reassigned_n": 22,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "0": 0,
+        "2": 1,
+        "3": 2,
+        "1": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3767888000002131
+    },
+    {
+      "scheme": "W3",
+      "seed": 54,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5743534370129,
+      "full_iterations": 49,
+      "full_class_sizes": [
+        820,
+        774,
+        656,
+        37
+      ],
+      "spatial_inertia": 1300.9907339118013,
+      "spatial_iterations": 30,
+      "training_n": 1807,
+      "heldout_n": 480,
+      "removed_blocks": [
+        "7:-24",
+        "7:-23"
+      ],
+      "spatial_ARI_all": 0.7183205848356118,
+      "spatial_ARI_training": 0.7743776480847755,
+      "spatial_ARI_heldout": 0.5238668232014355,
+      "aligned_reassigned_n": 376,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "2": 0,
+        "1": 1,
+        "3": 2,
+        "0": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3619343000000299
+    },
+    {
+      "scheme": "W3",
+      "seed": 55,
+      "cohort_n": 2287,
+      "full_inertia": 1655.557660411231,
+      "full_iterations": 19,
+      "full_class_sizes": [
+        818,
+        656,
+        37,
+        776
+      ],
+      "spatial_inertia": 1545.432484968631,
+      "spatial_iterations": 36,
+      "training_n": 2134,
+      "heldout_n": 153,
+      "removed_blocks": [
+        "9:-22",
+        "10:-23"
+      ],
+      "spatial_ARI_all": 0.31543941641938034,
+      "spatial_ARI_training": 0.3037218994834903,
+      "spatial_ARI_heldout": 0.33812524311008024,
+      "aligned_reassigned_n": 775,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "0": 0,
+        "1": 1,
+        "3": 2,
+        "2": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3686251999997694
+    },
+    {
+      "scheme": "W3",
+      "seed": 56,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5470406228599,
+      "full_iterations": 17,
+      "full_class_sizes": [
+        777,
+        651,
+        822,
+        37
+      ],
+      "spatial_inertia": 1348.187311150184,
+      "spatial_iterations": 18,
+      "training_n": 1863,
+      "heldout_n": 424,
+      "removed_blocks": [
+        "7:-22",
+        "8:-21"
+      ],
+      "spatial_ARI_all": 0.6916614465868024,
+      "spatial_ARI_training": 0.7161011050105576,
+      "spatial_ARI_heldout": 0.5893243472451547,
+      "aligned_reassigned_n": 262,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "0": 1,
+        "3": 2,
+        "2": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3561288000000786
+    },
+    {
+      "scheme": "W3",
+      "seed": 57,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5520566009263,
+      "full_iterations": 25,
+      "full_class_sizes": [
+        817,
+        778,
+        655,
+        37
+      ],
+      "spatial_inertia": 1643.0795100827597,
+      "spatial_iterations": 30,
+      "training_n": 2270,
+      "heldout_n": 17,
+      "removed_blocks": [
+        "6:-23",
+        "8:-21"
+      ],
+      "spatial_ARI_all": 0.9825160973122542,
+      "spatial_ARI_training": 0.9836008845538875,
+      "spatial_ARI_heldout": 0.8390705679862306,
+      "aligned_reassigned_n": 13,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "2": 0,
+        "0": 1,
+        "1": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.362016300000505
+    },
+    {
+      "scheme": "W3",
+      "seed": 58,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5748135406093,
+      "full_iterations": 20,
+      "full_class_sizes": [
+        816,
+        663,
+        37,
+        771
+      ],
+      "spatial_inertia": 1239.3507798213266,
+      "spatial_iterations": 19,
+      "training_n": 1772,
+      "heldout_n": 515,
+      "removed_blocks": [
+        "7:-23",
+        "8:-24"
+      ],
+      "spatial_ARI_all": 0.7673650860121966,
+      "spatial_ARI_training": 0.7974708725341233,
+      "spatial_ARI_heldout": 0.6640448865718512,
+      "aligned_reassigned_n": 196,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "0": 1,
+        "3": 2,
+        "2": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3576869999997143
+    },
+    {
+      "scheme": "W3",
+      "seed": 59,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5425295697125,
+      "full_iterations": 14,
+      "full_class_sizes": [
+        820,
+        653,
+        777,
+        37
+      ],
+      "spatial_inertia": 1321.958115585897,
+      "spatial_iterations": 71,
+      "training_n": 1834,
+      "heldout_n": 453,
+      "removed_blocks": [
+        "8:-23",
+        "9:-23"
+      ],
+      "spatial_ARI_all": 0.29471405371730286,
+      "spatial_ARI_training": 0.2777016854622107,
+      "spatial_ARI_heldout": 0.31626951846042234,
+      "aligned_reassigned_n": 738,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "0": 1,
+        "2": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.35259689999929833
+    },
+    {
+      "scheme": "W3",
+      "seed": 60,
+      "cohort_n": 2287,
+      "full_inertia": 1659.6620288482768,
+      "full_iterations": 15,
+      "full_class_sizes": [
+        744,
+        926,
+        37,
+        580
+      ],
+      "spatial_inertia": 1339.3986888501909,
+      "spatial_iterations": 38,
+      "training_n": 1864,
+      "heldout_n": 423,
+      "removed_blocks": [
+        "6:-21",
+        "7:-23"
+      ],
+      "spatial_ARI_all": 0.8334630824292873,
+      "spatial_ARI_training": 0.8182510584926114,
+      "spatial_ARI_heldout": 0.9004360294916839,
+      "aligned_reassigned_n": 128,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "2": 0,
+        "1": 1,
+        "3": 2,
+        "0": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.35123900000053254
+    },
+    {
+      "scheme": "W3",
+      "seed": 61,
+      "cohort_n": 2287,
+      "full_inertia": 1655.5864969136992,
+      "full_iterations": 16,
+      "full_class_sizes": [
+        823,
+        775,
+        38,
+        651
+      ],
+      "spatial_inertia": 1311.4528328258523,
+      "spatial_iterations": 20,
+      "training_n": 1815,
+      "heldout_n": 472,
+      "removed_blocks": [
+        "7:-22",
+        "10:-22"
+      ],
+      "spatial_ARI_all": 0.6926536428593819,
+      "spatial_ARI_training": 0.7083273043040628,
+      "spatial_ARI_heldout": 0.642789373203053,
+      "aligned_reassigned_n": 260,
+      "unsupported_training_classes": [],
+      "training_label_mapping": {
+        "1": 0,
+        "0": 1,
+        "2": 2,
+        "3": 3
+      },
+      "fit_origin": "NEW_PREREGISTERED_WEIGHT_FIT",
+      "elapsed_this_execution_s": 0.3523681000006036
+    }
+  ],
+  "center_provenance": "ACTUAL_SAVED_ESTIMATOR_CENTERS",
+  "W1_source_file": null,
+  "W1_source_sha256": null
+}

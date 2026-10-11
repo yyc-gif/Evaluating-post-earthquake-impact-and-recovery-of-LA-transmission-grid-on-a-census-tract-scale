@@ -1,0 +1,20 @@
+{
+  "command": [
+    "C:\\Users\\yinch\\anaconda3\\python.exe",
+    "-m",
+    "pytest",
+    "C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_w311\\docs\\data_research\\built_environment_20261009\\core3_weight_decision_20261011\\test_core3_weights.py",
+    "-q",
+    "--basetemp",
+    "C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_w311\\docs\\data_research\\built_environment_20261009\\core3_weight_decision_20261011\\_test_tmp"
+  ],
+  "exit_code": 0,
+  "stdout": "............                                                             [100%]\n12 passed in 6.88s\n",
+  "stderr": "",
+  "UTC": "2026-10-11T20:16:40.092466+00:00",
+  "initial_assertions_corrected": [
+    "ACS survey value retained on geometry-unclassified tracts; only geometry variables null",
+    "Spatial scaling verified bitwise from original DataFrame layout; advanced NumPy indexing changes summation order by approximately 1e-13"
+  ],
+  "scientific_values_or_fits_changed_for_tests": false
+}
