@@ -1,0 +1,1 @@
+C1 = frozen raw class 0 (650 tracts); C2 = raw 1 (802); C3 = raw 2 (801); C4 = raw 3 (34). These are new package identifiers only. Historical formal/BE0 IDs are separately retained in STAGE7_TRACT_VERSION_MEMBERSHIP.csv and the contingency tables; overlap matching does not establish scientific equivalence.

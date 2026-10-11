@@ -1,0 +1,13 @@
+- 2026-10-11T20:40:40.244632+00:00: Source authority and protection state verified; no fitting or scientific-stage execution.
+- 2026-10-11T20:44:24.614755+00:00: Independent source reconstruction, saved-center predictions, version crosswalks, 950 seed-pair ARIs, 100 spatial cases, all 12-coordinate claim directions and minority specificity verified without fitting.
+- 2026-10-11T20:56:23.352658+00:00: Prepared adoption decision, twelve-coordinate profiles/claims and 437 exact-text manuscript reconciliation rows; no source manuscripts changed.
+- 2026-10-11T20:58:53.900604+00:00: Rendered four new vector figures and one raw-profile table from saved data, with 600-dpi PNGs and native-width previews; all actual pages require visual inspection.
+- 2026-10-11T21:01:40.263704+00:00: Rendered four new vector figures and one raw-profile table from saved data, with 600-dpi PNGs and native-width previews; all actual pages require visual inspection.
+- 2026-10-11T21:02:32.421983+00:00: Prepared adoption decision, twelve-coordinate profiles/claims and 437 exact-text manuscript reconciliation rows; no source manuscripts changed.
+- 2026-10-11T21:02:48.505983+00:00: Packaged render_docx attempted: Windows long path and unavailable soffice prevent conversion; native Word read-only ExportAsFixedFormat used instead. Source and review rendered from isolated short-path copies; source DOCX not opened for edit or saved.
+- 2026-10-11T21:04:51.962774+00:00: Independent source reconstruction, saved-center predictions, version crosswalks, 950 seed-pair ARIs, 100 spatial cases, all 12-coordinate claim directions and minority specificity verified without fitting.
+- 2026-10-11T21:05:11.905645+00:00: Rendered source S19 (15 pages) and CORE3/W1 review (19 pages) with native Word; actual per-page inspection pending.
+- 2026-10-11T21:05:51.164821+00:00: Prepared adoption decision, twelve-coordinate profiles/claims and 437 exact-text manuscript reconciliation rows; no source manuscripts changed.
+- 2026-10-11T21:09:00.426238+00:00: Prepared adoption decision, twelve-coordinate profiles/claims and 437 exact-text manuscript reconciliation rows; no source manuscripts changed.
+- 2026-10-11T21:09:21.017356+00:00: Rendered source S19 (15 pages) and CORE3/W1 review (19 pages) with native Word; actual per-page inspection pending.
+- 2026-10-11T21:13:11.124733+00:00: Final source hashes and original protected worktree verified: 950 files and862 staged entries unchanged; actual figures and19-page review visually inspected. No formal promotion.
