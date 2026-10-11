@@ -1,0 +1,55 @@
+{
+  "changed_correlations": false,
+  "functions": {
+    "damage_to_functionality_and_repair": {
+      "executable_source_sha256": "36ca99c809d205996eaad25ffea8303c40c4bbab241998760f66f979c059264d",
+      "original_AST_equal": true,
+      "original_commit": "e934affb4b4c242d8e770070de684e7ab471c691",
+      "original_source_excerpt": "def damage_to_functionality_and_repair(\n    ds_samples: np.ndarray,\n    rng: np.random.Generator,\n    cfg: Config,\n) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Map sampled damage states to initial functionality and repair times.\n    \"\"\"\n    # 1) Init functionality @ t=0: use the manually specified DS residuals.\n    func0_samples = np.full(ds_samples.shape, np.nan, dtype=float)\n    for ds, val in INITIAL_FUNCTIONALITY_BY_DS.items():\n        func0_samples[ds_samples == ds] = float(val)\n\n    # 2) Repair time samples (hr)\n    repair_time_samples = np.zeros_like(ds_samples, dtype=float)\n    for ds in range(1, 5):\n        mask = (ds_samples == ds)\n        n = int(mask.sum())\n        if n <= 0:\n            continue\n\n        try:\n            mean_hr, std_hr = REPAIR_PARAM_NORMAL_HR.get(ds, (np.nan, np.nan))\n            mean_hr = float(mean_hr)\n            std_hr  = float(std_hr)\n\n            samples = draw_positive_normal(\n                rng,\n                mean_hr=mean_hr,\n                std_hr=std_hr,\n                size=n,\n            )\n\n            repair_time_samples[mask] = samples\n\n        except Exception:\n            raise ValueError(f\"Invalid repair parameters for DS {ds}: mean={mean_hr}, std={std_hr}\")\n\n    return func0_samples, repair_time_samples",
+      "original_source_path": "C257H_Project_Main.py"
+    },
+    "draw_positive_normal": {
+      "executable_source_sha256": "587609e7ed393c9273ab7cc5c9c286acb9f7f7e8012f1e8b4f6001eef8182301",
+      "original_AST_equal": true,
+      "original_commit": "e934affb4b4c242d8e770070de684e7ab471c691",
+      "original_source_excerpt": "def draw_positive_normal(rng:np.random.Generator,*,mean_hr:float,std_hr:float,size:int)->np.ndarray:\n    \"\"\"Draw Normal repair durations conditioned on strictly positive time.\"\"\"\n    mean_hr=float(mean_hr); std_hr=float(std_hr)\n    if size<0 or not np.isfinite([mean_hr,std_hr]).all() or std_hr<0: raise ValueError('Invalid Normal repair parameters.')\n    if size==0:return np.empty(0)\n    if std_hr==0:\n        if mean_hr<=0: raise ValueError('Deterministic repair duration must be positive.')\n        return np.full(size,mean_hr)\n    out=np.empty(size); pending=np.arange(size)\n    while pending.size:\n        candidate=rng.normal(mean_hr,std_hr,pending.size); ok=np.isfinite(candidate)&(candidate>0)\n        out[pending[ok]]=candidate[ok]; pending=pending[~ok]\n    return out",
+      "original_source_path": "r1_realization_scheduling.py"
+    },
+    "sample_damage_states": {
+      "executable_source_sha256": "621e49e3b8441c9b332ba66dfd576a9e0a1c23fa388f50fa059ea2d8f5c7d2db",
+      "original_AST_equal": true,
+      "original_commit": "e934affb4b4c242d8e770070de684e7ab471c691",
+      "original_source_excerpt": "def sample_damage_states(\n    pga_series: pd.Series,\n    devices_df: pd.DataFrame,\n    n_mc: int,\n    rng: np.random.Generator,\n) -> np.ndarray:\n    \"\"\"\n    Sample Monte Carlo damage states (DS = 0..4) for each substation given PGA and\n    lognormal fragility parameters.\n    \"\"\"\n    logger = logging.getLogger()\n\n    n_devices = len(devices_df)\n    pga_vals = pga_series.values\n\n    if len(pga_vals) != n_devices:\n        raise ValueError(\n            \"sample_damage_states: PGA series length \"\n            f\"{len(pga_vals)} != devices_df length {n_devices}\"\n        )\n\n    # 1) Extract mu and beta arrays\n    try:\n        mu_mat = devices_df[[f\"mu_DS{ds}\" for ds in range(1, 5)]].values.astype(float)\n        betas = devices_df[[f\"beta_DS{ds}\" for ds in range(1, 5)]].values.astype(float)\n    except KeyError as e:\n        logger.error(f\"Missing fragility columns: {e}\")\n        raise\n\n    # 2) SciPy lognorm convention: scale = mu\n    scales = mu_mat\n\n    # 3) Numerical cleanup to avoid invalid parameters\n    scales = np.clip(scales, 1e-6, None)\n    betas = np.clip(betas, 1e-4, None)\n\n    # 4) Compute exceedance probabilities: P(DS >= j | PGA) = CDF_lognormal(PGA; mu_j, beta_j)\n    pga_vals_broad = pga_vals.reshape(-1, 1)  # (n_devices, 1)\n    p_exc = lognorm.cdf(pga_vals_broad, s=betas, scale=scales)  # (n_devices, 4)\n\n    # Replace NaN/inf to keep probabilities well-defined downstream\n    p_exc = np.nan_to_num(p_exc, nan=0.0, posinf=1.0, neginf=0.0)\n\n    # 5) Convert exceedance probabilities into state probabilities P(DS = j)\n    p_ds = np.empty((n_devices, 5), dtype=float)\n    p_ds[:, 0] = 1.0 - p_exc[:, 0]          # DS0\n    p_ds[:, 1] = p_exc[:, 0] - p_exc[:, 1]  # DS1\n    p_ds[:, 2] = p_exc[:, 1] - p_exc[:, 2]  # DS2\n    p_ds[:, 3] = p_exc[:, 2] - p_exc[:, 3]  # DS3\n    p_ds[:, 4] = p_exc[:, 3]                # DS4\n\n    # Clamp and renormalize to correct for numerical drift\n    p_ds = np.clip(p_ds, 0.0, 1.0)\n    row_sums = p_ds.sum(axis=1, keepdims=True)\n    row_sums[row_sums == 0.0] = 1.0\n    p_ds /= row_sums\n\n    # 6) Row-wise sampling via inverse CDF on cumulative probabilities\n    cum_probs = np.cumsum(p_ds, axis=1)  # (n_devices, 5)\n    r = rng.random((n_devices, n_mc))    # (n_devices, n_mc), uniform in [0, 1)\n\n    # For each (device, sample), pick the first DS with cum_prob > r\n    ds_samples = (r[..., np.newaxis] < cum_probs[:, np.newaxis, :]).argmax(axis=2)\n\n    return ds_samples.astype(int)",
+      "original_source_path": "C257H_Project_Main.py"
+    }
+  },
+  "initial_functionality": {
+    "0": 1.0,
+    "1": 0.5,
+    "2": 0.09,
+    "3": 0.04,
+    "4": 0.03
+  },
+  "original_file_git_blob_sha256": "02f56c9a39937e548fb94a7130e261cf00a597b531c08964a01d8185ce3fcc2f",
+  "original_git_source_checkout": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision",
+  "physical_sampling_calls": 0,
+  "repair_parameters": {
+    "1": [
+      1.0,
+      0.5
+    ],
+    "2": [
+      6.0,
+      3.0
+    ],
+    "3": [
+      12.0,
+      4.0
+    ],
+    "4": [
+      36.0,
+      12.0
+    ]
+  },
+  "rng_specification": "PCG64 / default_rng(SeedSequence([2026110300,r])), r=0..1999"
+}

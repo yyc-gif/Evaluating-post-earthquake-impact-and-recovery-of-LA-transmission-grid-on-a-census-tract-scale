@@ -1,0 +1,49 @@
+{
+  "all_preservation_hashes_equal": true,
+  "earlier_test_setup_failure": "Missing deep runtime parent for pytest basetemp; tests rerun at short worktree-relative basetemp, all16 pass",
+  "engineering_original_cases_only": true,
+  "new_genuine_physical_draws": 0,
+  "new_search_calls": 0,
+  "original_staged_items": 862,
+  "planning_production_qa_reused_64": true,
+  "protected_files": 950,
+  "repaired_before_preregistration": true,
+  "status": "PASS",
+  "tests": [
+    {
+      "command": [
+        "C:\\Users\\yinch\\anaconda3\\python.exe",
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_standalone_ils_validation_20261011.py",
+        "tests/test_independent_validation_ready_20261010.py",
+        "--basetemp=_qa_original",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ".........                                                                [100%]\n9 passed in 1.68s\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\yinch\\anaconda3\\python.exe",
+        "-B",
+        "-m",
+        "pytest",
+        "\\\\?\\C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_gaf12\\results\\diagnostics\\pure_random_ga_final_20261011\\test_finalize.py",
+        "--basetemp=_qa_freeze",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 1.67s\n"
+    }
+  ],
+  "windows_spawn": {
+    "candidate": "edc4ad19f61a6d89d83532c1c92f353243b5d9e7b475c1ad99873227bbfeb99a",
+    "out": "\\\\?\\C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_gaf12\\results\\diagnostics\\pure_random_ga_final_20261011",
+    "station_count": 92,
+    "strategy": "GA-pure-random"
+  }
+}
