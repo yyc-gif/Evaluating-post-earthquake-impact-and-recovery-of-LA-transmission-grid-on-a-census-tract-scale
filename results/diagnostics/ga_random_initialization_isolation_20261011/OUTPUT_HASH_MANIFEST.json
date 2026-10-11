@@ -1,0 +1,1521 @@
+{
+  "files": {
+    ".gitattributes": {
+      "sha256": "ac0d0ca0314330ea8f88f06da8b7758d610927bdf0c761048efa260043c295f0",
+      "size": 95
+    },
+    ".gitignore": {
+      "sha256": "b94bbd19648aacba8aceaeb2238d164357ce11fe2f1898611189c472a376e9e8",
+      "size": 54
+    },
+    "ALL_RUN_NUMERICAL_QA.json": {
+      "sha256": "bf784f8f797f5b6a2e411220f57e88f6858334919498efdf4b0881040cb2c26a",
+      "size": 27302
+    },
+    "ALL_SEQUENCE_IDENTITIES.json": {
+      "sha256": "f4ecb4f9eb6dc76b0d15ca222f3266160b0fa1030058384932d89e081a383897",
+      "size": 136496
+    },
+    "analyze.py": {
+      "sha256": "89bd59bce7a72897759b92c5bd569ab33d8fda21b1ef4e14d2beffe9f36f56d5",
+      "size": 41375
+    },
+    "BUDGET_CONVERGENCE_AND_DUPLICATION.csv": {
+      "sha256": "9d9d4a02763021249b213f78fb20ecdf9dbac978728a8b295fbc9daddffb6623",
+      "size": 80387
+    },
+    "BUDGET_DIFFERENCE_REDUCTION.csv": {
+      "sha256": "01021b53850d2f2c4375a82e7e63c92679cb1dd4142c7fc42d605d31fdc43738",
+      "size": 1513
+    },
+    "cache_replay.py": {
+      "sha256": "48637f592980bd7007dec707c43d5fc08828977811424791e37f15a29872415c",
+      "size": 2618
+    },
+    "COMPUTATION_ACCOUNTING.json": {
+      "sha256": "2dda871162033b35def812ca65b84f7bbb901086e46175a5abc823aa0b537547",
+      "size": 1062
+    },
+    "ENGINEERING_QA.json": {
+      "sha256": "8f3170160abf8831ce1eef043deccd6daf829467eea27638e9adbe27aa79b032",
+      "size": 8689
+    },
+    "EXPERIMENT_DESIGN_AND_SEEDS.json": {
+      "sha256": "f71c530ff3090cefee23fc7b479e95003fcf7637ab4028011b2a3bc21c83f57b",
+      "size": 12630
+    },
+    "EXTENSION_DECISION.json": {
+      "sha256": "05a71586e0079ec0601ab10fb601b42fb43fdc8c9e469c640e584fad8bbb12d4",
+      "size": 1838
+    },
+    "EXTENSION_EXECUTION.json": {
+      "sha256": "16642e1a41bfa007a180394d6bd970db191aa5622eca9169015d4edce9f119aa",
+      "size": 3535
+    },
+    "FINAL_DECISION_MACHINE_READABLE.json": {
+      "sha256": "8edc5744fc091da0b3af068e31cbea97f3b46575c6a0da04c700f74c9aee692e",
+      "size": 1986
+    },
+    "FINAL_GA_INITIALIZATION_DECISION.md": {
+      "sha256": "9113b6ca4b3e684ef31abe1072d9c22aeabdc871344b47f458fe486228c2db33",
+      "size": 8034
+    },
+    "FINAL_PACKAGE_QUALITY_QA.json": {
+      "sha256": "d269a1dea100c34cad258e57de9abe7b823fbd34e03bdccfc7e4ccae6b304790",
+      "size": 1592
+    },
+    "final_quality.py": {
+      "sha256": "d95e7012e50d45c0b6350d28cad54394ed39035b25d049a46d09f8dfff901a99",
+      "size": 4381
+    },
+    "GA_INITIALIZATION_CONVERGENCE.png": {
+      "sha256": "0e87211dc443db57942fb7afd39923c20decb0362943cadb9882e543df920282",
+      "size": 195103
+    },
+    "GA_INITIALIZATION_CONVERGENCE_CAPTION.md": {
+      "sha256": "b5ce9ec83b592894b94770767d6ef5481a09be2ed9362abd3876ccd424753bef",
+      "size": 880
+    },
+    "GA_INITIALIZATION_SCIENTIFIC_INTERPRETATION.md": {
+      "sha256": "933a7afa0a43ca2fae2a34c04cef3f5b4ad2d80e484b40a836eb1ab6583a2a98",
+      "size": 4262
+    },
+    "HISTORICAL_CONVERGENCE_RECORDS_REUSED.csv": {
+      "sha256": "73bc75dd393a24fa7881d93aa747bd5c2f416776894ae34b9e29cf58613bc68a",
+      "size": 17350
+    },
+    "HISTORICAL_GA_COMPARISON.md": {
+      "sha256": "6826c16d7411d2fb78d0009cbf8a280387ae0d5fa9bcdf781628372cab6dde5e",
+      "size": 2882
+    },
+    "HISTORICAL_IMPACT_SEEDED_RECORDS_REUSED.csv": {
+      "sha256": "69cfe64d216bf16d54009f34525e9d7c67e7679304837056b9ae726fa074cdaf",
+      "size": 21787
+    },
+    "HISTORICAL_SOURCE_HASHES.json": {
+      "sha256": "6d85721e3c71d674a1cd45537f9c8172b604e3d6adc348645fcb9070d897c300",
+      "size": 997
+    },
+    "IMPACT_SEEDED_GA_SEED_RESULTS.csv": {
+      "sha256": "fc18483f06637d9e3ff38b3aaf0208d0e12a4f671d36756ffb906a92134f2aed",
+      "size": 36447
+    },
+    "IMPORTANT_SEQUENCE_PRODUCTION_QA.json": {
+      "sha256": "e0a44577f6a786214da1fe42aa2953aff01d67d75c22c00ac61c0021d9c3cd9c",
+      "size": 54277
+    },
+    "INITIALIZATION_IMPLEMENTATION_AND_PARITY.md": {
+      "sha256": "428c360a30342b9e5ffcf3293428d6abd011a59c42df8564875c949d0755777f",
+      "size": 4002
+    },
+    "INITIAL_POPULATION_AND_SEARCH_CONTRIBUTION.csv": {
+      "sha256": "079a332835b2531fc7c068b35df6d56c761ee519b0b578eb2bdb815ed7de4932",
+      "size": 28300
+    },
+    "MAIN_EXECUTION.json": {
+      "sha256": "0411369cb9b922e20e149faad3210ca0030feed65391cba20eb2032207968d6d",
+      "size": 6922
+    },
+    "MAIN_PREFIX_REPLAY_QA.json": {
+      "sha256": "722e00e81e8fec95aca5e6a21461c903016b9c0a2d4b5c5dc18e6f882afa8009",
+      "size": 808
+    },
+    "PAIRED_INITIALIZATION_COMPARISON.csv": {
+      "sha256": "51bac3ebca072fa313e9d134a48465fe43481449e4af46984a1b78548820fd1d",
+      "size": 2841
+    },
+    "PAIRED_SEED_DIFFERENCES.csv": {
+      "sha256": "e01ea8108887b5b13f2ad5f775d69e4972a4d83e9c789ebe41870cd95f8c0175",
+      "size": 6136
+    },
+    "PREREGISTRATION_COMMIT.json": {
+      "sha256": "03c9b7d61d11ff94c327189ee49b63c93f7246933d87d5fa58fff6e0599b6a39",
+      "size": 241
+    },
+    "PRESERVATION_BASELINE.json": {
+      "sha256": "6b20f4fffd916a69cf77f8ec8662bfaf22fe1ec7c673589092a426bb29478813",
+      "size": 142361
+    },
+    "publish.py": {
+      "sha256": "47c7fda5123606d8bf0618183dd52bd4bf479b1499f8c5c5baab91307b60daa3",
+      "size": 5565
+    },
+    "PURE_RANDOM_GA_SEED_RESULTS.csv": {
+      "sha256": "2f300a2f9d7118b6948830bf27ca7bd6d6fd4b52253d540614030a9f4b77a487",
+      "size": 37533
+    },
+    "RAW_SEARCH_EVIDENCE_MANIFEST.json": {
+      "sha256": "aca16094b73d37021dc5d542627051da484d890ab35514a84f52330ec6f6ce92",
+      "size": 67512
+    },
+    "REPRODUCIBILITY_AND_PRESERVATION_QA.json": {
+      "sha256": "2b19371182ef97161fe1b325b576b4b93d161a079ab7cab2a47066df63c65191",
+      "size": 288831
+    },
+    "REPRODUCIBLE_COMMANDS.md": {
+      "sha256": "b11467254268ee1297dfad819c4521f7b89fc2bf86cdf1ee46141a7ffc23a22b",
+      "size": 5040
+    },
+    "REVIEWER_DEFENSE_AND_METHODS_TEXT.md": {
+      "sha256": "90819bfd10b02fc22b25b3a85a88e8e911f4b4fc984d117c65421c25e7e9b9f1",
+      "size": 7079
+    },
+    "RUNTIME_AND_TEST_QA.json": {
+      "sha256": "15d9119438194bb446ea509ca0b410e9c753d240f6cccfed2b8051dfbce2ccfc",
+      "size": 295
+    },
+    "study.py": {
+      "sha256": "6baed902cb659a638b9be2a3e1eb10bf8485ea9ce323de931772d610591c3f02",
+      "size": 20146
+    },
+    "test_isolation.py": {
+      "sha256": "8d2856bd858c5e275f46c44645aa7e01c4437d22688d60993d1b40216d18f381",
+      "size": 2450
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103100.zip": {
+      "sha256": "24d0c0814d368f65297a44ef8d9a5226dcd0d9ce30378548209ed30c692f590b",
+      "size": 45497220
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103101.zip": {
+      "sha256": "ed18a880ed26d68702bf04861ee0df37646a02e6a2675aa31973eeeb0cdb2b1a",
+      "size": 45525412
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103102.zip": {
+      "sha256": "963030cbb555594969cc2a9011cf56c5262b08cb16f7a530a7191976e22e9b15",
+      "size": 43974327
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103103.zip": {
+      "sha256": "03e644866ff46175e7804dc04879b0f6257d032b48311dbde66a4b8ea9a6b209",
+      "size": 44570877
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103104.zip": {
+      "sha256": "948299856459eb15f4b28a5068aa8b0de78f3731ce191a4e3bcd32e0c1b18fe4",
+      "size": 43199371
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103105.zip": {
+      "sha256": "0606b6af31bb1acbc5a5b2bdb41314c98e133470f0b62a4220c4c1e4f6dc251c",
+      "size": 44581246
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103106.zip": {
+      "sha256": "d6a2dd4ee2ce810f0dc61aa80b411b89edecaea6597b925da37f7ef7c468684a",
+      "size": 45292534
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103107.zip": {
+      "sha256": "73c2ce0354f86b0a358188298e30b1b59ec07094270958adfc208e9b668c4501",
+      "size": 43027151
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103108.zip": {
+      "sha256": "f82862976d4746ba9b40a09146bee6594e0d42698b5e1b9230929d81b626c32b",
+      "size": 45654719
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103109.zip": {
+      "sha256": "8d737043e33d6e71d5cb54d3ad203bc5f0f2cbd5cd2ae35051b8d3bcd1c2b1cf",
+      "size": 44105973
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103110.zip": {
+      "sha256": "f79b4d2af8f1a8b7e83d137ac85811050f46af1a2aeaf8dc0056a43f8262d3e5",
+      "size": 6187423
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103111.zip": {
+      "sha256": "faecdd7fd3c62f063c7e21133419ba4619cd69bba7d2cf2a88b1b0573b8154a3",
+      "size": 6408331
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103112.zip": {
+      "sha256": "9f434a7991a450fbc88bd901d5df8a11c7bdd1484da44144ae9ddabcae72a2f2",
+      "size": 6276496
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103113.zip": {
+      "sha256": "a20f3bc122c510396068eef9541ee86e1b80c0d3c1569fc430f2333db016353c",
+      "size": 6206680
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103114.zip": {
+      "sha256": "f664eb17f3f9ad23380d1287e77438f7328a85866ded24addf8a528ed15c22f0",
+      "size": 6259001
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103115.zip": {
+      "sha256": "92956355231395ba283b428ed281a22aa2babee0d70d281b764f4fdba1461784",
+      "size": 6279223
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103116.zip": {
+      "sha256": "0f6b1cb807485d4ba95ac79646111baa4d39d1cfcf4c2f3e428aca0428f8c091",
+      "size": 6213395
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103117.zip": {
+      "sha256": "0e95c7839d49fc2a45e2beacee218b921dc4507eb2a98d40b06528d4a79ad17e",
+      "size": 6031131
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103118.zip": {
+      "sha256": "acfd495d41b9533b956cffb9d27e462b1a10e784bc7311e5d7bbf2fa0f95d173",
+      "size": 6264052
+    },
+    "raw_evidence/IMPACT_SEEDED_GA_2026103119.zip": {
+      "sha256": "edf52a1c1a98acb47a9a47a5a39bc34eec4d412987ab641d3ec0c6e97901c955",
+      "size": 6230146
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103100.zip": {
+      "sha256": "a67bcbc30fb8ffa1f0d25ac96f4a2d1309743566c73893be487e3e288ca5224a",
+      "size": 44041919
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103101.zip": {
+      "sha256": "74ee418ced94585c2450bd007b9f37df4e177abd475b68c49cabdf8508d21ff1",
+      "size": 45772240
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103102.zip": {
+      "sha256": "13a3172d25ff3d7828b8e31d9520a7717f7cb6fd27f79a39f349f313a06f14e6",
+      "size": 45038004
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103103.zip": {
+      "sha256": "cd677ce71661e532f646d0e05bc50d40d12660ac01e62b1f05807d9d61924411",
+      "size": 44641708
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103104.zip": {
+      "sha256": "c301f62b5616ac536f6c38657694d68a6755c2403c2643f5a92cfd2c10b67456",
+      "size": 45414259
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103105.zip": {
+      "sha256": "e3aa665dfeb8ff15ff15cab7f9b6f884a380c0a897c0b052814e08945492e01a",
+      "size": 45327929
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103106.zip": {
+      "sha256": "e61335e51f6457bc8321c977f5142ac358e20cac21ae029cd8b0f6fd92ee567a",
+      "size": 46062225
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103107.zip": {
+      "sha256": "1bf2db3bcb7bbb91ca66b94c51e60670fec11bed8ccfb564018a43ec32b3a6cb",
+      "size": 46434164
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103108.zip": {
+      "sha256": "af0caf4e9b1175cc737c425f7578f74fc85782d9e1ad83758e9d388612a10788",
+      "size": 45993779
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103109.zip": {
+      "sha256": "e4274e64c7287eb9f15336855f6b587c41ed90cb54b36b01b2097f15e34dbe23",
+      "size": 45499577
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103110.zip": {
+      "sha256": "69b5894c9f7a74a7c2b9e0ae1c350991c45031173d53975acc41c434b22ad166",
+      "size": 6239467
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103111.zip": {
+      "sha256": "d4f5f7776150bab519b335d7cfc747e234ce8ee066bdae726f8125fe96648a5f",
+      "size": 6343061
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103112.zip": {
+      "sha256": "be976b0547aa7fbe182e3aef7efa30b42c096f0555e055d723eeb3901a859959",
+      "size": 6414176
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103113.zip": {
+      "sha256": "6a438287757197c11d6dd0d54530323f8c5905909d348d368dc7cdeedbc821bb",
+      "size": 6324388
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103114.zip": {
+      "sha256": "7513e2c92c6a655866d3a98c11ac6e351487bb9dd18d31ffdc718c6bb4aa3120",
+      "size": 6355285
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103115.zip": {
+      "sha256": "ac2cee3053c04666d2ccd8abc9d89291d70448f191e5ce9336efaa943ed04b28",
+      "size": 6398792
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103116.zip": {
+      "sha256": "45d3908d929e545796cee243e1e6f3988fdf612e0a336e409f22bcc133b744c1",
+      "size": 6430439
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103117.zip": {
+      "sha256": "aa4dab112ccc1761adba69b5d1a58c28a38924591418b970f707e82b10ade661",
+      "size": 6253001
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103118.zip": {
+      "sha256": "70da80256df264a106fd23c6b4bfc6d7e8b9b59639ceb9c5f4ed2b2a5c605999",
+      "size": 6199700
+    },
+    "raw_evidence/PURE_RANDOM_GA_2026103119.zip": {
+      "sha256": "416ea8c91aac2981e6cda9161c922b396483b1ca438fbb21ec6fce0a983fc733",
+      "size": 6421025
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103000/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "211432494961d8e2d2567feea6c9ab614cbeaeffded416144779acfec9b720e2",
+      "size": 2837
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103000/CANDIDATES.npz": {
+      "sha256": "413fc75cb3dfe3b1fb2a4d34963e031a863e1cac79efc5153153f21046b6b830",
+      "size": 43409
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103000/CHECKPOINT.pkl.gz": {
+      "sha256": "4eaaa37fec9fd36e34c29ad642b7553d1fdb58601491c76ee970a74938cf8ef8",
+      "size": 77942
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103000/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "f2bb8f692dd926a4294da1aa10b21e4e8dc498beaa3e87cf820b83ed02e1d12b",
+      "size": 7312
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103000/INITIAL_POPULATION.json": {
+      "sha256": "4b563e0e107cf03efb373bee68587e89ef062e73cd6395a73f9217760342c763",
+      "size": 311519
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103000/PARENT_SELECTION.npz": {
+      "sha256": "4d5ab43134d6f88f537fe6ff7422b2c2ee3a1536f12dd300759e58cad308801c",
+      "size": 8799
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103000/STRICT_IMPROVEMENTS.json": {
+      "sha256": "726f382e48635a418adf6958703a076101de81687a6a38361d576bb05b462f80",
+      "size": 12511
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103001/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "1be27600b951a9d0cc50811d5721eee8227eaad457e2e2f5af9dae3f795f3aa6",
+      "size": 2840
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103001/CANDIDATES.npz": {
+      "sha256": "804f570a420ad8e05cf5a925e5b53de6903ca8f6278dbdbc6de96fa563e1c71b",
+      "size": 45426
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103001/CHECKPOINT.pkl.gz": {
+      "sha256": "25a65b336276a5b5b79d691bd95f0cefa36b3a8666e6cf7e69a316c6fdbe77a6",
+      "size": 79417
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103001/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "112be8412abb54d98c090e5aaabc8f543dd880252d1ef087898c6cd543979e3e",
+      "size": 6780
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103001/INITIAL_POPULATION.json": {
+      "sha256": "96c7b54736a6229471acd196786e173b2df94407108402de092cff12a550a117",
+      "size": 311519
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103001/PARENT_SELECTION.npz": {
+      "sha256": "25da0554e73212dfa5b42810d45ca1b8fe5ef69e318d034ac4c0c0624aa231a8",
+      "size": 8331
+    },
+    "engineering/IMPACT_SEEDED_GA_2026103001/STRICT_IMPROVEMENTS.json": {
+      "sha256": "2f15749f7310f9e37d8a239565aa5483643aae21160874f5f0b5b59ea1bcf960",
+      "size": 7146
+    },
+    "engineering/PURE_RANDOM_GA_2026103000/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "b7dacb2e4c3d9d3e79cc86944879f7c4f2620b003b05d6d27b0c7630e89a3b90",
+      "size": 2830
+    },
+    "engineering/PURE_RANDOM_GA_2026103000/CANDIDATES.npz": {
+      "sha256": "e6bcbd3abf90fdecd228101694261809f04e5fe85a316fa7ae57cd54c0a08622",
+      "size": 45634
+    },
+    "engineering/PURE_RANDOM_GA_2026103000/CHECKPOINT.pkl.gz": {
+      "sha256": "e3faac7ffeb0175cfed34770ccd7b7bf44aee7acdc030d3fffc88410cf00427a",
+      "size": 83048
+    },
+    "engineering/PURE_RANDOM_GA_2026103000/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "a8fe5fdcc12ca38e9a5260adee932e276b45eb364ca377efe2eafa846bc99e47",
+      "size": 6748
+    },
+    "engineering/PURE_RANDOM_GA_2026103000/INITIAL_POPULATION.json": {
+      "sha256": "5e8ca252897fce02b3f832e2232ef6d16783576de1c181e9067d249bde4ba472",
+      "size": 311517
+    },
+    "engineering/PURE_RANDOM_GA_2026103000/PARENT_SELECTION.npz": {
+      "sha256": "0a20bb9ab41b96937c172a9362dd273dc6eac783f694159a31c1b472b845d45d",
+      "size": 8314
+    },
+    "engineering/PURE_RANDOM_GA_2026103000/STRICT_IMPROVEMENTS.json": {
+      "sha256": "a64eeafd5ec6333e5ba07642eb95779ed4dabebf84a4c9bcc9fda92a9de07183",
+      "size": 23208
+    },
+    "engineering/PURE_RANDOM_GA_2026103001/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "01732b27fc1a905d4058ae1c8154febe8fab409fc204ef24db2794cef2de76a3",
+      "size": 2837
+    },
+    "engineering/PURE_RANDOM_GA_2026103001/CANDIDATES.npz": {
+      "sha256": "72653c57b55811e28fceffe06257b6855776fac91df30f95c050f1acd5e85207",
+      "size": 47453
+    },
+    "engineering/PURE_RANDOM_GA_2026103001/CHECKPOINT.pkl.gz": {
+      "sha256": "3bd27551f3d985bce9ca29b3bea209c44c96c9a2e115345182d8f5cb55d20f34",
+      "size": 85932
+    },
+    "engineering/PURE_RANDOM_GA_2026103001/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "45fdd486b8f84e24f82148adbe0dd420e67f905ea0c4486e5c1664df0aab5217",
+      "size": 6788
+    },
+    "engineering/PURE_RANDOM_GA_2026103001/INITIAL_POPULATION.json": {
+      "sha256": "cbb733838cbfe4dc7578f7ca227ca143dec980cfed8670a78e3221e5289a833d",
+      "size": 311517
+    },
+    "engineering/PURE_RANDOM_GA_2026103001/PARENT_SELECTION.npz": {
+      "sha256": "f5121ff3a957e6a7c9df128b0bb58813a2bf765f8f3518686f51c35d4492ad1a",
+      "size": 8378
+    },
+    "engineering/PURE_RANDOM_GA_2026103001/STRICT_IMPROVEMENTS.json": {
+      "sha256": "377d2862544647a660fe61a9724226479d15484e937db1f09baf7bd4d73d6386",
+      "size": 26797
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103000/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "9a925d9e082b0adc7214d177bec418aa96945c1caf42fee1b8369c45618206a2",
+      "size": 2841
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103000/CANDIDATES.npz": {
+      "sha256": "8836969c478714767087f79c4f25f1b4d4888422cdf7b1e6d620a052e11a0da4",
+      "size": 43403
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103000/CHECKPOINT.pkl.gz": {
+      "sha256": "e4c8038abf5a385d4b5be4df555a1d24b517d86c5c86f5d4cb88fbcc41030f7a",
+      "size": 77456
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103000/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "b1561c1726c9cb7fa49fcc370f066741e6f04634330af6c50953363f6f40d093",
+      "size": 7323
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103000/INITIAL_POPULATION.json": {
+      "sha256": "4b563e0e107cf03efb373bee68587e89ef062e73cd6395a73f9217760342c763",
+      "size": 311519
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103000/PARENT_SELECTION.npz": {
+      "sha256": "4d5ab43134d6f88f537fe6ff7422b2c2ee3a1536f12dd300759e58cad308801c",
+      "size": 8799
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103000/STRICT_IMPROVEMENTS.json": {
+      "sha256": "4398ec8f4792c31eb9788ec23f225852a58fcc1d6464f88571b02d9670bd12dd",
+      "size": 12515
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103001/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "6a4226b450d4a1f50e9121ed21391affd0cf33799c4842574a39ff670dd60050",
+      "size": 2838
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103001/CANDIDATES.npz": {
+      "sha256": "4d3facc082d1ac1589cdb4f631b91b6b7b931e5a5c64c426f19fec4f5dfda530",
+      "size": 45410
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103001/CHECKPOINT.pkl.gz": {
+      "sha256": "b5d8218d139088054d6d14faed7b2237c59df026c4609761bbe666c0e1ffdbf0",
+      "size": 78956
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103001/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "dfac8f332250ec23233cf23c6eed50ae488262d96a16ed0b4c0f3a7e1887f1ab",
+      "size": 6773
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103001/INITIAL_POPULATION.json": {
+      "sha256": "96c7b54736a6229471acd196786e173b2df94407108402de092cff12a550a117",
+      "size": 311519
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103001/PARENT_SELECTION.npz": {
+      "sha256": "25da0554e73212dfa5b42810d45ca1b8fe5ef69e318d034ac4c0c0624aa231a8",
+      "size": 8331
+    },
+    "engineering/whole_IMPACT_SEEDED_GA_2026103001/STRICT_IMPROVEMENTS.json": {
+      "sha256": "b5b79b8b22d85b90dd0451986752c4e2b5cd785083e9624e318062e8cadb9b24",
+      "size": 7141
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103000/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "468cae5c7ee43efc3edd24a6d628a041c04bc174d62314c78256c4e49ed05ba4",
+      "size": 2834
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103000/CANDIDATES.npz": {
+      "sha256": "9f224182dd24b9008f190db570e00e2d574838f321c34c302fa828314e5d14fa",
+      "size": 45249
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103000/CHECKPOINT.pkl.gz": {
+      "sha256": "b7f53d132755b9d27464179800091b360158fa2ee2642511010da5cfe29642de",
+      "size": 82287
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103000/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "490e2b44c9910c9e7a7f50cdd00d55376de823be69f48e5f5952de8414d36f8a",
+      "size": 6775
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103000/INITIAL_POPULATION.json": {
+      "sha256": "5e8ca252897fce02b3f832e2232ef6d16783576de1c181e9067d249bde4ba472",
+      "size": 311517
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103000/PARENT_SELECTION.npz": {
+      "sha256": "0a20bb9ab41b96937c172a9362dd273dc6eac783f694159a31c1b472b845d45d",
+      "size": 8314
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103000/STRICT_IMPROVEMENTS.json": {
+      "sha256": "34c829a2c23f585ce733c20c3cacb4e90e206adc7796f50cf4e6773c2f94042c",
+      "size": 23227
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103001/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "8af1820afb94529054fc3d3fad7f6dfcafc0ca00a793f8670527684ed027c969",
+      "size": 2839
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103001/CANDIDATES.npz": {
+      "sha256": "0979e9b92015ab497485240e8fb30d41e3e7ac4a240e45089af67b8dba03b545",
+      "size": 47459
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103001/CHECKPOINT.pkl.gz": {
+      "sha256": "63c4d00007e4664bb6d32ae73fcdd68b4698d0752faa823f0785ed8c58ab3083",
+      "size": 85358
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103001/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "23fdece03a735fa8f55e4b7c1af7bd68a22deb66fd8f47f2e4a9be44f62b3b2e",
+      "size": 6794
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103001/INITIAL_POPULATION.json": {
+      "sha256": "cbb733838cbfe4dc7578f7ca227ca143dec980cfed8670a78e3221e5289a833d",
+      "size": 311517
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103001/PARENT_SELECTION.npz": {
+      "sha256": "f5121ff3a957e6a7c9df128b0bb58813a2bf765f8f3518686f51c35d4492ad1a",
+      "size": 8378
+    },
+    "engineering/whole_PURE_RANDOM_GA_2026103001/STRICT_IMPROVEMENTS.json": {
+      "sha256": "2f83250ddc0ab328f4b9afd1455b18878fb31c60394fc2515ae4504cb6b6a891",
+      "size": 26796
+    },
+    "runs/IMPACT_SEEDED_GA_2026103100/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "e81bb0d76c88dd1c9cd593a66f800590f15616e5686d7f1f18c5f906164299eb",
+      "size": 6589
+    },
+    "runs/IMPACT_SEEDED_GA_2026103100/FINAL_100000.json": {
+      "sha256": "bd280af8b571cff8e162f56824c70d140489f443e157eb4f56ccc00552d94a04",
+      "size": 10167
+    },
+    "runs/IMPACT_SEEDED_GA_2026103100/FINAL_250000.json": {
+      "sha256": "71deba74c2034a59f0977d43024a6e2f6a39e718ced1c8a0853e703f24811be2",
+      "size": 10170
+    },
+    "runs/IMPACT_SEEDED_GA_2026103100/FINAL_500000.json": {
+      "sha256": "e50cc993d324d489676c24c79b292ce24f095f2125cde8effa9a9781af80f69e",
+      "size": 10170
+    },
+    "runs/IMPACT_SEEDED_GA_2026103100/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "e5eb1a2341df85389817981e6a79925d96e6b8f28fc670ab948f24a55a618a29",
+      "size": 10926050
+    },
+    "runs/IMPACT_SEEDED_GA_2026103100/INITIAL_POPULATION.json": {
+      "sha256": "3c6ad98aafec7b248ca53a4d647dfc484e84babada969c8ef1b166517609e515",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103100/STRICT_IMPROVEMENTS.json": {
+      "sha256": "9ea692437bad728c6e53784fcba0e51445d22cf88effd9ad3d2242c6e2dd8a6c",
+      "size": 535773
+    },
+    "runs/IMPACT_SEEDED_GA_2026103101/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "f13dade77712bd564cd3ca9f15e9cd3032f509079b6f40147e3bb71aa3ce48ca",
+      "size": 6596
+    },
+    "runs/IMPACT_SEEDED_GA_2026103101/FINAL_100000.json": {
+      "sha256": "42787ab06d0824a5611e36dfb4b0c4130834134fa041468d01beafe1482ce277",
+      "size": 10171
+    },
+    "runs/IMPACT_SEEDED_GA_2026103101/FINAL_250000.json": {
+      "sha256": "f55e329fb389734f42cf6d501f5f5c313218d5d110a6d9693dadb1028d1c5da2",
+      "size": 10171
+    },
+    "runs/IMPACT_SEEDED_GA_2026103101/FINAL_500000.json": {
+      "sha256": "a8e11fab07b5ec96b21c541fa4b68d40041d79e84abd060ffa72aafc415adc73",
+      "size": 10169
+    },
+    "runs/IMPACT_SEEDED_GA_2026103101/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "167ec7dbff35114d651f15b7d10dad19048791b2b6ca7e11cf4e596909b912da",
+      "size": 11038593
+    },
+    "runs/IMPACT_SEEDED_GA_2026103101/INITIAL_POPULATION.json": {
+      "sha256": "8f97ce7527e232b2d5cb80856f8ad35a29a06fd1c58cfd033c78c950f491808e",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103101/STRICT_IMPROVEMENTS.json": {
+      "sha256": "4884813c9a32fe8b48d6451f483d653b6f50a27fc8baf8ebfb336f2fab1a99e5",
+      "size": 523224
+    },
+    "runs/IMPACT_SEEDED_GA_2026103102/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "b0a216faf8f791543cf0c3ea84ca77cc6db74a9215526ca44c2d8b86d9f2ecfa",
+      "size": 6607
+    },
+    "runs/IMPACT_SEEDED_GA_2026103102/FINAL_100000.json": {
+      "sha256": "366902bdcde6cbf20c97eed1d1d1ae4dd91002655089adfe38daf95a825b187e",
+      "size": 10165
+    },
+    "runs/IMPACT_SEEDED_GA_2026103102/FINAL_250000.json": {
+      "sha256": "a60a8006920e16bd7ac70ab9858937ec461202ad635005dc308032334d218401",
+      "size": 10167
+    },
+    "runs/IMPACT_SEEDED_GA_2026103102/FINAL_500000.json": {
+      "sha256": "a937cf7776d1950eeca65372252bc225d7e9810caf58cb5e09e5ec016aa76c1e",
+      "size": 10173
+    },
+    "runs/IMPACT_SEEDED_GA_2026103102/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "0e29d76671f9fd105a1f6e901ecf5fc7410b2658f4a842613d589dbb3ac902bb",
+      "size": 10224206
+    },
+    "runs/IMPACT_SEEDED_GA_2026103102/INITIAL_POPULATION.json": {
+      "sha256": "42ef0cbc59722f3a35451fbe58ec542c44bcc93fdebe7111d4e1881a69a78412",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103102/STRICT_IMPROVEMENTS.json": {
+      "sha256": "c99f1f3b4a6d8d18b762bae49c1963254ed45cff7ee06a89186948c8e4ea1df9",
+      "size": 499926
+    },
+    "runs/IMPACT_SEEDED_GA_2026103103/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "f7d74f91f68c5b0d79566acd58a0cb3d544c41f83fc0b2f43124cd9fdb6dd5ac",
+      "size": 6592
+    },
+    "runs/IMPACT_SEEDED_GA_2026103103/FINAL_100000.json": {
+      "sha256": "c3f6b171089118c83d29a9f9bd08c07e5a1bff002b724df25dc677fbb0af012c",
+      "size": 10168
+    },
+    "runs/IMPACT_SEEDED_GA_2026103103/FINAL_250000.json": {
+      "sha256": "7bd0ca4db9e2b41803c87827682686a88fe86c6573e34b585fb1d9107f4b9738",
+      "size": 10166
+    },
+    "runs/IMPACT_SEEDED_GA_2026103103/FINAL_500000.json": {
+      "sha256": "3256fc49d369710894491732ac84269e01f6cf6598e9bff220e1e99fdc55df01",
+      "size": 10167
+    },
+    "runs/IMPACT_SEEDED_GA_2026103103/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "2e983c9773caa97ecd237a3160f987680e33ca44f00a5e4023f2ffae2d8b5369",
+      "size": 10377543
+    },
+    "runs/IMPACT_SEEDED_GA_2026103103/INITIAL_POPULATION.json": {
+      "sha256": "9f081ee714856b7e46e44eec887bf02c6d15bb284e589b6e9dc9811ab6057a62",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103103/STRICT_IMPROVEMENTS.json": {
+      "sha256": "6d98cd0738aa74ad069eb60f424c6f0404a47d772523dfcf47550945184d437e",
+      "size": 569799
+    },
+    "runs/IMPACT_SEEDED_GA_2026103104/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "c662227505d01f39265e58ab02a91a261b7aa4cb3c8a452f768a02c5d1504f44",
+      "size": 6596
+    },
+    "runs/IMPACT_SEEDED_GA_2026103104/FINAL_100000.json": {
+      "sha256": "660283e915430f026f7838260bc1c3abfff63bab9b6f83c3355d1e6fdd8425ce",
+      "size": 10162
+    },
+    "runs/IMPACT_SEEDED_GA_2026103104/FINAL_250000.json": {
+      "sha256": "39eb5ed49d77177ba7c5e31fa8f5a2957df9b741a602a26a886547d89466daf5",
+      "size": 10171
+    },
+    "runs/IMPACT_SEEDED_GA_2026103104/FINAL_500000.json": {
+      "sha256": "0958f0f62363f7bf500ebb7e1a29317bc080af4d4ea6cfe98afd2dc0696798c5",
+      "size": 10171
+    },
+    "runs/IMPACT_SEEDED_GA_2026103104/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "f9fc9ece48bee199b89753b33adde3cde84b5d8839bebd25bfa298b0a9eb1463",
+      "size": 9453483
+    },
+    "runs/IMPACT_SEEDED_GA_2026103104/INITIAL_POPULATION.json": {
+      "sha256": "013995b55e18237a14535cc61fcc38fe7c8715c33d133efc54c052bf521d11ec",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103104/STRICT_IMPROVEMENTS.json": {
+      "sha256": "cf3c1c263d99699a9873c17c4d14472f930aa9c43dafb2dc8e9e6fb0b610b774",
+      "size": 428184
+    },
+    "runs/IMPACT_SEEDED_GA_2026103105/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "401c2dbb7223691483d109393b2ba08d4d7056a018cf06b73901d3579953218a",
+      "size": 6591
+    },
+    "runs/IMPACT_SEEDED_GA_2026103105/FINAL_100000.json": {
+      "sha256": "422681edb49300ccde5fd27923269e45a52a5f29f68bd7501b7fc0068f5e4be3",
+      "size": 10171
+    },
+    "runs/IMPACT_SEEDED_GA_2026103105/FINAL_250000.json": {
+      "sha256": "6e2b0c8da7ea2a2a96594e118d59a0e95a359569d3a535afb282e1d7206b859c",
+      "size": 10170
+    },
+    "runs/IMPACT_SEEDED_GA_2026103105/FINAL_500000.json": {
+      "sha256": "0b5a31cd023d53007cd77d0ef845a119e56706612d444aa9c6f060e611f3672b",
+      "size": 10168
+    },
+    "runs/IMPACT_SEEDED_GA_2026103105/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "235f2a93f89fafa54cff091c5e11c1343f0670e457325d6c5c52f4eda8d650b9",
+      "size": 10241322
+    },
+    "runs/IMPACT_SEEDED_GA_2026103105/INITIAL_POPULATION.json": {
+      "sha256": "c2e414ee24ab84f10fc6d12dcff41cff6247f7b192b6fc70275b2650ee5885f9",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103105/STRICT_IMPROVEMENTS.json": {
+      "sha256": "24bc5ea26494689978c1598225a5da977b970fcc330a5c0ab8fd1efb815b5af9",
+      "size": 562659
+    },
+    "runs/IMPACT_SEEDED_GA_2026103106/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "67584589c1e027a5b74231e2c9cebb50dd4b751e1b4d741773bffddec9633be6",
+      "size": 6591
+    },
+    "runs/IMPACT_SEEDED_GA_2026103106/FINAL_100000.json": {
+      "sha256": "290262c7a8d2ccd1ace027e6c5f50d004033d46b823a02964cadbdc14f61c7d7",
+      "size": 10169
+    },
+    "runs/IMPACT_SEEDED_GA_2026103106/FINAL_250000.json": {
+      "sha256": "a73290629e375475ad6bb4dd096c033d70aafaa15ba9e21b74d5d0dd0bbc2848",
+      "size": 10169
+    },
+    "runs/IMPACT_SEEDED_GA_2026103106/FINAL_500000.json": {
+      "sha256": "a3163d313501fcdac446732545f07f19ca249c6c5333268cf29b7b1b7cd22c21",
+      "size": 10170
+    },
+    "runs/IMPACT_SEEDED_GA_2026103106/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "b936f67dd48fb45e228b816a19140486f4cc0f12d0464b20905ce83cffe7a372",
+      "size": 10851782
+    },
+    "runs/IMPACT_SEEDED_GA_2026103106/INITIAL_POPULATION.json": {
+      "sha256": "684d3836ea763e3c39ed4b1a715b37d23720af0c6c7c4867c79ec94eea2ae52a",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103106/STRICT_IMPROVEMENTS.json": {
+      "sha256": "b77d666e7744aeec5182ecd46da28ac77ca4e957c3149ecf832dd4497ae547e0",
+      "size": 533976
+    },
+    "runs/IMPACT_SEEDED_GA_2026103107/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "1661b0270ba6246b348c5e0668b9c6e5488e94bd7eb966983479c9f4dbc15e59",
+      "size": 6592
+    },
+    "runs/IMPACT_SEEDED_GA_2026103107/FINAL_100000.json": {
+      "sha256": "82bddd735340b35175fa65713ac76826105d02313069ce8f9be35c6b3324a205",
+      "size": 10168
+    },
+    "runs/IMPACT_SEEDED_GA_2026103107/FINAL_250000.json": {
+      "sha256": "2a604b550b591ba1e5873b9c51fdfed548a32d11df8b4d4c6dc7a9f79e1c0549",
+      "size": 10166
+    },
+    "runs/IMPACT_SEEDED_GA_2026103107/FINAL_500000.json": {
+      "sha256": "a1a77a5a0ec5f198008d7c5bb7b23d6d01693fa73709e0d5e7b797d374d008bc",
+      "size": 10166
+    },
+    "runs/IMPACT_SEEDED_GA_2026103107/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "a27ad61e93fd77f8e028cb10600df0aca1d2910d3859165dd5abb8d95714d2fe",
+      "size": 9243110
+    },
+    "runs/IMPACT_SEEDED_GA_2026103107/INITIAL_POPULATION.json": {
+      "sha256": "df00737635b078b8b2b528c33325b0ba2d64d43d637d391f7f58f05d787f8645",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103107/STRICT_IMPROVEMENTS.json": {
+      "sha256": "16fbd0c991dd174ee63e6589a42ae2bf0cbdb5a15af11baa57fa78d7c1825bbd",
+      "size": 474759
+    },
+    "runs/IMPACT_SEEDED_GA_2026103108/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "7c2b758850099a93fd1b068754a694bef7fff1195ed17844476e381153dd4205",
+      "size": 6584
+    },
+    "runs/IMPACT_SEEDED_GA_2026103108/FINAL_100000.json": {
+      "sha256": "8377074d021a8e32a6e71ef03446ae1a4c7a464c96981d991bca947e04b2cdb6",
+      "size": 10164
+    },
+    "runs/IMPACT_SEEDED_GA_2026103108/FINAL_250000.json": {
+      "sha256": "fad3f6a89cb46b5f179b5de618e38980a28b32459de2c0ada3be9c90f33dae34",
+      "size": 10169
+    },
+    "runs/IMPACT_SEEDED_GA_2026103108/FINAL_500000.json": {
+      "sha256": "40155c76f3c1161b8744a5442fa4e9963cac7d487a613c4803f3163ff866bd7f",
+      "size": 10167
+    },
+    "runs/IMPACT_SEEDED_GA_2026103108/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "12498c1051156848569db07cfc4bbb3363c09a2d5a65e08a414db6fa3853db3a",
+      "size": 10864119
+    },
+    "runs/IMPACT_SEEDED_GA_2026103108/INITIAL_POPULATION.json": {
+      "sha256": "8b3febb67723264a52bb2dfe1cf8bfd4df82b06c8972e31bc1ab33f916a28d8b",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103108/STRICT_IMPROVEMENTS.json": {
+      "sha256": "097c7b0af723b00f3038d120d29cb29c90fbfdc15058913a6965e7990a65188a",
+      "size": 505250
+    },
+    "runs/IMPACT_SEEDED_GA_2026103109/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "467fa2bb850248e79906689cdb82a5dd904e27730db130eb7dd78c82428d5764",
+      "size": 6597
+    },
+    "runs/IMPACT_SEEDED_GA_2026103109/FINAL_100000.json": {
+      "sha256": "40eb67033b8f085c4d0a5c98137010a8b887535a27e34a75db42fd355a0f238a",
+      "size": 10166
+    },
+    "runs/IMPACT_SEEDED_GA_2026103109/FINAL_250000.json": {
+      "sha256": "c4d19e4003127c6d88dff05c052dcbe44816a0eee43570efe197a575bad8c0e8",
+      "size": 10162
+    },
+    "runs/IMPACT_SEEDED_GA_2026103109/FINAL_500000.json": {
+      "sha256": "31a0b801141a4fed3991095eb13be6adb9918bb0d80d5118f886257785891d39",
+      "size": 10167
+    },
+    "runs/IMPACT_SEEDED_GA_2026103109/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "b7ea25740646751e0b9f5da90b835e60240a0a700cc47ea9d64915445f6662c7",
+      "size": 9816798
+    },
+    "runs/IMPACT_SEEDED_GA_2026103109/INITIAL_POPULATION.json": {
+      "sha256": "9d26505961eb3d8f1e5911c2f5efc78c45980ade45c974c87cb4a596c10ad58d",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103109/STRICT_IMPROVEMENTS.json": {
+      "sha256": "a8e3877fc18e04a766dec526882416ebb3ac5b6cfc9728d8167ccf2012df3652",
+      "size": 453313
+    },
+    "runs/IMPACT_SEEDED_GA_2026103110/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "8f1531b3cfdbc3490ae8da1bd9094b8d7f9b6fd36b5b7fca7226be1795bee58c",
+      "size": 4102
+    },
+    "runs/IMPACT_SEEDED_GA_2026103110/FINAL_100000.json": {
+      "sha256": "711a6076b7122cdd8ac6e390f3a571e4ca3f0164e2abfbae8c111c7160e3049a",
+      "size": 10169
+    },
+    "runs/IMPACT_SEEDED_GA_2026103110/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "424be4c1c79cad33f26d9d536957c5cd428b1f54deef157665a0769470a1a24a",
+      "size": 1867595
+    },
+    "runs/IMPACT_SEEDED_GA_2026103110/INITIAL_POPULATION.json": {
+      "sha256": "d05256ef9b52bd7b3fb0a92a3f102edf2231da764b901fb39e2842aee637770a",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103110/STRICT_IMPROVEMENTS.json": {
+      "sha256": "d1f0ab7c4ea4e33fc5b778d9f5cebf306e7b06a513c215ce28594c08d9ce6b51",
+      "size": 471281
+    },
+    "runs/IMPACT_SEEDED_GA_2026103111/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "bd2edeefc03dae4d41444fd3f15dc9ff70c45f57da968d0f2ef4e8e0ebdc7cfb",
+      "size": 4093
+    },
+    "runs/IMPACT_SEEDED_GA_2026103111/FINAL_100000.json": {
+      "sha256": "8e3ddfb111aa9c01839cb252d2a46100f2ef482f91c0b9e0774fc67c96cd32b5",
+      "size": 10165
+    },
+    "runs/IMPACT_SEEDED_GA_2026103111/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "352f9890f22aea0d52a35cf2378b146fda04298e1c4128dacf52bd23960ad98f",
+      "size": 2127148
+    },
+    "runs/IMPACT_SEEDED_GA_2026103111/INITIAL_POPULATION.json": {
+      "sha256": "7e436f79b17bf764bd52308a0e1e1e1fe2efd629a3ec60abe048fe86b435edb0",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103111/STRICT_IMPROVEMENTS.json": {
+      "sha256": "8f05184bf36f193368b6f1b2a899e2092391152b2db8141dcb3a970e59fd946a",
+      "size": 512462
+    },
+    "runs/IMPACT_SEEDED_GA_2026103112/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "3c9e2176054b26ae9d7c518dfeb44fcd2d193fece46d2070dbf77c817b43eeba",
+      "size": 4093
+    },
+    "runs/IMPACT_SEEDED_GA_2026103112/FINAL_100000.json": {
+      "sha256": "cfa094b81f9b4c89775980ebeff95492e20455ef810f94f129e9c12645a3d636",
+      "size": 10163
+    },
+    "runs/IMPACT_SEEDED_GA_2026103112/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "5791c615304cf9c5cabbc053e54eeb014d6dfedbe71860e5af296c99c1bd6d81",
+      "size": 1940431
+    },
+    "runs/IMPACT_SEEDED_GA_2026103112/INITIAL_POPULATION.json": {
+      "sha256": "d8254439f1576fd7ad395d63000e1574b8460a24d322ae2e7260890478a6cd33",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103112/STRICT_IMPROVEMENTS.json": {
+      "sha256": "fbc760131309007e46695de702364a26f2fad8490674be87adf6e7e197f2f5c2",
+      "size": 562675
+    },
+    "runs/IMPACT_SEEDED_GA_2026103113/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "94e4a5871ef9a49fd42c4867d777cb7034f4612e9993b0c7fb1351020244da73",
+      "size": 4099
+    },
+    "runs/IMPACT_SEEDED_GA_2026103113/FINAL_100000.json": {
+      "sha256": "a8343c1beb7ec373faebbaf09b73d9d288b835a425e2f28f2719129c0f9babeb",
+      "size": 10166
+    },
+    "runs/IMPACT_SEEDED_GA_2026103113/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "965f159f9ceda204edf838515cc966965f774e542e490fa85481dc60e24f807d",
+      "size": 1883924
+    },
+    "runs/IMPACT_SEEDED_GA_2026103113/INITIAL_POPULATION.json": {
+      "sha256": "9baf9d26e45336f752e897de612502b8044a22d178ca797f4af6fbedb42748be",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103113/STRICT_IMPROVEMENTS.json": {
+      "sha256": "34c824fb30d96e24a998a1d6bd439a62e689bc72d5b3e57e0ea0c46d728ed339",
+      "size": 550142
+    },
+    "runs/IMPACT_SEEDED_GA_2026103114/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "a2e4fd9a908551fa89f82c05307fceecd9d048fe813c639b165aea747d3efaf6",
+      "size": 4100
+    },
+    "runs/IMPACT_SEEDED_GA_2026103114/FINAL_100000.json": {
+      "sha256": "b6c7beb9a37bd350342cc23f1042aa2ac70a9bc4a8b08be5aca331737de7851c",
+      "size": 10166
+    },
+    "runs/IMPACT_SEEDED_GA_2026103114/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "80f11ba416daa1abe74cff4f1676b02c3c59b420decafde713aa7afe1e13ea13",
+      "size": 1953936
+    },
+    "runs/IMPACT_SEEDED_GA_2026103114/INITIAL_POPULATION.json": {
+      "sha256": "515dd050e9489df1d1410976e6106d7860a13b8e03f6469ec8324de4d7277907",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103114/STRICT_IMPROVEMENTS.json": {
+      "sha256": "a9316466ccd5e39d8fb296d1c56c636675a01d1deaa15146ce5f07160ce7aa60",
+      "size": 501710
+    },
+    "runs/IMPACT_SEEDED_GA_2026103115/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "3737327152f173a2260985a37b7885989870a836213cde5481cf208242ca1bfd",
+      "size": 4100
+    },
+    "runs/IMPACT_SEEDED_GA_2026103115/FINAL_100000.json": {
+      "sha256": "a15017c98f66f0fdd5152c3d2492eb66f6014757cfec32c36ffe0c730c4bce6d",
+      "size": 10169
+    },
+    "runs/IMPACT_SEEDED_GA_2026103115/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "a2b2afef3c133f1505978ec29a04bc79970e1b2cbe8fc276d6db8114b751c11f",
+      "size": 1986103
+    },
+    "runs/IMPACT_SEEDED_GA_2026103115/INITIAL_POPULATION.json": {
+      "sha256": "251be98f4847272c674bdfcfdbf38cac735019e1ca6aaef5c4df01cd4987b4ad",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103115/STRICT_IMPROVEMENTS.json": {
+      "sha256": "c9e2e9663b21a7b6e8ea671342dbddb6696337082ef0a70e3c6556589ac5be38",
+      "size": 446127
+    },
+    "runs/IMPACT_SEEDED_GA_2026103116/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "8389d7a62dce348937b439ed0030f781ca13188b59bd0f501ef7df63e0d2162b",
+      "size": 4099
+    },
+    "runs/IMPACT_SEEDED_GA_2026103116/FINAL_100000.json": {
+      "sha256": "67d750656ab60f42207b692639d31987d1cb279cefddb4097793644230ecde40",
+      "size": 10165
+    },
+    "runs/IMPACT_SEEDED_GA_2026103116/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "d784d6a3cdd5628ab66f686c90012dc9dd6b9d8afafcc95b469ee7312068f93a",
+      "size": 1921893
+    },
+    "runs/IMPACT_SEEDED_GA_2026103116/INITIAL_POPULATION.json": {
+      "sha256": "f373e2a1740a5fdf5c63564d5af8c6308ef7511453706f7e2ecd72b2ae2996a3",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103116/STRICT_IMPROVEMENTS.json": {
+      "sha256": "652ec4fd9585755b2ba446f022d608188aa7d92604e7821ea9adf8f01cc6d012",
+      "size": 440745
+    },
+    "runs/IMPACT_SEEDED_GA_2026103117/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "103e46f724df72f3fda30b1d715fd6350d3d2adabdfcc3987ead2254cbc8b32e",
+      "size": 4099
+    },
+    "runs/IMPACT_SEEDED_GA_2026103117/FINAL_100000.json": {
+      "sha256": "a92017ec4036bb0900ae8578f90a7b2e5843b2a1e6c94598e2648e42ad912f4e",
+      "size": 10164
+    },
+    "runs/IMPACT_SEEDED_GA_2026103117/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "6be844189ca694d225beca8d531a252eee191a96901f486be3f067c42ad333ac",
+      "size": 1783700
+    },
+    "runs/IMPACT_SEEDED_GA_2026103117/INITIAL_POPULATION.json": {
+      "sha256": "da59e09f0bc674c3bd5fc0c1a36ae1e480c9bdade4f2e50d252c1cb2d98391b0",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103117/STRICT_IMPROVEMENTS.json": {
+      "sha256": "1715032c53982fc981d6ed2ba45cc1f13a67f40be03d7399b80372cb651346c7",
+      "size": 449709
+    },
+    "runs/IMPACT_SEEDED_GA_2026103118/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "303065859d71f3461bc63863a7fb303430beb1a678456603c31e63821a91d140",
+      "size": 4094
+    },
+    "runs/IMPACT_SEEDED_GA_2026103118/FINAL_100000.json": {
+      "sha256": "fe8254bdea6c0d6245de6eea66c7122046e886c742c3b0028cf0f3fbef408d96",
+      "size": 10167
+    },
+    "runs/IMPACT_SEEDED_GA_2026103118/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "3a0f8214ffca5d7defdc961d02c20fc683ae0f6908d21f896e5c539564be7f6c",
+      "size": 1908938
+    },
+    "runs/IMPACT_SEEDED_GA_2026103118/INITIAL_POPULATION.json": {
+      "sha256": "02bde541577d39595d102669a360b8b2d233ca9571f134cba3d61b828f989758",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103118/STRICT_IMPROVEMENTS.json": {
+      "sha256": "4b919e8b482c42a49ccbf7bc8b37759e130b3d63e99d540447c065c4a46ce686",
+      "size": 485650
+    },
+    "runs/IMPACT_SEEDED_GA_2026103119/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "4ddfa80c8e45b558dedddfe452d8f2f292c3b11a7a8e425293a745755a3a215a",
+      "size": 4100
+    },
+    "runs/IMPACT_SEEDED_GA_2026103119/FINAL_100000.json": {
+      "sha256": "d4f73b6012f1b647f0774629b15bda98301532873dc3c5a0f342b4467e8ed51a",
+      "size": 10168
+    },
+    "runs/IMPACT_SEEDED_GA_2026103119/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "427f34c79ccf40333b1947e17e94535d6606f07ff719c34037e0deed22c5ff15",
+      "size": 2011807
+    },
+    "runs/IMPACT_SEEDED_GA_2026103119/INITIAL_POPULATION.json": {
+      "sha256": "a312b339daa1744dd8a608efc3f88c914a20a583e0fb0476a56fa2c6d6f770f5",
+      "size": 311519
+    },
+    "runs/IMPACT_SEEDED_GA_2026103119/STRICT_IMPROVEMENTS.json": {
+      "sha256": "8b6b53a364c5956463ae042694482cc24b85cb4936f3470be14fbe2316105e7e",
+      "size": 433586
+    },
+    "runs/PURE_RANDOM_GA_2026103100/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "8d1e0bb7882c9a559750006fed6b7368361f75be33e0de3ac3a2d6ef98b6e6ed",
+      "size": 6594
+    },
+    "runs/PURE_RANDOM_GA_2026103100/FINAL_100000.json": {
+      "sha256": "0613f0640026dcee7754d4d88e24b08d198f5c0c7ec8f931a80024ece7c6648c",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103100/FINAL_250000.json": {
+      "sha256": "b5e6ddff0b110781919d9331a3d9c3f3979bd85320738c52ff16f109f2504966",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103100/FINAL_500000.json": {
+      "sha256": "ad03945c0ec16a0c62744c0a9865fefe042fc6344453c878985f17d65927eed4",
+      "size": 10162
+    },
+    "runs/PURE_RANDOM_GA_2026103100/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "226c19d566b0d687be2383ada27820305c465cbde8005d04fca47a559b0d48dc",
+      "size": 9570112
+    },
+    "runs/PURE_RANDOM_GA_2026103100/INITIAL_POPULATION.json": {
+      "sha256": "f6ef46d6b993c13db5e8015b1ffa690fc778d8b80bef36632484b84d7c60bb63",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103100/STRICT_IMPROVEMENTS.json": {
+      "sha256": "c69b8542ddb78b640cad2541693d74544d2072322adc876e8e65c7d077ff9972",
+      "size": 580536
+    },
+    "runs/PURE_RANDOM_GA_2026103101/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "b2bc7ce7e702ae277a7a1ad4e9e40b2dfaaa577bcbfcf500ef3be7b6e6b33b6b",
+      "size": 6598
+    },
+    "runs/PURE_RANDOM_GA_2026103101/FINAL_100000.json": {
+      "sha256": "3f95b914466410e8fe7abf80d80231879bb4a948b524569e0287dacf402e63f5",
+      "size": 10161
+    },
+    "runs/PURE_RANDOM_GA_2026103101/FINAL_250000.json": {
+      "sha256": "be7f89c025cf62bd25c384754bc11db1846ef9cc25adb38560f1a3f1d30dad32",
+      "size": 10164
+    },
+    "runs/PURE_RANDOM_GA_2026103101/FINAL_500000.json": {
+      "sha256": "470a61690dc4711608338675a1320e29eb3862204a370739fea616455ad23b38",
+      "size": 10166
+    },
+    "runs/PURE_RANDOM_GA_2026103101/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "c581fd869e84a0d63b0566dcda6870e548c47f3e886e34b28e3d90fcb8f5432f",
+      "size": 11149763
+    },
+    "runs/PURE_RANDOM_GA_2026103101/INITIAL_POPULATION.json": {
+      "sha256": "5b97e1fadc22955bd4693d0aa7f12c0504730d1bdb9482f2efb93436e66d3828",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103101/STRICT_IMPROVEMENTS.json": {
+      "sha256": "cb3e47e74202c5c96550ae719efda65e9646a9caa990cd3cab42507d9afa68fe",
+      "size": 691668
+    },
+    "runs/PURE_RANDOM_GA_2026103102/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "987fd52a03036052e44ca66b5d0fe25ba27a83b5283525c8abb9d937bae0c02a",
+      "size": 6602
+    },
+    "runs/PURE_RANDOM_GA_2026103102/FINAL_100000.json": {
+      "sha256": "183d38e710ca8f52c3b163a9b77e2e7d039ce6bc70a0b7f196fd29f5063edd8a",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103102/FINAL_250000.json": {
+      "sha256": "b28b52f5606df274a7918822419f16ed28b53098324118251c919b0eb284656b",
+      "size": 10168
+    },
+    "runs/PURE_RANDOM_GA_2026103102/FINAL_500000.json": {
+      "sha256": "ddb9a8b7cfeef2c11918d0132d13b33309d952a13f96b126ab0d0269950bdeae",
+      "size": 10170
+    },
+    "runs/PURE_RANDOM_GA_2026103102/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "f7a13b41f1cff2c2d0e472adb7576196f83dbd99bccec33252c6014f254d3059",
+      "size": 10489298
+    },
+    "runs/PURE_RANDOM_GA_2026103102/INITIAL_POPULATION.json": {
+      "sha256": "166c500d9d4bd591868d27e5febf11032e70fad8efbcfdca748177270bfc7845",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103102/STRICT_IMPROVEMENTS.json": {
+      "sha256": "226f62c00bec33d20bad24ae14f6a768906462b1ba8f37a1b58a2c44dce7a99d",
+      "size": 718484
+    },
+    "runs/PURE_RANDOM_GA_2026103103/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "cd0eb9c38a74759667058cb3c7f8d6d6874f8da06097ca9920e29a414590e8cf",
+      "size": 6596
+    },
+    "runs/PURE_RANDOM_GA_2026103103/FINAL_100000.json": {
+      "sha256": "46c30cb89666a2277084a2cf980146ea308c4fe27e91230f8bcca20ad53c613c",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103103/FINAL_250000.json": {
+      "sha256": "9f29a8140abd6dd2db077da06c8325c650f6aaf872855139ed6d23e8e94a551c",
+      "size": 10166
+    },
+    "runs/PURE_RANDOM_GA_2026103103/FINAL_500000.json": {
+      "sha256": "dc64b66f52e9740874dc073118dc00a21dda4c91aaa4be86592249c3b9aa792c",
+      "size": 10160
+    },
+    "runs/PURE_RANDOM_GA_2026103103/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "8a1d6a6d26eab79c8c63b7495dec30059f1df9621346fc24adf4c0e09b338503",
+      "size": 10274557
+    },
+    "runs/PURE_RANDOM_GA_2026103103/INITIAL_POPULATION.json": {
+      "sha256": "0c6fb2d017b5e2b7047f520baa68b3b988defe43bcd32b068fd2d489c4e59656",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103103/STRICT_IMPROVEMENTS.json": {
+      "sha256": "86b4781a53f5f7f2d035279359070c56e628fe039c3d15c18ef0db2d4164968c",
+      "size": 634237
+    },
+    "runs/PURE_RANDOM_GA_2026103104/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "c841ec1b4b8f6b24cb14e0f97af853e61158784d04c02b7e2d27ecff3abceba7",
+      "size": 6597
+    },
+    "runs/PURE_RANDOM_GA_2026103104/FINAL_100000.json": {
+      "sha256": "f58b57520a13415cbe3528d776ea77f56ba2e9078517303ce3c0d94016ce7703",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103104/FINAL_250000.json": {
+      "sha256": "e053b6ed478382d894b1ae8ca2024dee3a2e145862597d163c3bf73c40608375",
+      "size": 10169
+    },
+    "runs/PURE_RANDOM_GA_2026103104/FINAL_500000.json": {
+      "sha256": "2290a7e680ae801692f18c15a0ac1f7094bb8c3a5de26266df2c76d1c7555eb1",
+      "size": 10168
+    },
+    "runs/PURE_RANDOM_GA_2026103104/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "00a7886c57b9f07d03b3b143053bf8cc18893469adbe37ed807bd201982cd2fc",
+      "size": 10344094
+    },
+    "runs/PURE_RANDOM_GA_2026103104/INITIAL_POPULATION.json": {
+      "sha256": "c9008d65a50cd72a1389c9473d4aa9caec88fc4f22fa440885ac64ce393e0516",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103104/STRICT_IMPROVEMENTS.json": {
+      "sha256": "f75be14c70ad9ab1ced8a057e136f8ae3d733fe910630923adca83b47884831c",
+      "size": 741866
+    },
+    "runs/PURE_RANDOM_GA_2026103105/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "4990274894c17a8b18948219b24d4a379c134915af27ff252ff02156e3ec6a2d",
+      "size": 6599
+    },
+    "runs/PURE_RANDOM_GA_2026103105/FINAL_100000.json": {
+      "sha256": "c0c70228eb41e93557d98e8bd85cf2e9aff166e48c23e4a575e0345257e373da",
+      "size": 10165
+    },
+    "runs/PURE_RANDOM_GA_2026103105/FINAL_250000.json": {
+      "sha256": "e7d7c87e1ca8228893a0f407eaa6e1a6cb3072e76966410bf5f0a32ff67752b3",
+      "size": 10169
+    },
+    "runs/PURE_RANDOM_GA_2026103105/FINAL_500000.json": {
+      "sha256": "2dc953dd8a298eea7793c9c19f097459687d5bd645b94ea5e0896672e4cbc646",
+      "size": 10168
+    },
+    "runs/PURE_RANDOM_GA_2026103105/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "d26d38c4f7bea962c457a4ca1041ac414aa404d45c0fe2887eac60c0d47727c1",
+      "size": 10372050
+    },
+    "runs/PURE_RANDOM_GA_2026103105/INITIAL_POPULATION.json": {
+      "sha256": "0a7542d06e4c74e525a807c87b2a77c56d434523535dba43f15b28f29f1ec147",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103105/STRICT_IMPROVEMENTS.json": {
+      "sha256": "70e9340491be91b51600bb7a5546258c91d7d64c7162ccda5806c2b2cdbedb16",
+      "size": 713125
+    },
+    "runs/PURE_RANDOM_GA_2026103106/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "8ac9f56605994f747fab17b198ae96c17b1d2c90579f2c8dd0e6aa818f683b5e",
+      "size": 6601
+    },
+    "runs/PURE_RANDOM_GA_2026103106/FINAL_100000.json": {
+      "sha256": "b67162affb675e9f1932c4e1353ee027b8b94a25da543265f8cdec7d59b0977d",
+      "size": 10163
+    },
+    "runs/PURE_RANDOM_GA_2026103106/FINAL_250000.json": {
+      "sha256": "b91d2475c69779f7b9a10fa7ed518a8fa05d9f1701959303b6f10ba5923dedc6",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103106/FINAL_500000.json": {
+      "sha256": "990854b2a0d1d79978ace7d9870206babfbb8fcb236978ea34de1a15acb7c5ff",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103106/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "560da84573a4abfd095ba703e09518a680209e44c50e35face6c85f90da3663a",
+      "size": 10915536
+    },
+    "runs/PURE_RANDOM_GA_2026103106/INITIAL_POPULATION.json": {
+      "sha256": "08d23754b26935b30ae2370d5a0fb976ef8771c8b4f0398cc5487ed68fff9d02",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103106/STRICT_IMPROVEMENTS.json": {
+      "sha256": "3102e500dff22ace1db222c631c1bc8a65308029f47be33c55655734d3f6519f",
+      "size": 679183
+    },
+    "runs/PURE_RANDOM_GA_2026103107/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "0e19ca1cf447dd357985662cbd3e4958c114d77ea3917ccc9e1a437c455b1865",
+      "size": 6593
+    },
+    "runs/PURE_RANDOM_GA_2026103107/FINAL_100000.json": {
+      "sha256": "a4a406bcf44e95ecfe05c91825fcdc4379adf6ca507aa314a702415e6dc95add",
+      "size": 10163
+    },
+    "runs/PURE_RANDOM_GA_2026103107/FINAL_250000.json": {
+      "sha256": "b004e5887e00a5a4fe8b96244119a32f0d652e5a799524181968f12ae22fe87f",
+      "size": 10169
+    },
+    "runs/PURE_RANDOM_GA_2026103107/FINAL_500000.json": {
+      "sha256": "9844a41a865769c5af4931b15f5cda4af2b0221901d875f23445ec8761cc0700",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103107/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "91be45b17feb0766cefd8a7b4130bea8a972bc519707a775be3c46a43a9c17a1",
+      "size": 11211961
+    },
+    "runs/PURE_RANDOM_GA_2026103107/INITIAL_POPULATION.json": {
+      "sha256": "0a598b6982e95c9b56515398cddca8347d381870f5c13824bfcc72fd94465383",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103107/STRICT_IMPROVEMENTS.json": {
+      "sha256": "410c09ee429ad82a4d1526b57af0e53b7bd42a00a1bdb733b24961ad2f7a2bb5",
+      "size": 677346
+    },
+    "runs/PURE_RANDOM_GA_2026103108/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "595b40ef7aeae8716c8a76fcf8eeb273452b30ea8105ef46a6d8ab572dd15e4e",
+      "size": 6600
+    },
+    "runs/PURE_RANDOM_GA_2026103108/FINAL_100000.json": {
+      "sha256": "a72db0c627db10c522ca61b055d665d6be0a6f07a9b32c299c9f74a59cb76b41",
+      "size": 10166
+    },
+    "runs/PURE_RANDOM_GA_2026103108/FINAL_250000.json": {
+      "sha256": "9bb44b97d15367b9dcb5a8569073efee103d8d3abba7bb0cda7c9782e5148a74",
+      "size": 10168
+    },
+    "runs/PURE_RANDOM_GA_2026103108/FINAL_500000.json": {
+      "sha256": "09d66bad7fa484b7ec2c46fc4f3c1e50a402672897df32e8a4e20276204980bf",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103108/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "d207c6c8584a852b0158aeec23b034c2f827d258e092be922355850ba06ba864",
+      "size": 10968392
+    },
+    "runs/PURE_RANDOM_GA_2026103108/INITIAL_POPULATION.json": {
+      "sha256": "9f1f2edc43e8016656f67fdc67f5d3e64f3d3d089aa998e170c3b802448a1de8",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103108/STRICT_IMPROVEMENTS.json": {
+      "sha256": "5abe2edd3653b9ac9b0b8f5ed3587e810e4e98c6ff35610f68043f9b0831ee6b",
+      "size": 686362
+    },
+    "runs/PURE_RANDOM_GA_2026103109/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "fe56f14d1515990c1306c5bf6681be059190c2620bbd68336f97e614664635a3",
+      "size": 6599
+    },
+    "runs/PURE_RANDOM_GA_2026103109/FINAL_100000.json": {
+      "sha256": "2da27a2d134ac90391650d47720b7d53d8321b7fc4a2ebd09b22959fc4164b88",
+      "size": 10166
+    },
+    "runs/PURE_RANDOM_GA_2026103109/FINAL_250000.json": {
+      "sha256": "e17125dfc21e647aee1420982c7fa510ead7ae487c725691974eaf808e638279",
+      "size": 10171
+    },
+    "runs/PURE_RANDOM_GA_2026103109/FINAL_500000.json": {
+      "sha256": "c27ceec7fdbd7faa7695eb02e7f19369e127b307d1f83e427769faaf6cc72be8",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103109/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "d743a9a296c9414b277595157d54ff8d9cab6246339c51ee06b71f4e2ed48759",
+      "size": 10793875
+    },
+    "runs/PURE_RANDOM_GA_2026103109/INITIAL_POPULATION.json": {
+      "sha256": "47f657acfa45808d47224dcce85e5d453712ae0000467990837e8de8df2c0a89",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103109/STRICT_IMPROVEMENTS.json": {
+      "sha256": "503a50d5a531f4d42215f768dac246f355df7f627259f5d7e883d37169fa89b8",
+      "size": 648632
+    },
+    "runs/PURE_RANDOM_GA_2026103110/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "3cbbb3af648cc1658113187692aa414888bc5decb61d374bc8063dda2cdf8441",
+      "size": 4101
+    },
+    "runs/PURE_RANDOM_GA_2026103110/FINAL_100000.json": {
+      "sha256": "fe355cf9105cc272342879552520e2fb74acca166177fb8d4d0254195dc0d14b",
+      "size": 10168
+    },
+    "runs/PURE_RANDOM_GA_2026103110/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "379aa459743d5d76e695c4146c7bcdb2899c2c5c9eec333384e70dedf335b88e",
+      "size": 1768091
+    },
+    "runs/PURE_RANDOM_GA_2026103110/INITIAL_POPULATION.json": {
+      "sha256": "921c9f1f148e7936554709e922116955c3501dce7d63972ebd029704f89b17fb",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103110/STRICT_IMPROVEMENTS.json": {
+      "sha256": "bd4dc89fc5e0150983dbcda6d73cef8f2b95a957d6d24e4d29f80018a57a106a",
+      "size": 670078
+    },
+    "runs/PURE_RANDOM_GA_2026103111/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "3c79db6d5efc2ae4db47931255f9a5938214b1db9df36534c52a354919c6be5e",
+      "size": 4101
+    },
+    "runs/PURE_RANDOM_GA_2026103111/FINAL_100000.json": {
+      "sha256": "64c46638232afb5a2829d721bce848345499ece4a764632f426ac02245255fa9",
+      "size": 10163
+    },
+    "runs/PURE_RANDOM_GA_2026103111/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "653a1e3d3d50dec153cbb8ae1a8cad6750429aac9ea16fd485207ae109bf7b8f",
+      "size": 1936508
+    },
+    "runs/PURE_RANDOM_GA_2026103111/INITIAL_POPULATION.json": {
+      "sha256": "7758537182f9273f6d9a41d7ae4db0cd96523e4801e74eed58c6a1356070de83",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103111/STRICT_IMPROVEMENTS.json": {
+      "sha256": "4c8bdd06f84bc49e476e0f19323229789bdcbb639c6ac15c4e8b6abf01dc4ff6",
+      "size": 637909
+    },
+    "runs/PURE_RANDOM_GA_2026103112/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "ab2cfffc0504f77c2e0f51198b95d8170cacf56beb8c7eedc3bd3d8c4e89592e",
+      "size": 4100
+    },
+    "runs/PURE_RANDOM_GA_2026103112/FINAL_100000.json": {
+      "sha256": "b318234ed5aa0b86c5c6e97f8d7b78dc4c428d72102a04b8c35f6ec053d64cd0",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103112/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "ef04b9bd91c4754bb940e5e4ab1957cb3594d811b13bd617bbb5f7ac61e74906",
+      "size": 1843479
+    },
+    "runs/PURE_RANDOM_GA_2026103112/INITIAL_POPULATION.json": {
+      "sha256": "2914c2a55a452679dbdb6626eee3f5e26b6a0128ac3ab8bab5300c9b3dbfe959",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103112/STRICT_IMPROVEMENTS.json": {
+      "sha256": "918b518f058c1b003be6802a03bc430b795a20b008a0e00094d34922189bfcd1",
+      "size": 695254
+    },
+    "runs/PURE_RANDOM_GA_2026103113/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "82e5f546337c5dafe3c231bb756ea733185032d860170866123a09c67c05600e",
+      "size": 4096
+    },
+    "runs/PURE_RANDOM_GA_2026103113/FINAL_100000.json": {
+      "sha256": "ee15bda040ba83a6ff46ec32e39c71af2473e58d33ef01426f977131254b684a",
+      "size": 10162
+    },
+    "runs/PURE_RANDOM_GA_2026103113/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "d3f84d098a886d5752cb2291d07625a0a0458eddd4d0726efddb8350c77e63cc",
+      "size": 1875402
+    },
+    "runs/PURE_RANDOM_GA_2026103113/INITIAL_POPULATION.json": {
+      "sha256": "5524f4bfcbb8ccc9ce262bf5b305dd55c829baec8b6cd49d2ff31fafe6ed9b63",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103113/STRICT_IMPROVEMENTS.json": {
+      "sha256": "e15e19ddc7a72fab82a7f7ac7a33f375c46a0bf30c462559dc304a5fb97f26ee",
+      "size": 596708
+    },
+    "runs/PURE_RANDOM_GA_2026103114/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "1932832d816fba33f0f95bb5aa70c7c7bd2a2469e7f4891225fed61a35a20d7c",
+      "size": 4100
+    },
+    "runs/PURE_RANDOM_GA_2026103114/FINAL_100000.json": {
+      "sha256": "0a8d3d716f51f86fd2edf9bd34a6ca7b682965441fd30502f045f6c28e919a97",
+      "size": 10159
+    },
+    "runs/PURE_RANDOM_GA_2026103114/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "46816f00c6c2bd34a6d12a12e024e49a61256653e0919356454066cf4bf6b9df",
+      "size": 1890631
+    },
+    "runs/PURE_RANDOM_GA_2026103114/INITIAL_POPULATION.json": {
+      "sha256": "52cddcc20da739a237e91dcd3577a8d6d5b76e0421b26f8432da3bbad653e788",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103114/STRICT_IMPROVEMENTS.json": {
+      "sha256": "28f57e7883f9e22bb6da395e9eb1d729ac2672ec36fee9e45fbc9a43fdcf693f",
+      "size": 605558
+    },
+    "runs/PURE_RANDOM_GA_2026103115/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "e671b9af3cd2a5ffb6e600b1e3d07c0a4905b58e6942efc27e3ff3e4c20fb8fa",
+      "size": 4090
+    },
+    "runs/PURE_RANDOM_GA_2026103115/FINAL_100000.json": {
+      "sha256": "11acdc133f6883efeae8f09c2e9f27a7506a702055d1360c993021a895f2267a",
+      "size": 10163
+    },
+    "runs/PURE_RANDOM_GA_2026103115/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "3b019a8595879d5dd65047931f787834949f383312c8927011e731e838e0769b",
+      "size": 1901953
+    },
+    "runs/PURE_RANDOM_GA_2026103115/INITIAL_POPULATION.json": {
+      "sha256": "891de096070ecd8659fc3125e9d07b6af789499ddff7e62f52eeca1f822d747b",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103115/STRICT_IMPROVEMENTS.json": {
+      "sha256": "9b5c57966133c92c552334a4e6f967245e08f833251ed02a7cbf285a5b5dfeb6",
+      "size": 739974
+    },
+    "runs/PURE_RANDOM_GA_2026103116/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "01be84cf36ed3f543e64de962323e8a97b0092992c7ec77d56bcc4e5bcbd6102",
+      "size": 4098
+    },
+    "runs/PURE_RANDOM_GA_2026103116/FINAL_100000.json": {
+      "sha256": "c47abbd3ac31a2eb73250eba67cb64385ac0de7669b87b7b33e97762b1091a60",
+      "size": 10162
+    },
+    "runs/PURE_RANDOM_GA_2026103116/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "2f260216ec39e4efd32bed7f5e05723ef3ef12db53d9a52fd2ca61d2652531fc",
+      "size": 1986069
+    },
+    "runs/PURE_RANDOM_GA_2026103116/INITIAL_POPULATION.json": {
+      "sha256": "eca3a11516b79ac048b34d228891a87e6ceabebb814a50678ce3ac220de62d4d",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103116/STRICT_IMPROVEMENTS.json": {
+      "sha256": "619c8f9e7531bc5536b63d2f5d82f426978d6aed7c0d177c2ca6aba1e13386f7",
+      "size": 695257
+    },
+    "runs/PURE_RANDOM_GA_2026103117/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "057993b3d26f80bbc16747afb105acd1d53c8e2dbe42f90b36591671732b324c",
+      "size": 4099
+    },
+    "runs/PURE_RANDOM_GA_2026103117/FINAL_100000.json": {
+      "sha256": "5fc5dab81ff71fb0628c2dfd953c681c59090bf8a2691c000f7eb0dc08aaee81",
+      "size": 10165
+    },
+    "runs/PURE_RANDOM_GA_2026103117/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "f9fb0e6e22f618f066e0209f178da9beff9bda541b8a8248377e81a255609364",
+      "size": 1743798
+    },
+    "runs/PURE_RANDOM_GA_2026103117/INITIAL_POPULATION.json": {
+      "sha256": "002fbccf3e25274104795038f26d2034cfd41d4593735c97a77d2e130c0c9185",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103117/STRICT_IMPROVEMENTS.json": {
+      "sha256": "9944b760e271034ae5e57b4b66ebc3e6bfe604d4df879afeeb3adcaaf081d1c8",
+      "size": 711310
+    },
+    "runs/PURE_RANDOM_GA_2026103118/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "82a5efa6c8f7d28363d625615937c759d2c1629f064916dc2f9c8ad660ad29d6",
+      "size": 4103
+    },
+    "runs/PURE_RANDOM_GA_2026103118/FINAL_100000.json": {
+      "sha256": "60c1cf899be1cc25919c3a10603f24a4ab567ff4e42190015be4ec4042a19a26",
+      "size": 10167
+    },
+    "runs/PURE_RANDOM_GA_2026103118/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "666615c40c70f3bbb9cfdf4cbe1bde089b9337690a211fa20fcebc58f9f81df5",
+      "size": 1805203
+    },
+    "runs/PURE_RANDOM_GA_2026103118/INITIAL_POPULATION.json": {
+      "sha256": "c5e90e74105975f92a74c517f94cf3b5d326afc07f0a0435658a498f11b88647",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103118/STRICT_IMPROVEMENTS.json": {
+      "sha256": "1935b3d24467aee79d5dcc7f8b7587e69cf3cc6c727b3163c8940c59a2763f70",
+      "size": 662954
+    },
+    "runs/PURE_RANDOM_GA_2026103119/BUDGET_CHECKPOINTS.csv": {
+      "sha256": "2e185a92cbe1fedf141aaec39fd566090e2dfe92a223db59df5a12dcdb72c7ea",
+      "size": 4101
+    },
+    "runs/PURE_RANDOM_GA_2026103119/FINAL_100000.json": {
+      "sha256": "02adeb059fa5c615028cd509493c8da4903c383a02cdac21833162031445e107",
+      "size": 10162
+    },
+    "runs/PURE_RANDOM_GA_2026103119/GENERATION_DIAGNOSTICS.csv": {
+      "sha256": "7fa1c2d7a6af17a9ae246665d957a1b5b92b0c2c2c98444d75e00107081026b2",
+      "size": 1962463
+    },
+    "runs/PURE_RANDOM_GA_2026103119/INITIAL_POPULATION.json": {
+      "sha256": "2d1866f245be9572a29b49c6094cd38c15b137a1ea47d1c0cf466129017c9203",
+      "size": 311517
+    },
+    "runs/PURE_RANDOM_GA_2026103119/STRICT_IMPROVEMENTS.json": {
+      "sha256": "f91586627e7d43939151db447821447cbef91501b7c90ef6e8b5295318f4518e",
+      "size": 632524
+    }
+  },
+  "total_bytes": 1314548002
+}

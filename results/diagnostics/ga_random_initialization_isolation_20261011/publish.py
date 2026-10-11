@@ -41,6 +41,10 @@ def package():
     s.save(s.OUT/'RAW_SEARCH_EVIDENCE_MANIFEST.json',dict(status='PASS',runs=manifest,
         duplicate_checkpoint_payloads='Stored once by SHA256 within each bundle; all logical paths preserved in PATH_HASH_MANIFEST.json',
         lossless=True,total_bundle_bytes=sum(r['zip_bytes'] for r in manifest)))
+    output_manifest()
+
+
+def output_manifest():
     files={}
     for p in s.lp(s.OUT).rglob('*'):
         if not p.is_file() or 'runtime' in p.parts:continue
@@ -91,6 +95,7 @@ def remote():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('phase',choices=['package','remote']);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('phase',choices=['package','manifest','remote']);a=p.parse_args()
     if a.phase=='package':package()
+    elif a.phase=='manifest':output_manifest()
     else:remote()

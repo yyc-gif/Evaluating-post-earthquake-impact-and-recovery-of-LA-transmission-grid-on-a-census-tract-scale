@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "required_files": [
+    "EXPERIMENT_DESIGN_AND_SEEDS.json",
+    "INITIALIZATION_IMPLEMENTATION_AND_PARITY.md",
+    "PURE_RANDOM_GA_SEED_RESULTS.csv",
+    "IMPACT_SEEDED_GA_SEED_RESULTS.csv",
+    "PAIRED_INITIALIZATION_COMPARISON.csv",
+    "INITIAL_POPULATION_AND_SEARCH_CONTRIBUTION.csv",
+    "BUDGET_CONVERGENCE_AND_DUPLICATION.csv",
+    "HISTORICAL_GA_COMPARISON.md",
+    "IMPORTANT_SEQUENCE_PRODUCTION_QA.json",
+    "GA_INITIALIZATION_SCIENTIFIC_INTERPRETATION.md",
+    "REVIEWER_DEFENSE_AND_METHODS_TEXT.md",
+    "FINAL_GA_INITIALIZATION_DECISION.md",
+    "REPRODUCIBILITY_AND_PRESERVATION_QA.json",
+    "RAW_SEARCH_EVIDENCE_MANIFEST.json"
+  ],
+  "paired_statistics_recomputed": true,
+  "main_pairs": 20,
+  "reserved_continuation_pairs": 10,
+  "total_search_distinct": 12000000,
+  "no_250k_to_500k_improvement": true,
+  "post_data_decision_deviation_disclosed": true,
+  "physical_objective_calls_in_this_check": 0,
+  "raw_run_bundles": 40,
+  "production_max_error_hr": 3.439026841078885e-12,
+  "final_unit_tests": "5 passed; python -B -m pytest test_isolation.py -q; 1.26 s",
+  "figure_visual_review": {
+    "file": "GA_INITIALIZATION_CONVERGENCE.png",
+    "sha256": "0e87211dc443db57942fb7afd39923c20decb0362943cadb9882e543df920282",
+    "reviewed": true,
+    "readability": "Titles, axes, ticks and legends are readable and unclipped.",
+    "cohort_separation": "Solid 20-pair and dashed reserved 10-pair trajectories are separated; caption states different cohorts and conditional uncertainty."
+  },
+  "formal_replacement": false,
+  "new_physical_samples": 0
+}

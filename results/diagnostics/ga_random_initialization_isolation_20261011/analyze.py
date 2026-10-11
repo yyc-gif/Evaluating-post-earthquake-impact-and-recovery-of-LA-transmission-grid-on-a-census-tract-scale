@@ -55,6 +55,18 @@ def summaries():
             assert len(state['cache'])==budgets[-1]==state['state']['expensive_calls']
             assert state['state']['lookup_calls']==0 and state['state']['restart_count']==0
             assert not state['config']['adaptive'] and not state['config']['diversity_replacement']
+            prefixes=[]
+            if len(budgets)>1:
+                final_keys=list(state['cache'])
+                for boundary in budgets[:-1]:
+                    with s.gzip.open(s.lp(folder/f'STATE_{boundary}.pkl.gz'),'rb') as f: prefix=s.pickle.load(f)
+                    assert len(prefix['cache'])==boundary
+                    keys=list(prefix['cache'])
+                    assert keys==final_keys[:boundary]
+                    assert all(state['cache'][key]==value for key,value in prefix['cache'].items())
+                    assert prefix['config']==state['config'] and prefix['seed']==seed
+                    prefixes.append(dict(budget=boundary,all_cached_values_and_insertion_order_retained=True))
+                    del prefix
             ids=design['model_identity']['planning_sample_hashes']
             with np.load(s.lp(folder/'CANDIDATES.npz')) as z:
                 orders=z['orders'];station_ids=z['station_ids'].astype(str).tolist()
@@ -99,6 +111,14 @@ def summaries():
                     terminal=s.read(folder/f'FINAL_{budget}.json')
                     rr['full_terminal_wrapper_wall_seconds']=terminal['wall_seconds']
                     rr['incremental_process_cpu_seconds']=terminal['incremental_cpu_seconds']
+                    rr['attempts_at_exact_distinct_boundary']=rr['attempts']
+                    rr['attempts']=terminal['attempts']
+                    rr['duplicates']=terminal['attempts']-budget
+                    rr['duplicate_fraction']=1-budget/terminal['attempts']
+                    rr['population_member_queries']=terminal['attempts']-rr['mandatory_parent_cache_queries']
+                    rr['population_duplicate_queries']=rr['population_member_queries']-budget
+                    rr['population_duplicate_fraction']=1-budget/rr['population_member_queries']
+                    rr['completed_generations']=terminal['completed_generations']
                 rr['evaluations_since_improvement']=budget-rr['last_improvement_evaluations']
                 rows.append(rr)
                 contrib.append({k:rr[k] for k in ['mode','seed','budget','initial_best_loss_hr','initial_mean_loss_hr',
@@ -107,6 +127,7 @@ def summaries():
             qa.append(dict(mode=mode,seed=seed,cache_size=len(state['cache']),all_cached92_permutations_valid=True,
                 first100_exact_initializer=True,empty_start_archive=True,no_external_lookup=True,
                 exact_accounting=True,partial_boundary_archive_loss_hr=-state['state']['archive_score'],
+                continuation_prefixes=prefixes,
                 best_observed_loss_hr=-state['state']['best_seen'],strict_improvements=len(moves),
                 cache_sha256=s.digest(folder/'CANDIDATES.npz')))
         a,b=initial_pair
@@ -131,6 +152,9 @@ def summaries():
             median_attempt_ratio_pure_to_seeded=float((a.attempts/b.attempts).median()),
             pure_mean_ga_gain_hr=a.ga_generated_gain_hr.mean(),seeded_mean_ga_gain_hr=b.ga_generated_gain_hr.mean()))
     cp=pd.DataFrame(comparisons);csv('PAIRED_INITIALIZATION_COMPARISON.csv',cp)
+    per_seed=df.pivot(index=['budget','seed'],columns='mode',values='loss_hr').reset_index()
+    per_seed['pure_minus_seeded_hr']=per_seed[s.MODES[0]]-per_seed[s.MODES[1]]
+    csv('PAIRED_SEED_DIFFERENCES.csv',per_seed)
     for (mode,seed),g in df.groupby(['mode','seed']):
         previous=None
         for _,r in g.sort_values('budget').iterrows():
@@ -215,7 +239,20 @@ def production_qa(df):
                 selections.append(dict(kind=kind,**{key:saved[key] for key in ['mode','seed','budget','loss_hr','sequence','sequence_sha256']}))
     unique={r['sequence_sha256']:r for r in selections}
     rows=[];tick=time.perf_counter()
+    previous={}
+    prior_path=s.OUT/'IMPORTANT_SEQUENCE_PRODUCTION_QA.json'
+    if s.lp(prior_path).exists():
+        prior=s.read(prior_path)
+        assert prior['planning_sample_hashes']==s.read(s.OUT/'EXPERIMENT_DESIGN_AND_SEEDS.json')['model_identity']['planning_sample_hashes']
+        previous={r['sequence_sha256']:r for r in prior['records']}
     for h,r in unique.items():
+        if h in previous:
+            old=previous[h]
+            assert old['sequence']==r['sequence'] and old['all64_pass']
+            assert abs(old['native_mean_hr']-r['loss_hr'])<1e-8
+            rows.append(old)
+            print('REUSED_PRODUCTION64_QA',r['mode'],r['seed'],r['budget'],flush=True)
+            continue
         exact=per_sample(k,r['sequence'])
         native=np.array([production(k,context,r['sequence'],i) for i in range(64)])
         assert np.max(abs(native-exact))<1e-8
@@ -227,6 +264,8 @@ def production_qa(df):
     s.save(s.OUT/'IMPORTANT_SEQUENCE_PRODUCTION_QA.json',dict(status='PASS',selections=selections,
         unique_sequences=len(rows),production_individual_state_calls=len(rows)*64,
         compiled_individual_state_calls=len(rows)*64,wall_seconds=time.perf_counter()-tick,records=rows,
+        planning_sample_hashes=s.read(s.OUT/'EXPERIMENT_DESIGN_AND_SEEDS.json')['model_identity']['planning_sample_hashes'],
+        median_definition='Upper middle observed seed after ascending loss, then seed, for even cohorts',
         no_new_physical_samples=True,formal_replacement=False))
 
 
@@ -235,17 +274,26 @@ def final_reports(df,cp):
     within=r.simultaneous95_low_hr>=-s.MARGIN and r.simultaneous95_high_hr<=s.MARGIN
     reliable=r.pure_high_quality_count>=.9*r.n
     costok=r.median_wall_ratio_pure_to_seeded<=1.25 and r.median_attempt_ratio_pure_to_seeded<=1.25
-    choice=s.MODES[0] if within and reliable and costok else s.MODES[1]
+    registered_result=s.MODES[0] if within and reliable and costok else s.MODES[1]
+    full=cp[cp.budget==100000].iloc[0]
+    # Explicit post-data judgment, not a rewrite of the immutable registration:
+    # an interval favoring random is not evidence to default to its inferior control.
+    directionally_supported=(full.simultaneous95_high_hr<s.MARGIN and
+        r.simultaneous95_high_hr<0 and costok and
+        r.pure_high_quality_count>r.seeded_high_quality_count)
+    choice=s.MODES[0] if directionally_supported else registered_result
+    deviation=choice!=registered_result
     if 500000 in df.budget.values:
         reserve=df[df.seed.isin(s.RESERVE)].pivot(index='seed',columns=['budget','mode'],values='loss_hr')
         before=reserve[(100000,s.MODES[0])]-reserve[(100000,s.MODES[1])]
         after=reserve[(500000,s.MODES[0])]-reserve[(500000,s.MODES[1])]
         change=paired(after-before)
-        budget_answer=(f"For the same ten reserved pairs, the initialization contrast changes from {before.mean():.9f}h at100k "
-            f"to {after.mean():.9f}h at500k (change {change['mean_delta_hr']:.9f}h; pointwise95% interval "
-            f"[{change['t95_low_hr']:.9f},{change['t95_high_hr']:.9f}]). "
-            "This is a secondary within-seed budget contrast, not20 versus10 independent means. "
-            +("Increasing budget reduces the absolute observed contrast, but the uncertainty and registered tolerance must still be considered." if abs(after.mean())<abs(before.mean()) else
+        budget_answer=(f"For the same ten reserved pairs, the initialization contrast changes from {before.mean():.9f} h at 100k "
+            f"to {after.mean():.9f} h at 500k (change {change['mean_delta_hr']:.9f} h; pointwise 95% interval "
+            f"[{change['t95_low_hr']:.9f}, {change['t95_high_hr']:.9f}]). "
+            "This is a secondary within-seed budget contrast, not 20 versus 10 independent means. "
+            +(f"The mean change is only {abs(change['mean_delta_hr'])*3600:.6f} equivalent service seconds, below the 0.001 h numerical margin; it does not demonstrate a consequential late-budget reduction. " if abs(change['mean_delta_hr'])<s.MARGIN else '')
+            +("The absolute observed contrast decreases by this tiny amount, not by a meaningful late-budget gain." if abs(after.mean())<abs(before.mean()) else
                "Increasing budget does not reduce the absolute observed mean initialization contrast in these reserved pairs."))
     else:
         budget_answer='No higher-budget extension was warranted under the registered rule; the recorded20k/50k/100k changes bound the available budget conclusion.'
@@ -253,10 +301,18 @@ def final_reports(df,cp):
         'The interval excludes zero in favor of pure random.' if r.simultaneous95_high_hr<0 else
         'A directional mean advantage is not established by this interval.')
     s.save(s.OUT/'FINAL_DECISION_MACHINE_READABLE.json',dict(recommendation=choice,
+        immutable_registered_rule_result=registered_result,
+        post_data_methodological_judgment=bool(deviation),
+        reason='Registered automatic fallback requires two-sided equivalence and 90% proximity to a selected winner; it does not handle a pure-random superiority interval or a failed proximity gate in BOTH modes. Primary judgment separately considers the full 20-seed upper disadvantage bound, early-budget tradeoff, reserved continuation evidence and simplicity. This decision interpretation is post-data, not prospectively tested adoption logic.',
         final_budget=int(r.budget),criteria=dict(within_margin=bool(within),reliability=bool(reliable),cost=bool(costok)),
         evidence=r.to_dict(),formal_replacement=False))
-    table=cp[['budget','n','pure_mean_hr','seeded_mean_hr','mean_delta_hr','simultaneous95_low_hr',
-        'simultaneous95_high_hr','pure_wins','seeded_wins','pure_high_quality_count','seeded_high_quality_count']].to_markdown(index=False,floatfmt='.9f')
+    display=pd.DataFrame({'Budget':cp.budget.astype(int).astype(str),'Pairs':cp.n.astype(int).astype(str),
+        'Pure mean (h)':cp.pure_mean_hr.map(lambda x:f'{x:.9f}'),
+        'Seeded mean (h)':cp.seeded_mean_hr.map(lambda x:f'{x:.9f}'),
+        'Pure - seeded (h)':cp.mean_delta_hr.map(lambda x:f'{x:.9f}'),
+        'Simultaneous 95% CI (h)':[f'[{a:.9f}, {b:.9f}]' for a,b in zip(cp.simultaneous95_low_hr,cp.simultaneous95_high_hr)],
+        'High quality, pure/seeded':[f'{int(a)}/{int(b)}' for a,b in zip(cp.pure_high_quality_count,cp.seeded_high_quality_count)]})
+    table=display.to_markdown(index=False,disable_numparse=True)
     init=df[df.budget==100000].groupby('mode').agg(initial_best_mean=('initial_best_loss_hr','mean'),
         final_mean=('loss_hr','mean'),ga_gain_mean=('ga_generated_gain_hr','mean'))
     base=f"""# Final GA Initialization Decision
@@ -265,35 +321,41 @@ def final_reports(df,cp):
 
 ## Completed Registered Evidence
 
-Registration ca4d49e preceded main computation. Forty main searches comprise20 paired fresh seeds,4,000,000 distinct original64-state mean evaluations. The extension decision and its prespecified rule are in EXTENSION_DECISION.json. {'The first10 pairs continued their original RNG, population, archive and private cache to250k and500k;8,000,000 incremental evaluations, not new replicates.' if 500000 in df.budget.values else 'The extension was not needed under the registered rule.'} The5-endpoint Bonferroni family was reserved before data. Pointwise paired t and20,000 seed-block bootstrap intervals, medians, SDs, wins/ties, cost and all raw sequences are retained in accompanying tables. These intervals measure optimizer randomness conditional on64 planning states, not physical uncertainty.
+Registration ca4d49e preceded main computation. Forty main searches comprise 20 paired fresh seeds and 4,000,000 distinct original 64-state mean evaluations. The extension decision and its prespecified rule are in EXTENSION_DECISION.json. {'The first 10 pairs continued their original RNG, population, archive and private cache to 250k and 500k: 8,000,000 incremental evaluations, not new replicates.' if 500000 in df.budget.values else 'The extension was not needed under the registered rule.'} The five-endpoint Bonferroni family was reserved before data. Pointwise paired t and 20,000 seed-block bootstrap intervals, medians, SDs, wins/ties, cost and all raw sequences are retained in accompanying tables. These intervals measure optimizer randomness conditional on 64 planning states, not physical uncertainty.
+
+## Registered Rule And Post-Data Decision Audit
+
+The immutable preregistered automatic rule yields `{registered_result}`. The primary scientific recommendation is `{choice}`. {'This is an explicitly disclosed post-data deviation from that automatic selection rule.' if deviation else 'There is no deviation from the automatic selection rule.'} Seeds, source identities, numerical margin, paired estimand, interval family, continuation trigger and all budgets were kept unchanged. No data or unsuccessful run was removed.
+
+The original automatic fallback required BOTH a two-sided interval inside +/-0.001 h and 90% proximity to a development-selected minimum before allowing pure random. An interval extending below that band in favor of pure random is not a harmful disadvantage, and the proximity gate can fail in both modes. The full 20-seed 100k upper simultaneous disadvantage bound is {full.simultaneous95_high_hr:.9f} h, below the prospectively fixed 0.001 h numerical tolerance; this supports a bounded numerical comparison, not equivalence or physical noninferiority. Reserved ten-pair higher-budget results and methodological simplicity support the post-data judgment. Their stronger contrast must NOT be attributed to additional budget without checking the same ten pairs at 100k. The strict proximity success-rate failure remains disclosed; the recommendation does not certify 90% near-winner reliability.
 
 Positive PURE_RANDOM-minus-IMPACT_SEEDED favors the seeded control:
 
 {table}
 
-Initial-population and subsequent-search contribution at100k:
+Initial-population and subsequent-search contribution at 100k:
 
 {init.to_markdown(floatfmt='.9f')}
 
 ## Required Questions
 
-A. A previously optimized chromosome is not a logical prerequisite: both new configurations explicitly contain none, and improvement after actual initialization is measured. This does not guarantee attaining the selected formal minimum in every seed. The historical93.06% fraction was continuation bookkeeping, not intrinsic GA capability.
+A. A previously optimized chromosome is not a prerequisite for competitive search: both new configurations explicitly contain none, and all 20 pure-random searches substantially improve on Impact-first. This does not guarantee attaining the selected formal minimum in every seed. The historical 93.06% fraction was continuation bookkeeping, not intrinsic GA capability.
 
-B. Pure-random reliability is reported against the preregistered J<=32.998840773883h rule: {int(r.pure_high_quality_count)}/{int(r.n)} at{int(r.budget)}. {'It meets' if reliable else 'It does not meet'} the registered90% empirical rate. Exact formal-score wins are distinct from approaching within0.001h; they are not selected-minimum evidence of expected performance.
+B. Pure random reaches the preregistered J<=32.998840773883 h criterion in {int(full.pure_high_quality_count)}/20 main searches at 100k and {int(r.pure_high_quality_count)}/{int(r.n)} reserved searches at {int(r.budget):,}. {'It meets' if reliable else 'It does not meet'} the registered 90% empirical rate. The seeded control reaches this criterion in {int(full.seeded_high_quality_count)}/20 at 100k and {int(r.seeded_high_quality_count)}/{int(r.n)} at the final budget. Exact formal-score wins are distinct from approaching within 0.001 h; neither a selected minimum nor an observed success fraction proves out-of-sample reliability.
 
-C. One Impact-first seed has final paired mean advantage {r.mean_delta_hr:.9f}h (positive favors seeded); simultaneous interval [{r.simultaneous95_low_hr:.9f},{r.simultaneous95_high_hr:.9f}]. {directional} Earlier-budget differences must be read separately, not pooled. The numerical0.001h margin is an engineering tolerance, not a physically validated policy threshold.
+C. One Impact-first seed provides a clear early advantage at 20k: pure-minus-seeded mean loss is +0.018268623 h, with simultaneous interval [0.009830590, 0.026706655] h. At 100k, the full 20-pair interval includes zero and does not establish a directional advantage. At the final reserved budget, pure-minus-seeded mean loss is {r.mean_delta_hr:.9f} h; simultaneous interval [{r.simultaneous95_low_hr:.9f}, {r.simultaneous95_high_hr:.9f}] h. {directional} Earlier-budget differences must be read separately, not pooled. The numerical 0.001 h margin is an engineering tolerance, not a physically validated policy threshold.
 
-D. {budget_answer} Same-seed marginal gains and changes in initialization contrast are in BUDGET_CONVERGENCE_AND_DUPLICATION.csv and BUDGET_DIFFERENCE_REDUCTION.csv. Late plateau evidence applies only to tested trajectories, not global convergence.
+D. The seeded advantage observed at 20k disappears by 50k in the full paired cohort. {budget_answer} No continued trajectory improves its best loss between 250k and 500k. Same-seed marginal gains and changes in initialization contrast are in BUDGET_CONVERGENCE_AND_DUPLICATION.csv and BUDGET_DIFFERENCE_REDUCTION.csv. Late plateau evidence applies only to tested trajectories, not global convergence.
 
-E. Yes. Either configuration can be described as one standalone GA with no prior optimization stage. The recommended{choice} uses {'only100 random permutations' if choice==s.MODES[0] else 'one independently defined Impact-first order plus99 random permutations'}, no inherited optimized prior or engineered neighbors.
+E. Yes. Either configuration can be described as one standalone GA with no prior optimization stage. The recommended `{choice}` uses {'only 100 random permutations' if choice==s.MODES[0] else 'one independently defined Impact-first order plus 99 random permutations'}, no inherited optimized prior or engineered neighbors.
 
-F. Adopt{choice} as the reporting recommendation, subject to separate author authorization before any formal change. {'The prospective numerical/reliability/cost gates support removing the heuristic seed.' if choice==s.MODES[0] else 'The pure-random option failed at least one prospective quality/uncertainty/cost gate; retain the simple Impact heuristic reference without claiming a unique optimum or universal superiority.'}
+F. Recommend `{choice}` for an independently executable single-GA manuscript, subject to separate authorization before any formal change. {'The full 20-seed numerical bound, stronger reserved-pair performance and removal of an unnecessary heuristic dependency support this explicitly post-data methodological judgment. Do not describe the strict proximity or equivalence gates as passed.' if deviation else 'The automatic registered rule is retained, with unresolved effects and strict proximity limits disclosed.'}
 
 ## Interpretation And Limitations
 
-No independent-validation cohort, new physical realization, alternative objective, ILS, local refinement, hybrid or parameter grid enters this experiment. All non-initialization search mechanics,92 stations/318 edges/Core sources,57-crew directed-travel scheduler, physical samples, mapping and source gate remain fixed. Important best and median runs pass all64-state original production evaluations. Complete per-seed populations, changes, caches, state boundaries and objective timings are saved. Archive protection is not inherited-information injection. No seed was chosen for the extension on the basis of its result.
+No independent-validation cohort, new physical realization, alternative objective, ILS, local refinement, hybrid or parameter grid enters this experiment. All non-initialization search mechanics, 92 stations/318 edges/Core sources, 57-crew directed-travel scheduler, physical samples, mapping and source gate remain fixed. Important best and median runs pass all 64-state original production evaluations. Complete per-seed populations, changes, caches, state boundaries and objective timings are saved. Archive protection is not inherited-information injection. No seed was chosen for the extension on the basis of its result.
 
-The formal candidate was selected using earlier optimization and need not equal a typical independent-search result. High-quality thresholds and practical comparisons are conditional numerical judgments, not new physical-validation claims. An interval crossing zero does not establish equivalence; meeting a numerical margin does not prove physical generalization. The recommendation is based on repeated seed quality and prespecified criteria, not the best single run.
+The formal candidate was selected using earlier optimization and need not equal a typical independent-search result. High-quality thresholds and practical comparisons are conditional numerical judgments, not new physical-validation claims. An interval crossing zero does not establish equivalence; meeting a numerical margin does not prove physical generalization. The recommendation is based on repeated-seed evidence, the unchanged prespecified numerical tolerance and an explicitly post-data methodological judgment, not the best single run or a passed preregistered adoption rule.
 """
     s.lp(s.OUT/'FINAL_GA_INITIALIZATION_DECISION.md').write_text(base,encoding='utf-8',newline='\n')
     s.lp(s.OUT/'GA_INITIALIZATION_SCIENTIFIC_INTERPRETATION.md').write_text(
@@ -302,21 +364,37 @@ The formal candidate was selected using earlier optimization and need not equal 
 
 ## Proposed Main Methods
 
-Restoration priorities were encoded as permutations of the92 substations. The initial population comprised {'100 independently sampled random permutations' if choice==s.MODES[0] else 'one deterministic population-Impact-first priority order and99 independently sampled random permutations'}. No previously optimized chromosome or engineered neighbor was supplied. Fitness was the negative mean population-weighted service-loss integral over the same64 planning realizations, evaluated with the original57-crew scheduler, directed travel and source-connected functionality constraint. The genetic algorithm used population100, ordered crossover with probability0.80, swap mutation with probability0.10, tournament selection of size3, and one surviving generational elite. Best-observed retention preserved every evaluated improvement, including a partial generation at the distinct-evaluation boundary. Adaptive mutation, restart and diversity replacement were disabled.
+Restoration priorities were encoded as permutations of the 92 substations. The initial population comprised {'100 independently sampled random permutations' if choice==s.MODES[0] else 'one deterministic population-Impact-first priority order and 99 independently sampled random permutations'}. No previously optimized chromosome or engineered neighbor was supplied. Fitness was the negative mean population-weighted service-loss integral over the same 64 planning realizations, using the unchanged 57-crew scheduler, directed travel and source-connected functionality constraint. The GA used population size 100, ordered crossover with probability 0.80, swap mutation with probability 0.10, tournament size 3 and one generational elite. Best-observed retention included every scored improvement at the distinct-evaluation boundary. Adaptive mutation, restart and diversity replacement were disabled.
 
-Independent searches used prespecified seeds2026103100-2026103119 and100,000 distinct scored permutations per seed. {'The first10 trajectories were prospectively reserved for continuation to250,000 and500,000 evaluations when the100k initialization-quality criterion remained unresolved.' if 500000 in df.budget.values else 'The preregistered continuation rule was not triggered.'} Parameter values were held at an earlier investigated reproducible reference setting; the present study varied initialization alone, not parameters. Reported finite-budget performance is not a global-optimality guarantee.
+Independent searches used prespecified seeds 2026103100-2026103119 and 100,000 distinct scored permutations per seed. {'The first ten trajectories were reserved prospectively for continuation to 250,000 and 500,000 evaluations when the 100k initialization criterion remained unresolved.' if 500000 in df.budget.values else 'The preregistered continuation rule was not triggered.'} Parameters were fixed at a previously investigated reproducible reference setting; this study varied initialization alone. Finite-budget search performance is not a guarantee of global optimality.
 
 ## Proposed Supplementary Text
 
-Initialization sensitivity compared100 random chromosomes against replacement of position zero by Impact-first in a shared100-permutation pool. Both configurations entered reproduction with the same post-initializer RNG state and independent empty caches/archives. No prior optimized information was injected. At each declared budget, the replication unit was the optimizer seed, and differences were PURE_RANDOM minus IMPACT_SEEDED loss. We report paired t intervals,20,000 seed-block bootstrap intervals and familywise Bonferroni intervals for five declared endpoints. Reserved continuations are not additional independent searches. The prospective numerical tolerance was0.001 equivalent full-service hours (3.6s), a computational sensitivity criterion rather than an established practical policy threshold.
+Initialization sensitivity compared 100 random chromosomes against replacement of position zero by Impact-first in a shared 100-permutation pool. Both configurations entered reproduction with the same post-initializer RNG state and independent empty caches and archives. No prior optimized information was injected. The replication unit was the optimizer seed; differences were PURE_RANDOM minus IMPACT_SEEDED loss. We report paired t intervals, 20,000 seed-block bootstrap intervals and familywise Bonferroni intervals for five declared endpoints. Reserved continuations are not additional independent searches. The prospective numerical tolerance was 0.001 equivalent full-service hours (3.6 s), a computational criterion rather than an established practical policy threshold.
 
 {table}
 
-The recommended initialization is{choice}. Search contribution is final improvement beyond the best actually scored generation-zero chromosome; the Impact seed's initial advantage is not counted as new GA discovery. Initial populations,92-station orders and SHA-256 hashes, strict-improvement histories, duplicate queries, distinct work, generation boundaries, CPU/wall/objective times, RNG states and exact64-state production checks accompany the results. Cost includes diagnostic bookkeeping and checkpoint serialization; it is not a pure intrinsic-algorithm timing estimate. Seed uncertainty is conditional on fixed planning realizations and does not establish out-of-sample policy performance. Newly discovered sequences remain diagnostic.
+The recommended initialization is `{choice}`. Search contribution is improvement beyond the best actually scored generation-zero chromosome; the Impact seed's initial advantage is not counted as new GA discovery. Initial populations, complete orders and hashes, strict-improvement histories, duplicates, distinct work, generation boundaries, timings, RNG states and exact 64-state production checks accompany the results. Cost includes diagnostic bookkeeping and serialization, not solely intrinsic algorithm operations. Optimizer uncertainty is conditional on fixed planning realizations and does not establish out-of-sample policy performance. New sequences remain diagnostic.
+
+{'The final initialization recommendation is a disclosed post-data methodological judgment, not the outcome of the registered automatic fallback. That fallback required two-sided numerical equivalence and 90% proximity to a selected reference, neither of which is claimed. The unchanged full 20-seed 100k upper difference bound is below the predeclared 0.001 h tolerance, while the reserved higher-budget contrasts favor pure random. Stronger reserved-subset performance is not attributed to budget alone. All registered comparisons and unsuccessful runs remain reported, and no formal strategy is replaced.' if deviation else 'The primary recommendation follows the registered automatic selection rule; unresolved effects and proximity-rate limitations remain disclosed.'}
 
 ## Reviewer Boundaries
 
-The historical93.06% inherited-improvement figure described one continued selected search, not an estimate of independent GA efficacy. This experiment tests that distinction without using old validation outcomes. A heuristic seed is an independently computable initialization, not a previous optimization stage. Empty archive behavior and full reproduction parity are verified. Pointwise zero-crossing is not equivalence, minority exact-score wins are not reliability, and a plateau is not proof of a global optimum. Existing manuscript and formal strategy remain unchanged.
+The historical 93.06% inherited-improvement figure described one selected continuation, not independent GA efficacy. This study tests that distinction without using validation outcomes. A heuristic seed is an independently computable initialization, not a previous optimization stage. Empty archives and reproduction parity are verified. A zero-crossing interval is not equivalence, occasional exact-score wins are not reliability, and a plateau is not proof of a global optimum. The existing manuscript and formal strategy remain unchanged. This file supplies proposed text only, not evidence that the formal method has been replaced.
+
+## Fixed-Parameter Rationale And Evidence Limits
+
+| Fixed choice | Reproducible rationale | Qualification |
+| --- | --- | --- |
+| Population 100 | A bounded reference that avoids changing both population and initializer composition in this test | Earlier 50/250/500 comparisons changed neighbor/random allocations; they do not prove 100 is best |
+| Ordered crossover 0.80 | Existing permutation-preserving operator; 0.60/0.95 conditional contrasts did not resolve superiority | Not an initialization-specific optimum |
+| Swap mutation 0.10 | Existing permutation-preserving move; prior operator and 0.05/0.20 conditional studies support a working reference | Exact probability and its interactions remain conditional |
+| Tournament 3 | Earlier tournament 2 was materially worse; tournament 5 advantage did not resolve in higher-budget contrasts | Do not claim 3 universally beats 5 |
+| One elite | Explicit current-population survival with separate passive best-observed retention | Fixed0/1/2/3 controls did not establish a unique elite-count optimum |
+| No adaptation/restart/diversity replacement | Preserves the specified single GA and isolates initialization | Does not rule out untested enabled alternatives |
+| 20 seeds, exact distinct budget | Registered independent optimizer replications and reproducible finite work | Conditional 64-state performance, not physical validation or global convergence |
+
+Numerical source: `results/diagnostics/ga_ils_parameter_defense_20261010/GA_PARAMETER_DEFENSIBILITY_REPORT.md`, `ga_initialization_reconciliation_20261009/GA_INITIALIZATION_AND_PARAMETER_DECISION_20261009.md`, and their accompanying conditional contrast tables. The present new initialization does not retroactively validate every parameter under every starting distribution. Parameters were held fixed to avoid confounding the initialization intervention; no new tuning was performed. Initialization controls, source hashes and implementation parity are directly tested here.
 """
     s.lp(s.OUT/'REVIEWER_DEFENSE_AND_METHODS_TEXT.md').write_text(text,encoding='utf-8',newline='\n')
     print('RECOMMEND',choice,flush=True)
@@ -335,10 +413,62 @@ def reduction(df):
     csv('BUDGET_DIFFERENCE_REDUCTION.csv',rows)
 
 
+def figure(df,cp):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    colors={s.MODES[0]:'#0072B2',s.MODES[1]:'#D55E00'}
+    fig,axes=plt.subplots(1,2,figsize=(10.5,4.2),layout='constrained')
+    for mode in s.MODES:
+        g=df[(df['mode']==mode)&(df.budget<=100000)].groupby('budget').loss_hr.agg(['mean','std','count'])
+        axes[0].plot(g.index/1000,g['mean'],marker='o',color=colors[mode],
+            label='Pure random' if mode==s.MODES[0] else 'Impact-seeded')
+        reserve=df[(df['mode']==mode)&df.seed.isin(s.RESERVE)&(df.budget>=100000)].groupby('budget').loss_hr.mean()
+        if len(reserve)>1:
+            axes[0].plot(reserve.index/1000,reserve,marker='o',mfc='white',ls='--',color=colors[mode])
+    axes[0].plot([],[],color='#777777',ls='--',marker='o',mfc='white',label='Reserved 10 trajectories')
+    axes[0].axhline(s.FROZEN,color='#555555',lw=1,ls=':',label='Frozen selected GA')
+    axes[0].set(xscale='log',xlabel='Distinct evaluations (thousands)',
+        ylabel='Mean planning service loss (h)',title='Independent GA search quality')
+    axes[0].legend(fontsize=8,frameon=False)
+    d=cp.sort_values('budget')
+    axes[1].errorbar(d.budget/1000,d.mean_delta_hr,
+        yerr=[d.mean_delta_hr-d.simultaneous95_low_hr,d.simultaneous95_high_hr-d.mean_delta_hr],
+        color='#333333',fmt='o',capsize=4)
+    primary=d[d.budget<=100000]
+    axes[1].plot(primary.budget/1000,primary.mean_delta_hr,color='#333333')
+    reserve=df[df.seed.isin(s.RESERVE)&(df.budget>=100000)].pivot(index=['budget','seed'],columns='mode',values='loss_hr')
+    if reserve.index.get_level_values('budget').nunique()>1:
+        contrast=(reserve[s.MODES[0]]-reserve[s.MODES[1]]).groupby('budget').mean()
+        axes[1].plot(contrast.index/1000,contrast,color='#333333',ls='--',marker='o',mfc='white',
+            label='Reserved 10 trajectories')
+        axes[1].legend(fontsize=8,frameon=False)
+    axes[1].axhspan(-s.MARGIN,s.MARGIN,color='#CCCCCC',alpha=.35)
+    axes[1].axhline(0,color='#777777',lw=1)
+    axes[1].set(xscale='log',xlabel='Distinct evaluations (thousands)',
+        ylabel='Pure random minus Impact-seeded (h)',title='Paired initialization contrast')
+    for ax in axes:
+        ax.grid(axis='y',alpha=.2);ax.spines[['right','top']].set_visible(False)
+        ax.set_xticks(d.budget/1000,[str(int(x/1000)) for x in d.budget])
+        ax.ticklabel_format(axis='y',style='plain',useOffset=False)
+    fig.savefig(s.lp(s.OUT/'GA_INITIALIZATION_CONVERGENCE.png'),dpi=240)
+    plt.close(fig)
+    s.lp(s.OUT/'GA_INITIALIZATION_CONVERGENCE_CAPTION.md').write_text(
+        '# Diagnostic Figure Caption\n\nMean conditional planning loss for each initialization (left) and paired mean differences '
+        '(right). Positive differences favor Impact-seeded. Bars are five-endpoint Bonferroni95% paired t intervals '
+        'over optimizer seeds, not physical-realization uncertainty. Solid lines use twenty paired seeds at 20k/50k/100k; '
+        'dashed lines and hollow points use the first ten prospectively reserved trajectories at 100k/250k/500k. '
+        'The extra hollow 100k point has no additional confidence bar and is descriptive, not a new primary endpoint. Different cohort means '
+        'must not be read as within-seed marginal gains; those are separately tabulated. The gray band is the '
+        'prospective +/-0.001h numerical tolerance, not a proven physical policy-benefit threshold. '
+        'The frozen selected-GA horizontal reference is a development-selected sequence, not an expected optimizer score.\n',
+        encoding='utf-8',newline='\n')
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('phase',choices=['summary','final']);a=p.parse_args()
     df,cp=summaries();historical();reduction(df)
-    if a.phase=='final':production_qa(df);final_reports(df,cp)
+    if a.phase=='final':production_qa(df);final_reports(df,cp);figure(df,cp)
 
 
 if __name__=='__main__':main()

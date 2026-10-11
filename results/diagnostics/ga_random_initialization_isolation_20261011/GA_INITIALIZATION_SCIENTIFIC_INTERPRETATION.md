@@ -1,0 +1,21 @@
+# Scientific Interpretation
+
+
+
+A. A previously optimized chromosome is not a prerequisite for competitive search: both new configurations explicitly contain none, and all 20 pure-random searches substantially improve on Impact-first. This does not guarantee attaining the selected formal minimum in every seed. The historical 93.06% fraction was continuation bookkeeping, not intrinsic GA capability.
+
+B. Pure random reaches the preregistered J<=32.998840773883 h criterion in 10/20 main searches at 100k and 8/10 reserved searches at 500,000. It does not meet the registered 90% empirical rate. The seeded control reaches this criterion in 5/20 at 100k and 3/10 at the final budget. Exact formal-score wins are distinct from approaching within 0.001 h; neither a selected minimum nor an observed success fraction proves out-of-sample reliability.
+
+C. One Impact-first seed provides a clear early advantage at 20k: pure-minus-seeded mean loss is +0.018268623 h, with simultaneous interval [0.009830590, 0.026706655] h. At 100k, the full 20-pair interval includes zero and does not establish a directional advantage. At the final reserved budget, pure-minus-seeded mean loss is -0.002333300 h; simultaneous interval [-0.004482882, -0.000183718] h. The interval excludes zero in favor of pure random. Earlier-budget differences must be read separately, not pooled. The numerical 0.001 h margin is an engineering tolerance, not a physically validated policy threshold.
+
+D. The seeded advantage observed at 20k disappears by 50k in the full paired cohort. For the same ten reserved pairs, the initialization contrast changes from -0.002335537 h at 100k to -0.002333300 h at 500k (change 0.000002237 h; pointwise 95% interval [-0.000034721, 0.000039194]). This is a secondary within-seed budget contrast, not 20 versus 10 independent means. The mean change is only 0.008053 equivalent service seconds, below the 0.001 h numerical margin; it does not demonstrate a consequential late-budget reduction. The absolute observed contrast decreases by this tiny amount, not by a meaningful late-budget gain. No continued trajectory improves its best loss between 250k and 500k. Same-seed marginal gains and changes in initialization contrast are in BUDGET_CONVERGENCE_AND_DUPLICATION.csv and BUDGET_DIFFERENCE_REDUCTION.csv. Late plateau evidence applies only to tested trajectories, not global convergence.
+
+E. Yes. Either configuration can be described as one standalone GA with no prior optimization stage. The recommended `PURE_RANDOM_GA` uses only 100 random permutations, no inherited optimized prior or engineered neighbors.
+
+F. Recommend `PURE_RANDOM_GA` for an independently executable single-GA manuscript, subject to separate authorization before any formal change. The full 20-seed numerical bound, stronger reserved-pair performance and removal of an unnecessary heuristic dependency support this explicitly post-data methodological judgment. Do not describe the strict proximity or equivalence gates as passed.
+
+## Interpretation And Limitations
+
+No independent-validation cohort, new physical realization, alternative objective, ILS, local refinement, hybrid or parameter grid enters this experiment. All non-initialization search mechanics, 92 stations/318 edges/Core sources, 57-crew directed-travel scheduler, physical samples, mapping and source gate remain fixed. Important best and median runs pass all 64-state original production evaluations. Complete per-seed populations, changes, caches, state boundaries and objective timings are saved. Archive protection is not inherited-information injection. No seed was chosen for the extension on the basis of its result.
+
+The formal candidate was selected using earlier optimization and need not equal a typical independent-search result. High-quality thresholds and practical comparisons are conditional numerical judgments, not new physical-validation claims. An interval crossing zero does not establish equivalence; meeting a numerical margin does not prove physical generalization. The recommendation is based on repeated-seed evidence, the unchanged prespecified numerical tolerance and an explicitly post-data methodological judgment, not the best single run or a passed preregistered adoption rule.
