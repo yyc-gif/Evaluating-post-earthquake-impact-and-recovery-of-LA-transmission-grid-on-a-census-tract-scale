@@ -1,0 +1,7 @@
+# GA interpretation and limitations
+
+The frozen GA improves expected normalized population service loss relative to Impact-first in this prospective cohort, chiefly through a lower source-path component rather than shorter local self -loss. Its objective is expected aggregate loss, not hospital performance, fairness, worst-case loss or global optimality. Lower hospital-associated tract burden against Impact-first and lower absolute burdens in all SOVI groups coexist with wider absolute Q4-Q1 separation and greater Gini. An efficiency benefit should not be described as an equity benefit.
+
+The optimization specification is one repeated-run, random-only GA; internal algorithm trials are not presented as separate manuscript methods. Its planning-side adoption was a post-data methodological choice and only 10/20 individual 100k runs reached the strict proximity threshold, below the prespecified 90%. Independent physical validation evaluates the selected fixed strategy, not the success probability of a single GA run or empirical physical accuracy. Keep the original model assumptions and distinguish normalized service deficit from actual customer outages.
+
+The original fixed-rule, resource, mapping and Stage 7 results retain their archived physical cohorts and saved sequence. The new2,000-realization prospective evaluation does not automatically update cluster recovery coordinates, membership, hotspot rankings or intervention recommendations. Their original provenance must remain explicit; no refit or silent relabeling is undertaken here.

@@ -30,4 +30,22 @@ Authorization is a human scope confirmation, not implied by running a command. D
 
 A completed cohort cannot be redrawn or reevaluated. No outcome-dependent tuning, early stopping or candidate reselection is permitted. Retain negative results. A 20,000-resample realization-level paired bootstrap uses a newly reserved seed and simultaneous two-population-contrast intervals; hospital and equity results remain descriptive pointwise.
 
+## Completed Cohort Presentation And Verification
+
+The authorized new cohort has now completed. Do not run another sampling or evaluation batch. The following scripts read saved outputs only:
+
+```powershell
+$env:PYTHONPATH = Join-Path (Get-Location) 'src'
+$env:NUMBA_CACHE_DIR = Join-Path $env:TEMP 'gaf12_numba'
+& C:\Users\yinch\anaconda3\python.exe -B results/diagnostics/pure_random_ga_final_20261011/report.py
+& C:\Users\yinch\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B results/diagnostics/pure_random_ga_final_20261011/review_docx.py
+& results/diagnostics/pure_random_ga_final_20261011/render_review.ps1
+& C:\Users\yinch\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -B results/diagnostics/pure_random_ga_final_20261011/artifact_qa.py
+& C:\Users\yinch\anaconda3\python.exe -B results/diagnostics/pure_random_ga_final_20261011/verify_package.py manifest
+```
+
+The read-only Word render requires native COM access outside the sandbox. The packaged renderer was attempted first; bundled LibreOffice was unavailable. Poppler rendered the native Word PDF and all four 180 mm figure PDFs. Every final page was visually inspected; an automated artifact check alone is not a substitute for repeating visual inspection after a document edit. Rendering files remain under ignored `runtime/` and are not manuscript deliverables.
+
+`report.py` reuses saved means, bootstrap intervals and paired realization differences without resampling. `review_docx.py` patches the verified Stage 7 review parent, retaining all unrelated package parts byte-for-byte. Final document edits and figure captions are recorded in the exact paragraph ledger. Publication reuses the prior actual-LFS transport verifier for both scoped directories; it downloads real payload bytes rather than checking pointers alone.
+
 Only the two new package directories are staged. Existing formal files, source files, manuscripts, prior raw evidence and the original staged index are excluded. `verify_package.py remote` reuses actual remote Git LFS byte downloads and SHA/size checks, not just pointer checks.

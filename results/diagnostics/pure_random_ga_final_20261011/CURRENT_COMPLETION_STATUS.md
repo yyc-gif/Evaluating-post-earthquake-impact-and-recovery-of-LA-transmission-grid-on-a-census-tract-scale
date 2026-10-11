@@ -1,21 +1,16 @@
-# Completion state and remaining authorization gate
+# Completed Frozen Candidate Validation
 
-## Completed
+The direct human authorization was recorded and pushed before new draws. The new cohort, three fixed strategies, production evaluation, paired analysis and full evidence archive are complete. No further cohort or search is needed for this task.
 
-- Final random-only GA protocol: 100 independently randomized permutations, OX0.80, swap0.10, tournament3, elite1; 20 fixed seeds; 100k distinct evaluations per run; exact across-run selection and tie handling.
-- No new search. All20 existing main100k receipts audited and retained. Reserved continuations do not enter selection.
-- Actual seed2026103108 candidate frozen, full92 permutation and SHA256 saved; initial random pool, empty archive, strict improvement history and exact100k checkpoint matched.
-- Existing all64 original-production verification reused for exactly this sequence; maximum absolute compiled/native error3.439026841078885e-12h.
-- Explicit post-data method adoption and failed90% single-run proximity criterion preserved. Main100k observed proximity10/20; reserve continuation8/10. Neither is claimed to meet90%.
-- New candidate-specific three-policy,2,000-realization analysis protocol, fresh seed and bootstrap seed frozen before fresh outcomes. Identity registry excludes all5,064 previous physical realizations. No old validation outcomes used for selection.
-- Original sampling AST/constants checked. Existing-state and synthetic engineering cases plus16 tests passed. Windows child-process routing confirmed. Original950 files and862 staged items match preservation baseline.
-- Methods replacement and candidate-specific result dependency ledger placed in the separate review/revision directory. Legacy results and working manuscript are unchanged.
-- Preregistration commit2a0b6c3f0aaf3f87c1ab803f8fde8a743c575b48 pushed. Four actual remote LFS payloads totaling6,091,829bytes downloaded and SHA/size verified.
+- Final GA: 100 random permutations, OX 0.80, swap 0.10, tournament 3, elite 1; 20 fixed seeds, 100,000 distinct calls per run. Existing runs were reused. Candidate seed 2026103108 and its full 92-station sequence are frozen with SHA-256 `edc4ad19f61a6d89d83532c1c92f353243b5d9e7b475c1ad99873227bbfeb99a`.
+- The post-data method choice and failed 90% single-run planning-proximity gate remain explicit. Main-budget observed success was 10/20; longer-budget sensitivity continuations do not enter candidate selection. No global optimum or universal individual-run reliability is claimed.
+- Exactly 2,000 new draws were evaluated under the new GA, unchanged legacy GA and Impact-first: 6,000 production cases, 6,000 independent kernel checks and 6,000 saved-trajectory integral checks. No failed or omitted scientific cases; no prior physical-state overlap.
+- Mean GA population loss is 33.048229 h versus 33.580903 h for Impact-first, paired difference -0.532675 h, simultaneous 95% interval [-0.563982, -0.502321] h. Hospital-associated mean burden decreases by 0.260704 h.
+- Equity does not improve: mean absolute Q4-Q1 separation increases by 0.232733 h and Gini by 0.009790, despite lower absolute burdens in all four groups.
+- Relative to legacy GA, mean population loss decreases by 0.027036 h, but the new candidate is worse in 68.15% of realizations and has greater hospital-associated burden. Negative findings are retained without reselection.
+- Full archive: 12,000 members, 171,872,963 bytes; every member's round-trip hash verified. Original 950 protected scientific files and 862 staged items match the preservation baseline.
+- Separate methods, results, discussion, supplementary legacy comparison, four new-cohort figures and a controlled manuscript review copy are provided. The formal model, strategies, Stage 7 labels/inputs, original manuscript and older evidence remain unchanged.
 
-## Not yet executed
+Immutable preregistration receipts describe the state at the earlier freeze and still record pending authorization at that time. `AUTHORIZATION_HUMAN_MESSAGE.json`, `COHORT_COMPLETED.json` and this record document subsequent authorized execution; historical receipts are not rewritten.
 
-Fresh candidate-specific physical validation is awaiting the direct human answer to the in-chat scope question: new2,000 shared physical realizations, paired new random-only GA/legacy formalGA/Impact-first, and independent review outputs. The earlier2,000-sample authorization concerned other frozen strategies; it has not been silently reassigned. No AUTHORIZATION.json or new cohort exists.
-
-Consequently, no new independent validation means, confidence intervals, population/hospital-associated loss, fairness conclusions or recovery curves are claimed. These remain computational work, not completed numerical results. Do not replace this missing evidence with the legacy validation results or the64-state planning score.
-
-After confirmation, record authorization tied to the fixed sequence and freeze SHA, use the committed saved-once sampling/production/statistical path, complete the whole fixed cohort without reselection, and update all four requested result families together. Preserve negative findings and the original science. Any Stage7 dependence on legacy recovery inputs must be flagged rather than silently relabeled or refitted.
+Actual document inspection and publication integrity are recorded separately in QA and remote-verification receipts. This package is for author review, not automatic promotion or manuscript submission.

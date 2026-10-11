@@ -75,16 +75,9 @@ def remote():
                'Review_and_Revision/Pure_Random_GA_20261011/')
     assert changed and all(name.startswith(allowed) for name in changed), changed
     transport.remote()
-    review = {}
-    for name in f.git(f.ROOT,'ls-tree','-r','--name-only','HEAD','--',allowed[1]).decode().splitlines():
-        blob = f.git(f.ROOT,'show','HEAD:'+name)
-        if blob.startswith(b'version https://git-lfs.github.com/spec/v1'):
-            # Review graphics are verified by the main transport by symlink-free logical placement.
-            continue
-        assert hashlib.sha256(blob).hexdigest() == f.v.sha(f.v.long_path(f.ROOT / name))
-        review[name] = hashlib.sha256(blob).hexdigest()
-    f.v.write(f.OUT / 'REVIEW_REMOTE_VERIFIED.json', dict(status='PASS', files=review,
-        commit=f.git(f.ROOT,'rev-parse','HEAD').decode().strip()))
+    transport.s.OUT = f.ROOT / allowed[1]
+    transport.s.save = lambda path, receipt: f.v.write(f.OUT / 'REVIEW_REMOTE_VERIFIED.json', receipt)
+    transport.remote()
 
 
 if __name__ == '__main__':
