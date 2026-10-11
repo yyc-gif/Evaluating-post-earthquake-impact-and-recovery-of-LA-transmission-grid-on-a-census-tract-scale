@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "reviewer": "Codex assistant, actual PNG pixels inspected using view_image",
+  "review_date": "2026-10-11",
+  "diagnostic_only": true,
+  "manuscript_artwork_modified": false,
+  "figures": {
+    "DIAGNOSTIC_RECOVERY_CURVES.png": {
+      "sha256": "46bd0286bc0f55742fd3b732eb5c7e14ddf9a075c62dbc3fe08643434f2ab010",
+      "checks": [
+        "Full 0-480 h horizon and separately labeled 0-100 h detail",
+        "All three fixed policies present with consistent colors and line styles",
+        "Legible title, axes and legend without clipping",
+        "Small differences remain visibly small; no claim of MW or observed restoration"
+      ]
+    },
+    "DIAGNOSTIC_PAIRED_LOSS_ECDF.png": {
+      "sha256": "3566f49822e9ae3d9065c8847baa94876053931fe78723c9e6b03660f4d18f83",
+      "checks": [
+        "All 2,000 differences for both prespecified contrasts; favorable tails not trimmed",
+        "Zero reference and separately identified mean and median lines",
+        "Legend moved into upper-left whitespace and actual revised render inspected",
+        "Readable axis labels and consistent reference colors without clipping"
+      ]
+    }
+  }
+}

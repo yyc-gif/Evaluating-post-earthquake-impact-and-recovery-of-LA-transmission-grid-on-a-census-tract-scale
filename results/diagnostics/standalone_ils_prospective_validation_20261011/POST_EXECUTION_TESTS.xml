@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="17" time="3.086" timestamp="2026-10-11T02:52:21.960622" hostname="Lemon"><testcase classname="tests.test_standalone_ils_validation_20261011" name="test_draw_is_saved_once_then_reused_without_sampler" time="0.009"><failure message="PermissionError: [WinError 5] Access is denied: '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_draw_is_saved_once_then_r0\\EXECUTION_FREEZE.json.tmp' -&gt; '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_draw_is_saved_once_then_r0\\EXECUTION_FREEZE.json'">tmp_path = WindowsPath('C:/Users/yinch/AppData/Local/Packages/sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}/AC/Temp/pytest-of-yinch/pytest-0/test_draw_is_saved_once_then_r0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001E682B07C20&gt;
+
+    def test_draw_is_saved_once_then_reused_without_sampler(tmp_path,monkeypatch):
+        monkeypatch.setattr(q,'OUT',tmp_path)
+&gt;       q.v.write(tmp_path/'EXECUTION_FREEZE.json',dict(sampling_namespace='engineering-only'))
+
+tests\test_standalone_ils_validation_20261011.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('//?/C:/Users/yinch/AppData/Local/Packages/sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}/AC/Temp/pytest-of-yinch/pytest-0/test_draw_is_saved_once_then_r0/EXECUTION_FREEZE.json')
+data = {'sampling_namespace': 'engineering-only'}
+
+    def write(path, data):
+        """Publish a deterministic receipt only after its file is flushed."""
+        path = long_path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = path.with_name(path.name + '.tmp')
+        with temporary.open('w', encoding='utf-8', newline='\n') as stream:
+            json.dump(data, stream, indent=2, sort_keys=True, allow_nan=False)
+            stream.write('\n')
+            stream.flush()
+            os.fsync(stream.fileno())
+&gt;       os.replace(temporary, path)
+E       PermissionError: [WinError 5] Access is denied: '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_draw_is_saved_once_then_r0\\EXECUTION_FREEZE.json.tmp' -&gt; '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_draw_is_saved_once_then_r0\\EXECUTION_FREEZE.json'
+
+src\la_grid\diagnostics\independent_validation_20261010.py:98: PermissionError</failure></testcase><testcase classname="tests.test_standalone_ils_validation_20261011" name="test_uncommitted_draw_never_resamples" time="0.004"><failure message="PermissionError: [WinError 5] Access is denied: '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_uncommitted_draw_never_re0\\EXECUTION_FREEZE.json.tmp' -&gt; '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_uncommitted_draw_never_re0\\EXECUTION_FREEZE.json'">tmp_path = WindowsPath('C:/Users/yinch/AppData/Local/Packages/sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}/AC/Temp/pytest-of-yinch/pytest-0/test_uncommitted_draw_never_re0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001E682B1E480&gt;
+
+    def test_uncommitted_draw_never_resamples(tmp_path,monkeypatch):
+        monkeypatch.setattr(q,'OUT',tmp_path)
+&gt;       q.v.write(tmp_path/'EXECUTION_FREEZE.json',dict(sampling_namespace='engineering-only'))
+
+tests\test_standalone_ils_validation_20261011.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('//?/C:/Users/yinch/AppData/Local/Packages/sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}/AC/Temp/pytest-of-yinch/pytest-0/test_uncommitted_draw_never_re0/EXECUTION_FREEZE.json')
+data = {'sampling_namespace': 'engineering-only'}
+
+    def write(path, data):
+        """Publish a deterministic receipt only after its file is flushed."""
+        path = long_path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = path.with_name(path.name + '.tmp')
+        with temporary.open('w', encoding='utf-8', newline='\n') as stream:
+            json.dump(data, stream, indent=2, sort_keys=True, allow_nan=False)
+            stream.write('\n')
+            stream.flush()
+            os.fsync(stream.fileno())
+&gt;       os.replace(temporary, path)
+E       PermissionError: [WinError 5] Access is denied: '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_uncommitted_draw_never_re0\\EXECUTION_FREEZE.json.tmp' -&gt; '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_uncommitted_draw_never_re0\\EXECUTION_FREEZE.json'
+
+src\la_grid\diagnostics\independent_validation_20261010.py:98: PermissionError</failure></testcase><testcase classname="tests.test_standalone_ils_validation_20261011" name="test_missing_authorization_refuses_before_sampling" time="0.004"><failure message="PermissionError: [WinError 5] Access is denied: '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_missing_authorization_ref0\\EXECUTION_FREEZE.json.tmp' -&gt; '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_missing_authorization_ref0\\EXECUTION_FREEZE.json'">tmp_path = WindowsPath('C:/Users/yinch/AppData/Local/Packages/sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}/AC/Temp/pytest-of-yinch/pytest-0/test_missing_authorization_ref0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001E682B1FC20&gt;
+
+    def test_missing_authorization_refuses_before_sampling(tmp_path,monkeypatch):
+        monkeypatch.setattr(q,'OUT',tmp_path)
+&gt;       q.v.write(tmp_path/'EXECUTION_FREEZE.json',{})
+
+tests\test_standalone_ils_validation_20261011.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('//?/C:/Users/yinch/AppData/Local/Packages/sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}/AC/Temp/pytest-of-yinch/pytest-0/test_missing_authorization_ref0/EXECUTION_FREEZE.json')
+data = {}
+
+    def write(path, data):
+        """Publish a deterministic receipt only after its file is flushed."""
+        path = long_path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = path.with_name(path.name + '.tmp')
+        with temporary.open('w', encoding='utf-8', newline='\n') as stream:
+            json.dump(data, stream, indent=2, sort_keys=True, allow_nan=False)
+            stream.write('\n')
+            stream.flush()
+            os.fsync(stream.fileno())
+&gt;       os.replace(temporary, path)
+E       PermissionError: [WinError 5] Access is denied: '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_missing_authorization_ref0\\EXECUTION_FREEZE.json.tmp' -&gt; '\\\\?\\C:\\Users\\yinch\\AppData\\Local\\Packages\\sandbox.{5b7da512-8488-43b9-87b6-50b7031cd064}\\AC\\Temp\\pytest-of-yinch\\pytest-0\\test_missing_authorization_ref0\\EXECUTION_FREEZE.json'
+
+src\la_grid\diagnostics\independent_validation_20261010.py:98: PermissionError</failure></testcase><testcase classname="tests.test_standalone_ils_validation_20261011" name="test_hash_and_namespace_depend_on_station_order_and_durations" time="0.001" /><testcase classname="tests.test_independent_validation_ready_20261010" name="test_no_authorization_refuses_execution" time="0.002" /><testcase classname="tests.test_independent_validation_ready_20261010" name="test_physical_pair_hash_is_station_ordered_and_duration_sensitive" time="0.000" /><testcase classname="tests.test_independent_validation_ready_20261010" name="test_overlap_never_redraws" time="0.000" /><testcase classname="tests.test_independent_validation_ready_20261010" name="test_long_path_is_idempotent" time="0.002" /><testcase classname="tests.test_independent_validation_ready_20261010" name="test_archive_refuses_protected_and_unrelated_paths" time="0.004" /><testcase classname="tests.test_r1_realization_scheduling.T" name="test_duration_changes_release_not_order" time="0.004" /><testcase classname="tests.test_r1_realization_scheduling.T" name="test_multiple_crews_share_origin" time="0.002" /><testcase classname="tests.test_r1_realization_scheduling.T" name="test_pair_gate_and_clock" time="0.037" /><testcase classname="tests.test_r1_realization_scheduling.T" name="test_positive_repeat" time="0.002" /><testcase classname="tests.test_r1_realization_scheduling.T" name="test_tasks_duration_release" time="0.003" /><testcase classname="tests.test_r1_source_gate.GateTests" name="test_decomposition_and_unknown" time="0.005" /><testcase classname="tests.test_r1_source_gate.GateTests" name="test_identity_and_no_mutation" time="0.002" /><testcase classname="tests.test_r1_source_gate.GateTests" name="test_matches_july_function" time="0.116" /></testsuite></testsuites>
