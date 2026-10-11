@@ -1,0 +1,721 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Global Human Settlement - EMC-BUILT - R2025A - European Commission</title>
+
+	<meta content="en" http-equiv="Content-Language">
+<meta content="The GHSL framework produces thematic information and evidence-based knowledge supporting the implementation of EU urban policy and the international frameworks." name="description">
+<meta content="EUROPA/GHSL/EN" name="reference">
+<meta content="DG/JRC/E1" name="creator">
+<meta content="07/06/2016" name="date">
+<meta content="25850,25400,13600,13980,23420,26660" name="classification">
+	<meta content="JRC, GHSL, DISASTER RISK, HUMAN SETTLEMENT, RESEARCH &amp; DEVELOPMENT, ENVIRONMENT, REGIONAL POLICY, GHS BUILT-UP GRID, European Comission, European Union, EU" name="keywords">
+
+	<!--RESPONSIVE-->
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link rel="canonical" href="https://human-settlement.emergency.copernicus.eu/EMC_BUILT_S.php" />
+
+<link rel="stylesheet" href="/script/kendoui24/styles/default-ocean-blue.css"/>
+<link href="/style/hint.min.css" media="all" rel="stylesheet" type="text/css">
+<!--ADDITIONAL TOOLS-->
+
+<!-- Piwik -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//human-settlement.emergency.copernicus.eu/kpi/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+<link href=style/CCL/ccl.css?t=1709543078 media="all" rel="stylesheet" type="text/css">
+<link href=style/CCL/cems.css?t=1712330809 media="all" rel="stylesheet" type="text/css">
+<link href=style/ghsl.css?t=1776941996 media="all" rel="stylesheet" type="text/css">
+<link href=style/stickyHam.css?t=1762337983 media="all" rel="stylesheet" type="text/css">
+<link href=style/index_op.css?t=1770896958 media="all" rel="stylesheet" type="text/css">
+</head>
+
+<body class="ccl-style ccl-color_emergency">
+	<a id="top-page" name="top-page"></a>
+	<!--HEADER-->
+<div id="headerWrap">
+		<header class="ccl-header">
+		<div class="ccl-header-tools"><!-- #EUSpace and mobile logo -->
+			<div class="ccl-container">
+				<div class="ccl-main-menu-collapse-button"><span class="ccl-icon-menu"></span></div>
+				<div class="ccl-search-collapse-button"><span class="ccl-icon-zoom"></span></div>
+				<div class="ccl-header-slogan ccl-text-w700 ccl-desktop-only">#EUSpace</div>
+
+				<div class="ccl-header-mobile-logo-container ccl-mobile-only">
+					<img class="ccl-header-mobile-logo" src="images/CCL/copernicus_eu_logo_full_white.svg" />
+				</div>
+							</div>
+		</div>
+		<div class="ccl-header-nav">
+			<div class="ccl-container">
+				<div class="ccl-header-logos-container">
+					<div class="ccl-header-logo-container">
+						<img class="ccl-header-logo" src="images/CCL/copernicus_eu_logo_full.svg" />
+					</div>
+					<div class="ccl-header-logo-service-container ccl-service-button ccl-service-button-full ccl-service-button-emergency" style="display: flex;">
+						<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-emergency.svg" />
+						<div class="ccl-service-button-label">Emergency<br />Management Service</div>
+					</div>
+				</div>
+			</div>
+			<div class="ccl-header-tools">
+				<div class="ccl-container ccl-header-slogan">
+	<h1 class="ccl-heading--h1">
+		<span class="normal">GHSL - </span>Global Human Settlement Layer</h1>
+	<h2 class="ccl-heading--h4">Open and free data and tools for assessing the human presence on the planet</h2>
+</div>
+				<div class="ccl-container">					
+					<nav class="ccl-main-menu" id="mainMenu">
+</nav><div id="stickyHamburgerNav" class="sticky-hamburger-nav">
+	<div class="sticky-nav-container">
+		<!-- Hamburger Icon -->
+		<div class="hamburger-toggle" id="hamburgerToggle">
+			<span class="ccl-icon-menu" id="hamburgerIcon"></span>
+		</div>
+
+		<div class="ccl-header-logos-container sticky-logos">
+			<div class="ccl-header-logo-container">
+				<img class="ccl-header-logo" src="images/CCL/copernicus_eu_logo_full.svg" />
+			</div>
+			<div class="ccl-header-logo-service-container ccl-service-button ccl-service-button-full ccl-service-button-emergency" style="display: flex;">
+				<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-emergency.svg" />
+				<div class="ccl-service-button-label">Emergency<br />Management Service</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Hamburger Menu Dropdown -->
+<div id="hamburgerMenuDropdown" class="hamburger-menu-dropdown">
+</div>				</div>
+			</div>
+		</div>
+	</header>
+</div>
+<div id="subHHeaderWrapper">
+	<div class="ccl-container">
+		<div>
+	<nav class="ccl-breadcrumb" aria-label="breadcrumb">
+		<span class="ccl-u-sr-only">You are here:</span>
+		<ol class="ccl-breadcrumb__segments-wrapper">
+			<li class="ccl-breadcrumb__segment ccl-breadcrumb__segment--first">
+				<a class="ccl-link ccl-link--inverted ccl-link--standalone ccl-breadcrumb__link"
+					href="index.php">Home</a>
+			</li>
+							<li class="ccl-breadcrumb__segment">
+					<a class="ccl-link ccl-link--inverted ccl-link--standalone ccl-breadcrumb__link" href="GHSLDataTools.php">We generate data and tools</a>
+				</li>
+							<li class="ccl-breadcrumb__segment">
+					<a class="ccl-link ccl-link--inverted ccl-link--standalone ccl-breadcrumb__link" href="GHSLWeGenerateData.php">High-quality open data for global insight</a>
+				</li>
+							<li class="ccl-breadcrumb__segment">
+					<a class="ccl-link ccl-link--inverted ccl-link--standalone ccl-breadcrumb__link" href="datasets.php">GHSL Datasets information</a>
+				</li>
+			
+			<li class="ccl-breadcrumb__segment ccl-breadcrumb__segment--last">
+				<span>
+					EMC-BUILT - R2025A				</span>
+			</li>
+		</ol>
+	</nav>
+</div><h1 class="metadata metadata_title">EMC-BUILT - R2025A</h1><p class="metadata metadata_description">EMC-BUILT R2025A – Exposure Mapping Component built-up surface grid, derived from Sentinel-2 year 2022</p>	</div>
+</div>	<!--BODY-->
+	<div class="layout-body">
+		<!-- Mobile overlay for small screens -->
+		<!-- <div id="mobile-overlay">
+			<div class="overlay-content">
+				<h3>Desktop or desktop mode only</h3>
+				<p>This page has not yet been optimised for small screens: either open it in desktop mode or on a larger screen</p>
+			</div>
+		</div> -->
+		<div class="ccl-container">
+			<div class="row" id="dataSetSheetIntro">
+				<div class="col-2">
+					<img src="images/icons/EMC-BUILT-S_big.webp" alt="icon for the EMC-BUILT dataset">
+				</div>
+				<div class="col-8">
+					<h2>
+						EMC-BUILT
+					</h2>
+					<h3 class="dataContent">
+						<strong>
+							Built-up surface grid, epoch: 2022<br>resolution: 10m, 100m, 1km, 3 arcsec, 30 arcsec
+						</strong>
+					</h3>
+					<div class="ccl-paragraph--m my-2">
+						Spatial raster datasest representing the distribution of total built-up surfaces, expressed in square metres, the built-up surface allocated to dominant non-residential uses and the vegetation fraction in the built-up domain.
+					</div>
+					<div class="ccl-paragraph--m">
+						<h4>
+							Satellite data
+						</h4>
+						<p>
+							For the temporal anchor point of 2022 the data is published at 10m as observed from the Sentinel 2 image data.
+						</p>
+						<p>
+							The main characteristics of this dataset are listed below.
+						</p>
+					</div>
+					<a class="ccl-button" href="dataDownload.php?ds=EMCbuiltS" aria-label="Download the EMC-BUILT dataset">
+						<strong>
+							Download the EMC-BUILT dataset
+						</strong>
+					</a>
+					<div id="citation" class="my-3">
+						<h4>
+							<strong>How to cite:</strong>
+						</h4>
+						<p class="citation">
+							<b>Dataset</b>:
+							<br>
+							EMC-BUILT R2025A - Exposure Mapping Component built-up surface grid, derived from Sentinel-2 year 2022, European Commission, Joint Research Centre (JRC)
+							<br>
+							PID: 
+							<a href="http://data.europa.eu/89h/4cd8ccee-bfd1-48c5-9047-61c0343c41e9" target="_blank">
+								http://data.europa.eu/89h/4cd8ccee-bfd1-48c5-9047-61c0343c41e9
+							</a>, 
+							doi:
+							<a href="https://doi.org/10.2905/4cd8ccee-bfd1-48c5-9047-61c0343c41e9" target="_blank" rel="noopener">
+								10.2905/4cd8ccee-bfd1-48c5-9047-61c0343c41e9
+							</a>
+						</p>
+						<div class="ccl-paragraph--m mb-4 row">
+							<div class="col-7">
+								<p class="citation">
+									<b>Concept &amp; Methodology</b>:
+									<br>
+									<i>Kemper, T., Politis, P., Mari Rivero, I., Riffler, M., Leitner, A. et al.</i>
+									<br>
+									Copernicus Exposure Mapping Component Built-up product 2022 - EMC-BUILT R2025, Publications Office of the European Union, Luxembourg, 2025, JRC144315
+									<!-- <br>doi:
+									<a href="" target="_blank">
+										DOI	
+									</a> -->
+								</p>
+								<a href="documents/EMC-BUILT_R2025.pdf?t=1764778621" target="_blank">Copernicus Exposure Mapping Component Built-up product 2022 report</a>
+							</div>
+							<div class="col-3">
+								<a href="documents/EMC-BUILT_R2025.pdf?t=1764778621" target="_blank" rel="noopener">
+									<img src="images/EMC_builtCover.jpg" alt="Front cover of the Copernicus Exposure Mapping Component Built-up product 2022 report">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="detailsBox ccl-paragraph--m ccl-u-mb-l row" id="productSummary">
+				<div class="detailsBox ccl-paragraph--m ccl-u-mb-l">
+					<div class="fieldName">
+						Product name:
+					</div>
+					<div class="fieldContent">
+						EMC-BUILT-S_GLOBE_R2025A
+					</div>
+					<div class="fieldName">
+						Coordinate systems:
+					</div>
+					<div class="fieldContent">
+						World Mollweide (EPSG:54009), WGS84 (EPSG:4326)
+					</div>
+					<div class="fieldName">
+						Resolutions available:
+					</div>
+					<div class="fieldContent">
+						10m, 100m, 1km, 3 arcsec, 30 arcsec
+					</div>
+				</div>
+			</div>
+			<div id="dataSetSpecs">
+				<div class="detailsBox ccl-u-border-bottom ccl-u-border-color-grey-20 row">
+					<div class="fieldName">
+						Distribution Name:
+					</div>
+					<div class="fieldContent ccl-u-type-paragraph-m">
+						<b>
+							EMC-BUILT-S_GLOBE_R2025A
+						</b>
+					</div>
+					<div class="mb-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of total built-up surface<br>
+							<em>Resolution of 10m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_E2022_GLOBE_R2025A_54009_10_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 8bit integers (uint8) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-100]. NoData [255]
+						</div>
+					</div>
+					<div class="mb-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of total built-up surface
+							<br>
+							<em>Resolution of 100m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_E2022_GLOBE_R2025A_54009_100_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 16bit integers (uint16) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-10,000]. NoData [65,535]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of total built-up surface
+							<br>
+							<em>Resolution of 1000m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_E2022_GLOBE_R2025A_54009_1000_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 32bit integers (uint32) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-1,000,000]. NoData [4,294,967,295]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of total built-up surface
+							<br>
+							<em>Resolution of 3 arcsec - WGS84</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_E2022_GLOBE_R2025A_4326_3ss_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 16bit integers (uint16) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-8600]. NoData [65,535]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of total built-up surface
+							<br>
+							<em>Resolution of 30 arcsec - WGS84</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_E2022_GLOBE_R2025A_4326_30ss_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 32bit integers (uint32) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-860000]. NoData [4,294,967,295]
+						</div>
+					</div>
+				</div>
+				<div class="detailsBox ccl-u-border-bottom ccl-u-border-color-grey-20">
+					<div class="fieldName">
+						Distribution Name:
+					</div>
+					<div class="fieldContent ccl-u-type-paragraph-m">
+						<b>
+							EMC-BUILT-S_NRES_GLOBE_R2025A
+						</b>
+					</div>
+					<div class="mb-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of non-residential (NRES) built-up surface
+							<br>
+							<em>Resolution of 10m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_10_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 8bit integers (uint8) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-100]. NoData [255]
+						</div>
+					</div>
+					<div class="mb-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of NRES built-up surface
+							<br>
+							<em>Resolution of 100m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_100_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 16bit integers (uint16) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-10,000]. NoData [65,535]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of NRES built-up surface
+							<br>
+							<em>Resolution of 1000m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_1000_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 32bit integers (uint32) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-1,000,000]. NoData [4,294,967,295]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of NRES built-up surface
+							<br>
+							<em>Resolution of 3 arcsec - WGS84</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_4326_3ss_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 16bit integers (uint16) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-8600]. NoData [65,535]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Square metres of NRES built-up surface
+							<br>
+							<em>Resolution of 30 arcsec - WGS84</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_4326_30ss_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 32bit integers (uint32) and represent the amount of square metres of built-up surface in the cell.
+							<br>
+							Range [0-860000]. NoData [4,294,967,295]
+						</div>
+					</div>
+				</div>
+				<div class="detailsBox ccl-u-border-bottom ccl-u-border-color-grey-20">
+					<div class="fieldName">
+						Distribution Name:
+					</div>
+					<div class="fieldContent ccl-u-type-paragraph-m">
+						<b>
+							EMC-BUILT_GREENNESS_E2022_GLOBE_R2025A
+						</b>
+					</div>
+					<div class="mb-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							The Greenness layer represents the fraction of vegetation (NDVI) within and around built-up areas.
+							<br>
+							<em>Resolution of 10m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_GREENNESS_E2022_GLOBE_R2025A_54009_10_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 8bit integers (uint8) and represent NDVI BOA maximum values.
+							<br>
+							Range [0-100]. NoData [255]
+						</div>
+					</div>
+					<div class="mb-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							The Greenness layer represents the fraction of vegetation (NDVI) within and around built-up areas.
+							<br>
+							<em>Resolution of 100m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_GREENNESS_E2022_GLOBE_R2025A_54009_100_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 8bit integers (uint8) and represent NDVI BOA maximum values aggregated at 100 m resolution.
+							<br>
+							Range [0-100]. NoData [255]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							The Greenness layer represents the fraction of vegetation (NDVI) within and around built-up areas.
+							<br>
+							<em>Resolution of 1000m - World Mollweide (EPSG:54009)</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_GREENNESS_E2022_GLOBE_R2025A_54009_1000_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 8bit integers (uint8) and represent NDVI BOA maximum values aggregated at 1000 m resolution.
+							<br>
+							Range [0-100]. NoData [255]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							The Greenness layer represents the fraction of vegetation (NDVI) within and around built-up areas.
+							<br>
+							<em>Resolution of 3 arcsec - WGS84</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_GREENNESS_E2022_GLOBE_R2025A_4326_3ss_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 8bit integers (uint8) and represent NDVI BOA maximum values aggregated at 3 arcsec resolution.
+							<br>
+							Range [0-100]. NoData [255]
+						</div>
+					</div>
+					<div class="mt-3 col-10">
+						<div class="fieldName">
+							Description:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							The Greenness layer represents the fraction of vegetation (NDVI) within and around built-up areas.
+							<br>
+							<em>Resolution of 30 arcsec - WGS84</em>
+						</div>
+						<div class="fieldName">
+							Dataset name(s) (size):
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							EMC_BUILT_GREENNESS_E2022_GLOBE_R2025A_4326_30ss_V1_0 (XXXMB)
+						</div>
+						<div class="fieldName">
+							Legend:
+						</div>
+						<div class="fieldContent ccl-u-type-paragraph-m">
+							Values are expressed as 8bit integers (uint8) and represent NDVI BOA maximum values aggregated at 30 arcsec resolution.
+							<br>
+							Range [0-100]. NoData [255]
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="ccl-footer">
+	<div class="ccl-footer-main">
+		<div class="ccl-footer-logo"><img src="images/CCL/copernicus_eu_logo_white.svg" class="ccl-footer-logo-img" /></div>
+		<div class="ccl-container ccl-container-flex">
+			<div class="ccl-footer-col ">
+				<div class="ccl-footer-col-title">Copernicus Services: </div>
+				<div class="ccl-footer-services">
+					<a href="https://atmosphere.copernicus.eu/" class="ccl-service-button ccl-service-button-link ccl-service-button-w ccl-service-button-atmosphere">
+						<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-atmosphere.svg" /> Atmosphere
+					</a>
+					<a href="https://marine.copernicus.eu/" class="ccl-service-button ccl-service-button-link ccl-service-button-w ccl-service-button-marine">
+						<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-marine.svg" />Marine
+					</a>
+					<a href="https://land.copernicus.eu/en?" class="ccl-service-button ccl-service-button-link ccl-service-button-w ccl-service-button-land">
+						<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-land.svg" />Land
+					</a>
+					<a href="https://www.copernicus.eu/en/copernicus-services/security" class="ccl-service-button ccl-service-button-link ccl-service-button-w ccl-service-button-security">
+						<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-security.svg" />Security
+					</a>
+					<a href="https://climate.copernicus.eu/" class="ccl-service-button ccl-service-button-link ccl-service-button-w ccl-service-button-climate">
+						<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-climate.svg" />Climate Change
+					</a>
+					<a href="https://emergency.copernicus.eu/" class="ccl-service-button ccl-service-button-link ccl-service-button-w ccl-service-button-emergency">
+						<img class="ccl-svg ccl-service-button-icon" src="images/CCL/ccl-icon-emergency.svg" />Emergency
+					</a>
+				</div>
+			</div>
+			<div class="ccl-footer-col">
+				<div class="ccl-footer-body-title">Contact the GHSL team</div>
+				<div class="ccl-footer-social">
+					<a href="" class="contactMail" aria-label=""><span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+							<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"></path>
+						</svg>
+					</span></a>
+				</div>
+			</div>
+			<div class="ccl-footer-col">
+				<div class="ccl-footer-col-title">Copernicus</div>
+				<p>Copernicus is the Earth Observation component of the European Union's space programme, looking at our planet and its environment for the benefit of Europe's citizens.</p>
+			</div>
+		</div>
+	</div>
+	<div class="ccl-footer-bottom">
+		<ul class="ccl-footer-legal">
+			<li>
+				<a class="ccl-link" href="https://commission.europa.eu/legal-notice_en">Legal and copyright </a>
+			</li>
+			<li>
+				<a class="ccl-link" href="https://commission.europa.eu/cookies-policy_en">Cookies</a>
+			</li>
+			<li>
+				<a class="ccl-link" href="documents/Privacy_Statement_CEMS_16Jan2026.pdf">Data protection notice</a>
+			</li>
+		</ul>
+	</div>
+</footer><div class="disNone" id="dialogBox">
+	<div class="pageContent">
+	</div>
+	<div class="right">
+		<br/>
+		<button id="closeDialog" class="ghslBtn small closeBtn" type="button" title="Close this dialog box">
+			OK
+		</button>
+	</div>
+	<br />
+	<br />
+</div>
+<script type="application/json">
+{
+    "utility" : "cck",
+	"url": "https://ec.europa.eu/info/cookies_en"
+}
+</script>
+<script src="script/jquery/jquery-3.6.0.min.js"></script>
+<script src="script/kendoui/js/kendo.all.min.js"></script>
+<script src="script/jquery.easing.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="script/clipboard.min.js"></script>
+<script src=script/ghsl_utils.js?t=1762269017></script>
+<script src=script/menuBuilder.js?t=1768833712></script>
+<script src=script/ready.js></script>
+<script src="script/CCL/slick.min.js"></script>
+<script src="script/CCL/ccl-functions.js"></script>
+<script src=script/stickyHam.js?t=1768833751></script>
+</body>
+
+</html>

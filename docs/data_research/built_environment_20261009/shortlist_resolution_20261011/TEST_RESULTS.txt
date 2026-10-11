@@ -1,0 +1,5 @@
+Final consequential numerical/identity checks: 13 passed in 3.59 s.
+
+An earlier check identified that the HIST full-cohort source archive contains labels but not the original fitted estimator centers. Reconstructed partition means are now explicitly marked descriptive rather than original estimator centers. Historical labels and saved spatial predictions remain exact source copies. New-model centers reproduce their saved predictions exactly. No refitting was performed to conceal this provenance limitation.
+
+Checks cover tract identity and null preservation; 2,315-domain accounting; fixed-k/fit ceiling; weights and train-only scaling; saved predictions; historical checkpoint reuse; conditional-age common samples; complete contingency tables and class metrics; EPA count conservation; ACS replicate uncertainty; feasible entropy bounds; all 64 dispositions; source byte hashes; and original-worktree preservation.
