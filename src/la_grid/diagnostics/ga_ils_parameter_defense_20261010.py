@@ -41,6 +41,8 @@ ILS_CASES = {
     'ils_swap_stag200': {'operators': ['swap'], 'stagnation': 200},
     'ils_insertion_stag200': {'operators': ['insertion'], 'stagnation': 200},
     'ils_cold': {'warm': False},
+    'ils_swap_stag2000': {'operators': ['swap'], 'stagnation': 2000},
+    'ils_swap_no_perturb': {'operators': ['swap'], 'perturb': False},
 }
 GA_CASES = {f'ga_elite{n}': {'elites': n} for n in range(4)}
 GA_CASES['ga_cold'] = {'warm': False}
@@ -316,7 +318,7 @@ def batch(phase, workers):
         cases, seeds, budget = design['screen_cases'], SCREEN, 20000
     else:
         selected = read(OUT / 'SCREEN_SELECTION.json')['cases']
-        cases, seeds, budget = design['fixed_confirmation_cases']+selected+design['cold_cases'], CONFIRM, 100000
+        cases, seeds, budget = design['fixed_confirmation_cases']+selected+design['cold_cases']+design.get('screen_mechanism_confirmation_cases',[]), CONFIRM, 100000
     assert not set(SCREEN)&set(CONFIRM)
     tick = time.perf_counter()
     completed = []

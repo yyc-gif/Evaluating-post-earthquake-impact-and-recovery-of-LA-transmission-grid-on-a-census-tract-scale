@@ -139,7 +139,9 @@
       "current-mix",
       "no_perturb-mix (cost-censored if incomplete)",
       "screen_selected_stagnation-mix",
-      "screen_selected_perturbation-mix"
+      "screen_selected_perturbation-mix",
+      "swap_stag2000-mix",
+      "swap_no_perturb-mix (cost-censored if incomplete)"
     ],
     "method": [
       "warm_ILS-GA",
@@ -150,6 +152,13 @@
     "screen_interaction": [
       "swap x stagnation200",
       "insertion x stagnation200"
+    ],
+    "confirmation_interaction": [
+      "swap x stagnation2000"
     ]
-  }
+  },
+  "screen_mechanism_confirmation_cases": [
+    "ils_swap_stag2000",
+    "ils_swap_no_perturb"
+  ]
 }
