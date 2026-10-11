@@ -29,7 +29,7 @@ def qa():
         if current != row.sha256:
             assert row.snapshot_relative_path in {".gitattributes", ".gitignore", "INPUT_HASHES.json"}, row.snapshot_relative_path
             changes.append({"file": row.snapshot_relative_path, "frozen_source_sha256": row.sha256, "review_sha256": current,
-                            "reason": {".gitattributes": "Preserve exact committed bytes instead of text normalization", ".gitignore": "Include the scoped sensitivity evidence despite the parent repository ignore pattern", "INPUT_HASHES.json": "Local source-path discovery during copied audit tests; scientific source hashes unchanged"}[row.snapshot_relative_path]})
+                            "reason": {".gitattributes": "Preserve exact committed bytes instead of text normalization", ".gitignore": "Include scoped sensitivity and audit CSV evidence despite parent repository ignore patterns", "INPUT_HASHES.json": "Local source-path discovery during copied audit tests; scientific source hashes unchanged"}[row.snapshot_relative_path]})
     pandas.DataFrame(changes).to_csv(lp(OUT / "REUSE_DERIVATIVE_CHANGE_LEDGER.csv"), index=False)
     env = os.environ.copy()
     env.update(OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1")
