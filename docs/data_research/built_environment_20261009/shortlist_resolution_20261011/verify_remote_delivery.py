@@ -20,6 +20,9 @@ def verify(item,commit):
 if __name__=='__main__':
     branch=git('branch','--show-current').decode().strip();commit=git('rev-parse','HEAD').decode().strip();remote=git('ls-remote','origin','refs/heads/'+branch).decode().split()[0];assert remote==commit
     prefix=OUT.relative_to(ROOT).as_posix();paths=git('ls-tree','-r','--name-only',commit,'--',prefix).decode().splitlines();items=[]
+    manifest=json.loads(lp(OUT/'DERIVED_FILE_HASHES.json').read_text(encoding='utf-8'))
+    missing=[rel for rel in manifest if prefix+'/'+rel not in paths]
+    assert not missing,('Manifest outputs absent from pushed commit',missing)
     for rel in paths:
         blob=git('show',commit+':'+rel)
         if blob.startswith(b'version https://git-lfs.github.com/spec/v1'):
