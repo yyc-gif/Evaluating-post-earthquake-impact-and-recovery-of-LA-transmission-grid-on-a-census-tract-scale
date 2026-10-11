@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "mode": "PURE_RANDOM_GA",
+      "seed": 2026103100,
+      "cached_distinct_reads": 100000,
+      "logical_state_and_rng_exact": true,
+      "ordered_cache_and_checkpoints_exact": true,
+      "original_receipt_sha256": "0613f0640026dcee7754d4d88e24b08d198f5c0c7ec8f931a80024ece7c6648c"
+    },
+    {
+      "mode": "IMPACT_SEEDED_GA",
+      "seed": 2026103100,
+      "cached_distinct_reads": 100000,
+      "logical_state_and_rng_exact": true,
+      "ordered_cache_and_checkpoints_exact": true,
+      "original_receipt_sha256": "bd280af8b571cff8e162f56824c70d140489f443e157eb4f56ccc00552d94a04"
+    }
+  ],
+  "physical_objective_calls": 0,
+  "new_search_replicates": 0,
+  "wall_seconds": 118.57253800000035,
+  "timing_bytes_excluded_from_semantic_comparison": true
+}
