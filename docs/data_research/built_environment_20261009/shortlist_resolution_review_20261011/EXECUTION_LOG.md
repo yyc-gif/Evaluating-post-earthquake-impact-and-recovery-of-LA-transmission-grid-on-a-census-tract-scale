@@ -1,0 +1,47 @@
+- 2026-10-11T18:11:58.151093+00:00: Isolated shortlist worktree initialized from 94faefd30273dec8318197de443f2f992fa29e5c
+- 2026-10-11T18:16:08.819827+00:00: Assessor restrictions calculated without asserting building deduplication.
+- 2026-10-11T18:16:39.021353+00:00: SCAG cached record lineage audit 30.0s; no GIS overlay repeated.
+- 2026-10-11T18:16:39.021353+00:00: Measurement gate numerical evidence completed before new clustering fits.
+- 2026-10-11T18:19:54.732820+00:00: HIST seed42: full/spatial complete, N=2287, ARI=0.8868, minclass=34
+- 2026-10-11T18:19:55.730879+00:00: HIST seed51: full/spatial complete, N=2287, ARI=0.9389, minclass=34
+- 2026-10-11T18:19:57.336368+00:00: HIST seed61: full/spatial complete, N=2287, ARI=0.9349, minclass=34
+- 2026-10-11T18:19:58.231692+00:00: CORE2 seed42: full/spatial complete, N=2287, ARI=0.9490, minclass=34
+- 2026-10-11T18:20:04.738072+00:00: CORE2 seed51: full/spatial complete, N=2287, ARI=0.8017, minclass=34
+- 2026-10-11T18:20:11.968434+00:00: CORE2 seed61: full/spatial complete, N=2287, ARI=0.8017, minclass=34
+- 2026-10-11T18:20:12.849434+00:00: CORE3 seed42: full/spatial complete, N=2287, ARI=0.9374, minclass=34
+- 2026-10-11T18:20:19.545993+00:00: CORE3 seed51: full/spatial complete, N=2287, ARI=0.7208, minclass=34
+- 2026-10-11T18:20:27.450104+00:00: CORE3 seed61: full/spatial complete, N=2287, ARI=0.7369, minclass=34
+- 2026-10-11T18:20:28.352207+00:00: CORE4 seed42: full/spatial complete, N=2286, ARI=0.9095, minclass=34
+- 2026-10-11T18:20:35.134695+00:00: CORE4 seed51: full/spatial complete, N=2286, ARI=0.8398, minclass=34
+- 2026-10-11T18:20:43.103925+00:00: CORE4 seed61: full/spatial complete, N=2286, ARI=0.8445, minclass=34
+- 2026-10-11T18:20:44.000935+00:00: AGE_ACS seed42: full/spatial complete, N=2287, ARI=0.9419, minclass=34
+- 2026-10-11T18:20:51.217705+00:00: AGE_ACS seed51: full/spatial complete, N=2287, ARI=0.8174, minclass=34
+- 2026-10-11T18:20:59.321116+00:00: AGE_ACS seed61: full/spatial complete, N=2287, ARI=0.8558, minclass=34
+- 2026-10-11T18:21:00.204121+00:00: AGE_HIST seed42: full/spatial complete, N=2287, ARI=0.9262, minclass=34
+- 2026-10-11T18:21:08.073591+00:00: AGE_HIST seed51: full/spatial complete, N=2287, ARI=0.8356, minclass=34
+- 2026-10-11T18:21:16.904455+00:00: AGE_HIST seed61: full/spatial complete, N=2287, ARI=0.8453, minclass=34
+- 2026-10-11T18:21:17.916191+00:00: COVER_ALT seed42: full/spatial complete, N=2287, ARI=0.9577, minclass=34
+- 2026-10-11T18:21:25.425526+00:00: COVER_ALT seed51: full/spatial complete, N=2287, ARI=0.6464, minclass=34
+- 2026-10-11T18:21:34.838056+00:00: COVER_ALT seed61: full/spatial complete, N=2287, ARI=0.6658, minclass=34
+- 2026-10-11T18:21:35.757739+00:00: LAND_ALT seed42: full/spatial complete, N=2287, ARI=0.9431, minclass=34
+- 2026-10-11T18:21:43.016485+00:00: LAND_ALT seed51: full/spatial complete, N=2287, ARI=0.7386, minclass=34
+- 2026-10-11T18:21:46.669960+00:00: Conditional overlap and missing-land entropy bounds calculated without GIS or clustering reruns.
+- 2026-10-11T18:21:51.370318+00:00: LAND_ALT seed61: full/spatial complete, N=2287, ARI=0.7072, minclass=34
+- 2026-10-11T18:21:52.346311+00:00: HOUSING_ALT seed42: full/spatial complete, N=2287, ARI=0.9434, minclass=34
+- 2026-10-11T18:21:59.403807+00:00: HOUSING_ALT seed51: full/spatial complete, N=2287, ARI=0.7704, minclass=34
+- 2026-10-11T18:22:07.882538+00:00: HOUSING_ALT seed61: full/spatial complete, N=2287, ARI=0.7830, minclass=34
+- 2026-10-11T18:22:08.763723+00:00: HARDEN_EXT seed42: full/spatial complete, N=2287, ARI=0.9183, minclass=34
+- 2026-10-11T18:22:15.761481+00:00: HARDEN_EXT seed51: full/spatial complete, N=2287, ARI=0.7678, minclass=34
+- 2026-10-11T18:22:23.856182+00:00: HARDEN_EXT seed61: full/spatial complete, N=2287, ARI=0.7779, minclass=34
+- 2026-10-11T18:22:24.775190+00:00: HEIGHT_HIST_EXT seed42: full/spatial complete, N=2287, ARI=0.9098, minclass=34
+- 2026-10-11T18:22:32.356797+00:00: HEIGHT_HIST_EXT seed51: full/spatial complete, N=2287, ARI=0.7440, minclass=34
+- 2026-10-11T18:22:40.792141+00:00: HEIGHT_HIST_EXT seed61: full/spatial complete, N=2287, ARI=0.7401, minclass=34
+- 2026-10-11T18:22:41.945869+00:00: CORE3_AGE_COMMON seed42: full/spatial complete, N=2286, ARI=0.9310, minclass=34
+- 2026-10-11T18:22:49.111853+00:00: CORE3_AGE_COMMON seed51: full/spatial complete, N=2286, ARI=0.7207, minclass=34
+- 2026-10-11T18:22:57.896733+00:00: CORE3_AGE_COMMON seed61: full/spatial complete, N=2286, ARI=0.7221, minclass=34
+- 2026-10-11T18:22:57.910731+00:00: Bounded specification comparison completed.
+- 2026-10-11T18:28:05.046894+00:00: Partition, class retention/purity, original-unit profiles and all pairwise contingencies summarized.
+- 2026-10-11T18:28:13.786067+00:00: 80 ACS fixed-model predictions and20 declared coverage fits completed; no further fits.
+- 2026-10-11T18:33:38.785057+00:00: Scientific shortlist recommendation and domain-weight requirements written from actual numerical evidence.
+- 2026-10-11T18:37:45.082896+00:00: Completed whole-domain accounting, support summaries and stock/loss conditional diagnostics.
+- 2026-10-11T18:39:57.786010+00:00: Historical full-fit labels retained exactly. HIST centers are descriptive partition means, not recovered estimator centers; all new-model centers reproduce saved predictions.
