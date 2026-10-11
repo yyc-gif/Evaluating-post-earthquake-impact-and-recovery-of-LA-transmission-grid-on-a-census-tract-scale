@@ -175,3 +175,4 @@
 - 2026-10-11T05:13:14.478281+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
 - 2026-10-11T05:13:14.783788+00:00: Three-source follow-up QA and admission decisions written; gross FAR remains pending.
 - 2026-10-11T05:13:53.723014+00:00: Follow-up QA: 15 tests passed; original 862 staged items and 950 protected scientific files unchanged; 2 conditional measurements, 1 pending gross-FAR gap.
+- 2026-10-11T05:15:21.763653+00:00: Remote LFS actual-byte verification: 45 files, 105064785 bytes, all_pass=True; payload commit 415758a67c1c02c368a15aaa4d6db40fde4bd415.
