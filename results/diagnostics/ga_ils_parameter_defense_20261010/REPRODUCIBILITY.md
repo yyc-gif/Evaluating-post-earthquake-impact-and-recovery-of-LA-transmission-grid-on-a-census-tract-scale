@@ -12,6 +12,8 @@ Prospective commits: `196e09c` (initial design), `3766c1a` (observation-only JSO
 
 After all numerical searches finished, an administrative safety repair made the original 16-case engineering set explicit and prevented `setup` from overwriting an existing preservation/design authority. It changes no evaluator, search operator, stochastic trajectory or saved result. For exact execution-source provenance, use the pre-execution commits and raw recorded SHA; the published helper includes this postexecution setup guard.
 
+Publication byte checks preserve the design, preservation baseline and screen-selection JSON exactly as committed before the corresponding searches. Their Windows working copies were aligned to those original LF Git bytes; no registered content was changed. Generated reports use LF explicitly so their recorded hashes match the published Git payloads.
+
 All runs use the original 92-station, 64-realization `2pc50/C57_D1` planning authority. `MODEL_IDENTITY.json` gives physical sample, source-set, graph, directed-travel and input hashes. No earthquake samples are created, and no completed validation outcomes participate in diagnostic calculations.
 
 ## Evidence Without New Searches

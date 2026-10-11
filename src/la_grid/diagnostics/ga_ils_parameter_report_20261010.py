@@ -721,6 +721,14 @@ def legacy_hashes():
 
 
 def qa():
+    preregistered={}
+    for name,commit in (
+        ('EXPERIMENT_DESIGN_AND_SEEDS.json','c4b765e'),
+        ('PRESERVATION_BASELINE.json','196e09c'),
+        ('SCREEN_SELECTION.json','c4b765e')):
+        original=subprocess.check_output(['git','show',commit+':results/diagnostics/ga_ils_parameter_defense_20261010/'+name],cwd=R)
+        assert lp(OUT/name).read_bytes()==original
+        preregistered[name]=dict(authoritative_commit=commit,sha256=sha(OUT/name),original_git_bytes_unchanged=True)
     design=read(OUT/'EXPERIMENT_DESIGN_AND_SEEDS.json')
     universe=set(read(R/'results/diagnostics/final_ga_method_20261009/SELECTED_SEQUENCE.json')['sequence'])
     rows=[]
@@ -779,6 +787,7 @@ def qa():
         'REVIEWER_OBJECTIONS_AND_EVIDENCE.md','METHODS_AND_SUPPLEMENT_READY_TEXT.md','FINAL_RESEARCH_DECISION.md']
     assert all(lp(OUT/n).stat().st_size>0 for n in required)
     receipt=dict(status='PASS',starting_commit=START,branch=BRANCH,screen_cases=128,confirmation_cases=320,
+        preregistered_artifact_bytes=preregistered,
         complete_case_seed_sets=True,sequence_and_record_hashes_verified=True,raw_records=rows,
         source_content_and_line_endings=source_rows,protected_file_count=950,protected_before_after_equal=True,
         preservation_snapshot_sha256=sha(OUT/'PRESERVATION_BASELINE.json'),
