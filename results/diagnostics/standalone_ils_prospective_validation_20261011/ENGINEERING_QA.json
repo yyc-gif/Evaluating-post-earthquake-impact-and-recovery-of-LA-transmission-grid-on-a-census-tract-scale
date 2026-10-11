@@ -1,0 +1,25 @@
+{
+  "analysis_source_sha256": "96aabd69ca7097743af0f3bb9dc0e7a4f0e041626f07f7b85af6ef85864ceef8",
+  "censored_T80_and_late_events_preserved": true,
+  "complete_resume_no_scoring": true,
+  "execution_freeze_sha256": "5d2e83dc1067a4b667a032d43174a7b86d0a46bb90b6690f8ac70de8d53648b7",
+  "extra_failed_attempt_completed_kernel_calls": 0,
+  "extra_failed_attempt_production_calls": 1,
+  "genuine_sampling_calls": 0,
+  "independent_kernel_calls": 16,
+  "old_planning_case_ids": [
+    0,
+    15,
+    63
+  ],
+  "previous_engineering_failures": [
+    "Initial registry included all scenarios; fixed to the declared 2pc50 identities before any draw.",
+    "First planning0 ILS production call completed, but independent JIT cache write failed on Windows path length; rerun using short TEMP cache."
+  ],
+  "production_calls": 16,
+  "same_saved_state_crash_resume_identical_bytes": true,
+  "status": "PASS",
+  "synthetic_late_case": true,
+  "validation_outcomes_read": false,
+  "wall_seconds": 3.775297899999714
+}
