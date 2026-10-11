@@ -1,0 +1,16 @@
+{
+  "max_source_absolute_error": 3.656797087359109e-15,
+  "definition": "TSS=sum_i ||x_i-xbar||2; BSS=sum_c n_c||xbar_c-xbar||2; WSS=TSS-BSS; domain contribution=BSS_domain/BSS_all",
+  "BE0_mean_domain_contributions": {
+    "grid": 0.016790421216375587,
+    "loss_exposure": 0.20086024611558698,
+    "physical": 0.1057565461333867,
+    "recovery_service": 0.26952485737620524,
+    "social": 0.40706792915844553
+  },
+  "small_group_raw_label_seed42": 1,
+  "large_group_reference_labels": {
+    "high_loss": 2,
+    "low_loss": 0
+  }
+}

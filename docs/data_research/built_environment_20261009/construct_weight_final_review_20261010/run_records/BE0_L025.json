@@ -1,0 +1,432 @@
+{
+  "signature": "bb3ecb7b1a1a080fd4085204d8fda9aabfbee6b1c278c3149d1279feb9754507",
+  "spec": {
+    "name": "BE0_L025",
+    "be": "BE0",
+    "lambda_value": 0.25,
+    "endpoint_source": null,
+    "domains": {
+      "recovery_service": [
+        "B_480_hr",
+        "Init_Supply"
+      ],
+      "grid": [
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI"
+      ],
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "social": [
+        "SOVI_SCORE"
+      ],
+      "loss_exposure": [
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ]
+    },
+    "features": [
+      "B_480_hr",
+      "Init_Supply",
+      "Grid_Degree",
+      "Grid_Impact",
+      "Grid_Betweenness",
+      "Redundancy_HHI",
+      "land_use_entropy",
+      "building_footprint_coverage",
+      "all_use2014_pre1970_area_share",
+      "SOVI_SCORE",
+      "log1p_NRI_BUILDVALUE",
+      "ALR_NPCTL"
+    ],
+    "domain_weights": {
+      "recovery_service": 0.1954545454545455,
+      "grid": 0.24090909090909093,
+      "physical": 0.1954545454545455,
+      "social": 0.17272727272727276,
+      "loss_exposure": 0.1954545454545455
+    },
+    "coordinate_factors": [
+      0.3126136157099891,
+      0.3126136157099891,
+      0.24541245430351072,
+      0.24541245430351072,
+      0.24541245430351072,
+      0.24541245430351072,
+      0.25524794837866016,
+      0.25524794837866016,
+      0.25524794837866016,
+      0.4156047072968168,
+      0.3126136157099891,
+      0.3126136157099891
+    ],
+    "matrix_sha256": "588bfb0fbb6b68f67876428de1c43836fec2c8cfd5d8366533375d9dbcce4fa7"
+  },
+  "rows": [
+    {
+      "scope": "full",
+      "seed": 42,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.018458292417,
+      "iterations": 19,
+      "elapsed_s": 0.3974196999988635,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 42,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1401.2309278156515,
+      "iterations": 27,
+      "elapsed_s": 0.36206269999820506,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 43,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 18,
+      "elapsed_s": 0.338619900001504,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 43,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1217.406048354495,
+      "iterations": 9,
+      "elapsed_s": 0.395246700005373,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 44,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 14,
+      "elapsed_s": 0.3172737000058987,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 44,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1272.48275729345,
+      "iterations": 24,
+      "elapsed_s": 0.4038576999955694,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 45,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.0144583189774,
+      "iterations": 8,
+      "elapsed_s": 0.36157449999882374,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 45,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1228.7101003296764,
+      "iterations": 27,
+      "elapsed_s": 0.40601990000141086,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 46,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 15,
+      "elapsed_s": 0.46760640000138665,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 46,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1408.7947190737252,
+      "iterations": 23,
+      "elapsed_s": 0.32306389999575913,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 47,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 21,
+      "elapsed_s": 0.46053050000045914,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 47,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1401.2295097206475,
+      "iterations": 22,
+      "elapsed_s": 0.40893420000065817,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 48,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012956028435,
+      "iterations": 13,
+      "elapsed_s": 0.4140006000016001,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 48,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1183.9211719226723,
+      "iterations": 19,
+      "elapsed_s": 0.2069483000013861,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 49,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.015002464524,
+      "iterations": 9,
+      "elapsed_s": 0.395190499999444,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 49,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1254.1984933282783,
+      "iterations": 12,
+      "elapsed_s": 0.42072860000189394,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 50,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 19,
+      "elapsed_s": 0.4179444999972475,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 50,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1476.324291588575,
+      "iterations": 11,
+      "elapsed_s": 0.3642835999999079,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 51,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 20,
+      "elapsed_s": 0.4185358000031556,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 51,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1226.269738557429,
+      "iterations": 22,
+      "elapsed_s": 0.29101010000158567,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 52,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 17,
+      "elapsed_s": 0.40639370000280906,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 52,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1344.511401888478,
+      "iterations": 13,
+      "elapsed_s": 0.28321370000048773,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 53,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 19,
+      "elapsed_s": 0.33967800000391435,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 53,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1542.3138823403676,
+      "iterations": 21,
+      "elapsed_s": 0.45787510000081966,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 54,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 15,
+      "elapsed_s": 0.3626023999968311,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 54,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1255.5291408427122,
+      "iterations": 14,
+      "elapsed_s": 0.30174170000100276,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 55,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.014957213652,
+      "iterations": 9,
+      "elapsed_s": 0.4758866999982274,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 55,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1444.6295057794896,
+      "iterations": 15,
+      "elapsed_s": 0.35422919999837177,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 56,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 16,
+      "elapsed_s": 0.4566266999972868,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 56,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1257.8139278267,
+      "iterations": 15,
+      "elapsed_s": 0.3496540999985882,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 57,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.0158400870275,
+      "iterations": 9,
+      "elapsed_s": 0.39848289999645203,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 57,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1542.3164219379164,
+      "iterations": 20,
+      "elapsed_s": 0.47705309999582823,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 58,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 30,
+      "elapsed_s": 0.40579710000019986,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 58,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1170.1222685030355,
+      "iterations": 16,
+      "elapsed_s": 0.284570599993458,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 59,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.0158400870275,
+      "iterations": 10,
+      "elapsed_s": 0.4007902999946964,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 59,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1257.903989381856,
+      "iterations": 22,
+      "elapsed_s": 0.3753692999962368,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 60,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 18,
+      "elapsed_s": 0.3753508999943733,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 60,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1266.7548162941746,
+      "iterations": 19,
+      "elapsed_s": 0.36791660000017146,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "full",
+      "seed": 61,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1553.012197322751,
+      "iterations": 14,
+      "elapsed_s": 0.4291836999982479,
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 61,
+      "origin": "NEW_INTERMEDIATE_FIT",
+      "inertia": 1226.269738557429,
+      "iterations": 14,
+      "elapsed_s": 0.34332960000028834,
+      "center_kind": "actual KMeans centers"
+    }
+  ],
+  "payload_sha256": "d136011190b38ee70e1d380429117f47329c005da3a979a14bcd029241f95f1d"
+}
