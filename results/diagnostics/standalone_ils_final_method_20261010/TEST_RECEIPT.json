@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "tests": 7,
+  "result": "7 passed in 2.01s",
+  "command": "PYTHONPATH=src python -B -c [Windows long-path REPO_ROOT adapter; pytest.main(['-q','tests/test_standalone_ils_20261010.py','--basetemp','_testtmp'])]",
+  "covers": ["Impact-only initial archive", "private distinct cache and attempts", "complete permutations", "deterministic checkpoint/replay ILS and GA", "strict tolerance", "stagnation includes cache hits", "2/4/8 cyclic perturbation", "best archive", "attempt cap", "uniform swap RNG"],
+  "pretest_repairs": ["one unmatched parenthesis before testing", "temporary-directory sandbox denial; reran inside isolated worktree"],
+  "scientific_evaluator_modified": false
+}

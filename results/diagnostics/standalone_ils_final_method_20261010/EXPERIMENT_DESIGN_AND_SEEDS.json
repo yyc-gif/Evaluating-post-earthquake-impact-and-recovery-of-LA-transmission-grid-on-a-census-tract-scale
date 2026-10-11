@@ -1,0 +1,109 @@
+{
+  "starting_commit": "62f0c2be4f1e37f25e3db8d0d042cd5d0cfcfd3f",
+  "branch": "diagnostics/standalone-ils-final-method-decision-20261010",
+  "smoke_seeds": [
+    2026102000,
+    2026102001,
+    2026102002,
+    2026102003,
+    2026102004,
+    2026102005,
+    2026102006,
+    2026102007
+  ],
+  "main_seeds": [
+    2026102100,
+    2026102101,
+    2026102102,
+    2026102103,
+    2026102104,
+    2026102105,
+    2026102106,
+    2026102107,
+    2026102108,
+    2026102109,
+    2026102110,
+    2026102111,
+    2026102112,
+    2026102113,
+    2026102114,
+    2026102115,
+    2026102116,
+    2026102117,
+    2026102118,
+    2026102119
+  ],
+  "extension_seeds": [
+    2026102100,
+    2026102101,
+    2026102102,
+    2026102103,
+    2026102104,
+    2026102105,
+    2026102106,
+    2026102107,
+    2026102108,
+    2026102109
+  ],
+  "smoke_methods": [
+    "ILS"
+  ],
+  "main_methods": [
+    "ILS",
+    "GA"
+  ],
+  "smoke_budget": 20000,
+  "main_budget": 100000,
+  "extension_budgets": [
+    250000,
+    500000
+  ],
+  "checkpoints": [
+    20000,
+    50000,
+    100000,
+    250000,
+    500000
+  ],
+  "ils": {
+    "neighborhood": "uniform distinct-position swap",
+    "tolerance_hr": 1e-12,
+    "stagnation_attempts": 2000,
+    "perturbation_swaps": [
+      2,
+      4,
+      8
+    ],
+    "restart_reference": "best",
+    "attempt_cap_multiplier": 60
+  },
+  "ga": {
+    "population": 100,
+    "crossover": 0.8,
+    "mutation": 0.1,
+    "tournament": 3,
+    "elites": 1,
+    "initialization": "legacy",
+    "mutation_operator": "swap",
+    "crossover_operator": "ordered",
+    "adaptive": false,
+    "restart": false,
+    "diversity_replacement": false
+  },
+  "ga_attempt_cap_multiplier": 50,
+  "ga_initialization": "exactly one Impact-first + 99 independent random permutations; no prior/no neighbors",
+  "candidate_pool": "20 main ILS final100k and prescribed10 continuations at250k/500k; smoke excluded",
+  "candidate_selection": "lowest exact mean planning J, exact tie SHA256 ascending then seed then budget",
+  "comparisons": "ILS-GA paired by optimizer seed at each budget; frozenGA separately fixed-reference",
+  "bootstrap_replicates": 20000,
+  "bootstrap_seed": 2026102200,
+  "uncertainty": "pointwise paired percentile bootstrap and paired t intervals; simultaneous Bonferroni t across 5 budget endpoints",
+  "diagnostic_tie_tolerance_hr": 1e-09,
+  "no_new_physical_samples": true,
+  "no_validation_outcome_access": true,
+  "formal_policy_unchanged": true,
+  "workers": 12,
+  "seed_overlap_with_historical": false,
+  "decision_criteria": "independence; entire workflow simplicity; fair/frozen candidate quality; seed/budget reliability; parameter defensibility; no validation contamination",
+  "no_noninferiority_margin_claim": "No prospective margin specified; competitive descriptive judgment, not a formal equivalence test"
+}
