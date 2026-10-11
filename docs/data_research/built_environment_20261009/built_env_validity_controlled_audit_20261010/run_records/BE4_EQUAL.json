@@ -1,0 +1,405 @@
+{
+  "signature": "e9a4809b13debfd81ee4442beeea025239840caec516ce869237a89d3538702c",
+  "spec": {
+    "name": "BE4_EQUAL",
+    "physical": [
+      "land_use_entropy"
+    ],
+    "budget": "equal",
+    "risk": "D",
+    "physical_weight_mode": "redistribute",
+    "saved_full_source": null,
+    "saved_spatial_source": null,
+    "family": "physical",
+    "matrix_sha256": "a6af2abf124c28acc89d334c06f46104a9445907a16a985fb7df5ad909902441",
+    "feature_columns": [
+      "B_480_hr",
+      "Init_Supply",
+      "Grid_Degree",
+      "Grid_Impact",
+      "Grid_Betweenness",
+      "Redundancy_HHI",
+      "land_use_entropy",
+      "SOVI_SCORE",
+      "log1p_NRI_BUILDVALUE",
+      "ALR_NPCTL"
+    ],
+    "coordinate_factors": [
+      0.31622776601683794,
+      0.31622776601683794,
+      0.22360679774997896,
+      0.22360679774997896,
+      0.22360679774997896,
+      0.22360679774997896,
+      0.4472135954999579,
+      0.4472135954999579,
+      0.31622776601683794,
+      0.31622776601683794
+    ],
+    "domains": {
+      "recovery_service": [
+        "B_480_hr",
+        "Init_Supply"
+      ],
+      "grid": [
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI"
+      ],
+      "physical": [
+        "land_use_entropy"
+      ],
+      "social": [
+        "SOVI_SCORE"
+      ],
+      "loss_exposure": [
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ]
+    }
+  },
+  "rows": [
+    {
+      "scope": "full",
+      "seed": 42,
+      "inertia": 1381.3523212264606,
+      "iterations": 14,
+      "elapsed_s": 0.3867954000015743,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 42,
+      "inertia": 1243.5616383430695,
+      "iterations": 22,
+      "elapsed_s": 0.4108412999994471,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 43,
+      "inertia": 1381.3475419645,
+      "iterations": 11,
+      "elapsed_s": 0.3974553999978525,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 43,
+      "inertia": 1079.1332157527936,
+      "iterations": 12,
+      "elapsed_s": 0.2937377000016568,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 44,
+      "inertia": 1381.347569268312,
+      "iterations": 8,
+      "elapsed_s": 0.355714799999987,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 44,
+      "inertia": 1130.449776917001,
+      "iterations": 54,
+      "elapsed_s": 0.36857570000211126,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 45,
+      "inertia": 1381.345716168083,
+      "iterations": 7,
+      "elapsed_s": 0.37535420000131126,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 45,
+      "inertia": 1102.1291582139522,
+      "iterations": 13,
+      "elapsed_s": 0.3846747999996296,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 46,
+      "inertia": 1381.3475419645,
+      "iterations": 9,
+      "elapsed_s": 0.3512726000008115,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 46,
+      "inertia": 1247.8442210669648,
+      "iterations": 17,
+      "elapsed_s": 0.3402265000004263,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 47,
+      "inertia": 1381.3488179527178,
+      "iterations": 7,
+      "elapsed_s": 0.3838983999994525,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 47,
+      "inertia": 1243.5616383430695,
+      "iterations": 12,
+      "elapsed_s": 0.36076600000160397,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 48,
+      "inertia": 1381.3503073463626,
+      "iterations": 8,
+      "elapsed_s": 0.3685208999995666,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 48,
+      "inertia": 1054.3642247871817,
+      "iterations": 10,
+      "elapsed_s": 0.2953474999994796,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 49,
+      "inertia": 1381.3475419645,
+      "iterations": 10,
+      "elapsed_s": 0.38523849999910453,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 49,
+      "inertia": 1119.902707296434,
+      "iterations": 16,
+      "elapsed_s": 0.31315730000278563,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 50,
+      "inertia": 1381.347009629153,
+      "iterations": 7,
+      "elapsed_s": 0.4222432000024128,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 50,
+      "inertia": 1311.557190460322,
+      "iterations": 10,
+      "elapsed_s": 0.3720501999996486,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 51,
+      "inertia": 1381.3475419645,
+      "iterations": 7,
+      "elapsed_s": 0.40869929999826127,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 51,
+      "inertia": 1093.8718575091714,
+      "iterations": 10,
+      "elapsed_s": 0.295119499998691,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 52,
+      "inertia": 1381.347009629153,
+      "iterations": 8,
+      "elapsed_s": 0.40817559999777586,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 52,
+      "inertia": 1195.4600020013468,
+      "iterations": 11,
+      "elapsed_s": 0.3544813000007707,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 53,
+      "inertia": 1381.3523212264606,
+      "iterations": 9,
+      "elapsed_s": 0.43084949999683886,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 53,
+      "inertia": 1371.9714726176117,
+      "iterations": 12,
+      "elapsed_s": 0.41418699999849196,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 54,
+      "inertia": 1381.3475419645,
+      "iterations": 13,
+      "elapsed_s": 0.4028002999984892,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 54,
+      "inertia": 1129.2597602707872,
+      "iterations": 11,
+      "elapsed_s": 0.3392974000016693,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 55,
+      "inertia": 1381.347009629153,
+      "iterations": 8,
+      "elapsed_s": 0.4010497999988729,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 55,
+      "inertia": 1285.1544702184187,
+      "iterations": 11,
+      "elapsed_s": 0.39367140000103973,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 56,
+      "inertia": 1381.3510315580386,
+      "iterations": 17,
+      "elapsed_s": 0.4261566000022867,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 56,
+      "inertia": 1123.103718376704,
+      "iterations": 8,
+      "elapsed_s": 0.29766060000110883,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 57,
+      "inertia": 1381.347009629153,
+      "iterations": 10,
+      "elapsed_s": 0.39948759999970207,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 57,
+      "inertia": 1371.9686952010554,
+      "iterations": 12,
+      "elapsed_s": 0.4347282000017003,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 58,
+      "inertia": 1381.350582013069,
+      "iterations": 7,
+      "elapsed_s": 0.3613547999993898,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 58,
+      "inertia": 1037.9560446966016,
+      "iterations": 10,
+      "elapsed_s": 0.3261464999995951,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 59,
+      "inertia": 1381.347009629153,
+      "iterations": 7,
+      "elapsed_s": 0.373094200000196,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 59,
+      "inertia": 1124.527203779845,
+      "iterations": 19,
+      "elapsed_s": 0.3749220999998215,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 60,
+      "inertia": 1381.3468861172712,
+      "iterations": 7,
+      "elapsed_s": 0.4231395999995584,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 60,
+      "inertia": 1123.6340418274272,
+      "iterations": 23,
+      "elapsed_s": 0.31844360000104643,
+      "origin": "NEW_SPATIAL_FIT"
+    },
+    {
+      "scope": "full",
+      "seed": 61,
+      "inertia": 1381.3510315580386,
+      "iterations": 15,
+      "elapsed_s": 0.39537170000039623,
+      "origin": "NEW_FULL_FIT",
+      "center_kind": "actual KMeans centers"
+    },
+    {
+      "scope": "spatial",
+      "seed": 61,
+      "inertia": 1093.8715154194276,
+      "iterations": 14,
+      "elapsed_s": 0.3057163000012224,
+      "origin": "NEW_SPATIAL_FIT"
+    }
+  ],
+  "payload_sha256": "19b3139f2a195732dca32d91389fc0d5f6ddfea8fc6b9c7ad66307d031fc7e0e"
+}

@@ -1,0 +1,2082 @@
+{
+  "parent": "5f49471ac707c001baefa1fa860aa77971dd62c5",
+  "models": [
+    {
+      "name": "BE0",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D__equal_five_domains",
+      "saved_spatial_source": "D",
+      "family": "reference",
+      "matrix_sha256": "55c9b9ae634ac4d39dd311abb420b812118e8154112fdd2bcf41ab9739b64e97",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "D_INHERITED",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "inherited",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D__inherited",
+      "saved_spatial_source": null,
+      "family": "weights",
+      "matrix_sha256": "ad3d1a709a1309277ec2d3a08acedca486f06966d114d8df20b7907860f41ab6",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "EAL_EQUAL",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "EAL",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "EAL__equal_five_domains",
+      "saved_spatial_source": "EAL",
+      "family": "risk_exposure",
+      "matrix_sha256": "2d7f87405ea0a7f2313e8273a41e8274f73b447e39e229b1bf86c044d9a00e0c",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "EAL_SCORE"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.4472135954999579
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "EAL_SCORE"
+        ]
+      }
+    },
+    {
+      "name": "ALR_ONLY_EQUAL",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "ALR",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "risk_exposure",
+      "matrix_sha256": "23cddebcae6c84b2878968b9a815dc464f997882844239084852ffc04fabb80f",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.4472135954999579
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE1_EQUAL",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_no_age__equal_five_domains",
+      "saved_spatial_source": null,
+      "family": "age",
+      "matrix_sha256": "d11c9e809d240fadc62d24031ff97949c48b42adad9926e35a248a7a734ec434",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.31622776601683794,
+        0.31622776601683794,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE7_ACS_EQUAL",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "residential_pre1970_housing_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_ACS_age__equal_five_domains",
+      "saved_spatial_source": null,
+      "family": "age",
+      "matrix_sha256": "3e68b2e6627cdc806e4451cdcff50e97763874f97ffe4cdb3dbe7ae67f5b03dd",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "residential_pre1970_housing_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "residential_pre1970_housing_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "EAL_INHERITED",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "inherited",
+      "risk": "EAL",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "EAL__inherited",
+      "saved_spatial_source": null,
+      "family": "risk_exposure",
+      "matrix_sha256": "a4f84e15486f05b445005eae46d58623bafdb2a319f2894a45ecb63928655bfb",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "EAL_SCORE"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.4264014327112209
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "EAL_SCORE"
+        ]
+      }
+    },
+    {
+      "name": "ALR_ONLY_INHERITED",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "inherited",
+      "risk": "ALR",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "risk_exposure",
+      "matrix_sha256": "0c82dff09e45df78c892f066f2fca5fdfc1872db671f9c04e0e35a678b284874",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.4264014327112209
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE1_INHERITED",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage"
+      ],
+      "budget": "inherited",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_no_age__inherited",
+      "saved_spatial_source": null,
+      "family": "age",
+      "matrix_sha256": "e85316ef59f41ae6712722938bdd0b6be8c0b512407f4ad31c6d16ef1d65a991",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE7_ACS_INHERITED",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "residential_pre1970_housing_share"
+      ],
+      "budget": "inherited",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_ACS_age__inherited",
+      "saved_spatial_source": null,
+      "family": "age",
+      "matrix_sha256": "9905e45215250061e32727012556248ce89da10f017cb715113fe9f83461ecd7",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "residential_pre1970_housing_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "residential_pre1970_housing_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE2_EQUAL",
+      "physical": [
+        "land_use_entropy",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "physical",
+      "matrix_sha256": "be5f6b55293b26c7238ff776c06c1db600150e67b4ab38ce0e691a0925863245",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.31622776601683794,
+        0.31622776601683794,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE3_EQUAL",
+      "physical": [
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "physical",
+      "matrix_sha256": "2da30ec85544d1ea32b7b2791443efc99fad7ee9e3d380de132bcb35c803a031",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.31622776601683794,
+        0.31622776601683794,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE4_EQUAL",
+      "physical": [
+        "land_use_entropy"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "physical",
+      "matrix_sha256": "a6af2abf124c28acc89d334c06f46104a9445907a16a985fb7df5ad909902441",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.4472135954999579,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE5_EQUAL",
+      "physical": [
+        "building_footprint_coverage"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "physical",
+      "matrix_sha256": "c079563c2c0daf8ce49b5d22bf6eca79cb53cb7bc858a4f91a3d76e66be691e2",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "building_footprint_coverage",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.4472135954999579,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "building_footprint_coverage"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE6_EQUAL",
+      "physical": [
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "physical",
+      "matrix_sha256": "29b04780e6bacb2963bb6d6f1918cb669f36ee494cfe27ec33a4370877fe107a",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.4472135954999579,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE1_FIXED_COORD",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "fixed_coordinate",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "deletion_weight_control",
+      "matrix_sha256": "1355ef2e2a61dc637a5b385fb78c68cde965614685c9a57e65748e605d52401c",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE2_FIXED_COORD",
+      "physical": [
+        "land_use_entropy",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "fixed_coordinate",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "deletion_weight_control",
+      "matrix_sha256": "a82eab3b3381cbb2ec339a6f9cc018555cf0583640a4eb52793e4ce590f111d2",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE3_FIXED_COORD",
+      "physical": [
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "fixed_coordinate",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "deletion_weight_control",
+      "matrix_sha256": "f81d678fa859bad627e7f524730b635d7e604c56cca3cfe5d5e78de40f568ad5",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE4_FIXED_COORD",
+      "physical": [
+        "land_use_entropy"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "fixed_coordinate",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "deletion_weight_control",
+      "matrix_sha256": "0425568f108298d40c67967c764df0753d3b07aa41deea4a54e1e98cb2e05807",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE5_FIXED_COORD",
+      "physical": [
+        "building_footprint_coverage"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "fixed_coordinate",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "deletion_weight_control",
+      "matrix_sha256": "0f76f34f8fb588846ddcfbaab4a4ed013dcad04866806edf97cb8bbc13753286",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "building_footprint_coverage",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "building_footprint_coverage"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE6_FIXED_COORD",
+      "physical": [
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "fixed_coordinate",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "deletion_weight_control",
+      "matrix_sha256": "c5492570c7d44e61868a5b43bd568618bf8d395f13cfcb4d85a8bb27b4e9d49c",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE8_LOWER_EQUAL",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_lower_bound"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "age_missingness",
+      "matrix_sha256": "de52b07d6d5a44386ecd81f3f09959a2ec61e826566fd7024b40d4f281cdfb32",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_lower_bound",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "age_lower_bound"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE8_UPPER_EQUAL",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_upper_bound"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "age_missingness",
+      "matrix_sha256": "16df5e197874c2abf67fd82675d50bfb4b12f305bbae0e968a65f1ff00f17ee8",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_upper_bound",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "age_upper_bound"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "SCAG_TRANSPORT_EQUAL",
+      "physical": [
+        "entropy_missing_to_transport",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "land_coverage",
+      "matrix_sha256": "72dcb40add937160fd7b294ecc2fcaeb2fabc0af7fdd62518bc4b76f8eacb51e",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "entropy_missing_to_transport",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "entropy_missing_to_transport",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "SCAG_DOMINANT_EQUAL",
+      "physical": [
+        "entropy_missing_to_dominant",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "equal",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": null,
+      "saved_spatial_source": null,
+      "family": "land_coverage",
+      "matrix_sha256": "b8191e0893e1837b67cd18afd8c589f1e101edf3b3344829aaeaea28fb5e53c6",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "entropy_missing_to_dominant",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.31622776601683794,
+        0.31622776601683794,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.22360679774997896,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.2581988897471611,
+        0.4472135954999579,
+        0.31622776601683794,
+        0.31622776601683794
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "entropy_missing_to_dominant",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE8_LOWER_INHERITED",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_lower_bound"
+      ],
+      "budget": "inherited",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_age_lower_bound__inherited",
+      "saved_spatial_source": null,
+      "family": "age_missingness",
+      "matrix_sha256": "5292339141c7c8372fdca98aad2bd8476c2aba4187fcf29778f039a358300bca",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_lower_bound",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "age_lower_bound"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "BE8_UPPER_INHERITED",
+      "physical": [
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_upper_bound"
+      ],
+      "budget": "inherited",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_age_upper_bound__inherited",
+      "saved_spatial_source": null,
+      "family": "age_missingness",
+      "matrix_sha256": "5c6299e5d3391694e4588bdfe5521ec2299d39426dc32c56115b31ec2e2822c9",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "land_use_entropy",
+        "building_footprint_coverage",
+        "age_upper_bound",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "land_use_entropy",
+          "building_footprint_coverage",
+          "age_upper_bound"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "SCAG_TRANSPORT_INHERITED",
+      "physical": [
+        "entropy_missing_to_transport",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "inherited",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_entropy_transport__inherited",
+      "saved_spatial_source": null,
+      "family": "land_coverage",
+      "matrix_sha256": "511120d86e6d738bdd1b43dad70fa4d2fbf7da80b9a1f970b9c6e32dadf272c7",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "entropy_missing_to_transport",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "entropy_missing_to_transport",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    },
+    {
+      "name": "SCAG_DOMINANT_INHERITED",
+      "physical": [
+        "entropy_missing_to_dominant",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share"
+      ],
+      "budget": "inherited",
+      "risk": "D",
+      "physical_weight_mode": "redistribute",
+      "saved_full_source": "D_entropy_dominant__inherited",
+      "saved_spatial_source": null,
+      "family": "land_coverage",
+      "matrix_sha256": "5fba0f81c9fa71f6b776cb76a47368703ba1b807527a76cbd8623ddf0c8caaca",
+      "feature_columns": [
+        "B_480_hr",
+        "Init_Supply",
+        "Grid_Degree",
+        "Grid_Impact",
+        "Grid_Betweenness",
+        "Redundancy_HHI",
+        "entropy_missing_to_dominant",
+        "building_footprint_coverage",
+        "all_use2014_pre1970_area_share",
+        "SOVI_SCORE",
+        "log1p_NRI_BUILDVALUE",
+        "ALR_NPCTL"
+      ],
+      "coordinate_factors": [
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.24618298195866548,
+        0.30151134457776363,
+        0.30151134457776363,
+        0.30151134457776363
+      ],
+      "domains": {
+        "recovery_service": [
+          "B_480_hr",
+          "Init_Supply"
+        ],
+        "grid": [
+          "Grid_Degree",
+          "Grid_Impact",
+          "Grid_Betweenness",
+          "Redundancy_HHI"
+        ],
+        "physical": [
+          "entropy_missing_to_dominant",
+          "building_footprint_coverage",
+          "all_use2014_pre1970_area_share"
+        ],
+        "social": [
+          "SOVI_SCORE"
+        ],
+        "loss_exposure": [
+          "log1p_NRI_BUILDVALUE",
+          "ALR_NPCTL"
+        ]
+      }
+    }
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "k": 4,
+  "KMeans": {
+    "n_clusters": 4,
+    "n_init": 100,
+    "max_iter": 500,
+    "tol": 0.0001,
+    "algorithm": "lloyd"
+  },
+  "new_full_fits": 340,
+  "new_spatial_fits": 540,
+  "maximum_new_fits": 880,
+  "saved_full_reused": 240,
+  "saved_spatial_reused": 40,
+  "cohort_n": 2287,
+  "master_n": 2291,
+  "unresolved": [
+    "06037189703",
+    "06037301601",
+    "06037301602",
+    "06037404600"
+  ],
+  "sample_sha256": "1efa46713fbf2985ab3d8e537930deb171696a1bc422a0cd539b787e9272679d",
+  "spatial_deletions": {
+    "42": {
+      "removed_blocks": [
+        "6:-22",
+        "9:-23"
+      ],
+      "n_training": 2073,
+      "n_heldout": 214
+    },
+    "43": {
+      "removed_blocks": [
+        "8:-22",
+        "8:-24"
+      ],
+      "n_training": 1845,
+      "n_heldout": 442
+    },
+    "44": {
+      "removed_blocks": [
+        "6:-22",
+        "8:-22"
+      ],
+      "n_training": 1876,
+      "n_heldout": 411
+    },
+    "45": {
+      "removed_blocks": [
+        "8:-23",
+        "9:-22"
+      ],
+      "n_training": 1789,
+      "n_heldout": 498
+    },
+    "46": {
+      "removed_blocks": [
+        "10:-23",
+        "8:-24"
+      ],
+      "n_training": 2132,
+      "n_heldout": 155
+    },
+    "47": {
+      "removed_blocks": [
+        "6:-22",
+        "9:-23"
+      ],
+      "n_training": 2073,
+      "n_heldout": 214
+    },
+    "48": {
+      "removed_blocks": [
+        "6:-22",
+        "7:-22"
+      ],
+      "n_training": 1753,
+      "n_heldout": 534
+    },
+    "49": {
+      "removed_blocks": [
+        "6:-23",
+        "7:-22"
+      ],
+      "n_training": 1856,
+      "n_heldout": 431
+    },
+    "50": {
+      "removed_blocks": [
+        "8:-21",
+        "9:-23"
+      ],
+      "n_training": 2183,
+      "n_heldout": 104
+    },
+    "51": {
+      "removed_blocks": [
+        "10:-22",
+        "7:-22"
+      ],
+      "n_training": 1815,
+      "n_heldout": 472
+    },
+    "52": {
+      "removed_blocks": [
+        "10:-23",
+        "8:-22"
+      ],
+      "n_training": 1982,
+      "n_heldout": 305
+    },
+    "53": {
+      "removed_blocks": [
+        "6:-23",
+        "8:-21"
+      ],
+      "n_training": 2270,
+      "n_heldout": 17
+    },
+    "54": {
+      "removed_blocks": [
+        "7:-23",
+        "7:-24"
+      ],
+      "n_training": 1807,
+      "n_heldout": 480
+    },
+    "55": {
+      "removed_blocks": [
+        "10:-23",
+        "9:-22"
+      ],
+      "n_training": 2134,
+      "n_heldout": 153
+    },
+    "56": {
+      "removed_blocks": [
+        "7:-22",
+        "8:-21"
+      ],
+      "n_training": 1863,
+      "n_heldout": 424
+    },
+    "57": {
+      "removed_blocks": [
+        "6:-23",
+        "8:-21"
+      ],
+      "n_training": 2270,
+      "n_heldout": 17
+    },
+    "58": {
+      "removed_blocks": [
+        "7:-23",
+        "8:-24"
+      ],
+      "n_training": 1772,
+      "n_heldout": 515
+    },
+    "59": {
+      "removed_blocks": [
+        "8:-23",
+        "9:-23"
+      ],
+      "n_training": 1834,
+      "n_heldout": 453
+    },
+    "60": {
+      "removed_blocks": [
+        "6:-21",
+        "7:-23"
+      ],
+      "n_training": 1864,
+      "n_heldout": 423
+    },
+    "61": {
+      "removed_blocks": [
+        "10:-22",
+        "7:-22"
+      ],
+      "n_training": 1815,
+      "n_heldout": 472
+    }
+  },
+  "unique_spatial_sets": 17,
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scikit_learn": "1.5.1",
+    "scipy": "1.11.4"
+  },
+  "aliases": {
+    "SCAG_PROPORTIONAL_EQUAL": "BE0",
+    "SCAG_PROPORTIONAL_INHERITED": "D_INHERITED"
+  },
+  "fit_limit_applies_to_this_audit": true,
+  "full_cohort_not_resampled": true,
+  "thresholds_chosen_after_results": false,
+  "k_search": false
+}
