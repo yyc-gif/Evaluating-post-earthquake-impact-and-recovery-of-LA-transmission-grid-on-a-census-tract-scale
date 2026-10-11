@@ -23,7 +23,7 @@ NS = {'w':W, 'a':'http://schemas.openxmlformats.org/drawingml/2006/main',
       'wp':'http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing'}
 def sha(data): return hashlib.sha256(data).hexdigest()
 def text(node): return ''.join(node.xpath('.//w:t/text()', namespaces=NS))
-def dump(path, value): path.write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8')
+def dump(path, value): path.write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8',newline='\n')
 def patch_text(p, value):
     prop = deepcopy(p.find('{'+W+'}pPr'))
     runs=p.findall('{'+W+'}r')

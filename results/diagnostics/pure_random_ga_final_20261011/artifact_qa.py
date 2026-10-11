@@ -78,8 +78,8 @@ def main():
         new_physical_draws=0,new_production_calls=0,new_bootstrap_calls=0,
         rendering_failures='Initial sandbox permission failure; elevated packaged render exposed missing soffice, so authorized native Word fallback was used',
         corrected_presentation_failure='Scalar Matplotlib yerr shape mismatch repaired; same saved arrays used; no scientific failure')
-    (OUT/'DOCUMENT_AND_FIGURE_QA.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
+    (OUT/'DOCUMENT_AND_FIGURE_QA.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8',newline='\n')
     structural['rendering']='PASS: all 21 final native Word pages and all four 180 mm PDF figures visually inspected'
-    (OUT/'MANUSCRIPT_STRUCTURAL_QA.json').write_text(json.dumps(structural,indent=2)+'\n',encoding='utf-8')
+    (OUT/'MANUSCRIPT_STRUCTURAL_QA.json').write_text(json.dumps(structural,indent=2)+'\n',encoding='utf-8',newline='\n')
     print('ARTIFACT_QA_PASS: 21 pages, four 180mm PDFs, saved numerical table and archive hashes')
 if __name__=='__main__':main()
