@@ -1,0 +1,65 @@
+{
+  "raw_records": 2093407,
+  "stack_gt1_records": 23357,
+  "exact_geometry_duplicates": 7,
+  "different_ALU20_duplicates": 4,
+  "different_code_same_broad_class": 0,
+  "invalid_repaired": 27,
+  "empty_geometry": 1,
+  "missing_geometry": 0,
+  "source_year_counts": {
+    "2020": 2093407
+  },
+  "ALU20_source_counts": {
+    "LU19": 256402,
+    "ASSESSOR": 1769283,
+    "SCAG_REF": 2074,
+    "CPAD": 8988,
+    "CSCD": 5962,
+    "Local Input": 50563,
+    "1311": 7,
+    "1210": 9,
+    "1111": 4,
+    "MIRTA": 94,
+    "1140": 1,
+    "1120": 3,
+    "1232": 1,
+    "1247": 2,
+    "1310": 2,
+    "1431": 3,
+    "1245": 1,
+    "1260": 1,
+    "1240": 3,
+    "1122": 2,
+    "1340": 1,
+    "1211": 1
+  },
+  "dictionary_missing_codes": [
+    -1
+  ],
+  "classified_coverage_quantiles": {
+    "0.0": 0.2291817052250165,
+    "0.01": 0.569196784306012,
+    "0.1": 0.6674785838957606,
+    "0.5": 0.7515895338875624,
+    "0.9": 0.845646815169172,
+    "0.99": 0.952996035248629,
+    "1.0": 0.9969907082441927
+  },
+  "ambiguous_land_area_m2": 1112935.3624461347,
+  "parcel_gap_area_m2": 686005300.8126025,
+  "full_domain": 2315,
+  "residential_domain": 2291,
+  "unresolved_land_geometry": [
+    "06037189703",
+    "06037301601",
+    "06037301602",
+    "06037404600"
+  ],
+  "entropy_K": 11,
+  "stack_rule": "same normalized geometry one broad class counted once; broad-class conflicts withheld; all remaining class unions made exclusive",
+  "cross_class_rule": "overlap withheld from every competing category",
+  "denominator": "exclusive classified parcel land for entropy; independently established tract land for coverage",
+  "overlay_repairs": [],
+  "seconds": 1597.1217997074127
+}

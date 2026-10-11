@@ -1,0 +1,13 @@
+# SCAG 2020 numeric land-use overlay
+
+Official ALU20 service: https://rdp.scag.ca.gov/mapping/rest/services/Housing/2020_Annual_Land_Use/MapServer/0
+
+2,093,407 LA parcel records were acquired once, with complete queried OBJECTID identity and byte hashes for all chunks. ALU20 is the 2020 classified snapshot; later contextual fields/service updates do not date the land-use observation. SCAG2020_SOURCE_CODE_MAPPING.csv records the official ALU20 code descriptions and the same eleven broad classes used for the qualified 2019 comparison. Mixed-use records remain an explicit class rather than an invented disaggregation. Unknown/blank codes remain unclassified. Missing observed dictionary codes: [-1].
+
+Normalized identical geometries: 7 repeat records; 4 have differing detailed codes. Identical geometries within one broad class count once; broad-class conflicts are withheld. The 23,357 STACK>1 rows were not indiscriminately deleted. Nonidentical geometries are retained, unioned within classes, and cross-class overlap is withheld from competing classes. 27 invalid source geometries were repaired; failed overlay precision repairs are individually recorded in SCAG2020_GEOMETRY_AND_COVERAGE_QA.json.
+
+Actual EPSG3310 intersections use study tract polygons and the independently retained land mask; GEOID20 block codes are not tract membership assignments. Entropy is -sum(p_i log p_i)/log(11), where p_i uses exclusive classified parcel land. Tract-land shares, classified shares, unknown area, ambiguous area, mapped water and parcel gaps accompany it. These diagnostic areas may overlap and must not be summed as an exclusive missingness partition. Coverage quantiles: {'0.0': 0.2291817052250165, '0.01': 0.569196784306012, '0.1': 0.6674785838957606, '0.5': 0.7515895338875624, '0.9': 0.845646815169172, '0.99': 0.952996035248629, '1.0': 0.9969907082441927}. Ambiguous land area across the study: 1,112,935.362 m². Parcel gaps relative to the whole target tract polygon: 686,005,300.813 m²; this gap denominator includes water and is explicitly distinct from classified-land coverage.
+
+Entropy values: 2,311/2,315 and 2,287/2,291 residential. Four unresolved land masks remain null. Exclusive classified areas cannot exceed tract land; shares and entropy are recomputed and tested. Geometry coverage is not classification accuracy.
+
+Disposition: CONDITIONAL for a historical classified-land composition measure. The actual 2020 extraction closes the previous numeric-overlay gap. It does not certify full-land composition, synchronize 2020 to 2022, or authorize automatic replacement of SCAG2019. The same-GEOID 2019/2020 comparison is supplied without choosing a version by old labels or recovery correlation.

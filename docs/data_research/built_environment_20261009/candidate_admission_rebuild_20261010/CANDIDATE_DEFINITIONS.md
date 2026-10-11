@@ -6,7 +6,7 @@ Candidate registration is broader than model admission. No saved cluster label, 
 
 The full study universe has 2,315 GEOIDs and the residential master has 2,291. Four unresolved land masks are null for geometry-based variables. ACS and assessor parcel-point attributes remain available where their own support is valid. A common analysis subset is explicitly identified per comparison, never assumed to be the old 2,287 cases.
 
-SCAG entropy uses 11 exclusive classes of classified land, including open/undeveloped categories. Area shares with tract-land denominators are retained alongside classified-land shares. Water, parcel gaps, ambiguous cross-class overlaps and unknowns remain separate. The actual LU19 cache and class map are reused; STACK>1 is not indiscriminately dropped. A 2020 ALU20 official alternative was discovered but has no verified tract extraction, so it remains PENDING_DATA. The Housing catalog contains 2019 and 2020 ALU services, not a verified 2022 parcel release.
+SCAG entropy uses 11 exclusive classes of classified land, including open/undeveloped categories. Area shares with tract-land denominators are retained alongside classified-land shares. Water, parcel gaps, ambiguous cross-class overlaps and unknowns remain separate. The actual LU19 cache and class map are reused; STACK>1 is not indiscriminately dropped. The official 2020 ALU20 alternative now has actual county numeric records and an exclusive tract-land overlay using the same eleven-class convention. It is CONDITIONAL on classified-land coverage and historical snapshot support; it does not automatically replace 2019.1. The Housing catalog contains 2019 and 2020 ALU services, not a verified 2022 parcel release.
 
 LARIAC union coverage clips to source-qualified tract land. Whole-outline count/size/height diagnostics use centroid assignment and Census ALAND; they are not clipped footprint fragments. Parcel ages use assessment points. These boundary/denominator conventions must not be mixed in algebraic identities.
 
@@ -14,7 +14,7 @@ EMC values are modeled built surface m2 within 100m equal-area cells supported b
 
 ANBH is positive-cell net height at100m, with 2018 Sentinel-2 and older SRTM2000/AW3D30 2006-2011. The tract average weights positive cells by land intersection, not building footprint. Neither 2023 release nor current website year is observation year.
 
-Assessor actual year and effective year are kept separate. Valid actual years1700-2022 are an explicit plausibility rule, not an independent validation. SQFTmain is Main Square Footage in the exact current official dictionary; it has not been established as complete gross floor area. AIN deduplication does not resolve shared condominium buildings or multiple building data lines. Year/missing-area coverage is observed assessment stock, not complete county all-use coverage.
+Assessor actual year and effective year are kept separate. Valid actual years1700-2022 are an explicit plausibility rule, not an independent validation. SQFTmain is Main Square Footage in the exact current official dictionary; it has not been established as complete gross floor area. AIN deduplication does not resolve shared condominium buildings or multiple building data lines. The follow-up audits shared coordinates, repeated attributes, restricted main-area support and a bounded 2022 cadastral geometry sample; none supplies a certified physical-building identity or gross-floor-area accounting rule. Year/missing-area coverage is observed assessment stock, not complete county all-use coverage.
 
 ACS structure/age denominators are housing units, including vacant units. B25024 5+ =orders6,7,8,9 over1; detached=2 over1, attached=3 over1. B25034 pre1970=orders8-11 over1. SE=sqrt((4/80)*sum((replicate ratio-full estimate ratio)^2)); Census published boundary model uses average weight16 and p*=min(0.5,2.3*16/N); 90% MOE=1.645SE. Zero unit denominators are undefined, never0. Replicate zero-denominator and boundary flags are retained. Exact earlier corrected ratios/MOEs are reused, detached/attached use the same80-replicate calculation.
 
@@ -124,21 +124,21 @@ Time/support: ALU 2019.1; LU19 snapshot, current service updates not observation
 
 Admission: Complement of residential_classified_share; do not include both as independent inputs.
 
-### epa_household_job_activity_mix — PENDING_DATA
+### epa_household_job_activity_mix — CONDITIONAL
 
-Construct: household/job activity balance. Formula: `EPA D2A_EPHHM employment+household mix, following SLD dictionary`. Units: published mix index. Source: [EPA](https://www.epa.gov/smartgrowth/smart-location-mapping)
+Construct: household/job activity balance. Formula: `-sum(p_i log(p_i))/log(N positive activities); p_i from donor-land allocated households and five job classes; counts aggregated before entropy`. Units: 0-1. Source: [EPA](https://www.epa.gov/smartgrowth/smart-location-mapping)
 
-Time/support: SLD v3; 2017 LODES jobs, 2014-2018 households. Spatial support: 2010 block groups; no validated 2020 tract quantity crosswalk. Use: primary candidate. Alternative: land_use_entropy (different measurement).
+Time/support: SLD v3; 2017 LODES jobs, ACS 2014-2018 households; actual 2018 donor polygons. Spatial support: donor-land area allocation to 2020 study tracts; estimated counts. Use: primary candidate. Alternative: land_use_entropy (different measurement).
 
-Admission: Actual 6425 BG rows exist; count-preserving 2010-BG to 2020-tract geographic allocation not validated. Prefix matches are not a crosswalk.
+Admission: Historical household/job activity, not parcel land use. Actual 2018 SLD donor polygons are overlaid on 2020 tract/water support. Uniform within-donor land allocation estimates counts; boundary/vintage and source errors remain. Missing donor records and outside-target counts are explicitly audited. No source entropy averaging, prefix allocation or uncovered-area renormalization.
 
-### scag2020_classified_land_entropy — PENDING_DATA
+### scag2020_classified_land_entropy — CONDITIONAL
 
-Construct: land-use composition diversity. Formula: `exclusive ALU20 class area entropy under separately verified class definition`. Units: 0-1. Source: [SCAG2020](https://rdp.scag.ca.gov/mapping/rest/services/Housing/2020_Annual_Land_Use/MapServer/0)
+Construct: land-use composition diversity. Formula: `-sum(p_i log(p_i))/log(11); p_i=exclusive ALU20 classified area / total exclusive classified land`. Units: 0-1. Source: [SCAG2020](https://rdp.scag.ca.gov/mapping/rest/services/Housing/2020_Annual_Land_Use/MapServer/0)
 
-Time/support: 2020 ALU snapshot; later context layers do not update observed ALU20. Spatial support: parcel ALU20; actual geometry/coverage not yet audited. Use: primary candidate. Alternative: land_use_entropy.
+Time/support: 2020 ALU snapshot; later context layers do not update observed ALU20. Spatial support: exclusive ALU20 parcel-land intersections EPSG3310. Use: primary candidate. Alternative: land_use_entropy.
 
-Admission: Official 2020 layer and ALU20 fields confirmed; actual numeric overlay/stack/coverage not completed. Potential temporal alternative, no automatic replacement of 2019.1.
+Admission: Actual 2020 ALU20 parcel geometry and coded domain verified. Same-geometry same-class duplicates collapsed; conflicting classifications and cross-class overlap withheld; nonidentical stacked geometries retained. Classified land only, continuous gap/unknown/conflict/water coverage retained. Temporal alternative, no automatic replacement of 2019.1.
 
 ### building_footprint_coverage — CONDITIONAL
 
@@ -274,7 +274,7 @@ Construct: floor-space intensity. Formula: `documented gross floor area / tract 
 
 Time/support: single RollYear 2022; roll year does not date all observations. Spatial support: parcel point and assessment main square footage. Use: primary candidate. Alternative: none designated.
 
-Admission: SQFTmain dictionary says Main Square Footage; gross-floor-area definition, multi-building line attribution and condominium duplicate coverage unresolved. No certified FAR produced.
+Admission: Cached 2022 unique-AIN records and bounded same-year parcel geometry samples audited. Main Square Footage does not certify gross floor area. Missing structure/building-line area IDs, condo unit/common-area accounting, gross-area inclusion convention and exempt/government coverage. Shared coordinates, parcel geometry or identical attributes do not justify building deduplication. No certified FAR produced.
 
 ### assessor2022_main_area_per_land — DESCRIPTIVE_ONLY
 
@@ -533,3 +533,6 @@ Time/support: archived FEMA NRI v1.19 March 2023; 2022 dollar framework. Spatial
 Admission: Mechanically reintroduces social/resilience adjustment alongside mandatory SOVI; preserve as diagnostic comparator.
 
 Official C1.2 versus retained C1.0 numeric identity: same native30m grid, 6,916,982 common valid pixels, zero value/mask differences, and zero differences in all2,311 same-geometry tract means. Release provenance remains separate; no duplicate measurement is added. See NLCD_PIXEL_AND_TRACT_IDENTITY_QA.json.
+
+
+Follow-up measurement evidence: PENDING_DATA_COMPLETION_AUDIT.md and the three source-specific QA notes. EPA values are spatially allocated estimates, SCAG2020 is measured classified parcel land, and Assessor gross FAR remains unmeasured. No automatic feature substitution or weight change is adopted.

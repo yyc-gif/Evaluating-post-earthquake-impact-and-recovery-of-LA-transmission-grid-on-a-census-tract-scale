@@ -97,3 +97,81 @@
 - 2026-10-11T03:53:02.173357+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
 - 2026-10-11T03:55:13.357507+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
 - 2026-10-11T04:00:50.404759+00:00: Remote LFS actual-byte verification: 30 files, 91578967 bytes, all_pass=True; payload commit 0e00034451ad58baa7467bdfdff54dec0ff2880a.
+- 2026-10-11T04:36:13.556811+00:00: SCAG2020 chunks 50/1047; 8.3s
+- 2026-10-11T04:36:20.599182+00:00: SCAG2020 chunks 100/1047; 15.3s
+- 2026-10-11T04:36:28.111430+00:00: SCAG2020 chunks 150/1047; 22.8s
+- 2026-10-11T04:36:36.093680+00:00: SCAG2020 chunks 200/1047; 30.8s
+- 2026-10-11T04:36:43.313352+00:00: SCAG2020 chunks 250/1047; 38.0s
+- 2026-10-11T04:36:50.794951+00:00: SCAG2020 chunks 300/1047; 45.5s
+- 2026-10-11T04:36:58.048323+00:00: SCAG2020 chunks 350/1047; 52.8s
+- 2026-10-11T04:37:05.631073+00:00: SCAG2020 chunks 400/1047; 60.4s
+- 2026-10-11T04:37:12.935221+00:00: SCAG2020 chunks 450/1047; 67.7s
+- 2026-10-11T04:37:20.172132+00:00: SCAG2020 chunks 500/1047; 74.9s
+- 2026-10-11T04:37:26.954204+00:00: SCAG2020 chunks 550/1047; 81.7s
+- 2026-10-11T04:37:34.840311+00:00: SCAG2020 chunks 600/1047; 89.6s
+- 2026-10-11T04:37:41.667807+00:00: SCAG2020 chunks 650/1047; 96.4s
+- 2026-10-11T04:37:48.490504+00:00: SCAG2020 chunks 700/1047; 103.2s
+- 2026-10-11T04:37:55.678578+00:00: SCAG2020 chunks 750/1047; 110.4s
+- 2026-10-11T04:38:03.037640+00:00: SCAG2020 chunks 800/1047; 117.8s
+- 2026-10-11T04:38:10.283740+00:00: SCAG2020 chunks 850/1047; 125.0s
+- 2026-10-11T04:38:17.972929+00:00: SCAG2020 chunks 900/1047; 132.7s
+- 2026-10-11T04:38:25.701101+00:00: SCAG2020 chunks 950/1047; 140.4s
+- 2026-10-11T04:38:33.720252+00:00: SCAG2020 chunks 1000/1047; 148.4s
+- 2026-10-11T04:38:41.316536+00:00: SCAG2020 county geometry acquisition reconciled by exact OBJECTID sets.
+- 2026-10-11T04:42:52.993952+00:00: SCAG2020 geometry 2000/2093407; 0.9s
+- 2026-10-11T04:44:09.280758+00:00: SCAG2020 geometry 202000/2093407; 77.2s
+- 2026-10-11T04:45:03.055203+00:00: SCAG2020 geometry 402000/2093407; 131.0s
+- 2026-10-11T04:45:17.659072+00:00: SCAG2020 geometry 602000/2093407; 145.6s
+- 2026-10-11T04:47:01.376936+00:00: SCAG2020 geometry 802000/2093407; 249.3s
+- 2026-10-11T04:48:35.147522+00:00: Assessor cached identity audit chunks 0/1207
+- 2026-10-11T04:48:45.241561+00:00: Assessor cached identity audit chunks 200/1207
+- 2026-10-11T04:48:51.511228+00:00: Assessor cached identity audit chunks 400/1207
+- 2026-10-11T04:48:56.514242+00:00: Assessor cached identity audit chunks 600/1207
+- 2026-10-11T04:49:03.693763+00:00: Assessor cached identity audit chunks 800/1207
+- 2026-10-11T04:49:08.335778+00:00: Assessor cached identity audit chunks 1000/1207
+- 2026-10-11T04:49:08.729778+00:00: SCAG2020 geometry 1002000/2093407; 376.7s
+- 2026-10-11T04:49:13.749937+00:00: Assessor cached identity audit chunks 1200/1207
+- 2026-10-11T04:51:31.389921+00:00: SCAG2020 geometry 1202000/2093407; 519.3s
+- 2026-10-11T04:53:53.291923+00:00: SCAG2020 geometry 1402000/2093407; 661.2s
+- 2026-10-11T04:56:14.760948+00:00: SCAG2020 geometry 1602000/2093407; 802.7s
+- 2026-10-11T04:57:15.246805+00:00: EPA donor-land overlay 0/6421
+- 2026-10-11T04:57:16.551805+00:00: EPA donor-land overlay 1000/6421
+- 2026-10-11T04:57:17.946316+00:00: EPA donor-land overlay 2000/6421
+- 2026-10-11T04:57:19.334312+00:00: EPA donor-land overlay 3000/6421
+- 2026-10-11T04:57:21.043314+00:00: EPA donor-land overlay 4000/6421
+- 2026-10-11T04:57:22.291826+00:00: EPA donor-land overlay 5000/6421
+- 2026-10-11T04:57:23.496333+00:00: EPA donor-land overlay 6000/6421
+- 2026-10-11T04:58:40.623501+00:00: SCAG2020 geometry 1802000/2093407; 948.6s
+- 2026-10-11T05:00:02.617005+00:00: EPA donor-land overlay 0/6421
+- 2026-10-11T05:00:03.978133+00:00: EPA donor-land overlay 1000/6421
+- 2026-10-11T05:00:05.360135+00:00: EPA donor-land overlay 2000/6421
+- 2026-10-11T05:00:06.750642+00:00: EPA donor-land overlay 3000/6421
+- 2026-10-11T05:00:08.584149+00:00: EPA donor-land overlay 4000/6421
+- 2026-10-11T05:00:09.928152+00:00: EPA donor-land overlay 5000/6421
+- 2026-10-11T05:00:10.450152+00:00: Assessor2022 exact parcel identity sample 0/40
+- 2026-10-11T05:00:11.082152+00:00: EPA donor-land overlay 6000/6421
+- 2026-10-11T05:00:17.602688+00:00: Assessor2022 exact parcel identity sample 10/40
+- 2026-10-11T05:00:22.569276+00:00: Assessor2022 exact parcel identity sample 20/40
+- 2026-10-11T05:00:23.850789+00:00: EPA actual-donor geographic allocation and count-conservation QA complete.
+- 2026-10-11T05:00:24.806791+00:00: Assessor2022 exact parcel identity sample 30/40
+- 2026-10-11T05:00:27.563301+00:00: Assessor floor semantics and shared-identity diagnostics complete; gross FAR not forced into admission.
+- 2026-10-11T05:01:08.058940+00:00: SCAG2020 geometry 2002000/2093407; 1096.0s
+- 2026-10-11T05:02:15.163195+00:00: SCAG2020 exclusive overlay 0/2315
+- 2026-10-11T05:02:54.031778+00:00: SCAG2020 exclusive overlay 200/2315
+- 2026-10-11T05:03:33.727718+00:00: SCAG2020 exclusive overlay 400/2315
+- 2026-10-11T05:04:03.243549+00:00: SCAG2020 exclusive overlay 600/2315
+- 2026-10-11T05:04:43.303389+00:00: SCAG2020 exclusive overlay 800/2315
+- 2026-10-11T05:05:19.243034+00:00: SCAG2020 exclusive overlay 1000/2315
+- 2026-10-11T05:05:54.601492+00:00: SCAG2020 exclusive overlay 1200/2315
+- 2026-10-11T05:06:31.229292+00:00: SCAG2020 exclusive overlay 1400/2315
+- 2026-10-11T05:07:18.691723+00:00: SCAG2020 exclusive overlay 1600/2315
+- 2026-10-11T05:07:51.172935+00:00: SCAG2020 exclusive overlay 1800/2315
+- 2026-10-11T05:08:31.035148+00:00: SCAG2020 exclusive overlay 2000/2315
+- 2026-10-11T05:09:05.134107+00:00: SCAG2020 exclusive overlay 2200/2315
+- 2026-10-11T05:09:29.194468+00:00: SCAG2020 exclusive classification and coverage QA complete.
+- 2026-10-11T05:10:58.478429+00:00: Candidate pool frozen: 64 constructs/alternative measurements; dispositions {'CONDITIONAL': 32, 'DESCRIPTIVE_ONLY': 13, 'ADMIT': 9, 'REJECT': 9, 'PENDING_DATA': 1}
+- 2026-10-11T05:11:30.098101+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
+- 2026-10-11T05:12:02.063077+00:00: Three-source follow-up QA and admission decisions written; gross FAR remains pending.
+- 2026-10-11T05:13:14.478281+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
+- 2026-10-11T05:13:14.783788+00:00: Three-source follow-up QA and admission decisions written; gross FAR remains pending.
+- 2026-10-11T05:13:53.723014+00:00: Follow-up QA: 15 tests passed; original 862 staged items and 950 protected scientific files unchanged; 2 conditional measurements, 1 pending gross-FAR gap.

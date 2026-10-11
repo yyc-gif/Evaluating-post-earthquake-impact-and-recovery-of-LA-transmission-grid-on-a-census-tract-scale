@@ -1,0 +1,648 @@
+{
+  "currentVersion" : 12, 
+  "id" : 1, 
+  "name" : "ResidentialParcels_LACounty_010924download_allCB20_HD22_attributes", 
+  "type" : "Feature Layer", 
+  "serviceItemId" : "95d0b03268594eceb59953940e8d3412", 
+  "cacheMaxAge" : 30, 
+  "displayField" : "AgencyName", 
+  "description" : "The Office of the Assessor maintains assessment records of real and personal property in the County of Los Angeles. Many of these records are available for sale. The data is available in the form of CD-ROM, DVD, hardcopy, and on-line access. The Office of the Assessor also offers a GIS Tax Parcel Base Map.Some layers included (not an exhaustive list):parcel boundary map (shapefile format)local rollLA County wall mappublicly owned parcelssales listunsecured rolland labels (for mailings)A discussion of parcel accuracyOccasionally questions about the spatial accuracy of parcel information come up. In general, it is important to note that the parcels are for tax assessment purposes only, come from many sources, some historical, and are not necessarily survey grade. That said, they are in general extremely reliable.Here is a longer description from Emilio Solano, head of the Assessor Mapping and GIS Services:The very short answer is this: our data is in its majority accurate within a couple of feet, in other cases will not be so accurate.The issue of accuracy when applied to assessor’s data is very subjective. Our data is very accurate if we consider that all the information matches recorded information, we try our best to keep recent data as it was recorded, and older data gets slightly adjusted to match the most recent data. Another factor to consider is that about one third of the total number of new parcels created every year comes from deeds, not subdivision maps, that is, there is not, in the majority of the cases, any new survey data, more likely general descriptions of where the new boundaries should exist, or references to adjacent properties, even calls to documents recorded many years ago, referring to them just by the document number. In those cases we have to consider the intent of the owner when describing the property in the deed.Another couple of factors that have an impact in the accuracy of our data comes from the fact that we assembled this vast amount of information with digital data provided from at least a dozen of cities, Los Angeles, Long Beach, Torrance, etc. plus all the data gathered by LACO DPW in CAD format. We had to compile all that data, rectify it and adjusted as needed, always keeping in mind that the integrity of the data should be maintained by matching RECORDED information. Another factor is that the data was also coming from tens of thousands of individual recordings, it wasn’t as clean cut as when you look at a single subdivision, no matter how big, where every line is clearly identified by a bearing and a distance within a perfectly traced boundary. Our original data sources even go back as far as remainder pieces of land described by Spanish grants and ranchos, section land plus newer surveys.Even though we always input our data based on survey records using COGO tools, whenever possible, a lot of the data is not. Considering all that, our GIS layer is by far, the most accurate data set of its size available anywhere in the county, both in positional accuracy, and conformity to the information provided by legal sources.All that being said, the resulting fact is that, as mark mentioned, in some areas our data will be very accurate, in others it won’t. The most important thing to keep in mind is that given that our responsibility is to reflect property information as recorded, we do not use anything else as a guide, for example we never use an aerial image to change the position of a line just because it doesn’t fall on top of a fence shown on a photo; remember that many people build their fenced, especially the ones made out of concrete blocks, a couple of inches inside the property boundary because is difficult to dig a trench along an existing wooden or wire fence, now multiply those little variances spread out over a 4000+ square miles of land and you will get a picture of what we are up to.That’s why we continually try to stress in anybody using our data that, if they need total accuracy they will need to hire a surveyor to get it. Our 11 by 17 maps are our only official source of information and should only be used for assessment purposes, or in the case of other uses, just for information, to get an accurate idea of how close to the real location a line could be.", 
+  "copyrightText" : "Emilio Solano Los Angeles County Assessor 500 W Temple Street Los Angeles, CA 90012 esolano@assessor.lacounty.gov", 
+  "defaultVisibility" : true, 
+  "editingInfo" : {
+    "lastEditDate" : 1705531968235, 
+    "schemaLastEditDate" : 1705531968235, 
+    "dataLastEditDate" : 1705531968235
+  }, 
+  "relationships" : [], 
+  "isDataVersioned" : false, 
+  "hasContingentValuesDefinition" : false, 
+  "supportsAppend" : true, 
+  "supportsCalculate" : true, 
+  "supportsASyncCalculate" : true, 
+  "supportsTruncate" : true, 
+  "supportsAttachmentsByUploadId" : true, 
+  "supportsAttachmentsResizing" : true, 
+  "supportsRollbackOnFailureParameter" : true, 
+  "supportsStatistics" : true, 
+  "supportsExceedsLimitStatistics" : true, 
+  "supportsAdvancedQueries" : true, 
+  "supportsValidateSql" : true, 
+  "supportsCoordinatesQuantization" : true, 
+  "supportsLayerOverrides" : true, 
+  "supportsTilesAndBasicQueriesMode" : true, 
+  "supportsFieldDescriptionProperty" : true, 
+  "supportsQuantizationEditMode" : true, 
+  "supportsColumnStoreIndex" : true, 
+  "supportsApplyEditsWithGlobalIds" : false, 
+  "supportsMultiScaleGeometry" : true, 
+  "supportsReturningQueryGeometry" : true, 
+  "enableNullGeometry" : false, 
+  "hasGeometryProperties" : true, 
+  "geometryProperties" : 
+  {
+    "shapeAreaFieldName" : "Shape__Area", 
+    "shapeLengthFieldName" : "Shape__Length", 
+    "units" : "esriFeet"
+  }, 
+  "advancedQueryCapabilities" : {
+    "supportsPagination" : true, 
+    "supportsPaginationOnAggregatedQueries" : true, 
+    "supportsQueryRelatedPagination" : true, 
+    "supportsQueryWithDistance" : true, 
+    "supportsOutDistance" : true, 
+    "supportsReturningQueryExtent" : true, 
+    "supportsStatistics" : true, 
+    "supportsOrderBy" : true, 
+    "supportsDistinct" : true, 
+    "supportsQueryWithResultType" : true, 
+    "supportsSqlExpression" : true, 
+    "supportsTimeRelation" : true, 
+    "supportsAdvancedQueryRelated" : true, 
+    "supportsCountDistinct" : true, 
+    "supportsPercentileStatistics" : true, 
+    "supportsApproxPercentileStatistics" : true, 
+    "supportsSpatialAggregationStatistics" : true, 
+    "supportsTrueCurve" : true, 
+    "supportedSpatialAggregationStatistics" : [
+      "EnvelopeAggregate", 
+      "CentroidAggregate", 
+      "ConvexHullAggregate"
+    ], 
+    "supportsLod" : true, 
+    "supportsQueryWithLodSR" : false, 
+    "supportedLodTypes" : [
+      "geohash"
+    ], 
+    "supportsReturningGeometryCentroid" : true, 
+    "supportsReturningGeometryEnvelope" : true, 
+    "supportsReturningGeometryProperties" : true, 
+    "supportsQueryWithDatumTransformation" : true, 
+    "supportsCurrentUserQueries" : true, 
+    "supportsHavingClause" : true, 
+    "supportsOutFieldSQLExpression" : true, 
+    "supportsMaxRecordCountFactor" : true, 
+    "supportsTopFeaturesQuery" : true, 
+    "supportsDisjointSpatialRel" : true, 
+    "supportsQueryWithCacheHint" : true, 
+    "supportedOperationsWithCacheHint" : [
+      "query", 
+      "queryTopFilter", 
+      "queryAnalytics", 
+      "queryAttachments", 
+      "queryRelated", 
+      "queryBins", 
+      "queryPivot"
+    ], 
+    "supportsQueryAnalytic" : true, 
+    "supportsQueryPivot" : true, 
+    "supportsQueryBins" : true, 
+    "supportsDefaultSR" : true, 
+    "supportsTranslations" : false, 
+    "supportsAggIds" : true, 
+    "supportsQueryWithCollation" : true, 
+    "supportsISODOW" : true, 
+    "supportsISOWeek" : true, 
+    "supportsFullTextSearch" : true, 
+    "fullTextSearchCapabilities" : {
+      "supportsAccentSensitivity" : true, 
+      "supportsStopWords" : true, 
+      "supportsSearchOperator" : true, 
+      "supportsOperator" : true
+    }
+  }, 
+  "advancedQueryAnalyticCapabilities" : {
+    "supportsLinearRegression" : true, 
+    "supportsTrendlineRegression" : true, 
+    "supportsAsync" : true, 
+    "supportsPercentileAnalytic" : true
+  }, 
+  "queryBinsCapabilities" : {
+    "supportsAsync" : true, 
+    "supportsAutoIntervalBin" : true, 
+    "supportsFixedIntervalBin" : true, 
+    "supportsFixedBoundariesBin" : true, 
+    "supportsDateBin" : true, 
+    "supportsClassificationBin" : true, 
+    "supportsStackBy" : true, 
+    "supportsSplitBy" : true, 
+    "supportsFirstDayOfWeek" : true, 
+    "supportsSnapToData" : true, 
+    "supportsReturnFullIntervalBin" : true, 
+    "supportsReturnStackValueRange" : true, 
+    "supportsNormalization" : true, 
+    "supportedStatisticTypes" : [
+      "COUNT", 
+      "SUM", 
+      "AVG", 
+      "VAR", 
+      "STDDEV", 
+      "MIN", 
+      "MAX", 
+      "PERCENTILE_CONT", 
+      "PERCENTILE_DISC", 
+      "APPROX_PERCENTILE_CONT", 
+      "APPROX_PERCENTILE_DISC", 
+      "CentroidAggregate", 
+      "EnvelopeAggregate", 
+      "ConvexHullAggregate"
+    ], 
+    "supportedNormalizationTypes" : [
+      "boxCox", 
+      "field", 
+      "inverse", 
+      "log", 
+      "naturalLog", 
+      "percentOfTotal", 
+      "squareRoot"
+    ]
+  }, 
+  "supportedOperationsWithCollation" : "query,addField,updateField", 
+  "advancedEditingCapabilities" : {
+    "supportedSqlFormatsInCalculate" : [
+      "standard"
+    ], 
+    "supportsAsyncApplyEdits" : true, 
+    "supportsReturnEditResults" : true, 
+    "supportsApplyEditsbyUploadID" : true, 
+    "supportedApplyEditsUploadIDFormats" : "JSON,PBF", 
+    "supportsTranslation" : false, 
+    "supportsMaxTranslations" : 10
+  }, 
+  "infoInEstimates" : [
+    "extent", 
+    "count"
+  ], 
+  "useStandardizedQueries" : true, 
+  "geometryType" : "esriGeometryPolygon", 
+  "minScale" : 0, 
+  "maxScale" : 0, 
+  "extent" : {
+    "xmin" : 6276718.0699999928, 
+    "ymin" : 1567329.0268750042, 
+    "xmax" : 6666782.6899999976, 
+    "ymax" : 2122084.599999994, 
+    "spatialReference" : {
+      "wkid" : 102645, 
+      "latestWkid" : 2229
+    }
+  }, 
+  "spatialReference" : {
+    "wkid" : 102645, 
+    "latestWkid" : 2229
+  }, 
+  "drawingInfo":{"renderer":{"type":"simple","symbol":{"type":"esriSFS","style":"esriSFSSolid","color":[214,252,199,255],"outline":{"type":"esriSLS","style":"esriSLSSolid","color":[110,110,110,255],"width":0.7}}},"scaleSymbols":true,"transparency":0,"labelingInfo":null}, 
+  "allowGeometryUpdates" : true, 
+  "trueCurveSupportMode" : "OGC", 
+  "supportedCurveTypes" : [
+    "esriGeometryCircularArc"
+  ], 
+  "supportedTrueCurvePbfFeatureEncodings" : [
+    "esriCompressedShapeBuffer", 
+    "esriDefault"
+  ], 
+  "allowTrueCurvesUpdates" : true, 
+  "onlyAllowTrueCurveUpdatesByTrueCurveClients" : false, 
+  "hasAttachments" : false, 
+  "htmlPopupType" : "esriServerHTMLPopupTypeAsHTMLText", 
+  "hasMetadata" : true, 
+  "hasM" : false, 
+  "hasZ" : false, 
+  "objectIdField" : "OBJECTID", 
+  "uniqueIdField" : 
+  {
+    "name" : "OBJECTID", 
+    "isSystemMaintained" : true
+  }, 
+  "globalIdField" : "", 
+  "typeIdField" : "", 
+  "collation" : {
+    "locale" : "neutral", 
+    "caseSensitive" : false, 
+    "accentSensitive" : true
+  }, 
+  "fields" : [
+    {
+      "name" : "OBJECTID", 
+      "type" : "esriFieldTypeOID", 
+      "alias" : "OBJECTID", 
+      "sqlType" : "sqlTypeOther", 
+      "nullable" : false, 
+      "editable" : false, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "AIN", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "AIN", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 10, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "APN", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "APN", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 12, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "SitusAddress", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "SitusAddress", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 55, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "SitusUnit", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "SitusUnit", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 8, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "SitusCity", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "SitusCity", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 24, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "SitusZIP", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "SitusZIP", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 10, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "SitusFullAddress", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "SitusFullAddress", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 84, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "AgencyClassNo", 
+      "type" : "esriFieldTypeInteger", 
+      "alias" : "AgencyClassNo", 
+      "sqlType" : "sqlTypeOther", 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "AgencyName", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "AgencyName", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 255, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "AgencyType", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "AgencyType", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 255, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "UseCode", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "UseCode", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 4, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "UseType", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "UseType", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 14, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "UseDescription", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "UseDescription", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 61, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_TotNumUnits_sum", 
+      "type" : "esriFieldTypeInteger", 
+      "alias" : "Total Number of Units", 
+      "sqlType" : "sqlTypeOther", 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_CT20", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Census Tract (2020)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 6, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_CTCB20", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Census Block (2020)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 10, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_HD", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Health District Number (2022)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 2, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_HD_NAME_1", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Health District Name (2022)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 30, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_SPA", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Service Planning Area Number (2022)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 1, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_SPA_NAME_1", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Service Planning Area Name (2022)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 30, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_SUP21", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Supervisorial District Number (2021)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 1, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_SUP_LABEL", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Supervisorial District Label (2021)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 10, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_CITYCOMM", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "City or Community Name (2020)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 75, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_CITYCOMM_CURRENT", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "City of Community Name (Current)", 
+      "sqlType" : "sqlTypeOther", 
+      "length" : 75, 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_POP20", 
+      "type" : "esriFieldTypeInteger", 
+      "alias" : "Census Block Population (2020)", 
+      "sqlType" : "sqlTypeOther", 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "FIRST_HOUSING20", 
+      "type" : "esriFieldTypeInteger", 
+      "alias" : "Census Block Housing Unit Count (2020)", 
+      "sqlType" : "sqlTypeOther", 
+      "nullable" : true, 
+      "editable" : true, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "Shape__Area", 
+      "type" : "esriFieldTypeDouble", 
+      "alias" : "Shape__Area", 
+      "sqlType" : "sqlTypeDouble", 
+      "nullable" : true, 
+      "editable" : false, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "Shape__Length", 
+      "type" : "esriFieldTypeDouble", 
+      "alias" : "Shape__Length", 
+      "sqlType" : "sqlTypeDouble", 
+      "nullable" : true, 
+      "editable" : false, 
+      "domain" : null, 
+      "defaultValue" : null
+    }
+  ], 
+  "indexes" : [
+    {
+      "name" : "PK__RESIDENT__F4B70D851D21EB29", 
+      "fields" : "OBJECTID", 
+      "isAscending" : true, 
+      "isUnique" : true, 
+      "description" : "", 
+      "indexType" : "Attribute"
+    }, 
+    {
+      "name" : "user_3435.RESIDENTIALPARCELS_LACOUNTY_010924DOWNLOAD_ALLCB20_HD22_ATTRIBUTES_1_Shape_sidx", 
+      "fields" : "Shape", 
+      "isAscending" : true, 
+      "isUnique" : false, 
+      "description" : "", 
+      "indexType" : "Spatial"
+    }, 
+    {
+      "name" : "Shape__Area_Index", 
+      "fields" : "Shape__Area", 
+      "isAscending" : true, 
+      "isUnique" : false, 
+      "description" : "", 
+      "indexType" : "Attribute"
+    }, 
+    {
+      "name" : "Shape__Length_Index", 
+      "fields" : "Shape__Length", 
+      "isAscending" : true, 
+      "isUnique" : false, 
+      "description" : "", 
+      "indexType" : "Attribute"
+    }
+  ], 
+  "dateFieldsTimeReference" : {
+    "timeZone" : "UTC", 
+    "timeZoneIANA" : "Etc/UTC", 
+    "respectsDaylightSaving" : false
+  }, 
+  "preferredTimeReference" : null, 
+  "types" : [], 
+  "templates" : [
+    {
+      "name" : "ResidentialParcels_LACounty_010924download_allCB20_HD22_attributes", 
+      "description" : "", 
+      "drawingTool" : "esriFeatureEditToolPolygon", 
+      "prototype" : {
+        "attributes" : {
+          "FIRST_POP20" : null, 
+          "FIRST_HOUSING20" : null, 
+          "AIN" : null, 
+          "APN" : null, 
+          "SitusAddress" : null, 
+          "SitusUnit" : null, 
+          "SitusCity" : null, 
+          "SitusZIP" : null, 
+          "SitusFullAddress" : null, 
+          "AgencyClassNo" : null, 
+          "AgencyName" : null, 
+          "AgencyType" : null, 
+          "UseCode" : null, 
+          "UseType" : null, 
+          "UseDescription" : null, 
+          "FIRST_TotNumUnits_sum" : null, 
+          "FIRST_CT20" : null, 
+          "FIRST_CTCB20" : null, 
+          "FIRST_HD" : null, 
+          "FIRST_HD_NAME_1" : null, 
+          "FIRST_SPA" : null, 
+          "FIRST_SPA_NAME_1" : null, 
+          "FIRST_SUP21" : null, 
+          "FIRST_SUP_LABEL" : null, 
+          "FIRST_CITYCOMM" : null, 
+          "FIRST_CITYCOMM_CURRENT" : null
+        }
+      }
+    }
+  ], 
+  "supportedQueryFormats" : "JSON, geoJSON, PBF", 
+  "supportedAppendFormats" : "sqlite,geoPackage,shapefile,filegdb,featureCollection,geojson,csv,excel,jsonl,featureService,pbf", 
+  "supportedAppendSourceFilterFormats" : "sqlite,geoPackage,shapefile,filegdb,featureService", 
+  "supportedExportFormats" : "csv,shapefile,sqlite,geoPackage,filegdb,featureCollection,geojson,kml,excel,parquet", 
+  "supportedConvertFileFormats" : "JSON,PBF,Parquet", 
+  "supportedConvertContentFormats" : "LayerEditCollection,FeatureCollection", 
+  "supportedSpatialRelationships" : [
+    "esriSpatialRelIntersects", 
+    "esriSpatialRelContains", 
+    "esriSpatialRelCrosses", 
+    "esriSpatialRelEnvelopeIntersects", 
+    "esriSpatialRelIndexIntersects", 
+    "esriSpatialRelOverlaps", 
+    "esriSpatialRelTouches", 
+    "esriSpatialRelWithin", 
+    "esriSpatialRelDisjoint", 
+    "esriSpatialRelRelation"
+  ], 
+  "guidFormat" : "", 
+  "supportsContingentValues" : true, 
+  "supportsEditingContingentValues" : true, 
+  "supportedContingentValuesFormats" : "JSON, PBF", 
+  "supportsFieldGroups" : true, 
+  "supportedSyncDataOptions" : 260, 
+  "hasStaticData" : false, 
+  "maxRecordCount" : 2000, 
+  "standardMaxRecordCount" : 2000, 
+  "maxIdsCount" : 1000000, 
+  "standardMaxRecordCountNoGeometry" : 32000, 
+  "tileMaxRecordCount" : 4000, 
+  "maxRecordCountFactor" : 1, 
+  "capabilities" : "Query"
+}

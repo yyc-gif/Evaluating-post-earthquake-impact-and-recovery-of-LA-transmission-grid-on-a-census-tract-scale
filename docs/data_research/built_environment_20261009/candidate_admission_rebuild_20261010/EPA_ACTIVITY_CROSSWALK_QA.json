@@ -1,0 +1,74 @@
+{
+  "donors": 6421,
+  "cached_source_records": 6425,
+  "source_records_without_donor_polygon": 4,
+  "missing_polygon_counts": {
+    "HH": 0,
+    "E5_Ret": 0,
+    "E5_Off": 0,
+    "E5_Ind": 0,
+    "E5_Svc": 0,
+    "E5_Ent": 0
+  },
+  "invalid_donor_geometries_repaired": 0,
+  "source_numeric_match_max_differences": {
+    "HH": 0.0,
+    "E5_Ret": 0.0,
+    "E5_Off": 0.0,
+    "E5_Ind": 0.0,
+    "E5_Svc": 0.0,
+    "E5_Ent": 0.0,
+    "TotEmp": 0.0,
+    "D2A_EPHHM": 4.998929048483092e-10
+  },
+  "source_entropy_reproduction_max_difference": 4.998929048483092e-10,
+  "source_GE0ID10_vs_2018_ID_changes": 2,
+  "donor_land_overlap_m2": 2071493.4450645447,
+  "coverage_definition": "union of actual donor land intersect identical target land mask / target land mask area; not summed whole-tract donor intersections over a different mask",
+  "crosswalk_rows": 25073,
+  "split_donors": 6308,
+  "county_source_totals": {
+    "HH": 3306109,
+    "E5_Ret": 445783,
+    "E5_Off": 772861,
+    "E5_Ind": 965467,
+    "E5_Svc": 1865921,
+    "E5_Ent": 543799
+  },
+  "county_target_plus_outside_totals": {
+    "HH": 3306109.0000000275,
+    "E5_Ret": 445783.00000000326,
+    "E5_Off": 772861.0000000078,
+    "E5_Ind": 965467.0000000047,
+    "E5_Svc": 1865921.0000000224,
+    "E5_Ent": 543799.0000000057
+  },
+  "full_valid": 2311,
+  "residential_valid": 2287,
+  "target_land_coverage_quantiles": {
+    "0.0": 0.9655506598002976,
+    "0.01": 0.9965077358331387,
+    "0.1": 0.9985728673632749,
+    "0.5": 0.9996593217494412,
+    "0.9": 0.9999907868836699,
+    "0.99": 1.0000000000000002,
+    "1.0": 1.0000000000000129
+  },
+  "split_activity_fraction_quantiles": {
+    "0.0": 0.34154125772892485,
+    "0.1": 1.0,
+    "0.5": 1.0,
+    "0.9": 1.0,
+    "1.0": 1.0
+  },
+  "method": "source HH and five job counts multiplied by actual 2018 SLD-donor land intersection / whole donor land; aggregate counts then recompute entropy; no source entropy averaging or prefix matching",
+  "time": "2017 LODES jobs, 2014-2018 ACS household estimates; actual 2018 donor polygons; 2020 water support and target tracts",
+  "uncertainty": "uniform within-donor land allocation is an estimation assumption, not observed tract activities or validated local accuracy; source survey/location errors remain",
+  "outside_target_counts_retained": true,
+  "uncovered_area_not_renormalized": true,
+  "seconds": 54.29266905784607,
+  "donor_land_sum_m2": 10513297855.966106,
+  "donor_land_union_m2": 10511226362.521042,
+  "donors_with_at_least_two_one_percent_intersections": 345,
+  "one_percent_used_only_to_describe_slivers_not_to_change_weights": true
+}

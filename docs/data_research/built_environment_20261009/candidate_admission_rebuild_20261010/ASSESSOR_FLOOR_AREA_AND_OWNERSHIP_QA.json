@@ -1,0 +1,116 @@
+{
+  "county_assignment_records": 2413687,
+  "unique_AIN": 2413687,
+  "shared_coordinate_groups": 20789,
+  "same_nonidentity_attribute_repeat_records": 291567,
+  "multiline_records": 157429,
+  "condo_records": 315122,
+  "parcel_geometry_sample_groups": 40,
+  "sample_shared_geometry_groups": 40,
+  "actual_roll_area_fields": [
+    {
+      "name": "RollYear",
+      "type": "esriFieldTypeString",
+      "alias": "Roll Year",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Roll Year\",\"fieldValueType\":\"\"}"
+    },
+    {
+      "name": "totBuildingDataLines",
+      "type": "esriFieldTypeInteger",
+      "alias": "Number of Buildings",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Building Data Line\",\"fieldValueType\":\"\"}"
+    },
+    {
+      "name": "YearBuilt",
+      "type": "esriFieldTypeString",
+      "alias": "Year Built",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Year property was built\",\"fieldValueType\":\"\"}"
+    },
+    {
+      "name": "EffectiveYearBuilt",
+      "type": "esriFieldTypeString",
+      "alias": "Effective Year",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Effective Year Built\",\"fieldValueType\":\"\"}"
+    },
+    {
+      "name": "SQFTmain",
+      "type": "esriFieldTypeInteger",
+      "alias": "Square Footage",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Main Square Footage\",\"fieldValueType\":\"\"}"
+    },
+    {
+      "name": "Units",
+      "type": "esriFieldTypeInteger",
+      "alias": "Number of Units",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Number of Units\",\"fieldValueType\":\"\"}"
+    },
+    {
+      "name": "Roll_LandBaseYear",
+      "type": "esriFieldTypeString",
+      "alias": "Land Base Year",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Roll Land Base Year\",\"fieldValueType\":\"\"}"
+    },
+    {
+      "name": "Roll_ImpBaseYear",
+      "type": "esriFieldTypeString",
+      "alias": "Improvement Base Year",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Roll Improvement Base Year\",\"fieldValueType\":\"\"}"
+    }
+  ],
+  "missing_required_evidence": [
+    "2022 structure/building-line identifiers and areas",
+    "certified gross-floor-area inclusion/exclusion convention",
+    "unit versus shared/common building-area accounting",
+    "complete government/exempt stock coverage"
+  ],
+  "disposition": "PENDING_DATA",
+  "candidate_values": "gross FAR remains null; measured Main Square Footage and restricted subsets are diagnostics only",
+  "no_coordinate_or_attribute_deduplication_rule_adopted": true,
+  "geometry_samples_do_not_validate_countywide_building_ownership": true,
+  "seconds": 712.5772886276245
+}

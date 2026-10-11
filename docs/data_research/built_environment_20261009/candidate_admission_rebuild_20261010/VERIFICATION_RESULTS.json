@@ -1,19 +1,28 @@
 {
-  "tests_passed": 9,
+  "tests_passed": 15,
   "full_rows": 2315,
   "residential_rows": 2291,
   "candidate_count": 64,
   "dispositions": {
-    "CONDITIONAL": 30,
+    "CONDITIONAL": 32,
     "DESCRIPTIVE_ONLY": 13,
     "ADMIT": 9,
     "REJECT": 9,
-    "PENDING_DATA": 3
+    "PENDING_DATA": 1
   },
   "scientific_files_changed_in_start_manifest": 0,
   "original_staged_items_unchanged": 862,
-  "current_file_inventory": 301268,
-  "current_byte_hash_inventory": 6194,
   "no_model_fits": true,
-  "NLCD_numeric_identity_common_pixels": 6916982
+  "NLCD_numeric_identity_common_pixels": 6916982,
+  "prior_round_expanded_inventory": {
+    "files": 301268,
+    "byte_hashed_files": 6194,
+    "source_commit": "561283f50f110e0897650857241880d19d904c67"
+  },
+  "verification_scope": "three pending measurements follow-up; original 950 protected byte hashes and staged index verified again",
+  "EPA_full_valid": 2311,
+  "EPA_residential_valid": 2287,
+  "SCAG2020_full_valid": 2311,
+  "SCAG2020_residential_valid": 2287,
+  "assessor_gross_FAR_remaining_pending": true
 }

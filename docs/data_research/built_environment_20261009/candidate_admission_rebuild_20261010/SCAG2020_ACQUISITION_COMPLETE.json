@@ -1,0 +1,25 @@
+{
+  "url": "https://rdp.scag.ca.gov/mapping/rest/services/Housing/2020_Annual_Land_Use/MapServer/0",
+  "query_fields": [
+    "OBJECTID",
+    "PID20",
+    "APN20",
+    "APN20_P",
+    "STACK",
+    "APN_DUP",
+    "ALU20",
+    "ALU20_SRC",
+    "BF_SQFT",
+    "ACRES",
+    "GEOID20",
+    "YEAR"
+  ],
+  "where": "COUNTY = 'Los Angeles'",
+  "count": 2093407,
+  "chunks": 1047,
+  "id_list_sha256": "cb4eeb340ea84fbb5e48038a92f27f28ac8e0f5f8065fa2b548ec357598b5e33",
+  "metadata_sha256": "217e8de861139b117bbef66d4a1324953b732c8ea301a459a71112a335db138e",
+  "seconds": 156.04198670387268,
+  "observed_classification_year": 2020,
+  "current_service_metadata_is_not_observation_year": true
+}

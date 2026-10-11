@@ -1,0 +1,6042 @@
+{
+ "currentVersion": 11.5,
+ "cimVersion": "3.5.0",
+ "id": 0,
+ "name": "AnnualLandUse20_HousingApp",
+ "type": "Feature Layer",
+ "description": "SCAG has developed and maintained its regional geospatial dataset of land use information at parcel-level\u2014approximately five million parcels in the SCAG Region.  The parcel-based land use dataset is developed (1) to aid in SCAG\u2019s regional transportation planning, scenario planning and growth forecasting, (2) facilitate policy discussion on various planning issues, and (3) enhance information database to better serve SCAG member jurisdictions, research institutes, universities, developers, general public, etc. After the successful release of SCAG\u2019s 2016 regional land use dataset for the development of the Connect SoCal (the 2020 RTP/SCS), SCAG has initiated a process to annually update its regional land use information at the parcel-level (the Annual Land Use Update). For the Annual Land Use Update process, SCAG collected county assessor\u2019s tax roll records (including parcel polygons and property information) from county assessor\u2019s offices, plus other reference layers including California Protected Areas Database (CPAD), California School Campus Database (CSCD), Farmland Mapping and Monitoring Program (FMMP)'s Important Farmland, U.S. Department of Defense's Military Installations, Ranges, and Training Areas (MIRTA) as well as SCAG's regional geospatial datasets, such as airport polygons and water body polygons.Note: This dataset is intended for planning purposes only, and SCAG shall incur no responsibility or liability as to the completeness, currentness, or accuracy of this information. SCAG assumes no responsibility arising from use of this information by individuals, businesses, or other public entities. The information is provided with no warranty of any kind, expressed or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. Users should consult with each local jurisdiction directly to obtain the official land use information.Data DescriptionFIELD_NAMEDESCRIPTIONPID202020 SCAG's unique parcel identifierAPN202020 Assessor Parcel NumberAPN20_P2020 Assessor Parcel Number - Parent Parcel (if applicable)COUNTYCounty nameCOUNTY_IDCounty FIPS codeCITYCity nameCITY_IDCity FIPS codeMULTIPARTMultipart feature (the number of multipart polygons; '1' = singlepart feature)STACKDuplicate geometry (the number of stacked polygons; '1' = no duplicate polygons)ACRESParcel area (in acres)SLOPESlope information1GEOID202020 Census Block GEOIDAPN_DUPDuplicate APN (the number of multiple tax roll property records; '0' = no duplicate APN)IL_RATIORatio of improvements assessed value to land assessed valueALU202020 Existing Land UseALU20_SRC2020 Existing Land Use Source2GP19_CITY2019 Jurisdiction\u2019s general plan land use designationGP19_SCAG2019 SCAG general plan land use codeSP19_CITY2019 Jurisdiction\u2019s specific plan land use designationSP19_SCAG2019 SCAG specific plan land use codeZN19_CITY2019 Jurisdiction\u2019s zoning codeZN19_SCAG2019 SCAG zoning codeSP19_INDEX2019 Specific Plan Index ('0' = outside specific plan area; '1' = inside specific plan area)DC_BLTDecade built of existing structure (example: year built between 1960-1969 is '1960s')3BF_SQFT Building footprint area (in square feet)4PUB_OWNPublic-owned land index ('1' = owned by public agency)PUB_TYPEType of public agency5ADU_STATEThis field is a rudimentary estimate of which parcels have adequate physical space to accommodate a typical detached Accessory Dwelling Unit (ADU)6, (1 = ADU eligible parcel, 0 = Not ADU eligible parcel)SF_UNBUILTDifference between parcel land area and building footprint area expressed in square feetFLOODParcel intersects with flood areas delineated by the Federal Emergency Management Agency (FEMA), obtained from the Digital Flood Insurance Rate Map from FEMA in August 2017. FIREParcel intersects with CalFire State Responsibility Areas Fire Hazard Severity zones (high and very high severity), State Responsibility Area Effective April 1, 2024, and Local Responsibility Area (LRA) updated in March 24, 2025. ('1' = intersect with a high or very high severity fire hazard zone, '0' = outside the zone)\u201dWUIParcel intersects with Wildland-Urban Interface or Intermix zones, utilized from CAL FIRE\u2019s Fire and Resource Assessment Program (FRAP), Wildland-Urban Interface (WUI) and Wildland-Urban Intermix (2020). See CAL FIRE for details. SEARISE36Parcel intersects with USGS Coastal Storm Modeling System (CoSMos) One-Meter Sea Level Rise inundation areas for Southern California (v3.0, Phase 2, 2018)WETLANDParcel intersects a wetland or deepwater habitat, obtained from the US Fish and Wildlife Services National Wetlands Inventory Data (2020)HABITATParcel intersects with habitat connectivity corridors. Data is obtained from the California Department of Fish and Wildlife Habitat Essential Connectivity Project (2010).CONSERVParcel intersects with Areas of Conservation Emphasis (ACEIIv2), obtained from California Department of Fish and Wildlife Areas of Conservation Emphasis (2015)SOARParcel intersects with publicly owned open space identified by the County of Ventura Save Our Agricultural Resources (SOAR, 2017), which consist of a series of voter initiatives that require a majority vote of the people before agricultural land or open space areas can be rezoned for developmentCPADParcel intersects with publicly owned protected open space lands in the State of California through fee ownership as identified in the 2021 California Protected Areas Database (CPAD)CCEDParcel intersects with lands protected under conservation easements as identified in the 2021 California Conservation Easement Database (CCED)TRIBALParcel intersects with the tribal lands for the 16 Federally Recognized Tribal entities in the SCAG region, obtained from the American Indian Reservations/ Federally Recognized Tribal Entities dataset (2021)MILITARYParcel intersects with military lands managed by the US Department of Defense as of 2018FARMLANDParcel intersects with farmlands as identified in the Farmland Mapping and Monitoring Program (FMMP) in the Division of Land Resource Protection in the California Department of Conservation (2018)GRRA_INDEXThe number of Green Region Rresource Areas (GRRAs) that the parcel intersects with. GRRAs are areas where climate hazard zones, environmental sensitivities, and administrative areas where growth would generally not advance SB 375 objectives. See Connect SoCal 2024 Land Use &amp; Communities Technical Report for details. UAZParcel centroid lies within Caltrans 2020 Adjusted Urbanized Area TCAC_2024The opportunity/resource level in the 2024 CTCAC/HCD Opportunity Map SB535_INDEXField takes a value of 1 if parcel intersects with SB 535 Disadvantaged Communities. See Connect SoCal 2024 Equity Analysis Technical Report for details. PEC_INDEXField takes a value of 1 if parcel's block falls within Priority Equity Communities. See Connect SoCal 2024 Equity Analysis Technical Report for details. PDA_INDEXThe number of Priority Development Areas (PDAs) that the parcel's largest overlapping area falls in. PDAs in Connect SoCal 2024 include Neighborhood Mobility Areas (NMAs), Transit Priority Areas (TPAs), Livable Corridors and Spheres of Influence (SOIs) (in unincorporated areas only). See Connect SoCal 2024 for details. PDA_NMAField takes a value of 1 if the parcel's largest overlapping area falls within Neighborhood Mobility Areas. See Connect SoCal 2024 for details. PDA_LCField takes a value of 1 if the parcel's largest overlapping area falls within Livable Corridors. See Connect SoCal 2024 for details. PDA_SOIField takes a value of 1 if the parcel's largest overlapping area falls within Spheres of Influence (SOIs) (in unincorporated areas only). See Connect SoCal 2024 for details. PDA_TPAField takes a value of 1 if the parcel's largest overlapping area falls within Transit Priority Areas. See Connect SoCal 2024 for details. APPAREL1MIThe number of apparel stores within a 1-mile drive7EDUC1MIThe number of educational institutions within a 1-mile drive7GROCERY1MIThe number of grocery stores within a 1-mile drive7HOSPIT1MIThe number of hospitals within a 1-mile drive7RESTAUR1MIThe number of restaurants within a 1-mile drive7JOBS_30MINThe number of the region's jobs accessible within a 30-minute commute by car during morning peak hour (6-9am) in 2050 based on Connect SoCal 2024 travel demand modeling.  See Equity Technical Report for details. VMT_TOTAverage daily vehicle miles traveled (VMT) per average resident in the parcel\u2019s transportation analysis zone (TAZ) in 2019, rounded to the nearest mile. This field contains results derived from Connect SoCal 2024\u2019s activity-based travel demand model and do not reflect survey data, do not reflect VMT in any particular parcel within a TAZ, and are not validated at the TAZ-level.  SCAG assumes no liability arising from the use of this data.8VMT_WORKAverage daily vehicle miles traveled (VMT) per average resident for work purposes in the parcel\u2019s transportation analysis zone (TAZ) in 2019, rounded to the nearest mile. This field contains results derived from Connect SoCal 2024\u2019s activity-based travel demand model and do not reflect survey data, do not reflect VMT in any particular parcel within a TAZ, and are not validated at the TAZ-level.  SCAG assumes no liability arising from the use of this data.8JURIS_PLUSSub-jurisdictional geography in Los Angeles City (Community Plan Areas) and unincorporated areas of Los Angeles County (Planning Areas)YEARDataset YearShape_LengthLength of feature in internal unitsShape_AreaArea of feature in internal units squared1. Slope: '0' - 0~4 percent; '5' - 5~9 percent; '10' - 10~14 percent; '15' = 15~19 percent; '20' - 20~24 percent; '25' = 25 percent or greater.2. ASSESSOR- Assessor's 2020 tax roll records; CPAD- California Protected Areas Database (version 2020b; released in December 2020); CSCD- California School Campus Database (version 2021; released in March 2020); FMMP- Farmland Mapping and Monitoring Program's Important Farmland GIS data (v.2020 for Imperial County and Riverside County, v.2018 for the other counties, assessed in April 2024); MIRTA- U.S. Department of Defense's Military Installations, Ranges, and Training Areas GIS data (accessed in September 2020); SCAG_REF- SCAG's regional geospatial dataset3. Decade built information is only available for Los Angeles and Ventura counties. Parcels with missing data or invalid year built information are marked as empty string.4. Based on 2019 building footprint data obtained from BuildingFootprintUSA (except that 2014 building footprint data was used for Imperial County). Please note that 2019 building footprint data does not cover the entire SCAG region (overlapped with 83% of parcels in the SCAG Region).5. Type of public agency includes federal, state, county, city, special district, school district, college/university, military.6. A detailed study conducted by Cal Poly Pomona (CPP) and available here conducted an extensive review of state and local requirements and development trends for ADUs in the SCAG region and developed a baseline set of assumptions for estimating how many of a jurisdiction\u2019s parcels could accommodate a detached ADU. Please note that these estimates (1) do not include attached or other types of ADUs such as garage conversions or Junior ADUs, and (2) are conducted without screening for site-specific topological, or other constraints, or regard for financial feasibility, or development likelihood7. These values are intended as a rudimentary indicator of accessibility developed by SCAG using 2019 InfoUSA business establishment data.8. The SCAG travel demand model is designed for regional planning applications, focusing on regionally significant policies, programs, and transportation investments across six counties. The model is calibrated and validated at an aggregate level, such as the county or regional scale. Directly evaluating the model output at a small geographic level, such as TAZ, roadway segment, local project area, or parcel is not within the design scope of this model and these data are provided for scenario planning or initial screening purposes only.  Data are not available for parcels lying in TAZs with a residential population below 50.SCAG Land Use CodesLegendLand Use Description Single Family Residential1110 Single Family Residential1111 High Density Single Family Residential (9 or more DUs/ac)1112 Medium Density Single Family Residential (3-8 DUs/ac)1113 Low Density Single Family Residential (2 or less DUs/ac)Multi-Family Residential1120 Multi-Family Residential1121 Mixed Multi-Family Residential1122 Duplexes, Triplexes and 2- or 3-Unit Condominiums and Townhouses1123 Low-Rise Apartments, Condominiums, and Townhouses1124 Medium-Rise Apartments and Condominiums1125 High-Rise Apartments and CondominiumsMobile Homes and Trailer Parks1130 Mobile Homes and Trailer Parks1131 Trailer Parks and Mobile Home Courts, High-Density1132 Mobile Home Courts and Subdivisions, Low-DensityMixed Residential1140 Mixed Residential1100 ResidentialRural Residential 1150 Rural ResidentialGeneral Office1210 General Office Use1211 Low- and Medium-Rise Major Office Use1212 High-Rise Major Office Use1213 SkyscrapersCommercial and Services1200 Commercial and Services1220 Retail Stores and Commercial Services1221 Regional Shopping Center1222 Retail Centers (Non-Strip With Contiguous Interconnected Off-Street Parking)1223 Retail Strip Development1230 Other Commercial1231 Commercial Storage1232 Commercial Recreation1233 Hotels and MotelsFacilities1240 Public Facilities1241 Government Offices1242 Police and Sheriff Stations1243 Fire Stations1244 Major Medical Health Care Facilities1245 Religious Facilities1246 Other Public Facilities1247 Public Parking Facilities1250 Special Use Facilities1251 Correctional Facilities1252 Special Care Facilities1253 Other Special Use FacilitiesEducation1260 Educational Institutions1261 Pre-Schools/Day Care Centers1262 Elementary Schools1263 Junior or Intermediate High Schools1264 Senior High Schools1265 Colleges and Universities1266 Trade Schools and Professional Training FacilitiesMilitary Installations1270 Military Installations1271 Base (Built-up Area)1272 Vacant Area1273 Air Field1274 Former Base (Built-up Area)1275 Former Base Vacant Area1276 Former Base Air FieldIndustrial1300 Industrial 1310 Light Industrial1311 Manufacturing, Assembly, and Industrial Services1312 Motion Picture and Television Studio Lots1313 Packing Houses and Grain Elevators1314 Research and Development1320 Heavy Industrial1321 Manufacturing1322 Petroleum Refining and Processing1323 Open Storage1324 Major Metal Processing1325 Chemical Processing1330 Extraction1331 Mineral Extraction - Other Than Oil and Gas1332 Mineral Extraction - Oil and Gas1340 Wholesaling and WarehousingTransportation, Communications, and Utilities1400 Transportation, Communications, and Utilities 1410 Transportation1411 Airports1412 Railroads1413 Freeways and Major Roads1414 Park-and-Ride Lots1415 Bus Terminals and Yards1416 Truck Terminals1417 Harbor Facilities1418 Navigation Aids1420 Communication Facilities1430 Utility Facilities1431 Electrical Power Facilities1432 Solid Waste Disposal Facilities1433 Liquid Waste Disposal Facilities1434 Water Storage Facilities1435 Natural Gas and Petroleum Facilities1436 Water Transfer Facilities 1437 Improved Flood Waterways and Structures1438 Mixed Utilities1440 Maintenance Yards1441 Bus Yards1442 Rail Yards1450 Mixed Transportation1460 Mixed Transportation and UtilityMixed Commercial and Industrial1500 Mixed Commercial and IndustrialMixed Residential and Commercial1600 Mixed Residential and Commercial1610 Residential-Oriented Residential/Commercial Mixed Use 1620 Commercial-Oriented Residential/Commercial Mixed UseOpen Space and Recreation1800 Open Space and Recreation1810 Golf Courses1820 Local Parks and Recreation1830 Regional Parks and Recreation1840 Cemeteries1850 Wildlife Preserves and Sanctuaries1860 Specimen Gardens and Arboreta1870 Beach Parks1880 Other Open Space and Recreation1890 Off-Street TrailsAgriculture2000 Agriculture2100 Cropland and Improved Pasture Land2110 Irrigated Cropland and Improved Pasture Land2120 Non-Irrigated Cropland and Improved Pasture Land2200 Orchards and Vineyards2300 Nurseries2400 Dairy, Intensive Livestock, and Associated Facilities2500 Poultry Operations2600 Other Agriculture2700 Horse RanchesVacant3000 Vacant3100 Vacant Undifferentiated3200 Abandoned Orchards and Vineyards3300 Vacant With Limited Improvements3400 Beaches (Vacant)1900 Urban VacantWater4000 Water4100 Water, Undifferentiated4200 Harbor Water Facilities4300 Marina Water Facilities4400 Water Within a Military Installation4500 Area of Inundation (High Water)Specific Plan7777 Specific PlanUnder Construction1700 Under ConstructionUndevelopable or Protected Land8888 Undevelopable or Protected LandUnknown9999 Unknown",
+ "geometryType": "esriGeometryPolygon",
+ "sourceSpatialReference": {
+  "wkid": 26911,
+  "latestWkid": 26911,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -5120900,
+  "falseY": -9998100,
+  "xyUnits": 10000,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "spatialReference": {
+  "wkid": 26911,
+  "latestWkid": 26911,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -5120900,
+  "falseY": -9998100,
+  "xyUnits": 10000,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "copyrightText": "Southern California Association of Governments",
+ "parentLayer": null,
+ "subLayers": [],
+ "minScale": 0,
+ "maxScale": 0,
+ "referenceScale": 0.0,
+ "drawingInfo": {
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "SYM_CODE",
+   "uniqueValueGroups": [
+    {
+     "heading": "",
+     "classes": [
+      {
+       "label": "Single Family Residential",
+       "description": "Single Family Residential",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         255,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1112"
+        ],
+        [
+         "1111"
+        ],
+        [
+         "1110"
+        ],
+        [
+         "1113"
+        ]
+       ]
+      },
+      {
+       "label": "Multi-Family Residential",
+       "description": "Multi-Family Residential",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         170,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1120"
+        ],
+        [
+         "1121"
+        ],
+        [
+         "1122"
+        ],
+        [
+         "1123"
+        ],
+        [
+         "1124"
+        ],
+        [
+         "1125"
+        ]
+       ]
+      },
+      {
+       "label": "Mobile Homes and Trailer Parks",
+       "description": "Mobile Homes and Trailer Parks",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         235,
+         175,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1130"
+        ],
+        [
+         "1131"
+        ],
+        [
+         "1132"
+        ]
+       ]
+      },
+      {
+       "label": "Mixed Residential",
+       "description": "Mixed Residential",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         227,
+         196,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1140"
+        ],
+        [
+         "1100"
+        ]
+       ]
+      },
+      {
+       "label": "Rural Residential",
+       "description": "Rural Residential",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         205,
+         170,
+         102,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1150"
+        ]
+       ]
+      },
+      {
+       "label": "General Office",
+       "description": "General Office",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         156,
+         0,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1210"
+        ],
+        [
+         "1211"
+        ],
+        [
+         "1212"
+        ],
+        [
+         "1213"
+        ]
+       ]
+      },
+      {
+       "label": "Commercial and Services",
+       "description": "Commercial and Services",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         0,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1200"
+        ],
+        [
+         "1220"
+        ],
+        [
+         "1221"
+        ],
+        [
+         "1222"
+        ],
+        [
+         "1223"
+        ],
+        [
+         "1230"
+        ],
+        [
+         "1231"
+        ],
+        [
+         "1232"
+        ],
+        [
+         "1233"
+        ]
+       ]
+      },
+      {
+       "label": "Facilities",
+       "description": "Facilities",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         122,
+         142,
+         245,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1240"
+        ],
+        [
+         "1241"
+        ],
+        [
+         "1242"
+        ],
+        [
+         "1243"
+        ],
+        [
+         "1244"
+        ],
+        [
+         "1245"
+        ],
+        [
+         "1246"
+        ],
+        [
+         "1247"
+        ],
+        [
+         "1250"
+        ],
+        [
+         "1251"
+        ],
+        [
+         "1252"
+        ],
+        [
+         "1253"
+        ]
+       ]
+      },
+      {
+       "label": "Education",
+       "description": "Education",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         194,
+         179,
+         215,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1260"
+        ],
+        [
+         "1261"
+        ],
+        [
+         "1262"
+        ],
+        [
+         "1263"
+        ],
+        [
+         "1264"
+        ],
+        [
+         "1265"
+        ],
+        [
+         "1266"
+        ]
+       ]
+      },
+      {
+       "label": "Military Installations",
+       "description": "Military Installations",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         132,
+         0,
+         168,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1270"
+        ],
+        [
+         "1271"
+        ],
+        [
+         "1272"
+        ],
+        [
+         "1273"
+        ],
+        [
+         "1274"
+        ],
+        [
+         "1275"
+        ],
+        [
+         "1276"
+        ]
+       ]
+      },
+      {
+       "label": "Industrial",
+       "description": "Industrial",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         0,
+         51,
+         207,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1300"
+        ],
+        [
+         "1310"
+        ],
+        [
+         "1311"
+        ],
+        [
+         "1312"
+        ],
+        [
+         "1313"
+        ],
+        [
+         "1314"
+        ],
+        [
+         "1320"
+        ],
+        [
+         "1321"
+        ],
+        [
+         "1322"
+        ],
+        [
+         "1323"
+        ],
+        [
+         "1324"
+        ],
+        [
+         "1325"
+        ],
+        [
+         "1330"
+        ],
+        [
+         "1331"
+        ],
+        [
+         "1332"
+        ],
+        [
+         "1340"
+        ]
+       ]
+      },
+      {
+       "label": "Transportation, Communications, and Utilities",
+       "description": "Transportation, Communications, and Utilities",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         156,
+         156,
+         156,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1400"
+        ],
+        [
+         "1410"
+        ],
+        [
+         "1411"
+        ],
+        [
+         "1412"
+        ],
+        [
+         "1413"
+        ],
+        [
+         "1414"
+        ],
+        [
+         "1415"
+        ],
+        [
+         "1416"
+        ],
+        [
+         "1417"
+        ],
+        [
+         "1418"
+        ],
+        [
+         "1420"
+        ],
+        [
+         "1430"
+        ],
+        [
+         "1431"
+        ],
+        [
+         "1432"
+        ],
+        [
+         "1433"
+        ],
+        [
+         "1434"
+        ],
+        [
+         "1435"
+        ],
+        [
+         "1436"
+        ],
+        [
+         "1437"
+        ],
+        [
+         "1438"
+        ],
+        [
+         "1440"
+        ],
+        [
+         "1441"
+        ],
+        [
+         "1442"
+        ],
+        [
+         "1450"
+        ],
+        [
+         "1460"
+        ]
+       ]
+      },
+      {
+       "label": "Mixed Commercial and Industrial",
+       "description": "Mixed Commercial and Industrial",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         223,
+         115,
+         255,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1500"
+        ]
+       ]
+      },
+      {
+       "label": "Mixed Residential and Commercial",
+       "description": "Mixed Residential and Commercial",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         168,
+         112,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1600"
+        ],
+        [
+         "1610"
+        ],
+        [
+         "1620"
+        ]
+       ]
+      },
+      {
+       "label": "Open Space and Recreation",
+       "description": "Open Space and Recreation",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         76,
+         230,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1800"
+        ],
+        [
+         "1810"
+        ],
+        [
+         "1820"
+        ],
+        [
+         "1830"
+        ],
+        [
+         "1840"
+        ],
+        [
+         "1850"
+        ],
+        [
+         "1860"
+        ],
+        [
+         "1870"
+        ],
+        [
+         "1880"
+        ],
+        [
+         "1890"
+        ]
+       ]
+      },
+      {
+       "label": "Agriculture",
+       "description": "Agriculture",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         38,
+         115,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "2000"
+        ],
+        [
+         "2100"
+        ],
+        [
+         "2110"
+        ],
+        [
+         "2120"
+        ],
+        [
+         "2200"
+        ],
+        [
+         "2300"
+        ],
+        [
+         "2400"
+        ],
+        [
+         "2500"
+        ],
+        [
+         "2600"
+        ],
+        [
+         "2700"
+        ]
+       ]
+      },
+      {
+       "label": "Vacant",
+       "description": "Vacant",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         168,
+         168,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "3000"
+        ],
+        [
+         "3100"
+        ],
+        [
+         "3200"
+        ],
+        [
+         "3300"
+        ],
+        [
+         "3400"
+        ],
+        [
+         "1900"
+        ]
+       ]
+      },
+      {
+       "label": "Water",
+       "description": "Water",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         190,
+         255,
+         232,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "4000"
+        ],
+        [
+         "4100"
+        ],
+        [
+         "4200"
+        ],
+        [
+         "4300"
+        ],
+        [
+         "4400"
+        ],
+        [
+         "4500"
+        ]
+       ]
+      },
+      {
+       "label": "Specific Plan",
+       "description": "Specific Plan",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         115,
+         94,
+         0,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "7777"
+        ]
+       ]
+      },
+      {
+       "label": "Under Construction",
+       "description": "Under Construction",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         89,
+         89,
+         89,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "1700"
+        ]
+       ]
+      },
+      {
+       "label": "Undevelopable",
+       "description": "Undevelopable",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         209,
+         255,
+         115,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "8888"
+        ]
+       ]
+      },
+      {
+       "label": "Unknown",
+       "description": "Unknown",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         204,
+         204,
+         204,
+         255
+        ],
+        "outline": null
+       },
+       "values": [
+        [
+         "9999"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1112",
+     "label": "Single Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1111",
+     "label": "Single Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1110",
+     "label": "Single Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1113",
+     "label": "Single Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1120",
+     "label": "Multi-Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1121",
+     "label": "Multi-Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1122",
+     "label": "Multi-Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1123",
+     "label": "Multi-Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1124",
+     "label": "Multi-Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1125",
+     "label": "Multi-Family Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       235,
+       175,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1130",
+     "label": "Mobile Homes and Trailer Parks"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       235,
+       175,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1131",
+     "label": "Mobile Homes and Trailer Parks"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       235,
+       175,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1132",
+     "label": "Mobile Homes and Trailer Parks"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       227,
+       196,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1140",
+     "label": "Mixed Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       227,
+       196,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1100",
+     "label": "Mixed Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       205,
+       170,
+       102,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1150",
+     "label": "Rural Residential"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1210",
+     "label": "General Office"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1211",
+     "label": "General Office"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1212",
+     "label": "General Office"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1213",
+     "label": "General Office"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1200",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1220",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1221",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1222",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1223",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1230",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1231",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1232",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1233",
+     "label": "Commercial and Services"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1240",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1241",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1242",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1243",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1244",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1245",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1246",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1247",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1250",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1251",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1252",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       122,
+       142,
+       245,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1253",
+     "label": "Facilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       194,
+       179,
+       215,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1260",
+     "label": "Education"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       194,
+       179,
+       215,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1261",
+     "label": "Education"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       194,
+       179,
+       215,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1262",
+     "label": "Education"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       194,
+       179,
+       215,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1263",
+     "label": "Education"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       194,
+       179,
+       215,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1264",
+     "label": "Education"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       194,
+       179,
+       215,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1265",
+     "label": "Education"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       194,
+       179,
+       215,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1266",
+     "label": "Education"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       132,
+       0,
+       168,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1270",
+     "label": "Military Installations"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       132,
+       0,
+       168,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1271",
+     "label": "Military Installations"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       132,
+       0,
+       168,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1272",
+     "label": "Military Installations"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       132,
+       0,
+       168,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1273",
+     "label": "Military Installations"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       132,
+       0,
+       168,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1274",
+     "label": "Military Installations"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       132,
+       0,
+       168,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1275",
+     "label": "Military Installations"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       132,
+       0,
+       168,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1276",
+     "label": "Military Installations"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1300",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1310",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1311",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1312",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1313",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1314",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1320",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1321",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1322",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1323",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1324",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1325",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1330",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1331",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1332",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       51,
+       207,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1340",
+     "label": "Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1400",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1410",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1411",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1412",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1413",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1414",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1415",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1416",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1417",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1418",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1420",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1430",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1431",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1432",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1433",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1434",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1435",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1436",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1437",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1438",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1440",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1441",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1442",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1450",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1460",
+     "label": "Transportation, Communications, and Utilities"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       223,
+       115,
+       255,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1500",
+     "label": "Mixed Commercial and Industrial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       112,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1600",
+     "label": "Mixed Residential and Commercial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       112,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1610",
+     "label": "Mixed Residential and Commercial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       112,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1620",
+     "label": "Mixed Residential and Commercial"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1800",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1810",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1820",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1830",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1840",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1850",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1860",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1870",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1880",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       76,
+       230,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1890",
+     "label": "Open Space and Recreation"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2000",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2100",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2110",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2120",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2200",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2300",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2400",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2500",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2600",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "2700",
+     "label": "Agriculture"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       168,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "3000",
+     "label": "Vacant"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       168,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "3100",
+     "label": "Vacant"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       168,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "3200",
+     "label": "Vacant"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       168,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "3300",
+     "label": "Vacant"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       168,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "3400",
+     "label": "Vacant"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       168,
+       168,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1900",
+     "label": "Vacant"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       190,
+       255,
+       232,
+       255
+      ],
+      "outline": null
+     },
+     "value": "4000",
+     "label": "Water"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       190,
+       255,
+       232,
+       255
+      ],
+      "outline": null
+     },
+     "value": "4100",
+     "label": "Water"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       190,
+       255,
+       232,
+       255
+      ],
+      "outline": null
+     },
+     "value": "4200",
+     "label": "Water"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       190,
+       255,
+       232,
+       255
+      ],
+      "outline": null
+     },
+     "value": "4300",
+     "label": "Water"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       190,
+       255,
+       232,
+       255
+      ],
+      "outline": null
+     },
+     "value": "4400",
+     "label": "Water"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       190,
+       255,
+       232,
+       255
+      ],
+      "outline": null
+     },
+     "value": "4500",
+     "label": "Water"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       115,
+       94,
+       0,
+       255
+      ],
+      "outline": null
+     },
+     "value": "7777",
+     "label": "Specific Plan"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       89,
+       89,
+       89,
+       255
+      ],
+      "outline": null
+     },
+     "value": "1700",
+     "label": "Under Construction"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       209,
+       255,
+       115,
+       255
+      ],
+      "outline": null
+     },
+     "value": "8888",
+     "label": "Undevelopable"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       204,
+       204,
+       204,
+       255
+      ],
+      "outline": null
+     },
+     "value": "9999",
+     "label": "Unknown"
+    }
+   ],
+   "fieldDelimiter": ",",
+   "authoringInfo": {
+    "colorRamp": {
+     "type": "multipart",
+     "colorRamps": [
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        227,
+        178,
+        168,
+        255
+       ],
+       "toColor": [
+        227,
+        178,
+        168,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        171,
+        173,
+        237,
+        255
+       ],
+       "toColor": [
+        171,
+        173,
+        237,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        177,
+        204,
+        224,
+        255
+       ],
+       "toColor": [
+        177,
+        204,
+        224,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        227,
+        163,
+        205,
+        255
+       ],
+       "toColor": [
+        227,
+        163,
+        205,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        215,
+        195,
+        235,
+        255
+       ],
+       "toColor": [
+        215,
+        195,
+        235,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        217,
+        173,
+        237,
+        255
+       ],
+       "toColor": [
+        217,
+        173,
+        237,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        163,
+        178,
+        217,
+        255
+       ],
+       "toColor": [
+        163,
+        178,
+        217,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        237,
+        192,
+        206,
+        255
+       ],
+       "toColor": [
+        237,
+        192,
+        206,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        232,
+        212,
+        186,
+        255
+       ],
+       "toColor": [
+        232,
+        212,
+        186,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        209,
+        148,
+        161,
+        255
+       ],
+       "toColor": [
+        209,
+        148,
+        161,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        207,
+        184,
+        176,
+        255
+       ],
+       "toColor": [
+        207,
+        184,
+        176,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        195,
+        161,
+        204,
+        255
+       ],
+       "toColor": [
+        195,
+        161,
+        204,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        179,
+        152,
+        214,
+        255
+       ],
+       "toColor": [
+        179,
+        152,
+        214,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        237,
+        168,
+        234,
+        255
+       ],
+       "toColor": [
+        237,
+        168,
+        234,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        214,
+        165,
+        188,
+        255
+       ],
+       "toColor": [
+        214,
+        165,
+        188,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        240,
+        192,
+        237,
+        255
+       ],
+       "toColor": [
+        240,
+        192,
+        237,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        207,
+        172,
+        147,
+        255
+       ],
+       "toColor": [
+        207,
+        172,
+        147,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        209,
+        148,
+        203,
+        255
+       ],
+       "toColor": [
+        209,
+        148,
+        203,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        212,
+        180,
+        184,
+        255
+       ],
+       "toColor": [
+        212,
+        180,
+        184,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        240,
+        170,
+        177,
+        255
+       ],
+       "toColor": [
+        240,
+        170,
+        177,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        167,
+        181,
+        204,
+        255
+       ],
+       "toColor": [
+        167,
+        181,
+        204,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        199,
+        210,
+        240,
+        255
+       ],
+       "toColor": [
+        199,
+        210,
+        240,
+        255
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "scaleSymbols": true,
+  "transparency": 0,
+  "labelingInfo": null
+ },
+ "defaultVisibility": true,
+ "extent": {
+  "xmin": 259807.60589999985,
+  "ymin": 3609363.8586,
+  "xmax": 764122.8941000002,
+  "ymax": 3963607.5877,
+  "spatialReference": {
+   "wkid": 26911,
+   "latestWkid": 26911,
+   "xyTolerance": 0.001,
+   "zTolerance": 0.001,
+   "mTolerance": 0.001,
+   "falseX": -5120900,
+   "falseY": -9998100,
+   "xyUnits": 10000,
+   "falseZ": -100000,
+   "zUnits": 10000,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "hasAttachments": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "displayField": "PID20",
+ "typeIdField": null,
+ "subtypeFieldName": null,
+ "subtypeField": null,
+ "defaultSubtypeCode": null,
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null
+  },
+  {
+   "name": "Shape",
+   "type": "esriFieldTypeGeometry",
+   "alias": "Shape",
+   "domain": null
+  },
+  {
+   "name": "PID20",
+   "type": "esriFieldTypeString",
+   "alias": "PID20",
+   "length": 13,
+   "domain": null
+  },
+  {
+   "name": "APN20",
+   "type": "esriFieldTypeString",
+   "alias": "APN20",
+   "length": 10,
+   "domain": null
+  },
+  {
+   "name": "APN20_P",
+   "type": "esriFieldTypeString",
+   "alias": "APN20_P",
+   "length": 10,
+   "domain": null
+  },
+  {
+   "name": "COUNTY",
+   "type": "esriFieldTypeString",
+   "alias": "COUNTY",
+   "length": 14,
+   "domain": null
+  },
+  {
+   "name": "COUNTY_ID",
+   "type": "esriFieldTypeString",
+   "alias": "COUNTY_ID",
+   "length": 3,
+   "domain": null
+  },
+  {
+   "name": "CITY",
+   "type": "esriFieldTypeString",
+   "alias": "CITY",
+   "length": 22,
+   "domain": null
+  },
+  {
+   "name": "CITY_ID",
+   "type": "esriFieldTypeString",
+   "alias": "CITY_ID",
+   "length": 5,
+   "domain": null
+  },
+  {
+   "name": "MULTIPART",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "MULTIPART",
+   "domain": null
+  },
+  {
+   "name": "STACK",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "STACK",
+   "domain": null
+  },
+  {
+   "name": "ACRES",
+   "type": "esriFieldTypeDouble",
+   "alias": "ACRES",
+   "domain": null
+  },
+  {
+   "name": "SLOPE",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "SLOPE",
+   "domain": null
+  },
+  {
+   "name": "GEOID20",
+   "type": "esriFieldTypeString",
+   "alias": "GEOID20",
+   "length": 15,
+   "domain": null
+  },
+  {
+   "name": "APN_DUP",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "APN_DUP",
+   "domain": null
+  },
+  {
+   "name": "IL_RATIO",
+   "type": "esriFieldTypeDouble",
+   "alias": "IL_RATIO",
+   "domain": null
+  },
+  {
+   "name": "ALU20",
+   "type": "esriFieldTypeString",
+   "alias": "ALU20",
+   "length": 4,
+   "domain": {
+    "type": "codedValue",
+    "name": "SCAG_CODE",
+    "description": "DESCRIPTION",
+    "codedValues": [
+     {
+      "name": "1110 Single Family Residential",
+      "code": "1110"
+     },
+     {
+      "name": "1111 High Density Single Family Residential (9 or more DUs/ac)",
+      "code": "1111"
+     },
+     {
+      "name": "1112 Medium Density Single Family Residential (3-8 DUs/ac)",
+      "code": "1112"
+     },
+     {
+      "name": "1113 Low Density Single Family Residential (2 or less DUs/ac)",
+      "code": "1113"
+     },
+     {
+      "name": "1120 Multi-Family Residential",
+      "code": "1120"
+     },
+     {
+      "name": "1121 Mixed Multi-Family Residential",
+      "code": "1121"
+     },
+     {
+      "name": "1122 Duplexes, Triplexes and 2- or 3-Unit Condominiums and Townhouses",
+      "code": "1122"
+     },
+     {
+      "name": "1123 Low-Rise Apartments, Condominiums, and Townhouses",
+      "code": "1123"
+     },
+     {
+      "name": "1124 Medium-Rise Apartments and Condominiums",
+      "code": "1124"
+     },
+     {
+      "name": "1125 High-Rise Apartments and Condominiums",
+      "code": "1125"
+     },
+     {
+      "name": "1130 Mobile Homes and Trailer Parks",
+      "code": "1130"
+     },
+     {
+      "name": "1131 Trailer Parks and Mobile Home Courts, High-Density",
+      "code": "1131"
+     },
+     {
+      "name": "1132 Mobile Home Courts and Subdivisions, Low-Density",
+      "code": "1132"
+     },
+     {
+      "name": "1140 Mixed Residential",
+      "code": "1140"
+     },
+     {
+      "name": "1100 Residential",
+      "code": "1100"
+     },
+     {
+      "name": "1150 Rural Residential",
+      "code": "1150"
+     },
+     {
+      "name": "1210 General Office Use",
+      "code": "1210"
+     },
+     {
+      "name": "1211 Low- and Medium-Rise Major Office Use",
+      "code": "1211"
+     },
+     {
+      "name": "1212 High-Rise Major Office Use",
+      "code": "1212"
+     },
+     {
+      "name": "1213 Skyscrapers",
+      "code": "1213"
+     },
+     {
+      "name": "1200 Commercial and Services",
+      "code": "1200"
+     },
+     {
+      "name": "1220 Retail Stores and Commercial Services",
+      "code": "1220"
+     },
+     {
+      "name": "1221 Regional Shopping Center",
+      "code": "1221"
+     },
+     {
+      "name": "1222 Retail Centers (Non-Strip With Contiguous Interconnected Off-Street Parking)",
+      "code": "1222"
+     },
+     {
+      "name": "1223 Retail Strip Development",
+      "code": "1223"
+     },
+     {
+      "name": "1230 Other Commercial",
+      "code": "1230"
+     },
+     {
+      "name": "1231 Commercial Storage",
+      "code": "1231"
+     },
+     {
+      "name": "1232 Commercial Recreation",
+      "code": "1232"
+     },
+     {
+      "name": "1233 Hotels and Motels",
+      "code": "1233"
+     },
+     {
+      "name": "1240 Public Facilities",
+      "code": "1240"
+     },
+     {
+      "name": "1241 Government Offices",
+      "code": "1241"
+     },
+     {
+      "name": "1242 Police and Sheriff Stations",
+      "code": "1242"
+     },
+     {
+      "name": "1243 Fire Stations",
+      "code": "1243"
+     },
+     {
+      "name": "1244 Major Medical Health Care Facilities",
+      "code": "1244"
+     },
+     {
+      "name": "1245 Religious Facilities",
+      "code": "1245"
+     },
+     {
+      "name": "1246 Other Public Facilities",
+      "code": "1246"
+     },
+     {
+      "name": "1247 Public Parking Facilities",
+      "code": "1247"
+     },
+     {
+      "name": "1250 Special Use Facilities",
+      "code": "1250"
+     },
+     {
+      "name": "1251 Correctional Facilities",
+      "code": "1251"
+     },
+     {
+      "name": "1252 Special Care Facilities",
+      "code": "1252"
+     },
+     {
+      "name": "1253 Other Special Use Facilities",
+      "code": "1253"
+     },
+     {
+      "name": "1260 Educational Institutions",
+      "code": "1260"
+     },
+     {
+      "name": "1261 Pre-Schools/Day Care Centers",
+      "code": "1261"
+     },
+     {
+      "name": "1262 Elementary Schools",
+      "code": "1262"
+     },
+     {
+      "name": "1263 Junior or Intermediate High Schools",
+      "code": "1263"
+     },
+     {
+      "name": "1264 Senior High Schools",
+      "code": "1264"
+     },
+     {
+      "name": "1265 Colleges and Universities",
+      "code": "1265"
+     },
+     {
+      "name": "1266 Trade Schools and Professional Training Facilities",
+      "code": "1266"
+     },
+     {
+      "name": "1270 Military Installations",
+      "code": "1270"
+     },
+     {
+      "name": "1271 Base (Built-up Area)",
+      "code": "1271"
+     },
+     {
+      "name": "1272 Vacant Area",
+      "code": "1272"
+     },
+     {
+      "name": "1273 Air Field",
+      "code": "1273"
+     },
+     {
+      "name": "1274 Former Base (Built-up Area)",
+      "code": "1274"
+     },
+     {
+      "name": "1275 Former Base Vacant Area",
+      "code": "1275"
+     },
+     {
+      "name": "1276 Former Base Air Field",
+      "code": "1276"
+     },
+     {
+      "name": "1300 Industrial",
+      "code": "1300"
+     },
+     {
+      "name": "1310 Light Industrial",
+      "code": "1310"
+     },
+     {
+      "name": "1311 Manufacturing, Assembly, and Industrial Services",
+      "code": "1311"
+     },
+     {
+      "name": "1312 Motion Picture and Television Studio Lots",
+      "code": "1312"
+     },
+     {
+      "name": "1313 Packing Houses and Grain Elevators",
+      "code": "1313"
+     },
+     {
+      "name": "1314 Research and Development",
+      "code": "1314"
+     },
+     {
+      "name": "1320 Heavy Industrial",
+      "code": "1320"
+     },
+     {
+      "name": "1321 Manufacturing",
+      "code": "1321"
+     },
+     {
+      "name": "1322 Petroleum Refining and Processing",
+      "code": "1322"
+     },
+     {
+      "name": "1323 Open Storage",
+      "code": "1323"
+     },
+     {
+      "name": "1324 Major Metal Processing",
+      "code": "1324"
+     },
+     {
+      "name": "1325 Chemical Processing",
+      "code": "1325"
+     },
+     {
+      "name": "1330 Extraction",
+      "code": "1330"
+     },
+     {
+      "name": "1331 Mineral Extraction - Other Than Oil and Gas",
+      "code": "1331"
+     },
+     {
+      "name": "1332 Mineral Extraction - Oil and Gas",
+      "code": "1332"
+     },
+     {
+      "name": "1340 Wholesaling and Warehousing",
+      "code": "1340"
+     },
+     {
+      "name": "1400 Transportation, Communications, and Utilities",
+      "code": "1400"
+     },
+     {
+      "name": "1410 Transportation",
+      "code": "1410"
+     },
+     {
+      "name": "1411 Airports",
+      "code": "1411"
+     },
+     {
+      "name": "1412 Railroads",
+      "code": "1412"
+     },
+     {
+      "name": "1413 Freeways and Major Roads",
+      "code": "1413"
+     },
+     {
+      "name": "1414 Park-and-Ride Lots",
+      "code": "1414"
+     },
+     {
+      "name": "1415 Bus Terminals and Yards",
+      "code": "1415"
+     },
+     {
+      "name": "1416 Truck Terminals",
+      "code": "1416"
+     },
+     {
+      "name": "1417 Harbor Facilities",
+      "code": "1417"
+     },
+     {
+      "name": "1418 Navigation Aids",
+      "code": "1418"
+     },
+     {
+      "name": "1420 Communication Facilities",
+      "code": "1420"
+     },
+     {
+      "name": "1430 Utility Facilities",
+      "code": "1430"
+     },
+     {
+      "name": "1431 Electrical Power Facilities",
+      "code": "1431"
+     },
+     {
+      "name": "1432 Solid Waste Disposal Facilities",
+      "code": "1432"
+     },
+     {
+      "name": "1433 Liquid Waste Disposal Facilities",
+      "code": "1433"
+     },
+     {
+      "name": "1434 Water Storage Facilities",
+      "code": "1434"
+     },
+     {
+      "name": "1435 Natural Gas and Petroleum Facilities",
+      "code": "1435"
+     },
+     {
+      "name": "1436 Water Transfer Facilities",
+      "code": "1436"
+     },
+     {
+      "name": "1437 Improved Flood Waterways and Structures",
+      "code": "1437"
+     },
+     {
+      "name": "1438 Mixed Utilities",
+      "code": "1438"
+     },
+     {
+      "name": "1440 Maintenance Yards",
+      "code": "1440"
+     },
+     {
+      "name": "1441 Bus Yards",
+      "code": "1441"
+     },
+     {
+      "name": "1442 Rail Yards",
+      "code": "1442"
+     },
+     {
+      "name": "1450 Mixed Transportation",
+      "code": "1450"
+     },
+     {
+      "name": "1460 Mixed Transportation and Utility",
+      "code": "1460"
+     },
+     {
+      "name": "1500 Mixed Commercial and Industrial",
+      "code": "1500"
+     },
+     {
+      "name": "1600 Mixed Residential and Commercial",
+      "code": "1600"
+     },
+     {
+      "name": "1610 Residential-Oriented Residential/Commercial Mixed Use",
+      "code": "1610"
+     },
+     {
+      "name": "1620 Commercial-Oriented Residential/Commercial Mixed Use",
+      "code": "1620"
+     },
+     {
+      "name": "1800 Open Space and Recreation",
+      "code": "1800"
+     },
+     {
+      "name": "1810 Golf Courses",
+      "code": "1810"
+     },
+     {
+      "name": "1820 Local Parks and Recreation",
+      "code": "1820"
+     },
+     {
+      "name": "1830 Regional Parks and Recreation",
+      "code": "1830"
+     },
+     {
+      "name": "1840 Cemeteries",
+      "code": "1840"
+     },
+     {
+      "name": "1850 Wildlife Preserves and Sanctuaries",
+      "code": "1850"
+     },
+     {
+      "name": "1860 Specimen Gardens and Arboreta",
+      "code": "1860"
+     },
+     {
+      "name": "1870 Beach Parks",
+      "code": "1870"
+     },
+     {
+      "name": "1880 Other Open Space and Recreation",
+      "code": "1880"
+     },
+     {
+      "name": "1890 Off-Street Trails",
+      "code": "1890"
+     },
+     {
+      "name": "2000 Agriculture",
+      "code": "2000"
+     },
+     {
+      "name": "2100 Cropland and Improved Pasture Land",
+      "code": "2100"
+     },
+     {
+      "name": "2110 Irrigated Cropland and Improved Pasture Land",
+      "code": "2110"
+     },
+     {
+      "name": "2120 Non-Irrigated Cropland and Improved Pasture Land",
+      "code": "2120"
+     },
+     {
+      "name": "2200 Orchards and Vineyards",
+      "code": "2200"
+     },
+     {
+      "name": "2300 Nurseries",
+      "code": "2300"
+     },
+     {
+      "name": "2400 Dairy, Intensive Livestock, and Associated Facilities",
+      "code": "2400"
+     },
+     {
+      "name": "2500 Poultry Operations",
+      "code": "2500"
+     },
+     {
+      "name": "2600 Other Agriculture",
+      "code": "2600"
+     },
+     {
+      "name": "2700 Horse Ranches",
+      "code": "2700"
+     },
+     {
+      "name": "3000 Vacant",
+      "code": "3000"
+     },
+     {
+      "name": "3100 Vacant Undifferentiated",
+      "code": "3100"
+     },
+     {
+      "name": "3200 Abandoned Orchards and Vineyards",
+      "code": "3200"
+     },
+     {
+      "name": "3300 Vacant With Limited Improvements",
+      "code": "3300"
+     },
+     {
+      "name": "3400 Beaches (Vacant)",
+      "code": "3400"
+     },
+     {
+      "name": "1900 Urban Vacant",
+      "code": "1900"
+     },
+     {
+      "name": "4000 Water",
+      "code": "4000"
+     },
+     {
+      "name": "4100 Water, Undifferentiated",
+      "code": "4100"
+     },
+     {
+      "name": "4200 Harbor Water Facilities",
+      "code": "4200"
+     },
+     {
+      "name": "4300 Marina Water Facilities",
+      "code": "4300"
+     },
+     {
+      "name": "4400 Water Within a Military Installation",
+      "code": "4400"
+     },
+     {
+      "name": "4500 Area of Inundation (High Water)",
+      "code": "4500"
+     },
+     {
+      "name": "7777 Specific Plan",
+      "code": "7777"
+     },
+     {
+      "name": "1700 Under Construction",
+      "code": "1700"
+     },
+     {
+      "name": "8888 Undevelopable or Protected Land",
+      "code": "8888"
+     },
+     {
+      "name": "9999 Unknown",
+      "code": "9999"
+     },
+     {
+      "name": "N/A",
+      "code": " "
+     }
+    ],
+    "mergePolicy": "esriMPTDefaultValue",
+    "splitPolicy": "esriSPTDefaultValue"
+   }
+  },
+  {
+   "name": "ALU20_SRC",
+   "type": "esriFieldTypeString",
+   "alias": "ALU20_SRC",
+   "length": 11,
+   "domain": null
+  },
+  {
+   "name": "GP19_CITY",
+   "type": "esriFieldTypeString",
+   "alias": "GP19_CITY",
+   "length": 57,
+   "domain": null
+  },
+  {
+   "name": "GP19_SCAG",
+   "type": "esriFieldTypeString",
+   "alias": "GP19_SCAG",
+   "length": 4,
+   "domain": {
+    "type": "codedValue",
+    "name": "SCAG_CODE",
+    "description": "DESCRIPTION",
+    "codedValues": [
+     {
+      "name": "1110 Single Family Residential",
+      "code": "1110"
+     },
+     {
+      "name": "1111 High Density Single Family Residential (9 or more DUs/ac)",
+      "code": "1111"
+     },
+     {
+      "name": "1112 Medium Density Single Family Residential (3-8 DUs/ac)",
+      "code": "1112"
+     },
+     {
+      "name": "1113 Low Density Single Family Residential (2 or less DUs/ac)",
+      "code": "1113"
+     },
+     {
+      "name": "1120 Multi-Family Residential",
+      "code": "1120"
+     },
+     {
+      "name": "1121 Mixed Multi-Family Residential",
+      "code": "1121"
+     },
+     {
+      "name": "1122 Duplexes, Triplexes and 2- or 3-Unit Condominiums and Townhouses",
+      "code": "1122"
+     },
+     {
+      "name": "1123 Low-Rise Apartments, Condominiums, and Townhouses",
+      "code": "1123"
+     },
+     {
+      "name": "1124 Medium-Rise Apartments and Condominiums",
+      "code": "1124"
+     },
+     {
+      "name": "1125 High-Rise Apartments and Condominiums",
+      "code": "1125"
+     },
+     {
+      "name": "1130 Mobile Homes and Trailer Parks",
+      "code": "1130"
+     },
+     {
+      "name": "1131 Trailer Parks and Mobile Home Courts, High-Density",
+      "code": "1131"
+     },
+     {
+      "name": "1132 Mobile Home Courts and Subdivisions, Low-Density",
+      "code": "1132"
+     },
+     {
+      "name": "1140 Mixed Residential",
+      "code": "1140"
+     },
+     {
+      "name": "1100 Residential",
+      "code": "1100"
+     },
+     {
+      "name": "1150 Rural Residential",
+      "code": "1150"
+     },
+     {
+      "name": "1210 General Office Use",
+      "code": "1210"
+     },
+     {
+      "name": "1211 Low- and Medium-Rise Major Office Use",
+      "code": "1211"
+     },
+     {
+      "name": "1212 High-Rise Major Office Use",
+      "code": "1212"
+     },
+     {
+      "name": "1213 Skyscrapers",
+      "code": "1213"
+     },
+     {
+      "name": "1200 Commercial and Services",
+      "code": "1200"
+     },
+     {
+      "name": "1220 Retail Stores and Commercial Services",
+      "code": "1220"
+     },
+     {
+      "name": "1221 Regional Shopping Center",
+      "code": "1221"
+     },
+     {
+      "name": "1222 Retail Centers (Non-Strip With Contiguous Interconnected Off-Street Parking)",
+      "code": "1222"
+     },
+     {
+      "name": "1223 Retail Strip Development",
+      "code": "1223"
+     },
+     {
+      "name": "1230 Other Commercial",
+      "code": "1230"
+     },
+     {
+      "name": "1231 Commercial Storage",
+      "code": "1231"
+     },
+     {
+      "name": "1232 Commercial Recreation",
+      "code": "1232"
+     },
+     {
+      "name": "1233 Hotels and Motels",
+      "code": "1233"
+     },
+     {
+      "name": "1240 Public Facilities",
+      "code": "1240"
+     },
+     {
+      "name": "1241 Government Offices",
+      "code": "1241"
+     },
+     {
+      "name": "1242 Police and Sheriff Stations",
+      "code": "1242"
+     },
+     {
+      "name": "1243 Fire Stations",
+      "code": "1243"
+     },
+     {
+      "name": "1244 Major Medical Health Care Facilities",
+      "code": "1244"
+     },
+     {
+      "name": "1245 Religious Facilities",
+      "code": "1245"
+     },
+     {
+      "name": "1246 Other Public Facilities",
+      "code": "1246"
+     },
+     {
+      "name": "1247 Public Parking Facilities",
+      "code": "1247"
+     },
+     {
+      "name": "1250 Special Use Facilities",
+      "code": "1250"
+     },
+     {
+      "name": "1251 Correctional Facilities",
+      "code": "1251"
+     },
+     {
+      "name": "1252 Special Care Facilities",
+      "code": "1252"
+     },
+     {
+      "name": "1253 Other Special Use Facilities",
+      "code": "1253"
+     },
+     {
+      "name": "1260 Educational Institutions",
+      "code": "1260"
+     },
+     {
+      "name": "1261 Pre-Schools/Day Care Centers",
+      "code": "1261"
+     },
+     {
+      "name": "1262 Elementary Schools",
+      "code": "1262"
+     },
+     {
+      "name": "1263 Junior or Intermediate High Schools",
+      "code": "1263"
+     },
+     {
+      "name": "1264 Senior High Schools",
+      "code": "1264"
+     },
+     {
+      "name": "1265 Colleges and Universities",
+      "code": "1265"
+     },
+     {
+      "name": "1266 Trade Schools and Professional Training Facilities",
+      "code": "1266"
+     },
+     {
+      "name": "1270 Military Installations",
+      "code": "1270"
+     },
+     {
+      "name": "1271 Base (Built-up Area)",
+      "code": "1271"
+     },
+     {
+      "name": "1272 Vacant Area",
+      "code": "1272"
+     },
+     {
+      "name": "1273 Air Field",
+      "code": "1273"
+     },
+     {
+      "name": "1274 Former Base (Built-up Area)",
+      "code": "1274"
+     },
+     {
+      "name": "1275 Former Base Vacant Area",
+      "code": "1275"
+     },
+     {
+      "name": "1276 Former Base Air Field",
+      "code": "1276"
+     },
+     {
+      "name": "1300 Industrial",
+      "code": "1300"
+     },
+     {
+      "name": "1310 Light Industrial",
+      "code": "1310"
+     },
+     {
+      "name": "1311 Manufacturing, Assembly, and Industrial Services",
+      "code": "1311"
+     },
+     {
+      "name": "1312 Motion Picture and Television Studio Lots",
+      "code": "1312"
+     },
+     {
+      "name": "1313 Packing Houses and Grain Elevators",
+      "code": "1313"
+     },
+     {
+      "name": "1314 Research and Development",
+      "code": "1314"
+     },
+     {
+      "name": "1320 Heavy Industrial",
+      "code": "1320"
+     },
+     {
+      "name": "1321 Manufacturing",
+      "code": "1321"
+     },
+     {
+      "name": "1322 Petroleum Refining and Processing",
+      "code": "1322"
+     },
+     {
+      "name": "1323 Open Storage",
+      "code": "1323"
+     },
+     {
+      "name": "1324 Major Metal Processing",
+      "code": "1324"
+     },
+     {
+      "name": "1325 Chemical Processing",
+      "code": "1325"
+     },
+     {
+      "name": "1330 Extraction",
+      "code": "1330"
+     },
+     {
+      "name": "1331 Mineral Extraction - Other Than Oil and Gas",
+      "code": "1331"
+     },
+     {
+      "name": "1332 Mineral Extraction - Oil and Gas",
+      "code": "1332"
+     },
+     {
+      "name": "1340 Wholesaling and Warehousing",
+      "code": "1340"
+     },
+     {
+      "name": "1400 Transportation, Communications, and Utilities",
+      "code": "1400"
+     },
+     {
+      "name": "1410 Transportation",
+      "code": "1410"
+     },
+     {
+      "name": "1411 Airports",
+      "code": "1411"
+     },
+     {
+      "name": "1412 Railroads",
+      "code": "1412"
+     },
+     {
+      "name": "1413 Freeways and Major Roads",
+      "code": "1413"
+     },
+     {
+      "name": "1414 Park-and-Ride Lots",
+      "code": "1414"
+     },
+     {
+      "name": "1415 Bus Terminals and Yards",
+      "code": "1415"
+     },
+     {
+      "name": "1416 Truck Terminals",
+      "code": "1416"
+     },
+     {
+      "name": "1417 Harbor Facilities",
+      "code": "1417"
+     },
+     {
+      "name": "1418 Navigation Aids",
+      "code": "1418"
+     },
+     {
+      "name": "1420 Communication Facilities",
+      "code": "1420"
+     },
+     {
+      "name": "1430 Utility Facilities",
+      "code": "1430"
+     },
+     {
+      "name": "1431 Electrical Power Facilities",
+      "code": "1431"
+     },
+     {
+      "name": "1432 Solid Waste Disposal Facilities",
+      "code": "1432"
+     },
+     {
+      "name": "1433 Liquid Waste Disposal Facilities",
+      "code": "1433"
+     },
+     {
+      "name": "1434 Water Storage Facilities",
+      "code": "1434"
+     },
+     {
+      "name": "1435 Natural Gas and Petroleum Facilities",
+      "code": "1435"
+     },
+     {
+      "name": "1436 Water Transfer Facilities",
+      "code": "1436"
+     },
+     {
+      "name": "1437 Improved Flood Waterways and Structures",
+      "code": "1437"
+     },
+     {
+      "name": "1438 Mixed Utilities",
+      "code": "1438"
+     },
+     {
+      "name": "1440 Maintenance Yards",
+      "code": "1440"
+     },
+     {
+      "name": "1441 Bus Yards",
+      "code": "1441"
+     },
+     {
+      "name": "1442 Rail Yards",
+      "code": "1442"
+     },
+     {
+      "name": "1450 Mixed Transportation",
+      "code": "1450"
+     },
+     {
+      "name": "1460 Mixed Transportation and Utility",
+      "code": "1460"
+     },
+     {
+      "name": "1500 Mixed Commercial and Industrial",
+      "code": "1500"
+     },
+     {
+      "name": "1600 Mixed Residential and Commercial",
+      "code": "1600"
+     },
+     {
+      "name": "1610 Residential-Oriented Residential/Commercial Mixed Use",
+      "code": "1610"
+     },
+     {
+      "name": "1620 Commercial-Oriented Residential/Commercial Mixed Use",
+      "code": "1620"
+     },
+     {
+      "name": "1800 Open Space and Recreation",
+      "code": "1800"
+     },
+     {
+      "name": "1810 Golf Courses",
+      "code": "1810"
+     },
+     {
+      "name": "1820 Local Parks and Recreation",
+      "code": "1820"
+     },
+     {
+      "name": "1830 Regional Parks and Recreation",
+      "code": "1830"
+     },
+     {
+      "name": "1840 Cemeteries",
+      "code": "1840"
+     },
+     {
+      "name": "1850 Wildlife Preserves and Sanctuaries",
+      "code": "1850"
+     },
+     {
+      "name": "1860 Specimen Gardens and Arboreta",
+      "code": "1860"
+     },
+     {
+      "name": "1870 Beach Parks",
+      "code": "1870"
+     },
+     {
+      "name": "1880 Other Open Space and Recreation",
+      "code": "1880"
+     },
+     {
+      "name": "1890 Off-Street Trails",
+      "code": "1890"
+     },
+     {
+      "name": "2000 Agriculture",
+      "code": "2000"
+     },
+     {
+      "name": "2100 Cropland and Improved Pasture Land",
+      "code": "2100"
+     },
+     {
+      "name": "2110 Irrigated Cropland and Improved Pasture Land",
+      "code": "2110"
+     },
+     {
+      "name": "2120 Non-Irrigated Cropland and Improved Pasture Land",
+      "code": "2120"
+     },
+     {
+      "name": "2200 Orchards and Vineyards",
+      "code": "2200"
+     },
+     {
+      "name": "2300 Nurseries",
+      "code": "2300"
+     },
+     {
+      "name": "2400 Dairy, Intensive Livestock, and Associated Facilities",
+      "code": "2400"
+     },
+     {
+      "name": "2500 Poultry Operations",
+      "code": "2500"
+     },
+     {
+      "name": "2600 Other Agriculture",
+      "code": "2600"
+     },
+     {
+      "name": "2700 Horse Ranches",
+      "code": "2700"
+     },
+     {
+      "name": "3000 Vacant",
+      "code": "3000"
+     },
+     {
+      "name": "3100 Vacant Undifferentiated",
+      "code": "3100"
+     },
+     {
+      "name": "3200 Abandoned Orchards and Vineyards",
+      "code": "3200"
+     },
+     {
+      "name": "3300 Vacant With Limited Improvements",
+      "code": "3300"
+     },
+     {
+      "name": "3400 Beaches (Vacant)",
+      "code": "3400"
+     },
+     {
+      "name": "1900 Urban Vacant",
+      "code": "1900"
+     },
+     {
+      "name": "4000 Water",
+      "code": "4000"
+     },
+     {
+      "name": "4100 Water, Undifferentiated",
+      "code": "4100"
+     },
+     {
+      "name": "4200 Harbor Water Facilities",
+      "code": "4200"
+     },
+     {
+      "name": "4300 Marina Water Facilities",
+      "code": "4300"
+     },
+     {
+      "name": "4400 Water Within a Military Installation",
+      "code": "4400"
+     },
+     {
+      "name": "4500 Area of Inundation (High Water)",
+      "code": "4500"
+     },
+     {
+      "name": "7777 Specific Plan",
+      "code": "7777"
+     },
+     {
+      "name": "1700 Under Construction",
+      "code": "1700"
+     },
+     {
+      "name": "8888 Undevelopable or Protected Land",
+      "code": "8888"
+     },
+     {
+      "name": "9999 Unknown",
+      "code": "9999"
+     },
+     {
+      "name": "N/A",
+      "code": " "
+     }
+    ],
+    "mergePolicy": "esriMPTDefaultValue",
+    "splitPolicy": "esriSPTDefaultValue"
+   }
+  },
+  {
+   "name": "SP19_CITY",
+   "type": "esriFieldTypeString",
+   "alias": "SP19_CITY",
+   "length": 58,
+   "domain": null
+  },
+  {
+   "name": "SP19_SCAG",
+   "type": "esriFieldTypeString",
+   "alias": "SP19_SCAG",
+   "length": 4,
+   "domain": {
+    "type": "codedValue",
+    "name": "SCAG_CODE",
+    "description": "DESCRIPTION",
+    "codedValues": [
+     {
+      "name": "1110 Single Family Residential",
+      "code": "1110"
+     },
+     {
+      "name": "1111 High Density Single Family Residential (9 or more DUs/ac)",
+      "code": "1111"
+     },
+     {
+      "name": "1112 Medium Density Single Family Residential (3-8 DUs/ac)",
+      "code": "1112"
+     },
+     {
+      "name": "1113 Low Density Single Family Residential (2 or less DUs/ac)",
+      "code": "1113"
+     },
+     {
+      "name": "1120 Multi-Family Residential",
+      "code": "1120"
+     },
+     {
+      "name": "1121 Mixed Multi-Family Residential",
+      "code": "1121"
+     },
+     {
+      "name": "1122 Duplexes, Triplexes and 2- or 3-Unit Condominiums and Townhouses",
+      "code": "1122"
+     },
+     {
+      "name": "1123 Low-Rise Apartments, Condominiums, and Townhouses",
+      "code": "1123"
+     },
+     {
+      "name": "1124 Medium-Rise Apartments and Condominiums",
+      "code": "1124"
+     },
+     {
+      "name": "1125 High-Rise Apartments and Condominiums",
+      "code": "1125"
+     },
+     {
+      "name": "1130 Mobile Homes and Trailer Parks",
+      "code": "1130"
+     },
+     {
+      "name": "1131 Trailer Parks and Mobile Home Courts, High-Density",
+      "code": "1131"
+     },
+     {
+      "name": "1132 Mobile Home Courts and Subdivisions, Low-Density",
+      "code": "1132"
+     },
+     {
+      "name": "1140 Mixed Residential",
+      "code": "1140"
+     },
+     {
+      "name": "1100 Residential",
+      "code": "1100"
+     },
+     {
+      "name": "1150 Rural Residential",
+      "code": "1150"
+     },
+     {
+      "name": "1210 General Office Use",
+      "code": "1210"
+     },
+     {
+      "name": "1211 Low- and Medium-Rise Major Office Use",
+      "code": "1211"
+     },
+     {
+      "name": "1212 High-Rise Major Office Use",
+      "code": "1212"
+     },
+     {
+      "name": "1213 Skyscrapers",
+      "code": "1213"
+     },
+     {
+      "name": "1200 Commercial and Services",
+      "code": "1200"
+     },
+     {
+      "name": "1220 Retail Stores and Commercial Services",
+      "code": "1220"
+     },
+     {
+      "name": "1221 Regional Shopping Center",
+      "code": "1221"
+     },
+     {
+      "name": "1222 Retail Centers (Non-Strip With Contiguous Interconnected Off-Street Parking)",
+      "code": "1222"
+     },
+     {
+      "name": "1223 Retail Strip Development",
+      "code": "1223"
+     },
+     {
+      "name": "1230 Other Commercial",
+      "code": "1230"
+     },
+     {
+      "name": "1231 Commercial Storage",
+      "code": "1231"
+     },
+     {
+      "name": "1232 Commercial Recreation",
+      "code": "1232"
+     },
+     {
+      "name": "1233 Hotels and Motels",
+      "code": "1233"
+     },
+     {
+      "name": "1240 Public Facilities",
+      "code": "1240"
+     },
+     {
+      "name": "1241 Government Offices",
+      "code": "1241"
+     },
+     {
+      "name": "1242 Police and Sheriff Stations",
+      "code": "1242"
+     },
+     {
+      "name": "1243 Fire Stations",
+      "code": "1243"
+     },
+     {
+      "name": "1244 Major Medical Health Care Facilities",
+      "code": "1244"
+     },
+     {
+      "name": "1245 Religious Facilities",
+      "code": "1245"
+     },
+     {
+      "name": "1246 Other Public Facilities",
+      "code": "1246"
+     },
+     {
+      "name": "1247 Public Parking Facilities",
+      "code": "1247"
+     },
+     {
+      "name": "1250 Special Use Facilities",
+      "code": "1250"
+     },
+     {
+      "name": "1251 Correctional Facilities",
+      "code": "1251"
+     },
+     {
+      "name": "1252 Special Care Facilities",
+      "code": "1252"
+     },
+     {
+      "name": "1253 Other Special Use Facilities",
+      "code": "1253"
+     },
+     {
+      "name": "1260 Educational Institutions",
+      "code": "1260"
+     },
+     {
+      "name": "1261 Pre-Schools/Day Care Centers",
+      "code": "1261"
+     },
+     {
+      "name": "1262 Elementary Schools",
+      "code": "1262"
+     },
+     {
+      "name": "1263 Junior or Intermediate High Schools",
+      "code": "1263"
+     },
+     {
+      "name": "1264 Senior High Schools",
+      "code": "1264"
+     },
+     {
+      "name": "1265 Colleges and Universities",
+      "code": "1265"
+     },
+     {
+      "name": "1266 Trade Schools and Professional Training Facilities",
+      "code": "1266"
+     },
+     {
+      "name": "1270 Military Installations",
+      "code": "1270"
+     },
+     {
+      "name": "1271 Base (Built-up Area)",
+      "code": "1271"
+     },
+     {
+      "name": "1272 Vacant Area",
+      "code": "1272"
+     },
+     {
+      "name": "1273 Air Field",
+      "code": "1273"
+     },
+     {
+      "name": "1274 Former Base (Built-up Area)",
+      "code": "1274"
+     },
+     {
+      "name": "1275 Former Base Vacant Area",
+      "code": "1275"
+     },
+     {
+      "name": "1276 Former Base Air Field",
+      "code": "1276"
+     },
+     {
+      "name": "1300 Industrial",
+      "code": "1300"
+     },
+     {
+      "name": "1310 Light Industrial",
+      "code": "1310"
+     },
+     {
+      "name": "1311 Manufacturing, Assembly, and Industrial Services",
+      "code": "1311"
+     },
+     {
+      "name": "1312 Motion Picture and Television Studio Lots",
+      "code": "1312"
+     },
+     {
+      "name": "1313 Packing Houses and Grain Elevators",
+      "code": "1313"
+     },
+     {
+      "name": "1314 Research and Development",
+      "code": "1314"
+     },
+     {
+      "name": "1320 Heavy Industrial",
+      "code": "1320"
+     },
+     {
+      "name": "1321 Manufacturing",
+      "code": "1321"
+     },
+     {
+      "name": "1322 Petroleum Refining and Processing",
+      "code": "1322"
+     },
+     {
+      "name": "1323 Open Storage",
+      "code": "1323"
+     },
+     {
+      "name": "1324 Major Metal Processing",
+      "code": "1324"
+     },
+     {
+      "name": "1325 Chemical Processing",
+      "code": "1325"
+     },
+     {
+      "name": "1330 Extraction",
+      "code": "1330"
+     },
+     {
+      "name": "1331 Mineral Extraction - Other Than Oil and Gas",
+      "code": "1331"
+     },
+     {
+      "name": "1332 Mineral Extraction - Oil and Gas",
+      "code": "1332"
+     },
+     {
+      "name": "1340 Wholesaling and Warehousing",
+      "code": "1340"
+     },
+     {
+      "name": "1400 Transportation, Communications, and Utilities",
+      "code": "1400"
+     },
+     {
+      "name": "1410 Transportation",
+      "code": "1410"
+     },
+     {
+      "name": "1411 Airports",
+      "code": "1411"
+     },
+     {
+      "name": "1412 Railroads",
+      "code": "1412"
+     },
+     {
+      "name": "1413 Freeways and Major Roads",
+      "code": "1413"
+     },
+     {
+      "name": "1414 Park-and-Ride Lots",
+      "code": "1414"
+     },
+     {
+      "name": "1415 Bus Terminals and Yards",
+      "code": "1415"
+     },
+     {
+      "name": "1416 Truck Terminals",
+      "code": "1416"
+     },
+     {
+      "name": "1417 Harbor Facilities",
+      "code": "1417"
+     },
+     {
+      "name": "1418 Navigation Aids",
+      "code": "1418"
+     },
+     {
+      "name": "1420 Communication Facilities",
+      "code": "1420"
+     },
+     {
+      "name": "1430 Utility Facilities",
+      "code": "1430"
+     },
+     {
+      "name": "1431 Electrical Power Facilities",
+      "code": "1431"
+     },
+     {
+      "name": "1432 Solid Waste Disposal Facilities",
+      "code": "1432"
+     },
+     {
+      "name": "1433 Liquid Waste Disposal Facilities",
+      "code": "1433"
+     },
+     {
+      "name": "1434 Water Storage Facilities",
+      "code": "1434"
+     },
+     {
+      "name": "1435 Natural Gas and Petroleum Facilities",
+      "code": "1435"
+     },
+     {
+      "name": "1436 Water Transfer Facilities",
+      "code": "1436"
+     },
+     {
+      "name": "1437 Improved Flood Waterways and Structures",
+      "code": "1437"
+     },
+     {
+      "name": "1438 Mixed Utilities",
+      "code": "1438"
+     },
+     {
+      "name": "1440 Maintenance Yards",
+      "code": "1440"
+     },
+     {
+      "name": "1441 Bus Yards",
+      "code": "1441"
+     },
+     {
+      "name": "1442 Rail Yards",
+      "code": "1442"
+     },
+     {
+      "name": "1450 Mixed Transportation",
+      "code": "1450"
+     },
+     {
+      "name": "1460 Mixed Transportation and Utility",
+      "code": "1460"
+     },
+     {
+      "name": "1500 Mixed Commercial and Industrial",
+      "code": "1500"
+     },
+     {
+      "name": "1600 Mixed Residential and Commercial",
+      "code": "1600"
+     },
+     {
+      "name": "1610 Residential-Oriented Residential/Commercial Mixed Use",
+      "code": "1610"
+     },
+     {
+      "name": "1620 Commercial-Oriented Residential/Commercial Mixed Use",
+      "code": "1620"
+     },
+     {
+      "name": "1800 Open Space and Recreation",
+      "code": "1800"
+     },
+     {
+      "name": "1810 Golf Courses",
+      "code": "1810"
+     },
+     {
+      "name": "1820 Local Parks and Recreation",
+      "code": "1820"
+     },
+     {
+      "name": "1830 Regional Parks and Recreation",
+      "code": "1830"
+     },
+     {
+      "name": "1840 Cemeteries",
+      "code": "1840"
+     },
+     {
+      "name": "1850 Wildlife Preserves and Sanctuaries",
+      "code": "1850"
+     },
+     {
+      "name": "1860 Specimen Gardens and Arboreta",
+      "code": "1860"
+     },
+     {
+      "name": "1870 Beach Parks",
+      "code": "1870"
+     },
+     {
+      "name": "1880 Other Open Space and Recreation",
+      "code": "1880"
+     },
+     {
+      "name": "1890 Off-Street Trails",
+      "code": "1890"
+     },
+     {
+      "name": "2000 Agriculture",
+      "code": "2000"
+     },
+     {
+      "name": "2100 Cropland and Improved Pasture Land",
+      "code": "2100"
+     },
+     {
+      "name": "2110 Irrigated Cropland and Improved Pasture Land",
+      "code": "2110"
+     },
+     {
+      "name": "2120 Non-Irrigated Cropland and Improved Pasture Land",
+      "code": "2120"
+     },
+     {
+      "name": "2200 Orchards and Vineyards",
+      "code": "2200"
+     },
+     {
+      "name": "2300 Nurseries",
+      "code": "2300"
+     },
+     {
+      "name": "2400 Dairy, Intensive Livestock, and Associated Facilities",
+      "code": "2400"
+     },
+     {
+      "name": "2500 Poultry Operations",
+      "code": "2500"
+     },
+     {
+      "name": "2600 Other Agriculture",
+      "code": "2600"
+     },
+     {
+      "name": "2700 Horse Ranches",
+      "code": "2700"
+     },
+     {
+      "name": "3000 Vacant",
+      "code": "3000"
+     },
+     {
+      "name": "3100 Vacant Undifferentiated",
+      "code": "3100"
+     },
+     {
+      "name": "3200 Abandoned Orchards and Vineyards",
+      "code": "3200"
+     },
+     {
+      "name": "3300 Vacant With Limited Improvements",
+      "code": "3300"
+     },
+     {
+      "name": "3400 Beaches (Vacant)",
+      "code": "3400"
+     },
+     {
+      "name": "1900 Urban Vacant",
+      "code": "1900"
+     },
+     {
+      "name": "4000 Water",
+      "code": "4000"
+     },
+     {
+      "name": "4100 Water, Undifferentiated",
+      "code": "4100"
+     },
+     {
+      "name": "4200 Harbor Water Facilities",
+      "code": "4200"
+     },
+     {
+      "name": "4300 Marina Water Facilities",
+      "code": "4300"
+     },
+     {
+      "name": "4400 Water Within a Military Installation",
+      "code": "4400"
+     },
+     {
+      "name": "4500 Area of Inundation (High Water)",
+      "code": "4500"
+     },
+     {
+      "name": "7777 Specific Plan",
+      "code": "7777"
+     },
+     {
+      "name": "1700 Under Construction",
+      "code": "1700"
+     },
+     {
+      "name": "8888 Undevelopable or Protected Land",
+      "code": "8888"
+     },
+     {
+      "name": "9999 Unknown",
+      "code": "9999"
+     },
+     {
+      "name": "N/A",
+      "code": " "
+     }
+    ],
+    "mergePolicy": "esriMPTDefaultValue",
+    "splitPolicy": "esriSPTDefaultValue"
+   }
+  },
+  {
+   "name": "ZN19_CITY",
+   "type": "esriFieldTypeString",
+   "alias": "ZN19_CITY",
+   "length": 49,
+   "domain": null
+  },
+  {
+   "name": "ZN19_SCAG",
+   "type": "esriFieldTypeString",
+   "alias": "ZN19_SCAG",
+   "length": 4,
+   "domain": {
+    "type": "codedValue",
+    "name": "SCAG_CODE",
+    "description": "DESCRIPTION",
+    "codedValues": [
+     {
+      "name": "1110 Single Family Residential",
+      "code": "1110"
+     },
+     {
+      "name": "1111 High Density Single Family Residential (9 or more DUs/ac)",
+      "code": "1111"
+     },
+     {
+      "name": "1112 Medium Density Single Family Residential (3-8 DUs/ac)",
+      "code": "1112"
+     },
+     {
+      "name": "1113 Low Density Single Family Residential (2 or less DUs/ac)",
+      "code": "1113"
+     },
+     {
+      "name": "1120 Multi-Family Residential",
+      "code": "1120"
+     },
+     {
+      "name": "1121 Mixed Multi-Family Residential",
+      "code": "1121"
+     },
+     {
+      "name": "1122 Duplexes, Triplexes and 2- or 3-Unit Condominiums and Townhouses",
+      "code": "1122"
+     },
+     {
+      "name": "1123 Low-Rise Apartments, Condominiums, and Townhouses",
+      "code": "1123"
+     },
+     {
+      "name": "1124 Medium-Rise Apartments and Condominiums",
+      "code": "1124"
+     },
+     {
+      "name": "1125 High-Rise Apartments and Condominiums",
+      "code": "1125"
+     },
+     {
+      "name": "1130 Mobile Homes and Trailer Parks",
+      "code": "1130"
+     },
+     {
+      "name": "1131 Trailer Parks and Mobile Home Courts, High-Density",
+      "code": "1131"
+     },
+     {
+      "name": "1132 Mobile Home Courts and Subdivisions, Low-Density",
+      "code": "1132"
+     },
+     {
+      "name": "1140 Mixed Residential",
+      "code": "1140"
+     },
+     {
+      "name": "1100 Residential",
+      "code": "1100"
+     },
+     {
+      "name": "1150 Rural Residential",
+      "code": "1150"
+     },
+     {
+      "name": "1210 General Office Use",
+      "code": "1210"
+     },
+     {
+      "name": "1211 Low- and Medium-Rise Major Office Use",
+      "code": "1211"
+     },
+     {
+      "name": "1212 High-Rise Major Office Use",
+      "code": "1212"
+     },
+     {
+      "name": "1213 Skyscrapers",
+      "code": "1213"
+     },
+     {
+      "name": "1200 Commercial and Services",
+      "code": "1200"
+     },
+     {
+      "name": "1220 Retail Stores and Commercial Services",
+      "code": "1220"
+     },
+     {
+      "name": "1221 Regional Shopping Center",
+      "code": "1221"
+     },
+     {
+      "name": "1222 Retail Centers (Non-Strip With Contiguous Interconnected Off-Street Parking)",
+      "code": "1222"
+     },
+     {
+      "name": "1223 Retail Strip Development",
+      "code": "1223"
+     },
+     {
+      "name": "1230 Other Commercial",
+      "code": "1230"
+     },
+     {
+      "name": "1231 Commercial Storage",
+      "code": "1231"
+     },
+     {
+      "name": "1232 Commercial Recreation",
+      "code": "1232"
+     },
+     {
+      "name": "1233 Hotels and Motels",
+      "code": "1233"
+     },
+     {
+      "name": "1240 Public Facilities",
+      "code": "1240"
+     },
+     {
+      "name": "1241 Government Offices",
+      "code": "1241"
+     },
+     {
+      "name": "1242 Police and Sheriff Stations",
+      "code": "1242"
+     },
+     {
+      "name": "1243 Fire Stations",
+      "code": "1243"
+     },
+     {
+      "name": "1244 Major Medical Health Care Facilities",
+      "code": "1244"
+     },
+     {
+      "name": "1245 Religious Facilities",
+      "code": "1245"
+     },
+     {
+      "name": "1246 Other Public Facilities",
+      "code": "1246"
+     },
+     {
+      "name": "1247 Public Parking Facilities",
+      "code": "1247"
+     },
+     {
+      "name": "1250 Special Use Facilities",
+      "code": "1250"
+     },
+     {
+      "name": "1251 Correctional Facilities",
+      "code": "1251"
+     },
+     {
+      "name": "1252 Special Care Facilities",
+      "code": "1252"
+     },
+     {
+      "name": "1253 Other Special Use Facilities",
+      "code": "1253"
+     },
+     {
+      "name": "1260 Educational Institutions",
+      "code": "1260"
+     },
+     {
+      "name": "1261 Pre-Schools/Day Care Centers",
+      "code": "1261"
+     },
+     {
+      "name": "1262 Elementary Schools",
+      "code": "1262"
+     },
+     {
+      "name": "1263 Junior or Intermediate High Schools",
+      "code": "1263"
+     },
+     {
+      "name": "1264 Senior High Schools",
+      "code": "1264"
+     },
+     {
+      "name": "1265 Colleges and Universities",
+      "code": "1265"
+     },
+     {
+      "name": "1266 Trade Schools and Professional Training Facilities",
+      "code": "1266"
+     },
+     {
+      "name": "1270 Military Installations",
+      "code": "1270"
+     },
+     {
+      "name": "1271 Base (Built-up Area)",
+      "code": "1271"
+     },
+     {
+      "name": "1272 Vacant Area",
+      "code": "1272"
+     },
+     {
+      "name": "1273 Air Field",
+      "code": "1273"
+     },
+     {
+      "name": "1274 Former Base (Built-up Area)",
+      "code": "1274"
+     },
+     {
+      "name": "1275 Former Base Vacant Area",
+      "code": "1275"
+     },
+     {
+      "name": "1276 Former Base Air Field",
+      "code": "1276"
+     },
+     {
+      "name": "1300 Industrial",
+      "code": "1300"
+     },
+     {
+      "name": "1310 Light Industrial",
+      "code": "1310"
+     },
+     {
+      "name": "1311 Manufacturing, Assembly, and Industrial Services",
+      "code": "1311"
+     },
+     {
+      "name": "1312 Motion Picture and Television Studio Lots",
+      "code": "1312"
+     },
+     {
+      "name": "1313 Packing Houses and Grain Elevators",
+      "code": "1313"
+     },
+     {
+      "name": "1314 Research and Development",
+      "code": "1314"
+     },
+     {
+      "name": "1320 Heavy Industrial",
+      "code": "1320"
+     },
+     {
+      "name": "1321 Manufacturing",
+      "code": "1321"
+     },
+     {
+      "name": "1322 Petroleum Refining and Processing",
+      "code": "1322"
+     },
+     {
+      "name": "1323 Open Storage",
+      "code": "1323"
+     },
+     {
+      "name": "1324 Major Metal Processing",
+      "code": "1324"
+     },
+     {
+      "name": "1325 Chemical Processing",
+      "code": "1325"
+     },
+     {
+      "name": "1330 Extraction",
+      "code": "1330"
+     },
+     {
+      "name": "1331 Mineral Extraction - Other Than Oil and Gas",
+      "code": "1331"
+     },
+     {
+      "name": "1332 Mineral Extraction - Oil and Gas",
+      "code": "1332"
+     },
+     {
+      "name": "1340 Wholesaling and Warehousing",
+      "code": "1340"
+     },
+     {
+      "name": "1400 Transportation, Communications, and Utilities",
+      "code": "1400"
+     },
+     {
+      "name": "1410 Transportation",
+      "code": "1410"
+     },
+     {
+      "name": "1411 Airports",
+      "code": "1411"
+     },
+     {
+      "name": "1412 Railroads",
+      "code": "1412"
+     },
+     {
+      "name": "1413 Freeways and Major Roads",
+      "code": "1413"
+     },
+     {
+      "name": "1414 Park-and-Ride Lots",
+      "code": "1414"
+     },
+     {
+      "name": "1415 Bus Terminals and Yards",
+      "code": "1415"
+     },
+     {
+      "name": "1416 Truck Terminals",
+      "code": "1416"
+     },
+     {
+      "name": "1417 Harbor Facilities",
+      "code": "1417"
+     },
+     {
+      "name": "1418 Navigation Aids",
+      "code": "1418"
+     },
+     {
+      "name": "1420 Communication Facilities",
+      "code": "1420"
+     },
+     {
+      "name": "1430 Utility Facilities",
+      "code": "1430"
+     },
+     {
+      "name": "1431 Electrical Power Facilities",
+      "code": "1431"
+     },
+     {
+      "name": "1432 Solid Waste Disposal Facilities",
+      "code": "1432"
+     },
+     {
+      "name": "1433 Liquid Waste Disposal Facilities",
+      "code": "1433"
+     },
+     {
+      "name": "1434 Water Storage Facilities",
+      "code": "1434"
+     },
+     {
+      "name": "1435 Natural Gas and Petroleum Facilities",
+      "code": "1435"
+     },
+     {
+      "name": "1436 Water Transfer Facilities",
+      "code": "1436"
+     },
+     {
+      "name": "1437 Improved Flood Waterways and Structures",
+      "code": "1437"
+     },
+     {
+      "name": "1438 Mixed Utilities",
+      "code": "1438"
+     },
+     {
+      "name": "1440 Maintenance Yards",
+      "code": "1440"
+     },
+     {
+      "name": "1441 Bus Yards",
+      "code": "1441"
+     },
+     {
+      "name": "1442 Rail Yards",
+      "code": "1442"
+     },
+     {
+      "name": "1450 Mixed Transportation",
+      "code": "1450"
+     },
+     {
+      "name": "1460 Mixed Transportation and Utility",
+      "code": "1460"
+     },
+     {
+      "name": "1500 Mixed Commercial and Industrial",
+      "code": "1500"
+     },
+     {
+      "name": "1600 Mixed Residential and Commercial",
+      "code": "1600"
+     },
+     {
+      "name": "1610 Residential-Oriented Residential/Commercial Mixed Use",
+      "code": "1610"
+     },
+     {
+      "name": "1620 Commercial-Oriented Residential/Commercial Mixed Use",
+      "code": "1620"
+     },
+     {
+      "name": "1800 Open Space and Recreation",
+      "code": "1800"
+     },
+     {
+      "name": "1810 Golf Courses",
+      "code": "1810"
+     },
+     {
+      "name": "1820 Local Parks and Recreation",
+      "code": "1820"
+     },
+     {
+      "name": "1830 Regional Parks and Recreation",
+      "code": "1830"
+     },
+     {
+      "name": "1840 Cemeteries",
+      "code": "1840"
+     },
+     {
+      "name": "1850 Wildlife Preserves and Sanctuaries",
+      "code": "1850"
+     },
+     {
+      "name": "1860 Specimen Gardens and Arboreta",
+      "code": "1860"
+     },
+     {
+      "name": "1870 Beach Parks",
+      "code": "1870"
+     },
+     {
+      "name": "1880 Other Open Space and Recreation",
+      "code": "1880"
+     },
+     {
+      "name": "1890 Off-Street Trails",
+      "code": "1890"
+     },
+     {
+      "name": "2000 Agriculture",
+      "code": "2000"
+     },
+     {
+      "name": "2100 Cropland and Improved Pasture Land",
+      "code": "2100"
+     },
+     {
+      "name": "2110 Irrigated Cropland and Improved Pasture Land",
+      "code": "2110"
+     },
+     {
+      "name": "2120 Non-Irrigated Cropland and Improved Pasture Land",
+      "code": "2120"
+     },
+     {
+      "name": "2200 Orchards and Vineyards",
+      "code": "2200"
+     },
+     {
+      "name": "2300 Nurseries",
+      "code": "2300"
+     },
+     {
+      "name": "2400 Dairy, Intensive Livestock, and Associated Facilities",
+      "code": "2400"
+     },
+     {
+      "name": "2500 Poultry Operations",
+      "code": "2500"
+     },
+     {
+      "name": "2600 Other Agriculture",
+      "code": "2600"
+     },
+     {
+      "name": "2700 Horse Ranches",
+      "code": "2700"
+     },
+     {
+      "name": "3000 Vacant",
+      "code": "3000"
+     },
+     {
+      "name": "3100 Vacant Undifferentiated",
+      "code": "3100"
+     },
+     {
+      "name": "3200 Abandoned Orchards and Vineyards",
+      "code": "3200"
+     },
+     {
+      "name": "3300 Vacant With Limited Improvements",
+      "code": "3300"
+     },
+     {
+      "name": "3400 Beaches (Vacant)",
+      "code": "3400"
+     },
+     {
+      "name": "1900 Urban Vacant",
+      "code": "1900"
+     },
+     {
+      "name": "4000 Water",
+      "code": "4000"
+     },
+     {
+      "name": "4100 Water, Undifferentiated",
+      "code": "4100"
+     },
+     {
+      "name": "4200 Harbor Water Facilities",
+      "code": "4200"
+     },
+     {
+      "name": "4300 Marina Water Facilities",
+      "code": "4300"
+     },
+     {
+      "name": "4400 Water Within a Military Installation",
+      "code": "4400"
+     },
+     {
+      "name": "4500 Area of Inundation (High Water)",
+      "code": "4500"
+     },
+     {
+      "name": "7777 Specific Plan",
+      "code": "7777"
+     },
+     {
+      "name": "1700 Under Construction",
+      "code": "1700"
+     },
+     {
+      "name": "8888 Undevelopable or Protected Land",
+      "code": "8888"
+     },
+     {
+      "name": "9999 Unknown",
+      "code": "9999"
+     },
+     {
+      "name": "N/A",
+      "code": " "
+     }
+    ],
+    "mergePolicy": "esriMPTDefaultValue",
+    "splitPolicy": "esriSPTDefaultValue"
+   }
+  },
+  {
+   "name": "SP19_INDEX",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "SP19_INDEX",
+   "domain": null
+  },
+  {
+   "name": "DC_BLT",
+   "type": "esriFieldTypeString",
+   "alias": "DC_BLT",
+   "length": 5,
+   "domain": null
+  },
+  {
+   "name": "BF_SQFT",
+   "type": "esriFieldTypeDouble",
+   "alias": "BF_SQFT",
+   "domain": null
+  },
+  {
+   "name": "PUB_OWN",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PUB_OWN",
+   "domain": null
+  },
+  {
+   "name": "PUB_TYPE",
+   "type": "esriFieldTypeString",
+   "alias": "PUB_TYPE",
+   "length": 18,
+   "domain": null
+  },
+  {
+   "name": "ADU_STATE",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "ADU_STATE",
+   "domain": null
+  },
+  {
+   "name": "SF_UNBUILT",
+   "type": "esriFieldTypeDouble",
+   "alias": "SF_UNBUILT",
+   "domain": null
+  },
+  {
+   "name": "FLOOD",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "FLOOD",
+   "domain": null
+  },
+  {
+   "name": "FIRE",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "FIRE",
+   "domain": null
+  },
+  {
+   "name": "WUI",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "WUI",
+   "domain": null
+  },
+  {
+   "name": "SEARISE36",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "SEARISE36",
+   "domain": null
+  },
+  {
+   "name": "WETLAND",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "WETLAND",
+   "domain": null
+  },
+  {
+   "name": "HABITAT",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "HABITAT",
+   "domain": null
+  },
+  {
+   "name": "CONSERV",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "CONSERV",
+   "domain": null
+  },
+  {
+   "name": "SOAR",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "SOAR",
+   "domain": null
+  },
+  {
+   "name": "CPAD",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "CPAD",
+   "domain": null
+  },
+  {
+   "name": "CCED",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "CCED",
+   "domain": null
+  },
+  {
+   "name": "TRIBAL",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "TRIBAL",
+   "domain": null
+  },
+  {
+   "name": "MILITARY",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "MILITARY",
+   "domain": null
+  },
+  {
+   "name": "FARMLAND",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "FARMLAND",
+   "domain": null
+  },
+  {
+   "name": "GRRA_INDEX",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "GRRA_INDEX",
+   "domain": null
+  },
+  {
+   "name": "UAZ",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "UAZ",
+   "domain": null
+  },
+  {
+   "name": "TCAC_2024",
+   "type": "esriFieldTypeString",
+   "alias": "TCAC_2024",
+   "length": 17,
+   "domain": null
+  },
+  {
+   "name": "PEC_INDEX",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PEC_INDEX",
+   "domain": null
+  },
+  {
+   "name": "SB535_IND",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "SB535_IND",
+   "domain": null
+  },
+  {
+   "name": "PDA_INDEX",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PDA_INDEX",
+   "domain": null
+  },
+  {
+   "name": "PDA_NMA",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PDA_NMA",
+   "domain": null
+  },
+  {
+   "name": "PDA_LC",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PDA_LC",
+   "domain": null
+  },
+  {
+   "name": "PDA_SOI",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PDA_SOI",
+   "domain": null
+  },
+  {
+   "name": "PDA_TPA",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "PDA_TPA",
+   "domain": null
+  },
+  {
+   "name": "APPAREL1MI",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "APPAREL1MI",
+   "domain": null
+  },
+  {
+   "name": "EDUC1MI",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "EDUC1MI",
+   "domain": null
+  },
+  {
+   "name": "GROCERY1MI",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "GROCERY1MI",
+   "domain": null
+  },
+  {
+   "name": "HOSPIT1MI",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "HOSPIT1MI",
+   "domain": null
+  },
+  {
+   "name": "RESTAUR1MI",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "RESTAUR1MI",
+   "domain": null
+  },
+  {
+   "name": "JOBS_30MIN",
+   "type": "esriFieldTypeInteger",
+   "alias": "JOBS_30MIN",
+   "domain": null
+  },
+  {
+   "name": "VMT_TOT",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "VMT_TOT",
+   "domain": null
+  },
+  {
+   "name": "VMT_WORK",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "VMT_WORK",
+   "domain": null
+  },
+  {
+   "name": "JURIS_PLUS",
+   "type": "esriFieldTypeString",
+   "alias": "JURIS_PLUS",
+   "length": 91,
+   "domain": null
+  },
+  {
+   "name": "YEAR",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "YEAR",
+   "domain": null
+  },
+  {
+   "name": "SYM_CODE",
+   "type": "esriFieldTypeString",
+   "alias": "SYM_CODE",
+   "length": 4,
+   "domain": null
+  },
+  {
+   "name": "Shape_Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Length",
+   "domain": null
+  },
+  {
+   "name": "Shape_Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Area",
+   "domain": null
+  },
+  {
+   "name": "JURISDICTION_LABEL",
+   "type": "esriFieldTypeString",
+   "alias": "JURISDICTION_LABEL",
+   "length": 50,
+   "domain": null
+  }
+ ],
+ "geometryField": {
+  "name": "Shape",
+  "type": "esriFieldTypeGeometry",
+  "alias": "Shape"
+ },
+ "indexes": [
+  {
+   "name": "FDO_OBJECTID",
+   "fields": "OBJECTID",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "FDO_Shape",
+   "fields": "Shape",
+   "isAscending": true,
+   "isUnique": false,
+   "description": ""
+  },
+  {
+   "name": "I4APN20",
+   "fields": "APN20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": ""
+  },
+  {
+   "name": "I4CITY_ID",
+   "fields": "CITY_ID",
+   "isAscending": true,
+   "isUnique": false,
+   "description": ""
+  },
+  {
+   "name": "I4COUNTY_ID",
+   "fields": "COUNTY_ID",
+   "isAscending": true,
+   "isUnique": false,
+   "description": ""
+  }
+ ],
+ "subtypes": [],
+ "relationships": [],
+ "canModifyLayer": true,
+ "canScaleSymbols": false,
+ "hasLabels": false,
+ "capabilities": "Query,Map,Data",
+ "maxRecordCount": 2000,
+ "maxSelectionCount": 2000,
+ "supportsStatistics": true,
+ "supportsExceedsLimitStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "isDataVersioned": false,
+ "ownershipBasedAccessControlForFeatures": {"allowOthersToQuery": true},
+ "useStandardizedQueries": true,
+ "supportedSpatialRelationships": [
+  "esriSpatialRelIntersects",
+  "esriSpatialRelContains",
+  "esriSpatialRelCrosses",
+  "esriSpatialRelEnvelopeIntersects",
+  "esriSpatialRelIndexIntersects",
+  "esriSpatialRelOverlaps",
+  "esriSpatialRelTouches",
+  "esriSpatialRelWithin",
+  "esriSpatialRelRelation"
+ ],
+ "advancedQueryCapabilities": {
+  "useStandardizedQueries": true,
+  "supportsStatistics": true,
+  "supportsPercentileStatistics": true,
+  "supportsHavingClause": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsCountDistinct": true,
+  "supportsAdvancedQueryRelated": true,
+  "supportsQueryRelatedPagination": true,
+  "supportsPagination": true,
+  "supportsLod": false,
+  "supportsQueryWithLodSR": false,
+  "supportsTrueCurve": true,
+  "supportsQueryWithDatumTransformation": true,
+  "supportsReturningQueryExtent": true,
+  "supportsQueryWithDistance": true,
+  "supportsSqlExpression": true,
+  "supportsTimeRelation": true,
+  "supportsSqlFormat": false,
+  "supportsQueryAnalytic": false,
+  "supportsCurrentUserQueries": true
+ },
+ "supportsDatumTransformation": true,
+ "dateFieldsTimeReference": {
+  "timeZone": "Pacific Standard Time",
+  "timeZoneIANA": "Etc/GMT+8",
+  "respectsDaylightSaving": false
+ },
+ "preferredTimeReference": null,
+ "datesInUnknownTimezone": false,
+ "hasGeometryProperties": true,
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape_Area",
+  "shapeLengthFieldName": "Shape_Length",
+  "units": "esriMeters",
+  "mapUnits": {"uwkid": 9001}
+ },
+ "hasMetadata": true,
+ "isDataArchived": false,
+ "archivingInfo": {
+  "supportsQueryWithHistoricMoment": false,
+  "startArchivingMoment": -1
+ },
+ "supportsCoordinatesQuantization": true,
+ "supportsDynamicLegends": true,
+ "serviceItemId": "06bd56776148475fb57e70e926df0025"
+}

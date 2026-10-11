@@ -1,2 +1,8 @@
-......... [100%]
-9 passed in 2.21s
+...............                                                          [100%]
+============================== warnings summary ===============================
+docs/data_research/built_environment_20261009/candidate_admission_rebuild_20261010/test_admission.py::test_epa_count_conservation_and_geometry_identity
+  C:\Users\yinch\anaconda3\Lib\site-packages\pyogrio\__init__.py:20: DeprecationWarning: The 'shapely.geos' module is deprecated, and will be removed in a future version. All attributes of 'shapely.geos' are available directly from the top-level 'shapely' namespace (since shapely 2.0.0).
+    import shapely.geos  # noqa: F401
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+15 passed, 1 warning in 4.44s

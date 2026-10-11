@@ -1,0 +1,248 @@
+{
+ "extent": {
+  "ymin": -19155306.869442474,
+  "xmin": -19996005.521793962,
+  "ymax": 19155306.869442545,
+  "xmax": 19959483.137279287,
+  "spatialReference": {
+   "falseM": -100000,
+   "xyTolerance": 0.001,
+   "mUnits": 10000,
+   "zUnits": 10000,
+   "latestWkid": 3857,
+   "zTolerance": 0.001,
+   "wkid": 102100,
+   "xyUnits": 144250437.013153791,
+   "mTolerance": 0.001,
+   "falseX": -21996900.1180436611,
+   "falseY": -30241100,
+   "falseZ": -100000
+  }
+ },
+ "maxRecordCount": 5000,
+ "datesInUnknownTimezone": false,
+ "ownershipBasedAccessControlForFeatures": {"allowOthersToQuery": true},
+ "type": "Feature Layer",
+ "maxSelectionCount": 2000,
+ "subtypes": [],
+ "relationships": [],
+ "cimVersion": "3.7.0",
+ "isDataArchived": false,
+ "id": 0,
+ "archivingInfo": {
+  "startArchivingMoment": -1,
+  "supportsQueryWithHistoricMoment": false
+ },
+ "spatialReference": {
+  "falseM": -100000,
+  "xyTolerance": 0.001,
+  "mUnits": 10000,
+  "zUnits": 10000,
+  "latestWkid": 3857,
+  "zTolerance": 0.001,
+  "wkid": 102100,
+  "xyUnits": 144250437.013153791,
+  "mTolerance": 0.001,
+  "falseX": -21996900.1180436611,
+  "falseY": -30241100,
+  "falseZ": -100000
+ },
+ "subtypeFieldName": null,
+ "supportsStatistics": false,
+ "hasLastEditTime": true,
+ "standardMaxRecordCount": 4000,
+ "isDataVersioned": false,
+ "supportsAdvancedQueries": false,
+ "parentLayer": null,
+ "subLayers": [],
+ "currentVersion": 12.1,
+ "referenceScale": 0,
+ "canScaleSymbols": false,
+ "name": "Zoom In Message",
+ "displayField": "Message",
+ "fields": [
+  {
+   "nullable": false,
+   "domain": null,
+   "name": "FID",
+   "alias": "FID",
+   "type": "esriFieldTypeOID"
+  },
+  {
+   "nullable": false,
+   "domain": null,
+   "name": "Shape",
+   "alias": "Shape",
+   "type": "esriFieldTypeGeometry"
+  },
+  {
+   "nullable": false,
+   "domain": null,
+   "name": "Message",
+   "length": 50,
+   "alias": "Message",
+   "type": "esriFieldTypeString"
+  }
+ ],
+ "maxRecordCountFactor": 1,
+ "dateFieldsTimeReference": null,
+ "preferredTimeReference": null,
+ "useStandardizedQueries": true,
+ "sourceSpatialReference": {
+  "falseM": -100000,
+  "xyTolerance": 8.983152841195215E-9,
+  "mUnits": 10000,
+  "zUnits": 10000,
+  "latestWkid": 4326,
+  "zTolerance": 0.001,
+  "wkid": 4326,
+  "xyUnits": 11258999068426.2383,
+  "mTolerance": 0.001,
+  "falseX": -400,
+  "falseY": -400,
+  "falseZ": -100000
+ },
+ "description": "",
+ "canModifyLayer": true,
+ "supportedSpatialRelationships": [
+  "esriSpatialRelIntersects",
+  "esriSpatialRelContains",
+  "esriSpatialRelCrosses",
+  "esriSpatialRelEnvelopeIntersects",
+  "esriSpatialRelIndexIntersects",
+  "esriSpatialRelOverlaps",
+  "esriSpatialRelTouches",
+  "esriSpatialRelWithin",
+  "esriSpatialRelRelation"
+ ],
+ "standardMaxRecordCountNoGeometry": 32000,
+ "indexes": [{
+  "name": "Shape",
+  "isUnique": false,
+  "description": "",
+  "fields": "Shape",
+  "isAscending": true
+ }],
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "supportsDatumTransformation": true,
+ "minScale": 0,
+ "supportsDynamicLegends": true,
+ "hasAttachments": false,
+ "advancedQueryCapabilities": {
+  "supportsStatistics": false,
+  "supportsSqlExpression": false,
+  "supportsQueryWithResultType": true,
+  "supportsTrueCurve": true,
+  "supportsOrderBy": false,
+  "supportsQueryRelatedPagination": true,
+  "supportsSqlFormat": false,
+  "useStandardizedQueries": true,
+  "supportsLod": false,
+  "supportsQueryWithDistance": true,
+  "supportsQueryWithCacheHint": false,
+  "supportsQueryWithDatumTransformation": true,
+  "supportsCountDistinct": false,
+  "supportsCurrentUserQueries": true,
+  "supportsAdvancedQueryRelated": true,
+  "supportsReturningQueryExtent": true,
+  "supportsQueryWithLodSR": false,
+  "supportsPagination": false,
+  "supportsMaxRecordCountFactor": false,
+  "supportsDistinct": false,
+  "supportsTimeRelation": true,
+  "supportsQueryAnalytic": false,
+  "supportsPercentileStatistics": false,
+  "supportsHavingClause": false
+ },
+ "subtypeField": null,
+ "supportsCoordinatesQuantization": true,
+ "capabilities": "Map,Query,Data",
+ "maxScale": 3000001,
+ "supportsExceedsLimitStatistics": false,
+ "defaultVisibility": true,
+ "hasMetadata": false,
+ "tileMaxRecordCount": 4000,
+ "typeIdField": null,
+ "defaultSubtypeCode": null,
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "hasLabels": true,
+ "drawingInfo": {
+  "renderer": {
+   "symbol": {
+    "outline": {
+     "color": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "width": 1,
+     "style": "esriSLSSolid",
+     "type": "esriSLS"
+    },
+    "color": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "style": "esriSFSSolid",
+    "type": "esriSFS"
+   },
+   "type": "simple"
+  },
+  "scaleSymbols": true,
+  "transparency": 0,
+  "labelingInfo": [{
+   "multiPart": "labelLargest",
+   "symbol": {
+    "backgroundColor": null,
+    "kerning": true,
+    "color": [
+     230,
+     0,
+     0,
+     255
+    ],
+    "yoffset": 0,
+    "xoffset": 0,
+    "haloColor": null,
+    "type": "esriTS",
+    "borderLineColor": null,
+    "borderLineSize": null,
+    "horizontalAlignment": "left",
+    "haloSize": null,
+    "angle": 0,
+    "rightToLeft": false,
+    "verticalAlignment": "baseline",
+    "font": {
+     "size": 20,
+     "weight": "normal",
+     "style": "normal",
+     "family": "Arial",
+     "decoration": "none"
+    }
+   },
+   "stackLabel": false,
+   "maxScale": 0,
+   "allowOverrun": false,
+   "deconflictionStrategy": "dynamic",
+   "priority": 31,
+   "labelExpression": "[Message]",
+   "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+   "removeDuplicates": "all",
+   "removeDuplicatesDistance": 216,
+   "name": "Default",
+   "repeatLabel": false,
+   "minScale": 0,
+   "useCodedValues": true
+  }]
+ },
+ "geometryField": {
+  "name": "Shape",
+  "alias": "Shape",
+  "type": "esriFieldTypeGeometry"
+ },
+ "copyrightText": "",
+ "geometryType": "esriGeometryPolygon"
+}
