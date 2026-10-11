@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "method": "Both actual rendered PNGs inspected with view_image; final convergence figure re-inspected after disabling y-axis numerical offset.",
+  "publication_width_inches": 7.1,
+  "base_font_points": 9,
+  "legend_font_points": 8,
+  "checks": [
+    "All parameter labels, markers, interval endpoints and x-axis labels visible without clipping or overlap",
+    "Zero-reference line and unresolved intervals retained; incomplete controls excluded only from equal-budget plot",
+    "Convergence uses descriptive medians and IQR, not confidence bands",
+    "Seed scatter uses identical completed distinct budgets; attempted-query axis is logarithmic",
+    "Final convergence y-axis displays actual service-loss values rather than a hidden +33 offset",
+    "Figure captions explain units, seed replication and postvalidation status"
+  ],
+  "images": {
+    "PARAMETER_EFFECTS_CONFIRMATION.png": {
+      "pixels": [2130, 1440],
+      "dpi": 299.9994,
+      "sha256": "d6a089edf7981ffc0b5c6a6c14ce9cd321fb25f142126349d3d9e673767979cb"
+    },
+    "CONVERGENCE_AND_ATTEMPTED_COST.png": {
+      "pixels": [2130, 900],
+      "dpi": 299.9994,
+      "sha256": "9a705dbe976dcc9cf1b3ef35b6cc4196b24a93fe17c4280b2f2119fccf374aaf"
+    }
+  },
+  "unrelated_manuscript_figures_modified": false,
+  "print_proof_claimed": false
+}

@@ -1,0 +1,5 @@
+# Diagnostic Figure Captions
+
+**PARAMETER_EFFECTS_CONFIRMATION.png.** Paired final-loss mean effects over 20 new optimizer seeds and Bonferroni-adjusted two-sided 95% intervals within the prospectively declared elite (three contrasts) and ILS (nine contrasts) families. Negative favors the named intervention. Incomplete no-perturbation controls are excluded from this equal-budget graphic, not from the evidence tables. Differences are normalized modeled service-loss hours, not crew wall time or guaranteed customer outage duration. New results are postvalidation exploratory with respect to the paper.
+
+**CONVERGENCE_AND_ATTEMPTED_COST.png.** Left: median and interquartile optimizer-seed range at identical distinct-query checkpoints; shaded ranges are descriptive, not confidence intervals. Right: each completed seed's final objective and attempted calls; logarithmic horizontal axis. A checkpoint is not a new independent search. All local cases used one numerical thread per worker on the same host. CPU, objective and total wall time are reported separately in the evidence tables; duplicate lookup overhead remains visible.

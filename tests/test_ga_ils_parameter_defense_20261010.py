@@ -60,6 +60,17 @@ def test_seed_and_control_units():
     assert not ils_config('ils_no_perturb')['perturb']
 
 
+def test_setup_preserves_registered_case_set_and_existing_authority(monkeypatch,tmp_path):
+    import pytest
+    import la_grid.diagnostics.ga_ils_parameter_defense_20261010 as study
+    assert len(study.SCREEN_CASES)==len(set(study.SCREEN_CASES))==16
+    assert not {'ils_cold','ils_swap_stag2000','ils_swap_no_perturb'}&set(study.SCREEN_CASES)
+    monkeypatch.setattr(study,'OUT',tmp_path)
+    (tmp_path/'PRESERVATION_BASELINE.json').write_text('{}',encoding='utf-8')
+    with pytest.raises(RuntimeError,match='must not be overwritten'):
+        study.setup()
+
+
 def test_operators_preserve_station_identity():
     from la_grid.diagnostics.ga_variant_engine import mutation, crossover
     k = Toy()
@@ -72,3 +83,39 @@ def test_operators_preserve_station_identity():
         for op in ('ordered', 'pmx', 'cycle'):
             for out in crossover(k.ids, other, rng, op):
                 assert len(out)==len(set(out))==12 and set(out)==set(k.ids)
+
+
+def test_elite_intervention_has_same_initial_population_and_rng():
+    k=Toy();inc={'impact-first':tuple(reversed(k.ids))}
+    prior=tuple(random.Random(91).sample(k.ids,12))
+    rows=[ga_search(k,inc,prior,41,1000,{'elites':n})[0] for n in range(4)]
+    assert len({r['initial_population_sha256'] for r in rows})==1
+    assert len({r['post_initializer_rng_sha256'] for r in rows})==1
+    assert all(r['search_best_loss_hr']<=r['initial_best_loss_hr'] for r in rows)
+
+
+def test_no_perturb_is_reported_incomplete_on_finite_flat_neighborhood():
+    class Flat:
+        ids=tuple(str(i) for i in range(6))
+        index={s:i for i,s in enumerate(ids)}
+        def score(self,seq):return -1.
+    k=Flat();inc={'impact-first':k.ids}
+    cfg=ils_config('ils_swap_no_perturb')
+    row=ils_search(k,inc,k.ids,7,40,cfg)
+    assert not row['completed_budget'] and row['distinct_evaluations']<=16
+    assert row['attempted_evaluations']==2400
+    assert row['accepted_moves']==row['restart_count']==0
+    assert row['censoring'] is not None
+
+
+def test_paired_uncertainty_and_bootstrap_use_seed_blocks():
+    from la_grid.diagnostics.ga_ils_parameter_analysis_20261010 import contrast
+    delta=np.array([-.002,.001,-.001,.003,-.004])
+    a=contrast(delta,'a minus b','family',3,'test')
+    b=contrast(delta,'a minus b','family',3,'test')
+    assert a==b and a['n']==5
+    assert abs(a['mean_delta_hr']-delta.mean())<1e-15
+    assert (a['wins'],a['losses'],a['ties'])==(3,2,0)
+    assert a['simultaneous95_low_hr']<=a['t95_low_hr']
+    assert a['simultaneous95_high_hr']>=a['t95_high_hr']
+    assert a['equivalence_margin_hr'] is None

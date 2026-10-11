@@ -1,0 +1,329 @@
+{
+  "status": "RECONCILED",
+  "legacy_file_count": 834,
+  "byte_hash_mismatches": [
+    {
+      "path": "src/la_grid/core/C257H_Project_Main.py",
+      "expected_legacy_sha256": "fc917045a9c1a4f8d89e8ebefa9ead13748a2af1eb4e146edcc37c7a4979e446",
+      "actual_working_sha256": "f1f70952ae2c7cc0767543a32fdc20a8ad1c7d58c76f576e980ca23d00f2facd",
+      "lf_sha256": "fc917045a9c1a4f8d89e8ebefa9ead13748a2af1eb4e146edcc37c7a4979e446",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "fc917045a9c1a4f8d89e8ebefa9ead13748a2af1eb4e146edcc37c7a4979e446",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/IDW.py",
+      "expected_legacy_sha256": "ea30892fafe371e097dcdaa48fca84a3e98ade7df36689cd9734dd333727e86d",
+      "actual_working_sha256": "3bad6f25dd1a71240bd918d6b561e25765daa758ce5bdec93ea006c6f772b304",
+      "lf_sha256": "ea30892fafe371e097dcdaa48fca84a3e98ade7df36689cd9734dd333727e86d",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "ea30892fafe371e097dcdaa48fca84a3e98ade7df36689cd9734dd333727e86d",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/Topology_and_Weight.py",
+      "expected_legacy_sha256": "741fa470f40ceee62ca27e218e9ac12a7b6bc65ce598531cc36106cd86390da6",
+      "actual_working_sha256": "516dd66e3884a8115dcf7ecedd8f87f4e0646a3c42d4d9e77aabae5a491d0dd3",
+      "lf_sha256": "741fa470f40ceee62ca27e218e9ac12a7b6bc65ce598531cc36106cd86390da6",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "741fa470f40ceee62ca27e218e9ac12a7b6bc65ce598531cc36106cd86390da6",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/build_travel_matrices_osm.py",
+      "expected_legacy_sha256": "9d08107331f4a2b00984f57c585afc08b53135028235b03a9be8b3cc136ebb4a",
+      "actual_working_sha256": "a17a0632e88bc6600fca0578a1caf2728d8e68a5f8a09a2b0c511089af01a748",
+      "lf_sha256": "9d08107331f4a2b00984f57c585afc08b53135028235b03a9be8b3cc136ebb4a",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "9d08107331f4a2b00984f57c585afc08b53135028235b03a9be8b3cc136ebb4a",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/legacy_entrypoints/C257H_Project_Main_expanded.py",
+      "expected_legacy_sha256": "5203c4449bf6b795876fa2b37622bbeb8e3f33d4453fc18751d28028673e1af1",
+      "actual_working_sha256": "ba4113318747161fa95f04520031ca6c54a77ac9463a2a7a1e78321eed461acf",
+      "lf_sha256": "5203c4449bf6b795876fa2b37622bbeb8e3f33d4453fc18751d28028673e1af1",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "5203c4449bf6b795876fa2b37622bbeb8e3f33d4453fc18751d28028673e1af1",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/legacy_entrypoints/IDW_expanded.py",
+      "expected_legacy_sha256": "0db06690218979bb9fb0ea826c7b97087d4b4b58925cee89d72f99d03ffe1d1f",
+      "actual_working_sha256": "81aca0bc275e222e193aa1cb61956422d3dedef61431d63be5f39faf6930d5c2",
+      "lf_sha256": "0db06690218979bb9fb0ea826c7b97087d4b4b58925cee89d72f99d03ffe1d1f",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "0db06690218979bb9fb0ea826c7b97087d4b4b58925cee89d72f99d03ffe1d1f",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/legacy_entrypoints/Topology_and_Weight_expanded.py",
+      "expected_legacy_sha256": "874184bc85c38c4b9ad477b671d02b6452b67570484b96a44d025086be2a4ba5",
+      "actual_working_sha256": "daa64cec2179f5b3d3cf39cb78fdf9b708e2bcb013aac44035917afcd9c1b27f",
+      "lf_sha256": "874184bc85c38c4b9ad477b671d02b6452b67570484b96a44d025086be2a4ba5",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "874184bc85c38c4b9ad477b671d02b6452b67570484b96a44d025086be2a4ba5",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/legacy_entrypoints/build_travel_matrices_osm_expanded.py",
+      "expected_legacy_sha256": "84f0ec7a4bb8edf208c688a3e1b7bf3d5de6ac7f63c4bffdc71b285604692c7f",
+      "actual_working_sha256": "ba6068747bd3b830a3f79f4864810e761e6b1744f4807078d136f6de78eee3a5",
+      "lf_sha256": "84f0ec7a4bb8edf208c688a3e1b7bf3d5de6ac7f63c4bffdc71b285604692c7f",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "84f0ec7a4bb8edf208c688a3e1b7bf3d5de6ac7f63c4bffdc71b285604692c7f",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/core/strategy_names.py",
+      "expected_legacy_sha256": "2fa9a4f9b6e8196f2a7f2e8b6dc7d3633cfb61440983f9ec580c6bd641cec870",
+      "actual_working_sha256": "fa6425a2167c0eaee2a70af79c47938534b1376f4564cc1ae5f043ddade68960",
+      "lf_sha256": "dad732354882ae04278bfc2b88b820dec5206cbfbda7ef5a7c1d3753be3ebed6",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "2fa9a4f9b6e8196f2a7f2e8b6dc7d3633cfb61440983f9ec580c6bd641cec870",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/capacity/capacity_screen.py",
+      "expected_legacy_sha256": "c5dac34cdeb61f4ee29021b4c036a729f30e81f5923c8c2cc7bc76edfdbb6caf",
+      "actual_working_sha256": "e37501bf19af7b52648c800205a4b2b79e6b82b4b4e1e29ede55293af77edcdb",
+      "lf_sha256": "ca356df98fe04ef941846db0d526440b2fed7dadfc585e9e81f5041a3af4099d",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "c5dac34cdeb61f4ee29021b4c036a729f30e81f5923c8c2cc7bc76edfdbb6caf",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/capacity/run_sce_capacity_supported_sensitivity.py",
+      "expected_legacy_sha256": "6840781cbab2cb732904b49932f2f0b7b3da4c10790cb8fcb47bdb8b69e52de7",
+      "actual_working_sha256": "2a4a13850fca01b31a519ec416ab60daa6fdb98a850e638021d11b5ef19362e8",
+      "lf_sha256": "6840781cbab2cb732904b49932f2f0b7b3da4c10790cb8fcb47bdb8b69e52de7",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "6840781cbab2cb732904b49932f2f0b7b3da4c10790cb8fcb47bdb8b69e52de7",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/evaluate_mapping_gate_archive.py",
+      "expected_legacy_sha256": "9eb97646cfa02390c70827b3c467f86a0cc4896354f8696568be78576923e331",
+      "actual_working_sha256": "0bef6684f2a1d7a3e1d3ba43994e749a91f1d64cf2df24518f73bf3e2805288a",
+      "lf_sha256": "9eb97646cfa02390c70827b3c467f86a0cc4896354f8696568be78576923e331",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "9eb97646cfa02390c70827b3c467f86a0cc4896354f8696568be78576923e331",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/archive.py",
+      "expected_legacy_sha256": "61598ea74d9ad76f3cf73850a80a271f684aed941a08f980aaad5d5e792a526a",
+      "actual_working_sha256": "09e10e68db60523c7575396905d7f847038a73586420168af42eea7232ef4044",
+      "lf_sha256": "61598ea74d9ad76f3cf73850a80a271f684aed941a08f980aaad5d5e792a526a",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "61598ea74d9ad76f3cf73850a80a271f684aed941a08f980aaad5d5e792a526a",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/offline.py",
+      "expected_legacy_sha256": "686ac5c9883d2038decc2df8fc7fb1784e9779fba1d1c3a24702f322c919b968",
+      "actual_working_sha256": "bde9fae21b22eb8ed49c3be6e29f4b6aa2e5bcf6ab7b7e6416d15aac82ef7a3f",
+      "lf_sha256": "686ac5c9883d2038decc2df8fc7fb1784e9779fba1d1c3a24702f322c919b968",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "686ac5c9883d2038decc2df8fc7fb1784e9779fba1d1c3a24702f322c919b968",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/results.py",
+      "expected_legacy_sha256": "4704d9d9ca5f2f38279fc039e4bc536b5135a6d33a7e94bce618a516b8892810",
+      "actual_working_sha256": "c87a304c17284b850dbc9e22b5637c52e5d7e747e87cb57db19306b42834f143",
+      "lf_sha256": "4704d9d9ca5f2f38279fc039e4bc536b5135a6d33a7e94bce618a516b8892810",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "4704d9d9ca5f2f38279fc039e4bc536b5135a6d33a7e94bce618a516b8892810",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/schedule.py",
+      "expected_legacy_sha256": "957818fffba71d08827520eb9fd68b2d3e62601206a81f8723526e4fce47002a",
+      "actual_working_sha256": "351e842b51e164019973ac588b9f852682406177640f90236be4be429912c3f9",
+      "lf_sha256": "957818fffba71d08827520eb9fd68b2d3e62601206a81f8723526e4fce47002a",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "957818fffba71d08827520eb9fd68b2d3e62601206a81f8723526e4fce47002a",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/stage7.py",
+      "expected_legacy_sha256": "04cc44a653ec2cfcec9cb375d5bf59b112dca4acb2c042e67e6abf54b086de01",
+      "actual_working_sha256": "23f8772110ca18ab95215edca041bd3957810a34e0634f64406a4f870cfed4bf",
+      "lf_sha256": "04cc44a653ec2cfcec9cb375d5bf59b112dca4acb2c042e67e6abf54b086de01",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "04cc44a653ec2cfcec9cb375d5bf59b112dca4acb2c042e67e6abf54b086de01",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/prepare_capacity_screen.py",
+      "expected_legacy_sha256": "c6856a590ec5c8a71efc5750bf6a0a8bf2e20f00ab347eb688140da92c7cd397",
+      "actual_working_sha256": "21288de0f32deef2c6539d97cff70cce92d7cad4476d52117a8de391be6e47a6",
+      "lf_sha256": "c6856a590ec5c8a71efc5750bf6a0a8bf2e20f00ab347eb688140da92c7cd397",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "c6856a590ec5c8a71efc5750bf6a0a8bf2e20f00ab347eb688140da92c7cd397",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/prepare_mapping_gate_analysis.py",
+      "expected_legacy_sha256": "9a1ae7d49d9195fed6685e75d7aa13fb89f9a0a1378618961c195e10f97dd46d",
+      "actual_working_sha256": "8d8272126d8973a5ed4f944fa8485f6db5120c8d1341300ae72d0565e8e5aa64",
+      "lf_sha256": "9a1ae7d49d9195fed6685e75d7aa13fb89f9a0a1378618961c195e10f97dd46d",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "9a1ae7d49d9195fed6685e75d7aa13fb89f9a0a1378618961c195e10f97dd46d",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_equity_amendment_execute.py",
+      "expected_legacy_sha256": "4ed19cc1d02d54269b9bd7b3024b2122f48f5526e8f674db2d1779ce70935585",
+      "actual_working_sha256": "b94059a241e69ef6213cb8a41ce75418ced428e6704424c7081bb06ffffd36c0",
+      "lf_sha256": "4ed19cc1d02d54269b9bd7b3024b2122f48f5526e8f674db2d1779ce70935585",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "4ed19cc1d02d54269b9bd7b3024b2122f48f5526e8f674db2d1779ce70935585",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_equity_amendment_results.py",
+      "expected_legacy_sha256": "16800b09e62d40d1a6f79432357d0621fab400ee8d7b332debdd9718eb38a8b1",
+      "actual_working_sha256": "952d05ee204a525e22acab922dbece78e8a4b2418aeb031e03aba2d861be59d0",
+      "lf_sha256": "16800b09e62d40d1a6f79432357d0621fab400ee8d7b332debdd9718eb38a8b1",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "16800b09e62d40d1a6f79432357d0621fab400ee8d7b332debdd9718eb38a8b1",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_final_matrix.py",
+      "expected_legacy_sha256": "1fdc14f1fd6243cb34a20de656593108cc1bdcb663d9f2e2d119586570043961",
+      "actual_working_sha256": "6b550d7988bf184f041b4c3172bca17e001291ed0b30311c08e33c009a614910",
+      "lf_sha256": "1fdc14f1fd6243cb34a20de656593108cc1bdcb663d9f2e2d119586570043961",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "1fdc14f1fd6243cb34a20de656593108cc1bdcb663d9f2e2d119586570043961",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_ga_exact_kernel.py",
+      "expected_legacy_sha256": "c4b6d10a4e7813ae484db0c26a37a9d8de5bacd77c657cb9576785373b8bc936",
+      "actual_working_sha256": "be9a00639ce46b99b17a2cabfce3bc57d9b2d354bf7a50c0ce03639c9d0d78de",
+      "lf_sha256": "c4b6d10a4e7813ae484db0c26a37a9d8de5bacd77c657cb9576785373b8bc936",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "c4b6d10a4e7813ae484db0c26a37a9d8de5bacd77c657cb9576785373b8bc936",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_ga_revision.py",
+      "expected_legacy_sha256": "edfd3851cbc593ed95bf48ffba022f9800f9d21102e59b1e1a2a6da11a5d9b5f",
+      "actual_working_sha256": "0ea6dd2e3ea74584ce707a820c8aeb035c712620c3e88ad4c33ecee78d0b7d51",
+      "lf_sha256": "edfd3851cbc593ed95bf48ffba022f9800f9d21102e59b1e1a2a6da11a5d9b5f",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "edfd3851cbc593ed95bf48ffba022f9800f9d21102e59b1e1a2a6da11a5d9b5f",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_mapping.py",
+      "expected_legacy_sha256": "10af67d4e47c867c01ee33096ab2bfbcb1090babe47903fe6eb9cd98f22fd640",
+      "actual_working_sha256": "6ea9d75f051c228495f377d077550ed1b86d606c4a78a22b27710b2cc0678756",
+      "lf_sha256": "10af67d4e47c867c01ee33096ab2bfbcb1090babe47903fe6eb9cd98f22fd640",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "10af67d4e47c867c01ee33096ab2bfbcb1090babe47903fe6eb9cd98f22fd640",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_mapping_gate_robustness.py",
+      "expected_legacy_sha256": "0de9783fd4f03a67f7c541c7a7d74f168497af44d159824f275fe2343d2edb58",
+      "actual_working_sha256": "e776e281d5c8e9b89e6ce565af297c423458dfc07c3a39f852d282a466dd9e4f",
+      "lf_sha256": "0de9783fd4f03a67f7c541c7a7d74f168497af44d159824f275fe2343d2edb58",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "0de9783fd4f03a67f7c541c7a7d74f168497af44d159824f275fe2343d2edb58",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_realization_scheduling.py",
+      "expected_legacy_sha256": "60b25ff0bf99b1acfd0697693f9d3129ec7fb6bd93c63aca2ede393e8b8f5faf",
+      "actual_working_sha256": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22",
+      "lf_sha256": "60b25ff0bf99b1acfd0697693f9d3129ec7fb6bd93c63aca2ede393e8b8f5faf",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "60b25ff0bf99b1acfd0697693f9d3129ec7fb6bd93c63aca2ede393e8b8f5faf",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_source_gate.py",
+      "expected_legacy_sha256": "6e6f0a0269c4b89603d4cfbd4c0d44f3965560aabdee61ced90d7d5b593dbd4a",
+      "actual_working_sha256": "8d325397f42780b485f6ce093a867647eb4faadafe9a134c635f69dd5a804c44",
+      "lf_sha256": "1afb63e18e220e33b8087db4721af1756a641a0b97469a90c1357735e58cb424",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "6e6f0a0269c4b89603d4cfbd4c0d44f3965560aabdee61ced90d7d5b593dbd4a",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_stage7_harmonized.py",
+      "expected_legacy_sha256": "ed381ba6541803ee05491b7009ed6fb9ed896cd5288068333b50e718a4bb614e",
+      "actual_working_sha256": "5e558c0b7b743d53aea9cd9c07285ee47eef36f3ad7c7a9aeb5b0a812b352483",
+      "lf_sha256": "ed381ba6541803ee05491b7009ed6fb9ed896cd5288068333b50e718a4bb614e",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "ed381ba6541803ee05491b7009ed6fb9ed896cd5288068333b50e718a4bb614e",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_vulnerability_first.py",
+      "expected_legacy_sha256": "44c625fc377326da46ec4ab2b8ac91c9ae3b41af695ddad30a4adde8ea3621b3",
+      "actual_working_sha256": "2a2caba4cbfe54ed21109e93d87d8ec790eefe8ebf34b5de61087fe97685f471",
+      "lf_sha256": "44c625fc377326da46ec4ab2b8ac91c9ae3b41af695ddad30a4adde8ea3621b3",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "44c625fc377326da46ec4ab2b8ac91c9ae3b41af695ddad30a4adde8ea3621b3",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/run_stage7_sovi_harmonization.py",
+      "expected_legacy_sha256": "3babb2b9eebf0ca80faa37b39d2567922aa147a2dd3f47de0e5d126d1ca7aba7",
+      "actual_working_sha256": "4577a59dab05eea34d3f551517b0f29e3be35fdf6376d50ad0a868f7ac778f5d",
+      "lf_sha256": "3babb2b9eebf0ca80faa37b39d2567922aa147a2dd3f47de0e5d126d1ca7aba7",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "3babb2b9eebf0ca80faa37b39d2567922aa147a2dd3f47de0e5d126d1ca7aba7",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    },
+    {
+      "path": "src/la_grid/revision/social_vulnerability_measure_review.py",
+      "expected_legacy_sha256": "8143b29e7f6e067c408d68b728c3be2907282c05af037c67a2f5af66e8f1d23d",
+      "actual_working_sha256": "0fa51bceb8272c08eea01177d58a51cb5feee453e5a593f78483619565853082",
+      "lf_sha256": "8143b29e7f6e067c408d68b728c3be2907282c05af037c67a2f5af66e8f1d23d",
+      "line_endings_only": true,
+      "protected_revision_reference_sha256": "8143b29e7f6e067c408d68b728c3be2907282c05af037c67a2f5af66e8f1d23d",
+      "normalized_matches_protected_revision": true,
+      "unchanged_task_git_blob": true
+    }
+  ],
+  "all_mismatches_are_line_endings": true,
+  "current_task_950_snapshot_is_separate": true,
+  "original_files_edited": false
+}

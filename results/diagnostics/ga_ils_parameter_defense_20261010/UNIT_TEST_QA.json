@@ -1,0 +1,53 @@
+{
+  "status": "NEW_TESTS_PASS_WITH_DISCLOSED_LEGACY_EOL_EXCEPTION",
+  "final_ast_parse": {"status": "PASS", "files": 5},
+  "final_focused_rerun": {
+    "passed": 9,
+    "failed": 0,
+    "wall_seconds": 8.42,
+    "command": "python -B -m pytest -q tests/test_ga_ils_parameter_defense_20261010.py --basetemp _ut9"
+  },
+  "new_focused_tests": {
+    "passed": 8,
+    "failed": 0,
+    "wall_seconds": 8.48,
+    "command": "python -B -m pytest -q tests/test_ga_ils_parameter_defense_20261010.py --basetemp _unit8"
+  },
+  "extended_suite": {
+    "passed": 56,
+    "failed": 1,
+    "wall_seconds": 16.27,
+    "files": [
+      "tests/test_ga_ils_parameter_defense_20261010.py",
+      "tests/test_ga_optimization_diagnostics.py",
+      "tests/test_ga_research_continuation_20261009.py",
+      "tests/test_ga_initialization_evidence.py",
+      "tests/test_final_ga_method_candidate.py",
+      "tests/test_r1_source_gate.py",
+      "tests/test_r1_realization_scheduling.py"
+    ],
+    "windows_path_adapter": "Set la_grid.paths.REPO_ROOT to extended-length path before importing test modules; --basetemp _qp2",
+    "failed_test": "test_scientific_authorities_match_this_round_preservation_baseline",
+    "failure": "Old 834-file working-byte snapshot expects LF/mixed-EOL bytes; checkout normalization changes raw byte hash.",
+    "resolution_evidence": "LEGACY_834_BYTE_HASH_RECONCILIATION.json verifies all 834 paths, including original protected working-file references for mixed-EOL cases.",
+    "original_source_or_test_modified": false,
+    "all_tests_passed_claimed": false
+  },
+  "earlier_environmental_attempts": {
+    "initial_extended_attempt": "40 passed, 5 failures: sandbox tempfile replacement, MAX_PATH artifact reads and legacy working-byte hash",
+    "extended_length_retry": "43 passed, 2 failures: long pytest tempfile target and legacy working-byte hash",
+    "short_basetemp_checkpoint_retry": "1 passed in 1.59 seconds",
+    "failed_instrumentation_qa": "FAILED_PARITY_OUTPUT.json records a serializer-only failure after numerical parity; work was counted and bounded parity repeated after nonfinite observational values were serialized as null."
+  },
+  "coverage": [
+    "Setup cannot overwrite the prospective preservation authority or mutate the registered engineering case set",
+    "Original versus instrumented mixed ILS RNG, sequence, loss, attempts, accepted moves and restarts",
+    "Unchanged GA sequence and query observation",
+    "Distinct cache and budget boundary",
+    "Permutation-preserving swap, insertion, inversion, ordered, PMX and cycle operators",
+    "Identical elite-control initial populations and post-initializer RNG states",
+    "Explicit incomplete status for finite no-perturbation neighborhood",
+    "Paired seed-block bootstrap, multiplicity interval containment and deterministic resampling",
+    "Original source gate and realization scheduling regression checks"
+  ]
+}

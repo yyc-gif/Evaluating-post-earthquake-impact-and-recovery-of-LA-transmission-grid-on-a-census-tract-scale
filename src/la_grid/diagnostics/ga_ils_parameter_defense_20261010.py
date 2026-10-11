@@ -29,6 +29,12 @@ BRANCH = 'diagnostics/ga-ils-reviewer-parameter-defense-20261010'
 OUT = R / 'results/diagnostics/ga_ils_parameter_defense_20261010'
 SCREEN = tuple(range(2026101100, 2026101108))
 CONFIRM = tuple(range(2026101200, 2026101220))
+SCREEN_CASES = (
+    'ga_elite0', 'ga_elite1', 'ga_elite2', 'ga_elite3',
+    'ils_mix', 'ils_swap', 'ils_insertion', 'ils_inversion',
+    'ils_stag200', 'ils_stag2000', 'ils_small', 'ils_large',
+    'ils_current', 'ils_no_perturb', 'ils_swap_stag200', 'ils_insertion_stag200',
+)
 ILS_CASES = {
     'ils_mix': {}, 'ils_swap': {'operators': ['swap']},
     'ils_insertion': {'operators': ['insertion']},
@@ -103,7 +109,9 @@ def preservation():
 
 
 def setup():
-    OUT.mkdir(parents=True, exist_ok=True)
+    if lp(OUT / 'PRESERVATION_BASELINE.json').exists():
+        raise RuntimeError('Existing study authority must not be overwritten; use an isolated fresh output area.')
+    lp(OUT).mkdir(parents=True, exist_ok=True)
     paths = list(INPUTS)
     paths += ['Formal_Experiment_20260923/Stage 1 Output_expanded/physical_inputs_2pc50.npz']
     for name in paths:
@@ -116,7 +124,7 @@ def setup():
             hydrate(p)
     save(OUT / 'PRESERVATION_BASELINE.json', preservation())
     design = dict(start=START, branch=BRANCH, screen_seeds=SCREEN, confirmation_seeds=CONFIRM,
-        screen_budget=20000, confirmation_budget=100000, screen_cases=list(GA_CASES)[:4]+list(ILS_CASES)[:-1],
+        screen_budget=20000, confirmation_budget=100000, screen_cases=SCREEN_CASES,
         fixed_confirmation_cases=list(GA_CASES)[:4]+['ils_mix', 'ils_swap', 'ils_insertion', 'ils_inversion', 'ils_current', 'ils_no_perturb'],
         screen_selected_pairs=[['ils_stag200', 'ils_stag2000'], ['ils_small', 'ils_large']],
         selection_rule='lowest pair screen mean; exact tie first listed', cold_cases=['ga_cold', 'ils_cold'],
