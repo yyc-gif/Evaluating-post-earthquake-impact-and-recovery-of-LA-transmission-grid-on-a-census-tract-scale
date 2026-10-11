@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "tests": 26,
+  "result": "26 passed in 9.57s; repeated 26 passed in 9.71s after expanded analysis checks; final 26 passed in 4.77s after verification finalization repair",
+  "test_files": [
+    "tests/test_standalone_ils_20261010.py",
+    "tests/test_r1_source_gate.py",
+    "tests/test_r1_realization_scheduling.py",
+    "tests/test_ga_ils_parameter_defense_20261010.py"
+  ],
+  "timing": "Supplemental checks while main computation runs; initial seven tests and smoke parity passed before main launch. The 92-station replay and explicit horizon-clipping tests were added subsequently without changing search mechanics.",
+  "runtime": "Anaconda Python; PYTHONPATH=src; BLAS/OpenMP threads=1; Windows extended-length REPO_ROOT; pytest basetemp inside isolated worktree",
+  "scientific_evaluator_modified": false,
+  "previous_failing_engineering_attempts": [
+    "Initial unmatched parenthesis repaired before prospective test gate.",
+    "Initial pytest temporary path denied by sandbox; reran with worktree-local basetemp."
+  ]
+}

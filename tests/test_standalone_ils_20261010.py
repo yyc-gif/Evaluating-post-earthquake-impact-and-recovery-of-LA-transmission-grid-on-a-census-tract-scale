@@ -75,6 +75,17 @@ def test_attempt_cap_exact():
     assert d['attempts'] == 60 and len(d['cache']) == 2
 
 
+def test_original_size_92_replay_and_every_cached_permutation():
+    domain = tuple(str(i) for i in range(92))
+    objective = lambda seq: -float(sum((i-int(x))**2 for i, x in enumerate(seq)))
+    cfg = dict(CONFIG, stagnation_attempts=7)
+    full = StandaloneILS(domain, domain, objective, 821, cfg).run(250, checkpoints=())
+    part = StandaloneILS(domain, domain, objective, 821, cfg).run(90, checkpoints=())
+    resumed = StandaloneILS(domain, domain, objective, 821, cfg, state=pickle.loads(pickle.dumps(part))).run(250, checkpoints=())
+    assert stable(full) == stable(resumed)
+    assert all(len(k) == len(set(k)) == 92 and set(k) == set(range(92)) for k in full['cache'])
+
+
 def test_ga_impact_only_and_state_resume(tmp_path):
     cfg = replace(GA_CONFIG, population=10)
     initial = eng.initialize(IDS, {'impact-first': IDS}, random.Random(48), cfg, None)
@@ -89,3 +100,12 @@ def test_ga_impact_only_and_state_resume(tmp_path):
     assert full['cache'] == resumed['cache'] and full['best_sequence'] == resumed['best_sequence']
     for key in ('attempts', 'generation', 'next_index', 'best_seen', 'archive_score', 'population', 'scores'):
         assert full['state'][key] == resumed['state'][key]
+
+
+def test_event_horizon_clipping_including_unrecovered_tail():
+    from la_grid.diagnostics.standalone_ils_analysis_20261010 import restricted_event_loss
+    events = [dict(time_hr=0., effective_service=.2),
+              dict(time_hr=100., effective_service=.5),
+              dict(time_hr=600., effective_service=1.)]
+    assert restricted_event_loss(events, 2800., 480.) == 270.
+    assert restricted_event_loss(events, 2800., 2800.) == 330.
