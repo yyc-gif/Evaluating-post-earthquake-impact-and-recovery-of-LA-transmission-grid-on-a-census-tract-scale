@@ -1,0 +1,13 @@
+{
+  "author": "human user in this chat",
+  "client_date": "2026-10-11",
+  "question": "为避免把旧验证队列的授权转移给新候选，请确认本轮验证范围：是否生成一批新的 2,000 个独立物理实现，配对评估已冻结的纯随机 GA 候选、旧正式 GA 和 Impact-first，并在独立审阅包中更新恢复曲线、人口损失、医院关联损失和公平性结果？",
+  "verbatim_answer": "新的 2,000 个实现；三个固定策略；更新独立审阅包",
+  "candidate_sha256": "edc4ad19f61a6d89d83532c1c92f353243b5d9e7b475c1ad99873227bbfeb99a",
+  "freeze_commit": "2a0b6c3f0aaf3f87c1ab803f8fde8a743c575b48",
+  "no_tuning": true,
+  "no_reselection": true,
+  "no_old_physical_sample_reuse": true,
+  "preserve_original_model_and_formal_legacy_results": true,
+  "new_scope_authorization_not_transferred_from_earlier_cohorts": true
+}
