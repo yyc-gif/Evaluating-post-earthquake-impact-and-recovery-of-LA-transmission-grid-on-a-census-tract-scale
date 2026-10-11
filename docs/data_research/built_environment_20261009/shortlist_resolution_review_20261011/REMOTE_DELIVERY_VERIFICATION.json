@@ -1,0 +1,1103 @@
+{
+  "UTC": "2026-10-11T19:05:04.766256+00:00",
+  "payload_commit": "4b644f8fc3108390b69c8af75c192f0104ff195a",
+  "branch": "analysis/stage7-shortlist-independent-review-20261011",
+  "remote_HEAD_at_verification": "4b644f8fc3108390b69c8af75c192f0104ff195a",
+  "all_pass": true,
+  "files_verified": 121,
+  "bytes_verified": 52742545,
+  "lfs_objects": 61,
+  "lfs_payload_bytes": 51448773,
+  "verification_receipt_and_future_head_receipt_excluded_from_recursive_self_hash": true,
+  "files": [
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/.gitattributes",
+      "lfs": false,
+      "expected_sha256": "54dd020308d5e03ac57da8a104b6488f48b3f415ba17f7f4d6301a459b57693b",
+      "actual_remote_sha256": "54dd020308d5e03ac57da8a104b6488f48b3f415ba17f7f4d6301a459b57693b",
+      "bytes": 50,
+      "actual_remote_bytes": 50,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/.gitignore",
+      "lfs": false,
+      "expected_sha256": "047fcbb6800960cd2406f8df7f1b1881ab17ff48f3d5950e759c884303421a36",
+      "actual_remote_sha256": "047fcbb6800960cd2406f8df7f1b1881ab17ff48f3d5950e759c884303421a36",
+      "bytes": 57,
+      "actual_remote_bytes": 57,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/ACS_BOUNDARY_FIXED_CENTROID_STRESS.csv",
+      "lfs": true,
+      "expected_sha256": "959edc191bcd8e26c24ca79aba54f179efacdf1fc22e4612e53fcdfb6ba86059",
+      "actual_remote_sha256": "959edc191bcd8e26c24ca79aba54f179efacdf1fc22e4612e53fcdfb6ba86059",
+      "bytes": 399,
+      "actual_remote_bytes": 399,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/ACS_CONFIGURATION_REPLICATES.npz",
+      "lfs": true,
+      "expected_sha256": "7d2c87eae54ed00275cf083c81fd6ad8c32ef019bed8e9023231a4b3b66df688",
+      "actual_remote_sha256": "7d2c87eae54ed00275cf083c81fd6ad8c32ef019bed8e9023231a4b3b66df688",
+      "bytes": 2540467,
+      "actual_remote_bytes": 2540467,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/ACS_CONFIGURATION_UNCERTAINTY.csv",
+      "lfs": true,
+      "expected_sha256": "c6e80f18e26efb944aa5e1003bbe3e48798319c86220fe530f321f10518860a7",
+      "actual_remote_sha256": "c6e80f18e26efb944aa5e1003bbe3e48798319c86220fe530f321f10518860a7",
+      "bytes": 561,
+      "actual_remote_bytes": 561,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/ACS_FIXED_MODEL_MEASUREMENT_SENSITIVITY.csv",
+      "lfs": true,
+      "expected_sha256": "a43de70e76d823629b79f268d6171caed4628d56ffb04a2022fd9ca0c3351a4e",
+      "actual_remote_sha256": "a43de70e76d823629b79f268d6171caed4628d56ffb04a2022fd9ca0c3351a4e",
+      "bytes": 10120,
+      "actual_remote_bytes": 10120,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/ASSESSOR_AGE_SUPPORT_SENSITIVITY.csv",
+      "lfs": true,
+      "expected_sha256": "3ec294177c11614b46453b803022a9babe7ee3f29ea0fc8320935badd5be8ea5",
+      "actual_remote_sha256": "3ec294177c11614b46453b803022a9babe7ee3f29ea0fc8320935badd5be8ea5",
+      "bytes": 1172443,
+      "actual_remote_bytes": 1172443,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/BETWEEN_MODEL_COMPARISONS.csv",
+      "lfs": true,
+      "expected_sha256": "34904f1c41d76adf6adc95f3f90075f05493134d45690d6fdf44bd1246a858ff",
+      "actual_remote_sha256": "34904f1c41d76adf6adc95f3f90075f05493134d45690d6fdf44bd1246a858ff",
+      "bytes": 189211,
+      "actual_remote_bytes": 189211,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/BETWEEN_MODEL_CONTINGENCIES.csv",
+      "lfs": true,
+      "expected_sha256": "102e8c8997f224a6a719c9e10b9b232cb24cd85e3c775de12ab229acf1e4e1fe",
+      "actual_remote_sha256": "102e8c8997f224a6a719c9e10b9b232cb24cd85e3c775de12ab229acf1e4e1fe",
+      "bytes": 883231,
+      "actual_remote_bytes": 883231,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/BOUNDED_MODEL_COMPARISON.csv",
+      "lfs": true,
+      "expected_sha256": "e9e706da53dce36c86ba4b9589613aca4a87d62db2900d01f207b3774c5dfe71",
+      "actual_remote_sha256": "e9e706da53dce36c86ba4b9589613aca4a87d62db2900d01f207b3774c5dfe71",
+      "bytes": 4685,
+      "actual_remote_bytes": 4685,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/BOUNDED_RUN_RECORDS.csv",
+      "lfs": true,
+      "expected_sha256": "5d51c82a6c0dda84057bcff0a50f29ddddea33553f762693d5cc701bf057d126",
+      "actual_remote_sha256": "5d51c82a6c0dda84057bcff0a50f29ddddea33553f762693d5cc701bf057d126",
+      "bytes": 59705,
+      "actual_remote_bytes": 59705,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/CANDIDATE_SOURCE_COMPARISON.csv",
+      "lfs": true,
+      "expected_sha256": "7d234d4db71f6cd86794fde0e6378a8a6d07b12fd35cc6fcbcfb9efd149001c8",
+      "actual_remote_sha256": "7d234d4db71f6cd86794fde0e6378a8a6d07b12fd35cc6fcbcfb9efd149001c8",
+      "bytes": 114765,
+      "actual_remote_bytes": 114765,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/CENTROID_PROVENANCE_QA.csv",
+      "lfs": true,
+      "expected_sha256": "e6a6b4f80b543890d0df11d4ed8aea023dce44045424fa22abefdd8cdee07306",
+      "actual_remote_sha256": "e6a6b4f80b543890d0df11d4ed8aea023dce44045424fa22abefdd8cdee07306",
+      "bytes": 15740,
+      "actual_remote_bytes": 15740,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/CLUSTER_PROFILE_VALUES.csv",
+      "lfs": true,
+      "expected_sha256": "094211ff84051c90dc56fd2eabc1d4ef5bc356b473ee164a47dd94757f1644e1",
+      "actual_remote_sha256": "094211ff84051c90dc56fd2eabc1d4ef5bc356b473ee164a47dd94757f1644e1",
+      "bytes": 228452,
+      "actual_remote_bytes": 228452,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/COMMON_SAMPLE_EXCLUSIONS.csv",
+      "lfs": true,
+      "expected_sha256": "443a6644d805f64bc311a6c70519cda3021d0579fcb5bf26160c0ba348153d15",
+      "actual_remote_sha256": "443a6644d805f64bc311a6c70519cda3021d0579fcb5bf26160c0ba348153d15",
+      "bytes": 1490,
+      "actual_remote_bytes": 1490,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/COMPARISON_COMPLETION_QA.json",
+      "lfs": false,
+      "expected_sha256": "fbd3e9cd38f4ddc063e5473c3b86155d312eeae9d86cc768d4246669f3121ddb",
+      "actual_remote_sha256": "fbd3e9cd38f4ddc063e5473c3b86155d312eeae9d86cc768d4246669f3121ddb",
+      "bytes": 417,
+      "actual_remote_bytes": 417,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/CONTROLLED_SHORTLIST_SPECIFICATION.json",
+      "lfs": false,
+      "expected_sha256": "6a576fd628befe8ac317f689d4201e65f0f7ab379c6624d40b79c7a52b240a64",
+      "actual_remote_sha256": "6a576fd628befe8ac317f689d4201e65f0f7ab379c6624d40b79c7a52b240a64",
+      "bytes": 50395,
+      "actual_remote_bytes": 50395,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/COVERAGE_EXCLUDED_COHORT_PROFILES.csv",
+      "lfs": true,
+      "expected_sha256": "d5adced885cc5cbc22954b76417c2a6982a1e442110e81bb6a82cd9982aeb6d1",
+      "actual_remote_sha256": "d5adced885cc5cbc22954b76417c2a6982a1e442110e81bb6a82cd9982aeb6d1",
+      "bytes": 6921,
+      "actual_remote_bytes": 6921,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/COVERAGE_EXCLUDED_GEOIDS.csv",
+      "lfs": true,
+      "expected_sha256": "04a17663a1b150bf447a2bdf6bc30bf463fad251b939c04a902dd769b0da28a2",
+      "actual_remote_sha256": "04a17663a1b150bf447a2bdf6bc30bf463fad251b939c04a902dd769b0da28a2",
+      "bytes": 17135,
+      "actual_remote_bytes": 17135,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/COVERAGE_SAMPLE_SENSITIVITY.csv",
+      "lfs": true,
+      "expected_sha256": "4b9f09a77952638daee79afe489d56f42c930e68a0fbbae33b28b73537435587",
+      "actual_remote_sha256": "4b9f09a77952638daee79afe489d56f42c930e68a0fbbae33b28b73537435587",
+      "bytes": 4107,
+      "actual_remote_bytes": 4107,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/CROSS_SPECIFICATION_PATTERN_AUDIT.csv",
+      "lfs": true,
+      "expected_sha256": "9aeed1d90d4cec6e2d274fe6ba097827bcb594cce436b1a51cc665bc388880b3",
+      "actual_remote_sha256": "9aeed1d90d4cec6e2d274fe6ba097827bcb594cce436b1a51cc665bc388880b3",
+      "bytes": 2115,
+      "actual_remote_bytes": 2115,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/D34_REFERENCE_IDENTITY.json",
+      "lfs": false,
+      "expected_sha256": "4af088aa52d2340891797a8795d73ba8977aa3d8a11fbe37a9fbfda1006e5ec1",
+      "actual_remote_sha256": "4af088aa52d2340891797a8795d73ba8977aa3d8a11fbe37a9fbfda1006e5ec1",
+      "bytes": 829,
+      "actual_remote_bytes": 829,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/DATA_ADMISSION_AND_SOURCE_QA.json",
+      "lfs": false,
+      "expected_sha256": "2f208bacc21025b5c80385a4119010e939c0297fa08552dce00fa61d3587927b",
+      "actual_remote_sha256": "2f208bacc21025b5c80385a4119010e939c0297fa08552dce00fa61d3587927b",
+      "bytes": 610,
+      "actual_remote_bytes": 610,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/DOMAIN_COORDINATE_CONTRIBUTIONS.csv",
+      "lfs": true,
+      "expected_sha256": "ea651e3283b0e072ff85c801d9dcb50b4f7862c87146cbda3cab02b1e4517af3",
+      "actual_remote_sha256": "ea651e3283b0e072ff85c801d9dcb50b4f7862c87146cbda3cab02b1e4517af3",
+      "bytes": 31585,
+      "actual_remote_bytes": 31585,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/DOMAIN_WEIGHT_REQUIREMENTS.md",
+      "lfs": false,
+      "expected_sha256": "91d677c3891cd4e95158bd711ca435ae346fc2a1d8f52dc3e2160cf57bd31df5",
+      "actual_remote_sha256": "91d677c3891cd4e95158bd711ca435ae346fc2a1d8f52dc3e2160cf57bd31df5",
+      "bytes": 3770,
+      "actual_remote_bytes": 3770,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/EPA_ALLOCATION_SENSITIVITY.csv",
+      "lfs": true,
+      "expected_sha256": "84404ea3e5a7eb6b95eedf03bb73cf52d0a263b36936a9e68ce4034eaf122218",
+      "actual_remote_sha256": "84404ea3e5a7eb6b95eedf03bb73cf52d0a263b36936a9e68ce4034eaf122218",
+      "bytes": 855051,
+      "actual_remote_bytes": 855051,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/EPA_ALLOCATION_SENSITIVITY_SUMMARY.csv",
+      "lfs": true,
+      "expected_sha256": "5d9f09da90e98c60d18d0e4fb9d59f20fc4c4666c45db11866a727bb3f9f11dd",
+      "actual_remote_sha256": "5d9f09da90e98c60d18d0e4fb9d59f20fc4c4666c45db11866a727bb3f9f11dd",
+      "bytes": 1581,
+      "actual_remote_bytes": 1581,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/EXECUTION_LOG.md",
+      "lfs": false,
+      "expected_sha256": "6de0a1b1a9a5ca1bb1035730feb6d3ef86092874b01242191b1f035c8e8bb938",
+      "actual_remote_sha256": "6de0a1b1a9a5ca1bb1035730feb6d3ef86092874b01242191b1f035c8e8bb938",
+      "bytes": 5357,
+      "actual_remote_bytes": 5357,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/FINAL_CANDIDATE_CONSTRUCT_DECISION.md",
+      "lfs": false,
+      "expected_sha256": "0beaf49254c170839abb6e43cc7d14a6dfb3b86417cd1eb532bf97531cf43026",
+      "actual_remote_sha256": "0beaf49254c170839abb6e43cc7d14a6dfb3b86417cd1eb532bf97531cf43026",
+      "bytes": 14189,
+      "actual_remote_bytes": 14189,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/FINAL_SHORTLIST_DISPOSITIONS.csv",
+      "lfs": true,
+      "expected_sha256": "70b09a8672991248d147df1af854c093d587167af43678af38e6c045cf9aadfe",
+      "actual_remote_sha256": "70b09a8672991248d147df1af854c093d587167af43678af38e6c045cf9aadfe",
+      "bytes": 13735,
+      "actual_remote_bytes": 13735,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/FINAL_VARIABLE_RECOMMENDATION.md",
+      "lfs": false,
+      "expected_sha256": "0fb849a4cb27aa75a47012329c508843b3888b52a7e8042b79b1c2d3d87eac90",
+      "actual_remote_sha256": "0fb849a4cb27aa75a47012329c508843b3888b52a7e8042b79b1c2d3d87eac90",
+      "bytes": 10036,
+      "actual_remote_bytes": 10036,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/FIT_EXECUTION_QA.json",
+      "lfs": false,
+      "expected_sha256": "895c9c9f2d9c38de0bbcb99bc76d758082050b79c12b6e54dcfd54476eb34eb9",
+      "actual_remote_sha256": "895c9c9f2d9c38de0bbcb99bc76d758082050b79c12b6e54dcfd54476eb34eb9",
+      "bytes": 528,
+      "actual_remote_bytes": 528,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/FULL_DOMAIN_ACCOUNTING.csv",
+      "lfs": true,
+      "expected_sha256": "e8af487a072631935e8da97356afe91aa2e605c6a118fea63460bb6eda057877",
+      "actual_remote_sha256": "e8af487a072631935e8da97356afe91aa2e605c6a118fea63460bb6eda057877",
+      "bytes": 145886,
+      "actual_remote_bytes": 145886,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/FULL_SEED_STABILITY.csv",
+      "lfs": true,
+      "expected_sha256": "0ac766b48171110ac874527129f077782f34b723666e3adb3beabd9c4cfbfa3e",
+      "actual_remote_sha256": "0ac766b48171110ac874527129f077782f34b723666e3adb3beabd9c4cfbfa3e",
+      "bytes": 76749,
+      "actual_remote_bytes": 76749,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/INCREMENTAL_CONSTRUCT_INFORMATION.csv",
+      "lfs": true,
+      "expected_sha256": "6cb697f4a0cfa16155d15e95cb12d5bb6b789d7b81ba02e4de44b7b93e958df2",
+      "actual_remote_sha256": "6cb697f4a0cfa16155d15e95cb12d5bb6b789d7b81ba02e4de44b7b93e958df2",
+      "bytes": 3956,
+      "actual_remote_bytes": 3956,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/INDEPENDENT_COMPARISON_CHECKS.csv",
+      "lfs": true,
+      "expected_sha256": "d9a351fd2b713150a810f0db4e2e01641a6874ededeb4ccc99fcfaec5cfeb99d",
+      "actual_remote_sha256": "d9a351fd2b713150a810f0db4e2e01641a6874ededeb4ccc99fcfaec5cfeb99d",
+      "bytes": 1226,
+      "actual_remote_bytes": 1226,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/INDEPENDENT_FIT_CHECKS.csv",
+      "lfs": true,
+      "expected_sha256": "5530dc9c22154862deabee53e05f38dc94a5a6723caa51d33363bbe1b2c7489d",
+      "actual_remote_sha256": "5530dc9c22154862deabee53e05f38dc94a5a6723caa51d33363bbe1b2c7489d",
+      "bytes": 11646,
+      "actual_remote_bytes": 11646,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/INDEPENDENT_REVIEW_QA.json",
+      "lfs": false,
+      "expected_sha256": "1ffe42ea3d53b64cd5a1134e35522fed60ebfa9025c8851dfde8fcb1efafcb49",
+      "actual_remote_sha256": "1ffe42ea3d53b64cd5a1134e35522fed60ebfa9025c8851dfde8fcb1efafcb49",
+      "bytes": 1044,
+      "actual_remote_bytes": 1044,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/INDEPENDENT_SOURCE_DIFFERENCES.csv",
+      "lfs": true,
+      "expected_sha256": "0922257bfacbcedca3ee04f3d4169661680acac1efeba39c84faeebbf0c23c3c",
+      "actual_remote_sha256": "0922257bfacbcedca3ee04f3d4169661680acac1efeba39c84faeebbf0c23c3c",
+      "bytes": 1165,
+      "actual_remote_bytes": 1165,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/INDEPENDENT_SUPPORT_REVIEW.csv",
+      "lfs": true,
+      "expected_sha256": "0fa08d598325a768a0f7c8101c952b1d9b592951ec7d4e2139a26ceca9585cd2",
+      "actual_remote_sha256": "0fa08d598325a768a0f7c8101c952b1d9b592951ec7d4e2139a26ceca9585cd2",
+      "bytes": 318,
+      "actual_remote_bytes": 318,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/INPUT_HASHES.json",
+      "lfs": false,
+      "expected_sha256": "ee25a56b96824d69ee11b278e658729e0416bea77f3aec279c6c82c117c3aa9f",
+      "actual_remote_sha256": "ee25a56b96824d69ee11b278e658729e0416bea77f3aec279c6c82c117c3aa9f",
+      "bytes": 32510,
+      "actual_remote_bytes": 32510,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/MEASUREMENT_COHORT_QA.json",
+      "lfs": false,
+      "expected_sha256": "59f5647ba858ac5a1aa593ac15a9c2cbee0e2872a01ae2265fb6429fbecd1b28",
+      "actual_remote_sha256": "59f5647ba858ac5a1aa593ac15a9c2cbee0e2872a01ae2265fb6429fbecd1b28",
+      "bytes": 394,
+      "actual_remote_bytes": 394,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/MEASUREMENT_GATE.md",
+      "lfs": false,
+      "expected_sha256": "6b4d2bb010f3eb0cd36e32bd221e1081cd550f38f8c75e8dc3196dd34f46293e",
+      "actual_remote_sha256": "6b4d2bb010f3eb0cd36e32bd221e1081cd550f38f8c75e8dc3196dd34f46293e",
+      "bytes": 3479,
+      "actual_remote_bytes": 3479,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/MINORITY_CLASS_STABILITY.csv",
+      "lfs": true,
+      "expected_sha256": "feaf0ac87d6232acad61d15dbcceba2dc1ee2e2830fe8dce0b6b2c45172db221",
+      "actual_remote_sha256": "feaf0ac87d6232acad61d15dbcceba2dc1ee2e2830fe8dce0b6b2c45172db221",
+      "bytes": 13481,
+      "actual_remote_bytes": 13481,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/OFFICIAL_LINEAGE_VERIFICATION.json",
+      "lfs": false,
+      "expected_sha256": "ec5e1ad0f027e2c63b6b83931568f22003e36fc9f5aa566824c92993b2888f23",
+      "actual_remote_sha256": "ec5e1ad0f027e2c63b6b83931568f22003e36fc9f5aa566824c92993b2888f23",
+      "bytes": 7245,
+      "actual_remote_bytes": 7245,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/OUTPUT_HASHES.csv",
+      "lfs": true,
+      "expected_sha256": "740fbaa37a32163d96ad1b9331508f3ca3ac5bc7ced0785a6da78242f17435c2",
+      "actual_remote_sha256": "740fbaa37a32163d96ad1b9331508f3ca3ac5bc7ced0785a6da78242f17435c2",
+      "bytes": 12127,
+      "actual_remote_bytes": 12127,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/PAIRED_MEASUREMENT_DIFFERENCES.csv",
+      "lfs": true,
+      "expected_sha256": "2c5fe8d426b742f9084b72a0652296ec4c9a124c6b97df9a44424d217b8f0179",
+      "actual_remote_sha256": "2c5fe8d426b742f9084b72a0652296ec4c9a124c6b97df9a44424d217b8f0179",
+      "bytes": 2058037,
+      "actual_remote_bytes": 2058037,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/PRESERVATION_AFTER.json",
+      "lfs": false,
+      "expected_sha256": "4b10eb81278cfdb738e47dc533d8187de5b832945bcad7efd88fbcbd2e334ab4",
+      "actual_remote_sha256": "4b10eb81278cfdb738e47dc533d8187de5b832945bcad7efd88fbcbd2e334ab4",
+      "bytes": 141842,
+      "actual_remote_bytes": 141842,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/PRESERVATION_BEFORE.json",
+      "lfs": false,
+      "expected_sha256": "4b10eb81278cfdb738e47dc533d8187de5b832945bcad7efd88fbcbd2e334ab4",
+      "actual_remote_sha256": "4b10eb81278cfdb738e47dc533d8187de5b832945bcad7efd88fbcbd2e334ab4",
+      "bytes": 141842,
+      "actual_remote_bytes": 141842,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/PROFILE_DIRECTION_REVERSALS.csv",
+      "lfs": true,
+      "expected_sha256": "320c1f208c1e212503ddbb68481e375ad3bceb7800b334bc6f9d85c26041d0cd",
+      "actual_remote_sha256": "320c1f208c1e212503ddbb68481e375ad3bceb7800b334bc6f9d85c26041d0cd",
+      "bytes": 3989179,
+      "actual_remote_bytes": 3989179,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/PROFILE_DIRECTION_REVERSAL_SUMMARY.csv",
+      "lfs": true,
+      "expected_sha256": "7056902f9fa3111971e8fe5a73c4a28e7b47c020b8feea964c27bdecbfec1dc9",
+      "actual_remote_sha256": "7056902f9fa3111971e8fe5a73c4a28e7b47c020b8feea964c27bdecbfec1dc9",
+      "bytes": 117799,
+      "actual_remote_bytes": 117799,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/README.md",
+      "lfs": false,
+      "expected_sha256": "8b6f0320eb157409817adad52af04b3e978a25837982a760d0624b0697b08084",
+      "actual_remote_sha256": "8b6f0320eb157409817adad52af04b3e978a25837982a760d0624b0697b08084",
+      "bytes": 3518,
+      "actual_remote_bytes": 3518,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/REUSED_RUN_BYTE_MANIFEST.csv",
+      "lfs": true,
+      "expected_sha256": "55967f995b6ad69f179178daf12ebd080c4a532090e1177246c20f5367a5494d",
+      "actual_remote_sha256": "55967f995b6ad69f179178daf12ebd080c4a532090e1177246c20f5367a5494d",
+      "bytes": 12880,
+      "actual_remote_bytes": 12880,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/REUSE_DERIVATIVE_CHANGE_LEDGER.csv",
+      "lfs": true,
+      "expected_sha256": "af818d14e3f9540e997f406570471b4f90aba3262535b0a2af9369022d5116a1",
+      "actual_remote_sha256": "af818d14e3f9540e997f406570471b4f90aba3262535b0a2af9369022d5116a1",
+      "bytes": 728,
+      "actual_remote_bytes": 728,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/REUSE_PROVENANCE.json",
+      "lfs": false,
+      "expected_sha256": "fce14f42349bb2f046e9968679710c4004c4ed616e60438e5f68e478b68bcdf7",
+      "actual_remote_sha256": "fce14f42349bb2f046e9968679710c4004c4ed616e60438e5f68e478b68bcdf7",
+      "bytes": 683,
+      "actual_remote_bytes": 683,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/REVIEW_PRESERVATION_AFTER.json",
+      "lfs": false,
+      "expected_sha256": "429d2418622d168491450757eb9799dbb3ba2f1326e7ce79b2bf9605b4d91df8",
+      "actual_remote_sha256": "429d2418622d168491450757eb9799dbb3ba2f1326e7ce79b2bf9605b4d91df8",
+      "bytes": 142802,
+      "actual_remote_bytes": 142802,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/REVIEW_PRESERVATION_BEFORE.json",
+      "lfs": false,
+      "expected_sha256": "429d2418622d168491450757eb9799dbb3ba2f1326e7ce79b2bf9605b4d91df8",
+      "actual_remote_sha256": "429d2418622d168491450757eb9799dbb3ba2f1326e7ce79b2bf9605b4d91df8",
+      "bytes": 142802,
+      "actual_remote_bytes": 142802,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/REVIEW_PRESERVATION_FINAL.json",
+      "lfs": false,
+      "expected_sha256": "429d2418622d168491450757eb9799dbb3ba2f1326e7ce79b2bf9605b4d91df8",
+      "actual_remote_sha256": "429d2418622d168491450757eb9799dbb3ba2f1326e7ce79b2bf9605b4d91df8",
+      "bytes": 142802,
+      "actual_remote_bytes": 142802,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/REVIEW_PROTOCOL.md",
+      "lfs": false,
+      "expected_sha256": "ca5027af15317aecd1e4457d889233a173431dcd00416a9a9cdd7dbb593e2082",
+      "actual_remote_sha256": "ca5027af15317aecd1e4457d889233a173431dcd00416a9a9cdd7dbb593e2082",
+      "bytes": 3107,
+      "actual_remote_bytes": 3107,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/RISK_EXPOSURE_WITH_FIXED_PHYSICAL.csv",
+      "lfs": true,
+      "expected_sha256": "42a6bbc2904e8a62ebf5dddc070bafd5e5ccd90781ce785856c8daafadb554ae",
+      "actual_remote_sha256": "42a6bbc2904e8a62ebf5dddc070bafd5e5ccd90781ce785856c8daafadb554ae",
+      "bytes": 1922,
+      "actual_remote_bytes": 1922,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SAME_CONSTRUCT_SOURCE_SUBSTITUTIONS.csv",
+      "lfs": true,
+      "expected_sha256": "ac8c82a8df98d65badc44022789e048d57625df234e1aef6a53396b355d3eba6",
+      "actual_remote_sha256": "ac8c82a8df98d65badc44022789e048d57625df234e1aef6a53396b355d3eba6",
+      "bytes": 1948,
+      "actual_remote_bytes": 1948,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SCAG2020_RECORD_LINEAGE.csv",
+      "lfs": true,
+      "expected_sha256": "9e30d9a117b8d4decb1ee157d7cbaf03433af5e6768b58500439d32c9540848e",
+      "actual_remote_sha256": "9e30d9a117b8d4decb1ee157d7cbaf03433af5e6768b58500439d32c9540848e",
+      "bytes": 2950,
+      "actual_remote_bytes": 2950,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SCAG2020_SOURCE_CODE_LINEAGE.csv",
+      "lfs": true,
+      "expected_sha256": "c6d623b8bf53691a051c091478bc645996734e8351908d3cde1ee70fd1ea5ce7",
+      "actual_remote_sha256": "c6d623b8bf53691a051c091478bc645996734e8351908d3cde1ee70fd1ea5ce7",
+      "bytes": 10499,
+      "actual_remote_bytes": 10499,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SCAG_CLASSIFIED_LAND_SUPPORT_BOUNDS.csv",
+      "lfs": true,
+      "expected_sha256": "69d26389cf95d3c267e494abfb75ccf979a08cc9af7fc99e333859d2985412fc",
+      "actual_remote_sha256": "69d26389cf95d3c267e494abfb75ccf979a08cc9af7fc99e333859d2985412fc",
+      "bytes": 487555,
+      "actual_remote_bytes": 487555,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SHORTLIST_FEATURE_MATRIX.csv",
+      "lfs": true,
+      "expected_sha256": "a3f26ff981f7beba4da11084c333e363deaee1278b9d4366664e09e92af936e6",
+      "actual_remote_sha256": "a3f26ff981f7beba4da11084c333e363deaee1278b9d4366664e09e92af936e6",
+      "bytes": 1266107,
+      "actual_remote_bytes": 1266107,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SHORTLIST_MEASUREMENT_QA.csv",
+      "lfs": true,
+      "expected_sha256": "e21142369c454a37e88f988298c148edc98ed6c60dbf298cb83f09449deb4a86",
+      "actual_remote_sha256": "e21142369c454a37e88f988298c148edc98ed6c60dbf298cb83f09449deb4a86",
+      "bytes": 13361,
+      "actual_remote_bytes": 13361,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SOURCE_CLASSIFICATION_DIFFERENCES.csv",
+      "lfs": true,
+      "expected_sha256": "f120f54c2262ad73cee5f9b082cf4dc97bec02f6f129c83b5a8104fab87766e9",
+      "actual_remote_sha256": "f120f54c2262ad73cee5f9b082cf4dc97bec02f6f129c83b5a8104fab87766e9",
+      "bytes": 1736,
+      "actual_remote_bytes": 1736,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SOURCE_LINEAGE_AND_DEPENDENCIES.md",
+      "lfs": false,
+      "expected_sha256": "6999bf5a3caa1ba5aff49c9cc8edce5b3a6d114f68b4d35e80ccac30738c1a8d",
+      "actual_remote_sha256": "6999bf5a3caa1ba5aff49c9cc8edce5b3a6d114f68b4d35e80ccac30738c1a8d",
+      "bytes": 3238,
+      "actual_remote_bytes": 3238,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SOURCE_SUBSTITUTION_PARTIAL_CORRELATIONS.csv",
+      "lfs": true,
+      "expected_sha256": "fcae8917641661b38b5f00923c372c035ab5c0de7b70dbc58fc58f35d061c30a",
+      "actual_remote_sha256": "fcae8917641661b38b5f00923c372c035ab5c0de7b70dbc58fc58f35d061c30a",
+      "bytes": 1300,
+      "actual_remote_bytes": 1300,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SPATIAL_CLUSTER_MATCHING.csv",
+      "lfs": true,
+      "expected_sha256": "c4b6352d6eb74158dba734db1a9bfb7e3ad614fcbfde90ad701f9a7d452b12b2",
+      "actual_remote_sha256": "c4b6352d6eb74158dba734db1a9bfb7e3ad614fcbfde90ad701f9a7d452b12b2",
+      "bytes": 290631,
+      "actual_remote_bytes": 290631,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SPATIAL_PROFILE_STABILITY.csv",
+      "lfs": true,
+      "expected_sha256": "68aa8b51bd94bafc271dce24bbeaf94265c649e6b3b76bf3c0475e3c46d4f06d",
+      "actual_remote_sha256": "68aa8b51bd94bafc271dce24bbeaf94265c649e6b3b76bf3c0475e3c46d4f06d",
+      "bytes": 10235244,
+      "actual_remote_bytes": 10235244,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/SPATIAL_RAW_CONTINGENCIES.csv",
+      "lfs": true,
+      "expected_sha256": "57845c34743dc2572dfce4e02fa4ab99cfd4b23bf3c3d65c3916fa91683078c8",
+      "actual_remote_sha256": "57845c34743dc2572dfce4e02fa4ab99cfd4b23bf3c3d65c3916fa91683078c8",
+      "bytes": 327331,
+      "actual_remote_bytes": 327331,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/TEST_RECEIPT.json",
+      "lfs": false,
+      "expected_sha256": "5a24b9a7f947d1453b7875bbd4b0574ace4e74f8259880f30f6077f5a610bc53",
+      "actual_remote_sha256": "5a24b9a7f947d1453b7875bbd4b0574ace4e74f8259880f30f6077f5a610bc53",
+      "bytes": 1016,
+      "actual_remote_bytes": 1016,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/TRACT_PREDICTIONS.csv",
+      "lfs": true,
+      "expected_sha256": "8baf139e49f4300b3a885b870bb335f4ba5f774c4d9c9ec5dd61e5ba6fd0ab8c",
+      "actual_remote_sha256": "8baf139e49f4300b3a885b870bb335f4ba5f774c4d9c9ec5dd61e5ba6fd0ab8c",
+      "bytes": 25075541,
+      "actual_remote_bytes": 25075541,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/additional_measurement.py",
+      "lfs": false,
+      "expected_sha256": "bc13c63b155e86cde0034ecf8b44b29074b4abcb2b9871aaa80bac0bf2206171",
+      "actual_remote_sha256": "bc13c63b155e86cde0034ecf8b44b29074b4abcb2b9871aaa80bac0bf2206171",
+      "bytes": 3753,
+      "actual_remote_bytes": 3753,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/centroid_provenance.py",
+      "lfs": false,
+      "expected_sha256": "5e622ba8c88df9e83c03c7075caf1427adfceb22b71707298fd984e88d04f98e",
+      "actual_remote_sha256": "5e622ba8c88df9e83c03c7075caf1427adfceb22b71707298fd984e88d04f98e",
+      "bytes": 1603,
+      "actual_remote_bytes": 1603,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/common.py",
+      "lfs": false,
+      "expected_sha256": "f6eb7ee6ef8ad9b672c6f3659cb5abc03d9515dbbac935a92926ea965ce08f8a",
+      "actual_remote_sha256": "f6eb7ee6ef8ad9b672c6f3659cb5abc03d9515dbbac935a92926ea965ce08f8a",
+      "bytes": 4014,
+      "actual_remote_bytes": 4014,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/controlled_shortlist.py",
+      "lfs": false,
+      "expected_sha256": "20266a1daee7f17c5f712f89c043f6bbcc5ad78c25ff51b53396907eb2ac1359",
+      "actual_remote_sha256": "20266a1daee7f17c5f712f89c043f6bbcc5ad78c25ff51b53396907eb2ac1359",
+      "bytes": 10757,
+      "actual_remote_bytes": 10757,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/finalize_audit.py",
+      "lfs": false,
+      "expected_sha256": "54c66ed54f5bb684aaf94b2ef41b8ca4d62291434046be4487092c13e5916f68",
+      "actual_remote_sha256": "54c66ed54f5bb684aaf94b2ef41b8ca4d62291434046be4487092c13e5916f68",
+      "bytes": 3891,
+      "actual_remote_bytes": 3891,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/finish_local_verification.py",
+      "lfs": false,
+      "expected_sha256": "0447fdf888348f498601c709956db59cebf494f35c28165b8d53ddd27ad71519",
+      "actual_remote_sha256": "0447fdf888348f498601c709956db59cebf494f35c28165b8d53ddd27ad71519",
+      "bytes": 1397,
+      "actual_remote_bytes": 1397,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/independent_review.py",
+      "lfs": false,
+      "expected_sha256": "277cd7b726915d1d9d7de7ecbaea2c15de43dc8fb927fc216b07c3428a82f507",
+      "actual_remote_sha256": "277cd7b726915d1d9d7de7ecbaea2c15de43dc8fb927fc216b07c3428a82f507",
+      "bytes": 20179,
+      "actual_remote_bytes": 20179,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/measurement_resolution.py",
+      "lfs": false,
+      "expected_sha256": "d18337ee33e14c79b209112457844cfc92035c98ba149bde09c23669ec7fc2b2",
+      "actual_remote_sha256": "d18337ee33e14c79b209112457844cfc92035c98ba149bde09c23669ec7fc2b2",
+      "bytes": 14393,
+      "actual_remote_bytes": 14393,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/publish_review.py",
+      "lfs": false,
+      "expected_sha256": "7c5b6b2e80b00a88af3ad2bf05e6f136d7a8cc9505e379bbfde356879ee2e891",
+      "actual_remote_sha256": "7c5b6b2e80b00a88af3ad2bf05e6f136d7a8cc9505e379bbfde356879ee2e891",
+      "bytes": 6719,
+      "actual_remote_bytes": 6719,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/reused_narratives/DOMAIN_WEIGHT_REQUIREMENTS.md",
+      "lfs": false,
+      "expected_sha256": "24e1f5a59f9be76c11b42534d3dc2580118e121cf9702fe678313a025b30d72d",
+      "actual_remote_sha256": "24e1f5a59f9be76c11b42534d3dc2580118e121cf9702fe678313a025b30d72d",
+      "bytes": 2763,
+      "actual_remote_bytes": 2763,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/reused_narratives/FINAL_CANDIDATE_CONSTRUCT_DECISION.md",
+      "lfs": false,
+      "expected_sha256": "aa10f609aa2938cda773f1bcaa93b80a62e41ae62c68bc45a0200b058bb7e2bd",
+      "actual_remote_sha256": "aa10f609aa2938cda773f1bcaa93b80a62e41ae62c68bc45a0200b058bb7e2bd",
+      "bytes": 10470,
+      "actual_remote_bytes": 10470,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/reused_narratives/FINAL_VARIABLE_RECOMMENDATION.md",
+      "lfs": false,
+      "expected_sha256": "96f06ddc7cdb9608c3b86435ab6e426b61a850e595ea01d2a453e4254f7f6703",
+      "actual_remote_sha256": "96f06ddc7cdb9608c3b86435ab6e426b61a850e595ea01d2a453e4254f7f6703",
+      "bytes": 8497,
+      "actual_remote_bytes": 8497,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/reused_narratives/README.md",
+      "lfs": false,
+      "expected_sha256": "7889df5b576e90272ac2c408e8ae019ebc48446964011932ab3c4dcafb6d5111",
+      "actual_remote_sha256": "7889df5b576e90272ac2c408e8ae019ebc48446964011932ab3c4dcafb6d5111",
+      "bytes": 1977,
+      "actual_remote_bytes": 1977,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/AGE_ACS.json",
+      "lfs": false,
+      "expected_sha256": "197cacd42cecfaf663af25c74560ae07eb6a4b79b1df3b38f285d10c47c2c7e4",
+      "actual_remote_sha256": "197cacd42cecfaf663af25c74560ae07eb6a4b79b1df3b38f285d10c47c2c7e4",
+      "bytes": 18492,
+      "actual_remote_bytes": 18492,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/AGE_ACS.npz",
+      "lfs": true,
+      "expected_sha256": "d56a2fedf015e512540e7b6d0d6c7d9734ab7fb76c1615dc7011124f09f4a40f",
+      "actual_remote_sha256": "d56a2fedf015e512540e7b6d0d6c7d9734ab7fb76c1615dc7011124f09f4a40f",
+      "bytes": 91259,
+      "actual_remote_bytes": 91259,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/AGE_HIST.json",
+      "lfs": false,
+      "expected_sha256": "e35ad5fd39d8fb940f5124bab070e3c0d2bfdd7781310b5763c3f56cdbda9888",
+      "actual_remote_sha256": "e35ad5fd39d8fb940f5124bab070e3c0d2bfdd7781310b5763c3f56cdbda9888",
+      "bytes": 18511,
+      "actual_remote_bytes": 18511,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/AGE_HIST.npz",
+      "lfs": true,
+      "expected_sha256": "ff0a4369774f835fca1b34e36f798bfc2919591dcfd7c55aebdf786f53772f28",
+      "actual_remote_sha256": "ff0a4369774f835fca1b34e36f798bfc2919591dcfd7c55aebdf786f53772f28",
+      "bytes": 91754,
+      "actual_remote_bytes": 91754,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE2.json",
+      "lfs": false,
+      "expected_sha256": "29c61cb5f3bdc56d4f284f1a13edc8a629668bb3ae0f68eb9eb93567254ae76a",
+      "actual_remote_sha256": "29c61cb5f3bdc56d4f284f1a13edc8a629668bb3ae0f68eb9eb93567254ae76a",
+      "bytes": 18293,
+      "actual_remote_bytes": 18293,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE2.npz",
+      "lfs": true,
+      "expected_sha256": "4f0393f02e92dc1dd09207a762fcd8b8dc8024d588b9bdaff4bd26d9f976fdf7",
+      "actual_remote_sha256": "4f0393f02e92dc1dd09207a762fcd8b8dc8024d588b9bdaff4bd26d9f976fdf7",
+      "bytes": 83854,
+      "actual_remote_bytes": 83854,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE3.json",
+      "lfs": false,
+      "expected_sha256": "b7240fb5a7b6408f67bf508bcf8997184f97826cafea2932cc642198e3bda7f5",
+      "actual_remote_sha256": "b7240fb5a7b6408f67bf508bcf8997184f97826cafea2932cc642198e3bda7f5",
+      "bytes": 18433,
+      "actual_remote_bytes": 18433,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE3.npz",
+      "lfs": true,
+      "expected_sha256": "c8dcfedd718b9e90162f6bddcd5ff5bec280990ca06e06d89b800119335ceca0",
+      "actual_remote_sha256": "c8dcfedd718b9e90162f6bddcd5ff5bec280990ca06e06d89b800119335ceca0",
+      "bytes": 90125,
+      "actual_remote_bytes": 90125,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE3_AGE_COMMON.json",
+      "lfs": false,
+      "expected_sha256": "ca1c475317e21820b19a8eff2f2643aa8ad983388d9980f016cab544b744092b",
+      "actual_remote_sha256": "ca1c475317e21820b19a8eff2f2643aa8ad983388d9980f016cab544b744092b",
+      "bytes": 18642,
+      "actual_remote_bytes": 18642,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE3_AGE_COMMON.npz",
+      "lfs": true,
+      "expected_sha256": "03cdd4d9155c88e28bdc543fdddce4cfa2049bdb8cbdbd885acc9232598b1618",
+      "actual_remote_sha256": "03cdd4d9155c88e28bdc543fdddce4cfa2049bdb8cbdbd885acc9232598b1618",
+      "bytes": 90200,
+      "actual_remote_bytes": 90200,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE3_coverage.json",
+      "lfs": false,
+      "expected_sha256": "89411d139a4e2f9f8f6e2962e704c1493e821cd65c6552fcd9ab453c0e17a476",
+      "actual_remote_sha256": "89411d139a4e2f9f8f6e2962e704c1493e821cd65c6552fcd9ab453c0e17a476",
+      "bytes": 9762,
+      "actual_remote_bytes": 9762,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE3_coverage.npz",
+      "lfs": true,
+      "expected_sha256": "1ab14eadcfd2cc5c696d04c2e4199d94ab6606b98646a54a68f25e13938c82e1",
+      "actual_remote_sha256": "1ab14eadcfd2cc5c696d04c2e4199d94ab6606b98646a54a68f25e13938c82e1",
+      "bytes": 51902,
+      "actual_remote_bytes": 51902,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE4.json",
+      "lfs": false,
+      "expected_sha256": "8541dfa75b3989ab24f8c6cea9bbb8a030ddcff5e8e7f880d1a9485a081f7abb",
+      "actual_remote_sha256": "8541dfa75b3989ab24f8c6cea9bbb8a030ddcff5e8e7f880d1a9485a081f7abb",
+      "bytes": 18458,
+      "actual_remote_bytes": 18458,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/CORE4.npz",
+      "lfs": true,
+      "expected_sha256": "ed0a1b12c5e3e1559160a294e2f2aa6276096228f628f4fbf638e591868e21be",
+      "actual_remote_sha256": "ed0a1b12c5e3e1559160a294e2f2aa6276096228f628f4fbf638e591868e21be",
+      "bytes": 91586,
+      "actual_remote_bytes": 91586,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/COVER_ALT.json",
+      "lfs": false,
+      "expected_sha256": "0ab5e572a0c40d37e19de5524c5c036648de68c9eb0903dcaff5c59876df3604",
+      "actual_remote_sha256": "0ab5e572a0c40d37e19de5524c5c036648de68c9eb0903dcaff5c59876df3604",
+      "bytes": 18496,
+      "actual_remote_bytes": 18496,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/COVER_ALT.npz",
+      "lfs": true,
+      "expected_sha256": "2f53f9086aca2fe8983216a2756b1e198ebec48224d1771b9e4fee48e37c6084",
+      "actual_remote_sha256": "2f53f9086aca2fe8983216a2756b1e198ebec48224d1771b9e4fee48e37c6084",
+      "bytes": 89617,
+      "actual_remote_bytes": 89617,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HARDEN_EXT.json",
+      "lfs": false,
+      "expected_sha256": "2445c2f0ae714bc30f30a0ba262cb79909c2eee76c243bf74e4316ce6c9d62ef",
+      "actual_remote_sha256": "2445c2f0ae714bc30f30a0ba262cb79909c2eee76c243bf74e4316ce6c9d62ef",
+      "bytes": 18571,
+      "actual_remote_bytes": 18571,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HARDEN_EXT.npz",
+      "lfs": true,
+      "expected_sha256": "67ce97ea5a226b2ccc286f10b270ac85775a1a26e719adf86a7242c86bccf309",
+      "actual_remote_sha256": "67ce97ea5a226b2ccc286f10b270ac85775a1a26e719adf86a7242c86bccf309",
+      "bytes": 90996,
+      "actual_remote_bytes": 90996,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HEIGHT_HIST_EXT.json",
+      "lfs": false,
+      "expected_sha256": "01faeb8dedb9644991874908f0b1379316b42040c0e76452414d055e6e895678",
+      "actual_remote_sha256": "01faeb8dedb9644991874908f0b1379316b42040c0e76452414d055e6e895678",
+      "bytes": 18695,
+      "actual_remote_bytes": 18695,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HEIGHT_HIST_EXT.npz",
+      "lfs": true,
+      "expected_sha256": "9d729da1b51554ed7e98344bfc254dc71d7da1f62e2a43a46f3e764ec8f7ac37",
+      "actual_remote_sha256": "9d729da1b51554ed7e98344bfc254dc71d7da1f62e2a43a46f3e764ec8f7ac37",
+      "bytes": 90892,
+      "actual_remote_bytes": 90892,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HIST.json",
+      "lfs": false,
+      "expected_sha256": "2e8225c284fc93f345787794db5ba8115b23f1ca3cc0349a442ac1cdfd148b89",
+      "actual_remote_sha256": "2e8225c284fc93f345787794db5ba8115b23f1ca3cc0349a442ac1cdfd148b89",
+      "bytes": 18744,
+      "actual_remote_bytes": 18744,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HIST.npz",
+      "lfs": true,
+      "expected_sha256": "c36f4e6972506cf315c773614de2534a05177c8c4f34d922056fea25175fa21a",
+      "actual_remote_sha256": "c36f4e6972506cf315c773614de2534a05177c8c4f34d922056fea25175fa21a",
+      "bytes": 91378,
+      "actual_remote_bytes": 91378,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HOUSING_ALT.json",
+      "lfs": false,
+      "expected_sha256": "0e1f2bbcc8aee3cecee78a67965fabb4593ec2a223084eb3b3e8de773ece61bf",
+      "actual_remote_sha256": "0e1f2bbcc8aee3cecee78a67965fabb4593ec2a223084eb3b3e8de773ece61bf",
+      "bytes": 18558,
+      "actual_remote_bytes": 18558,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/HOUSING_ALT.npz",
+      "lfs": true,
+      "expected_sha256": "e358499d5b53327c148fae068c13651c747fd429be3437c0b01b7d3cc66e195b",
+      "actual_remote_sha256": "e358499d5b53327c148fae068c13651c747fd429be3437c0b01b7d3cc66e195b",
+      "bytes": 90431,
+      "actual_remote_bytes": 90431,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/LAND_ALT.json",
+      "lfs": false,
+      "expected_sha256": "4d4509be12daf28541f2fa478b0172e8d1d767b285ebdefcb30c7d4fed5d81f6",
+      "actual_remote_sha256": "4d4509be12daf28541f2fa478b0172e8d1d767b285ebdefcb30c7d4fed5d81f6",
+      "bytes": 18474,
+      "actual_remote_bytes": 18474,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/run_records/LAND_ALT.npz",
+      "lfs": true,
+      "expected_sha256": "0cebc6fe294536ed7474481e00ebc713e38af346b040236775f9fe5736c48d44",
+      "actual_remote_sha256": "0cebc6fe294536ed7474481e00ebc713e38af346b040236775f9fe5736c48d44",
+      "bytes": 89978,
+      "actual_remote_bytes": 89978,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/source_evidence/EMC_product.txt",
+      "lfs": false,
+      "expected_sha256": "43ea7103d8bb89b1faf3ce1925779c22530df618fc48dff5b0a73d1ae6cc5f5f",
+      "actual_remote_sha256": "43ea7103d8bb89b1faf3ce1925779c22530df618fc48dff5b0a73d1ae6cc5f5f",
+      "bytes": 27915,
+      "actual_remote_bytes": 27915,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/source_evidence/LARIAC4_actual_item.json",
+      "lfs": false,
+      "expected_sha256": "e6fd57bed86bcbc1ebd798d54b35ed6abce3e1d54bfb13b95e8c0bb5b9faa889",
+      "actual_remote_sha256": "e6fd57bed86bcbc1ebd798d54b35ed6abce3e1d54bfb13b95e8c0bb5b9faa889",
+      "bytes": 5768,
+      "actual_remote_bytes": 5768,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/source_evidence/LARIAC4_layer.txt",
+      "lfs": false,
+      "expected_sha256": "de429cd002555a74d8645020cce43d37c8bbdf217d6d1248f1b658da84eb5f93",
+      "actual_remote_sha256": "de429cd002555a74d8645020cce43d37c8bbdf217d6d1248f1b658da84eb5f93",
+      "bytes": 28546,
+      "actual_remote_bytes": 28546,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/source_lineage.py",
+      "lfs": false,
+      "expected_sha256": "8ccbf66d60c314083d610be2183c551f6ab7fd0cc4cd8b4a3ebd133a7e70887a",
+      "actual_remote_sha256": "8ccbf66d60c314083d610be2183c551f6ab7fd0cc4cd8b4a3ebd133a7e70887a",
+      "bytes": 1976,
+      "actual_remote_bytes": 1976,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/summarize_comparisons.py",
+      "lfs": false,
+      "expected_sha256": "f34802222097d7a03bef2777ff0125f48fae9b600451df188c432f7d16aee563",
+      "actual_remote_sha256": "f34802222097d7a03bef2777ff0125f48fae9b600451df188c432f7d16aee563",
+      "bytes": 15173,
+      "actual_remote_bytes": 15173,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/test_shortlist.py",
+      "lfs": false,
+      "expected_sha256": "f1160435d8da9dca2d074cb33616150385e86b0dd6dafe052d75ee79bd68de5a",
+      "actual_remote_sha256": "f1160435d8da9dca2d074cb33616150385e86b0dd6dafe052d75ee79bd68de5a",
+      "bytes": 7781,
+      "actual_remote_bytes": 7781,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/verify_remote_delivery.py",
+      "lfs": false,
+      "expected_sha256": "2175062af8e23591fec29e5b9188e219df91b58343f1527b4eea9bca15efae80",
+      "actual_remote_sha256": "2175062af8e23591fec29e5b9188e219df91b58343f1527b4eea9bca15efae80",
+      "bytes": 2261,
+      "actual_remote_bytes": 2261,
+      "PASS": true
+    },
+    {
+      "path": "docs/data_research/built_environment_20261009/shortlist_resolution_review_20261011/write_decision.py",
+      "lfs": false,
+      "expected_sha256": "86741294c068bb71ae894ae44ce86be0d7c0533886dbd3d6c645c9c902d50f5e",
+      "actual_remote_sha256": "86741294c068bb71ae894ae44ce86be0d7c0533886dbd3d6c645c9c902d50f5e",
+      "bytes": 27248,
+      "actual_remote_bytes": 27248,
+      "PASS": true
+    }
+  ]
+}
