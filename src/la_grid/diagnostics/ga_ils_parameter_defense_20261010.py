@@ -64,9 +64,15 @@ def read(path):
 
 
 def save(path, value):
+    def clean(item):
+        if isinstance(item, dict): return {k: clean(v) for k, v in item.items()}
+        if isinstance(item, (tuple, list)): return [clean(v) for v in item]
+        if isinstance(item, np.generic): item = item.item()
+        if isinstance(item, float) and not np.isfinite(item): return None
+        return item
     path = lp(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, allow_nan=False) + '\n', encoding='utf-8')
+    path.write_text(json.dumps(clean(value), indent=2, allow_nan=False) + '\n', encoding='utf-8')
 
 
 def hydrate(path):

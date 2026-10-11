@@ -1,0 +1,11 @@
+{
+  "status": "SERIALIZATION_FAILURE_AFTER_SUCCESSFUL_NUMERICAL_PARITY",
+  "seed": 2026101000,
+  "distinct_calls": 6000,
+  "loader_setup_calls": 8,
+  "original_ils_wrapper_final_parity_calls": 1,
+  "scientific_search_batches_started": 0,
+  "cause": "Unavailable generation-zero observation fields were NaN; strict JSON serializer rejected them.",
+  "repair": "Serialize unavailable observational measurements as JSON null; no algorithm, objective, random stream or prospective design change.",
+  "repeat_scope": "Short instrumentation QA only; account its costs twice."
+}
