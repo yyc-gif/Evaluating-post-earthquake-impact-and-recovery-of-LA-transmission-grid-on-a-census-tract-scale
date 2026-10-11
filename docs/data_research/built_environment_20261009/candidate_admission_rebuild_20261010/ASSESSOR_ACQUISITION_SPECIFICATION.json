@@ -1,0 +1,32 @@
+{
+  "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Parcel_Data_2021_Table/FeatureServer/0/query",
+  "where": "RollYear = '2022' AND CENTER_LON >= -118.9517211 AND CENTER_LON <= -117.6463739 AND CENTER_LAT >= 32.7500399 AND CENTER_LAT <= 34.8233021",
+  "fields": [
+    "OBJECTID",
+    "AIN",
+    "RollYear",
+    "UseType",
+    "UseCode",
+    "totBuildingDataLines",
+    "YearBuilt",
+    "EffectiveYearBuilt",
+    "SQFTmain",
+    "Units",
+    "ParcelClassification",
+    "isTaxableParcel",
+    "CENTER_LAT",
+    "CENTER_LON"
+  ],
+  "roll_year": 2022,
+  "county_records": 2415879,
+  "bbox_records": 2413689,
+  "personal_attributes_requested": false,
+  "ids_sha256": "1542a2757d8395105f47e7527f9de681c89073c329a6c7dda2513d4c9d5c247e",
+  "chunk_size": 2000,
+  "bounds_wgs84": [
+    -118.951721,
+    32.75004,
+    -117.646374,
+    34.823302
+  ]
+}

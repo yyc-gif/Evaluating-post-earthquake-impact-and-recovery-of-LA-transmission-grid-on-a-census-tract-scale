@@ -1,0 +1,29 @@
+[
+  {
+    "variant": "time_kvp",
+    "url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Fractional-Impervious-Surface-Native_conus_year_data/wcs?service=WCS&version=2.0.1&request=GetCoverage&coverageId=mrlc_Fractional-Impervious-Surface-Native_conus_year_data__Fractional-Impervious-Surface-Native_conus_year_data&format=image%2Ftiff&subset=X%28-2040000%2C-2039700%29&subset=Y%281450000%2C1450300%29&time=2022-01-01T00%3A00%3A00.000Z",
+    "status": 200,
+    "bytes": 701,
+    "sha256": "d90cff0d01e998fbdf6a4206e51416a7cc7e164e20a31acc093784081a740b6b",
+    "content_type": "application/xml",
+    "response_start": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ows:ExceptionReport xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:ows=\"http://www.opengis.net/ows/2.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"2.0.0\" xsi:schemaLocation=\"http://www.opengis.net/ows/2.0 http://schemas.opengis.net/ows/2.0/owsExceptionReport.xsd\">\n  <ows:Exception exceptionCode=\"NoApplicableCode\">\n    <ows:ExceptionText>Failed to read the coverage mrlc_Fractional-Impervious-Surface-Native_conus_year_data__Fractional-Impervious-Surface-Native_conus_year_data\nCannot invoke &amp;quot;Object.getClass()&amp;quot; because &amp;quot;startTime&amp;quot; is null</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>\n"
+  },
+  {
+    "variant": "ansi_slice",
+    "url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Fractional-Impervious-Surface-Native_conus_year_data/wcs?service=WCS&version=2.0.1&request=GetCoverage&coverageId=mrlc_Fractional-Impervious-Surface-Native_conus_year_data__Fractional-Impervious-Surface-Native_conus_year_data&format=image%2Ftiff&subset=X%28-2040000%2C-2039700%29&subset=Y%281450000%2C1450300%29&subset=ansi%28%222022-01-01T00%3A00%3A00.000Z%22%29",
+    "status": 404,
+    "bytes": 512,
+    "sha256": "e3fcdfd5c445c049cad0b5faf0e5dc8554acdf6fceb4015ffdf4cafd86b0c4df",
+    "content_type": "application/xml",
+    "response_start": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ows:ExceptionReport xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:ows=\"http://www.opengis.net/ows/2.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"2.0.0\" xsi:schemaLocation=\"http://www.opengis.net/ows/2.0 http://schemas.opengis.net/ows/2.0/owsExceptionReport.xsd\">\n  <ows:Exception exceptionCode=\"InvalidAxisLabel\" locator=\"ansi\">\n    <ows:ExceptionText>Invalid axis label provided: ansi</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>\n"
+  },
+  {
+    "variant": "WCS11",
+    "url": "https://dmsdata.cr.usgs.gov/geoserver/mrlc_Fractional-Impervious-Surface-Native_conus_year_data/wcs?service=WCS&version=1.1.1&request=GetCoverage&identifier=mrlc_Fractional-Impervious-Surface-Native_conus_year_data%3AFractional-Impervious-Surface-Native_conus_year_data&format=image%2Ftiff&BoundingBox=-2040000%2C1450000%2C-2039700%2C1450300%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A5070&TimeSequence=2022-01-01T00%3A00%3A00.000Z",
+    "status": 200,
+    "bytes": 511,
+    "sha256": "ecc996b0ea4b022b94d9bc43ec46b8561b8c07cb7f785f3c1ed02fab49efa7ae",
+    "content_type": "application/xml",
+    "response_start": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ows:ExceptionReport xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:ows=\"http://www.opengis.net/ows\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.0.0\" xsi:schemaLocation=\"http://www.opengis.net/ows https://dmsdata.cr.usgs.gov/geoserver/schemas/ows/1.0.0/owsExceptionReport.xsd\">\n  <ows:Exception exceptionCode=\"NoApplicableCode\">\n    <ows:ExceptionText>Could not understand version:1.1.1</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>\n"
+  }
+]

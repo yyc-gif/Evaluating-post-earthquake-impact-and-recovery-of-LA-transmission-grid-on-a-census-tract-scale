@@ -1,0 +1,49 @@
+up surface in square metres.
+with standardized products needed for exposure mapping: 10 m built-up surface fraction layers and
+starts in the native Sentinel-2 UTM 10 m grid, where the built-up and greenness components are
+World Mollweide (ESRI:54009) 10 m grid. Within the Mollweide reference system, the datasets are
+aggregated to 100 m and 1000 m spatial resolutions, applying sum-preserving resampling for the
+built-up surfaces and average resampling for the greenness layer. Finally, the 10 m Mollweide
+computes percentile composites and harmonic coefficients from the time series of 10 m and 20 m
+up area within each 10 m pixel, yielding a continuous built-up surface layer (0–100 %). Predictions
+against earlier global layers to balance commission and omission errors. The resulting 10 m built-up
+up surface product, ensuring that each 10 m pixel is characterised as either residential or non-
+— World Mollweide (ESRI:54009): 10 m, 100 m, 1000 m
+NoData: [255]
+NoData: [65535]
+NoData: [4294967295]
+NoData: [None]
+NoData: [None]
+NoData: [255]
+NoData: [65535]
+NoData: [4294967295]
+NoData: [None]
+NoData: [None]
+NoData: [255]
+NoData: [255]
+NoData: [255]
+NoData: [255]
+NoData: [255]
+extracted for the built-up fraction layers at 10 m and 100 m spatial resolution for the EMC-BUILT
+resolutions (10 m, 100 m, and 1000 m).
+— Built-up fraction layers at 10 m, 100 m, and 1000 m;
+— Residential / Non-Residential classification at 10 m.
+m, 100 m, and 1000 m using average resampling, thereby converting building footprints into
+internal consistency at 10 m resolution;
+At 100 m, EMC-BUILT maintains the same trend, with MAE = 0.040 and RMSE = 0.080, both
+10 m
+100 m
+10 m
+100 m
+global equal-area Mollweide grid (ESRI:54009) at 10 m, 100 m, and 1000 m resolution, ensuring
+MAE 10 m
+RMSE 10 m
+MAE 100 m
+RMSE 100 m
+cJaccard (10 m)
+cPrecision (10 m)
+cRecall (10 m)
+cJaccard (100 m)
+cRecall (100 m)
+Table 11: Spatial coherence metrics (Self-similarity indicators, 10 m resolution).
+Table 11: Spatial coherence metrics (Self-similarity indicators, 10 m resolution)...................................... 27

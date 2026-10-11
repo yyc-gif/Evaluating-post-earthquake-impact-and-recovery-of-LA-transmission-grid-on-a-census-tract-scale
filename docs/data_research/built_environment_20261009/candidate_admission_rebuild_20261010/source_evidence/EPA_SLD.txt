@@ -1,0 +1,873 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="The Smart Location Database, Access to Jobs and Workers via Transit, and National Walkability Index tools can help assess indicators related to the built environment, transit accessibility, and walkability." />
+<link rel="shortlink" href="https://www.epa.gov/node/46219" />
+<link rel="canonical" href="https://www.epa.gov/smartgrowth/smart-location-mapping" />
+<meta property="DC.title" content="Smart Location Mapping" />
+<meta property="DC.description" content="The Smart Location Database, Access to Jobs and Workers via Transit, and National Walkability Index tools can help assess indicators related to the built environment, transit accessibility, and walkability." />
+<meta property="DC.Subject.epachannel" content="Learn the Issues,Science &amp; Technology" />
+<meta property="DC.type" content="Data and Tools" />
+<meta property="DC.date.created" content="2014-02-27" />
+<meta property="DC.date.modified" content="2026-09-08" />
+<meta property="DC.date.reviewed" content="2027-09-08" />
+<meta property="DC.creator" content="US EPA,OLEM" />
+<meta property="DC.language" content="en" />
+<meta property="WebArea" content="Smart Growth" />
+<meta property="ContentType" content="Basic page" />
+<meta property="NavigationStyle" content="sidebar_navigation" />
+<meta property="og:site_name" content="US EPA" />
+<meta property="og:type" content="Basic page" />
+<meta property="og:url" content="https://www.epa.gov/smartgrowth/smart-location-mapping" />
+<meta property="og:title" content="Smart Location Mapping | US EPA" />
+<meta property="og:description" content="The Smart Location Database, Access to Jobs and Workers via Transit, and National Walkability Index tools can help assess indicators related to the built environment, transit accessibility, and walkability." />
+<meta property="og:image" content="https://www.epa.gov/sites/all/themes/epa/img/epa-standard-og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:updated_time" content="2026-09-08" />
+<meta property="og:image:alt" content="U.S. Environmental Protection Agency" />
+<meta property="og:country_name" content="United States of America" />
+<meta property="article:published_time" content="2014-02-27T16:05:50-05:00" />
+<meta property="article:modified_time" content="2026-09-08" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Smart Location Mapping | US EPA" />
+<meta name="twitter:description" content="The Smart Location Database, Access to Jobs and Workers via Transit, and National Walkability Index tools can help assess indicators related to the built environment, transit accessibility, and walkability." />
+<meta name="twitter:image:alt" content="U.S. Environmental Protection Agency" />
+<meta name="twitter:image" content="https://www.epa.gov/sites/all/themes/epa/img/epa-standard-twitter.jpg" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title>Smart Location Mapping | US EPA</title>
+    <link rel="icon" type="image/x-icon" href="/themes/epa_theme/images/favicon.ico">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/themes/epa_theme/images/favicon-144.png">
+    <meta name="application-name" content="">
+    <meta name="msapplication-config" content="/themes/epa_theme/images/ieconfig.xml">
+    <link rel="apple-touch-icon-precomposed" sizes="196x196" href="/themes/epa_theme/images/favicon-196.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/themes/epa_theme/images/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/themes/epa_theme/images/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/themes/epa_theme/images/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/themes/epa_theme/images/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/epa_theme/images/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/themes/epa_theme/images/favicon-180.png">
+    <link rel="icon" href="/themes/epa_theme/images/favicon-32.png" sizes="32x32">
+    <link rel="preload" href="/themes/epa_theme/fonts/source-sans-pro/sourcesanspro-regular-webfont.woff2" as="font" crossorigin="anonymous">
+    <link rel="preload" href="/themes/epa_theme/fonts/source-sans-pro/sourcesanspro-bold-webfont.woff2" as="font" crossorigin="anonymous">
+    <link rel="preload" href="/themes/epa_theme/fonts/source-sans-pro/sourcesanspro-italic-webfont.woff2" as="font" crossorigin="anonymous">
+    <link rel="preload" href="/themes/epa_theme/fonts/merriweather/Latin-Merriweather-Bold.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/progress.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/ajax-progress.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/align.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/fieldgroup.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/container-inline.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/clearfix.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/details.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/hidden.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/item-list.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/js.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/nowrap.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/position-container.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/reset-appearance.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/resize.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/system-status-counter.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/system-status-report-counters.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/system-status-report-general-info.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/tablesort.module.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/filter/filter.caption.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/media/filter.caption.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/modules/contrib/paragraphs/css/paragraphs.unpublished.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/fonts/noto-sans-arabic.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/fonts/noto-sans-kr.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/fonts/noto-sans-bn.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/fonts/noto-sans-gu.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/fonts/noto-sans-sc.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/fonts/noto-sans-tc.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/css/styles.css?tlmacm" />
+<link rel="stylesheet" media="all" href="/themes/epa_theme/css-lib/colorbox.min.css?tlmacm" />
+
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-L8ZB');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <body class="path-node not-front node-page node-page--node-type-page" id="top">
+    
+<div class="skiplinks" role="navigation" aria-labelledby="skip-to-main">
+  <a id="skip-to-main" href="#main" class="skiplinks__link visually-hidden focusable">Skip to main content</a>
+</div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-L8ZB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="usa-banner" aria-label="Official website of the United States government">
+  <div class="usa-accordion">  <header class="usa-banner__header">
+    <div class="usa-banner__inner">
+      <div class="grid-col-auto">
+        <img class="usa-banner__header-flag" aria-hidden="true" src="/themes/epa_theme/images/us_flag_small.png" alt="U.S. flag" height="11px" width="16px" />
+      </div>
+      <div class="grid-col-fill tablet:grid-col-auto" aria-hidden="true">
+        <p class="usa-banner__header-text">An official website of the United States government</p>
+              <p class="usa-banner__header-action">Here’s how you know</p></div>
+        <button type="button" class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+          </div>
+  </header>
+      <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+                  <div class="usa-banner__guidance tablet:grid-col-6">
+            <img class="usa-banner__icon usa-media-block__img" src="/themes/epa_theme/images/icon-dot-gov.svg" alt="Dot gov">
+            <div class="usa-media-block__body">
+              <p>
+                <strong>Official websites use .gov</strong>
+                <br> A <strong>.gov</strong> website belongs to an official government organization in the United States.
+              </p>
+            </div>
+          </div>
+                  <div class="usa-banner__guidance tablet:grid-col-6">
+            <img class="usa-banner__icon usa-media-block__img" src="/themes/epa_theme/images/icon-https.svg" alt="HTTPS">
+            <div class="usa-media-block__body">
+              <p>
+                <strong>Secure .gov websites use HTTPS</strong>
+                <br> A <strong>lock</strong> (<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+              </p>
+            </div>
+          </div>
+              </div>
+    </div>
+  </div>
+  </section>
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+            <div class="js-view-dom-id-epa-alerts--public">
+  <noscript>
+    <div class="usa-site-alert usa-site-alert--info">
+      <div class="usa-alert">
+        <div class="usa-alert__body">
+          <div class="usa-alert__text">
+            <p>JavaScript appears to be disabled on this computer. Please <a href="/alerts">click here to see any active alerts</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </noscript>
+</div>
+
+  
+  
+  
+  
+
+
+
+<header class="l-header js-header-search usa-header usa-header--extended">
+  <div class="usa-overlay"></div>
+  <div class="l-constrain">
+    <div class="l-header__navbar">
+      <div class="l-header__branding">
+        <button
+          type="button"
+          class="l-header__search-button"
+          aria-controls="header-search-drawer"
+          aria-expanded="false"
+          aria-label="Open search drawer"
+        >
+          
+<svg class="icon l-header__search-button-icon-open" aria-hidden="true"><use href="/themes/epa_theme/images/sprite.artifact.svg#magnifying-glass"></use></svg>          
+<svg class="icon l-header__search-button-icon-close" aria-hidden="true"><use href="/themes/epa_theme/images/sprite.artifact.svg#xmark"></use></svg>        </button>
+            <a class="site-logo" href="/" aria-label="Home" title="Home" rel="home">
+  <span class="site-logo__image">
+    <svg class="site-logo__svg-main" aria-hidden="true" viewBox="0 0 454.1 154.7" xmlns="http://www.w3.org/2000/svg"><path d="m112.8 61.2c-4.8 18.6-22.9 33.3-42.9 33.3-20.1 0-38-14.7-42.9-33.4h.2s9.8 10.3-.2 0c3.1 3.1 6.2 4.4 10.7 4.4s7.7-1.3 10.7-4.4c3.1 3.1 6.3 4.5 10.9 4.4 4.5 0 7.6-1.3 10.7-4.4 3.1 3.1 6.2 4.4 10.7 4.4s7.7-1.3 10.7-4.4c3.1 3.1 6.3 4.5 10.9 4.4 4.3 0 7.4-1.2 10.5-4.3z"/><path d="m113.2 51.2c0-24-19.4-43.5-43.3-43.5-24 0-43.5 19.5-43.5 43.5h39.1c-4.8-1.8-8.1-6.3-8.1-11.6 0-7 5.7-12.5 12.5-12.5 7 0 12.7 5.5 12.7 12.5 0 5.2-3.1 9.6-7.6 11.6z"/><path d="m72.6 147c.7-36.9 29.7-68.8 66.9-70 0 37.2-30 68-66.9 70z"/><path d="m67.1 147c-.7-36.9-29.7-68.8-67.1-70 0 37.2 30.2 68 67.1 70z"/><path d="m240 10.8h-87.9v133.1h87.9v-20.4h-60.3v-36h60.3v-21h-60.3v-35h60.3z"/><path d="m272.8 66.5h27.1c9.1 0 15.2-8.6 15.1-17.7-.1-9-6.1-17.3-15.1-17.3h-25.3v112.4h-27.8v-133.1h62.3c20.2 0 35 17.8 35.2 38 .2 20.4-14.8 38.7-35.2 38.7h-36.3z"/><path d="m315.9 143.9h29.7l12.9-35h54.2l-8.1-21.9h-38.4l18.9-50.7 39.2 107.6h29.7l-53.1-133.1h-33.7z"/></svg>
+          <svg class="site-logo__svg-text" aria-hidden="true" viewBox="0 0 595.4 154.7" xmlns="http://www.w3.org/2000/svg"><path d="m9 8.5v22.4c0 1.9.2 3.3.5 4.3s.7 1.7 1 2.2c1.2 1.4 2.5 2.4 3.9 2.9 1.5.5 2.8.7 4.1.7 2.4 0 4.2-.4 5.5-1.3 1.3-.8 2.2-1.8 2.8-2.9s.9-2.3 1-3.4.1-2 .1-2.6v-22.3h4.7v22.3 1.7c0 .7-.1 1.5-.4 2.4-.3 1.8-1.2 3.6-2.5 5.4-1.8 2.1-3.8 3.5-6 4.2-2.2.6-4 .9-5.3.9-1.8 0-3.8-.3-6.2-1.1s-4.5-2.3-6.2-4.7c-.5-.8-1-1.8-1.4-3.2-.4-1.3-.6-3.3-.6-5.9v-22z"/><path d="m43.2 22.2v-2.9l4.6.1-.1 4.1c.2-.3.4-.7.8-1.2.3-.5.8-.9 1.4-1.4s1.4-.9 2.3-1.3c.9-.3 2.1-.5 3.4-.4.6 0 1.4.1 2.4.3.9.2 1.9.6 2.9 1.2s1.8 1.5 2.4 2.6c.6 1.2.9 2.8.9 4.7l-.4 17-4.6-.1.4-16c0-.9 0-1.7-.2-2.4-.1-.7-.5-1.3-1.1-1.9-1.2-1.2-2.6-1.8-4.3-1.8s-3.1.5-4.4 1.7-2 3.1-2.1 5.7l-.3 14.5-4.5-.1z"/><path d="m72.9 8.6h5.5v5.1h-5.5zm.5 10.9h4.6v25.1h-4.6z"/><path d="m83.5 19.4h4.3v-5.3l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.7c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"/><path d="m106.6 32.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6h13z"/><path d="m148.6 8.6h4.6v32.1c0 1 .1 2.3.2 4h-4.6l-.1-4c-.2.3-.4.7-.7 1.2s-.8 1-1.4 1.5c-1 .7-2 1.2-3.1 1.4-.5.1-1 .2-1.5.3s-.9.1-1.4.1c-.4 0-.8 0-1.3-.1s-1.1-.2-1.7-.3c-1.1-.3-2.3-.9-3.4-1.8s-2.1-2.2-2.9-3.8c-.8-1.7-1.2-3.9-1.2-6.6.1-4.8 1.2-8.3 3.4-10.5 2.1-2.1 4.7-3.2 7.6-3.2 1.3 0 2.4.2 3.4.5.9.3 1.6.7 2.2 1.2.6.4 1 .9 1.3 1.4s.6.8.7 1.1zm.1 23.1c0-1.9-.2-3.3-.5-4.4-.4-1.1-.8-2-1.4-2.6-.5-.7-1.2-1.3-2-1.8-.9-.5-2-.7-3.3-.7-1.7 0-2.9.5-3.8 1.3s-1.6 1.9-2 3.1-.7 2.3-.7 3.4c-.1 1.1-.2 1.9-.1 2.4 0 1.1.1 2.2.3 3.4.2 1.1.5 2.2 1 3.1.5 1 1.2 1.7 2 2.3.9.6 2 .9 3.3.9 1.8 0 3.2-.5 4.2-1.4 1-.8 1.7-1.8 2.1-3s.7-2.4.8-3.4c.1-1.4.1-2.1.1-2.6z"/><path d="m179.6 34.1c0 .6.1 1.3.3 2.1.1.8.5 1.6 1 2.3.5.8 1.4 1.4 2.5 1.9s2.7.8 4.7.8c1.8 0 3.3-.3 4.4-.8s1.9-1.1 2.5-1.8 1-1.5 1.1-2.2.2-1.2.2-1.7c0-1-.2-1.9-.5-2.6-.4-.6-.9-1.2-1.6-1.6-1.4-.8-3.4-1.4-5.9-2-4.9-1.1-8.1-2.2-9.5-3.2s-2.3-2.2-2.9-3.5c-.6-1.2-.8-2.4-.8-3.6.1-3.7 1.5-6.4 4.2-8.1 2.6-1.7 5.7-2.5 9.1-2.5 1.3 0 2.9.2 4.8.5 1.9.4 3.6 1.4 5 3 .5.5.9 1.1 1.2 1.7.3.5.5 1.1.6 1.6.2 1.1.3 2.1.3 2.9h-5c-.2-2.2-1-3.7-2.4-4.5-1.5-.7-3.1-1.1-4.9-1.1-5.1.1-7.7 2-7.8 5.8 0 1.5.5 2.7 1.6 3.5 1 .8 2.6 1.4 4.7 1.9 4 1 6.7 1.8 8.1 2.2.8.2 1.4.5 1.8.7.5.2 1 .5 1.4.9.8.5 1.4 1.1 1.9 1.8s.8 1.4 1.1 2.1c.3 1.4.5 2.5.5 3.4 0 3.3-1.2 6-3.5 8-2.3 2.1-5.8 3.2-10.3 3.3-1.4 0-3.2-.3-5.4-.8-1-.3-2-.7-3-1.2-.9-.5-1.8-1.2-2.5-2.1-.9-1.4-1.5-2.7-1.7-4.1-.3-1.3-.4-2.4-.3-3.2h5z"/><path d="m205.7 19.4h4.3v-5.3l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.7c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.4z"/><path d="m241 44.6c-.3-1.2-.5-2.5-.4-3.7-.5 1-1.1 1.8-1.7 2.4-.7.6-1.4 1.1-2 1.4-1.4.5-2.7.8-3.7.8-2.8 0-4.9-.8-6.4-2.2s-2.2-3.1-2.2-5.2c0-1 .2-2.3.8-3.7s1.7-2.6 3.5-3.7c1.4-.7 2.9-1.2 4.5-1.5 1.6-.1 2.9-.2 3.9-.2s2.1 0 3.3.1c.1-2.9-.2-4.8-.9-5.6-.5-.6-1.1-1.1-1.9-1.3s-1.6-.4-2.3-.4c-1.1 0-2 .2-2.6.5-.7.3-1.2.7-1.5 1.2s-.5.9-.6 1.4-.2.9-.2 1.2h-4.6c.1-.7.2-1.4.4-2.3.2-.8.6-1.6 1.3-2.5.5-.6 1-1 1.7-1.3.6-.3 1.3-.6 2-.8 1.5-.4 2.8-.6 4.2-.6 1.8 0 3.6.3 5.2.9s2.8 1.6 3.4 2.9c.4.7.6 1.4.7 2s.1 1.2.1 1.8l-.2 12c0 1 .1 3.1.4 6.3h-4.2m-.5-12.1c-.7-.1-1.6-.1-2.6-.1-.5 0-1.2 0-2.1 0-1 .1-2 .3-3 .6s-1.9.8-2.6 1.5c-.8.7-1.2 1.7-1.2 3 0 .4.1.8.2 1.3s.4 1 .8 1.5.9.8 1.6 1.1 1.5.5 2.5.5c2.3 0 4.1-.9 5.2-2.7.5-.8.8-1.7 1-2.7.1-.9.2-2.2.2-4z"/><path d="m250.2 19.4h4.3v-5.3l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.7c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"/><path d="m273.3 32.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6h13z"/><path d="m301 37.2c0 .5.1 1 .2 1.4.1.5.4 1 .8 1.5s.9.8 1.6 1.1 1.6.5 2.7.5c1 0 1.8-.1 2.5-.3s1.3-.6 1.7-1.2c.5-.7.8-1.5.8-2.4 0-1.2-.4-2-1.3-2.5s-2.2-.9-4.1-1.2c-1.3-.3-2.4-.6-3.6-1-1.1-.3-2.1-.8-3-1.3s-1.5-1.2-2-2.1c-.5-.8-.8-1.9-.8-3.2 0-2.4.9-4.2 2.6-5.6 1.7-1.3 4-2 6.8-2.1 1.6 0 3.3.3 5 .8 1.7.6 2.9 1.6 3.7 3.1.4 1.4.6 2.6.6 3.7h-4.6c0-1.8-.6-3-1.7-3.5-1.1-.4-2.1-.6-3.1-.6-.2 0-.5 0-1 0s-1.1.2-1.7.4-1.1.5-1.5 1.1c-.5.5-.7 1.2-.7 2.1 0 1.1.5 1.9 1.3 2.3.7.4 1.5.7 2.1.9 3.3.7 5.6 1.3 6.9 1.8 1.3.4 2.2 1 2.8 1.7.7.7 1.1 1.4 1.4 2.2s.4 1.6.4 2.5c0 1.4-.3 2.7-.9 3.8s-1.4 2-2.4 2.6c-1.1.6-2.2 1-3.4 1.3s-2.5.4-3.8.4c-2.5 0-4.7-.6-6.6-1.8-1.8-1.2-2.8-3.3-2.9-6.3z"/><path d="m3.4 58.5h21.9v4.2h-17.1v11.3h16.3v4.2h-16.3v12.1h17.5v4.3h-22.3z"/><path d="m34.7 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.5z"/><path d="m60.3 69.5h5.1l7.7 19.9 7.6-19.9h5l-10.6 25.1h-4.6z"/><path d="m91.4 58.6h5.5v5.1h-5.5zm.5 10.9h4.6v25.1h-4.6z"/><path d="m106 74.7c0-1.8-.1-3.5-.3-5.1h4.6l.1 4.9c.5-1.8 1.4-3 2.5-3.7s2.2-1.2 3.3-1.3c1.4-.2 2.4-.2 3.1-.1v4.6c-.2-.1-.5-.2-.9-.2-.3 0-.8 0-1.3 0-1.3 0-2.4.2-3.3.5-.9.4-1.5.9-2 1.6-.9 1.4-1.4 3.2-1.3 5.4v13.3h-4.6v-19.9z"/><path d="m123.3 82.4c0-1.6.2-3.2.6-4.8s1.1-3 2-4.4c1-1.3 2.2-2.4 3.8-3.2s3.6-1.2 5.9-1.2c2.4 0 4.5.4 6.1 1.3 1.5.9 2.7 2 3.6 3.3s1.5 2.8 1.8 4.3c.2.8.3 1.5.4 2.2v2.2c0 3.7-1 6.9-3 9.5s-5.1 4-9.3 4c-4-.1-7-1.4-9-3.9-1.9-2.5-2.9-5.6-2.9-9.3m4.8-.3c0 2.7.6 5 1.8 6.9 1.2 2 3 3 5.6 3.1.9 0 1.8-.2 2.7-.5.8-.3 1.6-.9 2.3-1.7s1.3-1.9 1.8-3.2c.4-1.3.6-2.9.6-4.7-.1-6.4-2.5-9.6-7.1-9.6-.7 0-1.5.1-2.4.3-.8.3-1.7.8-2.5 1.6-.8.7-1.4 1.7-1.9 3-.6 1.1-.9 2.8-.9 4.8z"/><path d="m155.9 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"/><path d="m185.7 72.8-.1-3.3h4.6v3.6c1.2-1.9 2.6-3.2 4.1-3.7 1.5-.4 2.7-.6 3.8-.6 1.4 0 2.6.2 3.6.5.9.3 1.7.7 2.3 1.1 1.1 1 1.9 2 2.3 3.1.2-.4.5-.8 1-1.3.4-.5.9-1 1.5-1.6.6-.5 1.5-.9 2.5-1.3 1-.3 2.2-.5 3.5-.5.9 0 1.9.1 3 .3 1 .2 2 .7 3 1.3s1.7 1.5 2.3 2.7.9 2.7.9 4.6v16.9h-4.6v-16.2c0-1.1-.1-2-.2-2.5-.1-.6-.3-1-.6-1.3-.4-.6-1-1.2-1.8-1.6s-1.8-.6-3.1-.6c-1.5 0-2.7.4-3.6 1-.4.3-.8.5-1.1.9-.3.3-.6.6-.8.8-.5.8-.8 1.8-1 2.8-.1 1.1-.2 2-.1 2.6v14.1h-4.6v-16.7c0-1.6-.5-2.9-1.4-4-.9-1-2.3-1.5-4.2-1.5-1.6 0-2.9.4-3.8 1.1s-1.5 1.2-1.8 1.7c-.5.7-.8 1.5-.9 2.5-.1.9-.2 1.8-.2 2.6v14.3h-4.5z"/><path d="m236.2 82.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.8-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6z"/><path d="m261.4 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"/><path d="m288 69.4h4.3v-5.2l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.6c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"/><path d="m323.3 94.6c-.3-1.2-.5-2.5-.4-3.7-.5 1-1.1 1.8-1.7 2.4-.7.6-1.4 1.1-2 1.4-1.4.5-2.7.8-3.7.8-2.8 0-4.9-.8-6.4-2.2s-2.2-3.1-2.2-5.2c0-1 .2-2.3.8-3.7s1.7-2.6 3.5-3.7c1.4-.7 2.9-1.2 4.5-1.5 1.6-.1 2.9-.2 3.9-.2s2.1 0 3.3.1c.1-2.9-.2-4.8-.9-5.6-.5-.6-1.1-1.1-1.9-1.3s-1.6-.4-2.3-.4c-1.1 0-2 .2-2.6.5-.7.3-1.2.7-1.5 1.2s-.5.9-.6 1.4-.2.9-.2 1.2h-4.6c.1-.7.2-1.4.4-2.3.2-.8.6-1.6 1.3-2.5.5-.6 1-1 1.7-1.3.6-.3 1.3-.6 2-.8 1.5-.4 2.8-.6 4.2-.6 1.8 0 3.6.3 5.2.9s2.8 1.6 3.4 2.9c.4.7.6 1.4.7 2s.1 1.2.1 1.8l-.2 12c0 1 .1 3.1.4 6.3zm-.5-12.2c-.7-.1-1.6-.1-2.6-.1-.5 0-1.2 0-2.1 0-1 .1-2 .3-3 .6s-1.9.8-2.6 1.5c-.8.7-1.2 1.7-1.2 3 0 .4.1.8.2 1.3s.4 1 .8 1.5.9.8 1.6 1.1 1.5.5 2.5.5c2.3 0 4.1-.9 5.2-2.7.5-.8.8-1.7 1-2.7.1-.9.2-2.2.2-4z"/><path d="m336.4 58.6h4.6v36.1h-4.6z"/><path d="m364.1 58.5h11.7c2.1 0 3.9.1 5.5.4.8.2 1.5.4 2.2.9.7.4 1.3.9 1.8 1.6 1.7 1.9 2.6 4.2 2.6 7 0 2.7-.9 5.1-2.8 7.1-.8.9-2 1.7-3.6 2.2-1.6.6-3.9.9-6.9.9h-5.7v16.1h-4.8zm4.8 15.9h5.8c.8 0 1.7-.1 2.6-.2s1.8-.3 2.6-.7 1.5-1 2-1.9c.5-.8.8-2 .8-3.4s-.2-2.5-.7-3.3-1.1-1.3-1.9-1.7c-1.6-.5-3.1-.8-4.5-.7h-6.8v11.9z"/><path d="m393.8 74.7c0-1.8-.1-3.5-.3-5.1h4.6l.1 4.9c.5-1.8 1.4-3 2.5-3.7s2.2-1.2 3.3-1.3c1.4-.2 2.4-.2 3.1-.1v4.6c-.2-.1-.5-.2-.9-.2-.3 0-.8 0-1.3 0-1.3 0-2.4.2-3.3.5-.9.4-1.5.9-2 1.6-.9 1.4-1.4 3.2-1.3 5.4v13.3h-4.6v-19.9z"/><path d="m411.2 82.4c0-1.6.2-3.2.6-4.8s1.1-3 2-4.4c1-1.3 2.2-2.4 3.8-3.2s3.6-1.2 5.9-1.2c2.4 0 4.5.4 6.1 1.3 1.5.9 2.7 2 3.6 3.3s1.5 2.8 1.8 4.3c.2.8.3 1.5.4 2.2v2.2c0 3.7-1 6.9-3 9.5s-5.1 4-9.3 4c-4-.1-7-1.4-9-3.9-1.9-2.5-2.9-5.6-2.9-9.3m4.8-.3c0 2.7.6 5 1.8 6.9 1.2 2 3 3 5.6 3.1.9 0 1.8-.2 2.7-.5.8-.3 1.6-.9 2.3-1.7s1.3-1.9 1.8-3.2c.4-1.3.6-2.9.6-4.7-.1-6.4-2.5-9.6-7.1-9.6-.7 0-1.5.1-2.4.3-.8.3-1.7.8-2.5 1.6-.8.7-1.4 1.7-1.9 3-.7 1.1-.9 2.8-.9 4.8z"/><path d="m439.8 69.4h4.3v-5.2l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.6c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"/><path d="m462.9 82.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6z"/><path d="m501.8 77.5c0-.3 0-.8-.1-1.4s-.3-1.1-.6-1.8c-.2-.6-.7-1.2-1.4-1.6s-1.6-.6-2.7-.6c-1.5 0-2.7.4-3.5 1.2-.9.8-1.5 1.7-1.9 2.8s-.6 2.2-.7 3.2c-.1 1.1-.2 1.8-.1 2.4 0 1.3.1 2.5.3 3.7s.5 2.3.9 3.3c.8 2 2.4 3 4.8 3.1 1.9 0 3.3-.7 4.1-1.9.8-1.1 1.2-2.3 1.2-3.6h4.6c-.2 2.5-1.1 4.6-2.7 6.3-1.7 1.8-4.1 2.7-7.1 2.7-.9 0-2.1-.2-3.6-.6-.7-.2-1.4-.6-2.2-1s-1.5-1-2.2-1.7c-.7-.9-1.4-2.1-2-3.6s-.9-3.5-.9-6.1.4-4.8 1.1-6.6c.7-1.7 1.6-3.1 2.7-4.2 1.1-1 2.3-1.8 3.6-2.2s2.5-.6 3.7-.6h1.6c.6.1 1.3.2 1.9.4.7.2 1.4.5 2.1 1 .7.4 1.3 1 1.8 1.7.9 1.1 1.4 2.1 1.7 3.1.2 1 .3 1.8.3 2.6z"/><path d="m509.3 69.4h4.3v-5.2l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.6c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"/><path d="m529.2 58.6h5.5v5.1h-5.5zm.5 10.9h4.6v25.1h-4.6z"/><path d="m541.8 82.4c0-1.6.2-3.2.6-4.8s1.1-3 2-4.4c1-1.3 2.2-2.4 3.8-3.2s3.6-1.2 5.9-1.2c2.4 0 4.5.4 6.1 1.3 1.5.9 2.7 2 3.6 3.3s1.5 2.8 1.8 4.3c.2.8.3 1.5.4 2.2v2.2c0 3.7-1 6.9-3 9.5s-5.1 4-9.3 4c-4-.1-7-1.4-9-3.9-1.9-2.5-2.9-5.6-2.9-9.3m4.7-.3c0 2.7.6 5 1.8 6.9 1.2 2 3 3 5.6 3.1.9 0 1.8-.2 2.7-.5.8-.3 1.6-.9 2.3-1.7s1.3-1.9 1.8-3.2c.4-1.3.6-2.9.6-4.7-.1-6.4-2.5-9.6-7.1-9.6-.7 0-1.5.1-2.4.3-.8.3-1.7.8-2.5 1.6-.8.7-1.4 1.7-1.9 3-.6 1.1-.9 2.8-.9 4.8z"/><path d="m574.3 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"/><path d="m14.8 108.5h5.2l14.1 36.1h-5.3l-3.8-9.4h-16.2l-3.8 9.4h-5zm-4.4 22.7h13.3l-6.5-17.8z"/><path d="m44.4 146.5c.1.7.2 1.4.4 1.9.2.6.5 1.1.9 1.6.8.9 2.3 1.4 4.4 1.5 1.6 0 2.8-.3 3.7-.9s1.5-1.4 1.9-2.4c.4-1.1.6-2.3.7-3.7s.1-2.9.1-4.6c-.5.9-1.1 1.7-1.8 2.3s-1.5 1-2.3 1.3c-1.7.4-3 .6-3.9.6-1.2 0-2.4-.2-3.8-.6s-2.6-1.2-3.7-2.5c-1-1.3-1.7-2.8-2.1-4.4s-.6-3.2-.6-4.8c0-4.3 1.1-7.4 3.2-9.5 2-2.1 4.6-3.1 7.6-3.1 1.3 0 2.3.1 3.2.4s1.6.6 2.1 1c.6.4 1.1.8 1.5 1.2.3.4.6.8.9 1.2v-3.4h4.4l-.1 4.5v15.7c0 2.9-.1 5.2-.2 6.7-.2 1.6-.5 2.8-1 3.7-1.1 1.9-2.6 3.2-4.6 3.7-1.9.6-3.8.8-5.6.8-2.4 0-4.3-.3-5.6-.8-1.4-.5-2.4-1.2-3-2s-1-1.7-1.2-2.7c-.2-.9-.3-1.8-.4-2.7zm5.3-5.8c1.4 0 2.5-.2 3.3-.7s1.5-1.1 2-1.8c.5-.6.9-1.4 1.2-2.5.3-1 .4-2.6.4-4.8 0-1.6-.2-2.9-.4-3.9-.3-1-.8-1.8-1.4-2.4-1.3-1.4-3-2.2-5.2-2.2-1.4 0-2.5.3-3.4 1s-1.6 1.5-2 2.4c-.4 1-.7 2-.9 3s-.2 2-.2 2.8c0 1 .1 1.9.3 2.9.2 1.1.5 2.1 1 3s1.2 1.6 2 2.2c.8.7 1.9 1 3.3 1z"/><path d="m73.3 132.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2.1c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.7z"/><path d="m98.6 122.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"/><path d="m142.7 127.5c0-.3 0-.8-.1-1.4s-.3-1.1-.6-1.8c-.2-.6-.7-1.2-1.4-1.6s-1.6-.6-2.7-.6c-1.5 0-2.7.4-3.5 1.2-.9.8-1.5 1.7-1.9 2.8s-.6 2.2-.7 3.2c-.1 1.1-.2 1.8-.1 2.4 0 1.3.1 2.5.3 3.7s.5 2.3.9 3.3c.8 2 2.4 3 4.8 3.1 1.9 0 3.3-.7 4.1-1.9.8-1.1 1.2-2.3 1.2-3.6h4.6c-.2 2.5-1.1 4.6-2.7 6.3-1.7 1.8-4.1 2.7-7.1 2.7-.9 0-2.1-.2-3.6-.6-.7-.2-1.4-.6-2.2-1s-1.5-1-2.2-1.7c-.7-.9-1.4-2.1-2-3.6s-.9-3.5-.9-6.1.4-4.8 1.1-6.6c.7-1.7 1.6-3.1 2.7-4.2 1.1-1 2.3-1.8 3.6-2.2s2.5-.6 3.7-.6h1.6c.6.1 1.3.2 1.9.4.7.2 1.4.5 2.1 1 .7.4 1.3 1 1.8 1.7.9 1.1 1.4 2.1 1.7 3.1.2 1 .3 1.8.3 2.6z"/><path d="m164.8 144.8-3.4 9.3h-4.7l3.8-9.6-10.3-25h5.2l7.6 19.8 7.7-19.8h5z"/></svg>
+      </span>
+</a>
+          <button type="button" class="usa-menu-btn usa-button--outline usa-button--inverse l-header__menu-button">Menu</button>
+      </div>
+      <div class="l-header__search" id="header-search-drawer">
+            
+<form class="usa-search usa-search--small usa-search--epa" method="get" action="https://search.epa.gov/epasearch">
+  <div role="search">
+    <label class="usa-search__label usa-sr-only" for="search-box">Search</label>
+    <input class="usa-input" id="search-box" type="search" name="querytext" placeholder="Search EPA.gov">
+    <button class="button" type="submit" aria-label="Search">
+      
+<svg class="icon usa-search__submit-icon" aria-hidden="true"><use href="/themes/epa_theme/images/sprite.artifact.svg#magnifying-glass"></use></svg>      <span class="usa-search__submit-text">Search</span>
+    </button>
+    <input type="hidden" name="areaname" value="">
+    <input type="hidden" name="areacontacts" value="">
+    <input type="hidden" name="areasearchurl" value="">
+    <input type="hidden" name="typeofsearch" value="epa">
+    <input type="hidden" name="result_template" value="">
+
+      </div>
+</form>
+            </div>
+    </div>
+
+  </div>
+  <div class="l-header__nav">
+        <nav class="usa-nav usa-nav--epa" role="navigation" aria-label="Primary navigation">
+  <div class="usa-nav__inner">
+    <button type="button" class="usa-nav__close" aria-label="Close">
+      
+<svg class="icon icon--nav-close" aria-hidden="true" role="img"><title>Primary navigation</title><use href="/themes/epa_theme/images/sprite.artifact.svg#xmark"></use></svg>    </button>
+    <div class="usa-nav__menu">
+              
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+            
+
+                                      <ul  class="menu menu--main menu--accordion usa-accordion">
+        
+                        
+                                                                          
+      
+      
+      
+      <li  class="menu__item has-subnav is-expanded"><button  class="menu__link has-subnav is-expanded usa-nav__link usa-accordion__button" aria-expanded="false" type="button">
+              Environmental Topics
+              
+<svg class="icon menu__link-icon" aria-hidden="true"><use href="/themes/epa_theme/images/sprite.artifact.svg#angle"></use></svg></button><ul class="menu menu__subnav usa-nav__submenu usa-megamenu "><li  class="menu__item"><a href="/environmental-topics" class="menu__link" data-drupal-link-system-path="node/164839">Environmental Topics</a></li><li  class="menu__item"><a href="/environmental-topics/air-topics" class="menu__link" data-drupal-link-system-path="node/165225">Air</a></li><li  class="menu__item"><a href="/bedbugs" class="menu__link" data-drupal-link-system-path="node/17591">Bed Bugs</a></li><li  class="menu__item"><a href="/environmental-topics/chemicals-pesticides-and-toxics-topics" class="menu__link" data-drupal-link-system-path="node/165371">Chemicals, Toxics, and Pesticide </a></li><li  class="menu__item"><a href="/emergency-response" class="menu__link" data-drupal-link-system-path="node/18839">Emergency Response</a></li><li  class="menu__item"><a href="/environmental-topics/environmental-information-by-location" class="menu__link" data-drupal-link-system-path="node/165443">Environmental Information by Location </a></li><li  class="menu__item"><a href="/environmental-topics/health-topics" class="menu__link" data-drupal-link-system-path="node/165317">Health</a></li><li  class="menu__item"><a href="/environmental-topics/land-waste-and-cleanup-topics" class="menu__link" data-drupal-link-system-path="node/165171">Land, Waste, and Cleanup</a></li><li  class="menu__item"><a href="/lead" class="menu__link" data-drupal-link-system-path="node/3085">Lead</a></li><li  class="menu__item"><a href="/mold" class="menu__link" data-drupal-link-system-path="node/37083">Mold</a></li><li  class="menu__item"><a href="/radon" class="menu__link" data-drupal-link-system-path="node/38609">Radon</a></li><li  class="menu__item"><a href="/research" class="menu__link" data-drupal-link-system-path="node/35507">Research</a></li><li  class="menu__item"><a href="/environmental-topics/science-topics" class="menu__link" data-drupal-link-system-path="node/172685">Science Topics</a></li><li  class="menu__item"><a href="/environmental-topics/water-topics" class="menu__link" data-drupal-link-system-path="node/164827">Water Topics</a></li><li  class="menu__item"><a href="/topics-epa-web" class="menu__link" data-drupal-link-system-path="topics-epa-web">A-Z Topic Index</a></li></ul></li>    
+                        
+                                                                          
+      
+      
+      
+      <li  class="menu__item has-subnav is-expanded"><button  class="menu__link has-subnav is-expanded usa-nav__link usa-accordion__button" aria-expanded="false" type="button">
+              Laws &amp; Regulations
+              
+<svg class="icon menu__link-icon" aria-hidden="true"><use href="/themes/epa_theme/images/sprite.artifact.svg#angle"></use></svg></button><ul class="menu menu__subnav usa-nav__submenu usa-megamenu "><li  class="menu__item"><a href="/laws-regulations" title="View links to regulatory information by topic and sector, and to top pages about environmental laws, regulations, policies, compliance, and enforcement" class="menu__link" data-drupal-link-system-path="node/3157">Laws &amp; Regulations</a></li><li  class="menu__item"><a href="/regulatory-information-sector" class="menu__link" data-drupal-link-system-path="node/3173">By Business Sector</a></li><li  class="menu__item"><a href="/regulatory-information-topic" class="menu__link" data-drupal-link-system-path="node/66677">By Topic</a></li><li  class="menu__item"><a href="/compliance" class="menu__link" data-drupal-link-system-path="node/19411">Compliance</a></li><li  class="menu__item"><a href="/enforcement" class="menu__link" data-drupal-link-system-path="node/10885">Enforcement</a></li><li  class="menu__item"><a href="/guidance" class="menu__link" data-drupal-link-system-path="node/237295">Guidance</a></li><li  class="menu__item"><a href="/laws-regulations/laws-and-executive-orders" class="menu__link" data-drupal-link-system-path="node/66719">Laws and Executive Orders</a></li><li  class="menu__item"><a href="/laws-regulations/regulations" class="menu__link" data-drupal-link-system-path="node/11249">Regulations</a></li></ul></li>    
+                        
+                                                                          
+      
+      
+      
+      <li  class="menu__item has-subnav is-expanded"><button  class="menu__link has-subnav is-expanded usa-nav__link usa-accordion__button" aria-expanded="false" type="button">
+              Report a Violation
+              
+<svg class="icon menu__link-icon" aria-hidden="true"><use href="/themes/epa_theme/images/sprite.artifact.svg#angle"></use></svg></button><ul class="menu menu__subnav usa-nav__submenu usa-megamenu "><li  class="menu__item"><a href="/report-violation" class="menu__link" data-drupal-link-system-path="node/271510">Report a Violation</a></li><li  class="menu__item"><a href="https://echo.epa.gov/report-environmental-violations" class="menu__link">Environmental Violations</a></li><li  class="menu__item"><a href="/office-inspector-general/forms/epa-oig-hotline-complaint-form" class="menu__link" data-drupal-link-system-path="node/297651">Fraud, Waste or Abuse</a></li></ul></li>    
+                        
+                                                                          
+      
+      
+      
+      <li  class="menu__item has-subnav is-expanded"><button  class="menu__link has-subnav is-expanded usa-nav__link usa-accordion__button" aria-expanded="false" type="button">
+              About EPA
+              
+<svg class="icon menu__link-icon" aria-hidden="true"><use href="/themes/epa_theme/images/sprite.artifact.svg#angle"></use></svg></button><ul class="menu menu__subnav usa-nav__submenu usa-megamenu "><li  class="menu__item"><a href="/aboutepa" class="menu__link" data-drupal-link-system-path="node/851">About EPA</a></li><li  class="menu__item"><a href="/aboutepa/our-mission-and-what-we-do" class="menu__link" data-drupal-link-system-path="node/2099">Our Mission and What We Do</a></li><li  class="menu__item"><a href="/aboutepa#hq" class="menu__link" data-drupal-link-system-path="node/851">Headquarters Offices</a></li><li  class="menu__item"><a href="/aboutepa/regional-and-geographic-offices" class="menu__link" data-drupal-link-system-path="node/254965">Regional Offices</a></li><li  class="menu__item"><a href="/aboutepa/epa-laboratories-and-science-advisory-organizations" class="menu__link" data-drupal-link-system-path="node/254969">Labs and Research Centers</a></li><li  class="menu__item"><a href="/newsroom" class="menu__link" data-drupal-link-system-path="node/4103">Newsroom</a></li><li  class="menu__item"><a href="/planandbudget" class="menu__link" data-drupal-link-system-path="node/863">Planning, Budget, and Results</a></li><li  class="menu__item"><a href="/aboutepa/epa-organization-chart" class="menu__link" data-drupal-link-system-path="node/2481">Organization Chart</a></li><li  class="menu__item"><a href="/history" class="menu__link" data-drupal-link-system-path="node/162637">EPA History</a></li></ul></li>        </ul>
+  
+
+
+  
+  
+  
+  
+
+
+          </div>
+  </div>
+</nav>
+    </div>
+</header>
+
+<main id="main" class="main" role="main" tabindex="-1">
+        
+
+
+
+
+  
+
+
+
+
+  
+
+
+  
+
+    
+  
+
+
+
+<div class="l-page page-has-sidebar has-footer">
+  <div class="l-constrain">
+
+          <div class="l-page__header">
+        <div class="l-page__header-first">
+                    
+    
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+            
+
+
+
+<nav  aria-labelledby="breadcrumb-label" class="breadcrumb" role="navigation">
+  <h4
+     id="breadcrumb-label" class="breadcrumb__title  u-visually-hidden">Breadcrumb</h4>
+
+  <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+                  <a class="breadcrumb__link" href="/">Home</a>
+              </li>
+          <li class="breadcrumb__item">
+                  <a class="breadcrumb__link" href="/smartgrowth">Smart Growth</a>
+              </li>
+      </ol>
+</nav>
+
+  
+  
+  
+  
+
+  
+          </div>
+      </div>
+    
+    
+          
+<div class="l-sidebar l-sidebar--reversed">
+  <div class="l-sidebar__main">
+          
+
+<article  class="article" lang="en">
+      
+<h1 class="page-title">
+  Smart Location Mapping
+</h1>
+  
+
+      <div class="u-hide-for-print js-toggle-admin-content">
+                  <div data-drupal-messages-fallback class="hidden"></div>
+
+  
+
+            </div>
+  
+        
+            
+<div>
+      <div>
+      
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+            
+  
+
+  <p>This page features interactive mapping tools and data for measuring location efficiency and the built environment.</p><div><strong>On this page</strong>:</div><ul><li><a href="#Background">Background</a></li><li><a href="#SLD">Smart Location Database</a></li><li><a href="#Trans45">Access to Jobs and Workers Via Transit Tool</a></li><li><a href="#walkability"><ins data-date="2021,6,16">National Walkability Index</ins></a></li><li><a href="#calculator">Smart Location Calculator</a></li><li><a href="#Uses">Suggested Uses</a></li></ul><hr><h2 class="highlight" id="Background">Background</h2><p>A large body of research has demonstrated that land use and urban form can have a significant effect on transportation outcomes.</p><ul><li>People who live and/or work in compact neighborhoods with a walkable street grid and easy access to public transit, jobs, stores, and services are more likely to have several transportation options to meet their everyday needs.</li><li>As a result, they can choose to drive less, which reduces their emissions of greenhouse gases and other pollutants compared to people who live and work in places that are not location efficient.</li><li>Walking, biking, and taking public transit can also save people money and improve their health by encouraging physical activity.</li></ul><p>An EPA-funded meta-analysis of the research, <a href="https://www.tandfonline.com/doi/abs/10.1080/01944361003766766">Travel and the Built Environment</a>&nbsp;, summarized the measurable effects of several built environment variables on residents’ travel behavior. These findings can help inform travel demand studies as well as land use and transportation planning studies. However, developing data about these characteristics can be expensive and time consuming.</p><p>To respond to this need, EPA developed four data products that consistently measure the built environment and transit accessibility of neighborhoods across metropolitan regions and across the United States. Each product summarizes the characteristics of census block groups <a href="#_edn2" title>[i]</a>. Users can download data, browse the data in interactive maps, or access the data through web services&nbsp;<a href="#_edn5" title>[ii]</a>.</p><ul><li><a href="#SLD"><strong>The Smart Location Database</strong></a><strong> </strong>summarizes more than 90 different indicators associated with the built environment and location efficiency. Indicators include density of development, diversity of land use, street network design, and accessibility to destinations as well as various demographic and employment statistics. Most attributes are available for all U.S. block groups.</li><li><a href="#Trans45"><strong>The&nbsp;Access to Jobs and Workers Via Transit Tool</strong></a><strong> </strong>provides indicators of accessibility to destinations by public transit. Indicators summarize jobs accessible by transit as well as workers, households, and population that can access the block group via transit. Coverage is limited to metropolitan regions served by transit agencies that share their service data.</li><li><a href="#walkability"><strong>The National Walkability Index</strong></a> provides walkability scores based on a simple formula that ranks selected indicators from the Smart Location Database that have been demonstrated to affect the propensity of walk trips. Currently, the National Walkability Index dataset ranks each block group relative to all other block groups in the United States, but individuals can use downloadable data and the "how-to" document to construct an index for a smaller universe of block groups, like a state, metropolitan area, or city.</li><li><a href="#calculator"><strong>The Smart Location Calculator</strong></a><strong>&nbsp;</strong>is&nbsp;a dataset and interactive tool that measures the location efficiency of workplace locations. Developed by EPA and the General Services Administration (GSA), the interactive map allows users to explore the data, download the dataset, and access the accompanying documentation.</li></ul><hr><h2 class="highlight" id="SLD">Smart Location Database</h2><p>The Smart Location Database is a nationwide geographic data resource for measuring location efficiency. It includes more than 90 attributes summarizing characteristics, such as housing density, diversity of land use, neighborhood design, destination accessibility, transit service, employment and demographics. Most attributes are available for every census block group in the United States.</p><p><ins data-date="2021,6,16">EPA</ins> first released a beta version of the Smart Location Database in 2011. The initial full version was released in 2013, and the database was updated to its current version in 2021.</p><h3>Access the Data</h3><ul><li><a href="https://epa.maps.arcgis.com/home/webmap/viewer.html?webmap=137d4e512249480c980e00807562da10" target="_blank">Interactive map viewer</a>&nbsp;</li><li><a href="https://edg.epa.gov/EPADataCommons/public/OA/SLD/SmartLocationDatabaseV3.zip" target="_blank">Download data for all areas with coverage</a>&nbsp;(ZIP file)</li><li><a href="https://edg.epa.gov/metadata/catalog/search/resource/details.page?uuid=%7B33514B4C-54F2-464A-BCC7-35F441B7E21A%7D" target="_blank">Metadata</a></li><li><a href="https://geodata.epa.gov/arcgis/rest/services/OA/SmartLocationDatabase/MapServer" target="_blank">Web services</a></li><li><a href="/system/files/documents/2023-10/epa_sld_3.0_technicaldocumentationuserguide_may2021_0.pdf" target="_blank" rel="noopener">Smart Location Database Technical Documentation and User Guide</a>&nbsp;has a full description of all available variables, data sources, data currency, data coverage and known limitations.&nbsp;</li></ul><div class="figure image mode-medium">
+
+
+
+
+
+
+
+
+<figure class="figure  figure--image figure--original is-centered">
+  <div class="figure__media">  <a href="/sites/default/files/2021-06/web_sld_losangeles_transitfreqpersqmile_2021.jpg">  
+    <img loading="lazy" src="/sites/default/files/2021-06/web_sld_losangeles_transitfreqpersqmile_2021.jpg" width="1280" height="720" alt="Map showing which areas of the Los Angeles region have higher levels of transit service">
+
+
+
+</a>
+
+  </div>
+
+      <figcaption class="figure__caption"><strong>Figure 1: </strong>Transit service density in the Los Angeles metropolitan region.<strong>&nbsp;</strong>The map shows patterns of spatial variation in transit service availability and density in Los Angeles and its surrounding cities and suburbs.</figcaption>
+  </figure>
+
+</div><h3>Sample Variables Included in the Smart Location Database</h3><table><thead><tr><th><div><strong>Category</strong></div></th><th><div><strong>Variables</strong></div></th></tr></thead><tbody><tr><td><div>Density</div></td><td><div>Gross residential density (housing units per acre) on unprotected land<br>Gross population density (people per acre) on unprotected land<br>Gross employment density (jobs per acre) on unprotected land</div></td></tr><tr><td><div>Diversity of land use</div></td><td><div>Jobs per housing unit<br>Employment entropy (a measure of employment diversity)<br>Employment and housing entropy</div></td></tr><tr><td><div>Urban design</div></td><td><div>Street intersections per square mile<br>High-speed road network density</div></td></tr><tr><td><div>Transit service*&nbsp;</div></td><td><div>Aggregate transit service frequency, afternoon peak period<br>Transit service density, afternoon peak period<br>Distance to nearest transit stop</div></td></tr><tr><td><div>Destination accessibility by transit*</div></td><td><div>Jobs within a 45-minute transit commute<br>Working-age population within a 45-minute transit commute</div></td></tr><tr><td><div>Destination accessibility by car</div></td><td><div>Jobs within a 45-minute drive<br>Working-age population within a 45-minute drive</div></td></tr><tr><td><div>Demographics</div></td><td><div>Percentage of households with no car, 1 car, or 2 or more cars<br>Percentage of workers that are low, medium, or high wage (by home and work locations)</div></td></tr><tr><td><div>Employment</div></td><td><div>Employment totals broken down by 5-tier classification scheme<br>Employment totals broken down by 8-tier classification scheme</div></td></tr></tbody></table><p>*Only available in areas served by transit agencies that share transit data in <a href="https://developers.google.com/transit/gtfs/">GTFS format</a>.</p><hr><h2 class="highlight" id="Trans45">Access to Jobs and Workers Via Transit Tool</h2><p>The Access to Jobs and Workers Via Transit tool is a free geospatial data resource and web mapping tool for comparing the accessibility of neighborhoods via public transit service. Its indicators summarize accessibility to jobs as well as accessibility by workers, households, and population.</p><p>Coverage is limited to metropolitan regions served by transit agencies that share their service data in a standard format called <a href="https://developers.google.com/transit/gtfs/">GTFS</a>&nbsp;.</p><h3>Access the Data</h3><ul><li><a href="http://epa.maps.arcgis.com/home/webmap/viewer.html?webmap=3bffc086a9b34928a632ab6c8530ebcf">Interactive map viewer</a>&nbsp;</li><li><a href="https://geodata.epa.gov/arcgis/rest/services/OA/SLD_Trans45/MapServer">Web Services</a></li><li><a href="https://edg.epa.gov/data/Public/OP/SLD/SLD_Trans45_shp.zip">Shapefile ZIP</a>&nbsp;(253 MB)</li><li><a href="https://edg.epa.gov/data/Public/OP/SLD/SLD_Trans45_DBF.zip">Dbf (ZIP)</a> <span class="fileinfo">(8 MB)</span></li><li><a href="https://edg.epa.gov/data/Public/OP/SLD/SLD_Trans45.zip">Esri Geodatabase (ZIP)</a> <span class="fileinfo">(120 MB)</span></li><li><a href="https://edg.epa.gov/metadata/rest/document?id=%7B8E9DDDA1-1F38-44F0-9114-CD81DC15019A%7D&amp;xsl=metadata_to_html_full">Metadata</a></li><li><a href="/sites/default/files/2014-03/documents/sld_trans45_ug_0.pdf" target="_blank">Access to Jobs and Workers Via Transit - Technical Documentation and User Guide</a>&nbsp;has a full description of data sources, data coverage (full list of metropolitan areas covered by GTFS) and other known limitations.&nbsp;</li></ul><div class="figure image mode-medium">
+
+
+
+
+
+
+
+
+<figure class="figure  figure--image figure-- is-centered">
+  <div class="figure__media">  <a href="/sites/default/files/2021-06/map_sld_jobsbytransit_washingtondc.jpg">  
+  
+    <img loading="eager" srcset="/sites/default/files/styles/small/public/2021-06/map_sld_jobsbytransit_washingtondc.jpg?itok=uTU5m3DH 320w, /sites/default/files/styles/medium/public/2021-06/map_sld_jobsbytransit_washingtondc.jpg?itok=Lqs6Upa8 640w, /sites/default/files/styles/large/public/2021-06/map_sld_jobsbytransit_washingtondc.jpg?itok=CeMJJ4jv 960w, /sites/default/files/styles/huge/public/2021-06/map_sld_jobsbytransit_washingtondc.jpg?itok=4FgsMCMg 1280w" sizes="(max-width: 960px) calc(100vw - 4rem), 960px" width="960" height="540" src="/sites/default/files/styles/large/public/2021-06/map_sld_jobsbytransit_washingtondc.jpg?itok=CeMJJ4jv" alt="Map shows where more jobs are accessible via transit in the Washington DC region">
+
+
+
+
+</a>
+
+  </div>
+
+      <figcaption class="figure__caption"><strong>Figure 2</strong>: This map shows the percentage of all jobs in the Washington, D.C. metropolitan region that are accessible by transit.</figcaption>
+  </figure>
+
+</div><h3>Sample Variables Included in This Dataset</h3><table><thead><tr><th><strong>Map Layer Name</strong></th><th><strong>Description</strong></th></tr></thead><tbody><tr><td>Accessibility Index</td><td>An index of the relative accessibility of a block group compared to other block groups in the same metropolitan region, as measured by travel time to working-age population via transit. Values closer to 1 are more accessible.</td></tr><tr><td>Population with access by transit</td><td>Total population able to access the block group within a 45-minute transit and walking commute.</td></tr><tr><td>Percentage of population with access by transit</td><td>Total population able to access the block group within a 45-minute transit and walking commute as a percentage of total regional population.</td></tr><tr><td>Jobs accessible by transit</td><td>Total jobs reachable within a 45-minute transit and walking commute.</td></tr><tr><td>Percentage of regional jobs accessible by transit</td><td>Total jobs reachable within a 45-minute transit and walking commute as a percentage of total regional jobs.</td></tr><tr><td>Workers with access by transit</td><td>Employed population able to access the block group within a 45-minute transit commute from their home location.</td></tr><tr><td>Percentage of workers with access by transit</td><td>Employed population able to access the block group within a 45-minute transit commute from their home location as a percentage of total regional employed population.</td></tr><tr><td>Low-wage workers with access by transit</td><td>Workers earning $1,250 or less per month that can reach the block group within a 45-minute transit commute from their home location.</td></tr><tr><td>Percentage of all low-wage workers in region with access by transit</td><td>Low-wage workers that can reach the block group within a 45-minute transit commute from their home location as a percentage of all low-wage workers in region.</td></tr><tr><td>Low-medium wage workers with access by transit</td><td>Workers earning $3,333 or less per month that can reach the block group within a 45-minute transit commute from their home location.</td></tr><tr><td>Percentage of all low-medium wage workers in region with access by transit</td><td>Low-medium wage workers that can reach the block group within a 45-minute transit commute from their home location as a percentage of all low-medium wage workers in region.</td></tr></tbody></table><hr><h2 class="highlight" id="walkability">National Walkability Index</h2><p><ins data-date="2021,6,15">The</ins> National Walkability Index is a nationwide geographic data resource that ranks block groups according to their relative walkability. The national dataset includes walkability scores for all block groups as well as the underlying attributes that are used to rank the block groups.</p><h3>Access the Data</h3><ul><li><a href="https://epa.maps.arcgis.com/home/webmap/viewer.html?webmap=f16f5e2f84884b93b380cfd4be9f0bba">Interactive map viewer</a>&nbsp;</li><li><a href="https://edg.epa.gov/EPADataCommons/public/OA/WalkabilityIndex.zip">Download data for all areas with coverage</a> (ZIP file)</li><li><a href="https://edg.epa.gov/metadata/catalog/search/resource/details.page?uuid=%7B251AFDD9-23A7-4068-9B27-A3048A7E6012%7D">Metadata</a></li><li><a href="https://geodata.epa.gov/arcgis/rest/services/OA/WalkabilityIndex/MapServer">Web services</a></li><li><a href="/smartgrowth/national-walkability-index-user-guide-and-methodology">National Walkability Index User Guide and Methodology</a>&nbsp;describes how to use the index and the methodology used to derive the index and ranked scores for its inputs.</li></ul>
+
+
+
+
+
+
+
+
+<figure class="figure  figure--image figure--medium is-centered">
+  <div class="figure__media">  <a href="/sites/default/files/2021-06/nwi_chicago.jpg">  
+  
+    <img loading="eager" srcset="/sites/default/files/styles/small/public/2021-06/nwi_chicago.jpg?itok=xDSKQYVe 320w, /sites/default/files/styles/medium/public/2021-06/nwi_chicago.jpg?itok=xd7PGwrw 640w, /sites/default/files/styles/large/public/2021-06/nwi_chicago.jpg?itok=_7HWv_va 960w, /sites/default/files/styles/huge/public/2021-06/nwi_chicago.jpg?itok=jXaZMW5p 1280w" sizes="(max-width: 640px) calc(100vw - 4rem), 640px" width="640" height="360" src="/sites/default/files/styles/medium/public/2021-06/nwi_chicago.jpg?itok=xd7PGwrw" alt="Map shows National Walkability Index scores in the Chicago region with higher scores in central cities">
+
+
+
+
+</a>
+
+  </div>
+
+      <figcaption class="figure__caption"><strong>Figure 3: </strong>This map shows the&nbsp;National Walkability Index results for block group scores in the Chicago metropolitan area and some midwestern states.</figcaption>
+  </figure>
+
+<h3>Sample Variables Included in This Dataset</h3><table><thead><tr><th>Dataset Field Name</th><th>Description</th></tr></thead><tbody><tr><td>NatWalkInd</td><td>National&nbsp;Walkability Index score. Calculated by weighted formula using results of indicator rank scores.</td></tr><tr><td>D2A_EPHHM</td><td>The mix of employment types and occupied housing. A block group with a diverse set of employment types (such as office, retail, and service) plus a large quantity of occupied housing units will have a relatively high value.&nbsp;Higher values correlate with more walk trips.</td></tr><tr><td>D2B_E8MIXA</td><td>The mix of employment types in a block group (such as retail, office, or industrial). Higher values correlate with more walk trips.</td></tr><tr><td>D3b</td><td>Street intersection density (pedestrian-oriented intersections). Higher intersection density is correlated with more walk trips.</td></tr><tr><td>D4a</td><td>Predicted commute mode split - proportion of workers in the block group who carpool.</td></tr><tr><td>D2A_Ranked</td><td>Resulting rank of block group for D2A_EPHHM within all block groups. Range from 1-20, higher ranks indicate more walk trip likelihood.</td></tr><tr><td>D2B_Ranked</td><td>Resulting rank of block group for D2B_E8MIXA within all block groups. Range from 1-20, higher ranks indicate more walk trip likelihood.</td></tr><tr><td>D3B_Ranked</td><td>Resulting rank of block group for D3B within all block groups. Range from 1-20, higher ranks indicate more walk trip likelihood.</td></tr><tr><td>D4A_Ranked</td><td>Resulting rank of block group for D4A within all block groups. Range from 1-20, higher ranks indicate more walk trip likelihood.</td></tr></tbody></table><hr><h2 class="highlight" id="calculator">Smart Location Calculator</h2><p>The <a href="https://www.slc.gsa.gov/slc/">Smart Location Calculator</a> is a simple tool for exploring how workplace location affects worker commute travel. The tool provides location efficiency scores for a user-entered address, as well as location efficiency data summarized at the block group level. All of the scores are relative to the region. Other indicators include worker commute greenhouse gas emissions, mode share, vehicle miles traveled, and workplace accessibility via transit.&nbsp;</p><p>Only the Smart Location Index scores and related variables from the 2021 Smart Location Database version are available at this time. This page will be updated when data for other metrics, including transit accessibility and mode split, are available.</p><h3>Access the Data</h3><ul><li><a href="https://www.slc.gsa.gov/slc/">Interactive Map Viewer</a>&nbsp;</li></ul>
+
+
+
+
+
+
+
+
+<figure class="figure  figure--image figure--medium is-centered">
+  <div class="figure__media">    
+  
+    <img loading="eager" srcset="/sites/default/files/styles/small/public/2017-01/smart_location_calculator_example.jpg?itok=zcxrlod9 320w, /sites/default/files/styles/medium/public/2017-01/smart_location_calculator_example.jpg?itok=Uh0cmcfx 640w, /sites/default/files/styles/large/public/2017-01/smart_location_calculator_example.jpg?itok=uhmKrL8a 960w, /sites/default/files/styles/huge/public/2017-01/smart_location_calculator_example.jpg?itok=FQHlATVi 1276w" sizes="(max-width: 640px) calc(100vw - 4rem), 640px" width="640" height="454" src="/sites/default/files/styles/medium/public/2017-01/smart_location_calculator_example.jpg?itok=Uh0cmcfx" alt="Sample map from Smart Location Calculator">
+
+
+
+
+
+
+  </div>
+
+      <figcaption class="figure__caption"><strong>Figure 4</strong>: This shows Smart Location Index block group scores mapped in the Columbus, Ohio, metropolitan area.</figcaption>
+  </figure>
+
+<h3>Sample Variables Included in This Dataset</h3><table><thead><tr><th>Dataset Field Name</th><th>Description</th></tr></thead><tbody><tr><td>Score</td><td>Smart Location Index (SLI). Ranges in value from 0-100, where 0 indicates the least location-efficient site in the region, and 100 indicates the most location-efficient site. These scores are relative to the region and should not be compared across regions.</td></tr><tr><td>GHG</td><td>Commute greenhouse gas emissions per worker per year in pounds</td></tr><tr><td>GHG_av</td><td>Average GHG for the region (CBSA or county)</td></tr></tbody></table><hr><h2 class="highlight" id="Uses">Suggested Uses</h2><ul><li><strong>Assessing and comparing neighborhood conditions</strong><br>Users can browse either dataset using a simple interactive map to assess and compare conditions across different neighborhoods in their communities. The Access to Jobs and Workers Via Transit tool includes regional benchmarks to compare the level of transit access of a neighborhood to the highest and average level of access for neighborhoods in the same metropolitan region.</li><li><div><strong>Evaluating and prioritizing investments in location-efficient areas</strong></div><div>Much like energy efficiency, location efficiency reduces resource demands while fostering a healthier, more sustainable built environment and providing equitable access to jobs and services.&nbsp;Location-efficient facilities or public-sector infrastructure investments are generally accessible via multiple transportation options, including:</div><ul><li><div>Public transit and active transportation.</div></li><li><div>Centrally located in a region providing greater access and reduced travel distances.</div></li><li><div>Integrated within a mixed-use environment that offers easy access to services and destinations.</div></li></ul></li><li><strong>Scenario planning and travel demand modeling</strong><br>Planners can use indicators from these datasets as baseline information for scenario planning, sketch planning, and travel demand studies when more detailed or consistent local data are unavailable. Analysts can also use elasticities found in the research literature to adjust outputs of travel or activity models that are otherwise insensitive to variation in the built environment.</li><li><strong>Conducting nationwide research studies and developing tools</strong><br>Researchers use the Smart Location Database and National Walkability Index to analyze the built environment and develop models, planning tools, and databases for use by public health researchers, planners, and elected officials who make decisions about land use and transportation policies, plans, and investments. Research on walkability highlights the relationship between the perception of how walking-friendly a given area is and the quality of life, as well as how walkability potentially influences physical activity.<a href="#_edn4">[iii]</a></li><li><strong>Comparing urban form among metropolitan regions</strong><br>Researchers can use these datasets in nationwide studies that compare metropolitan regions based on urban form characteristics. For instance, analysts could determine the percentage of residents that live in walkable or transit-rich neighborhoods.&nbsp;</li><li><strong>Modeling impervious surface growth</strong><br>EPA analyzed variables in a previous version of the Smart Location Database and the <a href="http://www.mrlc.gov">National Land Cover Database</a> to create a model and simple spreadsheet tool for estimating new impervious surface growth associated with land use development scenarios. This model is sensitive not only to density of development but also to its relative centrality within the surrounding metropolitan region. For details, see EPA’s <a href="/smartgrowth/impervious-surface-growth-model">Impervious Surface Growth Model</a>.</li></ul><div><div id="edn2"><hr><p><a href="#_ednref2" title>[i]</a> Block groups are contained within census tracts and generally contain between 600 and 3,000 people, with an optimum size of 1,500 people. The land area of block groups varies based on population density.</p><p><a href="#_ednref5">[ii]</a> Web services are widely used by geographic information system (GIS) professionals to share geospatial data. A web service is a representation of a GIS resource (spatial data) that a server makes available to other computers or applications. Smart Location Database web services provide access to data layers through <a href="http://www.esri.com/en/arcgis/products/arcgis-enterprise/overview">ESRI's ArcGIS Server</a>&nbsp; and <a href="http://www.opengeospatial.org/">Open Geospatial Consortium (OGC)</a>&nbsp; service formats. Web services are used to display data in the Interactive Map Viewer table of contents and are also available for public use in desktop mapping applications or web-based mapping applications.</p><p><a class="ck-anchor" id="_edn4">[iii]</a>&nbsp;Jaśkiewicz, M., &amp; Besta, T. (2014). <a href="https://doi.org/10.1007/s11482-013-9246-6">Is Easy Access Related to Better Life? Walkability and Overlapping of Personal and Communal Identity as Predictors of Quality of Life</a>&nbsp;.&nbsp;<em>Applied research in quality of life</em>,&nbsp;<em>9</em>(3), 505–516.&nbsp;</p></div></div>
+
+
+
+  
+  
+  
+  
+
+    </div>
+    </div>
+
+  
+  </article>
+      </div>
+
+      <div class="l-sidebar__sidebar">
+            
+
+
+
+
+
+<div class="menu-sidenav__overlay"></div>
+
+  
+  
+  
+
+  <div  id="block-webareamenu" class="block--web-area-menu block">
+
+  
+  
+
+      <h2  class="block__title"><a href="/smartgrowth" hreflang="en">Smart Growth</a></h2>
+  
+  
+
+      <div  class="block__content">
+  
+            
+  <button type="button" class="usa-button usa-button--outline web-area-menu__button" id="web-area-menu__button" aria-label="toggle the side navigation menu">
+    
+<svg class="usa-icon menu-button--open" aria-hidden="true" role="img"><title>Open Sidenav Menu</title><use href="/themes/epa_theme/images/sprite.svg#menu"></use></svg>    
+<svg class="usa-icon menu-button--close" aria-hidden="true" role="img"><title>Close Sidenav Menu</title><use href="/themes/epa_theme/images/sprite.svg#close"></use></svg>  </button>
+
+  <nav class="menu--sidenav-nav">
+
+
+                                      <ul  class="menu--sidenav menu menu--group_menu_link_content-74">
+            	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/about-smart-growth" title="About Smart Growth" class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/20543">About Smart Growth</a></li>        	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/smart-growth-technical-assistance-programs" title="Technical Assistance" class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/45769">Technical Assistance</a></li>        	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/examples-smart-growth-communities-and-projects" title="Examples of Smart Growth" class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/20549">Examples of Smart Growth</a></li>        	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/smart-growth-publications" title="Publications" class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/28529">Publications</a></li>        	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/smart-growth-tools" title="Tools" class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/49649">Tools</a></li>        	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/smart-growth-topics" title="Topics" class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/56965">Topics</a></li>        	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/smart-growth-webinars-videos-and-podcasts" title="Webinars, Videos, and Podcasts" class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/39775">Webinars, Videos, and Podcasts</a></li>        	                        
+                                                      
+      
+      
+      
+      
+      <li  class="menu__item"><a href="/smartgrowth/smart-growth-your-community" title="Smart Growth in Your Community: interactive map of Smart Growth projects." class="menu-node-unpublished menu__link" data-drupal-link-system-path="node/68971">Smart Growth in Your Community</a></li>        </ul>
+  
+
+
+  </nav>
+
+  
+  
+      </div>
+  
+  
+  </div>
+
+
+      <div class="menu-sidenav__contact" id="menu-sidenav__contact">
+          <a href="/smartgrowth/forms/contact-us-about-smart-growth" hreflang="en">Contact Us about Smart Growth</a>
+
+      </div>
+        </div>
+  </div>
+
+
+  
+    
+  </div>
+
+      <div class="l-page__footer">
+      <div class="l-constrain">
+              
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+            
+  <div class="l-page__footer-contact"><a href="/smartgrowth/forms/contact-us-about-smart-growth">Contact Us about Smart Growth</a> to ask a question, provide feedback, or report a problem.</div> 
+<div class="l-page__footer-last-updated">Last updated on September 8, 2026</div>
+
+  
+  
+  
+  
+
+
+        </div>
+    </div>
+  </div>
+
+
+  </main>
+
+
+<footer class="footer" role="contentinfo">
+  <div class="l-constrain">
+    <div class="footer__pre-footer">
+        
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+            
+  <ul class="list list--footer-language-bar">
+    <li><a href="/lep/assistance">Assistance</a></li>
+    <li><a href="https://espanol.epa.gov/">Spanish</a></li>
+    <li><a href="/lep/arabic">Arabic</a></li>
+    <li><a href="/lep/simplified-chinese">Chinese (simplified)</a></li>
+    <li><a href="/lep/traditional-chinese">Chinese (traditional)</a></li>
+    <li><a href="/lep/french">French</a></li>
+    <li><a href="/lep/sante-ak-anviwonman-enfomasyon-kreyol-ayisyen">Haitian Creole</a></li>
+    <li><a href="/lep/korean">Korean</a></li>
+    <li><a href="/lep/saude-e-informacoes-ambientais-em-portugues">Portuguese</a></li>
+    <li><a href="/lep/russian">Russian</a></li>
+    <li><a href="/lep/tagalog">Tagalog</a></li>
+    <li><a href="/lep/vietnamese">Vietnamese</a></li>
+</ul>
+
+  
+  
+  
+  
+
+
+      </div>
+    <img class="footer__epa-seal" src="/themes/epa_theme/images/epa-seal.svg" alt="United States Environmental Protection Agency" height="100" width="100">
+    <div class="footer__content contextual-region">
+          
+
+
+        <div class="footer__column">
+        <h2>Discover.</h2>
+        <ul class="menu menu--footer">
+          <li class="menu__item">
+            <a href="/accessibility/epa-accessibility-statement" class="menu__link">Accessibility Statement</a>
+          </li>
+          <!--li class="menu__item">
+            <a href="#" class="menu__link">EPA Administrator</a>
+          </li-->
+          <li class="menu__item">
+            <a href="/planandbudget" class="menu__link">Budget &amp; Performance</a>
+          </li>
+          <li class="menu__item">
+            <a href="/contracts" class="menu__link">Contracting</a>
+          </li>
+          <li class="menu__item">
+            <a href="/utilities/wwwepagov-snapshots" class="menu__link">EPA www Web Snapshot</a>
+          </li>
+          <li class="menu__item">
+            <a href="/grants" class="menu__link">Grants</a>
+          </li>
+          <li class="menu__item">
+            <a href="/ocr/no-fear-act-data" class="menu__link">No FEAR Act Data</a>
+          </li>
+          <li class="menu__item">
+            <a href="/web-policies-and-procedures/plain-writing" class="menu__link">Plain Writing</a>
+          </li>
+          <li class="menu__item">
+            <a href="/privacy/privacy-and-security-notice" class="menu__link">Privacy and Security Notice</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h2>Connect.</h2>
+        <ul class="menu menu--footer">
+          <li class="menu__item">
+            <a href="/data" class="menu__link">Data</a>
+          </li>
+          <li class="menu__item">
+            <a href="/office-inspector-general" class="menu__link">Inspector General</a>
+          </li>
+          <li class="menu__item">
+            <a href="/careers" class="menu__link">Jobs</a>
+          </li>
+          <li class="menu__item">
+            <a href="/newsroom" class="menu__link">Newsroom</a>
+          </li>
+          <li class="menu__item">
+            <a href="https://www.regulations.gov/" class="menu__link">Regulations.gov</a>
+          </li>
+          <li class="menu__item">
+            <a href="/newsroom/email-subscriptions-epa-news-releases" class="menu__link">Subscribe</a>
+          </li>
+          <li class="menu__item">
+            <a href="https://www.usa.gov/" class="menu__link">USA.gov</a>
+          </li>
+          <li class="menu__item">
+            <a href="https://www.whitehouse.gov/" class="menu__link">White House</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h2>Ask.</h2>
+        <ul class="menu menu--footer">
+          <li class="menu__item">
+            <a href="/home/forms/contact-epa" class="menu__link">Contact EPA</a>
+          </li>
+          <li class="menu__item">
+            <a href="/web-policies-and-procedures/epa-disclaimers" class="menu__link">EPA Disclaimers</a>
+          </li>
+          <li class="menu__item">
+            <a href="/aboutepa/epa-hotlines" class="menu__link">Hotlines</a>
+          </li>
+          <li class="menu__item">
+            <a href="/foia" class="menu__link">FOIA Requests</a>
+          </li>
+          <li class="menu__item">
+            <a href="/home/frequent-questions-specific-epa-programstopics" class="menu__link">Frequent Questions</a>
+          </li>
+          <li class="menu__item">
+            <a id="epa-touchpoint" class="menu__link" href="#">Site Feedback</a>
+          </li>
+        </ul>
+        <h2>Follow.</h2>
+        <ul class="menu menu--social">
+          <li class="menu__item">
+            <a class="menu__link" aria-label="EPA’s Facebook" href="https://www.facebook.com/EPA">
+              <svg class="icon icon--social" aria-hidden="true">
+                <use xlink:href="/themes/epa_theme/images/sprite.artifact.svg#facebook-square" xmlns:xlink="http://www.w3.org/1999/xlink" />
+              </svg> </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" aria-label="EPA’s Twitter / X" href="https://x.com/epa">
+              <svg class="icon icon--social" aria-hidden="true">
+                <use xlink:href="/themes/epa_theme/images/sprite.artifact.svg#twitter-square" xmlns:xlink="http://www.w3.org/1999/xlink" />
+              </svg> </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" aria-label="EPA’s Youtube" href="https://www.youtube.com/user/USEPAgov">
+              <svg class="icon icon--social" aria-hidden="true">
+                <use xlink:href="/themes/epa_theme/images/sprite.artifact.svg#youtube-square" xmlns:xlink="http://www.w3.org/1999/xlink" />
+              </svg> </a>
+          </li>
+          <!--li class="menu__item">
+            <a class="menu__link" aria-label="EPA’s Flickr" href="https://www.flickr.com/photos/usepagov">
+              <svg class="icon icon--social" aria-hidden="true">
+                <use xlink:href="/themes/epa_theme/images/sprite.artifact.svg#flickr-square"></use>
+              </svg> </a>
+          </li-->
+          <li class="menu__item">
+            <a class="menu__link" aria-label="EPA’s Instagram" href="https://www.instagram.com/epagov">
+              <svg class="icon icon--social" aria-hidden="true">
+                <use xlink:href="/themes/epa_theme/images/sprite.artifact.svg#instagram-square" xmlns:xlink="http://www.w3.org/1999/xlink" />
+              </svg> </a>
+          </li>
+        </ul>
+      </div>
+<script src="https://touchpoints.app.cloud.gov/touchpoints/f276bd95.js" async></script>
+<style>a#epa-touchpoint{color:#dfe1e2;cursor:pointer;}a#epa-touchpoint:hover{color:#fff;}</style>
+
+
+
+      </div>
+  </div>
+</footer>
+
+  </div>
+
+    
+    
+<a href="#top" class="back-to-top" title="Back to top">
+  <svg class="back-to-top__icon" role="img" aria-label="Back to top">
+    <use href="/themes/epa_theme/images/sprite.artifact.svg#angle"></use>
+  </svg>
+</a>
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/46219","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"ajaxPageState":{"libraries":"eJxNy1EOAiEMRdENISyJFHkyjaVDKEjYvWY-1L-bk1w0iuNARShyJhKHL1Rkpiiszz80zlB6xQqdF69tvHYJn74plruu8GAZ6P5ObfCprlGn0qkdFnKfjcT_xE9tMwnbgexs20ANiQxvDzQ75g","theme":"epa_theme","theme_token":null},"ajaxTrustedUrl":[],"epaAlerts":{"tomeEnabled":false,"context":"public"},"mediaelement":{"attachSitewide":0},"user":{"uid":0,"permissionsHash":"d5adb3db24a1974cb6d9d66f2ec46898755a5acc1e89c32935539c73d1bbca41"}}</script>
+<script src="/core/assets/vendor/jquery/jquery.min.js?v=3.7.1"></script>
+<script src="/core/assets/vendor/once/once.min.js?v=1.0.1"></script>
+<script src="/core/misc/drupalSettingsLoader.js?v=10.6.15"></script>
+<script src="/core/misc/drupal.js?v=10.6.15"></script>
+<script src="/core/misc/drupal.init.js?v=10.6.15"></script>
+<script src="/core/assets/vendor/tabbable/index.umd.min.js?v=6.3.0"></script>
+<script src="/core/misc/progress.js?v=10.6.15"></script>
+<script src="/core/assets/vendor/loadjs/loadjs.min.js?v=4.3.0"></script>
+<script src="/core/misc/debounce.js?v=10.6.15"></script>
+<script src="/core/misc/announce.js?v=10.6.15"></script>
+<script src="/core/misc/message.js?v=10.6.15"></script>
+<script src="/core/misc/ajax.js?v=10.6.15"></script>
+<script src="/themes/contrib/stable/js/ajax.js?v=10.6.15"></script>
+<script src="/themes/epa_theme/js/dist/common.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/scripts.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/header-search.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/epa-alerts.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/sitewide-alert.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/private-sitewide-alert.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/definition.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/external-links.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/protected-links.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/vid-copy.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/media-link.min.js?v=20260713"></script>
+<script src="/themes/epa_theme/js/dist/sidenav-menu.min.js?v=20260713"></script>
+<script src="/modules/custom/epa_wysiwyg/js/plugins/epaNew/epaNew.js?tlmacm"></script>
+
+    
+  </body>
+</html>

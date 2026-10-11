@@ -1,0 +1,32 @@
+{
+  "source_sha256": "0ebad6bfce4e852e071f3ffdfaa4269d75151f2540bfd668417c1a7e1327d520",
+  "records": 3293177,
+  "unique_building_outlines": 3115964,
+  "exact_duplicates": 3,
+  "conflicting_duplicate_height_geometries": 2,
+  "invalid_geometry_repaired": 149,
+  "source_counts": {
+    "LARIAC2": 2343740,
+    "LARIAC5": 234415,
+    "LARIAC4": 158021,
+    "LARIAC6": 210169,
+    "Glendale: Merrick & Co": 36762,
+    "Glendale: LARIAC2": 7348,
+    "Pasadena": 95522,
+    "LARIAC 2006 4-in": 29987
+  },
+  "date_counts": {
+    "2008": 2446452,
+    "2017": 234415,
+    "2014": 158179,
+    "2020": 210169,
+    "1992": 29616,
+    "2003": 7146,
+    "2006": 29987
+  },
+  "count_convention": "whole deduplicated outline assigned by centroid; exact boundary ties smallest GEOID",
+  "size_convention": "whole projected EPSG3310 outline area, not clipped fragments",
+  "volume_scope": "centroid-assigned area-height product on positive finite nonconflicting heights; geometric overlap not unioned; not independent of factors and not whole-land union volume",
+  "physical_building_identity": "source rooflines may split a physical building or include annexes; no independent physical-building segmentation ground truth",
+  "seconds": 334.3357427120209
+}

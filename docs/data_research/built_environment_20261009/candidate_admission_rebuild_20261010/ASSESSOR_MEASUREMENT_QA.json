@@ -1,0 +1,45 @@
+{
+  "records_in_county_tract_assignment_before_dedup": 2413687,
+  "deduplicated_county_parcels": 2413687,
+  "aggregation_tracts_county": 2498,
+  "final_model_subset": 2315,
+  "duplicate_AIN_records": 0,
+  "conflicting_AIN_withheld": 0,
+  "unique_roll_year": [
+    "2022"
+  ],
+  "use_counts": {
+    "SFR": 1496977,
+    "CND": 315122,
+    "R-I": 247736,
+    "VAC": 170822,
+    "C/I": 135287,
+    "OTH": 38510,
+    " ": 9233
+  },
+  "classification_counts": {
+    " ": 2357097,
+    "Public (non-taxable government-owned)": 45877,
+    "State Board of Equilization Assessed": 5724,
+    "Public Entity (Green Code)": 3397,
+    "Unpatented Lands": 1592
+  },
+  "taxability_counts": {
+    "Y": 2360494,
+    "N": 53193
+  },
+  "valid_actual_year_records": 2191653,
+  "multi_building_data_line_records": 157429,
+  "condominium_CND_records": 315122,
+  "condominium_shared_point_groups": 19061,
+  "condominium_records_at_shared_points": 313031,
+  "nonpersonal_fields_only": true,
+  "age_validity_interval": [
+    1700,
+    2022
+  ],
+  "position": "parcel location point; not footprint intersection; no cross-vintage footprint transfer",
+  "area_definition": "Main Square Footage in official roll dictionary; insufficient definition for certified gross floor area/FAR",
+  "government_exempt_stock_completeness": "not independently established; tax roll is not complete all-use census",
+  "seconds": 68.94383478164673
+}

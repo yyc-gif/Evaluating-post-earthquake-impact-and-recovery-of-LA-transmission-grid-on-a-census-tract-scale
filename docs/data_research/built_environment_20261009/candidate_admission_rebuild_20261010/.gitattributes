@@ -1,0 +1,9 @@
+*.csv filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.json -filter diff merge text eol=lf
+*.py -filter diff merge text eol=lf
+*.md -filter diff merge text eol=lf
+*.txt -filter diff merge text eol=lf
+source_evidence/** -filter -diff -merge -text
+source_evidence/*.csv filter=lfs diff=lfs merge=lfs -text
+source_evidence/*.tif filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,21 @@
+{
+  "endpoint": "https://api.sciencebase.gov/graphql",
+  "query": {
+    "query": "query GetDownloadByCuid($cuid: String!) { file(cuid: $cuid) { downloadUri } }",
+    "variables": {
+      "cuid": "cmobrpkxx00ry0vpkfrl40c2c"
+    }
+  },
+  "response": {
+    "errors": [
+      {
+        "message": "Context creation failed: Incorrect authorization header",
+        "extensions": {
+          "code": "UNAUTHENTICATED",
+          "exception": {}
+        }
+      }
+    ]
+  },
+  "response_status": 400
+}

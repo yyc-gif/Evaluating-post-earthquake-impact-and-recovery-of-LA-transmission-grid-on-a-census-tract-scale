@@ -1,0 +1,153 @@
+{
+  "official_parent": {
+    "official_url": "https://www.sciencebase.gov/catalog/file/get/697b907eb66b0197c3043c9f?name=Annual_NLCD_FctImp_2022_CU_C1V2.zip",
+    "source_record": "https://www.sciencebase.gov/catalog/item/697b907eb66b0197c3043c9f?format=json",
+    "collection": "1.2",
+    "mapping_year": 2022,
+    "archive_sha256": "9cfb5d3b4a71133dfc7f5172c6c47697c1275a76fef9db8d699e519fcb186fdc",
+    "archive_bytes": 962491880,
+    "members": [
+      {
+        "name": "Annual_NLCD_FctImp_2022_CU_C1V2.tif.aux.xml",
+        "bytes": 17672,
+        "CRC": 2339292488
+      },
+      {
+        "name": "Annual_NLCD_FctImp_2022_CU_C1V2.xml",
+        "bytes": 28117,
+        "CRC": 611827421
+      },
+      {
+        "name": "Annual_NLCD_FctImp_2022_CU_C1V2.tif",
+        "bytes": 976267444,
+        "CRC": 2269988719
+      }
+    ],
+    "numeric_raster_sha256": "b3b8dd2cced7783fb3413b83459cca95beaec3741cab4ddb819ba82aa749de78",
+    "tif_path": "\\\\?\\C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_ca10\\docs\\data_research\\built_environment_20261009\\candidate_admission_rebuild_20261010\\raw_cache\\nlcd2022_c12.tif",
+    "headers": {
+      "Date": "Sun, 11 Oct 2026 03:34:38 GMT",
+      "Content-Type": "application/zip",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "access-control-allow-headers": "Content-Type, Authorization, X-Requested-With, Accept, Origin",
+      "access-control-allow-methods": "POST, GET, PUT, DELETE, GET, POST, PUT, DELETE, OPTIONS",
+      "access-control-allow-origin": "*",
+      "access-control-max-age": "3600",
+      "Cache-Control": "private, max-age=86400",
+      "content-disposition": "attachment; filename=\"Annual_NLCD_FctImp_2022_CU_C1V2.zip\"",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://*.gstatic.com https://cdnjs.cloudflare.com https://www.gstatic.com/recaptcha/ https://www.google.com/recaptcha/ https://www.googletagmanager.com https://code.jquery.com https://use.fontawesome.com https://apis.google.com https://cdn.jsdelivr.net https://*.arcgis.com https://*.arcgisonline.com https://*.usgs.gov https://ssl.google-analytics.com https://static.cloudflareinsights.com https://dap.digitalgov.gov https://www.youtube.com; style-src 'self' 'unsafe-inline' https://www.sciencebase.gov https://use.fontawesome.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com/ https://*.arcgis.com https://*.arcgisonline.com; img-src 'self' data: https://*.arcgis.com https://*.arcgisonline.com https://*.usgs.gov https://api.sciencebase.gov https://www.gstatic.com https://*.googleusercontent.com https://*.s3.amazonaws.com https://d123abc.cloudfront.net https://basemap.nationalmap.gov https://cdnjs.cloudflare.com/ https://ssl.google-analytics.com; font-src 'self' data: https://use.fontawesome.com https://fonts.gstatic.com https://*.arcgis.com https://*.arcgisonline.com; frame-src 'self' https://www.google.com https://recaptcha.google.com https://*.googleusercontent.com https://www.sciencebase.gov https://www.gstatic.com/recaptcha/ https://www.google.com/recaptcha/ https://accounts.google.com https://www.arcgis.com https://tiles.arcgis.com; connect-src 'self' https://www.google.com https://www.googletagmanager.com https://www.googleapis.com https://oauth2.googleapis.com https://cdnjs.cloudflare.com https://*.arcgis.com https://*.arcgisonline.com https://*.usgs.gov https://cloudflareinsights.com https://www.google-analytics.com https://dap.digitalgov.gov; form-action 'self' https://login.microsoftonline.com https://*.sciencebase.gov https://www.sciencebase.gov https://beta.sciencebase.gov; frame-ancestors 'self' https://*.sciencebase.gov https://www.sciencebase.gov https://beta.sciencebase.gov; base-uri 'self';",
+      "expires": "Mon, 12 Oct 2026 03:34:33 GMT",
+      "last-modified": "Sun, 11 Oct 2026 03:34:33 GMT",
+      "Server": "cloudflare",
+      "X-Content-Type-Options": "nosniff",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "vary": "Cookie,User-Agent,Origin,Access-Control-Request-Method,Access-Control-Request-Headers",
+      "x-frame-options": "SAMEORIGIN, DENY",
+      "cf-cache-status": "DYNAMIC",
+      "CF-RAY": "a48acf480810cee9-SJC"
+    },
+    "seconds": 89.78349423408508,
+    "no_authentication_or_paid_access": true
+  },
+  "metadata": [
+    {
+      "file": "\\\\?\\C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_ca10\\docs\\data_research\\built_environment_20261009\\candidate_admission_rebuild_20261010\\source_evidence\\NLCD_C12_2022_STUDY_CLIP.tif",
+      "sha256": "6af899cc51bd4df140b1e5f08969cc31cad22a70d202cb90e520f9343c9e7fee",
+      "shape": [
+        2466,
+        2930
+      ],
+      "crs": "PROJCS[\"AEA        WGS84\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",23],PARAMETER[\"longitude_of_center\",-96],PARAMETER[\"standard_parallel_1\",29.5],PARAMETER[\"standard_parallel_2\",45.5],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "resolution": [
+        30.0,
+        30.0
+      ],
+      "nodata": 250.0,
+      "dtype": [
+        "uint8"
+      ],
+      "transform": [
+        30.0,
+        0.0,
+        -2054235.0,
+        0.0,
+        -30.0,
+        1494825.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area",
+        "mapping_year": "2022",
+        "parent_sha256": "b3b8dd2cced7783fb3413b83459cca95beaec3741cab4ddb819ba82aa749de78",
+        "source_collection": "Annual NLCD C1.2",
+        "unit": "percent fractional impervious 0-100; roads included"
+      },
+      "units": "percent fractional impervious (0-100)",
+      "zero_treatment": "valid unbuilt zero; net-height positive support separately",
+      "fractional_intersection": true
+    },
+    {
+      "file": "\\\\?\\C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\docs\\data_research\\built_environment_20261009\\validation\\sources\\Annual_NLCD_2022_fis_study_clip.tif",
+      "sha256": "01bc05250d5bbcf7bdfb8c73285c723592ded4c97efdd3a5e6789351149095e0",
+      "shape": [
+        2484,
+        2934
+      ],
+      "crs": "PROJCS[\"AEA_WGS84\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",23],PARAMETER[\"longitude_of_center\",-96],PARAMETER[\"standard_parallel_1\",29.5],PARAMETER[\"standard_parallel_2\",45.5],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "resolution": [
+        30.0,
+        30.0
+      ],
+      "nodata": 250.0,
+      "dtype": [
+        "uint8"
+      ],
+      "transform": [
+        30.0,
+        0.0,
+        -2054295.0,
+        0.0,
+        -30.0,
+        1494885.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area",
+        "DataType": "Generic"
+      },
+      "units": "percent fractional impervious (0-100)",
+      "zero_treatment": "valid unbuilt zero; net-height positive support separately",
+      "fractional_intersection": true
+    }
+  ],
+  "study_clip_sha256": "6af899cc51bd4df140b1e5f08969cc31cad22a70d202cb90e520f9343c9e7fee",
+  "same_land_geometry_sha256": "502821f69e29f2c59585fbeca59ac5e1cea9cf5159c57302293eda425ad36a0e",
+  "full_valid_n": 2311,
+  "difference_summary": {
+    "count": 2311.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "1%": 0.0,
+    "10%": 0.0,
+    "50%": 0.0,
+    "90%": 0.0,
+    "99%": 0.0,
+    "max": 0.0
+  },
+  "NoData_not_zero": true,
+  "includes_roads_not_building_footprints": true,
+  "local_accuracy_not_established": true,
+  "old_pilot_not_identical_version": true,
+  "four_unresolved": [
+    "06037189703",
+    "06037301601",
+    "06037301602",
+    "06037404600"
+  ]
+}

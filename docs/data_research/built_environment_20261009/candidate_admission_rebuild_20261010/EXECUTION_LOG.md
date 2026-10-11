@@ -1,0 +1,98 @@
+- 2026-10-11T02:57:55.064748+00:00: Protected original worktree/index snapshot captured; independent branch at 13064debde45f9d0b3cad37276fe844040722b8b
+- 2026-10-11T03:03:14.550865+00:00: Downloaded and verified four official EMC 100-m tiles covering the study; total and nonresidential surface
+- 2026-10-11T03:03:29.457825+00:00: Assessor 2022 verified 100000 / 2413689 public nonpersonal records; 3.5 s
+- 2026-10-11T03:03:31.940858+00:00: Assessor 2022 verified 200000 / 2413689 public nonpersonal records; 6.0 s
+- 2026-10-11T03:03:34.388459+00:00: Assessor 2022 verified 300000 / 2413689 public nonpersonal records; 8.4 s
+- 2026-10-11T03:03:37.014502+00:00: Assessor 2022 verified 400000 / 2413689 public nonpersonal records; 11.0 s
+- 2026-10-11T03:03:39.173506+00:00: Assessor 2022 verified 500000 / 2413689 public nonpersonal records; 13.2 s
+- 2026-10-11T03:03:41.496458+00:00: Assessor 2022 verified 600000 / 2413689 public nonpersonal records; 15.5 s
+- 2026-10-11T03:03:43.932220+00:00: Assessor 2022 verified 700000 / 2413689 public nonpersonal records; 17.9 s
+- 2026-10-11T03:03:47.029506+00:00: Assessor 2022 verified 800000 / 2413689 public nonpersonal records; 21.0 s
+- 2026-10-11T03:03:50.348488+00:00: Assessor 2022 verified 900000 / 2413689 public nonpersonal records; 24.4 s
+- 2026-10-11T03:03:53.323166+00:00: Assessor 2022 verified 1000000 / 2413689 public nonpersonal records; 27.3 s
+- 2026-10-11T03:03:55.808898+00:00: Assessor 2022 verified 1100000 / 2413689 public nonpersonal records; 29.8 s
+- 2026-10-11T03:03:58.395496+00:00: Assessor 2022 verified 1200000 / 2413689 public nonpersonal records; 32.4 s
+- 2026-10-11T03:04:01.007582+00:00: Assessor 2022 verified 1300000 / 2413689 public nonpersonal records; 35.0 s
+- 2026-10-11T03:04:03.716507+00:00: Assessor 2022 verified 1400000 / 2413689 public nonpersonal records; 37.7 s
+- 2026-10-11T03:04:06.307452+00:00: Assessor 2022 verified 1500000 / 2413689 public nonpersonal records; 40.3 s
+- 2026-10-11T03:04:08.902163+00:00: Assessor 2022 verified 1600000 / 2413689 public nonpersonal records; 42.9 s
+- 2026-10-11T03:04:12.025162+00:00: Assessor 2022 verified 1700000 / 2413689 public nonpersonal records; 46.0 s
+- 2026-10-11T03:04:14.707062+00:00: Assessor 2022 verified 1800000 / 2413689 public nonpersonal records; 48.7 s
+- 2026-10-11T03:04:17.052018+00:00: Assessor 2022 verified 1900000 / 2413689 public nonpersonal records; 51.1 s
+- 2026-10-11T03:04:19.763058+00:00: Assessor 2022 verified 2000000 / 2413689 public nonpersonal records; 53.8 s
+- 2026-10-11T03:04:22.629092+00:00: Assessor 2022 verified 2100000 / 2413689 public nonpersonal records; 56.6 s
+- 2026-10-11T03:04:24.894059+00:00: Assessor 2022 verified 2200000 / 2413689 public nonpersonal records; 58.9 s
+- 2026-10-11T03:04:27.580399+00:00: Assessor 2022 verified 2300000 / 2413689 public nonpersonal records; 61.6 s
+- 2026-10-11T03:04:30.132459+00:00: Assessor 2022 verified 2400000 / 2413689 public nonpersonal records; 64.2 s
+- 2026-10-11T03:04:30.664397+00:00: Assessor 2022 acquisition complete
+- 2026-10-11T03:09:07.673938+00:00: Fractional raster aggregation complete: EMC_BUILT_S_E2022_GLOBE_R2025A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:09:08.085928+00:00: Fractional raster aggregation complete: EMC_BUILT_S_E2022_GLOBE_R2025A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:09:55.440265+00:00: Fractional raster aggregation complete: EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:09:55.852163+00:00: Fractional raster aggregation complete: EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:10:23.804923+00:00: Assessor point assignment 0 cached chunks; 0.0 s
+- 2026-10-11T03:10:30.523665+00:00: LARIAC cached outline measurement 98373 / 3293177; 6.2 s
+- 2026-10-11T03:10:34.942387+00:00: Assessor point assignment 200 cached chunks; 11.2 s
+- 2026-10-11T03:10:41.809370+00:00: Assessor point assignment 400 cached chunks; 18.0 s
+- 2026-10-11T03:10:41.886461+00:00: Fractional raster aggregation complete: GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:10:42.217402+00:00: Fractional raster aggregation complete: GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:10:47.096089+00:00: Assessor point assignment 600 cached chunks; 23.3 s
+- 2026-10-11T03:10:54.925089+00:00: Assessor point assignment 800 cached chunks; 31.2 s
+- 2026-10-11T03:10:59.398357+00:00: Assessor point assignment 1000 cached chunks; 35.6 s
+- 2026-10-11T03:11:05.442981+00:00: Assessor point assignment 1200 cached chunks; 41.7 s
+- 2026-10-11T03:11:08.546810+00:00: LARIAC cached outline measurement 599200 / 3293177; 44.3 s
+- 2026-10-11T03:12:05.639806+00:00: LARIAC cached outline measurement 1099329 / 3293177; 101.4 s
+- 2026-10-11T03:12:58.813864+00:00: LARIAC cached outline measurement 1600000 / 3293177; 154.5 s
+- 2026-10-11T03:13:53.673934+00:00: LARIAC cached outline measurement 2100000 / 3293177; 209.4 s
+- 2026-10-11T03:14:06.818941+00:00: Fractional raster aggregation complete: EMC_BUILT_S_E2022_GLOBE_R2025A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:14:07.015954+00:00: Fractional raster aggregation complete: EMC_BUILT_S_E2022_GLOBE_R2025A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:14:07.034946+00:00: Fractional raster aggregation complete: EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:14:07.199939+00:00: Fractional raster aggregation complete: EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:14:07.225938+00:00: Fractional raster aggregation complete: GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:14:07.408960+00:00: Fractional raster aggregation complete: GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:14:22.033756+00:00: Fractional raster aggregation complete: EMC_BUILT_S_E2022_GLOBE_R2025A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:14:22.248770+00:00: Fractional raster aggregation complete: EMC_BUILT_S_E2022_GLOBE_R2025A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:14:22.267754+00:00: Fractional raster aggregation complete: EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:14:22.461756+00:00: Fractional raster aggregation complete: EMC_BUILT_S_NRES_E2022_GLOBE_R2025A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:14:22.494764+00:00: Fractional raster aggregation complete: GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_54009_100_V1_0_R5_C8.tif
+- 2026-10-11T03:14:22.692756+00:00: Fractional raster aggregation complete: GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_54009_100_V1_0_R6_C8.tif
+- 2026-10-11T03:14:48.436117+00:00: LARIAC cached outline measurement 2599986 / 3293177; 264.2 s
+- 2026-10-11T03:15:34.321409+00:00: LARIAC cached outline measurement 3022126 / 3293177; 310.0 s
+- 2026-10-11T03:15:58.610690+00:00: Outline size and centroid-supported height/volume diagnostics complete
+- 2026-10-11T03:17:23.389847+00:00: Assessor 2022 tract and use-level measurement audit complete
+- 2026-10-11T03:19:31.261959+00:00: Assessor point assignment 0 cached chunks; 0.0 s
+- 2026-10-11T03:19:42.968811+00:00: Assessor point assignment 200 cached chunks; 11.7 s
+- 2026-10-11T03:19:50.844491+00:00: Assessor point assignment 400 cached chunks; 19.6 s
+- 2026-10-11T03:19:57.341407+00:00: Assessor point assignment 600 cached chunks; 26.1 s
+- 2026-10-11T03:20:06.632647+00:00: Assessor point assignment 800 cached chunks; 35.4 s
+- 2026-10-11T03:20:11.622837+00:00: Assessor point assignment 1000 cached chunks; 40.4 s
+- 2026-10-11T03:20:17.452028+00:00: Assessor point assignment 1200 cached chunks; 46.2 s
+- 2026-10-11T03:20:40.173793+00:00: Assessor 2022 tract and use-level measurement audit complete
+- 2026-10-11T03:21:20.437128+00:00: Candidate pool frozen: 63 constructs/alternative measurements; dispositions {'CONDITIONAL': 30, 'DESCRIPTIVE_ONLY': 13, 'REJECT': 9, 'ADMIT': 8, 'PENDING_DATA': 3}
+- 2026-10-11T03:22:10.187325+00:00: Downloaded and verified four official EMC 100-m tiles covering the study; total and nonresidential surface
+- 2026-10-11T03:23:29.319351+00:00: Candidate pool frozen: 63 constructs/alternative measurements; dispositions {'CONDITIONAL': 30, 'DESCRIPTIVE_ONLY': 13, 'REJECT': 9, 'ADMIT': 8, 'PENDING_DATA': 3}
+- 2026-10-11T03:28:21.105624+00:00: Candidate pool frozen: 64 constructs/alternative measurements; dispositions {'CONDITIONAL': 30, 'DESCRIPTIVE_ONLY': 13, 'REJECT': 9, 'ADMIT': 8, 'PENDING_DATA': 4}
+- 2026-10-11T03:29:17.521115+00:00: Cached raw height, actual-year and exemption/use completeness audited
+- 2026-10-11T03:29:35.890749+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
+- 2026-10-11T03:32:14.411755+00:00: Candidate pool frozen: 64 constructs/alternative measurements; dispositions {'CONDITIONAL': 30, 'DESCRIPTIVE_ONLY': 13, 'REJECT': 9, 'ADMIT': 8, 'PENDING_DATA': 4}
+- 2026-10-11T03:33:31.817543+00:00: Stopped a stalled local source probe and retried legacy official download route using bounded streaming/signature validation, never decoding binary as text
+- 2026-10-11T03:34:43.741861+00:00: Official NLCD C1.2 download 128.0 MiB; 10.5s
+- 2026-10-11T03:34:48.660674+00:00: Official NLCD C1.2 download 256.0 MiB; 15.5s
+- 2026-10-11T03:34:58.048780+00:00: Official NLCD C1.2 download 384.0 MiB; 24.9s
+- 2026-10-11T03:35:21.037821+00:00: Official NLCD C1.2 download 512.0 MiB; 47.8s
+- 2026-10-11T03:35:36.650338+00:00: Official NLCD C1.2 download 640.1 MiB; 63.5s
+- 2026-10-11T03:35:45.310874+00:00: Official NLCD C1.2 download 768.1 MiB; 72.1s
+- 2026-10-11T03:35:54.793875+00:00: Official NLCD C1.2 download 896.1 MiB; 81.6s
+- 2026-10-11T03:36:02.980984+00:00: Official NLCD C1.2 numeric archive acquired and TIFF extracted; version/year/hash verified
+- 2026-10-11T03:36:54.729844+00:00: Official NLCD study clip created; beginning fractional30m pixel/land measurement
+- 2026-10-11T03:40:07.279006+00:00: Current inventory complete for Data; total entries=5030
+- 2026-10-11T03:43:10.667573+00:00: Current inventory complete for Data; total entries=5030
+- 2026-10-11T03:43:38.041709+00:00: NLCD c12 complete: 2311 tract measurements
+- 2026-10-11T03:44:48.547660+00:00: Current inventory complete for Formal_Experiment_20260923; total entries=295654
+- 2026-10-11T03:44:48.745660+00:00: Current inventory complete for src; total entries=295783
+- 2026-10-11T03:44:48.751661+00:00: Current inventory complete for config; total entries=295785
+- 2026-10-11T03:44:50.710451+00:00: Current inventory complete for results; total entries=301268
+- 2026-10-11T03:44:53.372452+00:00: Preservation confirmed: 950 files, 862 staged items; scientific files changed=0
+- 2026-10-11T03:50:24.172357+00:00: NLCD c10_pilot_same_geometry complete: 2311 tract measurements
+- 2026-10-11T03:52:57.085548+00:00: Candidate pool frozen: 64 constructs/alternative measurements; dispositions {'CONDITIONAL': 30, 'DESCRIPTIVE_ONLY': 13, 'ADMIT': 9, 'REJECT': 9, 'PENDING_DATA': 3}
+- 2026-10-11T03:53:02.173357+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
+- 2026-10-11T03:55:13.357507+00:00: Definitions, source evidence, measurement shortlist and no-execution next-stage preregistration written
