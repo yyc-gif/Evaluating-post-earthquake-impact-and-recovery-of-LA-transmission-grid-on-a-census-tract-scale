@@ -11,3 +11,4 @@
 - 2026-10-11T21:09:00.426238+00:00: Prepared adoption decision, twelve-coordinate profiles/claims and 437 exact-text manuscript reconciliation rows; no source manuscripts changed.
 - 2026-10-11T21:09:21.017356+00:00: Rendered source S19 (15 pages) and CORE3/W1 review (19 pages) with native Word; actual per-page inspection pending.
 - 2026-10-11T21:13:11.124733+00:00: Final source hashes and original protected worktree verified: 950 files and862 staged entries unchanged; actual figures and19-page review visually inspected. No formal promotion.
+- 2026-10-11T21:18:09.955887+00:00: Final metric bridge also reproduces S19 direct-community full-domain population-weighted loss:33.593686468h (33.594h rounded), from saved tract values only.

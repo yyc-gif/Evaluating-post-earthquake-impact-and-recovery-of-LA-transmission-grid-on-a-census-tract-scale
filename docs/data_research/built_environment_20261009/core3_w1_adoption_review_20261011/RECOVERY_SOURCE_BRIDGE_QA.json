@@ -1,0 +1,19 @@
+{
+  "full_domain_n": 2315,
+  "full_domain_population": 9066522,
+  "full_domain_population_weighted_B_hr": 33.593686467844854,
+  "S19_table_rounded_direct_community_service_loss_hr": 33.594,
+  "rounding_reproduction": true,
+  "source_extraction": "docs/data_research/built_environment_20261009/local_joint_feature_extraction_20261009/RECOVERY_EXTRACTION_QA.json",
+  "source_identity": {
+    "n_realizations": 1000,
+    "scenario": "2pc50",
+    "resources": "C57_D1",
+    "strategy": "direct-community",
+    "mapping": "M1_UTILITY_003",
+    "gate": "G1_BASELINE_050",
+    "horizon_hr": 480,
+    "T80_source_definition": "first completion event at which mean of 1000 service trajectories reaches 0.8; NOT mean realization-specific T80"
+  },
+  "new_trajectories": 0
+}
