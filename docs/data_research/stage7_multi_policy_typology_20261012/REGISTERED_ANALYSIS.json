@@ -1,0 +1,23 @@
+{
+  "starting_commit": "739420417412228f9302051d154f11ba3d5cde84",
+  "status": "Registered before multi-policy feature construction and fitting",
+  "cohort": "Frozen_Formal_Population > 0; verify 2299 of 2315 exact GEOIDs",
+  "frozen_setup": ["2pc50", "C57_D1", "M1_UTILITY_003", "G1_BASELINE_050", "480 h", "1000 evaluation realizations"],
+  "primary_policies": ["impact-first", "hospital-first", "degree-first", "betweenness-first", "vulnerability-first"],
+  "policy_sets": "main5, five unique leave-one-out sets, main5 plus Random; equal descriptive weights",
+  "models": ["A", "P2", "P3"],
+  "K": [1,2,3,4,5,6,7,8],
+  "seeds": [42,43,44,45,46],
+  "kmeans": {"init":"k-means++", "n_init":50, "algorithm":"lloyd", "max_iter":500, "tol":0.0001},
+  "scaling": "Main: population-SD z scores on common cohort, recomputed for each policy set. Supplemental fixed-main5 scaling for six alternative sets at seed42 K2-8.",
+  "budgets": "Equal one-third squared-distance budget per RQ; square-root weights. P2 RQ2 halves; P3 RQ2 thirds; other domains unchanged.",
+  "ablation": "P2/P3 main5 minus Init, K1 and K3-5, seeds42-46. Registered redistribution of RQ1 budget equally to Impact and HHI; algebraic deletion at unchanged remaining weights separately reported.",
+  "spatial": "Four previously registered geographic quadrants; seed42, K2-8, each primary specification and P2/P3 policy set. Training-only standardization; predict full cohort.",
+  "silhouette": "Full cohort Euclidean; no sampling. Preserve all labels and individual silhouette values.",
+  "elbow": "Endpoint chord gap on mean inertia K1-8; relative reduction and fraction K1 removed. Bend is a diagnostic, not automatically selected K.",
+  "nonlinear_audit": "Five-fold shuffled seed42 additive cubic splines (5 knots) plus Ridge(alpha=1), standardized predictors; out-of-fold R2. Diagnostic predictive overlap, not causal or spatial validation.",
+  "upper_tail": "P90 PolicySD and top1percent coordinate variance contribution; descriptive thresholds only, never feature eligibility or fit trimming.",
+  "label_order": "Model-specific display IDs ordered by mean fitted policy total burden, then mean population. Hungarian matching for transitions only; ARI label-invariant.",
+  "no_formal_promotion": true,
+  "no_physical_simulation": true
+}

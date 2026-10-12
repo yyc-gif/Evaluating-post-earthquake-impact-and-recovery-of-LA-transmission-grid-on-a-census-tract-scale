@@ -1,0 +1,158 @@
+{
+  "cohort_count": 2299,
+  "policy_sets": {
+    "main5": [
+      "impact-first",
+      "hospital-first",
+      "degree-first",
+      "betweenness-first",
+      "vulnerability-first"
+    ],
+    "without_impact-first": [
+      "hospital-first",
+      "degree-first",
+      "betweenness-first",
+      "vulnerability-first"
+    ],
+    "without_hospital-first": [
+      "impact-first",
+      "degree-first",
+      "betweenness-first",
+      "vulnerability-first"
+    ],
+    "without_degree-first": [
+      "impact-first",
+      "hospital-first",
+      "betweenness-first",
+      "vulnerability-first"
+    ],
+    "without_betweenness-first": [
+      "impact-first",
+      "hospital-first",
+      "degree-first",
+      "vulnerability-first"
+    ],
+    "without_vulnerability-first": [
+      "impact-first",
+      "hospital-first",
+      "degree-first",
+      "betweenness-first"
+    ],
+    "plus_random": [
+      "impact-first",
+      "hospital-first",
+      "degree-first",
+      "betweenness-first",
+      "vulnerability-first",
+      "random"
+    ]
+  },
+  "specifications": {
+    "A": {
+      "coordinates": [
+        "Init_Supply",
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_480_hr",
+        "Delta_B_logistics",
+        "SOVI_SCORE",
+        "log1p_Population"
+      ],
+      "squared_distance_budgets": {
+        "Init_Supply": 0.1111111111111111,
+        "Grid_Impact": 0.1111111111111111,
+        "Redundancy_HHI": 0.1111111111111111,
+        "B_480_hr": 0.16666666666666666,
+        "Delta_B_logistics": 0.16666666666666666,
+        "SOVI_SCORE": 0.16666666666666666,
+        "log1p_Population": 0.16666666666666666
+      }
+    },
+    "P2": {
+      "coordinates": [
+        "Init_Supply",
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_Unconstrained",
+        "MeanDelta",
+        "SOVI_SCORE",
+        "log1p_Population"
+      ],
+      "squared_distance_budgets": {
+        "Init_Supply": 0.1111111111111111,
+        "Grid_Impact": 0.1111111111111111,
+        "Redundancy_HHI": 0.1111111111111111,
+        "B_Unconstrained": 0.16666666666666666,
+        "MeanDelta": 0.16666666666666666,
+        "SOVI_SCORE": 0.16666666666666666,
+        "log1p_Population": 0.16666666666666666
+      }
+    },
+    "P3": {
+      "coordinates": [
+        "Init_Supply",
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_Unconstrained",
+        "MeanDelta",
+        "PolicySD",
+        "SOVI_SCORE",
+        "log1p_Population"
+      ],
+      "squared_distance_budgets": {
+        "Init_Supply": 0.1111111111111111,
+        "Grid_Impact": 0.1111111111111111,
+        "Redundancy_HHI": 0.1111111111111111,
+        "B_Unconstrained": 0.1111111111111111,
+        "MeanDelta": 0.1111111111111111,
+        "PolicySD": 0.1111111111111111,
+        "SOVI_SCORE": 0.16666666666666666,
+        "log1p_Population": 0.16666666666666666
+      }
+    },
+    "P2-minus-Init": {
+      "coordinates": [
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_Unconstrained",
+        "MeanDelta",
+        "SOVI_SCORE",
+        "log1p_Population"
+      ],
+      "squared_distance_budgets": {
+        "Grid_Impact": 0.16666666666666666,
+        "Redundancy_HHI": 0.16666666666666666,
+        "B_Unconstrained": 0.16666666666666666,
+        "MeanDelta": 0.16666666666666666,
+        "SOVI_SCORE": 0.16666666666666666,
+        "log1p_Population": 0.16666666666666666
+      }
+    },
+    "P3-minus-Init": {
+      "coordinates": [
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_Unconstrained",
+        "MeanDelta",
+        "PolicySD",
+        "SOVI_SCORE",
+        "log1p_Population"
+      ],
+      "squared_distance_budgets": {
+        "Grid_Impact": 0.16666666666666666,
+        "Redundancy_HHI": 0.16666666666666666,
+        "B_Unconstrained": 0.1111111111111111,
+        "MeanDelta": 0.1111111111111111,
+        "PolicySD": 0.1111111111111111,
+        "SOVI_SCORE": 0.16666666666666666,
+        "log1p_Population": 0.16666666666666666
+      }
+    }
+  },
+  "z_score_sd_ddof": 0,
+  "policy_SD_ddof": 0,
+  "observation_weights": "Equal tract weights",
+  "euclidean_application": "Multiply z scores by square roots of budgets",
+  "P2_to_P3": "Coordinate inclusion and internal RQ2 budget redistribution both change",
+  "ablation": "RQ1 budget redistribution also changes"
+}
