@@ -116,9 +116,10 @@ def integrity():
     design=a.read(a.OUT/'EXPERIMENT_DESIGN_AND_SEEDS.json')
     assert a.sha(a.OUT/'audit.py')==design['source_sha256'][str(a.OUT/'audit.py')]
     prefix=str(a.OUT.relative_to(a.ROOT)).replace('\\','/')+'/'
+    out=a.lp(a.OUT)
     changed=a.git('diff','--name-only',a.START,'HEAD').decode().splitlines()
     assert all(p.startswith(prefix) for p in changed),changed
-    for p in a.OUT.rglob('*'):
+    for p in out.rglob('*'):
         if p.is_file() and 'runtime' not in p.parts:
             assert p.suffix.lower() not in ('.docx','.pptx'),p
     a.save('REPRODUCIBILITY_AND_PRESERVATION_QA.json',dict(status='PASS',protected_scientific_files=950,
@@ -151,7 +152,7 @@ def integrity():
         implementation_failures=['Initial sandbox could not inspect external revision Git status; rerun read-only with optional locks disabled and escalation.',
             'Empty legacy CSV handled explicitly; inventory restricted to relevant summary tables before preregistration.',
             'Historical20k/50k have exact BUDGET_CHECKPOINTS, not FINAL JSON receipts; reused original checkpoint records.'],
-        reporting_repair='Static syntax QA caught extra closing parentheses in supplementary source-crossing and loader-audit records; repaired before execution, no optimizer or scientific result affected.',
+        reporting_repair='Static syntax QA caught extra closing parentheses before execution. PDF text inspection uses installed pypdf because bundled Poppler has no pdftotext executable. A final Git-tree cross-check found 176 Windows-long-path files omitted by the initial manifest enumeration; extended paths and complete-tree coverage assertions correct the hash inventory. No search, model or result was changed or repeated.',
         scientific_failed_or_omitted_runs=0,formal_replacement=False))
     a.md('REPRODUCIBLE_COMMANDS.md','''# Reproducibility
 
@@ -187,10 +188,15 @@ python results/diagnostics/pure_random_ga_parameter_consistency_20261011/qa.py i
 
 Full per-search ZIP retains initial population, exact terminal RNG/checkpoint/cache, generation/selection diagnostics, budget checkpoints and strict improvement sequences. Source and output hashes, full92 final permutations, failed setup details, negative outcomes and the disclosed amendment are preserved. No physical sampler is called by these scripts. Four PDF diagnostics require actual Poppler visual inspection before release. Remote publication verification downloads actual LFS bytes, not only pointer hashes.
 ''')
-    files={str(p.relative_to(a.OUT)).replace('\\','/'):dict(sha256=a.sha(p),bytes=p.stat().st_size) for p in a.OUT.rglob('*')
+    files={str(p.relative_to(out)).replace('\\','/'):dict(sha256=a.sha(p),bytes=p.stat().st_size) for p in out.rglob('*')
         if p.is_file() and not any(x in p.parts for x in ['runtime','__pycache__','.pytest_cache'])
         and p.name not in ['OUTPUT_HASH_MANIFEST.json','REMOTE_PUBLICATION_VERIFIED.json']}
-    a.save('OUTPUT_HASH_MANIFEST.json',dict(files=files,total_bytes=sum(x['bytes'] for x in files.values())))
+    tracked={p[len(prefix):] for p in a.git('ls-tree','-r','--name-only','HEAD','--',prefix).decode().splitlines()}
+    expected=tracked-{'OUTPUT_HASH_MANIFEST.json','REMOTE_PUBLICATION_VERIFIED.json'}
+    assert expected<=files.keys(),sorted(expected-files.keys())
+    a.save('OUTPUT_HASH_MANIFEST.json',dict(files=files,total_bytes=sum(x['bytes'] for x in files.values()),
+        windows_extended_path_enumeration=True,all_tracked_package_files_covered=True,
+        explicit_self_referential_exclusions=['OUTPUT_HASH_MANIFEST.json','REMOTE_PUBLICATION_VERIFIED.json']))
     print('PRESERVATION_PASS',len(files),950,862,flush=True)
 
 if __name__=='__main__':
