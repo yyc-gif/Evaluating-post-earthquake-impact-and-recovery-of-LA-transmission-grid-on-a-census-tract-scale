@@ -55,3 +55,4 @@
 - 2026-10-12T00:51:20.580906+00:00: Three diagnostic PDFs rendered at native185mm; every page exported at600dpi and native preview for visual inspection.
 - 2026-10-12T00:52:34.121289+00:00: Verified all cached payload bytes, including documented failed responses; failed responses are not admitted measurements.
 - 2026-10-12T00:52:38.933287+00:00: Preservation verified: 950 protected files, 862 staged items, original HEAD/index/status unchanged. Actual7 diagnostic pages inspected.
+- 2026-10-12T00:54:35.210212+00:00: Preservation verified: 950 protected files, 862 staged items, original HEAD/index/status unchanged. Actual7 diagnostic pages inspected.
