@@ -1,0 +1,33 @@
+# RQ2: frozen 2pc50 hazard and fixed restoration policy
+
+## Hazard reference
+
+Actual source is `Data/MS_048_CA_pt01_MMI_GM_datafiles/CA_pt01_GM_maps.csv`, CGS **MS48 (2025)**, based on **USGS NSHM 2023**, with July 2022 Vs30. The provider describes a 0.01-degree California grid; this exact file has 422,176 rows and a `PGA-2pc50` column in g. [Official CGS MS48 publication and download page](https://www.conservation.ca.gov/cgs/Pages/Publications/MS48.aspx). Original payload SHA256: `e9a7fe19d39c67708dfe1915a4878fe4a01aa5d6e8a49b5b0b5126c412ec6bef`. Prior official-download byte equality is preserved in the acquisition record; this audit checks the local payload and archived source check, not a new interpolation.
+
+Frozen station CSV `PGA_2pc50` matches the archived source reconstruction for **92/92 stations**: min 0.725768 g, median 0.906251 g, max 1.390341 g; maximum archived reconstruction error 2.22e-16 g. `FROZEN_STATION_PGA_VERIFICATION.csv` retains each station ID and both values. No PGA/damage sample was regenerated or replaced.
+
+`2pc50` means **2% probability of ground-motion exceedance in 50 years**, not 2% of stations in a damage state. Under the Poisson return-period convention, -50/log(0.98) = 2474.92 years. A common regional probabilistic ground-motion level is a defensible benchmark for comparing tract dependencies and restoration policies under the same declared shaking reference. It is not a unique physically specified rupture, a spatially sampled coherent earthquake-event field, or a combined population/asset/social-vulnerability risk index. The frozen damage realizations are conditional on this fixed hazard field and the existing fragility assumptions; this audit does not certify spatial ground-motion correlation.
+
+Do not call this **ASCE 41-17 BSE-2E**: that is 5% exceedance in 50 years, subject to BSE-2N; BSE-2N is based on ASCE 7 risk-targeted MCER. [FEMA P-2018, Section 3.3](https://www.fema.gov/sites/default/files/2020-08/fema_seismic-eval-older-concrete-buildings_p-2018.pdf) corroborates the distinction. In this session the indexed primary-source passage was accessible but opening the full FEMA PDF failed; no full-PDF reread is claimed. The source/data interpretation as 2pc50 is consistent. **Calling it BSE-2E, a unique earthquake, or integrated community risk would be a substantive terminology mismatch** requiring later author correction, not silent scientific change here.
+
+## Policy and physical reference
+
+The hazard reference and policy reference are separate decisions. Fix **Impact-first (`impact-first`, the population-impact repair policy)** as constrained reference for this candidate audit; do not confuse its policy score with spectral `Grid_Impact`. Resources: **C57_D1, 57 crews, duration multiplier 1**, existing crew origins/travel, all physical samples held fixed. Mapping: **M1_UTILITY_003**, frozen `JULY_UTILITY_CONSTRAINED_92.csv`; gate: **G1_BASELINE_050**; horizon: **480 h**. Compare to matched **Unconstrained** only. This is not a declaration that Impact-first is scientifically optimal.
+
+The two `INTEGRALS.npz` sources in `Formal_Experiment_20260923/Formal_Offline_Evaluation/` contain 1,000 evaluation realizations; `PHYSICAL_SAMPLE_MANIFEST.csv` and `physical_inputs_2pc50.npz` give fixed station order, physical IDs, DS/duration hashes. Archives contain multiple mapping/gate cases: only the named M1/G1 arrays are used. `RECOVERY_PAIRING_QA.json` and `INDEPENDENT_VERIFICATION.json` verify common graph/source/mapping/physical/crew/travel identities and horizon, rather than inferring equality from filenames.
+
+For tract r and realization m, define A_r,m(t)=sum_j W_rj e_mj(t), mass_r=sum_j W_rj. Then B_r,m=integral_0^480 [1-A_r,m(t)/mass_r] dt. The fixed M1 mass is one for every tract. `B_480_hr` is mean_m B_r,m in **equivalent full-service-deficit hours**; its normalized proportion is B/480, not a separate coordinate. `Delta_B_logistics` is mean_m (B_r,m,Impact - B_r,m,Unconstrained), exactly paired by physical ID. It incorporates dispatch queuing, travel and sequence jointly; it does not isolate travel causally. Archive integral versus W-projected station integral agrees within 4.26e-14 h.
+
+## Legacy direct-community identity
+
+The frozen direct-community reference and Impact-first are **numerically identical in this applicable formal case**: the integral files have identical bytes; all 1,000 event payloads match independently; the recorded incumbent sequence is Impact-first with no improvement. This supports using the named fixed policy to clarify provenance. It does not prove all direct-community searches, resources or scenarios would be identical, or that an independent optimized policy was evaluated here.
+
+## T80 and redundant recovery measures
+
+T80 is the **first exact frozen event at which the mean tract availability reaches 0.80**, not an average of realization-specific T80. The audit reconstructs the mean event trajectory from saved monotone e(t), without applying a new gate or simulating recovery. Reconstruction error is 4.97e-14 h. All 2,315 mean trajectories cross before 480 h; mean-trajectory unreached count=0; terminal realization-tract pairs below 0.80=0. `T80_CENSORING_AND_ENDPOINTS.csv` gives every GEOID. No unreached time was filled with 480. In any future data with unreached cases, use a censoring flag and actual endpoint; do not silently fill, drop or treat horizon as a crossing.
+
+Residential B-T80 Pearson=0.9122, Spearman=0.9292; B-Delta Pearson=0.4313. `RQ2_RECOVERY_METRIC_REDUNDANCY.csv` and conditional diagnostics show strong shared recovery information for B and T80, while Delta distinguishes the fixed constraint increment. Proposed primary RQ2: **B and Delta**. T80 is descriptive. The exact identity B_constrained=B_unconstrained+Delta makes that three-coordinate triplet inadmissible (VIF infinite); AUC=1-B/480 is also an exact duplicate.
+
+## Source availability limitation
+
+Tracked input identities, physical manifests and prior source checks are available through Git/LFS. The bulk offline integral and per-realization event archive files used here are **not currently Git-tracked**; they were read from the authoritative local frozen research archive and verified against manifests. Independent verification checked 3,000 event payloads across all three policies. Reproduction of that source-level verification needs access to the same manifest-bound archive in addition to a clean clone. No bulk archive is copied or newly published here. The package retains derived tract metrics, source hashes and checks so its statistical diagnostics are inspectable, but does **not** claim clean-clone access to every frozen trajectory.

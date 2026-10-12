@@ -1,0 +1,15 @@
+# Source documentation and access boundaries
+
+Actual input bytes, Git/LFS payload identities and source commits are listed in `SOURCE_HASH_VERIFICATION.csv`. Records explicitly distinguish actual committed bytes, Git text CRLF-only equivalence, frozen local archive/manifest checks and local metadata not tracked by Git. No LFS pointer is accepted as a numeric source.
+
+| Source | Primary provider record | Verification and limitation |
+|---|---|---|
+| CGS MS48 ground motion | https://www.conservation.ca.gov/cgs/Pages/Publications/MS48.aspx | Official page inspected in this task. Archived official download equality, original grid bytes and 92 frozen station values checked. No new PGA interpolation. |
+| FEMA NRI v1.19 March 2023 | https://www.fema.gov/sites/default/files/documents/fema_national-risk-index-data-version-and-update-documentation.pdf | Actual Mar-23 source rows and existing source/harmonization reports verified. Live full-PDF fetch was unavailable in this task; source vintage/CDC lineage use the previously inspected official documentation, not a claimed new PDF reread. |
+| CDC/ATSDR SVI 2022 | https://www.atsdr.cdc.gov/place-health/media/pdfs/2024/10/SVI2022Documentation.pdf | Official documentation opened; California table actual rows checked, -999 retained as missing, overall and local theme mean distinguished. |
+| ACS B25040 2018-2022 | https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/data/5-year/140/B25040_06.csv.zip | Actual official numeric archive payload hash verified at f321517; prior estimate/replicate/MOE numerical QA reused. Prior API HTTP-200 Missing Key HTML was not a numeric measurement source. |
+| ACS variance replicates | https://www2.census.gov/programs-surveys/acs/replicate_estimates/2022/documentation/5-year/2018-2022_Variance_Replicate_Table_Documentation.pdf | Actual provider document bytes verified; prior correlated ratio-MOE computation used, not independent numerator/denominator MOE propagation. |
+| ASCE 41-17 BSE-2E distinction | https://www.fema.gov/sites/default/files/2020-08/fema_seismic-eval-older-concrete-buildings_p-2018.pdf | FEMA P-2018 indexed Section 3.3 primary-source passage accessible; full PDF open failed. This distinction is documentation evidence, not a new building-code calculation. |
+| Frozen formal population | Data/Tracts_Within_Expanded_Area.csv and frozen formal metadata | Actual bytes and values agree on all 2315 GEOIDs. Existing decision calls them 2020-based, but direct original Census release/batch was not authenticated. Do not claim that gap resolved, or substitute NRI/CDC/new Census values. |
+
+The source-age differences (SVI2020, ACS2018-2022, CGS2025/NSHM2023, frozen population) are recorded, not harmonized by changing data. A common tract identifier does not imply common measurement year. Original reviewer comments were read from a local document and quoted with its SHA256; no manuscript/comment file is republished. Current access restrictions and archive availability are distinct from numerical missingness.

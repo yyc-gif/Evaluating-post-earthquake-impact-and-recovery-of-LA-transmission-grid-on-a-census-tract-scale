@@ -1,0 +1,40 @@
+{
+  "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+  "declared_production": {
+    "mapping": "JULY_UTILITY_CONSTRAINED_92",
+    "mapping_case": "M1_UTILITY_003",
+    "cutoff": 0.03,
+    "gate": "G1_BASELINE_050: e=f*F_0.5*C_14Core",
+    "sources": "retained July 14 Core",
+    "functional_threshold": 0.5,
+    "crews": "C57 pooled regional resource, 57 crews at frozen active origins",
+    "travel": "retained directed base-to-task and task-to-task matrices; no fallback",
+    "task_and_clock": "DS>0 tasks; arrival=crew_available+directed travel; completion=arrival+realized duration; crew release and raw restoration at completion",
+    "integration": "event-exact left rectangle",
+    "interpretation": "source-connected availability proxy, not delivered power"
+  },
+  "declared_physical_samples": {
+    "hazards_in_seed_order": [
+      "Northridge",
+      "SanFernando",
+      "LongBeach",
+      "2pc50"
+    ],
+    "N_EVAL_per_hazard": 1000,
+    "planning_hazard": "2pc50",
+    "N_PLANNING": 64,
+    "master_seed": 42,
+    "seed_sequence": "SeedSequence([42, hazard_index, split_code, realization_index]); hazard_index follows hazards_in_seed_order; planning=0, evaluation=1",
+    "sample_id": "{hazard}__{split}_{realization_index:04d}",
+    "damage": "one ordered DS0-DS4 vector per physical sample from retained July PGA/fragility",
+    "duration": "one strictly positive July DS-specific draw per DS>0 task; DS0 duration=0",
+    "canonical_hash": "SHA256(newline-terminated ordered IDs || little-endian int64 DS || little-endian float64 duration)",
+    "planning_evaluation_overlap": false,
+    "same_physical_sample_across_strategies": true,
+    "strategy_specific_draws": false
+  },
+  "selected_resource": "C57_D1",
+  "selected_mapping": "M1_UTILITY_003",
+  "selected_gate": "G1_BASELINE_050",
+  "configuration_checked_not_executed": true
+}

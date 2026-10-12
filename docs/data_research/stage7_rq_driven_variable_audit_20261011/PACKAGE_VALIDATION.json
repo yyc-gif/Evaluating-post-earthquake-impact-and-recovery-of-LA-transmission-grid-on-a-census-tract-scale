@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "AUDIT_PACKAGE_DIRECTORY"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_audit.py",
+        "--basetemp",
+        "./test_tmp"
+      ],
+      "exit_code": 0,
+      "stdout": ".................                                                        [100%]\n17 passed in 0.89s",
+      "stderr": ""
+    }
+  ],
+  "changed_paths_scoped_to_package": true,
+  "protected_files_unchanged": 950,
+  "no_formal_changes": true,
+  "no_simulation_or_clustering": true
+}
