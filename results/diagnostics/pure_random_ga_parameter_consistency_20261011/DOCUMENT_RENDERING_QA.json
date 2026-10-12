@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "figures": [
+    {
+      "figure": "A",
+      "pdf_sha256": "4d2e23eda45f1ea8ba669c7ddb3208cf888f253dc600d6090d8df5bb573f0677",
+      "final_png_sha256": "6af66b322b054484f5f8b71924dce19a62d677382a734c3be53d433debeb72cb",
+      "rendered_page_sha256": "5227a730da8f0d8337f7ff19f01488a9d69833997aad80adc414356a121ee05e",
+      "dpi": 120,
+      "pages": 1,
+      "pdf_page_size": "843.6 x 310.8 pts",
+      "rendered_pixels": [
+        1406,
+        518
+      ],
+      "nonblank_pixel_fraction": 0.0847031750303443,
+      "ink_bounds_pixels": [
+        11,
+        11,
+        1394,
+        505
+      ],
+      "actual_rendered_page_visually_reviewed": true,
+      "review_notes": "Initial pool and historical continuation counts are explicit. Near-reference and T2 effects use separately labeled x scales. Labels and intervals are readable and unclipped."
+    },
+    {
+      "figure": "B",
+      "pdf_sha256": "c7f167a2b93cb684f99f125d4912eefc7c68e00c75faa277f8063f7dd5068e0d",
+      "final_png_sha256": "f33fad967109b7876d52718235f5c67ff8f5f68c7b478bc20a1d3badfa808a37",
+      "rendered_page_sha256": "fae0e9f29d3e08e7e0d8e137b45b05870bbb8e1345d3922580f2e81b1c5b74b1",
+      "dpi": 120,
+      "pages": 1,
+      "pdf_page_size": "728.4 x 303.6 pts",
+      "rendered_pixels": [
+        1214,
+        506
+      ],
+      "nonblank_pixel_fraction": 0.10371424292346862,
+      "ink_bounds_pixels": [
+        11,
+        11,
+        1200,
+        491
+      ],
+      "actual_rendered_page_visually_reviewed": true,
+      "review_notes": "Moved legend above the footer after actual-page inspection identified overlap. Bars retain signed self/threshold/source/total values. The two near-coincident policy curves remain distinct by color/style; exact integrals come from saved events, not plotting samples."
+    },
+    {
+      "figure": "C",
+      "pdf_sha256": "7ba89f4fd030f3de76dfd5c1ca364fed91c35b3f27cb7bc49b9a289eb4e1065a",
+      "final_png_sha256": "65294ee7cce4e2d968a4cdf2fb6bcd98c123beef3eca3cab035e1b9faa2bce33",
+      "rendered_page_sha256": "2736fc9d950a695a0dccb5a41d3d631d06800a59d78c3b1a9792d283d7cec9b0",
+      "dpi": 120,
+      "pages": 1,
+      "pdf_page_size": "728.4 x 303.6 pts",
+      "rendered_pixels": [
+        1214,
+        506
+      ],
+      "nonblank_pixel_fraction": 0.08710140586438846,
+      "ink_bounds_pixels": [
+        11,
+        11,
+        1202,
+        493
+      ],
+      "actual_rendered_page_visually_reviewed": true,
+      "review_notes": "Complete paired histogram and CDF retain both tails, zero, mean, median and all 2000 outcomes. No clipping, trimming or label overlap observed."
+    },
+    {
+      "figure": "D",
+      "pdf_sha256": "7344206280a90c8019fd03fe763a7e67a10e755c30d21e61180d75f4266092a1",
+      "final_png_sha256": "8e5b674e40b43ed707ed34ff8d786d9c59d12306f8cd72f59d9e3369c9bf4185",
+      "rendered_page_sha256": "56bf1811800723756412ac5efee6fab786caf903ea1836f0e19ed0876d7f00a2",
+      "dpi": 120,
+      "pages": 1,
+      "pdf_page_size": "800.4 x 303.6 pts",
+      "rendered_pixels": [
+        1334,
+        506
+      ],
+      "nonblank_pixel_fraction": 0.40663462735035644,
+      "ink_bounds_pixels": [
+        11,
+        11,
+        1322,
+        493
+      ],
+      "actual_rendered_page_visually_reviewed": true,
+      "review_notes": "Quartile bars start at zero. Absolute per-realization gap and population-weighted tract Gini use separate labeled units; all three panels are readable without overlapping text."
+    }
+  ],
+  "diagnostic_author_inspection_only": true,
+  "manuscript_or_official_figures_changed": false,
+  "pixel_and_text_checks_not_substitutes_for_visual_review": true,
+  "uncertainty_definitions_in_captions": true
+}

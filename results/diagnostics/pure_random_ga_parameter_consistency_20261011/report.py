@@ -85,6 +85,16 @@ def interpretation():
     trade=a.frame(a.OUT/'VULNERABILITY_AND_EQUITY_TRADEOFF.csv').set_index('metric')
     completion=a.frame(a.OUT/'PAIRED_STATION_COMPLETION_AND_TRAVEL.csv')
     outcomes=a.frame(n.V/'REALIZATION_OUTCOMES.csv')
+    frozen_effects=a.frame(n.V/'PAIRED_EFFECTS.csv')
+    original_primary='population_weighted_normalized_burden_hr'
+    alias_error=float(np.max(abs(outcomes[n.PRIMARY]-outcomes[original_primary])))
+    assert alias_error<1e-8
+    primary=frozen_effects[frozen_effects.candidate.eq(n.GA)&frozen_effects.reference.eq(n.IMPACT)&frozen_effects.metric.eq(original_primary)].iloc[0]
+    assert abs(primary.mean_difference-comp.iloc[3].difference_hr)<1e-8
+    a.csv('PRIMARY_VALIDATION_EFFECT_REUSED.csv',[primary.to_dict()])
+    a.save('NORMALIZATION_ALIAS_QA.json',dict(status='PASS',saved_fields=[n.PRIMARY,original_primary],
+        cases_checked=6000,max_abs_field_difference_hr=alias_error,
+        original_statistical_primary_name_retained=True,objective_or_mapping_changed=False))
     metrics=[n.PRIMARY,'absolute_Q4_minus_Q1_hr','burden_gini','hospital_mean_normalized_burden_hr','signed_Q4_minus_Q1_hr']
     deltas={m:outcomes.pivot(index='realization_id',columns='strategy',values=m)[n.GA]-outcomes.pivot(index='realization_id',columns='strategy',values=m)[n.IMPACT] for m in metrics}
     joint=[]
@@ -137,7 +147,7 @@ All 4,000 GA/Impact saved trajectories were independently reintegrated on their 
 
 The largest benefit, largest harm and nearest-median cases were deterministically selected for illustration, after the parameter decision. Their native task records, exact per-station f/F/C changes and before/after component membership are retained. Each displayed source-connected mask is independently reconstructed from the 318-edge graph and 14-source set. Components include station IDs, source IDs and associated mass. Native task completion at an event is reported as an association, not a controlled causal effect. No unobserved line failure, MW, station capacity or customer routing is inferred.
 
-Across2,000 cases, average station-completion change is {completion.mean_completion_change_hr.mean():+.6f}h; GA has lower average completion in {int((completion.mean_completion_change_hr<0).sum())}/2000 cases. Mean directed travel change is {completion.total_directed_travel_change_hr.mean():+.6f}h. Per-case earlier/later/equal station counts and travel are saved. Lower population loss is not evidence every repaired station completes earlier.
+Across2,000 cases, average matched dispatched-station completion change is {completion.mean_completion_change_hr.mean():+.6f}h; GA has lower average completion in {int((completion.mean_completion_change_hr<0).sum())}/2000 cases. Mean directed travel change is {completion.total_directed_travel_change_hr.mean():+.6f}h. Per-case earlier/later/equal task-station counts and travel are saved. These averages concern native dispatch records, not necessarily all92 stations. Lower population loss is not evidence every repaired station completes earlier.
 
 ## Actual source-reconnection timings
 
@@ -157,11 +167,11 @@ These are post-freeze illustrations selected by the fixed benefit/harm/median ru
 
 ## 1. Independent algorithmic search
 
-The frozen method uses100 independent random.sample permutations, empty cache/incumbents and a passive initially empty archive. Its existing zero-incumbent guard is necessary; invoking the generic engine without that guard is not the recorded method. Permutation validity, initial-score budget inclusion, with-replacement tournaments, OX, swap, elites and checkpoint/RNG continuation pass explicit engineering checks. The source is unchanged.
+The frozen method uses 100 independent random.sample permutations, empty cache/incumbents and a passive initially empty archive. Its existing zero-incumbent guard is necessary; invoking the generic engine without that guard is not the recorded method. Permutation validity, initial-score budget inclusion, with-replacement tournaments, OX, swap, elites and checkpoint/RNG continuation pass explicit engineering checks. The source is unchanged.
 
 The reused legacy loader reads a metadata registry that also contains a prior sequence, but accesses only planning_sample_hashes and H_plan_hr. It also constructs the Impact comparator for identity checks; that tuple and its score never initialize or participate in a new search. The exact kernel has no hidden fitness cache. Numba's compiled-code cache is not a chromosome-score cache. Thus independence refers to verified search dataflow, not an inaccurate claim that legacy registry/comparator files are never read. The loader's terse older docstring is qualified by this source audit.
 
-The20 reused pure-reference100k runs have initial-best mean {main.initial_best_loss_hr.mean():.6f}h, final mean {main.final_loss_hr.mean():.6f}h (SD {main.final_loss_hr.std():.6f}h, median {main.final_loss_hr.median():.6f}h, range {main.final_loss_hr.min():.6f} to {main.final_loss_hr.max():.6f}h). Actual mean gain after random initialization is {main.gain_after_random_initialization_hr.mean():.6f}h; minimum {main.gain_after_random_initialization_hr.min():.6f}h. These gains were generated after random initialization, not inherited from a prior. Selection/recombination/mutation generate the valid searched orders, but their separate causal contributions require ablation; operator success flags alone do not prove one caused the total gain. Historical93.06% inherited gain is excluded.
+The 20 reused pure-reference 100k runs have initial-best mean {main.initial_best_loss_hr.mean():.6f} h, final mean {main.final_loss_hr.mean():.6f} h (SD {main.final_loss_hr.std():.6f} h, median {main.final_loss_hr.median():.6f} h, range {main.final_loss_hr.min():.6f} to {main.final_loss_hr.max():.6f} h). Actual mean gain after random initialization is {main.gain_after_random_initialization_hr.mean():.6f} h; minimum {main.gain_after_random_initialization_hr.min():.6f} h. These gains were generated after random initialization, not inherited from a prior. Selection/recombination/mutation generate the valid searched orders, but their separate causal contributions require ablation; operator success flags alone do not prove one caused the total gain. Historical 93.06% inherited gain is excluded.
 
 Twelve one-factor alternatives used8 fresh20k seeds. The original screen-selected confirmation family contained T2/P250/CX95, ranked by absolute mean effect. A transparent post-screen amendment registered P50/CX60/T5 before any100k confirmation result was inspected. These six alternatives each received20 fresh100k seeds, sharing the same20 reference runs once; all six final contrasts are jointly adjusted. The amendment is not described as a pre-screen registration. See FINAL_PURE_RANDOM_GA_PARAMETER_DECISION.md for the exact decision (**{decision['recommended_development_configuration']}**). Screen-only improvements do not establish a100k superior configuration. There is no unique-optimum, equivalence or global convergence claim. No adaptive/restart/crowding mechanism is needed for the reproducible reference; disabled status is not proof those methods cannot help. Population changes also alter initial coverage, RNG stream length and completed generations at fixed distinct work.
 
@@ -175,6 +185,8 @@ The fixed GA-minus-Impact exact source-loss change is {sources:+.6f}h; self/thre
 
 The fixed sequence improves {int(benefit.loc['improved','n'])}/2000 paired realizations ({100*benefit.loc['improved','fraction']:.2f}%) and worsens {int(benefit.loc['worsened','n'])}. Median difference {benefit.loc['all','median_hr']:+.6f}h; full range {benefit.loc['all','min_hr']:+.6f} to {benefit.loc['all','max_hr']:+.6f}h. Improved cases contribute {benefit.loc['improved','contribution_to_overall_mean_hr']:+.6f}h and worsened cases {benefit.loc['worsened','contribution_to_overall_mean_hr']:+.6f}h to the overall mean. Tail contributions are retained without trimming. Figures compare within-realization differences, not unpaired marginal policy distributions.
 
+The original frozen primary simultaneous95% interval is [{primary.simultaneous95_low:+.9f},{primary.simultaneous95_high:+.9f}]h (original family {primary.simultaneous_family}). It is reused, not reselected or recalibrated here. The primary saved metric name is population_weighted_normalized_burden_hr; the population-resolved-mass field used for native loss accounting agrees across all6,000 case/policy records within {alias_error:.3g}h. Both names and the exact consistency check are retained rather than silently swapping normalization definitions.
+
 ## 4. Efficiency and equality move in opposite directions
 
 All quartile mean burdens decline (Q1..Q4 changes {', '.join(f'{x:+.6f}' for x in q)}h). Q4 already has lower mean burden than Q1. Its larger decline makes the signed Q4-Q1 difference more negative; this does not reduce absolute disparity. Mean per-realization absolute gap increases {gap.difference:+.6f}h (pointwise95 [{gap.pointwise95_low:+.6f},{gap.pointwise95_high:+.6f}]); tract population-weighted Gini increases {gini.difference:+.6f} (pointwise95 [{gini.pointwise95_low:+.6f},{gini.pointwise95_high:+.6f}]). Neither abs(mean signed gap) nor Gini of mean tract burdens substitutes for mean per-realization inequality.
@@ -185,7 +197,7 @@ This is an observed tradeoff under the mean-population objective, directed57-cre
 
 ## 5. Generalization and role of optimization
 
-Algorithmic improvement, comparator policy benefit, optimizer-seed reliability and physical generalization are separate claims. This study assesses optimizer randomness conditional on64 planning states, then interprets an already frozen policy across2,000 new physical realizations from an earlier authorized validation. Those outputs were not consulted for parameter selection here. Scenario-level simulation comparisons are not validation against utility outage/reconnection observations, delivered MW or customer-level power. A search plateau is not a proven optimum; independent sampling cannot remove model misspecification.
+Algorithmic improvement, comparator policy benefit, optimizer-seed reliability and physical generalization are separate claims. This study assesses optimizer randomness conditional on 64 planning states, then interprets an already frozen policy across 2,000 physical realizations generated in an earlier authorized validation, with zero new draws here. Those outputs were not consulted for parameter selection here. Scenario-level simulation comparisons are not validation against utility outage/reconnection observations, delivered MW or customer-level power. A search plateau is not a proven optimum; independent sampling cannot remove model misspecification.
 
 The GA obtains a useful priority order; the scientific contribution is the infrastructure/community recovery mechanism and its distributional consequences. No formal candidate, manuscript, Word review file, journal figure, Stage7 input or independent physical-validation record has changed. Any future adoption of a changed method/candidate, fairness objective or empirical utility interpretation requires explicit author approval and appropriate new evidence. No broad optimizer comparison, warm-start study or repeated validation is recommended as part of this completed bounded audit.
 ''')
@@ -236,7 +248,7 @@ def graphics():
         axs[1].plot(c.time_hr,c.effective_availability,color=col,label=policy+' effective service')
         axs[1].plot(c.time_hr,c.source_connected_dependency_mass_fraction,color=col,linestyle='--',label=policy+' connected mass')
     axs[1].set(xlim=(0,120),ylim=(0,1.02),xlabel='Time (h)',ylabel='Normalized modeled availability / mass',title='B2  Mean frozen-policy trajectories')
-    axs[1].legend(loc='lower right',fontsize=7)
+    axs[1].legend(loc='center right',bbox_to_anchor=(1,.30),fontsize=7)
     axs[1].text(.03,.03,'Full 0-480 h data retained; plot shown 0-120 h\nHourly display only; exact events define integrals',transform=axs[1].transAxes,fontsize=7)
     output(fig,'B')
     paired=a.frame(a.OUT/'PLOTTING_TABLE_C.csv');x=paired.ga_minus_impact_hr.to_numpy()

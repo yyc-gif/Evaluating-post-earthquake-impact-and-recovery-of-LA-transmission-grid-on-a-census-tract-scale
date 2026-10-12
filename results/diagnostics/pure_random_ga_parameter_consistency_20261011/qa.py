@@ -153,10 +153,6 @@ def integrity():
             'Historical20k/50k have exact BUDGET_CHECKPOINTS, not FINAL JSON receipts; reused original checkpoint records.'],
         reporting_repair='Static syntax QA caught extra closing parentheses in supplementary source-crossing and loader-audit records; repaired before execution, no optimizer or scientific result affected.',
         scientific_failed_or_omitted_runs=0,formal_replacement=False))
-    files={str(p.relative_to(a.OUT)).replace('\\','/'):dict(sha256=a.sha(p),bytes=p.stat().st_size) for p in a.OUT.rglob('*')
-        if p.is_file() and not any(x in p.parts for x in ['runtime','__pycache__','.pytest_cache'])
-        and p.name not in ['OUTPUT_HASH_MANIFEST.json','REMOTE_PUBLICATION_VERIFIED.json']}
-    a.save('OUTPUT_HASH_MANIFEST.json',dict(files=files,total_bytes=sum(x['bytes'] for x in files.values())))
     a.md('REPRODUCIBLE_COMMANDS.md','''# Reproducibility
 
 Starting commit f539e3fe6015122d73e5656109e751770550bb70. Isolated branch diagnostics/pure-random-ga-parameter-consistency-20261011. Sources are read-only in sibling _gaf12 and _gri11 verified authority checkouts. Do not run setup/search phases on an existing completed package or inherit its cache; archived states permit exact replay without new physics.
@@ -183,11 +179,18 @@ python results/diagnostics/pure_random_ga_parameter_consistency_20261011/qa.py n
 python results/diagnostics/pure_random_ga_parameter_consistency_20261011/analysis.py mechanism
 python results/diagnostics/pure_random_ga_parameter_consistency_20261011/report.py memo
 python results/diagnostics/pure_random_ga_parameter_consistency_20261011/report.py figures
+python results/diagnostics/pure_random_ga_parameter_consistency_20261011/render_qa.py render
+# Inspect each actual rendered PDF page before recording visual QA.
+python results/diagnostics/pure_random_ga_parameter_consistency_20261011/render_qa.py record
 python results/diagnostics/pure_random_ga_parameter_consistency_20261011/qa.py integrity
 ```
 
 Full per-search ZIP retains initial population, exact terminal RNG/checkpoint/cache, generation/selection diagnostics, budget checkpoints and strict improvement sequences. Source and output hashes, full92 final permutations, failed setup details, negative outcomes and the disclosed amendment are preserved. No physical sampler is called by these scripts. Four PDF diagnostics require actual Poppler visual inspection before release. Remote publication verification downloads actual LFS bytes, not only pointer hashes.
 ''')
+    files={str(p.relative_to(a.OUT)).replace('\\','/'):dict(sha256=a.sha(p),bytes=p.stat().st_size) for p in a.OUT.rglob('*')
+        if p.is_file() and not any(x in p.parts for x in ['runtime','__pycache__','.pytest_cache'])
+        and p.name not in ['OUTPUT_HASH_MANIFEST.json','REMOTE_PUBLICATION_VERIFIED.json']}
+    a.save('OUTPUT_HASH_MANIFEST.json',dict(files=files,total_bytes=sum(x['bytes'] for x in files.values())))
     print('PRESERVATION_PASS',len(files),950,862,flush=True)
 
 if __name__=='__main__':

@@ -1,0 +1,37 @@
+# Scientific interpretation memo: pure-random GA
+
+## 1. Independent algorithmic search
+
+The frozen method uses 100 independent random.sample permutations, empty cache/incumbents and a passive initially empty archive. Its existing zero-incumbent guard is necessary; invoking the generic engine without that guard is not the recorded method. Permutation validity, initial-score budget inclusion, with-replacement tournaments, OX, swap, elites and checkpoint/RNG continuation pass explicit engineering checks. The source is unchanged.
+
+The reused legacy loader reads a metadata registry that also contains a prior sequence, but accesses only planning_sample_hashes and H_plan_hr. It also constructs the Impact comparator for identity checks; that tuple and its score never initialize or participate in a new search. The exact kernel has no hidden fitness cache. Numba's compiled-code cache is not a chromosome-score cache. Thus independence refers to verified search dataflow, not an inaccurate claim that legacy registry/comparator files are never read. The loader's terse older docstring is qualified by this source audit.
+
+The 20 reused pure-reference 100k runs have initial-best mean 36.359463 h, final mean 32.999094 h (SD 0.002360 h, median 32.998784 h, range 32.995522 to 33.003661 h). Actual mean gain after random initialization is 3.360369 h; minimum 2.240877 h. These gains were generated after random initialization, not inherited from a prior. Selection/recombination/mutation generate the valid searched orders, but their separate causal contributions require ablation; operator success flags alone do not prove one caused the total gain. Historical 93.06% inherited gain is excluded.
+
+Twelve one-factor alternatives used8 fresh20k seeds. The original screen-selected confirmation family contained T2/P250/CX95, ranked by absolute mean effect. A transparent post-screen amendment registered P50/CX60/T5 before any100k confirmation result was inspected. These six alternatives each received20 fresh100k seeds, sharing the same20 reference runs once; all six final contrasts are jointly adjusted. The amendment is not described as a pre-screen registration. See FINAL_PURE_RANDOM_GA_PARAMETER_DECISION.md for the exact decision (**REF**). Screen-only improvements do not establish a100k superior configuration. There is no unique-optimum, equivalence or global convergence claim. No adaptive/restart/crowding mechanism is needed for the reproducible reference; disabled status is not proof those methods cannot help. Population changes also alter initial coverage, RNG stream length and completed generations at fixed distinct work.
+
+The pure-random adoption remains a post-data methodological judgment. The original automatic rule was not passed; the earlier registered J<=32.998840773882714h proximity criterion was met in10/20 at100k, not90%. That earlier computational0.001h margin is not an equivalence or policy-benefit threshold for the new parameter study. Ten existing250k/500k trajectories are repeated prefixes, and their plateau does not prove global optimality or single-run reliability. Actual within-seed budget changes are retained separately. No new high-budget continuation was launched.
+
+## 2. Modeled source connection dominates net mean benefit
+
+The fixed GA-minus-Impact exact source-loss change is -0.820788h; self/threshold changes are +0.277475/+0.010638h, leaving net -0.532675h. Directly supported: the whole-policy mean gain comes from reduced source-connectivity loss that more than offsets increased other components. Descriptive association: the GA changes completion timing and the mass entering source-connected components. Unsupported without controlled counterfactual: a particular station move caused that net gain. No empirical power delivery is observed.
+
+## 3. Paired physical outcomes, not just mean minima
+
+The fixed sequence improves 1741/2000 paired realizations (87.05%) and worsens 259. Median difference -0.403085h; full range -4.967486 to +1.139627h. Improved cases contribute -0.559120h and worsened cases +0.026446h to the overall mean. Tail contributions are retained without trimming. Figures compare within-realization differences, not unpaired marginal policy distributions.
+
+The original frozen primary simultaneous95% interval is [-0.563982039,-0.502321315]h (original family two population-loss contrasts only). It is reused, not reselected or recalibrated here. The primary saved metric name is population_weighted_normalized_burden_hr; the population-resolved-mass field used for native loss accounting agrees across all6,000 case/policy records within 2.84e-14h. Both names and the exact consistency check are retained rather than silently swapping normalization definitions.
+
+## 4. Efficiency and equality move in opposite directions
+
+All quartile mean burdens decline (Q1..Q4 changes -0.473902, -0.334512, -0.527235, -0.777629h). Q4 already has lower mean burden than Q1. Its larger decline makes the signed Q4-Q1 difference more negative; this does not reduce absolute disparity. Mean per-realization absolute gap increases +0.232733h (pointwise95 [+0.206896,+0.258975]); tract population-weighted Gini increases +0.009790 (pointwise95 [+0.009298,+0.010293]). Neither abs(mean signed gap) nor Gini of mean tract burdens substitutes for mean per-realization inequality.
+
+Quartiles are unchanged SOVI tract quartiles with original population weights within each group, not four equal-population bins. Hospital-associated tract mean falls -0.260704h, an unweighted mean across103 associated tracts, not hospital load, facility uptime or patient outcomes. System T80 is mean individual exact80% effective-service crossing, not the crossing of the averaged curve or tract-mean T80. Each pointwise secondary interval is labeled descriptive; only prior primary population contrasts use the frozen simultaneous family.
+
+This is an observed tradeoff under the mean-population objective, directed57-crew scheduler, proxy dependency mapping and fixed physical model. It does not imply all GAs are inherently inequitable. No equity constraint or new objective is added. The joint outcome counts quantify how often lower population burden coexists with greater gap/Gini.
+
+## 5. Generalization and role of optimization
+
+Algorithmic improvement, comparator policy benefit, optimizer-seed reliability and physical generalization are separate claims. This study assesses optimizer randomness conditional on 64 planning states, then interprets an already frozen policy across 2,000 physical realizations generated in an earlier authorized validation, with zero new draws here. Those outputs were not consulted for parameter selection here. Scenario-level simulation comparisons are not validation against utility outage/reconnection observations, delivered MW or customer-level power. A search plateau is not a proven optimum; independent sampling cannot remove model misspecification.
+
+The GA obtains a useful priority order; the scientific contribution is the infrastructure/community recovery mechanism and its distributional consequences. No formal candidate, manuscript, Word review file, journal figure, Stage7 input or independent physical-validation record has changed. Any future adoption of a changed method/candidate, fairness objective or empirical utility interpretation requires explicit author approval and appropriate new evidence. No broad optimizer comparison, warm-start study or repeated validation is recommended as part of this completed bounded audit.
