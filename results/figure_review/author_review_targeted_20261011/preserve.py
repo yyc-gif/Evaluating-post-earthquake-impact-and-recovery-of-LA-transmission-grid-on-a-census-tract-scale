@@ -1,8 +1,7 @@
 from common import *
 import sys
 def snapshot():
-    prior=OUTER/'_le11/docs/data_research/built_environment_20261009/living_environment_audit_20261011/PRESERVATION_BEFORE.json'
-    keys=json.load(open(lp(prior),encoding='utf-8'))['protected_files']
+    keys=json.load(open(lp(PKG/'PRESERVATION_BEFORE.json'),encoding='utf-8'))['protected_files']
     return {'original_HEAD':git('rev-parse','HEAD',root=ORIGINAL).decode().strip(),
         'protected_files':{p:sha(ORIGINAL/p) for p in keys},'protected_count':len(keys),
         'index_sha256':hashlib.sha256(git('ls-files','--stage','-z',root=ORIGINAL)).hexdigest(),
