@@ -1,0 +1,1776 @@
+{
+  "source_sha256": "0a9bfbbaa1bdf2198d619d53cefd05a0354f1c63a32486b1cba2e434d07b5950",
+  "legend_identities": [
+    {
+      "view": 0,
+      "policy_curves": [
+        "impact-first",
+        "hospital-first",
+        "degree-first",
+        "vulnerability-first",
+        "unconstrained"
+      ],
+      "policy_legend": [
+        "impact-first",
+        "hospital-first",
+        "degree-first",
+        "vulnerability-first",
+        "unconstrained"
+      ],
+      "applies_to": [
+        "A",
+        "B"
+      ],
+      "markers_in_legend": false
+    },
+    {
+      "view": 1,
+      "policy_curves": [
+        "betweenness-first",
+        "random",
+        "unconstrained"
+      ],
+      "policy_legend": [
+        "betweenness-first",
+        "random",
+        "unconstrained"
+      ],
+      "applies_to": [
+        "A",
+        "B"
+      ],
+      "markers_in_legend": false
+    }
+  ],
+  "displayed_rows": [
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0037744153489434
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0401048631778066
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.2681201082001037
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.8489228609791308
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.996395458099707
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0036661983246029
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0283772776772669
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.1309413069225029
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.6679808445455594
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.9847931593701036
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0033241486181426
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0379092730314455
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.2512175190466325
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.8334229952676192
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.9947988991659994
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0032055648904922
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0267630029376743
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.1260612653578939
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.6253288448010426
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.9646937265362246
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0027856638851366
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.041563147367242
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.2680567189364569
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.7728024346500251
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.9835386316371768
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0026554740330801
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0247942424379017
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.1287361257191251
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.6519595175941081
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.9787649561606908
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0033924059411377
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0412537498333808
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.2657008022776019
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.8265646941733793
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.9944468150256822
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0032670211751644
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0268146428876798
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.124063855549601
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.6200635497113425
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.9629270822892488
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0050684488964134
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0676619823786928
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.330431754252817
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.8814495411714351
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.9990753068075288
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0046823078277059
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0396775275235644
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.1650546940503294
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.765139621822843
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.9979789565515992
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0001082170243404
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0117275855005397
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1371788012776008
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1809420164335714
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0116022987296034
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "impact-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0001185837276503
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0111462700937711
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1251562536887386
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.2080941504665766
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0301051726297746
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "hospital-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0001301898520565
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0167689049293403
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1393205932173317
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.120842917055917
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0047736754764859
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "degree-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0001253847659733
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0144391069457009
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1416369467280009
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.2065011444620368
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0315197327364336
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "vulnerability-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0003861410687074
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0279844548551283
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1653770602024876
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.116309919348592
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0010963502559296
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 0,
+      "strategy": "unconstrained",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0024864786633583
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.030178459903768
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.2481919797147324
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.7998380705097963
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.9852894176670788
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0024074450549885
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0199595012545551
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.1081283155799485
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.6422356659642969
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.9775268257464104
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0023053093585745
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0200071298336051
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.1805040111335621
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.7085315063793358
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.9743292877069764
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0022572410125047
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0138935204256182
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0777505138677262
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.4952769963138849
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.952038513027022
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0050684488964134
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.0676619823786928
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.330431754252817
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.8814495411714351
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 0.9990753068075288
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_R_conn",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0009136588287383
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0046823078277059
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.0396775275235644
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.1650546940503294
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.765139621822843
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 0.9979789565515992
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "A",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_fixed_precomputed_best_path_connection",
+      "value": 1.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 7.903360836975453e-05
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0102189586492128
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1400636641347838
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1576024045454993
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0077625919206682
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "betweenness-first",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 4.8068346069783325e-05
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0061136094079869
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1027534972658358
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.2132545100654509
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0222907746799543
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "random",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 0.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 6.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0003861410687074
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 12.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0279844548551283
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 24.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.1653770602024876
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 48.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.116309919348592
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 72.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0010963502559296
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 120.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 240.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    },
+    {
+      "panel": "B",
+      "view": 1,
+      "strategy": "unconstrained",
+      "time_hr": 480.0,
+      "field": "population_dependency_weighted_full_minus_fixed_precomputed_best_path",
+      "value": 0.0
+    }
+  ],
+  "unconstrained_repeated_as_same_reference": true
+}
