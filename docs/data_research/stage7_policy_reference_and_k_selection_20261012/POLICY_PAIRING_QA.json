@@ -1,0 +1,271 @@
+{
+  "status": "PASS",
+  "policies": [
+    {
+      "policy": "unconstrained",
+      "realizations": 1000,
+      "integral_sha256": "f313f0ebc56547c6d9b678da66d72f1c3b20309c7369918232a58b28aeaf8b46",
+      "summary_sha256": "395cbc9739859b9c0f437ec8bd869beea6ffb2fc433b62293d442895235e5d68",
+      "projection_max_error_hr": 3.552713678800501e-14,
+      "exact_event_max_error_hr": 0,
+      "population_summary_max_error_hr": 2.842170943040401e-14,
+      "population_burden_hr": 31.337776981796647,
+      "Q4_burden_hr": 30.637942975052958,
+      "hospital_burden_hr": 31.402914717863798,
+      "identity": {
+        "H_eval_hr": 480.0,
+        "gate_cases": [
+          "G0_NO_GATE",
+          "G1_BASELINE_050",
+          "G2_RELAXED_005",
+          "G3_STRICT_075"
+        ],
+        "hazard": "2pc50",
+        "mapping_cases": [
+          "M0_JULY_003",
+          "M1_UTILITY_003",
+          "M0_JULY_NO_CUTOFF",
+          "M0_JULY_001",
+          "M1_UTILITY_NO_CUTOFF",
+          "M1_UTILITY_001",
+          "M3_SCE_SUPPORTED"
+        ],
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "strategy": "unconstrained",
+        "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+      },
+      "local_archive_required": true
+    },
+    {
+      "policy": "impact-first",
+      "realizations": 1000,
+      "integral_sha256": "b5e2e3c5fc10d5dac65bb1747ca2317e907b577d16ae8918174d3dbe5ec59df4",
+      "summary_sha256": "0daf1c7a1898b0a31bae0e5e944a4e88c70ad21c446b83418eb5856afdd020fc",
+      "projection_max_error_hr": 4.263256414560601e-14,
+      "exact_event_max_error_hr": 0,
+      "population_summary_max_error_hr": 2.842170943040401e-14,
+      "population_burden_hr": 33.593686467844854,
+      "Q4_burden_hr": 32.73300490554173,
+      "hospital_burden_hr": 33.05932720079036,
+      "identity": {
+        "H_eval_hr": 480.0,
+        "gate_cases": [
+          "G0_NO_GATE",
+          "G1_BASELINE_050",
+          "G2_RELAXED_005",
+          "G3_STRICT_075"
+        ],
+        "hazard": "2pc50",
+        "mapping_cases": [
+          "M0_JULY_003",
+          "M1_UTILITY_003",
+          "M0_JULY_NO_CUTOFF",
+          "M0_JULY_001",
+          "M1_UTILITY_NO_CUTOFF",
+          "M1_UTILITY_001",
+          "M3_SCE_SUPPORTED"
+        ],
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "strategy": "impact-first",
+        "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+      },
+      "local_archive_required": true
+    },
+    {
+      "policy": "hospital-first",
+      "realizations": 1000,
+      "integral_sha256": "19414b2b22d6a7ebe0c17720acd2931831b4efc3bef2f94591dbdac3eee7f465",
+      "summary_sha256": "03d50947f57ca9b2e3f0d64c41feca576b53ff9568db3d7b70f98028d47fe8ce",
+      "projection_max_error_hr": 4.263256414560601e-14,
+      "exact_event_max_error_hr": 0,
+      "population_summary_max_error_hr": 2.842170943040401e-14,
+      "population_burden_hr": 34.30646521839252,
+      "Q4_burden_hr": 33.618165154976595,
+      "hospital_burden_hr": 33.366687787180126,
+      "identity": {
+        "H_eval_hr": 480.0,
+        "gate_cases": [
+          "G0_NO_GATE",
+          "G1_BASELINE_050",
+          "G2_RELAXED_005",
+          "G3_STRICT_075"
+        ],
+        "hazard": "2pc50",
+        "mapping_cases": [
+          "M0_JULY_003",
+          "M1_UTILITY_003",
+          "M0_JULY_NO_CUTOFF",
+          "M0_JULY_001",
+          "M1_UTILITY_NO_CUTOFF",
+          "M1_UTILITY_001",
+          "M3_SCE_SUPPORTED"
+        ],
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "strategy": "hospital-first",
+        "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+      },
+      "local_archive_required": true
+    },
+    {
+      "policy": "degree-first",
+      "realizations": 1000,
+      "integral_sha256": "2735b58c71ecea21f2e3b9b463be6abe62c384dcdabefe2d70c1e360bd485a7e",
+      "summary_sha256": "52f82970c78e57450d0edb61a5a75504fc219693550fa97b1a4cae7dd8df1f4c",
+      "projection_max_error_hr": 4.263256414560601e-14,
+      "exact_event_max_error_hr": 0,
+      "population_summary_max_error_hr": 3.552713678800501e-14,
+      "population_burden_hr": 35.707709164451444,
+      "Q4_burden_hr": 34.90036944094061,
+      "hospital_burden_hr": 35.73100591148288,
+      "identity": {
+        "H_eval_hr": 480.0,
+        "gate_cases": [
+          "G0_NO_GATE",
+          "G1_BASELINE_050",
+          "G2_RELAXED_005",
+          "G3_STRICT_075"
+        ],
+        "hazard": "2pc50",
+        "mapping_cases": [
+          "M0_JULY_003",
+          "M1_UTILITY_003",
+          "M0_JULY_NO_CUTOFF",
+          "M0_JULY_001",
+          "M1_UTILITY_NO_CUTOFF",
+          "M1_UTILITY_001",
+          "M3_SCE_SUPPORTED"
+        ],
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "strategy": "degree-first",
+        "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+      },
+      "local_archive_required": true
+    },
+    {
+      "policy": "betweenness-first",
+      "realizations": 1000,
+      "integral_sha256": "52bb3f843adf7e936d7b4613b4bb81f27f3ff391e6b71c6b8986e2d8f072bfcf",
+      "summary_sha256": "65ff38c3399f804da469b4907f103c15b94f799b7427398e2f24e0da489317e3",
+      "projection_max_error_hr": 4.263256414560601e-14,
+      "exact_event_max_error_hr": 0,
+      "population_summary_max_error_hr": 3.552713678800501e-14,
+      "population_burden_hr": 35.52157245879788,
+      "Q4_burden_hr": 34.73011729067136,
+      "hospital_burden_hr": 35.37954022527479,
+      "identity": {
+        "H_eval_hr": 480.0,
+        "gate_cases": [
+          "G0_NO_GATE",
+          "G1_BASELINE_050",
+          "G2_RELAXED_005",
+          "G3_STRICT_075"
+        ],
+        "hazard": "2pc50",
+        "mapping_cases": [
+          "M0_JULY_003",
+          "M1_UTILITY_003",
+          "M0_JULY_NO_CUTOFF",
+          "M0_JULY_001",
+          "M1_UTILITY_NO_CUTOFF",
+          "M1_UTILITY_001",
+          "M3_SCE_SUPPORTED"
+        ],
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "strategy": "betweenness-first",
+        "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+      },
+      "local_archive_required": true
+    },
+    {
+      "policy": "vulnerability-first",
+      "realizations": 1000,
+      "integral_sha256": "a7de28a1b1a8ce7df0e2994b587c4de73dc65f0796bee6311dfd446393ba1a6e",
+      "summary_sha256": "4b0254d6005261ae699d5384912e1188d01aad63aab7993b2ef9cea333f4d897",
+      "projection_max_error_hr": 3.552713678800501e-14,
+      "exact_event_max_error_hr": 0,
+      "population_summary_max_error_hr": 3.552713678800501e-14,
+      "population_burden_hr": 34.25784945267778,
+      "Q4_burden_hr": 32.02349416829504,
+      "hospital_burden_hr": 33.93907633764768,
+      "identity": {
+        "H_eval_hr": 480.0,
+        "gate_cases": [
+          "G1_BASELINE_050"
+        ],
+        "hazard": "2pc50",
+        "mapping_cases": [
+          "M0_JULY_003",
+          "M1_UTILITY_003"
+        ],
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "offline_executable_code_commit_sha": "640ac2b1f9f67beae7340245ab18c72c9d4fb12f",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "strategy": "vulnerability-first",
+        "trajectory_executable_code_commit_sha": "4dd2a7babb51849852bb169a59df1ca4726cc16f"
+      },
+      "local_archive_required": true
+    },
+    {
+      "policy": "random",
+      "realizations": 1000,
+      "integral_sha256": "28cf8596a1da9c8e4abacc34436bb24de69c6e500ac639b88e4d7090cc12e5a5",
+      "summary_sha256": "bf7377a5e2e5c3ad39ff9104b3b08f9e5aded2d88f7441463ae6cb1a62330851",
+      "projection_max_error_hr": 4.263256414560601e-14,
+      "exact_event_max_error_hr": 0,
+      "population_summary_max_error_hr": 3.552713678800501e-14,
+      "population_burden_hr": 39.3884897974452,
+      "Q4_burden_hr": 37.51984554270041,
+      "hospital_burden_hr": 39.92426454980686,
+      "identity": {
+        "H_eval_hr": 480.0,
+        "gate_cases": [
+          "G0_NO_GATE",
+          "G1_BASELINE_050",
+          "G2_RELAXED_005",
+          "G3_STRICT_075"
+        ],
+        "hazard": "2pc50",
+        "mapping_cases": [
+          "M0_JULY_003",
+          "M1_UTILITY_003",
+          "M0_JULY_NO_CUTOFF",
+          "M0_JULY_001",
+          "M1_UTILITY_NO_CUTOFF",
+          "M1_UTILITY_001",
+          "M3_SCE_SUPPORTED"
+        ],
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "strategy": "random",
+        "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+      },
+      "local_archive_required": true
+    }
+  ],
+  "identity_max_error_hr": 2.0827783941967937e-13,
+  "study_tracts": 2315,
+  "clustering_tracts": 2299,
+  "population": 9066522,
+  "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+  "direct_community_impact_integral_bytes_identical": true,
+  "no_new_physical_simulation": true,
+  "external_dependency": "Manifest-bound Formal_Trajectories and Equity_Amendment archives are not assumed available in a clean Git clone."
+}

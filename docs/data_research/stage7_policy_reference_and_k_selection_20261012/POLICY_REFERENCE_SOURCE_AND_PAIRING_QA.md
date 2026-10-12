@@ -1,0 +1,10 @@
+# Policy reference source and pairing QA
+AUTHOR REVIEW - NOT FORMAL STAGE 7
+
+All six scheduled policies plus Unconstrained have complete frozen station event arrays and tract integrals. Each contains the same 1,000 evaluation realization IDs, 92 stations, 2,315 tract IDs in the original tract-table order (not GEOID sort), damage/duration hashes, graph/source/travel/crew identities, M1_UTILITY_003 mapping, C57_D1 resources, and 480 h horizon. Analysis aligns by exact GEOID and then sorts. Vulnerability-first comes from Equity_Amendment/Offline and Equity_Amendment/T, not from the original policy folder. Its executable commit differs, but every physical/configuration identity is matched.
+
+B is the mean integral of normalized service deficit in hours (not divided by 480). Delta is the mean realization-paired constrained-minus-Unconstrained integral, including finite crews, dispatch and travel jointly. Exact step-event integration of archived e agrees with archived G1_BASELINE_050 station integrals, and W projection agrees with archived tract values. Population-weighted checks use all 2,315 study tracts, including the 16 with zero population. Clustering alone excludes those 16. Detailed maximum errors are in POLICY_PAIRING_QA.json.
+
+Direct-community and Impact-first integral files have identical SHA256; they are not independent policies. Initial station/tract availability is unchanged across all policies. No gates, trajectories, damage, schedules or physical realizations were recomputed. The event payloads are local manifest-bound archive dependencies; the derived metric table is included here for clean-clone numerical diagnostics. Reproducing the full archive audit requires those original archives, not fabricated aggregate-to-spatial reconstruction.
+
+Frozen population is unchanged; its upstream Census-vintage provenance remains as bounded by the prior audit. SOVI is frozen FEMA NRI v1.19; quartiles are inherited, never recomputed. 2pc50 is the probabilistic 2%-in-50-year ground-motion field, not a unique earthquake rupture or community risk index.

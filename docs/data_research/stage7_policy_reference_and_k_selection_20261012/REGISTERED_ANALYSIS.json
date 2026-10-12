@@ -1,0 +1,26 @@
+{
+  "status": "AUTHOR REVIEW - NOT FORMAL STAGE 7",
+  "authority": "66d16d61b13c05785f58795ef9d13ba82ece472e",
+  "fit_prerequisite": "POLICY_PAIRING_QA.json status PASS, before any fits",
+  "cohort": "all 2299 frozen positive-population tracts; no imputation/exclusions",
+  "hazard": "2pc50", "resources": "C57_D1", "mapping": "M1_UTILITY_003",
+  "gate": "G1_BASELINE_050", "horizon_hr": 480, "physical_realizations": 1000,
+  "policies": ["impact-first", "hospital-first", "degree-first", "betweenness-first", "vulnerability-first", "random"],
+  "specifications": {
+    "A": {"Init_Supply": 0.1111111111111111, "Grid_Impact": 0.1111111111111111, "Redundancy_HHI": 0.1111111111111111, "B_480_hr": 0.16666666666666666, "Delta_B_logistics": 0.16666666666666666, "SOVI_SCORE": 0.16666666666666666, "log1p_Population": 0.16666666666666666},
+    "A-minus-Init": {"Grid_Impact": 0.16666666666666666, "Redundancy_HHI": 0.16666666666666666, "B_480_hr": 0.16666666666666666, "Delta_B_logistics": 0.16666666666666666, "SOVI_SCORE": 0.16666666666666666, "log1p_Population": 0.16666666666666666}
+  },
+  "weight_meaning": "squared-distance budgets; multiply cohort z-scores by sqrt(budget)",
+  "scaling": ["policy_cohort", "fixed_impact"],
+  "scaler": "mean and population SD (ddof=0); fixed_impact uses full positive-cohort Impact-first scaler",
+  "K_inertia": [1,2,3,4,5,6,7,8], "K_silhouette": [2,3,4,5,6,7,8],
+  "seeds": [42,43,44,45,46],
+  "kmeans": {"init": "k-means++", "n_init": 50, "algorithm": "lloyd", "max_iter": 500, "tol": 0.0001},
+  "silhouette": "full 2299 cohort, weighted Euclidean, no sampling; cached pairwise distances",
+  "elbow": "largest perpendicular gap to normalized K1-to-K8 endpoint chord, report curve and adjacent reduction; candidate diagnostic, not automatic scientific selection",
+  "spatial": "seed42 all policies/specs/scalers K2-8; frozen TIGER internal points and prior median-UTM-x/y quadrants; leave one block out, refit policy_cohort scaler on training only or retain full fixed_impact scaler, fit n_init50, predict all; report full and held-out ARI",
+  "rare_group": "exact 34 GEOIDs from prior verified A/k4/seed42 STATION Q proxy group; never redefine membership",
+  "canonical_labels": "model-specific increasing mean B then population, display only; comparisons use ARI and Hungarian match",
+  "no_new_physical_simulation": true, "no_formal_promotion": true,
+  "interpretation": "joint statistical/scientific/seed/spatial/policy evidence, no optimized composite ranking"
+}
