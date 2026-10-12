@@ -1,0 +1,31 @@
+{
+  "T80_censored_count": 0,
+  "analysis_wall_seconds": 105.05676260000018,
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 202610120702,
+  "bootstrap_unit": "complete physical realization",
+  "direct_full_time_by_tract_integral_checks": 9,
+  "exact_event_clock_used": true,
+  "hourly_curves_used_only_for_presentation": true,
+  "independent_Lorenz_gini_checks": 6000,
+  "independent_scheduler_decoder_checks": 6000,
+  "late_tasks_retained": 0,
+  "max_errors": {
+    "compiled_production_hr": 4.973799150320701e-14,
+    "component_hr": 3.552713678800501e-14,
+    "event_integral_hr": 2.1316282072803006e-14,
+    "gini": 1.1657341758564144e-15,
+    "hospital_hr": 2.1316282072803006e-14,
+    "quartile_hr": 2.1316282072803006e-14,
+    "scheduler_hr": 0.0,
+    "tract_integral_hr": 4.263256414560601e-14
+  },
+  "no_missing_or_excluded_cases": true,
+  "no_optimizer_invocations": true,
+  "policy_records": 6000,
+  "sample_count": 2000,
+  "saved_event_integral_checks": 6000,
+  "status": "PASS",
+  "tolerance_hr": 1e-08,
+  "tract_integral_checks": 6000
+}

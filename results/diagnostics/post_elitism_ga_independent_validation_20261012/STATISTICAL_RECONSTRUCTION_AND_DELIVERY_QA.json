@@ -1,0 +1,34 @@
+{
+  "all_manifest_payloads_in_index": true,
+  "bootstrap_index_sha256": "d46630c8454451a057c740860c8ea08bbe01864e50f5f3b998e6b09187193287",
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 202610120702,
+  "manifest_payloads_checked": 50,
+  "max_statistical_error": 2.284630817861455e-14,
+  "optimizer_calls": 0,
+  "physical_sampler_calls": 0,
+  "preregistered_source_and_protocol_byte_identical": true,
+  "production_evaluations": 0,
+  "reconstructed_contrast_metrics": 40,
+  "rng_after": {
+    "bit_generator": "PCG64",
+    "has_uint32": 0,
+    "state": {
+      "inc": 161030542044136651272154184713402828937,
+      "state": 103525917110311080089922984338676420731
+    },
+    "uinteger": 4041197774
+  },
+  "rng_before": {
+    "bit_generator": "PCG64",
+    "has_uint32": 0,
+    "state": {
+      "inc": 161030542044136651272154184713402828937,
+      "state": 233514007359487268994252331725245214964
+    },
+    "uinteger": 0
+  },
+  "same_registered_bootstrap_replayed": true,
+  "source_sha256": "4d713de893d458c0394e974d176cb2289a20840e769773c6224bae1eba77ec36",
+  "status": "PASS"
+}
