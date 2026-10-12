@@ -1,0 +1,10 @@
+{
+  "county_rows": 2495,
+  "source": "CDC/ATSDR SVI2020 California file via official webapi",
+  "ACS_period": "2016-2020",
+  "raw_EP_components_are_percentages": true,
+  "state_RPL_percentiles_not_equivalent_to_frozen_national_SOVI": true,
+  "aggregate_SOVI_unchanged": true,
+  "component_coordinates_not_admitted": true,
+  "mechanical_overlap": "SVI2020 EP_MUNIT = (DP04_0012E + DP04_0013E) / E_HU *100: 10+ units from 2016-2020 ACS DP04. Housing5plus uses B25024 orders6-9 /order1, 2018-2022 ACS. Nested housing configuration constructs and overlapping survey years, not identical coordinates."
+}

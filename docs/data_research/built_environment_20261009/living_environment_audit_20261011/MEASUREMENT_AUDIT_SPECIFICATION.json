@@ -1,0 +1,19 @@
+{
+  "baseline": "e4497dcf2182535ef1eda9612ca45c43704c1a6f",
+  "no_clustering": true,
+  "no_weight_optimization": true,
+  "no_cluster_outcome_admission": true,
+  "cohorts": [
+    2315,
+    2291,
+    2287
+  ],
+  "uncertainty_diagnostic_flags": {
+    "MOE90_gt_0.05": "more than 5 percentage points",
+    "MOE90_gt_0.10": "more than 10 percentage points",
+    "CV_gt_0.30": "relative standard error greater than 30%, positive estimates only"
+  },
+  "flags_are_not_exclusion_rules": true,
+  "correlation_samples": "reference2287, pairwise exact intersection with stored GEOID hashes/lists; identical complete-data subset sensitivity",
+  "new_physical_sampling": false
+}

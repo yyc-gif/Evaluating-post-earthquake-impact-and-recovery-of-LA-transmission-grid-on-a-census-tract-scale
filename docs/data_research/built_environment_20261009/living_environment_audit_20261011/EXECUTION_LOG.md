@@ -1,0 +1,57 @@
+- 2026-10-12T00:16:20.147349+00:00: Acquired CANOPY_SERVICE.json: 4954 bytes
+- 2026-10-12T00:16:20.298345+00:00: Acquired CANOPY_LAYER.json: 19627 bytes
+- 2026-10-12T00:16:20.488266+00:00: Acquired CANOPY_ITEM.json: 5624 bytes
+- 2026-10-12T00:16:20.734263+00:00: Acquired CANOPY_ITEM_METADATA.xml: 63961 bytes
+- 2026-10-12T00:16:21.005548+00:00: Acquired CANOPY_LA_COUNT.json: 16 bytes
+- 2026-10-12T00:16:22.519917+00:00: Acquired CANOPY_LA_0.geojson: 4346881 bytes
+- 2026-10-12T00:16:23.876021+00:00: Acquired CANOPY_LA_1000.geojson: 3620606 bytes
+- 2026-10-12T00:16:24.677388+00:00: Acquired CANOPY_LA_2000.geojson: 1767456 bytes
+- 2026-10-12T00:16:25.172284+00:00: Acquired CANOPY_RASTER_SERVICE.json: 3605 bytes
+- 2026-10-12T00:16:25.382284+00:00: Acquired PARKS_DOCUMENTATION.html: 143833 bytes
+- 2026-10-12T00:16:25.565279+00:00: Acquired PARKS_DOWNLOAD_0.payload: 217395 bytes
+- 2026-10-12T00:16:26.158278+00:00: Acquired ACS_B25040_LA.json: 8531 bytes
+- 2026-10-12T00:16:26.322655+00:00: Acquired ACS_B25040_GROUP.json: 207032 bytes
+- 2026-10-12T00:16:28.745603+00:00: Acquired ACS_VRE_140_INDEX.html: 1421212 bytes
+- 2026-10-12T00:16:30.193401+00:00: Acquired B25040_06.csv.zip: 7127082 bytes
+- 2026-10-12T00:16:30.725353+00:00: Acquired ACS_VRE_DOCUMENTATION.pdf: 363265 bytes
+- 2026-10-12T00:18:49.204922+00:00: Acquired CANOPY_RELATED_ITEMS.json: 436084 bytes
+- 2026-10-12T00:18:49.595914+00:00: Acquired PARKS_COUNTY_HOME.html: 78498 bytes
+- 2026-10-12T00:18:49.728914+00:00: Source failure PARKS_API_METADATA.payload: 404 Client Error: Resource Not Found for url: https://usc-ndsc-apim-prod.azure-api.net/map/api/datasets/59
+- 2026-10-12T00:18:51.994305+00:00: Acquired CANOPY_CALFIRE_LAUNCH.pdf: 1443589 bytes
+- 2026-10-12T00:19:14.624794+00:00: Acquired CANOPY_RASTER_ITEM.json: 1741 bytes
+- 2026-10-12T00:19:14.770949+00:00: Acquired CANOPY_RASTER_ITEM_DATA.json: 0 bytes
+- 2026-10-12T00:19:37.943516+00:00: Acquired CANOPY_VIEWER.json: 7841 bytes
+- 2026-10-12T00:19:38.164515+00:00: Acquired CANOPY_VIEWER_DATA.json: 8154 bytes
+- 2026-10-12T00:19:38.284526+00:00: Acquired CANOPY_WEBMAP.json: 1248 bytes
+- 2026-10-12T00:19:38.494516+00:00: Acquired CANOPY_WEBMAP_DATA.json: 85421 bytes
+- 2026-10-12T00:19:38.835604+00:00: Acquired CANOPY_URBAN_SERVICE.json: 4397 bytes
+- 2026-10-12T00:19:39.002516+00:00: Acquired CANOPY_URBAN_LAYER.json: 155 bytes
+- 2026-10-12T00:19:39.003516+00:00: API error CANOPY_URBAN_LAYER.json: {'code': 400, 'message': '', 'details': ['The requested layer (layerId: 0) was not found.']}
+- 2026-10-12T00:20:12.945151+00:00: Acquired CENSUS2020_MAPSERVER.json: 33947 bytes
+- 2026-10-12T00:20:13.330296+00:00: Acquired PARKS_COUNTY_REPORT_PAGE.html: 83690 bytes
+- 2026-10-12T00:22:04.830068+00:00: Source failure CDC_SVI2020_CA.csv: 404 Client Error: Not Found for url: https://svi.cdc.gov/Documents/Data/2020/csv/states/SVI2020_CALIFORNIA.csv
+- 2026-10-12T00:22:05.314192+00:00: Acquired CANOPY_CALFIRE_PORTAL.html: 76147 bytes
+- 2026-10-12T00:22:05.674639+00:00: Acquired CENSUS2020_URBAN_LAYER.json: 7179 bytes
+- 2026-10-12T00:22:13.387915+00:00: Acquired CENSUS2020_URBAN_LA.geojson: 4977387 bytes
+- 2026-10-12T00:22:13.914915+00:00: Acquired PARKS_COUNTY_USER_GUIDE.pdf: 130257 bytes
+- 2026-10-12T00:22:14.242923+00:00: Acquired PARKS_COUNTY_EXECUTIVE_SUMMARY.pdf: 2660132 bytes
+- 2026-10-12T00:24:09.961001+00:00: Acquired CDC_SVI_DOCUMENTATION.html: 57382 bytes
+- 2026-10-12T00:24:39.867250+00:00: Acquired CDC_SVI_DOWNLOAD_ASSET.json: 199 bytes
+- 2026-10-12T00:24:55.746554+00:00: Acquired CDC_SVI_DOWNLOAD_APP.js: 6591 bytes
+- 2026-10-12T00:25:21.281276+00:00: Acquired CDC_SVI_STATES.xml: 2715 bytes
+- 2026-10-12T00:25:47.782641+00:00: Acquired CDC_SVI2020_CA_VALID.csv: 865 bytes
+- 2026-10-12T00:25:48.156754+00:00: Acquired CDC_SVI2020_DOCUMENTATION.pdf: 687561 bytes
+- 2026-10-12T00:26:10.684819+00:00: Acquired CDC_SVI2020_CALIFORNIA.csv: 6699687 bytes
+- 2026-10-12T00:31:13.573216+00:00: Canopy source and geometry checks completed
+- 2026-10-12T00:31:24.355625+00:00: Covariance-aware ACS uncertainty completed; verified housing measurements preserved
+- 2026-10-12T00:31:31.549629+00:00: Distributions, exact-sample correlations, survey sensitivity and conditional redundancy completed
+- 2026-10-12T00:39:47.703258+00:00: Archived land-mask check distinguishes water exclusions from residual geographic mismatch; no source or formal geometry changed.
+- 2026-10-12T00:43:28.621712+00:00: Source, uncertainty and construct decisions written from actual tables; no formal feature selection or promotion.
+- 2026-10-12T00:43:29.064711+00:00: Verified all cached payload bytes, including documented failed responses; failed responses are not admitted measurements.
+- 2026-10-12T00:45:47.760357+00:00: Three diagnostic PDFs rendered at native185mm; every page exported at600dpi and native preview for visual inspection.
+- 2026-10-12T00:48:43.984320+00:00: Three diagnostic PDFs rendered at native185mm; every page exported at600dpi and native preview for visual inspection.
+- 2026-10-12T00:49:27.288414+00:00: Initial preservation test exposed a CSV parser roundtrip difference of <=4.5e-16 relative in density, not a source change. Downstream output readers now use round_trip; inherited columns are restored exactly from unchanged parent values. Retest exact equality.
+- 2026-10-12T00:51:13.163910+00:00: Source, uncertainty and construct decisions written from actual tables; no formal feature selection or promotion.
+- 2026-10-12T00:51:20.580906+00:00: Three diagnostic PDFs rendered at native185mm; every page exported at600dpi and native preview for visual inspection.
+- 2026-10-12T00:52:34.121289+00:00: Verified all cached payload bytes, including documented failed responses; failed responses are not admitted measurements.
+- 2026-10-12T00:52:38.933287+00:00: Preservation verified: 950 protected files, 862 staged items, original HEAD/index/status unchanged. Actual7 diagnostic pages inspected.

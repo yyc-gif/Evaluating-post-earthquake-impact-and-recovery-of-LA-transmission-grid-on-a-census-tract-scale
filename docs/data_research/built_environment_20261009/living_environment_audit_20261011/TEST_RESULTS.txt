@@ -1,0 +1,4 @@
+Command: C:\Users\yinch\anaconda3\python.exe -m pytest test_measurements.py -q --basetemp .pytest_tmp
+2026-10-11: 7 passed in 4.33s.
+Independent raw-source/ratio/variance checks, exact reused context and GEOID preservation, correlation samples, source-response separation and PDF width/font/page checks.
+The first attempt exposed a CSV parser floating roundtrip issue; fixed and all tests passed. No scientific source bytes changed.

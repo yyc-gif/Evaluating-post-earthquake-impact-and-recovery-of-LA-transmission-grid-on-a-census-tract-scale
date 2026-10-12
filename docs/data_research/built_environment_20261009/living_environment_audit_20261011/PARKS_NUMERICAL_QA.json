@@ -1,0 +1,21 @@
+{
+  "county_rows": 2498,
+  "duplicate_GEOID": 0,
+  "published_years": [
+    2022
+  ],
+  "id_reproduction": true,
+  "published_percentage_vs_count_ratio_max_difference_pp": {
+    "all": 8.094572891081953e-06,
+    "good": 8.220511972467648e-06
+  },
+  "all_rounding_overshoot_n": 151,
+  "good_rounding_overshoot_n": 29,
+  "good_exceeds_all_n": 0,
+  "denominator_comparison_with_source_Census2020_population_n": 2313,
+  "denominator_exact_Census2020_population_agreement_n": 2313,
+  "population_weighting_verified": false,
+  "area_weighting_verified": false,
+  "method_issue": "Population-denominator/count fields reproduce the ratio but do not establish spatial allocation. Published prose states residents; method only specifies buffer/tract overlay. No population-surface/block apportionment or pure area formula supplied.",
+  "network_accessibility_verified": false
+}
