@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "tests_passed": 8,
+  "cases": [
+    "A_last_child_best",
+    "B_all_children_better",
+    "C_elite_present",
+    "D_deterministic_ties",
+    "E_duplicate_cache",
+    "F_budget_boundary",
+    "G_exact_checkpoint_replay",
+    "mode_switch_rejected"
+  ],
+  "command": [
+    "C:\\Users\\yinch\\anaconda3\\python.exe",
+    "-m",
+    "pytest",
+    "C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_ger14\\results\\diagnostics\\pure_random_ga_elitism_revision_20261011\\test_elitism.py",
+    "-q",
+    "--basetemp=C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_ger14\\_elitism_tmp"
+  ],
+  "python": "3.12.3 | packaged by conda-forge | (main, Apr 15 2024, 18:20:11) [MSC v.1938 64 bit (AMD64)]",
+  "engine_sha256": "38bd92b4a8fc71e55e5ebd2f4fea6a23dd5f0e09c49f6a1e51b0ce13685ea503",
+  "tests_sha256": "6126b3e5b9ae2dd2bb6d4bb3a83afa7e631cccf09e7da33cdf2b07733bb76730",
+  "new_physical_samples": 0,
+  "real_planning_objective_calls": 0,
+  "initial_setup_errors": "Two preliminary pytest invocations passed A-D but failed E-G fixture creation from Windows long paths. No algorithm assertion failed; rerunning with the short temporary prefix passed all eight tests."
+}

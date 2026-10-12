@@ -11,6 +11,27 @@ import pandas as pd
 import psutil
 from la_grid.revision.r1_ga_revision import _ordered_crossover, _mutate_inversion
 
+LEGACY_LAST_POSITION_ELITISM = 'LEGACY_LAST_POSITION_ELITISM'
+POST_EVALUATION_WORST_OFFSPRING_ELITISM = 'POST_EVALUATION_WORST_OFFSPRING_ELITISM'
+
+
+def post_evaluation_elitism(children, scores, previous_elites):
+    """Maximize fitness; choose the lowest offspring index on worst-score ties."""
+    actions=[]
+    for elite,fitness in previous_elites:
+        if elite in children:
+            actions.append(dict(reason='already_present',previous_fitness=fitness))
+            continue
+        worst=min(range(len(children)),key=lambda i:(scores[i],i))
+        if fitness < scores[worst]:
+            actions.append(dict(reason='all_strictly_better',previous_fitness=fitness))
+            continue
+        actions.append(dict(reason='inserted',index=worst,previous_fitness=fitness,
+                            discarded_sequence=children[worst],discarded_fitness=scores[worst]))
+        children[worst]=elite
+        scores[worst]=fitness
+    return actions
+
 @dataclass(frozen=True)
 class Variant:
     population: int = 100
@@ -88,7 +109,11 @@ def initialize(domain,inc,rng,config,quality):
 
 def run_search(*,items,incumbents,objective,seed,config,max_evaluations,
                checkpoints=(50000,100000,250000,500000),folder=None,
-               quality=None,max_generations=None,lookup_objective=None):
+               quality=None,max_generations=None,lookup_objective=None,
+               elitism_mode=LEGACY_LAST_POSITION_ELITISM):
+    assert elitism_mode in (LEGACY_LAST_POSITION_ELITISM,POST_EVALUATION_WORST_OFFSPRING_ELITISM)
+    if elitism_mode==POST_EVALUATION_WORST_OFFSPRING_ELITISM:
+        assert not config.restart and not config.diversity_replacement
     domain=tuple(str(x) for x in items);index={v:i for i,v in enumerate(domain)}
     inc={str(k):tuple(str(v) for v in x) for k,x in incumbents.items()}
     assert all(len(x)==len(domain) and set(x)==set(domain) for x in inc.values())
@@ -106,13 +131,21 @@ def run_search(*,items,incumbents,objective,seed,config,max_evaluations,
     if state_path is not None and state_path.exists():
         with gzip.open(state_path,'rb') as f:saved=pickle.load(f)
         assert saved['config']==asdict(config) and saved['seed']==seed
+        assert saved.get('elitism_mode',LEGACY_LAST_POSITION_ELITISM)==elitism_mode
         state=saved['state'];cache=saved['cache'];first=saved['first'];history=saved['history'];budget_rows=saved['budget_rows'];moves=saved['moves'];parent_rows=saved['parent_rows'];rng.setstate(saved['rng'])
+    for name in ('generated_offspring','offspring_attempts','offspring_new_distinct',
+                 'completed_generations','elite_insertions','elite_already_present',
+                 'all_offspring_better'):
+        state.setdefault(name,0)
+    state.setdefault('elite_events',[])
+    state.setdefault('pending_elites',[])
+    state.setdefault('elitism_finalized',True)
     offset=state['elapsed_seconds'];last_saved=len(cache)
     def key(seq):return bytes(index[v] for v in seq)
     def elapsed():return offset+time.perf_counter()-start
     def save():
         if state_path is None:return
-        state['elapsed_seconds']=elapsed();record=dict(config=asdict(config),seed=seed,state=state,cache=cache,first=first,history=history,budget_rows=budget_rows,moves=moves,parent_rows=parent_rows,rng=rng.getstate())
+        state['elapsed_seconds']=elapsed();record=dict(config=asdict(config),seed=seed,elitism_mode=elitism_mode,state=state,cache=cache,first=first,history=history,budget_rows=budget_rows,moves=moves,parent_rows=parent_rows,rng=rng.getstate())
         tmp=state_path.with_suffix('.tmp')
         with gzip.open(tmp,'wb',compresslevel=1) as f:pickle.dump(record,f,protocol=5)
         tmp.replace(state_path)
@@ -122,7 +155,10 @@ def run_search(*,items,incumbents,objective,seed,config,max_evaluations,
         budget_rows.append(dict(seed=seed,**asdict(config),distinct_evaluations=len(cache),total_attempts=state['attempts'],actual_expensive_calls=state['expensive_calls'],lookup_calls=state['lookup_calls'],generation=state['generation'],best_service_loss_hr=-state['best_seen'],archive_service_loss_hr=-state['archive_score'],elapsed_seconds=elapsed(),objective_seconds=state['score_seconds'],peak_rss_mb=state['peak_rss_bytes']/2**20,sequence_sha256=hashlib.sha256(('\n'.join(state['best_seq'])+'\n').encode()).hexdigest(),sequence=list(state['best_seq']),checkpoint_scope='Exact distinct-permutation boundary, possibly within a generation'))
     def score(seq):
         k=key(seq);state['attempts']+=1
+        offspring=state['phase']=='evaluate' and state['generation']>0
+        if offspring:state['offspring_attempts']+=1
         if k not in cache:
+            if offspring:state['offspring_new_distinct']+=1
             tick=time.perf_counter()
             if lookup_objective is not None and k in lookup_objective:
                 value=float(lookup_objective[k]);state['lookup_calls']+=1
@@ -153,13 +189,17 @@ def run_search(*,items,incumbents,objective,seed,config,max_evaluations,
             row.update(offspring_improving_parent_fraction=float(np.mean(improvements)) if improvements else 0,crossover_only_success_fraction=float(np.mean(cross)) if cross else np.nan,mutation_only_success_fraction=float(np.mean(mut)) if mut else np.nan,combined_success_fraction=float(np.mean(combined)) if combined else np.nan,crossover_changed_children=cxchanged,mutation_changed_children=mchanged,crossover_events=sum(f['cross'] for f in state['flags']),mutation_events=sum(f['mutation'] for f in state['flags']))
         history.append(row)
     while True:
+        # Re-entering a completed budget must not create another proposal/RNG draw.
+        if state['phase']=='reproduce' and len(cache)>=max_evaluations:break
         if state['phase']=='incumbents':
             names=list(inc)
             while state['inc_index']<len(names):
                 if len(cache)>=max_evaluations:break
                 score(inc[names[state['inc_index']]]);state['inc_index']+=1
-            ranked=sorted([(cache[key(seq)],name,seq) for name,seq in inc.items()],key=lambda z:(-z[0],z[1],z[2]));best,name,seq=ranked[0];state['archive_score']=best;state['archive_seq']=seq
+            if inc:
+                ranked=sorted([(cache[key(seq)],name,seq) for name,seq in inc.items()],key=lambda z:(-z[0],z[1],z[2]));best,name,seq=ranked[0];state['archive_score']=best;state['archive_seq']=seq
             state['population']=initialize(domain,inc,rng,config,quality);state['phase']='evaluate';state['scores']=[];state['next_index']=0
+            state['initial_population']=state['population'].copy();state['initial_rng_state']=rng.getstate()
         if state['phase']=='evaluate':
             while state['next_index']<len(state['population']):
                 seq=state['population'][state['next_index']]
@@ -167,6 +207,25 @@ def run_search(*,items,incumbents,objective,seed,config,max_evaluations,
                 state['scores'].append(score(seq));state['next_index']+=1
                 if len(cache)-last_saved>=25000:save();last_saved=len(cache)
             if state['next_index']<len(state['population']):break
+            if state['generation']>0 and not state['elitism_finalized']:
+                if elitism_mode==POST_EVALUATION_WORST_OFFSPRING_ELITISM:
+                    original_last_score=state['scores'][-1]
+                    actions=post_evaluation_elitism(state['population'],state['scores'],state['pending_elites'])
+                    for elite,fitness in state['pending_elites']:
+                        state['elite_events'].append(dict(generation=state['generation'],
+                            previous_elite_key=key(elite),
+                            last_generated_fitness=original_last_score,
+                            last_generated_better_than_previous=original_last_score>fitness,
+                            **actions.pop(0)))
+                        event=state['elite_events'][-1]
+                        if event['reason']=='inserted':
+                            state['elite_insertions']+=1
+                            event['discarded_key']=key(event.pop('discarded_sequence'))
+                            state['flags'][event['index']]=dict(cross=False,mutation=False,cross_changed=False,mutation_changed=False,elite=True)
+                        elif event['reason']=='already_present':state['elite_already_present']+=1
+                        else:state['all_offspring_better']+=1
+                state['elitism_finalized']=True
+                state['pending_elites']=[]
             if config.diversity_replacement and state['generation']>0:
                 # Deterministic crowding: each pair competes with its nearest
                 # selected parental lineage, using already cached parent scores.
@@ -181,6 +240,7 @@ def run_search(*,items,incumbents,objective,seed,config,max_evaluations,
                     for k,(parent,parent_score) in enumerate(pairs):
                         if values[j+k]<parent_score:pop[j+k]=parent;values[j+k]=parent_score
             observe();state['phase']='reproduce'
+            if state['generation']>0:state['completed_generations']+=1
             if max_generations is not None and state['generation']>=max_generations:break
             if len(cache)>=max_evaluations or state['attempts']>=50*max_evaluations:break
         if state['phase']=='reproduce':
@@ -206,16 +266,32 @@ def run_search(*,items,incumbents,objective,seed,config,max_evaluations,
                 children.extend([a,b]);pv.extend([(scored[selected[j]],scored[selected[(j+1)%n]])]*2)
                 flags.extend([dict(cross=did_cx,mutation=ma,cross_changed=a!=original_a if not ma else before_a!=original_a,mutation_changed=a!=before_a,elite=False),dict(cross=did_cx,mutation=mb,cross_changed=b!=original_b if not mb else before_b!=original_b,mutation_changed=b!=before_b,elite=False)])
             children=children[:n];flags=flags[:n];pv=pv[:n]
+            state['generated_offspring']+=n
+            if state['generation']==0:
+                state['first_offspring_proposals']=children.copy()
+                state['first_proposal_rng_state']=rng.getstate()
+            pending=[]
             if config.elites:
                 elite=[]
                 for i in sorted(range(n),key=lambda i:(-scored[i],pop[i])):
                     if pop[i] not in elite:elite.append(pop[i])
                     if len(elite)==config.elites:break
-                for j,x in enumerate(elite):children[n-len(elite)+j]=x;flags[n-len(elite)+j]=dict(cross=False,mutation=False,cross_changed=False,mutation_changed=False,elite=True)
+                pending=[(x,cache[key(x)]) for x in elite]
+                if elitism_mode==LEGACY_LAST_POSITION_ELITISM:
+                    for j,x in enumerate(elite):
+                        position=n-len(elite)+j;discarded=children[position];k=key(discarded)
+                        state['elite_events'].append(dict(generation=state['generation']+1,
+                            reason='legacy_pre_evaluation_overwrite',index=position,
+                            previous_elite_key=key(x),previous_fitness=cache[key(x)],
+                            discarded_key=k,discarded_fitness_at_proposal=cache.get(k),
+                            discarded_already_cached=k in cache))
+                        state['elite_insertions']+=1
+                        children[position]=x;flags[position]=dict(cross=False,mutation=False,cross_changed=False,mutation_changed=False,elite=True)
             if config.restart and len(cache)-max(state['last_improvement_evaluations'],state['last_restart_evaluations'])>=10000:
                 for j in range(max(config.elites,1),n//2):children[j]=tuple(rng.sample(domain,len(domain)));flags[j]=dict(cross=False,mutation=False,cross_changed=False,mutation_changed=False,elite=True)
                 state['last_restart_evaluations']=len(cache);state['restart_count']+=1
-            state.update(generation=state['generation']+1,population=children,scores=[],next_index=0,phase='evaluate',parents=parent,flags=flags,parent_values=pv,selection=sel)
+            state.update(generation=state['generation']+1,population=children,scores=[],next_index=0,phase='evaluate',parents=parent,flags=flags,parent_values=pv,selection=sel,
+                         pending_elites=pending,elitism_finalized=False)
     # A fixed expensive budget may end partway through a generation. Best-observed
     # then includes every evaluated valid chromosome; original completed archive
     # is retained separately, not falsely reported as having a generation update.
