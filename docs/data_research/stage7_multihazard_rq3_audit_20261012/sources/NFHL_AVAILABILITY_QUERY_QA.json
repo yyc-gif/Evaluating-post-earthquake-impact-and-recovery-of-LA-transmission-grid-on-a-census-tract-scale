@@ -1,0 +1,28 @@
+{
+  "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/0",
+  "bounds_4326": [
+    -118.67817600000001,
+    33.686923,
+    -117.667706,
+    34.347305999999996
+  ],
+  "where": "1=1",
+  "expected_features": 10,
+  "retrieved_features": 10,
+  "id_field": "OBJECTID",
+  "exact_ID_match": true,
+  "spatial_reference": {
+    "wkid": 4269,
+    "latestWkid": 4269,
+    "xyTolerance": 8.983152841195215e-09,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -400,
+    "falseY": -400,
+    "xyUnits": 999999999.9999999,
+    "falseZ": -100000,
+    "zUnits": 10000,
+    "falseM": -100000,
+    "mUnits": 10000
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "cohort": 2299,
+  "zero_population_exclusions": 16,
+  "additional_zero_housing_retained": 8,
+  "unchanged_frozen_population_and_P2": true,
+  "exact_11_digit_GEOIDs": true,
+  "all18_hazards": true,
+  "earthquake_share_recomputed": 0.9816535566608007,
+  "max_Pearson_independent_error": 7.494005416219807e-16,
+  "max_conditional_OLS_independent_error": 2.1094237467877974e-15,
+  "max_NFHL_overlay_independent_error": 6.661338147750939e-16,
+  "independent_overlay_tracts": [
+    "06037101110",
+    "06037101122",
+    "06037101220",
+    "06037265301",
+    "06037273902",
+    "06037402404",
+    "06037577504",
+    "06037578100",
+    "06037980009",
+    "06037980011",
+    "06037980012",
+    "06037980023",
+    "06037980026",
+    "06037980033"
+  ],
+  "archive_members_verified": true,
+  "all_expected_NFHL_objectIDs": true,
+  "repeated_derived_CSV_hashes_identical": true,
+  "repeated_csv_count": 14,
+  "new_clustering_fits": 0,
+  "protected_scientific_files": 950,
+  "prior_diagnostic_git_objects": 1570,
+  "original_unrelated_status_and_staged_work_unchanged": true,
+  "diagnostic_worktree_index_note": "No-checkout worktree initially had an empty index; initialized with read-tree HEAD before any staging. No scientific deletions staged or committed.",
+  "compile_method": "py_compile with explicit extended-path diagnostic temporary files; default compileall hit a Windows long-path pycache failure",
+  "python_version": "3.12.3 | packaged by conda-forge | (main, Apr 15 2024, 18:20:11) [MSC v.1938 64 bit (AMD64)]",
+  "dependencies": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "geopandas": "1.1.1",
+    "shapely": "2.1.2",
+    "matplotlib": "3.9.2",
+    "PyMuPDF": "1.28.0",
+    "requests": "2.32.3"
+  },
+  "compiled_scripts": [
+    "acquire_physical_sources.py",
+    "audit_fema.py",
+    "audit_physical.py",
+    "common.py",
+    "compact_snapshots.py",
+    "figures.py",
+    "information_audit.py",
+    "initialize.py",
+    "reports.py",
+    "verify_independent.py",
+    "verify_remote_delivery.py"
+  ],
+  "graphics": [
+    {
+      "file": "01_physical_hazard_context.pdf",
+      "pages": 1,
+      "vector_only": true,
+      "all_text_inside_page": true,
+      "width_inches": 7.200000339084202,
+      "height_inches": 9.299999660915798,
+      "publication_review": "rendered page reviewed; overlapping footer and clipped axis label corrected"
+    },
+    {
+      "file": "02_expected_loss_composition.pdf",
+      "pages": 1,
+      "vector_only": true,
+      "all_text_inside_page": true,
+      "width_inches": 7.200000339084202,
+      "height_inches": 4.600000169542101,
+      "publication_review": "rendered page reviewed; overlapping footer and clipped axis label corrected"
+    },
+    {
+      "file": "03_point_polygon_support.pdf",
+      "pages": 1,
+      "vector_only": true,
+      "all_text_inside_page": true,
+      "width_inches": 7.200000339084202,
+      "height_inches": 3.1999999152289496,
+      "publication_review": "rendered page reviewed; overlapping footer and clipped axis label corrected"
+    },
+    {
+      "file": "04_incremental_information_and_coverage.pdf",
+      "pages": 1,
+      "vector_only": true,
+      "all_text_inside_page": true,
+      "width_inches": 7.200000339084202,
+      "height_inches": 4.100000169542101,
+      "publication_review": "rendered page reviewed; overlapping footer and clipped axis label corrected"
+    }
+  ]
+}

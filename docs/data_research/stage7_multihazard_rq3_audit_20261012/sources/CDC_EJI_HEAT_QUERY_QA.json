@@ -1,0 +1,15 @@
+{
+  "url": "https://onemap.cdc.gov/onemapservices/rest/services/EJI/EJI_2024_Data_Service/MapServer/0",
+  "where": "STATEFP='06' AND COUNTYFP='037'",
+  "fields": [
+    "OBJECTID",
+    "GEOID",
+    "GEOID_2020",
+    "E_NEHD",
+    "EPL_NEHD"
+  ],
+  "expected_features": 2495,
+  "retrieved_features": 2495,
+  "exact_ID_match": true,
+  "heat_missingness_flag_available": false
+}

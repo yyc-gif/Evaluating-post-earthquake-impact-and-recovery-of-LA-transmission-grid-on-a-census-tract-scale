@@ -1,0 +1,39 @@
+{
+  "squared_distance_budgets": {
+    "P2": {
+      "Init_Supply": 0.1111111111111111,
+      "Grid_Impact": 0.1111111111111111,
+      "Redundancy_HHI": 0.1111111111111111,
+      "B_Unconstrained": 0.16666666666666666,
+      "MeanDelta": 0.16666666666666666,
+      "SOVI_SCORE": 0.16666666666666666,
+      "log1p_Population": 0.16666666666666666
+    },
+    "conditional_eight_equal_RQ3": {
+      "Init_Supply": 0.1111111111111111,
+      "Grid_Impact": 0.1111111111111111,
+      "Redundancy_HHI": 0.1111111111111111,
+      "B_Unconstrained": 0.16666666666666666,
+      "MeanDelta": 0.16666666666666666,
+      "SOVI_SCORE": 0.1111111111111111,
+      "log1p_Population": 0.1111111111111111,
+      "H_physical_screening": 0.1111111111111111
+    },
+    "conditional_eight_preserve_SOVI": {
+      "Init_Supply": 0.1111111111111111,
+      "Grid_Impact": 0.1111111111111111,
+      "Redundancy_HHI": 0.1111111111111111,
+      "B_Unconstrained": 0.16666666666666666,
+      "MeanDelta": 0.16666666666666666,
+      "SOVI_SCORE": 0.16666666666666666,
+      "log1p_Population": 0.08333333333333333,
+      "H_physical_screening": 0.08333333333333333
+    }
+  },
+  "preregistration": "CONDITIONAL_ANALYSIS_REGISTRATION.json, created before source overlays and any proposed fits",
+  "Euclidean_application": "sqrt(budget)*cohort-standardized coordinate; no matrix fitted in this audit",
+  "H_candidate": "NOT CONSTRUCTED / NOT ADMITTED",
+  "weighting_confound": "Adding H also reallocates RQ3 budgets; not a pure isolated feature-addition effect",
+  "composite_and_hazard_leaveout": "NOT EXECUTED: source/construct gate failed; EAL leave-out is separate Family E diagnostic",
+  "K_status": "No new fits; existing P2 policy/K findings unchanged and open to author decision"
+}
