@@ -1,0 +1,30 @@
+{
+  "national_rows": 85188,
+  "california_rows": 9109,
+  "national_valid_CBM": 83509,
+  "cohort_valid_CBM": 2299,
+  "duplicate_ids": 0,
+  "max_nine_EPL_sum_error": 8.881784197001252e-16,
+  "median_sum_error": 0.0,
+  "national_min_rank_max_error": 4.999760501989137e-05,
+  "national_min_rank_median_error": 2.4922163146035015e-05,
+  "national_min_rank_Spearman": 0.9999999944494724,
+  "national_min_rank_pearson": 0.9999999950139491,
+  "rank_tolerance": 5.01e-05,
+  "sum_tolerance": 1e-12,
+  "rank_match_within_tolerance": true,
+  "sum_match_within_tolerance": true,
+  "missing_quality_fields": [
+    "F_NEHD",
+    "F_SMOKE",
+    "F_BURN"
+  ],
+  "frozen_population_unchanged": true,
+  "cdc_population_differs": 2294,
+  "cdc_population_zero_on_frozen_positive": 1,
+  "source_null_flag1_tracts": 2299,
+  "unresolved_zero_tracts": 2251,
+  "Heat_domain_sum_max_error": 0.0,
+  "Wildfire_domain_sum_max_error": 2.220446049250313e-16,
+  "Extreme Events_domain_sum_max_error": 4.440892098500626e-16
+}

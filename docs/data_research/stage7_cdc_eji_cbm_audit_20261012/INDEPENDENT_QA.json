@@ -1,0 +1,127 @@
+{
+  "status": "PASS_WITH_DOCUMENTED_UPSTREAM_LIMITATIONS",
+  "source_authority": "022f3f9a8a1fb3e454de05559311f1763a2ebb3b",
+  "primary_cohort": 2299,
+  "full_domain": 2315,
+  "zero_population_exclusions": 16,
+  "retained_zero_housing_positive_population": 8,
+  "frozen_population_total": 9066522,
+  "national_raw_reader_QA": {
+    "national_rows": 85188,
+    "national_valid": 83509,
+    "independent_fsum_max_error": 8.881784197001252e-16,
+    "independent_searchsorted_rank_max_error": 4.999760501989137e-05
+  },
+  "maximum_independent_OLS_R2_difference": 2.0122792321330962e-16,
+  "original_source_payloads_verified": 41,
+  "protected_scientific_files_unchanged": 950,
+  "prior_diagnostic_git_blobs_unchanged": 1686,
+  "source_dirty_and_staged_state_unchanged": true,
+  "exact_repeat_numerical_CSVs": 35,
+  "syntax_check": "All package scripts py_compile PASS",
+  "new_Kmeans_fits": 0,
+  "formal_promotion": false,
+  "graphic_QA": [
+    {
+      "file": "01_CBM_and_domain_maps.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "no_text_outside_page": true,
+      "pixels": [
+        4320,
+        4440
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "visual_inspection": "Native publication-size renders reviewed in this task"
+    },
+    {
+      "file": "02_nine_indicator_original_units.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "no_text_outside_page": true,
+      "pixels": [
+        4320,
+        4320
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "visual_inspection": "Native publication-size renders reviewed in this task"
+    },
+    {
+      "file": "03_component_influence_and_leaveout.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "no_text_outside_page": true,
+      "pixels": [
+        4320,
+        2880
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "visual_inspection": "Native publication-size renders reviewed in this task"
+    },
+    {
+      "file": "04_source_flags_and_zero_semantics.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "no_text_outside_page": true,
+      "pixels": [
+        4320,
+        2880
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "visual_inspection": "Native publication-size renders reviewed in this task"
+    },
+    {
+      "file": "05_CBM_relationships_with_P2.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "no_text_outside_page": true,
+      "pixels": [
+        4320,
+        2880
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "visual_inspection": "Native publication-size renders reviewed in this task"
+    },
+    {
+      "file": "06_physical_context_correspondence.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "no_text_outside_page": true,
+      "pixels": [
+        4320,
+        3240
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "visual_inspection": "Native publication-size renders reviewed in this task"
+    }
+  ],
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "geopandas": "1.1.1",
+    "matplotlib": "3.9.2",
+    "PyMuPDF": "1.28.0",
+    "requests": "2.32.3"
+  },
+  "limits": "Source flags missing; source-null cause not disaggregated; no new clustering; no physical rerun"
+}

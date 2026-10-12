@@ -1,0 +1,28 @@
+{
+  "status": "NOT_ADMITTED_PENDING_SOURCE_QUALITY_CLARIFICATION",
+  "formal_promotion": false,
+  "exact_positive_population_cohort": 2299,
+  "valid_published_ranks": 2299,
+  "original_cohort_exclusions_only": 16,
+  "direct_demographic_or_asset_adjustment": false,
+  "new_Kmeans_fits": 0,
+  "reasons": [
+    "F_NEHD, F_SMOKE and F_BURN absent from national and state bulk tables, dictionary and raw service despite flag-setting technical text",
+    "2251 published burned-area zeros cannot be separated into original physical zeros versus null/ranking exclusions from available flags",
+    "13 nationwide heat interpolations have no released tract-ID marker; study membership not identifiable",
+    "Hurricane F=1 source-null/excluded zero for all 2299, not an observed hazard-free state; constant locally, affects national calibration",
+    "LA local summed-score variance strongly dominated by riverine-frequency rank; broad national climate definition is not balanced local hazard information"
+  ],
+  "nonfailure_findings": [
+    "Standalone CBM has no direct social/demographic/resilience/building-value adjustment",
+    "National rank formula and all cohort ranks reproducible",
+    "Conditional overlap with seven P2 features low; not rejected for linear duplication",
+    "Local flood association consistent with independently mapped NFHL on its documented complete coverage"
+  ],
+  "recommendation": "Retain P2 as existing candidate and CBM/independent hazard maps as contextual descriptors; K unresolved",
+  "reopening_conditions": [
+    "CDC supplies omitted three flags or source-level evidence resolving their zero/null semantics",
+    "Interpolation IDs and drought-unit wording clarified; burned-area source archive and used period already distinguished",
+    "Author explicitly accepts selected-climate national rank with locally flood/heat-dominated variation as an RQ3 environmental-context construct"
+  ]
+}

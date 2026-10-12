@@ -1,0 +1,10 @@
+# Proposed methods and reviewer rationale
+AUTHOR REVIEW - NOT FORMAL STAGE 7
+
+## Current admissible contextual description (not inserted in manuscript)
+The standalone CDC/ATSDR EJI2024 Climate Burden Module was examined as a contextual comparator. It nationally ranks the sum of nine indicator percentiles spanning heat, wildfire and selected extreme events. Unlike the combined EJI-plus-climate ranking or FEMA's social-adjusted RISK_SCORE, this standalone module has no direct social-demographic, resilience or asset-value adjustment. It excludes earthquake. Official data were joined to the unchanged2,299 positive-frozen-population cohort; component flags, national rank composition and source coverage were audited before consideration as a clustering input. Unresolved omitted quality flags and locally concentrated indicator variation precluded admitting it to the primary matrix in this audit.
+
+## Reviewer explanation
+An existing module is methodologically preferable to inventing a new ad-hoc multi-hazard score, but provider publication and complete percentile coverage are not sufficient admission tests. Unlike earthquake-dominated pooled EAL, CBM contains several non-earthquake climate measurements, but in LA riverine-frequency and heat ranks dominate its variation. Source-excluded zeros are not observed absence of hazards. Physical NFHL/CAL FIRE/PGA measures and relative CDC ranks have different spatial supports, time windows and meanings. Same-source heat agreement is a reproducibility check, not independent validation.
+
+If a future approved extension uses RPL_CBM, it must be described as *post-earthquake modeled recovery with selected-climate environmental context*. It is not an all-natural-hazards risk index, multi-hazard electrical recovery simulation, joint climate-earthquake probability or causal outage-loss estimate. Future comparison changes both RQ3 coordinate inclusion and budgets: H1 thirds withinRQ3, H2 preserves SOVI while splitting population/context. Algebra can isolate budget contributions, but no present clustering results exist.

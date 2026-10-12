@@ -1,0 +1,71 @@
+{
+  "cohort": "2299 frozen positive-population tracts; no missing-to-zero or additional exclusions",
+  "candidate": "Official CDC EJI 2024 RPL_CBM; never RPL_EJI_CBM",
+  "admission": "Documented standalone construct, full matched valid ranks, interpretable component provenance and flags; unresolved quality blocks fitting",
+  "diagnostics": "Published rank unchanged; any leave-out/local rank is researcher diagnostic, not CDC official",
+  "nonlinear": {
+    "model": "ExtraTrees",
+    "trees": 150,
+    "min_samples_leaf": 20,
+    "seed": 42,
+    "random_folds": 5,
+    "spatial_block_m": 15000,
+    "tuning": false
+  },
+  "fitting_if_admitted": {
+    "K": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "K1_inertia": true,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_init": 50,
+    "init": "k-means++",
+    "algorithm": "lloyd",
+    "max_iter": 500,
+    "tol": 0.0001
+  },
+  "squared_distance_budgets": {
+    "P2": [
+      0.1111111111111111,
+      0.1111111111111111,
+      0.1111111111111111,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.16666666666666666
+    ],
+    "H1": [
+      0.1111111111111111,
+      0.1111111111111111,
+      0.1111111111111111,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.1111111111111111,
+      0.1111111111111111,
+      0.1111111111111111
+    ],
+    "H2": [
+      0.1111111111111111,
+      0.1111111111111111,
+      0.1111111111111111,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.16666666666666666,
+      0.08333333333333333,
+      0.08333333333333333
+    ]
+  },
+  "prohibition": "No physical, MC, recovery, scheduling or formal Stage 7 changes"
+}
