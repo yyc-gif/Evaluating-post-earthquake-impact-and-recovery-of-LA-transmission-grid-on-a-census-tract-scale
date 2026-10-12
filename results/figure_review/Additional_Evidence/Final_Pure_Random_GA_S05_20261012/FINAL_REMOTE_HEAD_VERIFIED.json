@@ -1,0 +1,17 @@
+{
+  "status": "PASS_IMMUTABLE_PAYLOAD_HEAD_AND_ACTUAL_LFS",
+  "branch": "review/final-pure-random-ga-figs05-20261012",
+  "verified_payload_head": "d8f9e2c2428ef58667fb4a552e7235b3f8ffbc7a",
+  "remote_head_at_payload_verification": "d8f9e2c2428ef58667fb4a552e7235b3f8ffbc7a",
+  "local_remote_equality_at_payload_verification": true,
+  "unique_actual_lfs_objects_downloaded": 12,
+  "lfs_paths_verified": 13,
+  "actual_remote_bytes_downloaded": 7246598,
+  "all_actual_payload_sha256_and_sizes_verified": true,
+  "protected_scientific_files": 950,
+  "original_staged_items": 862,
+  "post_publication_preservation_passed": true,
+  "official_S05_not_promoted": true,
+  "new_search_physical_production_bootstrap_calls": 0,
+  "receipt_publication_note": "These receipts follow the immutable payload commit. The subsequent receipt-only commit is checked by live ls-remote and receipt-byte downloads after push; it cannot record its own Git hash without circularity. The final response reports that exact current HEAD."
+}
