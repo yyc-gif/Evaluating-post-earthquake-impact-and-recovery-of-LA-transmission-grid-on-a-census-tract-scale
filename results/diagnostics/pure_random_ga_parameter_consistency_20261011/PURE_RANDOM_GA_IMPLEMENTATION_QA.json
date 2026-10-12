@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "original_engine_unchanged": true,
+  "zero_incumbent_guard": "Existing frozen AST adapter, no source edit",
+  "uniform_initialization": "Exact random.sample replay for every configuration; pseudorandom algorithm, not empirical proof of every92! probability",
+  "same_size_pools_rng_identical": true,
+  "population_common_prefix": true,
+  "operator_validity": [
+    {
+      "case": "REF",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "P50",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "P250",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "CX60",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "CX95",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "M05",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "M20",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "T2",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "T5",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "E0",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "E2",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "INVERSION",
+      "validity_checks": 1500,
+      "all_valid": true
+    },
+    {
+      "case": "INSERTION",
+      "validity_checks": 1500,
+      "all_valid": true
+    }
+  ],
+  "checkpoint_rng_cache_population_exact": true,
+  "initial_and_best_archive_empty": true,
+  "objective": "unchanged negative64-state population loss",
+  "actual_distinct_budget": true,
+  "costly_initial_pool_included": true,
+  "parent_queries_are_cache_hits": true,
+  "actual_planning_engineering_calls": 1000,
+  "independent_native_checks": 3,
+  "max_native_error_hr": 1.7053025658242404e-12,
+  "caveats": [
+    "Raw ga_variant_engine.run_search with empty incumbents alone would fail at ranked[0]; authoritative frozen method uses recorded existing zero-incumbent AST guard.",
+    "Passive best-observed archive retains first exact fitness tie; tournament samples with replacement and ties take first drawn index.",
+    "Elitism preserves up to configured number of distinct chromosomes from current population, not reinjection of global archive.",
+    "Search may end inside generation; every actually scored chromosome participates in best-observed output."
+  ]
+}
