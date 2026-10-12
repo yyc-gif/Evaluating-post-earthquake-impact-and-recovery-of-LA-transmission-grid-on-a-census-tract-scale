@@ -1,0 +1,20 @@
+# Scientific decision memo
+
+**AUTHOR REVIEW - NOT FORMAL STAGE 7.**
+
+## Six decisions answered
+
+1. **Does the 34-tract group have a demonstrated network/service explanation? Yes, within the frozen model.** All depend most strongly on Q (308581); it provides 97.1891% of their aggregate mean initial service. As a retained Core proxy Q is directly source-qualified in its 40 eligible/1,000 samples. Each tract's sample-median service remains zero. This is not evidence of electrical resilience or verified islanded generation.
+2. **Init status: retain with explicit rare-state interpretation and sensitivity limitations.** It provides authenticated initial-condition information, but explains 89.11% of the rare centroid separation. Source-role assumptions and standardization both matter. Do not promote an unqualified high-Init community label.
+3. **k: A/k3 is the parsimonious broad-comparison candidate; A/k5 is a defensible finer structural alternative.** k4 principally extracts a local Q-dependent state and should be used only if that extra interpretation is an author objective. k5 adds a meaningful high-impact class but not five independent recovery regimes. There is no universal statistical optimum and no formal k is selected.
+4. **Seven variables are sufficient for the stated three-RQ community focus.** BUILDVALUE adds valid asset exposure but does not clearly improve the intended service/vulnerability interpretation at k3-k5. Keep B conditional/descriptive unless economic stock exposure is an explicit author priority.
+5. **Unstable/source-limited conclusions:** rare exact identity fails one coarse spatial training perturbation; wider class boundaries shift with stock and Init omission. Upstream frozen population Census vintage is unresolved. Core is a retained proxy and fragility/source-role alternatives were not tested. Geography uses official internal points, not verified neighborhood polygons. Cluster profiles, original SOVI quartiles and T80 share inputs and are not independent validation.
+6. **Author decisions still required:** choose broad regional k3 versus finer structural k5 (or explicitly local-state k4); approve conditional Init retention and its wording; decide whether economic stock belongs in RQ3; acknowledge frozen source/population/geography limitations; then explicitly authorize any future formal Stage7 replacement and new figure/manuscript work. None is authorized or performed here.
+
+## Equal-RQ weights
+
+Retain the registered equal 1/3 domain budgets for this comparison as a transparent conceptual proposal, not a statistically optimized weighting. RQ1 Init/Impact/HHI=1/9 each, RQ2 B/Delta=1/6 each, RQ3 SOVI/population=1/6 each in A. B splits only the exposure sub-budget across people/stock. Within-domain and cross-domain correlation can reduce effective independent information; equal declared budgets do not guarantee equal realized between-class separation. The rare state illustrates why coordinate-level contributions and ablations must accompany this proposal. Evidence does not authorize numerical weight tuning here.
+
+## Preservation and evidence scope
+
+All 60 compared fits are saved registered results from `b2ed86401ad7ac98ed7a7bef5c83ddd08e4f23dc` (four specifications, k3/4/5, five seeds, existing n_init=50). No new fit, damage draw, recovery, scheduling, GA, source propagation, input change, quartile reassignment or formal promotion. Frozen setup: 2pc50 / Impact-first / C57_D1 / M1_UTILITY_003 / G1_BASELINE_050 / 480 h / 1,000 matched evaluation samples. The 950 protected scientific files and both prior audit packages are hash-checked unchanged. This is exploratory scientific interpretation, not an adopted new manuscript result. The bulk per-realization trajectories and integral archives are not Git-tracked; source-level reproduction requires the original manifest-bound read-only archive. A clean clone alone supplies the derived diagnostic extracts, not every original trajectory. The independently rechecked direct-community and Impact-first payloads are identical in this frozen case only.

@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "all_eight_pages_visually_inspected": true,
+  "inspection": "Actual PDF rasterization at 150 dpi, 7.2-inch publication width, reviewed with image viewer.",
+  "PDF_hashes": {
+    "FROZEN_STATION_DEPENDENCY_EXPLANATION.pdf": "a39a46046752b4c6f1f4d80965fd2129fc9756e92c13b0a9cf663363667619a7",
+    "INIT_SUPPLY_RARE_STATE_AND_SCALING.pdf": "7d1f8a3f77108b97f4163fb96227dc75abb238a8aa2338cefd1cee7421a17701",
+    "K3_K4_K5_ORIGINAL_UNIT_PROFILES.pdf": "a03ee0bb8f2b75076a5f2ee7d8a20e7f29bb37eb5015702bea8318634bd90766",
+    "K_INTERPRETATION_AND_STABILITY.pdf": "b70f8d1451bc9da99dd00c06252614d6786444df610a5372d066c0daca290fa9",
+    "SEVEN_EIGHT_MEMBERSHIP_TRANSITIONS.pdf": "8cd9141c434df35e7426602f3a752bada522edf84d30e8cd024cfaed1fdba79b",
+    "THIRTYFOUR_GEOGRAPHIC_INITIAL_SERVICE.pdf": "84c8ce3069b81420aa59105e8254cc6aeecd585bfcb6ddd698f0b67de9fd2db4"
+  },
+  "pages": [
+    {
+      "pdf": "FROZEN_STATION_DEPENDENCY_EXPLANATION.pdf",
+      "page": 1,
+      "render_sha256": "d33736d54f10cfc49be74ad68f721531be02dd0ddf3ea60661a58069d45e3538"
+    },
+    {
+      "pdf": "INIT_SUPPLY_RARE_STATE_AND_SCALING.pdf",
+      "page": 1,
+      "render_sha256": "a0a7dc19cf815ecf4a22c2a6cbb84b4b389c4074d0aadc010576fec9bdefb925"
+    },
+    {
+      "pdf": "K3_K4_K5_ORIGINAL_UNIT_PROFILES.pdf",
+      "page": 1,
+      "render_sha256": "a74433b4ddb143cf4fd630caea3a90b69e8bae05adde036370ccfc770a29829e"
+    },
+    {
+      "pdf": "K3_K4_K5_ORIGINAL_UNIT_PROFILES.pdf",
+      "page": 2,
+      "render_sha256": "f5e26cc89bd3855de6ce00b10c7b85442de92df47ae77bcf2b0b93635f1e46d8"
+    },
+    {
+      "pdf": "K3_K4_K5_ORIGINAL_UNIT_PROFILES.pdf",
+      "page": 3,
+      "render_sha256": "7b323447bd36dcbfa8dead950c4b215c534a1f7e6aeb38025fe80ef0ee1cc754"
+    },
+    {
+      "pdf": "K_INTERPRETATION_AND_STABILITY.pdf",
+      "page": 1,
+      "render_sha256": "23fd87124a6ff542e991df573da751c1c1e01923043c4820af5782c315c0f5d3"
+    },
+    {
+      "pdf": "SEVEN_EIGHT_MEMBERSHIP_TRANSITIONS.pdf",
+      "page": 1,
+      "render_sha256": "19d744cd1781361946bb12cf6faa52c6eda71ff133648217f6f401b4e948aaf6"
+    },
+    {
+      "pdf": "THIRTYFOUR_GEOGRAPHIC_INITIAL_SERVICE.pdf",
+      "page": 1,
+      "render_sha256": "c1e4d7adf0cd771ce1a0035f65c8ddb116815790cb619b58d85ef22e92e16a0c"
+    }
+  ],
+  "corrected_issues": [
+    "Long stability labels initially outside page",
+    "Map colorbar label initially outside page",
+    "Overlapping minor labels on log stock axis",
+    "Crowded class-count prose replaced by table",
+    "Fixed-inch header spacing on short pages",
+    "Stability legend separated from x label and footer"
+  ],
+  "final_checks": [
+    "No visible clipping or incoherent overlaps",
+    "Units and frozen-data notice legible",
+    "No invented physical pathways or schematic generation claims",
+    "Model-specific IDs and matching explicit",
+    "Means/medians/percentile ranges distinguished",
+    "Six PDFs and 600-dpi PNGs remain diagnostic only"
+  ]
+}
