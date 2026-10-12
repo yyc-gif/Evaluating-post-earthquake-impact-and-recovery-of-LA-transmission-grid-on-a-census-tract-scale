@@ -1,0 +1,641 @@
+{
+  "branch": "analysis/stage7-living-environment-audit-20261011",
+  "verified_payload_commit": "dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f",
+  "remote_HEAD_at_verification": "dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f",
+  "LFS_files": 90,
+  "total_actual_bytes": 96637762,
+  "git_text_files_verified": 42,
+  "all_actual_bytes_verified": true,
+  "records": [
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_PAIRED_VARIANCE_REPLICATES.npz",
+      "sha256": "4620a4e5575fe3a29cc790aca74de889cbf7c1daaefbd640f5fb00d231f8cb70",
+      "bytes": 2630156,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_PAIRED_VARIANCE_REPLICATES.npz",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_REPLICATE_CORRELATION_SENSITIVITY.csv",
+      "sha256": "dab655b287613bd0f6fa7c9e7554667f755b02dccd863ee7bc8473766f6e5cbd",
+      "bytes": 239680,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_REPLICATE_CORRELATION_SENSITIVITY.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_UNCERTAINTY_AUDIT.csv",
+      "sha256": "8c5272c1f5c9a8dac232a7fbf4e26b9667194bd9115886f8a1c679f3dae58413",
+      "bytes": 1553553,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_UNCERTAINTY_AUDIT.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_UNCERTAINTY_SUMMARY.csv",
+      "sha256": "bec2ab7e06de5967db90801b00d165a2e683d2e4801c391a4a0f7352940128b2",
+      "bytes": 436,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/ACS_UNCERTAINTY_SUMMARY.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANDIDATE_ADMISSION.csv",
+      "sha256": "8f04c075d425a3d19ff738d419b0a1d3b4e623b6ddb00c1601f95e5d933f2f28",
+      "bytes": 1479,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANDIDATE_ADMISSION.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANDIDATE_DISTRIBUTIONS.csv",
+      "sha256": "664a75894865482068bea941ab620afc8b43ac2694333a66897a971ba4e370f5",
+      "bytes": 6026,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANDIDATE_DISTRIBUTIONS.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANDIDATE_REDUNDANCY.csv",
+      "sha256": "4d2ea79f9d186f4efe04f20604c986cc9a266867b851763beac5937f6fdd53d1",
+      "bytes": 81004,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANDIDATE_REDUNDANCY.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_ANALYSIS_SUPPORT_AUDIT.csv",
+      "sha256": "cc06545ec7dda5f90f96ce1cbc652ea9160a59e406e2be51132bff5b115a3c11",
+      "bytes": 506396,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_ANALYSIS_SUPPORT_AUDIT.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_GEOGRAPHIC_SUPPORT_FLAGS.csv",
+      "sha256": "7a034ffbb97759eb6da23b7a28d087c61446e86e9adae748f1c93d1a58347ef3",
+      "bytes": 706786,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_GEOGRAPHIC_SUPPORT_FLAGS.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_GEOMETRY_COMPARISON.csv",
+      "sha256": "d4038ea490b5fcae494c2cf3f8b9cd69d88facf0bf75faca4f61d8141e1426fa",
+      "bytes": 421417,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_GEOMETRY_COMPARISON.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_LAND_GEOMETRY_COMPARISON.csv",
+      "sha256": "22add3d3453bdd4f349b4ac11c84e546216d82db3dd3e1b33cab743a1624cd2e",
+      "bytes": 297984,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_LAND_GEOMETRY_COMPARISON.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_LA_PUBLISHED_VALUES.csv",
+      "sha256": "6be64d36c957affb12c25aad158003da56aa8d5867c53ab120df1ec3f688071d",
+      "bytes": 1182544,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/CANOPY_LA_PUBLISHED_VALUES.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/COHORT_IDENTITIES.npz",
+      "sha256": "cb761000e8f582653a36b50e4ead9f9e1f0f0fd63d0eaf7ad110257a8721c04f",
+      "bytes": 25028,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/COHORT_IDENTITIES.npz",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/EXTREME_OBSERVATIONS.csv",
+      "sha256": "38ec9f499018f6944631a0ddf11e2325cb87068342666c4c3015cdb9d9a3175f",
+      "bytes": 53597,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/EXTREME_OBSERVATIONS.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/FIGURE_RENDER_QA.csv",
+      "sha256": "94f34871db2bd2462749ba0df42a71a4ee9e52c1b652d5980ef420f4f7c99d6a",
+      "bytes": 1225,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/FIGURE_RENDER_QA.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/LIVING_ENVIRONMENT_VALUES_2315.csv",
+      "sha256": "d89f2c88d12338ece237e2a8ef74530b3f25c3c3d902821de1c3a1ae27bd3bfc",
+      "bytes": 1835470,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/LIVING_ENVIRONMENT_VALUES_2315.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/LIVING_ENVIRONMENT_VALUES_REFERENCE_2287.csv",
+      "sha256": "5bf7315eaf74b25bd0b35c4b8fa3a3507383582097634281a55fc75121682d0b",
+      "bytes": 1818839,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/LIVING_ENVIRONMENT_VALUES_REFERENCE_2287.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/LIVING_ENVIRONMENT_VALUES_RESIDENTIAL_2291.csv",
+      "sha256": "49c90af0fe6ccc0d085dad2fc18d9533354490f7c80f0b0e18237c507027df91",
+      "bytes": 1821953,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/LIVING_ENVIRONMENT_VALUES_RESIDENTIAL_2291.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/MISSING_INVALID_GEOIDS.csv",
+      "sha256": "114d0f0080f4956d660d8233a658bb99d8a642603336574072fd96d5034b55db",
+      "bytes": 5997,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/MISSING_INVALID_GEOIDS.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/PARKS_LA_PUBLISHED_VALUES.csv",
+      "sha256": "e4e63710cfdf20db2fcdde3c44d5ab27f826923aa28b6275918bb97efdfafa8e",
+      "bytes": 272784,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/PARKS_LA_PUBLISHED_VALUES.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/SOURCE_MATCH_AND_COVERAGE.csv",
+      "sha256": "4dbca7e8ad289ea200e8fd422a8fb9cef7bdfe88a80168085022680f93ba561e",
+      "bytes": 2690,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/SOURCE_MATCH_AND_COVERAGE.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/SOURCE_URLS_AND_CHECKSUMS.csv",
+      "sha256": "76cff4671e0355ebd3f9a074be9a77fbb3fdf11f7b399e7719fe325ea908edcf",
+      "bytes": 14147,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/SOURCE_URLS_AND_CHECKSUMS.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/URBAN_SUPPORT_GEOMETRY_QA.csv",
+      "sha256": "0df31e92e8cc6d4a33a4dc21b1a23c30b0f6419382376b5aa4f0bd61fe77a62b",
+      "bytes": 2910,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/URBAN_SUPPORT_GEOMETRY_QA.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_DISTRIBUTIONS.pdf",
+      "sha256": "631de41dad3ba2f90d9205fd52c1ce6a6e46dc7a354e689edd062b5f8dae127c",
+      "bytes": 26088,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_DISTRIBUTIONS.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_DISTRIBUTIONS_native_page1.png",
+      "sha256": "872356008703331404d1da027db955c2ab6e9c26501f745b50e3dda341c79b12",
+      "bytes": 80917,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_DISTRIBUTIONS_native_page1.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_DISTRIBUTIONS_page1.png",
+      "sha256": "2796276550b3a7768407df107700c1a10783d3fd1c8e1b2eaa8fb49fb560392c",
+      "bytes": 703206,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_DISTRIBUTIONS_page1.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE.pdf",
+      "sha256": "ce928069e3383bd5b50d40f70823d7085d9afcd7c8a23e8f3551e7c0b8bc5fb4",
+      "bytes": 30884285,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page1.png",
+      "sha256": "643fcd950e6965771e62400bc351b744a38228a5b99b4144b40c914043c770fb",
+      "bytes": 177058,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page1.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page2.png",
+      "sha256": "26d3bc44b6fe69318c2fccfd0ee50f622d309c56c429dcd9986b13c044ecd7ae",
+      "bytes": 174728,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page2.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page3.png",
+      "sha256": "789fd40ac78cbdc279d85f857cb55562713c824bc274e4391f464491297083b0",
+      "bytes": 175667,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page3.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page4.png",
+      "sha256": "da6a4e512e087356bd61dd22f51610371cfc86f20beb971094f64ac005cddbf7",
+      "bytes": 183628,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_native_page4.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page1.png",
+      "sha256": "cce8b9bf92765f892b7cf54ef49419d8acb1c5461182e8cac8db3156b51c4d59",
+      "bytes": 1511640,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page1.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page2.png",
+      "sha256": "2807a976803c3c962e4c993e39a719576d93fc5c58b8eb191e9072753632ca90",
+      "bytes": 1535682,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page2.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page3.png",
+      "sha256": "9985ad3a0c5e900ce972ded8c88887a9ebda5151646bfc2df5a396dd42961b8d",
+      "bytes": 1487092,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page3.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page4.png",
+      "sha256": "e0ec0e655390431680fb762f40ec894619d111959afe47ead8082713098412db",
+      "bytes": 1549867,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_GEOGRAPHIC_COVERAGE_page4.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY.pdf",
+      "sha256": "acdc651176bd33a7fcdc12e9ba572833e4af9472d2e68bcdcd0ebc859804f10b",
+      "bytes": 24901,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_native_page1.png",
+      "sha256": "57e2af60669200e13891aeb56f58b4510ec73223d01acb90bc9cb7a159ac1b0d",
+      "bytes": 78218,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_native_page1.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_native_page2.png",
+      "sha256": "9449b36fee0896e08b39b4196b9188c339af8954c8b6e4c2afab0fe066ffde09",
+      "bytes": 77531,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_native_page2.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_page1.png",
+      "sha256": "0132e7602aa495bc779543d4bbc61b8db41e235d522cb1b9789b50ebaa3739a6",
+      "bytes": 650746,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_page1.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_page2.png",
+      "sha256": "30794fe608c94a1254672b1e766be5b5a3a6040b578376d0011d5ad8c55bab39",
+      "bytes": 641185,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/figures/LIVING_ENVIRONMENT_REDUNDANCY_page2.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/ACS_VRE_DOCUMENTATION_page10.png",
+      "sha256": "a31210b193037d7e3f3635f9cafbcef6fe9f5a9aaddd0ff77c9e2eb0e3e9ab9a",
+      "bytes": 111456,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/ACS_VRE_DOCUMENTATION_page10.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/ACS_VRE_DOCUMENTATION_page13.png",
+      "sha256": "3b73181e4a4fe77339a7ff87b8e3f6ba7cde2d484b09401a62a3e273af5dac48",
+      "bytes": 95253,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/ACS_VRE_DOCUMENTATION_page13.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/ACS_VRE_DOCUMENTATION_page9.png",
+      "sha256": "360bbdf378b85fb252ce4e87805a5aad085308f20b425cb8e651ff85608a9a5e",
+      "bytes": 103184,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/ACS_VRE_DOCUMENTATION_page9.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page13.png",
+      "sha256": "3b3cef02d7d56056eb5282d7eef6d70f895aee7112d9b037fc1b34d99e59fd9e",
+      "bytes": 91717,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page13.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page14.png",
+      "sha256": "d13617f0489fddee0665fb4e09175179367c71a116d9368f01011d4184c24012",
+      "bytes": 91092,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page14.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page18.png",
+      "sha256": "4a1bb635053f5f53b856e020e1a70c9e8b489c87c4f55fd283dccaa0d691c517",
+      "bytes": 74415,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page18.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page19.png",
+      "sha256": "fc97bae0a2d2b6992b38b1ca723733a881c95722be523ea7ad1b457cf86765b8",
+      "bytes": 94843,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/source_review/CDC_SVI2020_DOCUMENTATION_page19.png",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_B25040_GROUP.json",
+      "sha256": "dbe8715ca2fa7fa435f740e56d7b9fa6f21268b2397fbe64baadf701f3f634e9",
+      "bytes": 207032,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_B25040_GROUP.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_B25040_LA.json",
+      "sha256": "c2f4687e09b80676de7f68dec92ebea395209616dbc6f895520e547c5f68c0f5",
+      "bytes": 8531,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_B25040_LA.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_VRE_140_INDEX.html",
+      "sha256": "78eef73bee90e9daf9ec363a723232b68ee9196c0ecc0319eafa23032ed1f241",
+      "bytes": 1421212,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_VRE_140_INDEX.html",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_VRE_DOCUMENTATION.pdf",
+      "sha256": "3b0b439a19bf22aa2572d6573f99d608923f50a93b54eb882728e506c27da58c",
+      "bytes": 363265,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ACS_VRE_DOCUMENTATION.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ARCHIVED_STUDY_LAND.gpkg",
+      "sha256": "502821f69e29f2c59585fbeca59ac5e1cea9cf5159c57302293eda425ad36a0e",
+      "bytes": 5718016,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/ARCHIVED_STUDY_LAND.gpkg",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/B25040_06.csv.zip",
+      "sha256": "a3bf132d7f1caca7f3c11ee68d84955ccc69afef0128075456323fca63e7dc9d",
+      "bytes": 7127082,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/B25040_06.csv.zip",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_CALFIRE_LAUNCH.pdf",
+      "sha256": "551d7a77db1852f72352dec8fa209e7cdfd14ae756d445d304bd43a1563df198",
+      "bytes": 1443589,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_CALFIRE_LAUNCH.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_CALFIRE_PORTAL.html",
+      "sha256": "5de7cb63c311e76917b6c57f778a1a1f020514bd90c3002b78eef879106006a7",
+      "bytes": 76147,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_CALFIRE_PORTAL.html",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_ITEM.json",
+      "sha256": "00faad6124cc45cd246e5fd39f4b0f8f7b1ab3df7bd86802f8b31e03d2764ba8",
+      "bytes": 5624,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_ITEM.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_ITEM_METADATA.xml",
+      "sha256": "0f950c8eff83cd68af8da702d681f166d7929a8889c2622178f1cf1692de9635",
+      "bytes": 63961,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_ITEM_METADATA.xml",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LAYER.json",
+      "sha256": "49b3d5bc5ef4125802f9b847d8f8a94905369b2d2baf1366cbe949bf87cc5735",
+      "bytes": 19627,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LAYER.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_0.geojson",
+      "sha256": "da31cea704c226c54d3394d845095ae8bc8db7792c957d6cb76d71f6d210ed2c",
+      "bytes": 4346881,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_0.geojson",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_1000.geojson",
+      "sha256": "2612451e70f97326770f7a4a25b1098c53ab9054ea2ae4d480e3d244df6cb0e9",
+      "bytes": 3620606,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_1000.geojson",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_2000.geojson",
+      "sha256": "7048d165fa7ae7a69e2b9578c0dd50f12e269c6c4dc8d8d30696d502a3acc7da",
+      "bytes": 1767456,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_2000.geojson",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_COUNT.json",
+      "sha256": "7ece43a01990974e86965eb49435f23e68d3e38653571d10686263904065b963",
+      "bytes": 16,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_LA_COUNT.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_RASTER_ITEM.json",
+      "sha256": "bbc109bd49bd735cd546f43cb4df4f43e8027f6afb824fcd900f8b39037dd850",
+      "bytes": 1741,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_RASTER_ITEM.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_RASTER_SERVICE.json",
+      "sha256": "4f2305a73eee5323703e44e8e8bad1ece2db2a02f7f5890ff37d2b1568fd2a41",
+      "bytes": 3605,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_RASTER_SERVICE.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_RELATED_ITEMS.json",
+      "sha256": "64a9e3eb0b3a0b34a1565536e8a207b4bcf4cbf615e48eb332b15c9f57390f8a",
+      "bytes": 436084,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_RELATED_ITEMS.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_SERVICE.json",
+      "sha256": "f3507c170fa5742ad5242b1301124000647b001460a77b039d789f2d1e1f9a99",
+      "bytes": 4954,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_SERVICE.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_URBAN_LAYER.json",
+      "sha256": "317c9a20b62cc2a479547f95e8ae130c911ea0452f05d6254350cfa82db81cc8",
+      "bytes": 155,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_URBAN_LAYER.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_URBAN_SERVICE.json",
+      "sha256": "5a47f8eb9337c08ffd509ffa6357bcd061fa6f9fb3dc592ea294df82050a538d",
+      "bytes": 4397,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_URBAN_SERVICE.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_VIEWER.json",
+      "sha256": "1d1d7d6213956bfb6262a13300303fa2aeeaee7e7e4c4df3fd8ec21ebaf6c3f2",
+      "bytes": 7841,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_VIEWER.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_VIEWER_DATA.json",
+      "sha256": "76a07ebc3ad12808ee174d32e667d3a67d7a54236f944dfa9cd05f865232fc70",
+      "bytes": 8154,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_VIEWER_DATA.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_WEBMAP.json",
+      "sha256": "b27cabc59e8cb6563b5ee1c668ac95dae8a040003f3d9eb4c10d1cf40507d0e9",
+      "bytes": 1248,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_WEBMAP.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_WEBMAP_DATA.json",
+      "sha256": "20ea5f917696be212a7364ac296b277a5f551bf269379d656de81926cd2800a3",
+      "bytes": 85421,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CANOPY_WEBMAP_DATA.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_CA.csv",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+      "bytes": 1245,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_CA.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_CALIFORNIA.csv",
+      "sha256": "3a579e60384a14a6c356f04e54ecef9c6ee197c4eb25e402044a9580ac2dcd60",
+      "bytes": 6699687,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_CALIFORNIA.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_CA_VALID.csv",
+      "sha256": "cc8449824c3988775213fd17d55141e55e97aff482f5ccfa2440158dcc962a07",
+      "bytes": 865,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_CA_VALID.csv",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_DOCUMENTATION.pdf",
+      "sha256": "d966d7fce8392bbcbdbefb6bd82e573780e0f0ea58bc015cb2fefa12208b327a",
+      "bytes": 687561,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI2020_DOCUMENTATION.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_DOCUMENTATION.html",
+      "sha256": "3b37b481d9ff6c0d7f96b5c4846fa8c882cca34a21491eb8404045107fbcab11",
+      "bytes": 57382,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_DOCUMENTATION.html",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_DOWNLOAD_APP.js",
+      "sha256": "3309b668b84fda19545d9f7e76ddc6c482d98b538ca80272f3a64254a5966cff",
+      "bytes": 6591,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_DOWNLOAD_APP.js",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_DOWNLOAD_ASSET.json",
+      "sha256": "524e688a27c2afced3ea96d5a7fcf76fb68586358cc16ff1e42993c539fbdd0b",
+      "bytes": 199,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_DOWNLOAD_ASSET.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_STATES.xml",
+      "sha256": "887160b0432260ddaa85a46329f0bc569dfb3936a8fbb9af4eca3dce5bf1ea69",
+      "bytes": 2715,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CDC_SVI_STATES.xml",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CENSUS2020_MAPSERVER.json",
+      "sha256": "28b3ec5ccfd4deb8e6fa7a8dc6887b665d39d896275b76656db79ccb9452014f",
+      "bytes": 33947,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CENSUS2020_MAPSERVER.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CENSUS2020_URBAN_LA.geojson",
+      "sha256": "7aea2c84291701f08116eb9114f6ef8f85f6a83c5832c0686b2e23781df69bfd",
+      "bytes": 4977387,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CENSUS2020_URBAN_LA.geojson",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CENSUS2020_URBAN_LAYER.json",
+      "sha256": "54f7e463bf86ddcc77c252b1f26d73422de36ec08c0b101f2e48d5dc6fb3a826",
+      "bytes": 7179,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/CENSUS2020_URBAN_LAYER.json",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_API_METADATA.payload",
+      "sha256": "3494d22a0b9ae1678a72df5841b7a6ec60e75499b91341f9763a556d6b8cb1f9",
+      "bytes": 54,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_API_METADATA.payload",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_EXECUTIVE_SUMMARY.pdf",
+      "sha256": "d9d52d6cadf499cf78ad5e5cef5b18d505b7b65e1895b3ed637004150317cabe",
+      "bytes": 2660132,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_EXECUTIVE_SUMMARY.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_HOME.html",
+      "sha256": "4db7bf49e7b266bae128c9411a10703076202976bc725144938834bf60ab8d25",
+      "bytes": 78498,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_HOME.html",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_REPORT_PAGE.html",
+      "sha256": "cfc4e4bc499b543ed1dcc90dcf4e8f437b7d7b9e447aba73717172d323c470df",
+      "bytes": 83690,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_REPORT_PAGE.html",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_USER_GUIDE.pdf",
+      "sha256": "60d3f80b7b17c854cf3bbcdf6ef09da3bd1708f40fca0f23975c26c5cf807649",
+      "bytes": 130257,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_COUNTY_USER_GUIDE.pdf",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_DOCUMENTATION.html",
+      "sha256": "34ca89134fbdb99b0933a91b6b34bf10efea5c60fddb59c983f0e79f5c0914e6",
+      "bytes": 143833,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_DOCUMENTATION.html",
+      "actual_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_DOWNLOAD_0.payload",
+      "sha256": "219284f11f44b4a8cb5d3c6dab6634eff2239fb6c13d80c0e312aa8dbbf85bc8",
+      "bytes": 217395,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/dd05d1e1c0f6ff8c75ed1f9aee2ba0c08ac5c07f/docs/data_research/built_environment_20261009/living_environment_audit_20261011/sources/PARKS_DOWNLOAD_0.payload",
+      "actual_bytes_verified": true
+    }
+  ]
+}
