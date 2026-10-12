@@ -1,0 +1,1848 @@
+{
+  "status": "PASS",
+  "remote_head": "549ca6b7e7f91dba44cc1544e73245d79cbc321b",
+  "branch": "diagnostics/pure-random-ga-worst-offspring-elitism-20261011",
+  "git_non_lfs_tree_verified": [
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/.gitattributes",
+      "sha256": "4aa8f3f0f4941c654f0ac435279069dceafdb332c2c93181b56e7f6db821c4f5",
+      "size": 126
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/.gitignore",
+      "sha256": "c1c783023570d2e71f9cf6c4e21c77aad33ea6dc56e547d32b5a0be99eb2e7ba",
+      "size": 37
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/ALGORITHM_UNIT_TEST_LOG.txt",
+      "sha256": "d62ed8c0e81f19878c04a124359c9151cbec6bddf2e79e98b855367e09f77892",
+      "size": 98
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/ALGORITHM_UNIT_TEST_RESULTS.json",
+      "sha256": "1238e81776fc290b9a19049ca6d22f4f1d96f8b3c812d08ab7a2fb719293446b",
+      "size": 1372
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/AUDIT_EXECUTION_FAILURES.json",
+      "sha256": "afa6f1eb059adc616a6dfbb97f8c0191caf9c044ee426d4b01bc58c1bcfb60a2",
+      "size": 1260
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/AUDIT_PROGRESS.json",
+      "sha256": "94207aeffe6ba0d63c48de6a951be3d2497c93a46ec8d1eef68cd61a1ca54a90",
+      "size": 125
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/CONTINUATION_DECISION.json",
+      "sha256": "f13621c1d2bbe986a4aba1c40a775ded563b39d26ed44f08230e419c44087ee2",
+      "size": 1121
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/ELITISM_IMPLEMENTATION_DIFF.md",
+      "sha256": "e5798e6565c3f996793849971e3d53c2c39ab5196ccc3b826f18da6d5330b533",
+      "size": 2145
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/EXECUTION_100000.json",
+      "sha256": "2c3de1a77115234e2a4bcd763361e534e6597aa04ebfafb5c95166c44393620d",
+      "size": 587
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/EXECUTION_250000.json",
+      "sha256": "1ace7f48e3d505382133e95d93c16464ee1b7bb8d98c6a38731b9c05c02db17b",
+      "size": 427
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/EXECUTION_500000.json",
+      "sha256": "57143bdc996776fee62b1546f828c5a3ecc3ddcfbe9b947a740f95c37ffe0c7b",
+      "size": 428
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/EXECUTION_ENVIRONMENT.json",
+      "sha256": "89753a64fd98c1837c1d1c5a9905b1dad766e2b6fe31f2dfb278bbfe5d7b21e4",
+      "size": 740
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/EXPERIMENT_DESIGN_AND_SEEDS.json",
+      "sha256": "3ecd707e53868ca94757a7aa009759ab5f2719da2a52325f1debcf221dfd5962",
+      "size": 11203
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/FINAL_DECISION_NUMERICAL_RECORD.json",
+      "sha256": "52143db682d8ded4a7a51f93b360200fc9327d244773b995b9a32422da113334",
+      "size": 868
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/FINAL_ELITISM_DECISION.md",
+      "sha256": "985c1157b26341051b1d205ce110c673d3a297a7125dda3b879a99bdb3390e9c",
+      "size": 8970
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/FIXED_PLANNING_MODEL_IDENTITY.json",
+      "sha256": "719738f9e2e83ac3dbdafbb391ef36ac43038c571e527c5c8a7d318b644502a2",
+      "size": 9240
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/IMPORTANT_CANDIDATE_PRODUCTION_QA.json",
+      "sha256": "c80e8b1851a98e165cd242cfefcbd738eab57cb864c68f925a8075fe6ddb18cf",
+      "size": 33156
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/LEGACY_REPRODUCTION_PARITY.json",
+      "sha256": "f355763064e6c3534b3d4937129fac69c627dc2bc925580cf06ac69693343a7f",
+      "size": 1945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/OUTPUT_HASH_MANIFEST.json",
+      "sha256": "d64137ecd1c4c1a26c54f2f28b4f6101bbc002a279781f13acf6617db60e578e",
+      "size": 46376
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/POST_DEVELOPMENT_CANDIDATE_FREEZE.json",
+      "sha256": "a3923a7f0a07c51f6168ccf7336e89794367303f3b3ce7fc7625fa2f236cea25",
+      "size": 2826
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/POST_EVALUATION_ELITISM_SPECIFICATION.md",
+      "sha256": "16858fa5215e6dc8ab5813ccae6403221a283164ab95444ff38622621143f882",
+      "size": 1466
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/PRESERVATION_BASELINE.json",
+      "sha256": "aa13e451d45f140dd181a431da15ea9795488f458140d65e16f05406b226901b",
+      "size": 220606
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/PROPOSED_INDEPENDENT_VALIDATION_SPECIFICATION.json",
+      "sha256": "0d2197ef0f3342418eae4ac3c1b1ba6a1dacdf8fda95d4441ab3b11f0dd0f8cd",
+      "size": 3955
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/README.md",
+      "sha256": "ddead0b6bcc3ec74f010596ef997ee5d26582e14830c4fddc5c5376178637d36",
+      "size": 5125
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/REDUNDANT_RUNTIME_CLEANUP_QA.json",
+      "sha256": "36e8610d76048f12c9884e41363a5e3a5d0104bd9cfc0a3fe7224610c6c2bf21",
+      "size": 21069
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/REPRODUCIBILITY_AND_PRESERVATION_QA.json",
+      "sha256": "29f528f17cec3d9402399a8fdeb8fa6451c7b64665521c0cc4959edc67acfe99",
+      "size": 223675
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/REPRODUCIBLE_COMMANDS.md",
+      "sha256": "6a6f365ee1b64ef20028907c30b5b1d5efcbdad076ca8cbb582b453ae0703691",
+      "size": 1823
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/SEPARATE_AUDIT_SCORE_LEDGER.jsonl",
+      "sha256": "53746c26eec4be86d5fd4d4b25d666d5813816628e6ffa656d999193e3c93d3b",
+      "size": 14970157
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/SHADOW_AUDIT_ACCOUNTING.json",
+      "sha256": "4c55a2b7eb606044f88ee3e4df1675e651341fb191842896dfcaeaf6a04e86f9",
+      "size": 613
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/TOTAL_COMPUTATION_ACCOUNTING.json",
+      "sha256": "bcf20b368c3b54c17ad37d5ad068207852ced9d4e83e3e1d681e960a14133246",
+      "size": 1032
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/analysis.py",
+      "sha256": "58daf15f836d9fa1f3329b0cc952bb22ad256a3d2b0bda1aa0c976889117d905",
+      "size": 39444
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/publication.py",
+      "sha256": "8d00018a9514b20a79da6cb3c51e18b10354394ce3c1e48d9873ec54ccc21b26",
+      "size": 2604
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_100000.manifest.json",
+      "sha256": "bcd3630ab0d617a20aabacb99647e71c196b5419340ca31a4ef6faed2b887c07",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_250000.manifest.json",
+      "sha256": "971cea37c0198065a67568370a489bc611bd3a9f762469f286b8765f85338f3a",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_500000.manifest.json",
+      "sha256": "16899bdbe19beb44cf5335467b6de8eb04df6cbbaa5e82baeb2bc9569bd028fe",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_100000.manifest.json",
+      "sha256": "b775a6f1b21c76531581791b0dab8f957073fd26cd55c6d702fa8874d197e46b",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_250000.manifest.json",
+      "sha256": "5a3c39b48c80c1efd0054c1511356f4afb66b34bf98f5e80178b670a9c7b5dde",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_500000.manifest.json",
+      "sha256": "f838c882fd8f7e974f561d32810d542362174e7aeedfab5cc17b9f33069f0379",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_100000.manifest.json",
+      "sha256": "1fac1bb482f94ce97cfe104ff55d48a8784cf6ef83db619a9b7fe0863efde8b9",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_250000.manifest.json",
+      "sha256": "7fe04d1778c62e5a1b83321ccf4baba9c429a9c68d7088d0d71e5338d525ead9",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_500000.manifest.json",
+      "sha256": "5afbea4408eff8da05f0d1b7a988e7aa6fd90d7ae09fb641bad321e6ffdb795f",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_100000.manifest.json",
+      "sha256": "fe2f226860976930fb6485cb7dc273371099b0d3fa21265e52e12591cb53811e",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_250000.manifest.json",
+      "sha256": "aac104b8bc2e4844fb1d9d1377189ddcfebfcf7635b2b46b132509328bc3fa7c",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_500000.manifest.json",
+      "sha256": "a0bab0787eb122e4b137eb7da103959814d08eb796f17c957ccee79edbe9036a",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_100000.manifest.json",
+      "sha256": "99981fedf2eeba828e0adb0d48342f7a5951c580a60bfe69db072525fc856c25",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_250000.manifest.json",
+      "sha256": "cc7db271a8026030849b19274e146fca97520fd1a288bfb31878cf8f525c4851",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_500000.manifest.json",
+      "sha256": "d0d02fccf42548413a81872629136aabf16bb02dcb6cbf825938ec77de7907b1",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_100000.manifest.json",
+      "sha256": "94a57fcc67b0d480900139d3160616e68a8dcef1550164a35fb802c8571de5d5",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_250000.manifest.json",
+      "sha256": "0c4b5a786d9cfa2d86c9f6cc0f403a2e723341accff607931a17ed2aa48dbd64",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_500000.manifest.json",
+      "sha256": "c12c9ce468cce7e935d72a71cf39288e12d76aa31d05190cfa3264340536ba13",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_100000.manifest.json",
+      "sha256": "f243cadf9bb7ffb2fa29b3dcbf5e5732b4168a66e89e3ca5c18e435d9b3a0ddb",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_250000.manifest.json",
+      "sha256": "917d6f05d4e758acf10cc123abc3450865ba8feea9b0221ecca49f2f33ea74cd",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_500000.manifest.json",
+      "sha256": "c86843cf10ba52f3388c798765e8db26648abdf1c0055c13f8746e29b4bf4f23",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_100000.manifest.json",
+      "sha256": "c141754c02c702df5bcb5ab4356d374f85fc286c419b7300fe401dfd63e45c84",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_250000.manifest.json",
+      "sha256": "4c25e72b20e39c9ec8f1c68d897fbe56daa381afdb62283c2712a7896b97d37f",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_500000.manifest.json",
+      "sha256": "c836b668241e1a5e67a6df88488b0fa3fd4c80d375d59a60335ba4ccb1d3e3b0",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_100000.manifest.json",
+      "sha256": "7f2e9f48e8f1d614b9c7f0d85a4f592d2531a7b4a45724112de1ef3c076be4c9",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_250000.manifest.json",
+      "sha256": "82395bba84b77dfe8eba179a669a75ae4b7acc3db716c7eb54622943aa9e6f26",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_500000.manifest.json",
+      "sha256": "b93ae1d4087c74944b6400a1c907eb0e1217a0cfc96c4124aeb2c145875227ec",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_100000.manifest.json",
+      "sha256": "65b31ec77eb13f9acc57cf6a34b309edd616eb3ba9e373347b412238dff3878a",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_250000.manifest.json",
+      "sha256": "8ff9c090cc18ee2d6a769286d48d9b9b17987b1e516386fb0ffaf7ad729a2778",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_500000.manifest.json",
+      "sha256": "6adb1cdc1ed7d283eec6cb204b8234c8839776812844f6d1e846550a335cc82c",
+      "size": 945
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121110_100000.manifest.json",
+      "sha256": "8fd2da50f2d04e668b05c0aa2d47d5f779b176424a05874886a5a6dc269fa400",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121111_100000.manifest.json",
+      "sha256": "7cc4307295f5a0e8a7a651a165f2759f72c5171be23c861dc22fa11f7eafbdba",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121112_100000.manifest.json",
+      "sha256": "38bddd55adc6ea3cc369008e9bb878c6dbecf4abb5284fb01b20f17c80367008",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121113_100000.manifest.json",
+      "sha256": "74bb6b71a5b06113158cf5fe814a187bfddbc54c4413161932520947ded599af",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121114_100000.manifest.json",
+      "sha256": "663e3e7f5eb2d85841e5dd01f6b2008466831c62c032565e0e80d91d58cbab4f",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121115_100000.manifest.json",
+      "sha256": "1787a524e20dc832de8287b0926d6c43d7f87643ec159702845f3bd45a99af72",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121116_100000.manifest.json",
+      "sha256": "9f270f12524a3c51b7adf539470eccd77c39ea7deb012c9bb1d4964566b6f692",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121117_100000.manifest.json",
+      "sha256": "f5830574bfd4084a477f305213b11770c351bf1b9497ada80107b248d0711597",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121118_100000.manifest.json",
+      "sha256": "e70a05b7885b321b23848d549169395c3067445661f6d5c796531fd51e9eee34",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121119_100000.manifest.json",
+      "sha256": "8cadfe0a64a9cb752d13de745671c9e1be632681e635d8cfcf1a3c2681fadb71",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_100000.manifest.json",
+      "sha256": "ad629c21ee0948dedc122638418bb07ee3275fda99de66dd13fc905bd0d2acae",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_250000.manifest.json",
+      "sha256": "9a06fa8db638a00139d59ca2b1e00d61a8dad2ee5bffdc94d92933062f79f83a",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_500000.manifest.json",
+      "sha256": "963fdd5132ce1334cdf7bee1c6438e19f3ef2561db70bf9a526132f17229aba1",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_100000.manifest.json",
+      "sha256": "3f37998c74b019f46811c8017b70a83e82343753560a360d7bf8169c5311afad",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_250000.manifest.json",
+      "sha256": "efbd0c68ec58b0bf9a46018cec5ba1eadf482c400826bd0480f1309c8a0f23df",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_500000.manifest.json",
+      "sha256": "24c4d5ee99c6e6af0dd32518caaaec4e9dd7920b709e5ba8b33029959ba59bb4",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_100000.manifest.json",
+      "sha256": "7d5fb7d12e3fde0b31a4f138f6207496c2f68fe6584bb20168c5eb23934a2a63",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_250000.manifest.json",
+      "sha256": "7292717167caae48b9d6500e84a4cabac659c2e67011d859667d944a0d058032",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_500000.manifest.json",
+      "sha256": "61e15b977b65572c4007fc6948d2f086593057f8de6a82e19b444876ca9789b8",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_100000.manifest.json",
+      "sha256": "4b0abacd3c629af44df3c5df356c63ab38b4fc9c9741152391ce94c34812dd6e",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_250000.manifest.json",
+      "sha256": "1837071c3297762c474608a5acb4c0cda75455234a85c3e167a94f144336e01d",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_500000.manifest.json",
+      "sha256": "7612a2fbd43ef2316168090657357178b0c33ce6690555c89cfeb7a473e17d3b",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_100000.manifest.json",
+      "sha256": "efdcec108df1d815fa6b54f89283c4a131f7fdedf309be44f2330ebb8019153e",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_250000.manifest.json",
+      "sha256": "88d1841b1f21a99c66aa5d9d0ba9bc349b7850a6ee9b15662107058eb52736e8",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_500000.manifest.json",
+      "sha256": "4315bcc6f2e0eb0bdd61374114868c95ebb1a2e92b950265d11b7cdbe0fdb179",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_100000.manifest.json",
+      "sha256": "5c0032abe758ab8eae9ce7ab9f1c0761ce4e9af6862258e0f26933e64460bf61",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_250000.manifest.json",
+      "sha256": "a596aed60cc856577aa32ae539d5dc87a02c034ecdda839b4145c1b72f32232e",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_500000.manifest.json",
+      "sha256": "c83fc0f9aa880ab08be1dd5e0d7f04522dd5b5ee8322c985b4343b1f64ec8196",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_100000.manifest.json",
+      "sha256": "eb3ca10305c425cedae7661ad1dfb08c087d1bb0e0b7abbf46bda99abac0e00a",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_250000.manifest.json",
+      "sha256": "be4374d414feb92822d6d92725e704a364aeb62d2d00bcd2eb11ea9b6225b11c",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_500000.manifest.json",
+      "sha256": "69e9b7aa14510b34852362cbcef36e893d5992562286ea40756d7a6a774cfc0f",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_100000.manifest.json",
+      "sha256": "8b25a459448040ac36a5adccd1443f1e5cedcc2f483d8a8bc0f0c833f2917345",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_250000.manifest.json",
+      "sha256": "54be2f3084816d3090f7d8082478034bf5b237a2ea9ea77f01c5696fd7260e1b",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_500000.manifest.json",
+      "sha256": "30ee6eae472baf31c03dffdef5b75de6597b33dda5d9504871734223fbc78a77",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_100000.manifest.json",
+      "sha256": "6f58eb12ed1c74dafe00ea3c624489a00a8b557fecfe7423a29a5281474f18f1",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_250000.manifest.json",
+      "sha256": "89f7245dc8f6c0593104d78d03b30e46ce0622e4e6e518f583843b2b5418ae81",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_500000.manifest.json",
+      "sha256": "71bc2492d1eb9491e6195387ba3e68d87014f39aff70795fa9537e631573cb5e",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_100000.manifest.json",
+      "sha256": "6480ee81be06a63bea436a53637011663a19e3742d4451b1d1261ec1ebe10d5d",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_250000.manifest.json",
+      "sha256": "a76c53c88a84f27e6a9bdce08033ddaff5ed6d908f682e068c1f451af4e1a8b9",
+      "size": 943
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_500000.manifest.json",
+      "sha256": "b3502629787ddc2d0299d3eff4002b8ac1ec8ff98dbf6f4a59e84ff69e39df42",
+      "size": 944
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121110_100000.manifest.json",
+      "sha256": "583bf10f615af2eae5ad4ecd66ab3af93e7b996f846e99dbb3e0cd8a9adf4e60",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121111_100000.manifest.json",
+      "sha256": "afe1abb4b9769c40ebb16c5cd8ee4ed38ef6356afd92e1c67bab1fe9b1d9e65c",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121112_100000.manifest.json",
+      "sha256": "cf3135c49c597d10309ce58717ba46b7db195dcdfd99ddf2ef369cca4346f798",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121113_100000.manifest.json",
+      "sha256": "f325eb6975b267e61ef6abfaa4af9ffaf3fcbddeec888a6287126fb458b71502",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121114_100000.manifest.json",
+      "sha256": "bdd87256c3fd7ba8d8bc9b90745075e8bf24a1f2fe55366959cfe3d1c68ff8c3",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121115_100000.manifest.json",
+      "sha256": "2888d6b90ce696324ee6f58ade7162835e435fb1e71b80965f4caa0c9d98373b",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121116_100000.manifest.json",
+      "sha256": "52449ab9bfd8977ec7c6dd995f8327227b339b08ad3c5e0cb4f900433d239591",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121117_100000.manifest.json",
+      "sha256": "98bb2d1f824468faf40b2cce7251704561adb1bf27454d2c318844037f1a9656",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121118_100000.manifest.json",
+      "sha256": "6c76e6eb2e6259c74b01a412a3450001d34b3d3352053be1f55b33344dc58092",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121119_100000.manifest.json",
+      "sha256": "5b1e58161bdd26a7b7761082145d05cffeefbdcb2c1cf32d5861e6c1836fba95",
+      "size": 940
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121100_100000.json",
+      "sha256": "ec979d6b169105e30c29ee965b00b21263c81f00dd24b0f174dcd06789ff5151",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121100_250000.json",
+      "sha256": "af84f5cea5aad5449ae61b9da236bf58791c174cd682858bb144dbe5d54b4750",
+      "size": 2633
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121100_500000.json",
+      "sha256": "f0ac3a932008b6bac4a88b92d958f2b76ea47adfb058d785ef9bc0b081442493",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121101_100000.json",
+      "sha256": "539097e0a94d130d7b33ac873d1a458880323b15668c92d5f170b31765ecb806",
+      "size": 2623
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121101_250000.json",
+      "sha256": "2b75f8133a1f809030290e27369ebb2e8c0bb5f85741bb4b448d843a7f9faff6",
+      "size": 2633
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121101_500000.json",
+      "sha256": "c20156d6c2e2c8247b5d400c1d84a8ad1d4dbf583654ca7220987af461a9ce7a",
+      "size": 2632
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121102_100000.json",
+      "sha256": "19570f53b0313be994813b6809eefba96daf67b74bfdf340cbfdfb61c2068b5e",
+      "size": 2624
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121102_250000.json",
+      "sha256": "fb7185703d2d16cf054da2c23321d20b583496ffaa09f5492ff4225e69a59a2b",
+      "size": 2633
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121102_500000.json",
+      "sha256": "1e360b557a43ee1060557dda8aa69e9bb0977dc239f376aa3fbea7bd59579a4a",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121103_100000.json",
+      "sha256": "f33267eb0f2625e4a2db67c314bad32da741526c124e6ebb027b2e2dfce3eee8",
+      "size": 2623
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121103_250000.json",
+      "sha256": "f10fcad90e836b7d815c6bd5c29c82589e3a113575262d5827af5ccde936c8fa",
+      "size": 2636
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121103_500000.json",
+      "sha256": "ef7dda0c338618ec3fd318a854a2506d70af2032a3665472927e9c1992802529",
+      "size": 2635
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121104_100000.json",
+      "sha256": "5a43f2b370b32e20ed94a03142205f4e6f448f68cba7965c287efd368946a40a",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121104_250000.json",
+      "sha256": "0542bdc8d72823f3daf5a39eeba50fe873fc4090bae42e2d5362c8712b218a13",
+      "size": 2627
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121104_500000.json",
+      "sha256": "ee13e1051c213739c14d728e9987f7de09f587a8ab6f628a794efd854bddbec2",
+      "size": 2635
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121105_100000.json",
+      "sha256": "e348b46e07410036533ce25c7ecafef797712382cf037ee5e35056562babcb4b",
+      "size": 2624
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121105_250000.json",
+      "sha256": "fcedebaf30b0e6005b3226aa392f301a3730631ddd7ed4a884b5f7dfe5ef9184",
+      "size": 2631
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121105_500000.json",
+      "sha256": "76fb57ccdd423213dbebe92f93cd2bee82e912bfb4d3e9726d89809f4b39d1dd",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121106_100000.json",
+      "sha256": "624c5567b6e4355ae764ecc46642048a8707621aaafc643f31656c04c45560b5",
+      "size": 2627
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121106_250000.json",
+      "sha256": "6a919f986b1159e5bccfdd06aa3692c3bcae1811a17092790337a17a4777bb8a",
+      "size": 2632
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121106_500000.json",
+      "sha256": "2557a63aba0d9856556cca36e46ea1d7079b32837f87bbc7c6b7e1dc8d1cbf66",
+      "size": 2635
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121107_100000.json",
+      "sha256": "2760c6cf76ebde4f3b3089b52f4bf93f3acdbedd0b520b15860cc9a9c9480355",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121107_250000.json",
+      "sha256": "e5d4691b7e1f119e57f81ac1e23806feb1ad37f4329b54010dc36107eb4af87f",
+      "size": 2635
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121107_500000.json",
+      "sha256": "00d8aee45f79f2acd8a9a557897e96c49364205269c8c2d4b73d1abe1a0d4c28",
+      "size": 2633
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121108_100000.json",
+      "sha256": "c41679e31323adada95fd4078b366bdf108e81af0dac7bbb7df13177b47cf807",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121108_250000.json",
+      "sha256": "26c18620de887da553877f2cb8739e9d205283cc4e7840130191b2963ef3797c",
+      "size": 2632
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121108_500000.json",
+      "sha256": "c1fd364273e527d4d3d92b6c7825325356f28eb13c1c5b5c33e18c37139bd44b",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121109_100000.json",
+      "sha256": "9d4f2639588ac298255e620b03f970987779603ecd535d7660fb9d17f7143f0d",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121109_250000.json",
+      "sha256": "c88d202f984b400715324e0804023f33ae38fd8174cad5c1c216d52c5cadc938",
+      "size": 2631
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121109_500000.json",
+      "sha256": "f426509d97599d54884fc4c4fe3b08eedc2ecf4be2d25819dc10dcda0edde5cf",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121110_100000.json",
+      "sha256": "e505b1c310c80e67131b29c322d9d9a4402037fb57c96e704b42a282b9434050",
+      "size": 2623
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121111_100000.json",
+      "sha256": "5e1eb1dfada816ed77f1f0d699e0f44e942b87f6346d2ac76acc09056e86b851",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121112_100000.json",
+      "sha256": "bc983abda85bc50898bb002d96ba9480b47477364a509c6fd4b42f1289d1fb63",
+      "size": 2622
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121113_100000.json",
+      "sha256": "6d5fd002b93d6eaefd780e546c1192163884fb46e9678a17926c0bc81e90630a",
+      "size": 2624
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121114_100000.json",
+      "sha256": "8aed8a04b360ebbfc81c5058aa32c25d1431c255a303611421f3c2c91a61ba33",
+      "size": 2624
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121115_100000.json",
+      "sha256": "258c4b3d8ae21142e809e0c6436a15198850f71fa9ad51f087876b040d1c62ad",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121116_100000.json",
+      "sha256": "95f39bd2c60371e3064f741af58d276b0a326512b82b65586cd8273cd98ab181",
+      "size": 2623
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121117_100000.json",
+      "sha256": "ff2921de5033603a2d3d36e4d4ecdb7a5ec3e472256f3f94002049930eac5f0d",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121118_100000.json",
+      "sha256": "1db5c301a5c8e13ebc091f8a951ee889b457d62762599c1b6f914eb4b8555a1e",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/LEGACY_2026121119_100000.json",
+      "sha256": "35a4e5ddd5a449e780da1a9c3302251f5ad21cf872020a79685c0e81f711c64c",
+      "size": 2622
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121100_100000.json",
+      "sha256": "f0a63dd8a266d62beba1a437271223abaaa2dfeae9e4852e0bbd3cdefd949310",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121100_250000.json",
+      "sha256": "91b5efcdbb195834d16edf05baed33c2cf8befc7943e6f2dcb812c95a12debed",
+      "size": 2617
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121100_500000.json",
+      "sha256": "1c4f999658d85ac6e45255b8677da78f98895c3c2d872437f86c61807c2fac4c",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121101_100000.json",
+      "sha256": "8f375fdb924d055ad868f5cd34ffcaf81f5de655ae740a002c4b610c75074e25",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121101_250000.json",
+      "sha256": "0cde3650f607f8b4efdea3041d523e2505e81e1a1f02c767272d85a3d70af8de",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121101_500000.json",
+      "sha256": "3d241753e13496535c065a872113e404f26fee1d529434bd2b7e257d80c92a8b",
+      "size": 2622
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121102_100000.json",
+      "sha256": "b06442e5c671a2c3a5ca08e04bc17de1913f317e08f6ce5b7228eeaf43b5baf3",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121102_250000.json",
+      "sha256": "24ee7e1a907d08c2b78ef49a514e2787a27d7c9abc42405b9765ca57ecf28950",
+      "size": 2628
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121102_500000.json",
+      "sha256": "7cb868410c2ee92ff874cb2fca1d0eaae93225c787d3c86e6b7fe9f3008c5f74",
+      "size": 2635
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121103_100000.json",
+      "sha256": "c5c6da0cac25f919bff5102fe8bac853f6d46ef902e02ac79d7dfa56b9b8e6bd",
+      "size": 2627
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121103_250000.json",
+      "sha256": "333a9cc2dcd87e359f713e3d54370a5901213cb407fb543fd1875f5f35824995",
+      "size": 2630
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121103_500000.json",
+      "sha256": "c1ddcc58d55e28b1bac39938ed09d6cdbb48b533eceb193b9ccb8537b9197c16",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121104_100000.json",
+      "sha256": "f2f417c3f1dab21aea1727f2ae7be2fc00b2877d30bb6673f5caf798a7304bef",
+      "size": 2620
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121104_250000.json",
+      "sha256": "74dd52544c0b65e27aee41b6db7501427e6587d9df46439dc8c1b8128756dc3e",
+      "size": 2630
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121104_500000.json",
+      "sha256": "6de306cd26b0fe981b7da29a0b37bd19d6cf1a1224e8abba1f111014ba97350e",
+      "size": 2635
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121105_100000.json",
+      "sha256": "3b650c555820e9d0979255e71e2fce803f019a13e1f04c54a47dbee25b56cfd6",
+      "size": 2627
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121105_250000.json",
+      "sha256": "04785b49fe3d43f0bd846399e2a91f70b9cdcd1b548b8980005e76f619135e30",
+      "size": 2630
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121105_500000.json",
+      "sha256": "07ef22f9bb69c055577fa3ca032bcddfb0b932f1c78cd7d5d565172e40ef2812",
+      "size": 2633
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121106_100000.json",
+      "sha256": "19f57a1c74fd8716c2563b41634d65191be30c981e3100a521a852adb4b9fbde",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121106_250000.json",
+      "sha256": "9f65d62e6d9ef651113cae5e0d2a1809fe571abe9a6d77f1c99baf18400d4c61",
+      "size": 2627
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121106_500000.json",
+      "sha256": "f3f2da5b2a0920141b4f18f262e0c4744487bd5fc8bb9dc2ce6b1e59ab6351fd",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121107_100000.json",
+      "sha256": "b263700d0e6294ddef940f146efe141ae5dbc56022e4ad76837e78e9a379170c",
+      "size": 2628
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121107_250000.json",
+      "sha256": "153a6609002ae5f668c483704a6a5dd096c9a3c6d70f16e99a860d37613c8914",
+      "size": 2628
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121107_500000.json",
+      "sha256": "377c39d71a739c437a87b62d73a7b98a7182467352b9b3295d40fbb0d8c2a24f",
+      "size": 2634
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121108_100000.json",
+      "sha256": "ffbb7688878aaf32e3cb9b30b2d065e673204e8850a579efb473d30a111607a8",
+      "size": 2623
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121108_250000.json",
+      "sha256": "861f06b0c213cafec0b3e76eab684d6dcac070198be6bef5a4eab182899ff0a9",
+      "size": 2629
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121108_500000.json",
+      "sha256": "4acda679cc119d51836ea44406add1f29f73dc1cb2e4049f0e954d2077db9bea",
+      "size": 2636
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121109_100000.json",
+      "sha256": "6a61df7471610671e2961d8049c5a8b24363f2cca1493a8cf95f383e260ce11b",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121109_250000.json",
+      "sha256": "b4f7d0ff67a9918a7cd4016b040f52a8b95d51d28574d15fe6dd1d594b443afd",
+      "size": 2629
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121109_500000.json",
+      "sha256": "135f60ecc0e3349cfc3694a9cae86e6b708bb4177abeb33fafe6c0cd49dad8b7",
+      "size": 2633
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121110_100000.json",
+      "sha256": "5c58fbf4b8e4a3b27b5be01194155088b7acfa689e387fc47e9ed8842d521611",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121111_100000.json",
+      "sha256": "5c3a0b34cf02e2b60a6468894bad6b79b462c81d0de1a5533e7b649a854b7578",
+      "size": 2625
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121112_100000.json",
+      "sha256": "0203881848cfc0b2e556d667a16c5a1f45f877bef06217314972374f6e898699",
+      "size": 2627
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121113_100000.json",
+      "sha256": "2698906cf0ba9834dc9b94f539a37b6715b49e0da22da1b5abc33f461fea6ede",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121114_100000.json",
+      "sha256": "53fe89c0d132a004f24aa5dfc5565edf5724aba7cf4cae0e70c422d9bd381457",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121115_100000.json",
+      "sha256": "18191bd5e348864db1e92952f5ada54ee368f7dbc6d82464b9bd2fa2dace79f4",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121116_100000.json",
+      "sha256": "28de7225a05b613a5932fd5ecc1efb03a05adb9ad5a24bffdf07eb83ad384428",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121117_100000.json",
+      "sha256": "11cd3531af4a01052918751981118010fa6fb65302a440254bbd7d86e0b12a6f",
+      "size": 2628
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121118_100000.json",
+      "sha256": "e8d0172e29dfa25681e11920ac2b41ef1688bf3f711d8db4ea04cc0ee5e1de20",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/runs/POST_2026121119_100000.json",
+      "sha256": "d760533524dd16e14aa7cb48051f929877faff70800239d37bf01a3c12114ebb",
+      "size": 2626
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/study.py",
+      "sha256": "37325d1899d72d03b1cfc186007dfecd630334809633ff58ed0fef9837d7289d",
+      "size": 19024
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/test_elitism.py",
+      "sha256": "6126b3e5b9ae2dd2bb6d4bb3a83afa7e631cccf09e7da33cdf2b07733bb76730",
+      "size": 4835
+    }
+  ],
+  "unique_lfs_objects": 96,
+  "lfs_paths": 96,
+  "actual_download_bytes": 1096676349,
+  "actual_remote_lfs_objects": [
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/CONVERGENCE_SUMMARY.csv",
+      "oid": "0bb63ddcfece1d08cfdf07108fdd97884a45fb8cc6c5abc147508a2bf3549988",
+      "size": 1393,
+      "downloaded_sha256": "0bb63ddcfece1d08cfdf07108fdd97884a45fb8cc6c5abc147508a2bf3549988",
+      "downloaded_bytes": 1393,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/CONVERGENCE_SUMMARY.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/BUDGET_EXTENSION_MARGINAL_GAINS.csv",
+      "oid": "d4864cf5d8bbbc7386b58730701565af132a28700d074093267bc73eb2b83e2c",
+      "size": 5086,
+      "downloaded_sha256": "d4864cf5d8bbbc7386b58730701565af132a28700d074093267bc73eb2b83e2c",
+      "downloaded_bytes": 5086,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/BUDGET_EXTENSION_MARGINAL_GAINS.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/CONVERGENCE_COMPARISON.csv",
+      "oid": "e2c32558ab156c666996a35b46f31a5ee91e3c761c9c48b888019f1ceffb5bd8",
+      "size": 49637,
+      "downloaded_sha256": "e2c32558ab156c666996a35b46f31a5ee91e3c761c9c48b888019f1ceffb5bd8",
+      "downloaded_bytes": 49637,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/CONVERGENCE_COMPARISON.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/BUDGET_AND_COMPUTATIONAL_COST.csv",
+      "oid": "d7bce9f1749a627adcd12fd2fa19dfcd06f85abcf6e0d37d68888e4df7ce0cf5",
+      "size": 59478,
+      "downloaded_sha256": "d7bce9f1749a627adcd12fd2fa19dfcd06f85abcf6e0d37d68888e4df7ce0cf5",
+      "downloaded_bytes": 59478,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/BUDGET_AND_COMPUTATIONAL_COST.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/ELITE_REPLACEMENT_EVENT_COUNTS.csv",
+      "oid": "236bd731894c399d1c869820879809c3d5aa56a618e25dd5a584e9b73e67da11",
+      "size": 9675,
+      "downloaded_sha256": "236bd731894c399d1c869820879809c3d5aa56a618e25dd5a584e9b73e67da11",
+      "downloaded_bytes": 9675,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/ELITE_REPLACEMENT_EVENT_COUNTS.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/OFFSPRING_DISCARD_ANALYSIS.csv",
+      "oid": "2afbb91c7c41b29ad99a38ec34d30fbf48f5098b5785ebeb4baa377a97ee6816",
+      "size": 6508,
+      "downloaded_sha256": "2afbb91c7c41b29ad99a38ec34d30fbf48f5098b5785ebeb4baa377a97ee6816",
+      "downloaded_bytes": 6508,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/OFFSPRING_DISCARD_ANALYSIS.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/METHOD_DESCRIPTIVE_STATISTICS.csv",
+      "oid": "8d1508b42cc105bbb86972f77e1caa00645550b681e20fcbcc00836d9c5b78c5",
+      "size": 1506,
+      "downloaded_sha256": "8d1508b42cc105bbb86972f77e1caa00645550b681e20fcbcc00836d9c5b78c5",
+      "downloaded_bytes": 1506,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/METHOD_DESCRIPTIVE_STATISTICS.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/IMPORTANT_CANDIDATE_PLANNING_REALIZATIONS.csv",
+      "oid": "73f923a9e5c9488142d2f82d15cb2e228cbe1bc7604cd4715c76766d33929677",
+      "size": 101219,
+      "downloaded_sha256": "73f923a9e5c9488142d2f82d15cb2e228cbe1bc7604cd4715c76766d33929677",
+      "downloaded_bytes": 101219,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/IMPORTANT_CANDIDATE_PLANNING_REALIZATIONS.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/PAIRED_SEED_LEVEL_RESULTS.csv",
+      "oid": "c01423fd75c7a4b5fab09911528f6d944dc86c94c20efb25d162f19dc93171c1",
+      "size": 25220,
+      "downloaded_sha256": "c01423fd75c7a4b5fab09911528f6d944dc86c94c20efb25d162f19dc93171c1",
+      "downloaded_bytes": 25220,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/PAIRED_SEED_LEVEL_RESULTS.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/PAIRED_OBJECTIVE_EFFECTS.csv",
+      "oid": "475eb4cd1449f1c8303f6b93ec117b7786649abc0a7ad256a686afc6be1532d8",
+      "size": 2404,
+      "downloaded_sha256": "475eb4cd1449f1c8303f6b93ec117b7786649abc0a7ad256a686afc6be1532d8",
+      "downloaded_bytes": 2404,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/PAIRED_OBJECTIVE_EFFECTS.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/RUN_RESULTS_100000.csv",
+      "oid": "04013f54894d1c379d907d800047d0305b5ef6c71ee64acdeb53341a9942ee90",
+      "size": 23491,
+      "downloaded_sha256": "04013f54894d1c379d907d800047d0305b5ef6c71ee64acdeb53341a9942ee90",
+      "downloaded_bytes": 23491,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/RUN_RESULTS_100000.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/RUN_RESULTS_250000.csv",
+      "oid": "e42d330d55bb9414a653222773957cecd3528e20371fe08f5642b93a5a1bbb45",
+      "size": 12120,
+      "downloaded_sha256": "e42d330d55bb9414a653222773957cecd3528e20371fe08f5642b93a5a1bbb45",
+      "downloaded_bytes": 12120,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/RUN_RESULTS_250000.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/RUN_RESULTS_500000.csv",
+      "oid": "3394aa4d7b894a474b36f11fc9c13d226cff60f62d5d18776c4233e40f046699",
+      "size": 12198,
+      "downloaded_sha256": "3394aa4d7b894a474b36f11fc9c13d226cff60f62d5d18776c4233e40f046699",
+      "downloaded_bytes": 12198,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/RUN_RESULTS_500000.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/SEPARATE_AUDIT_SCORE_CACHE.csv",
+      "oid": "4cd19c595a95edcf32d7e1224d2eec8d12d39cc28bc528799d912ca25294ff58",
+      "size": 12175186,
+      "downloaded_sha256": "4cd19c595a95edcf32d7e1224d2eec8d12d39cc28bc528799d912ca25294ff58",
+      "downloaded_bytes": 12175186,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/SEPARATE_AUDIT_SCORE_CACHE.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_100000.zip",
+      "oid": "c086aac1cd48530beb9a677d203810ab915c898b2a479a094e817c4e8892e5b6",
+      "size": 4928525,
+      "downloaded_sha256": "c086aac1cd48530beb9a677d203810ab915c898b2a479a094e817c4e8892e5b6",
+      "downloaded_bytes": 4928525,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_250000.zip",
+      "oid": "034d8e29e72bd462757e260ddad1acddffad78cdff713ba0320bac813eac8e4f",
+      "size": 12524245,
+      "downloaded_sha256": "034d8e29e72bd462757e260ddad1acddffad78cdff713ba0320bac813eac8e4f",
+      "downloaded_bytes": 12524245,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_100000.zip",
+      "oid": "f3875d54b6c404fc33233fc1d1979092d93751fdf7a27ea504093f37b659360c",
+      "size": 5294634,
+      "downloaded_sha256": "f3875d54b6c404fc33233fc1d1979092d93751fdf7a27ea504093f37b659360c",
+      "downloaded_bytes": 5294634,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/OFFSPRING_DISCARD_EVENT_DETAIL.csv",
+      "oid": "45e92c95492221a728b554ec6e8bcf95eb96a14a089e88425101d89a09e098e7",
+      "size": 115984495,
+      "downloaded_sha256": "45e92c95492221a728b554ec6e8bcf95eb96a14a089e88425101d89a09e098e7",
+      "downloaded_bytes": 115984495,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/OFFSPRING_DISCARD_EVENT_DETAIL.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_250000.zip",
+      "oid": "77ea617e3a84b971fb914d13c8bd5c3a93a16171ce5bba987cff2b0bc562ca4d",
+      "size": 12651370,
+      "downloaded_sha256": "77ea617e3a84b971fb914d13c8bd5c3a93a16171ce5bba987cff2b0bc562ca4d",
+      "downloaded_bytes": 12651370,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_100000.zip",
+      "oid": "012215b2bcea006da151ee8e2f5f5c744c574338a95623eb82dbe45f7f22c316",
+      "size": 5191731,
+      "downloaded_sha256": "012215b2bcea006da151ee8e2f5f5c744c574338a95623eb82dbe45f7f22c316",
+      "downloaded_bytes": 5191731,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_250000.zip",
+      "oid": "001a3d16d384a169e05eeb4faa0ba89b0e74ec140bbe05e8d95695e4def14b13",
+      "size": 12341257,
+      "downloaded_sha256": "001a3d16d384a169e05eeb4faa0ba89b0e74ec140bbe05e8d95695e4def14b13",
+      "downloaded_bytes": 12341257,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_500000.zip",
+      "oid": "fa7ee2c9637bcf4bcc09ef440be25d2a3921ef03c7a19b696e78fefa2b13c13f",
+      "size": 25421161,
+      "downloaded_sha256": "fa7ee2c9637bcf4bcc09ef440be25d2a3921ef03c7a19b696e78fefa2b13c13f",
+      "downloaded_bytes": 25421161,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121102_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_100000.zip",
+      "oid": "0bb9f81fae4811f4aaa6eccbb67c0f104b502b1688ecf2f5d2e61c5c37040190",
+      "size": 5054422,
+      "downloaded_sha256": "0bb9f81fae4811f4aaa6eccbb67c0f104b502b1688ecf2f5d2e61c5c37040190",
+      "downloaded_bytes": 5054422,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_250000.zip",
+      "oid": "55497610f79b11e98d10890503a0e378d2794cd157f4242b89698271999b4b5e",
+      "size": 12437798,
+      "downloaded_sha256": "55497610f79b11e98d10890503a0e378d2794cd157f4242b89698271999b4b5e",
+      "downloaded_bytes": 12437798,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_500000.zip",
+      "oid": "73fc0b14a29caf3f613c575a8e224a250f1a248f72bfa6e36e1160fd2ac3447d",
+      "size": 25978148,
+      "downloaded_sha256": "73fc0b14a29caf3f613c575a8e224a250f1a248f72bfa6e36e1160fd2ac3447d",
+      "downloaded_bytes": 25978148,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121103_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_100000.zip",
+      "oid": "176d13739ba5e4176ef1852061567e60140fcb360dcec8e014bbfaee8e83ed9c",
+      "size": 5185272,
+      "downloaded_sha256": "176d13739ba5e4176ef1852061567e60140fcb360dcec8e014bbfaee8e83ed9c",
+      "downloaded_bytes": 5185272,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_250000.zip",
+      "oid": "0e3483fc62ebe91da6ece1487a3e0b753ed9bac107ad86ec39f973bfbca27fb2",
+      "size": 12275609,
+      "downloaded_sha256": "0e3483fc62ebe91da6ece1487a3e0b753ed9bac107ad86ec39f973bfbca27fb2",
+      "downloaded_bytes": 12275609,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_500000.zip",
+      "oid": "46364bddab10ec84a93cfd2ef7e48574f8e4804043ee3122312625181a288063",
+      "size": 25731797,
+      "downloaded_sha256": "46364bddab10ec84a93cfd2ef7e48574f8e4804043ee3122312625181a288063",
+      "downloaded_bytes": 25731797,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121104_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_100000.zip",
+      "oid": "8ef8012f15be7630f6c1bd8e288a6714d15a810dcefc1923c4e1861484f3b28c",
+      "size": 5263032,
+      "downloaded_sha256": "8ef8012f15be7630f6c1bd8e288a6714d15a810dcefc1923c4e1861484f3b28c",
+      "downloaded_bytes": 5263032,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_250000.zip",
+      "oid": "fd345f52a25d506e68424556354b3d7c1e0f98706a23c60c81a319829bd7bd1e",
+      "size": 12319659,
+      "downloaded_sha256": "fd345f52a25d506e68424556354b3d7c1e0f98706a23c60c81a319829bd7bd1e",
+      "downloaded_bytes": 12319659,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_500000.zip",
+      "oid": "74dc67bc280e1d3dc7e0f1b075f9691d32efebdc9be5440967148b00fbeea86e",
+      "size": 24981130,
+      "downloaded_sha256": "74dc67bc280e1d3dc7e0f1b075f9691d32efebdc9be5440967148b00fbeea86e",
+      "downloaded_bytes": 24981130,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121105_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_500000.zip",
+      "oid": "7f70bcbcb51ae1ad0319e91bea7407508c827f167d1ee8adce0db78edce5f80e",
+      "size": 26038652,
+      "downloaded_sha256": "7f70bcbcb51ae1ad0319e91bea7407508c827f167d1ee8adce0db78edce5f80e",
+      "downloaded_bytes": 26038652,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121100_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_100000.zip",
+      "oid": "7eac9786e43bacebd8a6d1fa94d9809631d674395e7cfc737cf455eed733cfd9",
+      "size": 5246344,
+      "downloaded_sha256": "7eac9786e43bacebd8a6d1fa94d9809631d674395e7cfc737cf455eed733cfd9",
+      "downloaded_bytes": 5246344,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_250000.zip",
+      "oid": "d5b3c82be4cbccba1b68ad679ed229fbcdecd576b092d78664f632008b14a653",
+      "size": 12432535,
+      "downloaded_sha256": "d5b3c82be4cbccba1b68ad679ed229fbcdecd576b092d78664f632008b14a653",
+      "downloaded_bytes": 12432535,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_500000.zip",
+      "oid": "68595e699bdf296c47335fa2882d0f11d79df837e28e56cfde44f00dde76af8c",
+      "size": 25769021,
+      "downloaded_sha256": "68595e699bdf296c47335fa2882d0f11d79df837e28e56cfde44f00dde76af8c",
+      "downloaded_bytes": 25769021,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121106_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_100000.zip",
+      "oid": "40025be49924ebd537fe704cdd6206a2324f0df6be01c07b798214987d350d5f",
+      "size": 5143343,
+      "downloaded_sha256": "40025be49924ebd537fe704cdd6206a2324f0df6be01c07b798214987d350d5f",
+      "downloaded_bytes": 5143343,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_250000.zip",
+      "oid": "ee0ad82ce4e1d7f7ddcaa4522fd95e54311b80a6e992dc9bf09653fadabd403e",
+      "size": 12340621,
+      "downloaded_sha256": "ee0ad82ce4e1d7f7ddcaa4522fd95e54311b80a6e992dc9bf09653fadabd403e",
+      "downloaded_bytes": 12340621,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_500000.zip",
+      "oid": "20211a101b2edbc3a9889bc2a04ac1e62a72261735e99aa321b9477dd181aa85",
+      "size": 26041323,
+      "downloaded_sha256": "20211a101b2edbc3a9889bc2a04ac1e62a72261735e99aa321b9477dd181aa85",
+      "downloaded_bytes": 26041323,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121101_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_500000.zip",
+      "oid": "cc0a7d6c5a4181595b8ad92584e22a10be7aaea28ec2310ba30c27bafe97af83",
+      "size": 25120309,
+      "downloaded_sha256": "cc0a7d6c5a4181595b8ad92584e22a10be7aaea28ec2310ba30c27bafe97af83",
+      "downloaded_bytes": 25120309,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121107_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_100000.zip",
+      "oid": "5816214b5a927b5bf31896c8b06222162107dbd711cac23ffdb47405efa8e3ee",
+      "size": 5197624,
+      "downloaded_sha256": "5816214b5a927b5bf31896c8b06222162107dbd711cac23ffdb47405efa8e3ee",
+      "downloaded_bytes": 5197624,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_250000.zip",
+      "oid": "9d699fb047e370820e224d3160a8e7dfc437901609c57955a6cfbe739d9e2854",
+      "size": 12559354,
+      "downloaded_sha256": "9d699fb047e370820e224d3160a8e7dfc437901609c57955a6cfbe739d9e2854",
+      "downloaded_bytes": 12559354,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_100000.zip",
+      "oid": "1d14cf0488fb6240134ec617ca69d23b435dcb36134d6f4264d6a267298d8fb2",
+      "size": 5007602,
+      "downloaded_sha256": "1d14cf0488fb6240134ec617ca69d23b435dcb36134d6f4264d6a267298d8fb2",
+      "downloaded_bytes": 5007602,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_500000.zip",
+      "oid": "6f8c1f037c97b75d5fcb2f6bbcdf450d9e3e56552eb26385aaa6ed2adb1dbb69",
+      "size": 26228250,
+      "downloaded_sha256": "6f8c1f037c97b75d5fcb2f6bbcdf450d9e3e56552eb26385aaa6ed2adb1dbb69",
+      "downloaded_bytes": 26228250,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121108_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_250000.zip",
+      "oid": "a9742d55c7a675fab700016c6d05642922ffec2472ff53484cb4bf78b159a246",
+      "size": 12340867,
+      "downloaded_sha256": "a9742d55c7a675fab700016c6d05642922ffec2472ff53484cb4bf78b159a246",
+      "downloaded_bytes": 12340867,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121110_100000.zip",
+      "oid": "6a99c4c3a500124e698dedafa72461f9c244a4f53fe2c2aa243adc81d6afb34d",
+      "size": 5344670,
+      "downloaded_sha256": "6a99c4c3a500124e698dedafa72461f9c244a4f53fe2c2aa243adc81d6afb34d",
+      "downloaded_bytes": 5344670,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121110_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121111_100000.zip",
+      "oid": "4a5c928b4d67d8dc2aec5df32d2c1fae8f47e45870fcd1a47e2060d3e3b319cc",
+      "size": 5052841,
+      "downloaded_sha256": "4a5c928b4d67d8dc2aec5df32d2c1fae8f47e45870fcd1a47e2060d3e3b319cc",
+      "downloaded_bytes": 5052841,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121111_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/POST_ELITE_EVENT_DETAIL.csv",
+      "oid": "c5c13107d748895d17d2a21f9bfea9b29cae1ba1d03e205a6008176e9f8925db",
+      "size": 37224804,
+      "downloaded_sha256": "c5c13107d748895d17d2a21f9bfea9b29cae1ba1d03e205a6008176e9f8925db",
+      "downloaded_bytes": 37224804,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/POST_ELITE_EVENT_DETAIL.csv"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121112_100000.zip",
+      "oid": "5a51a2c123ba6df12ec9e0305a10293ab6e80566a82f621f942efaf75607c5c9",
+      "size": 5140015,
+      "downloaded_sha256": "5a51a2c123ba6df12ec9e0305a10293ab6e80566a82f621f942efaf75607c5c9",
+      "downloaded_bytes": 5140015,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121112_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121113_100000.zip",
+      "oid": "35dae5c9e7e64223d0d0f3eb51c26dabbe2c7ae3206aeaee2168e526b12e5dc6",
+      "size": 5264054,
+      "downloaded_sha256": "35dae5c9e7e64223d0d0f3eb51c26dabbe2c7ae3206aeaee2168e526b12e5dc6",
+      "downloaded_bytes": 5264054,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121113_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_500000.zip",
+      "oid": "cca4b2fc3ac1cc3c07093d9447908fb244a6b70ab17fcc24095ebd47a1409cbc",
+      "size": 25446333,
+      "downloaded_sha256": "cca4b2fc3ac1cc3c07093d9447908fb244a6b70ab17fcc24095ebd47a1409cbc",
+      "downloaded_bytes": 25446333,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121109_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121114_100000.zip",
+      "oid": "5be2673115249bda7b550ebb20d83174a278c4226f25cbc02528d1b29e77b77d",
+      "size": 5101302,
+      "downloaded_sha256": "5be2673115249bda7b550ebb20d83174a278c4226f25cbc02528d1b29e77b77d",
+      "downloaded_bytes": 5101302,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121114_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121115_100000.zip",
+      "oid": "d8851cd6a492b5fb6016b2bce42b06ab0d07ed30c984aae5161986b736ff24e6",
+      "size": 5025790,
+      "downloaded_sha256": "d8851cd6a492b5fb6016b2bce42b06ab0d07ed30c984aae5161986b736ff24e6",
+      "downloaded_bytes": 5025790,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121115_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121118_100000.zip",
+      "oid": "afd481bb57b71852a986ea2cc935aabbf5251a52b5503321d0f7ce6f6f8ce7de",
+      "size": 5250378,
+      "downloaded_sha256": "afd481bb57b71852a986ea2cc935aabbf5251a52b5503321d0f7ce6f6f8ce7de",
+      "downloaded_bytes": 5250378,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121118_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121119_100000.zip",
+      "oid": "a685f77191c311e7fd8a8b1e1273703d4b21fd5bffdf9100070aa8d09fd9f671",
+      "size": 4985666,
+      "downloaded_sha256": "a685f77191c311e7fd8a8b1e1273703d4b21fd5bffdf9100070aa8d09fd9f671",
+      "downloaded_bytes": 4985666,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121119_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121117_100000.zip",
+      "oid": "1bf711e3cc85a327580007c97684f0a3f7675baaf64b038a5b7ff4adaf50bece",
+      "size": 5264784,
+      "downloaded_sha256": "1bf711e3cc85a327580007c97684f0a3f7675baaf64b038a5b7ff4adaf50bece",
+      "downloaded_bytes": 5264784,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121117_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121116_100000.zip",
+      "oid": "625ef1ea63b9b18cd5b18a4d382aed3d22f7eff5612864efca5f77aa543e98fc",
+      "size": 5229367,
+      "downloaded_sha256": "625ef1ea63b9b18cd5b18a4d382aed3d22f7eff5612864efca5f77aa543e98fc",
+      "downloaded_bytes": 5229367,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/LEGACY_2026121116_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_100000.zip",
+      "oid": "4e141ef34cce7d50b5aa93fcb194cfeaa4c270b7c156ada472c381389452d1b4",
+      "size": 5028070,
+      "downloaded_sha256": "4e141ef34cce7d50b5aa93fcb194cfeaa4c270b7c156ada472c381389452d1b4",
+      "downloaded_bytes": 5028070,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_250000.zip",
+      "oid": "5ad7536d1a6538d4ccaa1d38ec28fadd713ad53ec53ea5418a4dbdfedccb050f",
+      "size": 11804760,
+      "downloaded_sha256": "5ad7536d1a6538d4ccaa1d38ec28fadd713ad53ec53ea5418a4dbdfedccb050f",
+      "downloaded_bytes": 11804760,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_100000.zip",
+      "oid": "5209caea9f1cfc4e70e4adc5911fe77cc6427e54612343f92df0b3b50d20648b",
+      "size": 5030902,
+      "downloaded_sha256": "5209caea9f1cfc4e70e4adc5911fe77cc6427e54612343f92df0b3b50d20648b",
+      "downloaded_bytes": 5030902,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_500000.zip",
+      "oid": "6b1d2cd42dfaadf08e254bc492c54197e6230dc1a688bf41058ecfb649225d6f",
+      "size": 22989249,
+      "downloaded_sha256": "6b1d2cd42dfaadf08e254bc492c54197e6230dc1a688bf41058ecfb649225d6f",
+      "downloaded_bytes": 22989249,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121100_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_250000.zip",
+      "oid": "e87afbc47df79676bd741fc0fe38a6156b79cf01ec976696d75fa990ef1e9c33",
+      "size": 11687296,
+      "downloaded_sha256": "e87afbc47df79676bd741fc0fe38a6156b79cf01ec976696d75fa990ef1e9c33",
+      "downloaded_bytes": 11687296,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_100000.zip",
+      "oid": "b5d8d30fb1527bb4be960551c29486b7eba04d57a8f8eccfd28bd37097e4db36",
+      "size": 5131633,
+      "downloaded_sha256": "b5d8d30fb1527bb4be960551c29486b7eba04d57a8f8eccfd28bd37097e4db36",
+      "downloaded_bytes": 5131633,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_250000.zip",
+      "oid": "17c7c477fae9f11e031b117b4aba9c00c57404d546d9da9ad431da0eaddc3e5f",
+      "size": 11720567,
+      "downloaded_sha256": "17c7c477fae9f11e031b117b4aba9c00c57404d546d9da9ad431da0eaddc3e5f",
+      "downloaded_bytes": 11720567,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_100000.zip",
+      "oid": "8ee8fb57554a1b65267116360b05148ea92ef5d6872527f54aa2f2d4f585e9e7",
+      "size": 4964849,
+      "downloaded_sha256": "8ee8fb57554a1b65267116360b05148ea92ef5d6872527f54aa2f2d4f585e9e7",
+      "downloaded_bytes": 4964849,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_500000.zip",
+      "oid": "c130796e58436820a1badb59bbd6882f6540e740b1c49d621ffd55d6419d29a0",
+      "size": 23045389,
+      "downloaded_sha256": "c130796e58436820a1badb59bbd6882f6540e740b1c49d621ffd55d6419d29a0",
+      "downloaded_bytes": 23045389,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121101_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_500000.zip",
+      "oid": "df8a409503c9d5c239d259f271f6eaa1527c41243aa0b34651ca40c1f8b4e455",
+      "size": 22787258,
+      "downloaded_sha256": "df8a409503c9d5c239d259f271f6eaa1527c41243aa0b34651ca40c1f8b4e455",
+      "downloaded_bytes": 22787258,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121102_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_250000.zip",
+      "oid": "4f27393aed5c52942fe5e0f6f64fa70afe5484d470e8ad1a9f7a60c046f2351a",
+      "size": 11612417,
+      "downloaded_sha256": "4f27393aed5c52942fe5e0f6f64fa70afe5484d470e8ad1a9f7a60c046f2351a",
+      "downloaded_bytes": 11612417,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_100000.zip",
+      "oid": "822a371feb4121dc659961b6e0c0eb8b945e0072a36a99d5454ea8476000b39b",
+      "size": 5055625,
+      "downloaded_sha256": "822a371feb4121dc659961b6e0c0eb8b945e0072a36a99d5454ea8476000b39b",
+      "downloaded_bytes": 5055625,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_500000.zip",
+      "oid": "f00e86a1165ad73f8b9279ac296964746e310efe9f4f1160bc8718f65b2f547d",
+      "size": 22653601,
+      "downloaded_sha256": "f00e86a1165ad73f8b9279ac296964746e310efe9f4f1160bc8718f65b2f547d",
+      "downloaded_bytes": 22653601,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121103_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_100000.zip",
+      "oid": "9472893ccf3e52532f11d96646c8430b7e832854c72b83c60f37b9ce097e07bb",
+      "size": 5201028,
+      "downloaded_sha256": "9472893ccf3e52532f11d96646c8430b7e832854c72b83c60f37b9ce097e07bb",
+      "downloaded_bytes": 5201028,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_250000.zip",
+      "oid": "67c8e2efc9c022313aa1a2ab4bb341aa186b01bc01efce1a8e90c6ec47c4451a",
+      "size": 11729085,
+      "downloaded_sha256": "67c8e2efc9c022313aa1a2ab4bb341aa186b01bc01efce1a8e90c6ec47c4451a",
+      "downloaded_bytes": 11729085,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_500000.zip",
+      "oid": "78bce7527dcddc9b5a86d9f08c1bdeb459084a403e4a6c30792127344460a173",
+      "size": 22975491,
+      "downloaded_sha256": "78bce7527dcddc9b5a86d9f08c1bdeb459084a403e4a6c30792127344460a173",
+      "downloaded_bytes": 22975491,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121105_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_100000.zip",
+      "oid": "a5a73ba2145a0edb8b27a7a93fe045fdf3f901940f8409a46703738b6638fb47",
+      "size": 5091150,
+      "downloaded_sha256": "a5a73ba2145a0edb8b27a7a93fe045fdf3f901940f8409a46703738b6638fb47",
+      "downloaded_bytes": 5091150,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_250000.zip",
+      "oid": "a8e47863e455084d790e61172e53940f724879e3951456b9a61aea2808b471b2",
+      "size": 11782964,
+      "downloaded_sha256": "a8e47863e455084d790e61172e53940f724879e3951456b9a61aea2808b471b2",
+      "downloaded_bytes": 11782964,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_100000.zip",
+      "oid": "5e308dcf4b2434b036eb44f3f7803fe7ed07a4a5eaea98386acaebc56b466384",
+      "size": 5112309,
+      "downloaded_sha256": "5e308dcf4b2434b036eb44f3f7803fe7ed07a4a5eaea98386acaebc56b466384",
+      "downloaded_bytes": 5112309,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_250000.zip",
+      "oid": "ef38300e32ae4e8a9003f1d7ac06313861cafb5a25629819ca5c9c31f3f4d4f2",
+      "size": 11498396,
+      "downloaded_sha256": "ef38300e32ae4e8a9003f1d7ac06313861cafb5a25629819ca5c9c31f3f4d4f2",
+      "downloaded_bytes": 11498396,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_250000.zip",
+      "oid": "e0f4172477344bc870be3cb7c1b643c9603406cbbf1f150bd4bfca2d966cc073",
+      "size": 11607398,
+      "downloaded_sha256": "e0f4172477344bc870be3cb7c1b643c9603406cbbf1f150bd4bfca2d966cc073",
+      "downloaded_bytes": 11607398,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_500000.zip",
+      "oid": "84a46cfe789c5d0777abcc15b604a129c1d74a42a9bdd0e123c1986187df43d8",
+      "size": 22837527,
+      "downloaded_sha256": "84a46cfe789c5d0777abcc15b604a129c1d74a42a9bdd0e123c1986187df43d8",
+      "downloaded_bytes": 22837527,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121107_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_100000.zip",
+      "oid": "b50b60f00a8f8f5dff69eac5b5a3d6859064e65e92d3af00e438737441febc9a",
+      "size": 5149745,
+      "downloaded_sha256": "b50b60f00a8f8f5dff69eac5b5a3d6859064e65e92d3af00e438737441febc9a",
+      "downloaded_bytes": 5149745,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_250000.zip",
+      "oid": "e395d01a83ad3e4c5a33b09aca92cda679e578bd7d6a6186765219049b92dc67",
+      "size": 11730318,
+      "downloaded_sha256": "e395d01a83ad3e4c5a33b09aca92cda679e578bd7d6a6186765219049b92dc67",
+      "downloaded_bytes": 11730318,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_500000.zip",
+      "oid": "25484f544498e1976cce8d6f4a7b077eb69945debf89e373d3f7863fe83b5c3e",
+      "size": 23087020,
+      "downloaded_sha256": "25484f544498e1976cce8d6f4a7b077eb69945debf89e373d3f7863fe83b5c3e",
+      "downloaded_bytes": 23087020,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121108_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_100000.zip",
+      "oid": "5f1351ae3c38fec67732207c1a67226dfbc4609f251e337a2c7f6d32d99c3966",
+      "size": 5119084,
+      "downloaded_sha256": "5f1351ae3c38fec67732207c1a67226dfbc4609f251e337a2c7f6d32d99c3966",
+      "downloaded_bytes": 5119084,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_250000.zip",
+      "oid": "aa6f813c4d352ff1c103267b662ef8afec534a5d9886d76a58f67e804e8ad224",
+      "size": 11601944,
+      "downloaded_sha256": "aa6f813c4d352ff1c103267b662ef8afec534a5d9886d76a58f67e804e8ad224",
+      "downloaded_bytes": 11601944,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_250000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_500000.zip",
+      "oid": "8cc96cac3d20518bf6494df25669390612416be1f41280a31079579318450a93",
+      "size": 22172142,
+      "downloaded_sha256": "8cc96cac3d20518bf6494df25669390612416be1f41280a31079579318450a93",
+      "downloaded_bytes": 22172142,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121109_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121110_100000.zip",
+      "oid": "55ff6c0848290438faeb9aa294bf85dd7e591dac4881c1d2d3d36dce9446cd24",
+      "size": 5282693,
+      "downloaded_sha256": "55ff6c0848290438faeb9aa294bf85dd7e591dac4881c1d2d3d36dce9446cd24",
+      "downloaded_bytes": 5282693,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121110_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121112_100000.zip",
+      "oid": "c733b65e53efe5cf8192c096f7a9ad7885f7649234a8948e30758dec9c64761b",
+      "size": 5007165,
+      "downloaded_sha256": "c733b65e53efe5cf8192c096f7a9ad7885f7649234a8948e30758dec9c64761b",
+      "downloaded_bytes": 5007165,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121112_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121111_100000.zip",
+      "oid": "5ce04d4cd08fdf28ad1684d679890608cf06bd69ea71808c2420800d482c7a29",
+      "size": 4920050,
+      "downloaded_sha256": "5ce04d4cd08fdf28ad1684d679890608cf06bd69ea71808c2420800d482c7a29",
+      "downloaded_bytes": 4920050,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121111_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121113_100000.zip",
+      "oid": "f1d853ac6451509deca924b09e8e3d008f076c8ddc0f759aae578edf4ac5a8cc",
+      "size": 5088702,
+      "downloaded_sha256": "f1d853ac6451509deca924b09e8e3d008f076c8ddc0f759aae578edf4ac5a8cc",
+      "downloaded_bytes": 5088702,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121113_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121114_100000.zip",
+      "oid": "bfc5e9f8076aec1125125bc6c2b6e00b084a8a5ae8bac1fe0c7209790b24ea7e",
+      "size": 5146549,
+      "downloaded_sha256": "bfc5e9f8076aec1125125bc6c2b6e00b084a8a5ae8bac1fe0c7209790b24ea7e",
+      "downloaded_bytes": 5146549,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121114_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121115_100000.zip",
+      "oid": "ed99ac02471f47fc04684977d93c6dbe62ee219e428f937d01772d02328e4e1b",
+      "size": 5243158,
+      "downloaded_sha256": "ed99ac02471f47fc04684977d93c6dbe62ee219e428f937d01772d02328e4e1b",
+      "downloaded_bytes": 5243158,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121115_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121116_100000.zip",
+      "oid": "2acd9980922da5a66569b71448e8f51675b312ffd796b1a51387b57e1cb5c35b",
+      "size": 5193808,
+      "downloaded_sha256": "2acd9980922da5a66569b71448e8f51675b312ffd796b1a51387b57e1cb5c35b",
+      "downloaded_bytes": 5193808,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121116_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121117_100000.zip",
+      "oid": "e2ee891c76e83230cd89345f474d239f6145139d50ae92b26dac146173cb0044",
+      "size": 5139659,
+      "downloaded_sha256": "e2ee891c76e83230cd89345f474d239f6145139d50ae92b26dac146173cb0044",
+      "downloaded_bytes": 5139659,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121117_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121118_100000.zip",
+      "oid": "188a6871e08304dd1ea8335266e479f96e0af3dd9c159b5078faf66a8ca1c55e",
+      "size": 4998193,
+      "downloaded_sha256": "188a6871e08304dd1ea8335266e479f96e0af3dd9c159b5078faf66a8ca1c55e",
+      "downloaded_bytes": 4998193,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121118_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_500000.zip",
+      "oid": "d5b5d1226581705bc4bd4bb30a6ba261e029775c00d1fbddc8e647a37a94b939",
+      "size": 23162065,
+      "downloaded_sha256": "d5b5d1226581705bc4bd4bb30a6ba261e029775c00d1fbddc8e647a37a94b939",
+      "downloaded_bytes": 23162065,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121106_500000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121119_100000.zip",
+      "oid": "8f347a5a12606b39a1d5496a507237e5b7de91bc744f05faf4aeea1e5b7fcdd8",
+      "size": 4836705,
+      "downloaded_sha256": "8f347a5a12606b39a1d5496a507237e5b7de91bc744f05faf4aeea1e5b7fcdd8",
+      "downloaded_bytes": 4836705,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121119_100000.zip"
+    },
+    {
+      "path": "results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_500000.zip",
+      "oid": "49157089f6eeab75536c0320d6bf4bb57c0140b9dc9270db84b05e601e812bb2",
+      "size": 22605130,
+      "downloaded_sha256": "49157089f6eeab75536c0320d6bf4bb57c0140b9dc9270db84b05e601e812bb2",
+      "downloaded_bytes": 22605130,
+      "verified": true,
+      "url": "https://media.githubusercontent.com/media/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/549ca6b7e7f91dba44cc1544e73245d79cbc321b/results/diagnostics/pure_random_ga_elitism_revision_20261011/raw_evidence/POST_2026121104_500000.zip"
+    }
+  ],
+  "wall_seconds": 47.20100600000296,
+  "receipt_commit": "This receipt is committed after the verified payload commit; the final remoteHEAD is checked separately."
+}
