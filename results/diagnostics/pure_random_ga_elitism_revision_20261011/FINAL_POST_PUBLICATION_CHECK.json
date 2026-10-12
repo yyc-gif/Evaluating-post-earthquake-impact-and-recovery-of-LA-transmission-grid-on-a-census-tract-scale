@@ -1,0 +1,28 @@
+{
+  "status": "PASS_SCIENTIFIC_STATE_WITH_EXTERNAL_MANUSCRIPT_PATH_EXCEPTION",
+  "scientific_hashes_verified": 950,
+  "original_staged_items": 862,
+  "original_branch_head_index_status_unchanged": true,
+  "previous_source_checkout_states_unchanged": true,
+  "earlier_strict_full_preservation_qa": "PASS before the late external manuscript path disappearance",
+  "current_strict_full_preservation_cannot_pass": true,
+  "external_missing_paths": [
+    {
+      "path": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_manuscript_rebuild\\LA_Grid_Manuscript_Resubmission_Rebuild.docx",
+      "baseline_sha256": "a61472ed6918f505dfd0c26b88ce24f9d184f6dca076194b5032014142acd253"
+    }
+  ],
+  "exact_baseline_manuscript_backup": {
+    "path": "C:\\2025-2026 Fall\\Local_Recovery_Snapshot_20260925\\Private_Backup_Small\\private-la-grid-research\\manuscripts\\LA_Grid_Manuscript_Resubmission_Rebuild.docx",
+    "sha256": "a61472ed6918f505dfd0c26b88ce24f9d184f6dca076194b5032014142acd253"
+  },
+  "backup_not_declared_current_authority": true,
+  "manuscript_restored_or_modified": false,
+  "disappearance_cause": "Unconfirmed; no task action targeted this external directory",
+  "cleanup_scope_receipt": "REDUNDANT_RUNTIME_CLEANUP_QA.json",
+  "manifest_files_verified": 289,
+  "prior_package_payloads_verified": 829,
+  "actual_remote_lfs_receipt": "REMOTE_PUBLICATION_VERIFIED.json",
+  "new_physical_samples": 0,
+  "formal_strategy_modified": false
+}
