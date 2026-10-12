@@ -1,32 +1,33 @@
-# Complete-suite update log
+# Current figure update — 2026-10-12
 
-Scientific and artwork baseline: `031d2c675f8e7d58035d27448be040b809ced086`.
-Reviewed presentation source: `5f099e651de751f91553d2df920dca9cbc02eea6`.
+Artwork source: `9b98e2cd571a43ab632a8d3a68c7cdd03d2d84d4`.
 
-The entire current numbered set is in Main/ and Supplement/ on the revision branch. Exact reviewed PDF/PNG bytes are copied; no scientific result is recalculated.
+All current figures remain in this single directory on the revision branch. Changes in this round:
 
-| Figure | Action | Change | Current PDF |
-|---|---|---|---|
-| Fig01 | UPDATED | Smaller framework markers; clearer Stage 5 outcomes and schematic Q1-Q4 differences. | [Fig01](Main/Fig01.pdf) |
-| Fig02 | RETAINED | Current numbered artwork retained exactly. | [Fig02](Main/Fig02.pdf) |
-| Fig03 | UPDATED | Only the light end of the E sequential palette is strengthened; T80 definition is explicit. | [Fig03](Main/Fig03.pdf) |
-| Fig04 | RETAINED | FIGURE 4: RETAIN CURRENT DESIGN. Distributional gap detail remains in Figure 5. | [Fig04](Main/Fig04.pdf) |
-| Fig05 | UPDATED | Thin outer Q4-area outlines provide geographic context on all three reference-effect maps. | [Fig05](Main/Fig05.pdf) |
-| Fig06 | RETAINED | Current numbered artwork retained exactly. | [Fig06](Main/Fig06.pdf) |
-| Fig07 | UPDATED | C4 cyan is replaced by restrained slate; formal five-class membership is retained. | [Fig07](Main/Fig07.pdf) |
-| FigS01 | RETAINED | Current numbered artwork retained exactly. | [FigS01](Supplement/FigS01.pdf) |
-| FigS03 | UPDATED | Transparent origin/task points; matrix station IDs omitted; directed matrix retained. | [FigS03](Supplement/FigS03.pdf) |
-| FigS04 | RETAINED | Current numbered artwork retained exactly. | [FigS04](Supplement/FigS04.pdf) |
-| FigS05 | RETAINED | Current numbered artwork retained exactly. | [FigS05](Supplement/FigS05.pdf) |
-| FigS06 | UPDATED | B identifies joint removal of both gates; separate threshold panels disclose the available controls. | [FigS06](Supplement/FigS06.pdf) |
-| FigS07 | UPDATED | Four focal and two other policies separated in A/B; keys show only plotted curves; conditional source access explained. | [FigS07](Supplement/FigS07.pdf) |
-| FigS08 | RETAINED | Current numbered artwork retained exactly. | [FigS08](Supplement/FigS08.pdf) |
-| FigS09 | UPDATED | C4 palette synchronized with Figure 7. | [FigS09](Supplement/FigS09.pdf) |
-| FigS10 | UPDATED | Only C population shading changes to neutral gray; exact scale and map geometry retained. | [FigS10](Supplement/FigS10.pdf) |
-| FigS11 | UPDATED | Common signed-log colors expose small effects; actual hour labels and original limits retained across all four scenarios. | [FigS11](Supplement/FigS11.pdf) |
-| FigS12 | RETAINED | Current numbered artwork retained exactly. | [FigS12](Supplement/FigS12.pdf) |
-| FigS13 | RETAINED | Current numbered artwork retained exactly. | [FigS13](Supplement/FigS13.pdf) |
+| Figure | Action | Change |
+|---|---|---|
+| [Fig01](Main/Fig01.pdf) | UPDATED | Stages 1/2 join before a single arrow into Stage 3. |
+| [Fig02](Main/Fig02.pdf) | RETAINED | Exact current artwork retained. |
+| [Fig03](Main/Fig03.pdf) | UPDATED | D median value centered at the upper end of its vertical median line; horizontal key removed. |
+| [Fig04](Main/Fig04.pdf) | RETAINED | Exact current artwork retained. |
+| [Fig05](Main/Fig05.pdf) | UPDATED | E uses a real Q4-outline line sample, farther from the three map headings. |
+| [Fig06](Main/Fig06.pdf) | RETAINED | Exact current artwork retained. |
+| [Fig07](Main/Fig07.pdf) | UPDATED | Only N/A fills in C/D and their key become light gray; formal five clusters remain unchanged. |
+| [FigS01](Supplement/FigS01.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS03](Supplement/FigS03.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS04](Supplement/FigS04.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS05](Supplement/FigS05.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS06](Supplement/FigS06.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS07](Supplement/FigS07.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS08](Supplement/FigS08.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS09](Supplement/FigS09.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS10](Supplement/FigS10.pdf) | UPDATED | C population palette has a darker high end; exact logarithmic scale is preserved. |
+| [FigS11](Supplement/FigS11.pdf) | UPDATED | Four white vertical dividers removed; four-scenario scientific purpose retained. |
+| [FigS12](Supplement/FigS12.pdf) | RETAINED | Exact current artwork retained. |
+| [FigS13](Supplement/FigS13.pdf) | RETAINED | Exact current artwork retained. |
 
-All captions are collected in MANUSCRIPT_FACING_CAPTIONS.md. Figure 4 artwork is unchanged; its clarified reviewed caption is integrated. S05/S11 index text is reconciled with their actual current panels. The complete packet keeps native 185-mm artwork pages and ten-point caption text, without scaling figures down.
+S11 retains four earthquake scenarios. Figure 4 already presents the 2pc50 recovery and the same three service-loss outcomes plus T80. Reducing S11 to 2pc50 would remove its cross-scenario evidence and duplicate that main figure. No merger is justified in this round. Historical cases are not interpreted as a pure hazard-intensity experiment.
 
-Source numerical-invariance and protected-file checks are retained in docs/reproducibility/figure_suite_integration_20261011. The manifest is the payload authority, not a claim that every prior presentation issue was independently solved in this integration. No formal Stage 7 or GA replacement is performed.
+The N/A category means no residential typology, including eight positive-population tracts without housing units; it is not renamed “No residents.” The reference to 7Z is applied to the hotspot map, 7D. Cluster colors and S9 remain identical to the preceding suite.
+
+Captions, 600-dpi exports, publication-size previews, all three review packets and results/figures mirrors are synchronized. All numerical values, model outputs, quartiles, cluster assignments and hotspot ranks remain unchanged. Detailed operator checks and preservation records: docs/reproducibility/figure_details_20261012. Prior changes remain traceable in Git.

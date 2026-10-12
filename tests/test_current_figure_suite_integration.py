@@ -9,7 +9,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITE = ROOT / 'results/figure_review'
-QA = ROOT / 'docs/reproducibility/figure_suite_integration_20261011'
+QA = ROOT / 'docs/reproducibility/figure_details_20261012'
 EXPECTED = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' for i in [1, *range(3, 14)]]
 
 
@@ -94,3 +94,23 @@ def test_original_science_and_staged_work_remain_unchanged():
     assert before['staged_count'] == 862
     assert not audit()['scientific_results_recomputed']
     assert audit()['original_worktree_unchanged']
+
+
+def test_bounded_author_edits_preserve_other_artwork_and_quantitative_scales():
+    a = audit()
+    assert len(a['updated_figures']) == 6
+    assert len(a['retained_figures']) == 13
+    edits = a['operator_edits']
+    assert edits['Main/Fig01']['all_nonconnector_bytes_unchanged']
+    assert edits['Main/Fig03']['vertical_median_line_unchanged']
+    assert not edits['Main/Fig03']['leader_or_horizontal_key_line']
+    assert edits['Main/Fig05']['all_three_effect_maps_and_Q4_geometries_unchanged']
+    e = edits['Main/Fig05']
+    assert e['map_heading_baseline_mm'] - e['legend_baseline_mm'] > 8
+    assert edits['Main/Fig07']['cluster_colors_and_hotspot_scale_unchanged']
+    assert edits['Supplement/FigS10']['population_values_log_normalization_and_geometry_unchanged']
+    assert edits['Supplement/FigS11']['vertical_white_dividers_removed'] == 4
+    assert edits['Supplement/FigS11']['four_scenarios_retained']
+    cap = open(lp(SUITE / 'MANUSCRIPT_FACING_CAPTIONS.md'), encoding='utf-8').read()
+    assert 'The divider separates T80' not in cap
+    assert 'shown in light gray as N/A' in cap
