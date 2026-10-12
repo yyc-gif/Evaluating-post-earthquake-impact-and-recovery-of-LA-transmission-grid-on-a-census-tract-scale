@@ -1,0 +1,305 @@
+{
+  "branch": "analysis/stage7-policy-reference-k-selection-20261012",
+  "verified_payload_commit": "418f791f0f3e97effe4579d7d927c9c7f3422404",
+  "remote_HEAD_at_verification": "418f791f0f3e97effe4579d7d927c9c7f3422404",
+  "files": 49,
+  "total_actual_LFS_bytes": 31495189,
+  "git_text_files_verified": 29,
+  "all_actual_payload_bytes_verified": true,
+  "records": [
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/CLUSTER_ORIGINAL_UNIT_PROFILES.csv",
+      "sha256": "9e3b05d06dade6800b3978079ca2e683077ca6f7bca5348b7a02fa69f5a3e8b7",
+      "bytes": 1653982,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/CLUSTER_POPULATION_AND_FROZEN_GROUP_PROFILES.csv",
+      "sha256": "3283829182b930a65653f77550e29f5855eb3ed7313ca79ae738102d7b18aeb8",
+      "bytes": 78775,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/COHORT_STANDARDIZATION_AND_WEIGHTS.csv",
+      "sha256": "7927236d91aeff63ee6779b8fd3fb64e33184a5e9a8ff5ae7b0117a69718ef72",
+      "bytes": 16822,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/DOMAIN_AND_COORDINATE_CONTRIBUTIONS.csv",
+      "sha256": "8aefe8cf0a5e67610295feb7cfbf9e9f4f3a204a6539a215aa5474305cc6065e",
+      "bytes": 843515,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/ELBOW_INERTIA_BY_K.csv",
+      "sha256": "6c128ad709ff1930163bd0ba7b2bff635d803e08ac5dfe1bb3b593e72435baba",
+      "bytes": 31011,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/ELBOW_SILHOUETTE_PREFERENCE_SUMMARY.csv",
+      "sha256": "1f50b7fc92bbea2bd7f7472e53738cb25fcb57bfbaaf1bb2ddceeaa19974ea54",
+      "bytes": 1695,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/EXCLUDED_ZERO_POPULATION_GEOIDS.csv",
+      "sha256": "9af7ed1ffc91efc209dd3707268fb06c2eb23b01eeaf41075c0fc61b3b5345b0",
+      "bytes": 244,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/FROZEN_POLICY_EVENT_VERIFICATION.csv",
+      "sha256": "b002f4559dd9122b39f820492bfddf0060fb1e665ec4369b2a8556c33b9c0b07",
+      "bytes": 2328106,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/IMPACT_FIRST_TRACT_POLICY_DIFFERENCES.csv",
+      "sha256": "2d206a9b13fc742a95ea67e668587effefbd37af566425f50332267ec9283bc8",
+      "bytes": 2731564,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/INDEPENDENT_DISTANCE_AND_PARTITION_QA.csv",
+      "sha256": "4f8ae52e825329ed797329b98fe268cca870bc78a14a918c99f0c8dc73eb9e55",
+      "bytes": 13983,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/INDEPENDENT_POLICY_ARITHMETIC_QA.csv",
+      "sha256": "db0a883af0c9f93a48e1d54ef8611505588afb5ebfc2e58c17a3974a2780ae90",
+      "bytes": 478,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/INDEPENDENT_SOURCE_HASH_VERIFICATION.csv",
+      "sha256": "198fadd3543c1cfb74897265910c363cc4aaffc8ec467c7ee60cfb1c53993a27",
+      "bytes": 62591,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/INIT_ALGEBRAIC_DISTANCE_DIAGNOSTICS.csv",
+      "sha256": "7807d0d0e98f446a53ab71cfb945b39461f0f1cc557744443992a226adcdd69f",
+      "bytes": 49722,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/INIT_RARE_GROUP_SILHOUETTE_COMPOSITION.csv",
+      "sha256": "b31474ca242ad5828944ba7db87ba0ed644bf40bc7e81067a29399c320cc6f02",
+      "bytes": 43167,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/INIT_SUPPLY_DISTRIBUTION.csv",
+      "sha256": "4cd5f2a499d991f5767b59abd3069878f14ac7c426ed533176c7de12d582c8e5",
+      "bytes": 273,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/K3_K4_K5_MEMBERSHIP_TRANSITIONS.csv",
+      "sha256": "f3249edaa62406cb2b5f6b15a90c0c5dc6ee3a275788668db6de5df4ed0f0f93",
+      "bytes": 7993,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/K_SELECTION_EVIDENCE_MATRIX.csv",
+      "sha256": "2e3b9945c1629db2bfd2b13987fe53d17934b9fbd96da55d8de34617498b4ef9",
+      "bytes": 64444,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/MATCHED_CLASS_TRANSITIONS.csv",
+      "sha256": "632ebbbcac39900d0617020968df39b664da4ed62461053b669b7422422e94f4",
+      "bytes": 57770,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/PER_CLUSTER_SILHOUETTE_AND_SIZE.csv",
+      "sha256": "ea3564d09126724965a8cb4f0bff9a58e8280952cbf8d3eca14560365817881a",
+      "bytes": 1229377,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/POLICY_CONDITIONAL_MEMBERSHIP_COMPARISONS.csv",
+      "sha256": "2c20a9ddc2c4b1fd1ee4cfc9dbd221d0bed0e8017071bb3a5ee8e621c2076717",
+      "bytes": 345866,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/POLICY_REFERENCE_DISTRIBUTIONS.csv",
+      "sha256": "e9cb41ad4a1d1f7525cc7ab1c34aa3434d368dfbbc71247b0b118983a17c1120",
+      "bytes": 3039,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/POLICY_REFERENCE_PAIRWISE_COMPARISONS.csv",
+      "sha256": "83044f581461eb0125ca6a250c61850469f9605cad423204c34f2c61683b328e",
+      "bytes": 6355,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/POLICY_REFERENCE_TRACT_METRICS.csv",
+      "sha256": "b109a72a7370424d194c3ef0d90dd39a705dd8ab293bbc6737ccf5543404bf2d",
+      "bytes": 1519409,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/PRIOR_PACKAGE_IMMUTABILITY.csv",
+      "sha256": "57edcab7607c0f03bc4d610c173666c1c5b0f2b96ce9f6987c761e7ba8c0e523",
+      "bytes": 33841,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/PRIOR_REGISTERED_FIT_RECONSTRUCTION_QA.csv",
+      "sha256": "51013df37d04c040ebf77d69ea1dfd55fd9d8a61870140e8fbc4030ec60a9bfc",
+      "bytes": 824,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/REGISTERED_FIT_ARRAYS.npz",
+      "sha256": "1e0e354ec7ad5a6fae8555468d618492701abcbbc1d484b276461ad2ab8a0d1a",
+      "bytes": 9302500,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/RQ2_WITHIN_POLICY_REDUNDANCY.csv",
+      "sha256": "62bfdc08b4ce68dde3d1c3d0f49dbd0af037ae3d207b8c34e9c8692832e4f86d",
+      "bytes": 508,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/SEED_STABILITY.csv",
+      "sha256": "1b9610c734982a84507f5f9d6e1a6028c3d948c68fe3106af512d40da810760e",
+      "bytes": 93041,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/SILHOUETTE_BY_K_AND_SEED.csv",
+      "sha256": "58d051b75c5f11b3f2a50bcf334084840b8a8cedb4f14e066f0b97850bb3ad7f",
+      "bytes": 177839,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/SOURCE_HASH_VERIFICATION.csv",
+      "sha256": "ef4380d981ed959df3d8992881a1b98f35145b6ae6f3195e187578ac21b10040",
+      "bytes": 6963,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/SOURCE_HASH_VERIFICATION_FITS.csv",
+      "sha256": "e134482c4671fb4e510a679021c5578cf24678873c0a3cf4a78e371302f16c4c",
+      "bytes": 1007,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/SPATIAL_LEAVE_OUT_STABILITY.csv",
+      "sha256": "f40ec23440da1a83622fd189e10e5bc7a43f48152882e66fceb0b3b12b57dc2d",
+      "bytes": 79177,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/SPATIAL_SUPPORT_AND_BLOCKS.csv",
+      "sha256": "5c9fc6deba73ad13a154b35a7308e82a45c572004d79a414ff46a6188c0ff08d",
+      "bytes": 206066,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/VERIFIED_FIXED_FEATURES_2315.csv",
+      "sha256": "cfe1d83d5e16c167b1b513dee4882d60a2a1ad3128a55e413b498e404c210356",
+      "bytes": 548705,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/VERIFIED_WEIGHTED_MATRICES.npz",
+      "sha256": "dc861a8c1bc69daea73d0f49afadd15524724b7d480a236520182684e2d34112",
+      "bytes": 2280851,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/CLUSTER_SIZE_AND_RARE_GROUPS.pdf",
+      "sha256": "9000023c13a459e7f063f566a44f55bdec99083d5aa27b7d7da264867b94cfcc",
+      "bytes": 55712,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/CLUSTER_SIZE_AND_RARE_GROUPS.png",
+      "sha256": "4adcbf027bc7b28b93a528713d322ce84f132fc8e48abbadfe9bd600565982ef",
+      "bytes": 752437,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/ELBOW_CURVES.pdf",
+      "sha256": "90cffa657b71467cf65a127309b5974e4ebcf6593c48d3d94db458d14fe53687",
+      "bytes": 33284,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/ELBOW_CURVES.png",
+      "sha256": "498d3078818c47af57b640c159ec73e44cbe3e63f9174155140fca050011bbbf",
+      "bytes": 1077049,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/K3_K4_K5_ORIGINAL_UNIT_PROFILES.pdf",
+      "sha256": "007e811576e24c24c888328d08cdc311b2cdc0d79be185bc1eeaf826b3d73a11",
+      "bytes": 56630,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/K3_K4_K5_ORIGINAL_UNIT_PROFILES_k3.png",
+      "sha256": "0bdf90d0dcf37f3f75eb053ae2b3b6d1e80bd6b9d4d6846d3d9bf5132de27d2f",
+      "bytes": 565099,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/K3_K4_K5_ORIGINAL_UNIT_PROFILES_k4.png",
+      "sha256": "9679ffb669269e7ce90d383e28e96ce93f8346490e976859dc95dcaf16a408a5",
+      "bytes": 587327,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/K3_K4_K5_ORIGINAL_UNIT_PROFILES_k5.png",
+      "sha256": "595bbccbaf302d4cf6636b224fc057840170dd50b76203ad6ffe172031f01363",
+      "bytes": 616855,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/POLICY_MEMBERSHIP_AGREEMENT.pdf",
+      "sha256": "9e770893eab4c0600bf7b97394e95587433d22a9627e54c212a2d93e58659364",
+      "bytes": 25181,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/POLICY_MEMBERSHIP_AGREEMENT.png",
+      "sha256": "2f6dcf4bd998811ad3c2f6be140024d06fff8835dc91faf5cf1a2690a2323999",
+      "bytes": 949722,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/SILHOUETTE_VERSUS_K.pdf",
+      "sha256": "c2fc35c8bf7feb84c2f22b95538535a93b6c99f8f803493a6c45895eb87aeeb5",
+      "bytes": 31511,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/SILHOUETTE_VERSUS_K.png",
+      "sha256": "cef7c1fcb5614ce74f4b450a765645dc4c7780f6ab9c62534e1f3c1778de9b90",
+      "bytes": 1370717,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/TRACT_POLICY_DEFICIT_DIFFERENCES.pdf",
+      "sha256": "0704209a330ac470fcd74c6bf837c2d4338cf3d856393692c1c7ad62e41bc6c8",
+      "bytes": 279502,
+      "actual_payload_bytes_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_policy_reference_and_k_selection_20261012/figures/TRACT_POLICY_DEFICIT_DIFFERENCES.png",
+      "sha256": "4f6547f73aea6ec8baefae96e75ef6d8251707bab32d623c28f4abf7eae42e5f",
+      "bytes": 1272660,
+      "actual_payload_bytes_verified": true
+    }
+  ]
+}
