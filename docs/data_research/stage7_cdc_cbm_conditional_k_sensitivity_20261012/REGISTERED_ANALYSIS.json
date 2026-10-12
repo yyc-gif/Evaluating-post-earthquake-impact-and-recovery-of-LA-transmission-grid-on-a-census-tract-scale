@@ -1,0 +1,68 @@
+{
+  "label": "EXPLORATORY AUTHOR REVIEW \u2014 NOT FORMAL STAGE 7",
+  "authority": "896d75d527325d8ea3ac408357cf4be7747e441e",
+  "authorization": "Published-as-is exploratory fitting expressly authorized; formal source gate remains unresolved",
+  "cohort": "2299 frozen positive-population tracts; 16 zero-population exclusions; 8 zero-housing positives retained",
+  "frozen": [
+    "2pc50",
+    "C57_D1",
+    "M1_UTILITY_003",
+    "G1_BASELINE_050",
+    "480 hours",
+    "1000 frozen evaluations"
+  ],
+  "specifications": [
+    "P2",
+    "H1",
+    "H2"
+  ],
+  "K": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "kmeans": {
+    "init": "k-means++",
+    "n_init": 50,
+    "algorithm": "lloyd",
+    "max_iter": 500,
+    "tol": 0.0001
+  },
+  "standardization": "Cohort mean and population SD, then sqrt squared-distance budgets",
+  "P2_reuse": "Require exact weighted matrix, scaler and IDs; recompute inertia/silhouettes and compare old labels",
+  "elbow": "Endpoint chord K1-6, K1-7, K1-8; smooth bends not automatic selections",
+  "component_removals": {
+    "no_riverine": [
+      "RFLD"
+    ],
+    "no_burn": [
+      "BURN"
+    ],
+    "no_heat": [
+      "NEHD"
+    ],
+    "no_wildfire": [
+      "SMOKE",
+      "BURN"
+    ]
+  },
+  "national_universe": "Same 83509 complete nationally eligible CDC CBM records; min-rank/(N-1)",
+  "component_fit_range": "K3/4/5 plus endpoint-chord and maximum-mean-silhouette Ks of H1/H2; seeds42-46, not unrestricted search",
+  "spatial": "Four frozen median-split UTM quadrants, leave one out; training-only scaling; seed42, K2-8",
+  "policy": "Five LOO sets and five-plus-Random; equal descriptive policy weights; seed42 K2-8; cohort and fixed-main5 scaling",
+  "perturbation_seed_limit": "Component-removal uses all five seeds; policy/geographic comparisons seed42, as bounded prior perturbation protocol",
+  "Init_ablation": "H1/H2 K3/4/5 seed42; redistribute RQ1 to Impact/HHI; algebra separately removes Init at fixed remaining weights",
+  "limitations": "No fabricated flags or updated CDC values; no physical or formal Stage7 change; no provider contact"
+}

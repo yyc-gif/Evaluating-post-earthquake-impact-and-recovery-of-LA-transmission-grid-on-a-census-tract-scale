@@ -1,0 +1,6 @@
+*.npz filter=lfs diff=lfs merge=lfs -text
+*.py text eol=lf
+*.md -text
+*.json -text
+.gitattributes text eol=lf
+.gitignore text eol=lf

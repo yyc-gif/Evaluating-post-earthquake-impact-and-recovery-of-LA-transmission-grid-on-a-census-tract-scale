@@ -1,0 +1,31 @@
+{
+  "label": "EXPLORATORY AUTHOR REVIEW \u2014 NOT FORMAL STAGE 7",
+  "reason": "Independent exact-decimal audit found artificial sub-ULP ties in unrounded float sums",
+  "published_source_unchanged": true,
+  "main_and_policy_and_spatial_fits_unchanged": true,
+  "correction": "Sum published four-decimal EPLs as integer ticks, then min rank/(N-1) on the same83509 records",
+  "fitted_scope": "Only existing registered component K3/4/5 seeds42-46; no new search or weights",
+  "before_rank_sha256": "ea1c65001cc37d46975548f28c143e8ba3dfc07d4500058471f179c2086a851c",
+  "differences": [
+    {
+      "diagnostic": "no_riverine",
+      "max_tie_correction": 0.00043109642189975705,
+      "changed_rank_count": 1178
+    },
+    {
+      "diagnostic": "no_burn",
+      "max_tie_correction": 0.0003352972170330981,
+      "changed_rank_count": 1064
+    },
+    {
+      "diagnostic": "no_heat",
+      "max_tie_correction": 0.0005149207261579691,
+      "changed_rank_count": 408
+    },
+    {
+      "diagnostic": "no_wildfire",
+      "max_tie_correction": 0.000562820328591257,
+      "changed_rank_count": 639
+    }
+  ]
+}

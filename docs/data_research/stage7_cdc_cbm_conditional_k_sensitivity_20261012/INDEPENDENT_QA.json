@@ -1,0 +1,133 @@
+{
+  "label": "EXPLORATORY AUTHOR REVIEW \u2014 NOT FORMAL STAGE 7",
+  "status": "PASS_WITH_UNRESOLVED_CDC_SOURCE_QUALITY",
+  "authority": "896d75d527325d8ea3ac408357cf4be7747e441e",
+  "cohort": 2299,
+  "domain": 2315,
+  "national_valid": 83509,
+  "independent_Decimal_sum_error": 0,
+  "official_rank_rounding_error": 4.999760501989137e-05,
+  "exact_component_rank_max_error": 0.0,
+  "saved_fits": 492,
+  "full_cohort_silhouette_independent_seed42_fits": 297,
+  "maximum_independent_silhouette_error": 1.6653345369377348e-15,
+  "maximum_inertia_error": 6.821210263296962e-13,
+  "P2_labels_unchanged": 124,
+  "exact_repeated_fits": [
+    "H1/K3/seed42",
+    "H2/K5/seed42"
+  ],
+  "protected_files_unchanged": 950,
+  "prior_diagnostic_git_blobs_unchanged": 1814,
+  "original_dirty_and_staged_state_unchanged": true,
+  "physical_models_rerun": false,
+  "formal_promotion": false,
+  "source_quality_gate_passed": false,
+  "graphics": [
+    {
+      "file": "01_Official_CBM_and_domains.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        4320
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    },
+    {
+      "file": "02_National_component_removal_ranks.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        3600
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    },
+    {
+      "file": "03_Component_influence_and_clustering.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        2940
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    },
+    {
+      "file": "04_Elbow_and_silhouette.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        2640
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    },
+    {
+      "file": "05_Model_specific_membership_maps.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        4080
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    },
+    {
+      "file": "06_Original_unit_research_question_profiles.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        2880
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    },
+    {
+      "file": "07_Policy_and_geographic_robustness.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        2760
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    },
+    {
+      "file": "08_Reassignment_population_and_rare_group.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "all_text_within_page": true,
+      "pixels": [
+        4320,
+        3360
+      ],
+      "dpi": 600,
+      "visual_review": "Every native publication-size render inspected in task"
+    }
+  ],
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "geopandas": "1.1.1",
+    "matplotlib": "3.9.2",
+    "PyMuPDF": "1.28.0"
+  }
+}

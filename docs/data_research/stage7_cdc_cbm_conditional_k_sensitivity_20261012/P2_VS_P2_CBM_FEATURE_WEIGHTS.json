@@ -1,0 +1,99 @@
+{
+  "label": "EXPLORATORY AUTHOR REVIEW \u2014 NOT FORMAL STAGE 7",
+  "specifications": {
+    "P2": {
+      "coordinates": [
+        "Init_Supply",
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_Unconstrained",
+        "MeanDelta",
+        "SOVI_SCORE",
+        "log1p_Population"
+      ],
+      "squared_distance_budgets": [
+        0.1111111111111111,
+        0.1111111111111111,
+        0.1111111111111111,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+      ],
+      "coordinate_multipliers": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.408248290463863,
+        0.408248290463863,
+        0.408248290463863,
+        0.408248290463863
+      ]
+    },
+    "H1": {
+      "coordinates": [
+        "Init_Supply",
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_Unconstrained",
+        "MeanDelta",
+        "SOVI_SCORE",
+        "log1p_Population",
+        "RPL_CBM"
+      ],
+      "squared_distance_budgets": [
+        0.1111111111111111,
+        0.1111111111111111,
+        0.1111111111111111,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.1111111111111111,
+        0.1111111111111111,
+        0.1111111111111111
+      ],
+      "coordinate_multipliers": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.408248290463863,
+        0.408248290463863,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    "H2": {
+      "coordinates": [
+        "Init_Supply",
+        "Grid_Impact",
+        "Redundancy_HHI",
+        "B_Unconstrained",
+        "MeanDelta",
+        "SOVI_SCORE",
+        "log1p_Population",
+        "RPL_CBM"
+      ],
+      "squared_distance_budgets": [
+        0.1111111111111111,
+        0.1111111111111111,
+        0.1111111111111111,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.08333333333333333,
+        0.08333333333333333
+      ],
+      "coordinate_multipliers": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.408248290463863,
+        0.408248290463863,
+        0.408248290463863,
+        0.28867513459481287,
+        0.28867513459481287
+      ]
+    }
+  },
+  "notice": "H1/H2 add CBM and reallocate RQ3 budgets; weights are not optimized"
+}
