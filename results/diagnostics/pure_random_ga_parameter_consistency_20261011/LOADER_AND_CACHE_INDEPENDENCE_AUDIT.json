@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "planning_loader_source_sha256": "404af1f0bffc148bfe8feb0a8bde799d5598eb3487757390652aa4ed5921a3ac",
+  "exact_kernel_source_sha256": "be9a00639ce46b99b17a2cabfce3bc57d9b2d354bf7a50c0ce03639c9d0d78de",
+  "metadata_registry_keys_read": [
+    "H_plan_hr",
+    "planning_sample_hashes"
+  ],
+  "loader_reads_registry_that_also_contains_a_prior_sequence": true,
+  "prior_sequence_field_not_accessed_by_loader": true,
+  "impact_comparator_constructed_for_identity_but_not_passed_to_new_search": true,
+  "loader_objective_calls": 0,
+  "hidden_kernel_fitness_cache": false,
+  "numba_cache": "Compiled machine-code cache only; every private-search distinct key invokes unchanged64-state objective",
+  "interpretation": "Independence is verified chromosome/score dataflow, not a claim that legacy metadata/comparator files are never read"
+}

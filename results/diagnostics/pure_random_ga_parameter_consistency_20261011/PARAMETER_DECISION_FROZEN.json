@@ -1,0 +1,30 @@
+{
+  "recommended_development_configuration": "REF",
+  "config": {
+    "population": 100,
+    "crossover": 0.8,
+    "mutation": 0.1,
+    "tournament": 3,
+    "elites": 1,
+    "initialization": "paired_random_pool",
+    "mutation_operator": "swap",
+    "crossover_operator": "ordered",
+    "adaptive": false,
+    "restart": false,
+    "diversity_replacement": false
+  },
+  "frozen_validated_method_changed": false,
+  "evidence_source_sha256": {
+    "PARAMETER_SCREEN_RESULTS.csv": "b6c768428aefec1e3b617393c97391f5f511198feabcf93ed981d8567a8e914e",
+    "PARAMETER_CONFIRMATION_RESULTS.csv": "941db2f4a35e5f07a5187c775ab8743b5afb689f7fa4d7b4dddd14326320d27b",
+    "PARAMETER_GAIN_CONFIRMATION_RESULTS.csv": "7142806b2d9dbbdc1eab6ef8916a91be8dbde6c010165482c522d6fa5ceaca0c",
+    "PAIRED_PARAMETER_EFFECTS.csv": "dc385b0c24c6cb6f9ddd7a4774d04836db049c91a65c2ac9cd557bed7f5517f2",
+    "GAIN_CONFIRMATION_DESIGN.json": "31d552cf0c02cfa9dde18a75a4a0a7622366a5e006d0d81664f239b64001d0e2"
+  },
+  "validation_outcomes_loaded": false,
+  "no_new_candidate_selection": true,
+  "better_confirmation": [],
+  "original_three_contrast_family_preserved": true,
+  "post_screen_amendment_disclosed": true,
+  "simultaneous_family_size": 6
+}

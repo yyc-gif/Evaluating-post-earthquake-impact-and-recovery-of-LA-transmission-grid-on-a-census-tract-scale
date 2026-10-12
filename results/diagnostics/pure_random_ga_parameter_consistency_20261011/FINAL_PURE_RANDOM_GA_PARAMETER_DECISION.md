@@ -1,0 +1,16 @@
+# Final pure-random GA parameter decision
+
+Preferred development configuration: **REF**, {'population': 100, 'crossover': 0.8, 'mutation': 0.1, 'tournament': 3, 'elites': 1, 'initialization': 'paired_random_pool', 'mutation_operator': 'swap', 'crossover_operator': 'ordered', 'adaptive': False, 'restart': False, 'diversity_replacement': False}. The already validated reference and its frozen seed2026103108 sequence remain unchanged. No diagnostic final sequence is promoted or selected.
+
+The original preregistration selected the3 largest absolute screen effects. It selected only slower settings. A disclosed post-screen amendment, before inspecting100k confirmation or physical-validation outcomes, separately registered the3 screen alternatives whose12-family simultaneous interval was entirely negative. REF was reused once across the same20 independent confirmation seeds. All6 final-endpoint contrasts are adjusted together; the original3-family intervals remain in the CSV, not overwritten.
+
+- CX60 minus REF: mean +0.001035662h, median +0.001408585h; simultaneous95 [-0.001291762, +0.003363085]h; wins/losses/ties 8/12/0; median wall ratio 1.220, attempt ratio 1.265.
+- CX95 minus REF: mean +0.001458859h, median +0.001832828h; simultaneous95 [-0.001234039, +0.004151757]h; wins/losses/ties 7/13/0; median wall ratio 0.944, attempt ratio 0.783.
+- P250 minus REF: mean +0.001463009h, median +0.002089929h; simultaneous95 [-0.000656354, +0.003582372]h; wins/losses/ties 5/15/0; median wall ratio 0.877, attempt ratio 0.704.
+- P50 minus REF: mean +0.000657126h, median +0.000608774h; simultaneous95 [-0.001624560, +0.002938812]h; wins/losses/ties 8/12/0; median wall ratio 1.611, attempt ratio 1.818.
+- T2 minus REF: mean +0.681098912h, median +0.701649026h; simultaneous95 [+0.572620218, +0.789577607]h; wins/losses/ties 0/20/0; median wall ratio 0.766, attempt ratio 0.324.
+- T5 minus REF: mean +0.000786871h, median +0.000227645h; simultaneous95 [-0.000813701, +0.002387442]h; wins/losses/ties 8/12/0; median wall ratio 1.225, attempt ratio 1.097.
+
+Optimizer seed is the replication unit; genomes/generations/checkpoints are not replicates. Screen and confirmation seeds do not overlap. Same-size settings share initial pools/RNG, followed by naturally diverging operator streams. P50/P100/P250 share random-pool prefixes; changes also affect initial minima, RNG length, duplicate rates and completed generations. No equivalence margin or unique numerical optimum is claimed. Parameter interactions were not estimated here; one-factor contrasts are conditional on the reference background.
+
+Any gain confirmed here is a separate planning-development finding, not a replacement for the already validated algorithm/candidate or a transfer of its physical validation. Enabled adaptation/restart/crowding and alternative crossovers were not needed for this bounded test; disabled status does not prove they are inferior. The original90% adoption rule failed; pure random was a disclosed post-data method choice. Historical100k strict proximity10/20, ten continued prefixes and their250k/500k plateau are retained, not reinterpreted as robust repeated-block success or global optimality. No new physical realization or high-budget continuation was generated.

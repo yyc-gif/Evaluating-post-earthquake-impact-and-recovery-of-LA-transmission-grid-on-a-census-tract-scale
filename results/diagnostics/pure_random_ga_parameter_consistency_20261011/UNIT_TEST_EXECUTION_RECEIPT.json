@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "tests_passed": 6,
+  "reported_wall_seconds": 3.74,
+  "reproducible_command": "C:\\Users\\yinch\\anaconda3\\python.exe -m pytest results/diagnostics/pure_random_ga_parameter_consistency_20261011/test_audit.py -q --basetemp=results/diagnostics/pure_random_ga_parameter_consistency_20261011/runtime/pytest",
+  "test_scope": ["Exact uniform-generator pool and same-seed prefix parity", "OX segment and cyclic second-parent order", "Swap changes exactly two positions", "Elites zero retains passive best observed and actual distinct budget", "First exact fitness tie retained", "Simultaneous intervals and optimizer-seed replication unit"],
+  "physical_samples_generated": 0,
+  "synthetic_objective_calls": 1333,
+  "receipt_basis": "Actual successful six-test execution earlier in this audit, not a new physical computation"
+}
