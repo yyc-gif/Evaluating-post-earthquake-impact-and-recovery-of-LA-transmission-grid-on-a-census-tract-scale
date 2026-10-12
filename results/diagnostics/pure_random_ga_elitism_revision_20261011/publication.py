@@ -18,6 +18,13 @@ def manifest():
 
 
 def remote():
+    head=s.git('rev-parse','HEAD').decode().strip()
+    prefix=str(s.OUT.relative_to(s.ROOT)).replace('\\','/')
+    tree=set(s.git('ls-tree','-r','--name-only',head,'--',prefix).decode().splitlines())
+    manifest=s.a.read(s.OUT/'OUTPUT_HASH_MANIFEST.json')
+    for name,row in manifest['files'].items():
+        assert prefix+'/'+name in tree,'Manifest payload omitted from commit: '+name
+        assert s.a.sha(s.OUT/name)==row['sha256'],name
     path=s.BASE/'results/diagnostics/ga_random_initialization_isolation_20261011/publish.py'
     m=s.module('existing_remote_payload_verifier',path)
     m.s=SimpleNamespace(ROOT=s.ROOT,OUT=s.OUT,BRANCH=s.BRANCH,lp=s.a.lp,digest=s.a.sha,

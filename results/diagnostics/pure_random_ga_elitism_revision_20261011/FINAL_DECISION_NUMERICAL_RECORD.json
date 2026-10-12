@@ -1,0 +1,14 @@
+{
+  "recommendation": "ADOPT POST-EVALUATION WORST-OFFSPRING ELITISM",
+  "adverse_adjusted_endpoint": false,
+  "median_wall_ratios": {
+    "100000": 0.9824978329701065,
+    "250000": 0.9636610200506355,
+    "500000": 0.9166253787323072
+  },
+  "registered_rule": "ADOPT POST as engineering design if no tested endpoint has a multiplicity-adjusted interval wholly adverse and median paired wall ratio is <=1.5 at every tested endpoint; otherwise RETAIN LEGACY. The1.5 cap is a prospective operational-cost safeguard, not physical equivalence. Statistical superiority requires an adjusted interval entirely below zero; unresolved intervals do not prove equivalence.",
+  "empirical_superiority_at_budgets": [],
+  "no_equivalence_claim": true,
+  "candidate_sha256": "46732e49c3afa0827cdf37543882b3ec3f06ab0a3f600eedd92162733fa5ee82",
+  "formal_candidate_replaced": false
+}

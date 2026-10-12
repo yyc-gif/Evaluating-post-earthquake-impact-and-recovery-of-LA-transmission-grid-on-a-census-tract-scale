@@ -1,0 +1,23 @@
+{
+  "optimizer_distinct_objective_calls": 12000000,
+  "optimizer_fixed_planning_state_kernels": 768000000,
+  "separate_discard_audit_objective_calls": 54423,
+  "separate_discard_audit_state_kernels": 3483072,
+  "aborted_discard_audit_calls_lower_bound": 27100,
+  "aborted_discard_audit_calls_upper_bound": 49861,
+  "aborted_audit_exact_call_count_available": false,
+  "native_production_state_evaluations": 576,
+  "compiled_candidate_crosscheck_state_evaluations": 576,
+  "cached_legacy_replay_logical_lookups": 100100,
+  "cached_replay_new_physical_objective_calls": 0,
+  "new_physical_samples": 0,
+  "optimizer_seed_pairs": 20,
+  "search_trajectories": 40,
+  "continued_trajectories": 20,
+  "batch_wall_seconds": {
+    "100000": 986.1534558999992,
+    "250000": 614.7216804999989,
+    "500000": 1155.7334144999986
+  },
+  "incremental_cost_rule": "Sum incremental_distinct, not cumulative100k/250k/500k prefixes. Audit and independent production checks are separate from search budgets. Summed run wall times are not CPU times."
+}

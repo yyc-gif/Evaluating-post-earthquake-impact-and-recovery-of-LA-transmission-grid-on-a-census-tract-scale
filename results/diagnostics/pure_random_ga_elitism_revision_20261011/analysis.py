@@ -5,7 +5,10 @@ import gzip
 import hashlib
 import io
 import json
+import os
 import pickle
+import platform
+import sys
 import time
 import zipfile
 import study as s
@@ -18,7 +21,13 @@ def tables():
     assert budgets and budgets[0]==100000
     if s.a.read(s.OUT/'CONTINUATION_DECISION.json')['execute']:
         assert budgets==[100000,250000,500000]
-    return pd.concat([s.a.frame(s.OUT/f'RUN_RESULTS_{b}.csv') for b in budgets],ignore_index=True)
+    frames=[pd.read_csv(s.a.payload(s.OUT/f'RUN_RESULTS_{b}.csv'),float_precision='round_trip') for b in budgets]
+    result=pd.concat(frames,ignore_index=True)
+    for row in result.to_dict('records'):
+        original=s.a.read(s.OUT/f"runs/{row['mode']}_{int(row['seed'])}_{int(row['budget'])}.json")
+        assert row['final_loss_hr']==original['final_loss_hr']
+        assert row['sequence_sha256']==original['sequence_sha256']
+    return result
 
 
 def checkpoint(mode,seed,budget):
@@ -68,7 +77,8 @@ def summarize():
         cost.append(dict(**row,offspring_duplicate_fraction=1-st['offspring_new_distinct']/st['offspring_attempts'],
             terminal_phase=st['phase'],scored_children_in_terminal_generation=st['next_index'],
             final_population_metrics_scope='Last fully scored and finalized generation; incomplete proposal not treated as survivor population',
-            scoring_state_kernels=64*budget,initialization_distinct=n,
+            cumulative_scoring_state_kernels=64*budget,
+            incremental_scoring_state_kernels=64*row['incremental_distinct'],initialization_distinct=n,
             finalization_pending=not st['elitism_finalized']))
         events=st['elite_events']
         elites.append(dict(mode=mode,seed=seed,budget=budget,completed_generations=st['completed_generations'],
@@ -117,34 +127,74 @@ def summarize():
 def shadow():
     df=tables();kernel,_,_=s.a.load_study().load_model()
     observed={};events=[];new_calls=0;tick=time.perf_counter();scoring_seconds=0.
+    raw={};histories={};completed_counts={};needed=set()
+    for seed,h in df[df['mode']=='LEGACY'].groupby('seed'):
+        c=checkpoint('LEGACY',int(seed),int(h.budget.max()))
+        raw[int(seed)]=c['state']['elite_events']
+        histories[int(seed)]={row['generation']:{name:row[name] for name in ('population_best_service_loss_hr','best_observed_service_loss_hr')} for row in c['history']}
+        completed_counts[int(seed)]=c['state']['completed_generations']
+        needed.update(ev['discarded_key'] for ev in raw[int(seed)])
+        assert all(len(ev['discarded_key'])==len(set(ev['discarded_key']))==92 for ev in raw[int(seed)])
+        del c
+    # Query only discarded keys, instead of retaining all12million search scores.
     for mode in ('LEGACY','POST'):
         for seed,h in df[df['mode']==mode].groupby('seed'):
             budget=int(h.budget.max());c=checkpoint(mode,int(seed),budget)
-            for key,value in c['cache'].items():
-                if key in observed:assert observed[key]==value
-                else:observed[key]=value
+            for key in needed:
+                if key in c['cache']:
+                    value=c['cache'][key]
+                    if key in observed:assert observed[key]==value
+                    else:observed[key]=value
+            del c
     # This independent map is not the optimizer cache and is never re-inserted.
     score_store={};counts=[];post_detail=[]
+    ledger=s.a.lp(s.OUT/'SEPARATE_AUDIT_SCORE_LEDGER.jsonl')
+    if ledger.exists():
+        for line in ledger.read_text().splitlines():
+            row=json.loads(line);score_store[bytes.fromhex(row['key_hex'])]=row['fitness']
+        new_calls=len(score_store);scoring_seconds=sum(json.loads(line)['objective_seconds'] for line in ledger.read_text().splitlines())
+    ledger.parent.mkdir(parents=True,exist_ok=True)
+    stream=ledger.open('a',encoding='utf-8',newline='\n')
     for seed,h in df[df['mode']=='LEGACY'].groupby('seed'):
-        maxbudget=int(h.budget.max());c=checkpoint('LEGACY',int(seed),maxbudget)
-        for ev in c['state']['elite_events']:
+        maxbudget=int(h.budget.max());generation_history=histories[int(seed)]
+        for ev in raw[int(seed)]:
             key=ev['discarded_key']
             if key in observed:fit=observed[key];origin='observed_in_completed_search_cache'
             elif key in score_store:fit=score_store[key];origin='separate_audit_reuse'
             else:
                 seq=tuple(kernel.ids[i] for i in key);start=time.perf_counter()
-                fit=float(kernel.score(seq));scoring_seconds+=time.perf_counter()-start
+                fit=float(kernel.score(seq));seconds=time.perf_counter()-start;scoring_seconds+=seconds
                 score_store[key]=fit;new_calls+=1;origin='new_separate_audit_score'
+                stream.write(json.dumps(dict(key_hex=key.hex(),fitness=fit,objective_seconds=seconds))+'\n');stream.flush()
+                if new_calls%1000==0:
+                    import psutil
+                    s.save('AUDIT_PROGRESS.json',dict(completed_distinct_audit_calls=new_calls,current_seed=int(seed),
+                        rss_bytes=psutil.Process().memory_info().rss,process_id=os.getpid()))
             previous=ev['previous_fitness'];proposal=ev.get('discarded_fitness_at_proposal')
-            if proposal is not None:assert proposal==fit
+            if proposal is not None:
+                assert proposal==fit
+                assert fit<=previous,'A cached stronger chromosome would contradict frozen E1 score preservation'
+            completed=generation_history.get(ev['generation'])
             events.append(dict(mode='LEGACY',seed=int(seed),generation=ev['generation'],
                 maximum_archived_budget=maxbudget,previous_elite_loss_hr=-previous,discarded_child_loss_hr=-fit,
                 child_minus_previous_loss_hr=previous-fit,child_strictly_better=fit>previous,
                 known_at_proposal=ev['discarded_already_cached'],score_origin=origin,
+                would_beat_scored_generation_best=fit>-completed['population_best_service_loss_hr'] if completed is not None else None,
+                would_beat_best_observed_after_generation=fit>-completed['best_observed_service_loss_hr'] if completed is not None else None,
                 child_key_hex=key.hex(),child_sequence_sha256=s.a.identity(tuple(kernel.ids[i] for i in key)),
-                complete_at_terminal=ev['generation']<=c['state']['completed_generations'],
+                complete_at_terminal=ev['generation']<=completed_counts[int(seed)],
                 measurement_scope='Post-search observation, never optimizer feedback'))
         print('SHADOW_COMPLETE',seed,len(events),new_calls,flush=True)
+    stream.close()
+    s.save('AUDIT_EXECUTION_FAILURES.json',dict(failed_attempts=[dict(phase='First post-search discard audit',exit_code=1,
+        traceback_available=False,last_confirmed_seed=2026121105,last_confirmed_separate_calls=27100,
+        separate_calls_lower_bound=27100,separate_calls_upper_bound=27100+len(raw[2026121106]),
+        exact_failed_attempt_call_count='Unavailable after uninstrumented host termination; bounds retained, not counted as zero',
+        diagnosis='Cause not confirmed; first attempt retained all search-cache keys, retry retained discarded keys only. Both sandboxed attempts terminated without a traceback; persistent retry scores are reused, with progress/resource telemetry and unsandboxed execution for completion.',
+        completed_GA_searches_repeated=False,physical_samples_generated=0)],
+        additional_failed_attempts=[dict(phase='Memory-bounded sandboxed audit',exit_code=1,traceback_available=False,
+            separate_scores_persisted_and_reused=True,last_reported_completed_seed=2026121103,searches_repeated=False)],
+        retry='Memory-bounded discarded-key query and persistent per-score ledger',completed_optimizer_accounting_unaffected=True))
     s.csv('OFFSPRING_DISCARD_EVENT_DETAIL.csv',events)
     evdf=pd.DataFrame(events)
     for row in df.to_dict('records'):
@@ -156,6 +206,7 @@ def shadow():
             counts.append(dict(mode=mode,seed=seed,budget=budget,overwritten_children=len(e),
                 overwritten_better_than_previous=better,fraction_better_than_previous=better/len(e),
                 overwritten_known_at_proposal=known,unscored_at_proposal=len(e)-known,
+                would_beat_scored_completed_generation_best=int(e.loc[e.generation<=st['completed_generations'],'would_beat_scored_generation_best'].fillna(False).sum()),
                 overwritten_best_improvement_hr=float((-e.child_minus_previous_loss_hr).max()),
                 completed_generation_events=int((e.generation<=st['completed_generations']).sum()),
                 partial_generation_events=int((e.generation>st['completed_generations']).sum()),
@@ -259,7 +310,13 @@ def decision():
         b=int(r['budget']);h=descriptive[descriptive.budget==b].set_index('mode');p=paired[paired.budget==b]
         text+=f"- {b:,} distinct: n={int(r['n'])}; legacy mean/median/SD {h.loc['LEGACY','mean_hr']:.9f}/{h.loc['LEGACY','median_hr']:.9f}/{h.loc['LEGACY','sd_hr']:.9f} h; POST {h.loc['POST','mean_hr']:.9f}/{h.loc['POST','median_hr']:.9f}/{h.loc['POST','sd_hr']:.9f} h. Paired mean delta {r['mean_delta_hr']:+.9f} h; adjusted95% [{r['simultaneous95_low_hr']:+.9f},{r['simultaneous95_high_hr']:+.9f}] h; wins/losses/ties {int(r['wins'])}/{int(r['losses'])}/{int(r['ties'])}. Median wall ratio {costs[b]:.4f}.\n"
         text+=f"  Mean completed-generation delta {p.delta_completed_generations.mean():+.2f}; entropy delta {p.delta_final_position_entropy.mean():+.6f}; unique-survivor delta {p.delta_final_unique_population.mean():+.2f}; offspring-attempt delta {p.delta_offspring_attempts.mean():+.2f}.\n"
-    text+='\nPrimary100k is one predeclared contrast. The250k/500k family, if executed, has two endpoints with Bonferroni simultaneous intervals; an all-three-endpoint conservative family is additionally provided. Paired bootstrap intervals and complete best/worst statistics are in the companion tables. A zero-crossing interval is not equivalence. All seeds and negative outcomes are retained.\n\n'
+    text+='\nPrimary 100k is one predeclared contrast. The 250k/500k family has two endpoints with Bonferroni simultaneous intervals; an all-three-endpoint conservative family is additionally provided. Paired bootstrap intervals and complete best/worst statistics are in the companion tables. A zero-crossing interval is not equivalence. All seeds and negative outcomes are retained.\n\n'
+    text+='The reasoned engineering choice is to remove blind, unscored deletion while retaining exactly the same scientific objective and distinct-evaluation ceiling. The observed mean differences favor POST, but none establishes empirical optimization superiority. This choice does not imply that every seed improves, that the algorithms are equivalent, or that the diagnostic sequence should replace the validated formal candidate.\n\n'
+    marginal=s.a.frame(s.OUT/'BUDGET_EXTENSION_MARGINAL_GAINS.csv')
+    text+='### Within-trajectory marginal gains\n\n'
+    for (mode,lower,upper),g in marginal.groupby(['mode','from_budget','to_budget']):
+        text+=f"- {mode}, {int(lower):,} to {int(upper):,}: {int((g.gain_hr>1e-10).sum())}/{len(g)} seeds improved; mean gain {g.gain_hr.mean():.9f} h; {int(g.new_distinct.sum()):,} additional distinct calls; mean added objective time {g.additional_objective_seconds.mean():.2f} s and checkpointed engine wall time {g.additional_wall_seconds.mean():.2f} s.\n"
+    text+='\nThese are repeated measurements of the reserved ten pairs. The 100k mean over all twenty seeds must not be directly compared with the higher-budget mean over ten different-sized cohorts as a marginal treatment effect.\n\n'
     text+='## Mechanism and nine requested answers\n\n'
     main=discard[(discard.budget==100000)&(discard['mode']=='LEGACY')]
     better=int(main.overwritten_better_than_previous.sum());total=int(main.overwritten_children.sum())
@@ -274,6 +331,13 @@ def decision():
     text+='7. The first ten prospectively reserved states, not freshly restarted searches, supply higher-budget evidence when the registered gate allows continuation. Budget checkpoints share seeds and are not new replication. Marginal gains and incremental costs are recorded independently. No further favorable-result extension is permitted.\n'
     text+='8. POST remains a simple permutation GA: the same100random initialization, OX.80, Swap.10, Tournament3 and one current-generation elite, with conditional deterministic survivor replacement and a passive output archive. No local search, adaptation, restarts or incumbent injection.\n'
     text+=f'9. Decision follows the prospective rule: wholly adverse adjusted endpoint={adverse}; all median wall ratios<=1.5={all(r<=1.5 for r in costs.values())}. Engineering preference and empirical superiority are kept separate. This yields **{recommendation}**.\n\n'
+    failures=s.a.read(s.OUT/'AUDIT_EXECUTION_FAILURES.json')
+    first_failure=failures['failed_attempts'][0]
+    text+='## Computation and failed-attempt accounting\n\n'
+    text+='There are 40 fresh searches (20 matched seed pairs), followed by 20 continued trajectories at each higher endpoint: 80 endpoint records, not 80 independent searches. Incremental search accounting totals 12,000,000 distinct objective evaluations and 768,000,000 fixed-planning-state kernels.\n\n'
+    text+=f"Two sandboxed post-search audit attempts terminated with exit code 1 and no traceback. The first lost its in-memory score map: it performed at least {first_failure['separate_calls_lower_bound']:,} and at most {first_failure['separate_calls_upper_bound']:,} additional fixed-planning calls; its exact total is unavailable. The second persisted completed scores and the successful host-resource retry reused them. Its calls are included once in the {shadow['separate_distinct_objective_calls']:,}-call persistent audit ledger. No completed optimizer batch was rerun. The termination cause is unconfirmed. Preliminary unit-test path errors and the eventual eight-test pass are separately documented.\n\n"
+    text+='Wall ratios use accumulated engine elapsed time from checkpoints; they exclude final run export and evidence ZIP packaging. Incremental phase and whole-batch wall times include their respective export/startup work and are recorded separately. Objective-scoring time, attempted calls, cache hits and expensive distinct evaluations are not interchangeable. No aggregate wall-time figure is labeled CPU time.\n\n'
+    text+='Git LFS staging subsequently encountered insufficient disk space. After verifying all five members of each current runtime against its preserved archive, only the forty ignored run-directory copies were removed. All eighty raw endpoint archives remain intact and restore exact continuation state. Resolved-path checks and hashes are in REDUNDANT_RUNTIME_CLEANUP_QA.json; no original data, previous package or protected checkout was cleaned.\n\n'
     text+='## Candidate boundary\n\n'
     text+=f"Best POST development sequence: seed {candidate['seed']}, {candidate['budget']:,} distinct, native64-planning loss {candidate['planning_loss_hr']:.12f} h, SHA256 `{candidate['sequence_sha256']}`. Full92-station order, state lineage and native per-realization results are archived. Old frozen legacy loss32.99552241352315 h and SHA edc4ad19f61a6d89d83532c1c92f353243b5d9e7b475c1ad99873227bbfeb99a remain unchanged. Their prior2,000-sample validation is not transferred.\n\n"
     text+='No physical sampling, old independent-validation outcome analysis, manuscript, official figure, Stage7, source-gate, scheduler, objective, travel/crew, mapping or repair-duration changes occurred. A proposed validation plan is readiness only and cannot be executed without authorization.\n'
@@ -282,6 +346,22 @@ def decision():
         median_wall_ratios=costs,registered_rule=s.a.read(s.OUT/'EXPERIMENT_DESIGN_AND_SEEDS.json')['decision_rule'],
         empirical_superiority_at_budgets=[int(r['budget']) for r in endpoints.to_dict('records') if r['simultaneous95_high_hr']<0],
         no_equivalence_claim=True,candidate_sha256=candidate['sequence_sha256'],formal_candidate_replaced=False))
+    native=s.a.read(s.OUT/'IMPORTANT_CANDIDATE_PRODUCTION_QA.json')
+    failure=s.a.read(s.OUT/'AUDIT_EXECUTION_FAILURES.json')['failed_attempts'][0]
+    s.save('TOTAL_COMPUTATION_ACCOUNTING.json',dict(optimizer_distinct_objective_calls=int(df.incremental_distinct.sum()),
+        optimizer_fixed_planning_state_kernels=int(64*df.incremental_distinct.sum()),
+        separate_discard_audit_objective_calls=shadow['separate_distinct_objective_calls'],
+        separate_discard_audit_state_kernels=shadow['separate_planning_state_kernels'],
+        aborted_discard_audit_calls_lower_bound=failure['separate_calls_lower_bound'],
+        aborted_discard_audit_calls_upper_bound=failure['separate_calls_upper_bound'],
+        aborted_audit_exact_call_count_available=False,
+        native_production_state_evaluations=native['native_fixed_sample_evaluations'],
+        compiled_candidate_crosscheck_state_evaluations=native['native_fixed_sample_evaluations'],
+        cached_legacy_replay_logical_lookups=s.a.read(s.OUT/'LEGACY_REPRODUCTION_PARITY.json')['lookup_calls'],
+        cached_replay_new_physical_objective_calls=0,new_physical_samples=0,
+        optimizer_seed_pairs=20,search_trajectories=40,continued_trajectories=20,
+        batch_wall_seconds={str(int(b)):s.a.read(s.OUT/f'EXECUTION_{int(b)}.json')['batch_wall_seconds'] for b in df.budget.unique()},
+        incremental_cost_rule='Sum incremental_distinct, not cumulative100k/250k/500k prefixes. Audit and independent production checks are separate from search budgets. Summed run wall times are not CPU times.'))
     s.save('PROPOSED_INDEPENDENT_VALIDATION_SPECIFICATION.json',dict(status='NOT_EXECUTED_REQUIRES_EXPLICIT_AUTHORIZATION',
         recommended_algorithm=recommendation,diagnostic_candidate=candidate,
         proposed_count=2000,paired_strategies=['Frozen_POST_development_candidate','Unchanged_formal_GA','Impact-first'],
@@ -315,6 +395,15 @@ def final_qa():
         new_physical_samples=0,formal_candidate_modified=False,
         pre_execution_design_commit='50d7318',pre_execution_source_normalization_commit='e4cef14',
         final_original_state=after))
+    import numba
+    import psutil
+    import scipy
+    s.save('EXECUTION_ENVIRONMENT.json',dict(python=sys.version,executable=sys.executable,
+        platform=platform.platform(),processor=platform.processor(),logical_cpu_count=os.cpu_count(),
+        physical_cpu_count=psutil.cpu_count(logical=False),numpy=np.__version__,pandas=pd.__version__,
+        scipy=scipy.__version__,numba=numba.__version__,psutil=psutil.__version__,workers=12,
+        thread_environment={name:os.environ.get(name) for name in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','PYTHONDONTWRITEBYTECODE')},
+        timings='Recorded objective seconds and accumulated process wall time; not CPU time. Batch wall timings are separate.'))
     s.md('REPRODUCIBLE_COMMANDS.md','''# Commands and boundaries
 
 Run from this isolated worktree with the Anaconda interpreter, OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=MKL_NUM_THREADS=1 and PYTHONDONTWRITEBYTECODE=1. `study.py engineering`, then `setup`, then `baseline` precede the registered commit. The20paired100k studies use `study.py main`. `study.py continuation` freezes the gate; only if execute=true use `study.py 250k`, then `study.py 500k` (same saved states).

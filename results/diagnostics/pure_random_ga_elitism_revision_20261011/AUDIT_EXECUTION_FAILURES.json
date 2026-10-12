@@ -1,0 +1,29 @@
+{
+  "failed_attempts": [
+    {
+      "phase": "First post-search discard audit",
+      "exit_code": 1,
+      "traceback_available": false,
+      "last_confirmed_seed": 2026121105,
+      "last_confirmed_separate_calls": 27100,
+      "separate_calls_lower_bound": 27100,
+      "separate_calls_upper_bound": 49861,
+      "exact_failed_attempt_call_count": "Unavailable after uninstrumented host termination; bounds retained, not counted as zero",
+      "diagnosis": "Cause not confirmed; first attempt retained all search-cache keys, retry retained discarded keys only. Both sandboxed attempts terminated without a traceback; persistent retry scores are reused, with progress/resource telemetry and unsandboxed execution for completion.",
+      "completed_GA_searches_repeated": false,
+      "physical_samples_generated": 0
+    }
+  ],
+  "additional_failed_attempts": [
+    {
+      "phase": "Memory-bounded sandboxed audit",
+      "exit_code": 1,
+      "traceback_available": false,
+      "separate_scores_persisted_and_reused": true,
+      "last_reported_completed_seed": 2026121103,
+      "searches_repeated": false
+    }
+  ],
+  "retry": "Memory-bounded discarded-key query and persistent per-score ledger",
+  "completed_optimizer_accounting_unaffected": true
+}
