@@ -16,13 +16,13 @@ Every book is 185 mm wide with Arial text at least 7 pt; first-page PNGs are 600
 
 METRIC_DIRECTION_COVERAGE.csv and PANEL_SOURCE_INDEX.csv identify coverage and exact page/panel. METRIC_DEFINITIONS.md explains weighting and intervals. EVIDENCE_AVAILABILITY.md identifies actual gaps without filling them. ALL_SUMMARY_METRICS_REVIEW.pdf covers every saved primary outcome field in 23 pages; SUMMARY_METRIC_REVIEW_INDEX.csv and ALL_SUMMARY_COLUMN_COVERAGE.csv identify the fields and available cases.
 
-Nothing here selects a Main/Supplement set or promotes figures. The 20 numbered figures are in ../Main/ and ../Supplement/; this directory preserves additional information directions rather than alternate layouts. Source/index hashes and scientific-file guards are in QA_MANIFEST.json. Regenerate only this review presentation with `python results/figure_review/Additional_Evidence/build_review.py`.
+Nothing here selects a Main/Supplement set or promotes figures. The 19 numbered figures are in ../Main/ and ../Supplement/; this directory preserves additional information directions rather than alternate layouts. Source/index hashes and scientific-file guards are in QA_MANIFEST.json. Regenerate only this review presentation with `python results/figure_review/Additional_Evidence/build_review.py`.
 
 Q4_Q1_Definitions.pdf explains signed versus within-realization absolute group gaps. The additional evidence is retained because relationships between metrics, alternative grouping definitions and all saved spatial comparisons are not exhausted by the numbered figures.
 
 ## Complete cross-hazard policy contrasts
 
-[Cross_Hazard_Policy_Contrasts.pdf](Cross_Hazard_Policy_Contrasts.pdf) retains the complete four-scenario policy evidence formerly shown in S11. The numbered S11 provides a compact 2pc50 view; no historical-scenario result was deleted. Refer to the S11 caption for the estimands and limits on cross-hazard interpretation.
+[Cross_Hazard_Policy_Contrasts.pdf](Cross_Hazard_Policy_Contrasts.pdf) retains the complete experimental four-scenario policy evidence. The numbered S11 displays all four scenarios for the six selected manuscript policies; the larger experimental record remains available here. Refer to the S11 caption for the estimands and limits on cross-hazard interpretation.
 
 ## Selected-policy and station evidence
 
