@@ -1,0 +1,41 @@
+{
+  "status": "AUTHOR REVIEW - NOT FORMAL STAGE 7",
+  "starting_commit": "ef40eba552a2b33eea364d23a8695d3d96edb326",
+  "authority": {
+    "hazard": "2pc50", "policy": "impact-first", "resources": "C57_D1",
+    "mapping": "M1_UTILITY_003", "gate": "G1_BASELINE_050",
+    "horizon_hr": 480, "existing_realizations": 1000,
+    "Delta_B_logistics": "mean of matched Impact-first minus Unconstrained deficit hours"
+  },
+  "cohorts": {
+    "positive_population": "Frozen formal Population > 0",
+    "residential": "Frozen formal Population > 0 AND archived housing_total > 0"
+  },
+  "k_values": [3, 4, 5, 6],
+  "seeds": [42, 43, 44, 45, 46],
+  "kmeans": {"n_init": 50, "max_iter": 500, "tol": 0.0001, "algorithm": "lloyd", "init": "k-means++"},
+  "standardization": "cohort-specific arithmetic mean and population SD (ddof=0); no imputation, trimming, winsorization or zero replacement",
+  "weight_application": "multiply standardized coordinates by sqrt(squared_distance_budget)",
+  "domains": {
+    "Init_Supply": "RQ1", "Grid_Impact": "RQ1", "Redundancy_HHI": "RQ1",
+    "B_480_hr": "RQ2", "Delta_B_logistics": "RQ2",
+    "SOVI_SCORE": "RQ3", "log1p_Population": "RQ3", "log1p_BUILDVALUE": "RQ3"
+  },
+  "specifications": {
+    "A": {"Init_Supply": 0.1111111111111111, "Grid_Impact": 0.1111111111111111, "Redundancy_HHI": 0.1111111111111111, "B_480_hr": 0.16666666666666666, "Delta_B_logistics": 0.16666666666666666, "SOVI_SCORE": 0.16666666666666666, "log1p_Population": 0.16666666666666666},
+    "B": {"Init_Supply": 0.1111111111111111, "Grid_Impact": 0.1111111111111111, "Redundancy_HHI": 0.1111111111111111, "B_480_hr": 0.16666666666666666, "Delta_B_logistics": 0.16666666666666666, "SOVI_SCORE": 0.16666666666666666, "log1p_Population": 0.08333333333333333, "log1p_BUILDVALUE": 0.08333333333333333},
+    "A-minus-Init": {"Grid_Impact": 0.16666666666666666, "Redundancy_HHI": 0.16666666666666666, "B_480_hr": 0.16666666666666666, "Delta_B_logistics": 0.16666666666666666, "SOVI_SCORE": 0.16666666666666666, "log1p_Population": 0.16666666666666666},
+    "B-minus-Init": {"Grid_Impact": 0.16666666666666666, "Redundancy_HHI": 0.16666666666666666, "B_480_hr": 0.16666666666666666, "Delta_B_logistics": 0.16666666666666666, "SOVI_SCORE": 0.16666666666666666, "log1p_Population": 0.08333333333333333, "log1p_BUILDVALUE": 0.08333333333333333},
+    "B-equal-RQ3": {"Init_Supply": 0.1111111111111111, "Grid_Impact": 0.1111111111111111, "Redundancy_HHI": 0.1111111111111111, "B_480_hr": 0.16666666666666666, "Delta_B_logistics": 0.16666666666666666, "SOVI_SCORE": 0.1111111111111111, "log1p_Population": 0.1111111111111111, "log1p_BUILDVALUE": 0.1111111111111111}
+  },
+  "reference_display_seed": 42,
+  "reference_display_k": 4,
+  "cluster_labels": "diagnostic-only; canonical order by mean B_480_hr then mean Population; never formal Stage 7 IDs",
+  "nonlinear_overlap": "five-fold shuffled seed42 additive cubic spline + Ridge(alpha=1); descriptive random-tract CV, not spatial validation",
+  "stress_tests": {
+    "asset_tail": "leave cohort-specific top 1% BUILDVALUE (>=P99, ties retained) out of fitting only; fit scaler and kmeans on other tracts, predict all including held-out; all specifications/cohorts/k at seed42; not a revised eligibility rule",
+    "spatial": "official frozen TIGER INTPTLAT/INTPTLON transformed to UTM11N; four median-x/median-y quadrants; leave one quadrant out, refit scaler and kmeans, predict all; positive cohort, all specifications/k, seed42; no geometry-based exclusions",
+    "high_initial_service": "P99 Init_Supply enrichment and weighted total/between/within sum-of-squares contributions; no tail removal or transformation"
+  },
+  "decision_principle": "RQ construct validity and evidence, not optimization of silhouette/ARI/k or agreement with manuscript narratives; no formal promotion"
+}
