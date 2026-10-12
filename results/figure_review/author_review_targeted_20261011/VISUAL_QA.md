@@ -1,0 +1,15 @@
+# Actual page inspection
+
+Current authority was opened as PDF renders: Fig01, Fig03, Fig04, Fig05, Fig07 and S9. The inspection uses the current numbered set, with source SHA-256 identities in qa/BASELINE_INSPECTION.json. An old review status was not used as visual evidence.
+
+Every modified complete figure and both Fig5 approaches and Fig7 color alternatives were rendered and visually inspected at the 185-mm convention. Final review candidates retain native height; the separately labeled locator prototype is 310 mm high. The contact sheets keep each full figure physically 185 mm wide, rather than reducing two figures to fit an A4 page. The 12-page figure/caption packet keeps each figure on its own native-size page.
+
+- Fig01: smaller circles, triangles, squares and stars separate better while each retained node remains at its source position. Stage titles, arrows and five-stage structure are unchanged. The nonmonotone four-bar illustration is explicitly marked Schematic and Gap; it does not imply that loss mechanically increases with vulnerability. Q1-Q4 and the hospital-linked coverage wording remain legible within Stage 5. No collision with Spatial Patterns or Tested Conditions.
+- Fig03E: the low-value colors are more distinct from white; middle and high colors, map outlines and ticks remain. The source is a pale yellow-green-to-blue sequential palette, not a pure Blues palette. The adjustment stays in that existing family. No diverging palette or 480-h substitution is introduced. All other panels render identically.
+- Fig04: the grouped key and distinct service-loss/T80 displays are readable at native size. Retain the current design. No distributional-gap addition.
+- Fig05E: individual Q4 outlines add central clutter. The final Q4-area union outline reduces internal strokes, leaves the effect fills visible and gives a clearly identified geographic context on all three maps. The standalone locator makes all four quartiles easier to read but adds 60 mm to the full figure; retained as an alternative only. The common zero-centered scale and the Degree-first map remain.
+- Fig07: alternative B changes the large cyan C4 area to a restrained slate-blue fill. C1/C3 remain distinguishable from it, and N/A retains its lighter neutral gray. Category curves and keys agree with the map. The heatmap and hotspot panel remain identical, including Top-10 boundaries.
+- S9: C4 points/key match the recommended Fig7 category. Marker positions, all five categories, PCA and support panels are retained.
+- Comparison sheets and caption pages: all pages rendered and inspected. Distinct packet font resource names prevent source-font collisions. The long S9 caption heading wraps rather than clipping; body text remains 10 pt. No cropped labels, overlapping keys or missing maps were found in the final renders.
+
+The new geographic context uses 8-pt text. The existing source still includes 7-pt text in Fig1/S9 and 7.5-pt text elsewhere; none was reduced. These are author-review candidates, not a declaration of author acceptance or promotion.
