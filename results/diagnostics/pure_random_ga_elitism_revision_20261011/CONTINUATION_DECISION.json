@@ -1,0 +1,37 @@
+{
+  "execute": true,
+  "rule": "Continue the first ten paired states to both250k and500k if the primary100k paired95% interval is not wholly adverse to POST (lower<=0). This resolves budget-dependent benefit/plateau ambiguity, not a search for favorable seeds. No continuation if clearly adverse at100k.",
+  "primary_effect": {
+    "n": 20,
+    "mean_delta_hr": -0.0013035867478368602,
+    "median_delta_hr": 0.00011621197270628159,
+    "sd_delta_hr": 0.004480142340186844,
+    "pointwise95_low_hr": -0.0034003579058561103,
+    "pointwise95_high_hr": 0.0007931844101823897,
+    "simultaneous95_low_hr": -0.0034003579058561103,
+    "simultaneous95_high_hr": 0.0007931844101823897,
+    "bootstrap95_low_hr": -0.0033066996700086013,
+    "bootstrap95_high_hr": 0.0005168125860607995,
+    "wins": 10,
+    "losses": 10,
+    "ties": 0,
+    "family_size": 1
+  },
+  "seeds": [
+    2026121100,
+    2026121101,
+    2026121102,
+    2026121103,
+    2026121104,
+    2026121105,
+    2026121106,
+    2026121107,
+    2026121108,
+    2026121109
+  ],
+  "budgets": [
+    250000,
+    500000
+  ],
+  "no_new_seeds_or_parameter_changes": true
+}
