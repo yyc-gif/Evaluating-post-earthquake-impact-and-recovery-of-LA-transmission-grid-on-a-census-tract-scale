@@ -22,7 +22,7 @@ Q4_Q1_Definitions.pdf explains signed versus within-realization absolute group g
 
 ## Complete cross-hazard policy contrasts
 
-[Cross_Hazard_Policy_Contrasts.pdf](Cross_Hazard_Policy_Contrasts.pdf) retains the complete experimental four-scenario policy evidence. The numbered S11 displays all four scenarios for the six selected manuscript policies; the larger experimental record remains available here. Refer to the S11 caption for the estimands and limits on cross-hazard interpretation.
+[Cross_Hazard_Policy_Contrasts.pdf](Cross_Hazard_Policy_Contrasts.pdf) retains the complete experimental four-scenario policy evidence. The numbered S11 now displays the six selected fixed policies under 2pc50 only; the complete historical four-scenario experimental record remains available here. Refer to the S11 caption for the estimands and limits on cross-hazard interpretation.
 
 ## Selected-policy and station evidence
 
@@ -31,3 +31,7 @@ Q4_Q1_Definitions.pdf explains signed versus within-realization absolute group g
 - [Absolute outcomes](../../diagnostics/selected_strategy_20261008/ABSOLUTE_OUTCOMES.csv), [named-reference effects](../../diagnostics/selected_strategy_20261008/NAMED_REFERENCE_EFFECTS.csv), and [station priority/execution](../../diagnostics/selected_strategy_20261008/STATION_PRIORITY_AND_EXECUTION.csv) contain complete selected-policy comparisons in every available case.
 
 Earlier complete-metric atlas products retain the original full experimental set for reproducibility; the current manuscript displays use six scheduled policies. No earlier numerical record is removed.
+
+The approved final S05 is integrated in Supplement/FigS05 on the current figure-update branch. Its exact producing/review commits and numerical source-manifest copy are recorded in docs/reproducibility/official_figure_suite_review_20261012; older GA optimization figures here remain historical evidence.
+
+The approved final S05 is integrated in Supplement/FigS05 on the current figure-update branch. Its exact producing/review commits and numerical source-manifest copy are recorded in docs/reproducibility/official_figure_suite_review_20261012; older GA optimization figures here remain historical evidence.

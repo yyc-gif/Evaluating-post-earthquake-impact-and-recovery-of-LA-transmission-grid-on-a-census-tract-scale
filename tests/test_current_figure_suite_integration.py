@@ -9,7 +9,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITE = ROOT / 'results/figure_review'
-QA = ROOT / 'docs/reproducibility/figure_details_20261012'
+QA = ROOT / 'docs/reproducibility/official_figure_suite_review_20261012'
 EXPECTED = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' for i in [1, *range(3, 14)]]
 
 
@@ -80,7 +80,7 @@ def test_explanation_preserves_gate_and_formal_cluster_boundaries():
     assert 'Independent removal-only controls were not evaluated' in caps
     assert 'conditional on the target station being functional' in caps
     assert 'Cluster IDs 1–5' in caps
-    assert 'linear within +/-0.10 h' in caps
+    assert 'common linear sequential colorbar' in caps
     assert 'N/A does not mean that every excluded tract has no residents' in caps
     assert 'review candidate' not in caps.lower()
     assert 'companion review evidence' not in caps.lower()
@@ -96,21 +96,58 @@ def test_original_science_and_staged_work_remain_unchanged():
     assert audit()['original_worktree_unchanged']
 
 
-def test_bounded_author_edits_preserve_other_artwork_and_quantitative_scales():
+def test_approved_integration_and_bounded_display_edits_preserve_science():
     a = audit()
-    assert len(a['updated_figures']) == 6
-    assert len(a['retained_figures']) == 13
+    assert len(a['updated_figures']) == 5
+    assert len(a['retained_figures']) == 14
     edits = a['operator_edits']
-    assert edits['Main/Fig01']['all_nonconnector_bytes_unchanged']
-    assert edits['Main/Fig03']['vertical_median_line_unchanged']
-    assert not edits['Main/Fig03']['leader_or_horizontal_key_line']
-    assert edits['Main/Fig05']['all_three_effect_maps_and_Q4_geometries_unchanged']
-    e = edits['Main/Fig05']
-    assert e['map_heading_baseline_mm'] - e['legend_baseline_mm'] > 8
-    assert edits['Main/Fig07']['cluster_colors_and_hotspot_scale_unchanged']
-    assert edits['Supplement/FigS10']['population_values_log_normalization_and_geometry_unchanged']
-    assert edits['Supplement/FigS11']['vertical_white_dividers_removed'] == 4
-    assert edits['Supplement/FigS11']['four_scenarios_retained']
+    assert edits['Supplement/FigS05']['reviewed_PDF_and_PNG_copied_exactly']
+    assert edits['Main/Fig07']['NA']['white_NA_paths'] == 48
+    assert edits['Main/Fig07']['NA']['cluster_membership_hotspot_values_and_study_boundary_unchanged']
+    assert edits['Main/Fig07']['palette']['C4_after'] == edits['Supplement/FigS09']['C4_after'] == '#8a83b8'
+    assert edits['Supplement/FigS10']['metric'] == 'tract population'
+    assert edits['Supplement/FigS10']['population_log_norm_range_geometries_stations_and_text_unchanged']
+    assert edits['Supplement/FigS11']['hazard'] == '2pc50'
+    assert not edits['Supplement/FigS11']['new_means_or_uncertainty_computed']
+    assert edits['Supplement/FigS13']['PDF_retained_exactly']
+    assert edits['Supplement/FigS13']['merge_decision'] == 'KEEP_SEPARATE'
     cap = open(lp(SUITE / 'MANUSCRIPT_FACING_CAPTIONS.md'), encoding='utf-8').read()
     assert 'The divider separates T80' not in cap
-    assert 'shown in light gray as N/A' in cap
+    assert 'shown in white with dark boundaries as N/A' in cap
+
+
+def test_s05_is_exact_approved_artwork_and_caption_not_a_rerender():
+    assert sha(SUITE / 'Supplement/FigS05.pdf') == '58bc67206d0e418b1079a418ea2151fa75eca78e2e5365815b6d1c62db40432d'
+    assert sha(SUITE / 'Supplement/FigS05.png') == 'f8c61dfde75b2c31c1190b1a16b2c5ff6debff2610849239edcff3ee4224db59'
+    approved = open(lp(QA/'approved_source_records/S05_CONCISE_MANUSCRIPT_CAPTION.md'),encoding='utf-8').read().split('\n\n',1)[1].strip()
+    text = open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    body = re.search(r'^## Supplementary Figure S5\..*?\n\n(.*?)(?=^## )',text,re.M|re.S)[1].strip()
+    assert body == approved
+    assert 'reference only, not an inserted chromosome' in body
+    assert 'legacy last-position elitism candidate' in body
+
+
+def test_retained_artwork_is_exact_and_s11_cells_are_archived_values():
+    sources = json.load(open(lp(QA/'SOURCE_HASHES.json'),encoding='utf-8'))
+    base = audit()['baseline_commit']
+    changed = set(audit()['updated_figures'])
+    for stem in EXPECTED:
+        if stem not in changed:
+            for ext in ['pdf','png']:
+                rel = 'results/figure_review/'+stem+'.'+ext
+                assert sha(ROOT/rel) == sources[base+':'+rel]['sha256']
+    e = audit()['operator_edits']['Supplement/FigS11']
+    import subprocess
+    rel = e['source_path']
+    pointer = subprocess.check_output(['git','-C',str(ROOT),'show',base+':'+rel])
+    match = re.search(rb'oid sha256:([0-9a-f]{64})',pointer)
+    if match:
+        assert match[1].decode()==e['source_sha256']
+    values=e['saved_display_means']
+    assert len(values)==6 and all(len(v)==4 for v in values)
+    assert abs(max(x for row in values for x in row)-e['linear_norm_h'][1])<1e-12
+    assert e['linear_norm_h'][0]==0
+    pdf=fitz.open(lp(SUITE/'Supplement/FigS11.pdf'))
+    text=pdf[0].get_text()
+    assert all(f'{x:+.2f}' in text for row in values for x in row)
+    assert 'San Fernando' not in text and 'Northridge' not in text

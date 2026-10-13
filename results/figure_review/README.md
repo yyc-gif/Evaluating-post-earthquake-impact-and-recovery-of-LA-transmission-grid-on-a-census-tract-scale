@@ -2,21 +2,14 @@ This is the single author-review source for the current submission figure set. D
 
 # Current complete figure suite
 
-Use this directory on `revision/reviewer-driven-core-rebuild-v2` for every review.
+This figure-only integration branch is `review/official-figure-suite-final-s05-20261012`, based on the latest verified revision artwork at c0a11ff. It has not been merged automatically into the revision branch.
 
-- [Complete figures and captions](ALL_FIGURES_WITH_CAPTIONS.pdf): Main Fig01-07, then FigS01 and FigS03-13, each immediately followed by its caption. The two existing complementary evidence figures follow the numbered set.
-- [Main](Main/): seven current figures, vector PDF and exact 600-dpi PNG.
-- [Supplement](Supplement/): twelve current figures, vector PDF and exact 600-dpi PNG. S02 initial-service content is integrated into S01; there is no missing S02 file.
-- [Captions](MANUSCRIPT_FACING_CAPTIONS.md): current scientific definitions, intervals, references and interpretation boundaries.
-- [What changed](UPDATE_LOG.md): every numbered figure, including retained files.
-- [Manifest](FIGURE_MANIFEST.csv): exact source commit, payload hash, native size and minimum font for every PDF/PNG.
-- [Publication-size previews](Page_Previews/): all nineteen numbered PDFs rendered at their native 185-mm width.
-- [Main-only packet](ALL_MAIN_FIGURES.pdf) and [Supplement-only packet](ALL_SUPPLEMENT_FIGURES.pdf).
+- [Complete figures and captions](ALL_FIGURES_WITH_CAPTIONS.pdf): Main01-07, then S01/S03-13, each followed by its caption; the four existing complementary-evidence pages follow.
+- [Main](Main/) and [Supplement](Supplement/): seven and twelve numbered PDF/600-dpi PNG pairs. S02 is already integrated into S01.
+- [What changed and what remains unresolved](FIGURE_SUITE_UPDATE_SUMMARY_20261012.md).
+- [Captions](MANUSCRIPT_FACING_CAPTIONS.md), [manifest](FIGURE_MANIFEST.csv), [palette authority](CURRENT_CLUSTER_PALETTE.json), and [native page previews](Page_Previews/).
+- [Main packet](ALL_MAIN_FIGURES.pdf) and [Supplement packet](ALL_SUPPLEMENT_FIGURES.pdf).
 
-The same current artwork is synchronized byte-for-byte into `results/figures/`; it is not an alternative version. No author needs to switch to an analysis/review branch or retrieve a numbered figure from a historical directory. Historical evidence remains in Git and provenance records.
+The final approved four-panel S05 now occupies the official numbered targets. It displays twenty pure-random searches and validation of the frozen legacy sequence using the archived separate 2,000-case cohort. It does not add GA curves to the existing six-policy main/resource figures or replace protected formal strategies. Figure7/S9 retain the formal five clusters, with synchronized C4 color; no experimental four-cluster typology is substituted. S11 now displays 2pc50 only, while the complete historical cross-scenario evidence remains archived. S12 and S13 remain separate. All mirrors under results/figures are byte-identical, not alternative versions.
 
-The six scheduled manuscript policies are Degree-first, Betweenness-first, Impact-first, Hospital-first, Vulnerability-first and Random, plus Unconstrained. The formal five-cluster Figure 7 is retained; exploratory CORE3/W1 classifications are not substituted. S05 separates original incumbent-preserving search, expanded finite budgets and exploratory evaluation; it does not replace formal strategies. S06 concerns dependency and service-model assumptions. S11 shows all four earthquake scenarios, with actual mean hour labels and a disclosed signed-log color scale.
-
-The integration changes presentation and explanations only. Scientific numerical tables, vulnerability quartiles, five-cluster memberships, trajectories, simulations, mapping, scheduler, GA results and manuscripts remain unchanged. S14/S15 are internal evidence; S16 remains a review aid. None is added to the numbered submission set.
-
-Latest update (2026-10-12): Figure 1 joined connector, Figure 3D median label, Figure 5E line key and spacing, Figure 7C/D light-gray N/A, S10C darker high end, and S11 divider removal. All other numbered artwork is retained. See UPDATE_LOG.md.
+No manuscript or scientific stage is changed. S14/S15 remain internal evidence and S16 remains a review aid; none is added to the numbered set.
