@@ -1,0 +1,8 @@
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+inputs/*.npz filter=lfs diff=lfs merge=lfs -text
+inputs/*.py -text
+inputs/*.md -text
+inputs/*.json -text
+*_ARTWORK_INSPECTION.json filter=lfs diff=lfs merge=lfs -text

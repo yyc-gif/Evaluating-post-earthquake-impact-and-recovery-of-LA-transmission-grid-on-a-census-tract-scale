@@ -1,0 +1,96 @@
+{
+  "checks": [
+    "All pinned source payload identities and local source-copy bytes match",
+    "Every original-unit mean/median and all 24 displayed z-score cells independently reconstructed",
+    "All 18 class/feature empirical distributions contain the exact source observations and ties",
+    "The original current Fig07 content stream is embedded byte-identically behind the locked C/D clip",
+    "Locked C/D vector identity and normalized publication rendering checked",
+    "Four marked vector review PDFs, native 185-mm candidate and 600-dpi candidate export verified",
+    "950 actual protected hashes, original index/staged state and all three official/historical worktrees unchanged"
+  ],
+  "passed": 7,
+  "failures": 0,
+  "all_17_official_artwork_pairs_unchanged": true,
+  "official_packet_captions_mirrors_and_generator_unchanged": true,
+  "all_950_protected_scientific_files_unchanged": true,
+  "original_staged_count": 862,
+  "maximum_independent_z_mean_error": 5.051514762044462e-15,
+  "locked_CD": {
+    "exact_pixel_identity": true,
+    "maximum_channel_difference": 0,
+    "nonidentical_channel_fraction": 0.0,
+    "normalized_render_dpi": 160,
+    "source_content_stream_identical": true,
+    "only_proposed_translation_mm": [
+      0,
+      8
+    ],
+    "no_geographic_rescaling": true
+  },
+  "PDFs": [
+    {
+      "file": "FIGURE7_CONSERVATIVE_RESTORATION.pdf",
+      "pages": 1,
+      "sha256": "35d928a7de89b6b95bce95f6c79999ab9c02f15a79fb970777a4212760091929",
+      "image_objects": [
+        0
+      ],
+      "native_size_mm": [
+        [
+          184.99999118381075,
+          252.99999643961587
+        ]
+      ]
+    },
+    {
+      "file": "FIGURE7_AB_PANEL_SIDE_BY_SIDE_REVIEW.pdf",
+      "pages": 2,
+      "sha256": "c03c5036d3f3c17ba50c33cf987addfbbd2520406523807975820b1a9a90aa1e",
+      "image_objects": [
+        8,
+        8
+      ],
+      "native_size_mm": [
+        [
+          739.999964735243,
+          158.0000027126736
+        ],
+        [
+          739.999964735243,
+          158.0000027126736
+        ]
+      ]
+    },
+    {
+      "file": "FIGURE7_OLD_CURRENT_CANDIDATE_NATIVE_COMPARISON.pdf",
+      "pages": 1,
+      "sha256": "708bdc58efd4b524780656174755e3ef58d41628d690b91bcb9b4b5bbda30be9",
+      "image_objects": [
+        8
+      ],
+      "native_size_mm": [
+        [
+          575.0000016954209,
+          275.000010172526
+        ]
+      ]
+    },
+    {
+      "file": "FIGURE7_NA_FILL_SEPARATE_APPROVAL_COMPARISON.pdf",
+      "pages": 1,
+      "sha256": "8fa0556bfe610e630349626b6da3d3650d30a16246a3a5b8b82491f19b23b428",
+      "image_objects": [
+        0
+      ],
+      "native_size_mm": [
+        [
+          385.0000142415364,
+          137.00000330607094
+        ]
+      ]
+    }
+  ],
+  "no_K4_proposal": true,
+  "new_candidate_B_generated": false,
+  "no_model_fit_or_physical_recovery_run": true
+}
