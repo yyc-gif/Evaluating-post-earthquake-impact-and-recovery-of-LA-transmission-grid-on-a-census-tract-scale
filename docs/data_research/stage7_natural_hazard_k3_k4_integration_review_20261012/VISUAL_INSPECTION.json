@@ -1,0 +1,74 @@
+{
+  "review_status": "AUTHOR REVIEW CANDIDATE - NOT FORMAL STAGE 7",
+  "pages": [
+    {
+      "pdf": "figures/01_Natural_Hazard_Final_Source_Review.pdf",
+      "page": 1,
+      "PDF_sha256": "50bdf3fac749edbf5e17a2a380d2a8748da580faeaf5c7c724b0f1db685138ff",
+      "PNG_sha256": "b07b707539670a3a6a9c90fa9b378dc969f8c42ee249588b9fd0ec46fbfe83d9",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "reviewer": "Codex visual inspection of actual native-size rendered pages",
+      "result": "PASS:labels,legends,bounds,units,palettes,data panels andreview status checked"
+    },
+    {
+      "pdf": "figures/02_K3_K4_Scientific_Comparison.pdf",
+      "page": 1,
+      "PDF_sha256": "b8ca354e4722f0f0172b41b99aa02472775c30586270eb4fcbe9f4fcd8da1c23",
+      "PNG_sha256": "7a1246342e3fe09b1886a3f6523022457bb65f56a54655ee8c49d9eb8dbc1f35",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "reviewer": "Codex visual inspection of actual native-size rendered pages",
+      "result": "PASS:labels,legends,bounds,units,palettes,data panels andreview status checked"
+    },
+    {
+      "pdf": "figures/02_K3_K4_Scientific_Comparison.pdf",
+      "page": 2,
+      "PDF_sha256": "b8ca354e4722f0f0172b41b99aa02472775c30586270eb4fcbe9f4fcd8da1c23",
+      "PNG_sha256": "7291fe34cea1e664b4c8e99be2939f085e43ec13e26448898e65159a5400d61d",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "reviewer": "Codex visual inspection of actual native-size rendered pages",
+      "result": "PASS:labels,legends,bounds,units,palettes,data panels andreview status checked"
+    },
+    {
+      "pdf": "figures/Figure7_candidate.pdf",
+      "page": 1,
+      "PDF_sha256": "9af671075d10df213635bc01e445a21aa8a2aa3a78e5b99fa0acee7708304e97",
+      "PNG_sha256": "358321fef45a562e4422792efcdef145e3e75d12d51de2755fc709d4b3805310",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "reviewer": "Codex visual inspection of actual native-size rendered pages",
+      "result": "PASS:labels,legends,bounds,units,palettes,data panels andreview status checked"
+    },
+    {
+      "pdf": "figures/FigureS9_candidate.pdf",
+      "page": 1,
+      "PDF_sha256": "5026a0d7e554b002a1b4dad5b9d9c0a6533b3a7bd1c24a388ed8c43c7c701c2c",
+      "PNG_sha256": "0a1d4a25db520eb81ee84c60b816e8f9d987df9ccbb96c621125ea6326e2c2e9",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "reviewer": "Codex visual inspection of actual native-size rendered pages",
+      "result": "PASS:labels,legends,bounds,units,palettes,data panels andreview status checked"
+    },
+    {
+      "pdf": "figures/03_Classification_Robustness_candidate.pdf",
+      "page": 1,
+      "PDF_sha256": "ade90d50fb085932e690aab028572d6ba75fd8eb80ff8085d52db14f091f5ff3",
+      "PNG_sha256": "accaca4f9a0d7dab78cd35ae6ebed2d4a1b04ebfae148a562e3669150d269e8a",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "reviewer": "Codex visual inspection of actual native-size rendered pages",
+      "result": "PASS:labels,legends,bounds,units,palettes,data panels andreview status checked"
+    }
+  ],
+  "operator_review_only": true,
+  "automatic_visual_certification": false,
+  "corrected": [
+    "Source-map colorbar/scatter label collision",
+    "Source-review subplot/main-title collision",
+    "Long station names adjacent to colorbar",
+    "Figure7 whitespace and count labels",
+    "34Q versus4HAYNES/ALAMITOS source wording"
+  ]
+}

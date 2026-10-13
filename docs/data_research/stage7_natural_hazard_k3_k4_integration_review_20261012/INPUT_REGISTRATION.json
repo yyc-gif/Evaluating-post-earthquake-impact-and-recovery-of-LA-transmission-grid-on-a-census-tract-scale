@@ -1,0 +1,46 @@
+{
+  "review_status": "AUTHOR REVIEW CANDIDATE - NOT FORMAL STAGE 7",
+  "authority": "49cc153c3f4d7a8c29cf94baf090dbfc0be4d068",
+  "inputs": {
+    "FROZEN_COHORT.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FROZEN_COHORT_AND_COMPARATORS.csv",
+    "NCV_HAZARD_COMPONENTS.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_NORMALIZED_COMPONENTS.csv",
+    "NCV_RAW_FACTORS.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_HAZARD_COMPONENT_VALUES.csv",
+    "NCV_VECTOR.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_CANDIDATE_VECTORS.csv",
+    "NCV_CA_AND_LA_EXTREMA.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_NORMALIZATION_REFERENCE.csv",
+    "SOURCE_HAZARD_FIELD_REGISTER.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NRI_V119_18_HAZARD_RAW_FIELD_REGISTER.csv",
+    "EXISTING_HAZARD_LEAVEOUT.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/HAZARD_LEAVE_ONE_OUT_SENSITIVITY.csv",
+    "EXISTING_K_EVIDENCE.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/EIGHT_VARIABLE_K_EVIDENCE.csv",
+    "EXISTING_STABILITY.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/POLICY_SPATIAL_SEED_INIT_STABILITY.csv",
+    "EXCLUDED_ZERO_POPULATION_GEOIDS.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/EXCLUDED_ZERO_POPULATION_GEOIDS.csv",
+    "CGS_PGA_FROZEN.csv": "docs/data_research/stage7_multihazard_rq3_audit_20261012/FROZEN_PGA_TRACT_EXTRACTION_SOURCE.csv",
+    "PHYSICAL_SOURCE_REGISTER.csv": "docs/data_research/stage7_multihazard_rq3_audit_20261012/PHYSICAL_HAZARD_MEASUREMENT_REGISTER.csv",
+    "PRIOR_Q34_NETWORK.csv": "docs/data_research/stage7_rq_typology_interpretation_20261012/THIRTYFOUR_TRACT_NETWORK_SUMMARY.csv",
+    "PRIOR_Q34_DEPENDENCY.csv": "docs/data_research/stage7_rq_typology_interpretation_20261012/THIRTYFOUR_TRACT_STATION_DEPENDENCY.csv",
+    "SAVED_LABELS_AND_SILHOUETTES.npz": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/REGISTERED_CONDITIONAL_FIT_ARRAYS.npz",
+    "SAVED_WEIGHTED_MATRICES.npz": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/REGISTERED_CONDITIONAL_MATRICES.npz",
+    "SAVED_MODEL_CENTERS.npz": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/REGISTERED_MODEL_CENTERS.npz",
+    "TARGET_GEOMETRY.gpkg": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/TARGET_2020_GEOMETRY.gpkg",
+    "source_evidence/FEMA_V119_TECHNICAL.pdf": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/ARCHIVED_FEMA_V119_TECHNICAL_DOCUMENTATION.pdf",
+    "source_evidence/WILLIAMS2024_PUBLISHED.pdf": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/WILLIAMS_PUBLISHED_PDF_CDN_TRIAL.pdf",
+    "source_evidence/NRI_V119_CA_FROZEN.csv": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/FEMA_NRI_v119_CA_FROZEN.csv"
+  },
+  "no_new_fits": true,
+  "K_review": [
+    3,
+    4
+  ],
+  "K5_unchanged": true,
+  "first7_unchanged": true,
+  "H2_budget": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.08333333333333333,
+    0.08333333333333333
+  ],
+  "scientific_approval_needed": true,
+  "formal_hotspot_candidate_paths": []
+}

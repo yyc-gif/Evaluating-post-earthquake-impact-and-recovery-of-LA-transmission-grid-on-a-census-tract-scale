@@ -1,0 +1,149 @@
+{
+  "review_status": "AUTHOR REVIEW CANDIDATE - NOT FORMAL STAGE 7",
+  "all_checks_passed": true,
+  "checks": [
+    {
+      "name": "cohort_source_quartile_identity",
+      "status": "PASS",
+      "detail": "2299+16=2315;9066522people;eight zero-housing retained;no missing population imputation"
+    },
+    {
+      "name": "NCV14_raw_formula_and_reference",
+      "status": "PASS",
+      "detail": "All14 recomputed from original9106CA rows;noNULLs changed to0;original sourceSHA verified"
+    },
+    {
+      "name": "independent_CGS_rank_and_missingness",
+      "status": "PASS",
+      "detail": "Independent average-rank correlation;2294valid polygon comparisons;5 remain missing;no cohort shrinkage"
+    },
+    {
+      "name": "saved_preprocessing_labels_distance_silhouette",
+      "status": "PASS",
+      "detail": "Four saved K3/K4 main/ablation models;source-label exact;SciPy silhouettes;no new fit"
+    },
+    {
+      "name": "K3_parent_K4_exception_Q38_source_trace",
+      "status": "PASS",
+      "detail": "All38 come fromK3parent;34Qdependencies;4additionalHAYNES/ALAMITOS;1000 frozenidentity hashes;no source propagation"
+    },
+    {
+      "name": "proposed_screen_no_hidden_formal_hotspot_change",
+      "status": "PASS",
+      "detail": "94tracts/350799people;frozenQ4;explicitP75 rule;authorapprovalrequired;notoldweightedscore"
+    },
+    {
+      "name": "candidate_artwork_bounds_dimensions",
+      "status": "PASS",
+      "detail": "5PDFs/6pages;7.2inch width;600dpi previews;formal path writes0"
+    },
+    {
+      "name": "950_scientific_files_original_staging_prior_assets_preserved",
+      "status": "PASS",
+      "detail": "950actualSHA256;allpriorGitblobs;originalstatus/stagedbytes;candidate-onlypaths"
+    }
+  ],
+  "fit_checks": [
+    {
+      "key": "NCV14__main__k3__s42",
+      "silhouette": 0.23373719294975326,
+      "negative_fraction": 0.12222705524140931,
+      "independent_inertia": 1632.8148517766454,
+      "no_refit": true
+    },
+    {
+      "key": "NCV14__main__k4__s42",
+      "silhouette": 0.24429593576898848,
+      "negative_fraction": 0.07090039147455415,
+      "independent_inertia": 1441.626901880797,
+      "no_refit": true
+    },
+    {
+      "key": "NCV14__minus_Init__k3__s42",
+      "silhouette": 0.2551461305621254,
+      "negative_fraction": 0.06785558938668987,
+      "independent_inertia": 1588.183710822093,
+      "no_refit": true
+    },
+    {
+      "key": "NCV14__minus_Init__k4__s42",
+      "silhouette": 0.19777954215896698,
+      "negative_fraction": 0.050456720313179645,
+      "independent_inertia": 1391.1234539750262,
+      "no_refit": true
+    }
+  ],
+  "figure_checks": [
+    {
+      "pdf": "figures/01_Natural_Hazard_Final_Source_Review.pdf",
+      "page": 1,
+      "PNG_pixels": [
+        4320,
+        3780
+      ],
+      "text_inside_page": true
+    },
+    {
+      "pdf": "figures/02_K3_K4_Scientific_Comparison.pdf",
+      "page": 1,
+      "PNG_pixels": [
+        4320,
+        3480
+      ],
+      "text_inside_page": true
+    },
+    {
+      "pdf": "figures/02_K3_K4_Scientific_Comparison.pdf",
+      "page": 2,
+      "PNG_pixels": [
+        4320,
+        3900
+      ],
+      "text_inside_page": true
+    },
+    {
+      "pdf": "figures/Figure7_candidate.pdf",
+      "page": 1,
+      "PNG_pixels": [
+        4320,
+        4920
+      ],
+      "text_inside_page": true
+    },
+    {
+      "pdf": "figures/FigureS9_candidate.pdf",
+      "page": 1,
+      "PNG_pixels": [
+        4320,
+        3600
+      ],
+      "text_inside_page": true
+    },
+    {
+      "pdf": "figures/03_Classification_Robustness_candidate.pdf",
+      "page": 1,
+      "PNG_pixels": [
+        4320,
+        4020
+      ],
+      "text_inside_page": true
+    }
+  ],
+  "completed_UTC": "2026-10-13T15:38:22.978841+00:00",
+  "review_completed_client_date": "2026-10-13",
+  "python": "3.12.3",
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "geopandas": "1.1.1",
+    "shapely": "2.1.2",
+    "matplotlib": "3.9.2",
+    "PyMuPDF": "1.28.0",
+    "Pillow": "10.4.0"
+  },
+  "new_Kmeans_fits": 0,
+  "physical_simulations": 0,
+  "formal_promotion": false
+}
