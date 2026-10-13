@@ -1,171 +1,146 @@
-"""Integrity gates for the complete author-facing presentation, not model tests."""
+"""Integrity and scientific-invariance checks for the current numbered suite."""
 from pathlib import Path
-import csv
-import hashlib
-import json
-import re
+import csv, hashlib, json, re
 import fitz
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parents[1]
-SUITE = ROOT / 'results/figure_review'
-QA = ROOT / 'docs/reproducibility/s05_plain_figure_labels_20261012'
-EXPECTED = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' for i in [1, *range(3, 14)]]
+ROOT=Path(__file__).resolve().parents[1]
+SUITE=ROOT/'results/figure_review'
+QA=ROOT/'docs/reproducibility/author_suite_final_layout_20261012'
+EXPECTED=[f'Main/Fig{i:02d}' for i in range(1,8)]+[f'Supplement/FigS{i:02d}' for i in [1,*range(3,12)]]
 
 
 def lp(p):
-    s = str(p.resolve())
-    return s if s.startswith('\\\\?\\') else '\\\\?\\' + s
+    s=str(p.resolve());return s if s.startswith('\\\\?\\') else '\\\\?\\'+s
 
 
-def sha(p):
-    return hashlib.sha256(open(lp(p), 'rb').read()).hexdigest()
+def sha(p):return hashlib.sha256(open(lp(p),'rb').read()).hexdigest()
+def read(p):return json.load(open(lp(p),encoding='utf-8'))
+def audit():return read(QA/'INTEGRATION_QA.json')
 
 
-def audit():
-    return json.load(open(lp(QA / 'INTEGRATION_QA.json'), encoding='utf-8'))
-
-
-def test_every_numbered_artifact_and_mirror_is_the_exact_selected_payload():
-    rows = list(csv.DictReader(open(lp(SUITE / 'FIGURE_MANIFEST.csv'), encoding='utf-8-sig')))
-    assert len(rows) == 38
-    assert {r['final_name'] for r in rows} == {s + '.' + x for s in EXPECTED for x in ['pdf', 'png']}
-    records = {r['current_file']: r for r in audit()['figures']}
+def test_all_active_artifacts_and_mirrors_match_the_manifest():
+    rows=list(csv.DictReader(open(lp(SUITE/'FIGURE_MANIFEST.csv'),encoding='utf-8-sig')))
+    assert len(rows)==34
+    assert {r['final_name'] for r in rows}=={s+'.'+e for s in EXPECTED for e in ['pdf','png']}
+    records={r['current_file']:r for r in audit()['figures']}
     for r in rows:
-        current = 'results/figure_review/' + r['final_name']
-        assert r['current_source_file'] == current
-        assert sha(ROOT / current) == r['sha256'] == records[current]['sha256']
-        assert sha(ROOT / r['mirror_file']) == r['sha256']
-        assert r['source_commit'] == records[current]['source_commit']
-    assert not (SUITE / 'Supplement/FigS02.pdf').exists()
+        assert sha(ROOT/r['current_source_file'])==r['sha256']==records[r['current_source_file']]['sha256']
+        assert sha(ROOT/r['mirror_file'])==r['sha256']
+        if r['change_in_this_update']=='UPDATED':assert sha(ROOT/r['presentation_generator'])==r['presentation_generator_sha256']
 
 
-def test_packet_contains_every_figure_at_native_width_followed_by_its_caption():
-    full = fitz.open(lp(SUITE / 'ALL_FIGURES_WITH_CAPTIONS.pdf'))
-    assert len(full) == 42
-    text = open(lp(SUITE / 'MANUSCRIPT_FACING_CAPTIONS.md'), encoding='utf-8').read()
-    headings = re.findall(r'^## (.+)', text, re.M)
-    assert len(headings) == 19
-    for i, (stem, title) in enumerate(zip(EXPECTED, headings)):
-        source = fitz.open(lp(SUITE / (stem + '.pdf')))
-        native = full[2*i]
-        assert abs(native.rect.width - 185 * 72 / 25.4) < .15
-        assert tuple(native.rect) == tuple(source[0].rect)
-        assert native.get_text() == source[0].get_text()
-        cap = full[2*i+1]
-        normalized = lambda s: ' '.join(s.split())
-        assert normalized(title) in normalized(cap.get_text())
-        blocks = cap.get_text('dict')['blocks']
-        spans = [s for b in blocks for l in b.get('lines', []) for s in l['spans']]
-        assert min(s['size'] for s in spans) >= 9.99
-        assert all(cap.rect.contains(fitz.Rect(s['bbox'])) for s in spans)
-    assert len(fitz.open(lp(SUITE / 'ALL_MAIN_FIGURES.pdf'))) == 7
-    assert len(fitz.open(lp(SUITE / 'ALL_SUPPLEMENT_FIGURES.pdf'))) == 12
+def test_native_packets_and_readable_captions_are_complete():
+    full=fitz.open(lp(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'));assert len(full)==38
+    caps=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    headings=re.findall(r'^## (.+)',caps,re.M);assert len(headings)==17
+    for i,(stem,title) in enumerate(zip(EXPECTED,headings)):
+        source=fitz.open(lp(SUITE/(stem+'.pdf')))
+        assert tuple(source[0].rect)==tuple(full[2*i].rect)
+        assert abs(source[0].rect.width-185*72/25.4)<.15
+        assert full[2*i].get_text()==source[0].get_text()
+        page=full[2*i+1]
+        assert ' '.join(title.split()) in ' '.join(page.get_text().split())
+        spans=[s for b in page.get_text('dict',flags=0)['blocks'] for line in b.get('lines',[]) for s in line['spans']]
+        assert min(s['size'] for s in spans)>=9.99
+        assert all(page.rect.contains(fitz.Rect(s['bbox'])) for s in spans)
+    assert len(fitz.open(lp(SUITE/'ALL_MAIN_FIGURES.pdf')))==7
+    assert len(fitz.open(lp(SUITE/'ALL_SUPPLEMENT_FIGURES.pdf')))==10
 
 
-def test_pdf_and_png_pairs_are_complete_and_publication_resolution():
+def test_publication_resolution_and_native_previews():
     for stem in EXPECTED:
-        pdf = fitz.open(lp(SUITE / (stem + '.pdf')))
-        assert len(pdf) == 1
-        with Image.open(lp(SUITE / (stem + '.png'))) as im:
-            assert im.width >= 4360
-            target_ratio = pdf[0].rect.width / pdf[0].rect.height
-            assert abs(im.width / im.height - target_ratio) < .002
-        assert (SUITE / 'Page_Previews' / (Path(stem).name + '.png')).is_file()
+        d=fitz.open(lp(SUITE/(stem+'.pdf')))
+        with Image.open(lp(SUITE/(stem+'.png'))) as im:
+            assert im.width>=4360
+            assert abs(im.width/im.height-d[0].rect.width/d[0].rect.height)<.002
+        assert (SUITE/'Page_Previews'/(Path(stem).name+'.png')).is_file()
 
 
-def test_explanation_preserves_gate_and_formal_cluster_boundaries():
-    caps = open(lp(SUITE / 'MANUSCRIPT_FACING_CAPTIONS.md'), encoding='utf-8').read()
-    assert 'Combined removal of the station functionality threshold and source-connectivity requirement' in caps
-    assert 'Independent removal-only controls were not evaluated' in caps
-    assert 'conditional on the target station being functional' in caps
-    assert 'Cluster IDs 1–5' in caps
-    assert 'common linear sequential colorbar' in caps
-    assert 'N/A does not mean that every excluded tract has no residents' in caps
-    assert 'review candidate' not in caps.lower()
-    assert 'companion review evidence' not in caps.lower()
+def test_framework_edit_stays_in_community_outcomes():
+    q=read(QA/'VISUAL_AND_PACKET_QA.json');assert q['Fig1_outside_Stage5_pixels_identical']
+    d=fitz.open(lp(SUITE/'Main/Fig01.pdf'))
+    t=d[0].get_textbox(fitz.Rect(94.5*72/25.4,164.2*72/25.4,182*72/25.4,217*72/25.4))
+    assert all(x in t for x in ['Service loss','T80','Quartile gap','Gini','Community typology','Hotspot score'])
+    assert all(x not in t for x in ['Tested conditions','Vulnerability-first effects','All tracts and','time to 80%'])
 
 
-def test_original_science_and_staged_work_remain_unchanged():
-    before = json.load(open(lp(QA / 'PRESERVATION_BEFORE.json'), encoding='utf-8'))
-    after = json.load(open(lp(QA / 'PRESERVATION_AFTER.json'), encoding='utf-8'))
-    assert before == after
-    assert before['protected_count'] == 950
-    assert before['staged_count'] == 862
-    assert not audit()['scientific_results_recomputed']
-    assert audit()['original_worktree_unchanged']
+def test_fig5_strict_clipping_preserves_every_map_identity():
+    e=audit()['operator_edits']['Main/Fig05']
+    assert e['strict_color_limits_h']==[-20,20] and e['colorbar_ticks_h']==[-20,-10,0,10,20]
+    assert e['normalization_clip'] and e['old_paint_checked_against_every_exact_saved_tract_value']
+    assert e['polygon_path_count']==6945 and e['three_map_values_and_GEOIDs_unchanged']
+    assert sum(r['below_minus20']+r['above_plus20'] for r in e['endpoint_saturation_counts'].values())>0
+    assert read(QA/'VISUAL_AND_PACKET_QA.json')['Fig5_A_to_D_pixels_identical']
 
 
-def test_approved_integration_and_bounded_display_edits_preserve_science():
-    a = audit()
-    assert a['updated_figures'] == ['Supplement/FigS05']
-    assert len(a['retained_figures']) == 18
-    assert a['operator_edits']['Supplement/FigS05']['curves_bars_points_axes_intervals_and_numerical_labels_unchanged']
-    edits = a['prior_round_operator_evidence']
-    assert edits['Supplement/FigS05']['reviewed_PDF_and_PNG_copied_exactly']
-    assert edits['Main/Fig07']['NA']['white_NA_paths'] == 48
-    assert edits['Main/Fig07']['NA']['cluster_membership_hotspot_values_and_study_boundary_unchanged']
-    assert edits['Main/Fig07']['palette']['C4_after'] == edits['Supplement/FigS09']['C4_after'] == '#8a83b8'
-    assert edits['Supplement/FigS10']['metric'] == 'tract population'
-    assert edits['Supplement/FigS10']['population_log_norm_range_geometries_stations_and_text_unchanged']
-    assert edits['Supplement/FigS11']['hazard'] == '2pc50'
-    assert not edits['Supplement/FigS11']['new_means_or_uncertainty_computed']
-    assert edits['Supplement/FigS13']['PDF_retained_exactly']
-    assert edits['Supplement/FigS13']['merge_decision'] == 'KEEP_SEPARATE'
-    cap = open(lp(SUITE / 'MANUSCRIPT_FACING_CAPTIONS.md'), encoding='utf-8').read()
-    assert 'The divider separates T80' not in cap
-    assert 'shown in white with dark boundaries as N/A' in cap
+def test_threshold_comparisons_hold_source_connectivity_fixed():
+    e=audit()['operator_edits']['Supplement/FigS06']
+    assert e['displayed_gate_cases']==['G2_RELAXED_005','G3_STRICT_075']
+    assert e['source_connectivity_fixed'] and not e['source_only_control_available']
+    assert e['joint_removal_panel_removed_from_numbered_figure']
+    rows=list(csv.DictReader(open(lp(QA/'THRESHOLD_DISPLAY_VALUES.csv'),encoding='utf-8')))
+    assert len(rows)==6 and {r['gate'] for r in rows}==set(e['displayed_gate_cases'])
+    assert 'Only the functionality threshold changes' in open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
 
 
-def test_s05_has_plain_labels_and_preserves_the_scientific_qualifications():
-    d = fitz.open(lp(SUITE/'Supplement/FigS05.pdf'))
-    plotted = d[0].get_text()
-    assert all(t not in plotted for t in ['Pure-random', 'incumbent injection', 'Strict proximity', 'Post-data', 'Net benefit is dominated'])
-    assert all(t in plotted for t in ['20 GA runs', 'Median best-so-far loss', 'Decrease', 'Increase', 'Net change'])
-    assert all(t in plotted for t in ['32.995522', '+0.277475', '+0.010638', '-0.820788', '-0.532675', '-0.563982', '-0.502321'])
-    text = open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
-    body = re.search(r'^## Supplementary Figure S5\..*?\n\n(.*?)(?=^## )',text,re.M|re.S)[1].strip()
-    assert 'it was not included in the initial population' in body
-    assert '10/20 runs' in body and '90% single-run criterion' in body
-    assert 'global optimality' in body
-    assert 'Bonferroni two-contrast family' in body
-    assert 'legacy last-position elitism candidate' in body
-    assert '0-480 h' in body and '2,000' in body and '64 fixed' in body
-    assert 'burden' not in body
-    assert all(t in body for t in ['0.232733', '0.009790'])
+def test_s9_contains_only_unchanged_kmeans_diagnostics():
+    t=fitz.open(lp(SUITE/'Supplement/FigS09.pdf'))[0].get_text()
+    assert 'Inertia' in t and 'Silhouette coefficient' in t
+    assert not any(x in t for x in ['PCA','PC1','PC2','Principal component'])
+    assert not audit()['operator_edits']['Supplement/FigS09']['kmeans_fit_or_k_search_run']
+    rows=list(csv.DictReader(open(lp(QA/'KMEANS_DISPLAY_VALUES.csv'),encoding='utf-8')))
+    assert [int(r['k']) for r in rows]==list(range(1,11))
+    assert abs(float(rows[4]['inertia'])-16659.582436298988)<1e-9
+    assert abs(float(rows[4]['silhouette'])-.13916506976949464)<1e-12
 
 
-def test_retained_artwork_is_exact_and_s11_cells_are_archived_values():
-    sources = json.load(open(lp(QA/'SOURCE_HASHES.json'),encoding='utf-8'))
-    base = audit()['baseline_commit']
-    changed = set(audit()['updated_figures'])
-    for stem in EXPECTED:
-        if stem not in changed:
-            for ext in ['pdf','png']:
-                rel = 'results/figure_review/'+stem+'.'+ext
-                assert sha(ROOT/rel) == sources[base+':'+rel]['sha256']
-    e = audit()['prior_round_operator_evidence']['Supplement/FigS11']
-    import subprocess
-    rel = e['source_path']
-    pointer = subprocess.check_output(['git','-C',str(ROOT),'show','c0a11ffb4df523111efe6c8e65cfe86eadffec3c:'+rel])
-    match = re.search(rb'oid sha256:([0-9a-f]{64})',pointer)
-    if match:
-        assert match[1].decode()==e['source_sha256']
-    values=e['saved_display_means']
-    assert len(values)==6 and all(len(v)==4 for v in values)
-    assert abs(max(x for row in values for x in row)-e['linear_norm_h'][1])<1e-12
-    assert e['linear_norm_h'][0]==0
-    pdf=fitz.open(lp(SUITE/'Supplement/FigS11.pdf'))
-    text=pdf[0].get_text()
-    assert all(f'{x:+.2f}' in text for row in values for x in row)
-    assert 'San Fernando' not in text and 'Northridge' not in text
+def test_s10_population_and_priority_identity_are_preserved():
+    e=audit()['operator_edits']['Supplement/FigS10']
+    assert e['C_metric']=='tract population' and e['C_palette'].startswith('YlOrBr')
+    assert e['priority_color_all_panels']=='#20272e'
+    assert e['population_norm_range_geometry_and_rank_identity_unchanged'] and len(e['colorbar_scalar_indices'])==1
+    d=fitz.open(lp(SUITE/'Supplement/FigS10.pdf'))
+    ranks=[s for b in d[0].get_text('dict',flags=0)['blocks'] for line in b.get('lines',[]) for s in line['spans'] if s['text'] in ['1','2','3','4','5']]
+    assert ranks and all(s['color']!=0x007c83 for s in ranks)
 
 
-def test_s05_original_data_graphics_are_byte_preserved():
-    a = audit()['operator_edits']['Supplement/FigS05']
-    assert len(a['core_stream_invariance']) > 0
-    assert all(r['all_other_text_unchanged'] for r in a['core_stream_invariance'])
-    visual = json.load(open(lp(QA/'VISUAL_AND_PACKET_QA.json'),encoding='utf-8'))
-    assert all(r['unmodified_data_pixels_identical'] for r in visual['data_region_checks'])
-    assert visual['actual_packet_pixels_identical']
-    assert visual['all_current_labels_inside_page']
+def test_resource_merge_reuses_eight_original_vector_panels():
+    e=audit()['operator_edits']['Supplement/FigS11']
+    assert e['eight_original_resource_panels_reused'] and e['no_means_ranges_or_trajectories_recomputed']
+    assert len(e['layout_records'])==8
+    assert {r['source'] for r in e['layout_records']}=={'Supplement/FigS12','Supplement/FigS13'}
+    d=fitz.open(lp(SUITE/'Supplement/FigS11.pdf'));assert len(d[0].get_images())==0
+    spans=[s for b in d[0].get_text('dict',flags=0)['blocks'] for line in b.get('lines',[]) for s in line['spans']]
+    assert min(s['size'] for s in spans)>=7.99
+    assert all(d[0].rect.contains(fitz.Rect(s['bbox'])) for s in spans)
+    assert all(chr(65+i)+'.' in d[0].get_text() for i in range(8))
+
+
+def test_retired_figures_and_s02_have_no_current_placeholders():
+    for n in ['FigS02','FigS12','FigS13']:
+        assert not (SUITE/'Supplement'/(n+'.pdf')).exists()
+        assert not (SUITE/'Page_Previews'/(n+'.png')).exists()
+    caps=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    assert not re.search(r'^## Supplementary Figure S(?:2|12|13)\.',caps,re.M)
+    index=list(csv.DictReader(open(lp(ROOT/'results/figures/FIGURE_INDEX.csv'),encoding='utf-8-sig')))
+    assert len(index)==34 and not {r['figure_number'] for r in index}&{'FigS02','FigS12','FigS13'}
+
+
+def test_previous_heatmap_is_the_exact_fig4_reference_subtraction():
+    rows=list(csv.DictReader(open(lp(QA/'S11_FIG4_NUMERICAL_IDENTITY.csv'),encoding='utf-8')))
+    assert len(rows)==24 and max(abs(float(r['identity_error_h'])) for r in rows)<1e-10
+    assert not audit()['S11_Fig4_identity']['new_scientific_estimates']
+
+
+def test_unrelated_artwork_and_original_staged_science_are_unchanged():
+    a=audit();sources=read(QA/'SOURCE_HASHES.json')
+    assert len(a['updated_figures'])==6 and len(a['retained_figures'])==11
+    for stem in a['retained_figures']:
+        for ext in ['pdf','png']:
+            rel='results/figure_review/'+stem+'.'+ext
+            assert sha(ROOT/rel)==sources[a['baseline_commit']+':'+rel]['sha256']
+    before=read(QA/'PRESERVATION_BEFORE.json');after=read(QA/'PRESERVATION_AFTER.json')
+    assert before==after and before['protected_count']==950 and before['staged_count']==862
+    assert not a['scientific_results_recomputed'] and not a['new_scientific_fits_or_evaluations'] and not a['manuscripts_modified']
+    assert all(r['actual_packet_pixels_identical'] for r in read(QA/'VISUAL_AND_PACKET_QA.json')['packet_checks'])

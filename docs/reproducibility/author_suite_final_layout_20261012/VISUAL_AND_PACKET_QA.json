@@ -1,0 +1,45 @@
+{
+  "Fig1_outside_Stage5_pixels_identical": true,
+  "Fig5_A_to_D_pixels_identical": true,
+  "packet_checks": [
+    {
+      "figure": "Fig01",
+      "actual_packet_page": 1,
+      "actual_packet_pixels_identical": true
+    },
+    {
+      "figure": "Fig05",
+      "actual_packet_page": 9,
+      "actual_packet_pixels_identical": true
+    },
+    {
+      "figure": "FigS06",
+      "actual_packet_page": 23,
+      "actual_packet_pixels_identical": true
+    },
+    {
+      "figure": "FigS09",
+      "actual_packet_page": 29,
+      "actual_packet_pixels_identical": true
+    },
+    {
+      "figure": "FigS10",
+      "actual_packet_page": 31,
+      "actual_packet_pixels_identical": true
+    },
+    {
+      "figure": "FigS11",
+      "actual_packet_page": 33,
+      "actual_packet_pixels_identical": true
+    }
+  ],
+  "actual_native_PDFs_visually_inspected": [
+    "Main/Fig01",
+    "Main/Fig05",
+    "Supplement/FigS06",
+    "Supplement/FigS09",
+    "Supplement/FigS10",
+    "Supplement/FigS11"
+  ],
+  "visual_review": "Plain Stage5 labels; exact capped colorbar without seams; fixed-source threshold plots; K-means only; warm population colors and dark priority keys; eight readable resource panels."
+}

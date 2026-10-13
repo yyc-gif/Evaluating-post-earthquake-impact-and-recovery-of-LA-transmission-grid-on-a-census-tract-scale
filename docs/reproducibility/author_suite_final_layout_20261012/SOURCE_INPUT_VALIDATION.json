@@ -1,0 +1,80 @@
+{
+  "pinned_cached_sources": {
+    "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_TRACT_EFFECTS.parquet": {
+      "source_commit": "37e71b3e15b0f4e1be3a651344e3f9e6475dc24b",
+      "sha256": "f0e1a0897d7a6b4ec2251ffc35c3008744ddf7d6ca2ec6b5bfadaaf7ed9632db",
+      "bytes": 268180,
+      "actual_bytes_verified": true
+    },
+    "Formal_Experiment_20260923/Formal_Results/TRACT_PAIRED_EFFECTS.parquet": {
+      "source_commit": "37e71b3e15b0f4e1be3a651344e3f9e6475dc24b",
+      "sha256": "09dddbe18dc102d2bd1a9218625460125e356f1e4ac6d3abc8df0789899faa03",
+      "bytes": 1911137,
+      "actual_bytes_verified": true
+    },
+    "Data/LA_Tracts_With_Population.dbf": {
+      "source_commit": "37e71b3e15b0f4e1be3a651344e3f9e6475dc24b",
+      "sha256": "169af79354b68be1b3e60bee534e7d9622123c3233625b9fc631483795f1f9e2",
+      "bytes": 2535984,
+      "actual_bytes_verified": true
+    },
+    "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized/kmeans_k_diagnostics.csv": {
+      "source_commit": "37e71b3e15b0f4e1be3a651344e3f9e6475dc24b",
+      "sha256": "c3c7552b0fc55bdc6a910e5602a2bc8871640c0152e8f09f8f16c1d4ac2a5fc9",
+      "bytes": 840,
+      "actual_bytes_verified": true
+    },
+    "src/la_grid/revision/r1_mapping_gate_robustness.py": {
+      "source_commit": "37e71b3e15b0f4e1be3a651344e3f9e6475dc24b",
+      "sha256": "0de9783fd4f03a67f7c541c7a7d74f168497af44d159824f275fe2343d2edb58",
+      "bytes": 11819,
+      "actual_bytes_verified": true
+    },
+    "docs/reproducibility/SUPPLEMENT_ASSUMPTIONS_LAYOUT_UPDATE_20261006.json": {
+      "source_commit": "37e71b3e15b0f4e1be3a651344e3f9e6475dc24b",
+      "sha256": "8b2159006ab4d267fada865f87ad52c0a6ecd2c5053dd6925167dc0e5e7b3344",
+      "bytes": 4016,
+      "actual_bytes_verified": true
+    }
+  },
+  "gate_definitions": {
+    "G0_NO_GATE": [
+      "no_gate",
+      0.5
+    ],
+    "G1_BASELINE_050": [
+      "source_gate",
+      0.5
+    ],
+    "G2_RELAXED_005": [
+      "source_gate",
+      0.05
+    ],
+    "G3_STRICT_075": [
+      "source_gate",
+      0.75
+    ]
+  },
+  "source_requirement_fixed_not_realized_reachability": true,
+  "offline_archives": [
+    {
+      "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__impact-first__SUMMARY.parquet",
+      "sha256": "0daf1c7a1898b0a31bae0e5e944a4e88c70ad21c446b83418eb5856afdd020fc",
+      "bytes": 4426773,
+      "actual_frozen_local_bytes_verified": true
+    },
+    {
+      "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__hospital-first__SUMMARY.parquet",
+      "sha256": "03d50947f57ca9b2e3f0d64c41feca576b53ff9568db3d7b70f98028d47fe8ce",
+      "bytes": 4353645,
+      "actual_frozen_local_bytes_verified": true
+    },
+    {
+      "path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/2pc50__C57_D1__degree-first__SUMMARY.parquet",
+      "sha256": "52f82970c78e57450d0edb61a5a75504fc219693550fa97b1a4cae7dd8df1f4c",
+      "bytes": 4347823,
+      "actual_frozen_local_bytes_verified": true
+    }
+  ],
+  "new_computations_or_source_downloads": false
+}

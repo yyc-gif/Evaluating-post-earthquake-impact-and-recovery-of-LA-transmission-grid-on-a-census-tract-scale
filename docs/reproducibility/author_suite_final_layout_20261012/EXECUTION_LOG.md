@@ -1,0 +1,21 @@
+# Figure-only author corrections — 2026-10-12
+
+Started from clean local/remote 37e71b3e15b0f4e1be3a651344e3f9e6475dc24b on the existing isolated figure branch. Pinned actual PDF/PNG and source-table bytes were reused. No manuscript, scientific stage, sampling, trajectory evaluator, scheduling, GA, clustering or bootstrap was executed.
+
+Fig1 Stage5 labels were shortened and separated into outcome metrics and spatial patterns. The conditions block was removed from Community Outcomes; resource and model comparisons remain documented in the figure caption and the corresponding figures. Existing numerical illustrations were reused; the quartile bars remain explicitly schematic.
+
+Fig5E's original range was ±24.018302801579285 h. All 6,945 polygon paths were checked in their original GEOID order against the exact frozen tract values and original colors. New colors use Normalize(-20,20,clip=True). Every polygon geometry is unchanged, all three comparisons remain, and the new continuous colorbar ends exactly at its -20/20 ticks. A seam in the first gradient export was corrected before delivery.
+
+The requirement-confounding panel was S06B, not the source-redundancy figure S07. S06 now uses the existing cutoff panel and the two threshold controls. The station functionality threshold changes while the source-connectivity requirement and Core-source set remain fixed; realized source reachability is not asserted to stay identical. The original combined-removal values are retained in JOINT_GATE_ARCHIVED_VALUES.csv. The archived design has no source-only control. No such result was manufactured.
+
+S9 reads the original saved K-means diagnostic CSV; PCA plots were removed without fitting anything. S10C retains tract population, its logarithmic normalization and range, geometry, population indices and priority identities. A warm palette and synchronized dark priority markers/rank text replace the blue/teal conflict; middle colors were softened after actual inspection.
+
+S11's 24 mean reference contrasts agree with Fig4 policy mean minus Unconstrained mean to less than 1.2e-14 h. The standalone baseline heatmap was retired. The eight original S12/S13 resource panels were reflowed into S11 by metric row and resource column; original vector marks and ranges were copied, not recomputed. Axis text was reset at readable size, policy symbols match the six plotted policies, and the mean/range symbols are in the shared legend. Old numbered S12/S13 assets and mirrors were removed from the current suite; their exact bytes remain in the pinned source commit and existing LFS store.
+
+An initial vector-path selection also selected five colorbar tick lines. Requiring closed polygons corrected this before export and validated all 6,945 map paths. Frozen gate summaries are local offline archives rather than Git-tracked files; their actual bytes were verified against the committed producer hashes. Completed render checkpoints were reused while fixing later display issues.
+
+The six changed native figures and their actual assembled PDF pages were visually inspected. Fig1 outside the edited card/border and Fig5 A-D were compared with their prior native previews and are pixel-identical. All caption pages retain 10-point body text. The integration checks pass (12 tests). Original 950 protected scientific-file hashes, 862 staged items, worktree status and index agree before/after.
+
+The single current directory holds seven Main and ten Supplement figure pairs, three synchronized packets, captions, previews, manifests and mirrors. No S02 placeholder is retained. The complete packet has 38 pages, including the four unchanged complementary-evidence pages. Source/input hashes, render checkpoints, data identities, tests and remote receipts are retained here.
+
+Final packaging continued on 2026-10-13 without changing the round's directory or branch. Marker glyphs were compensated for the resource-panel reflow so circles/squares retain their shapes, with unchanged centers and interval vertices. Source records identify the two actual S12/S13 inputs to the new S11; the K-means CSV and current merge ledger are hash-verified references. Mirror filenames were synchronized as FigS06_Dependency_and_Threshold_Sensitivity and FigS11_Resource_Outcomes. Final checks pass: 12 tests. No further artwork changes follow these checks.

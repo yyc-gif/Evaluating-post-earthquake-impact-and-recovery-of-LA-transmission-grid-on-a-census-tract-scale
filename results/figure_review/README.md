@@ -2,14 +2,16 @@ This is the single author-review source for the current submission figure set. D
 
 # Current complete figure suite
 
-This figure-only integration branch is `review/official-figure-suite-final-s05-20261012`, based on the latest verified revision artwork at c0a11ff. It has not been merged automatically into the revision branch.
+Branch: `review/official-figure-suite-final-s05-20261012`.
 
-- [Complete figures and captions](ALL_FIGURES_WITH_CAPTIONS.pdf): Main01-07, then S01/S03-13, each followed by its caption; the four existing complementary-evidence pages follow.
-- [Main](Main/) and [Supplement](Supplement/): seven and twelve numbered PDF/600-dpi PNG pairs. S02 is already integrated into S01.
-- [What changed and what remains unresolved](FIGURE_SUITE_UPDATE_SUMMARY_20261012.md).
-- [Captions](MANUSCRIPT_FACING_CAPTIONS.md), [manifest](FIGURE_MANIFEST.csv), [palette authority](CURRENT_CLUSTER_PALETTE.json), and [native page previews](Page_Previews/).
+- [Complete figures with captions](ALL_FIGURES_WITH_CAPTIONS.pdf): seven Main and ten Supplement figures, each immediately followed by its caption; four existing complementary-evidence pages follow.
+- [Main](Main/): Fig01–Fig07, vector PDF and 600-dpi PNG pairs.
+- [Supplement](Supplement/): FigS01 and FigS03–FigS11, vector PDF and 600-dpi PNG pairs.
+- [Changes in this round](FIGURE_SUITE_UPDATE_SUMMARY_20261012.md), [captions](MANUSCRIPT_FACING_CAPTIONS.md), [manifest](FIGURE_MANIFEST.csv), [native previews](Page_Previews/).
 - [Main packet](ALL_MAIN_FIGURES.pdf) and [Supplement packet](ALL_SUPPLEMENT_FIGURES.pdf).
 
-The four-panel S05 occupies the official numbered targets. Its latest author-requested cleanup removes panel footnotes and search jargon, using plain headings and actual legend symbols. It displays twenty GA runs and archived validation of the selected sequence on the separate 2,000-case cohort. It does not add GA curves to the existing six-policy main/resource figures or replace protected formal strategies. Figure7/S9 retain the formal five clusters, with synchronized C4 color; no experimental four-cluster typology is substituted. S11 displays 2pc50 only, while historical cross-scenario evidence remains archived. S12 and S13 remain separate. All mirrors under results/figures are byte-identical.
+The new S11 combines the two resource families in eight panels: crew availability on the left, repair duration on the right, the same four outcomes in rows. The prior standalone baseline heatmap duplicated the mean comparisons available from Figure4. Separate numbered S12/S13 entries are retired. Historical source bytes remain in Git; they are not alternative current figures.
 
-No manuscript or scientific stage is changed. S14/S15 remain internal evidence and S16 remains a review aid; none is added to the numbered set.
+Figure5E uses strict -20/+20-h color limits. S6 shows cutoff and threshold comparisons with the source-connectivity requirement retained. S9 shows K-means diagnostics only. S10 retains tract population and uses warm shading with contrasting dark priority symbols. Figure1's Community Outcomes uses short, parallel metric and spatial-pattern labels.
+
+The final S05 remains integrated and unchanged by this round. Protected numerical science, formal five-class membership, manuscripts and the original staged work are preserved. All results/figures mirrors are byte-identical to the numbered files here. Internal evidence and review aids are not added to the numbered submission set.
