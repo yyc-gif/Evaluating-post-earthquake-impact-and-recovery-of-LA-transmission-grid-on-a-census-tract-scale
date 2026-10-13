@@ -1,0 +1,67 @@
+{
+  "review_status": "EXPLORATORY MULTI-HAZARD INDEX AUDIT \u2014 NOT FORMAL STAGE 7",
+  "authority": "8ce85454e9db1b6991c311b1ebec1948e5bf1fe0",
+  "cohort": 2299,
+  "full_service_domain": 2315,
+  "population": 9066522,
+  "retained_zero_housing": 8,
+  "excluded_zero_population": 16,
+  "objective": "Earthquake-inclusive natural-hazard coordinate; Columbia NHI versus published FEMA NCV method; CBM comparator only",
+  "frozen_setup": [
+    "2pc50",
+    "C57_D1",
+    "M1_UTILITY_003",
+    "G1_BASELINE_050",
+    "480 hours",
+    "1000 physical evaluations"
+  ],
+  "first_seven": [
+    "Init_Supply",
+    "Grid_Impact",
+    "Redundancy_HHI",
+    "B_Unconstrained",
+    "MeanDelta",
+    "SOVI_SCORE",
+    "log1p_Population"
+  ],
+  "squared_distance_budgets": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.08333333333333333,
+    0.08333333333333333
+  ],
+  "kmeans": {
+    "init": "k-means++",
+    "n_init": 50,
+    "algorithm": "lloyd",
+    "max_iter": 500,
+    "tol": 0.0001
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "K": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "source_gate": "No new fitted hazard matrix unless full-cohort source/geography and construct semantics are defensible",
+  "Columbia_transfer": "Official 2010-to-2020 relation plus equal-area geometry. Dominant-area ordinal classification and fractional-area composition, never physical intensity.",
+  "FEMA_method": "Published Williams 2024 hazard set/formula first; tract-scale and normalization adaptations explicitly separate",
+  "no_imputation": true,
+  "no_formal_promotion": true,
+  "no_physical_or_restoration_regeneration": true
+}

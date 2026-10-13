@@ -1,0 +1,158 @@
+{
+  "review_status": "EXPLORATORY MULTI-HAZARD INDEX AUDIT \u2014 NOT FORMAL STAGE 7",
+  "authority": "8ce85454e9db1b6991c311b1ebec1948e5bf1fe0",
+  "checks": [
+    {
+      "check": "cohort_first7_population_quartile_identity",
+      "status": "PASS",
+      "detail": "2299 /9066522;8 positive zero-housing;16 exclusions;exact11-digitIDs"
+    },
+    {
+      "check": "raw_payload_hash_OID_and_NHI_sum",
+      "status": "PASS",
+      "detail": "All acquired/failed payload hashes;2343 unique OIDs;Decimal sum;NULL preservation"
+    },
+    {
+      "check": "Census_land_relation_and_gap_geometry",
+      "status": "PASS",
+      "detail": "2299 independent official land fractions;11 gaps/46455residents;all gap polygon-pair overlaps recomputed"
+    },
+    {
+      "check": "FEMA_source18_formula_and_CA_normalization",
+      "status": "PASS",
+      "detail": "Originalv1.19 bytes;18 factors;fourNULLs remainNULL;14 valid without clipping;Decimal examples"
+    },
+    {
+      "check": "information_independent_linear_R2_VIF",
+      "status": "PASS",
+      "detail": "NumPy least-squares cross-check;random and spatial nonlinear folds preserved as conditional diagnostics"
+    },
+    {
+      "check": "all204_matrices_labels_inertia_silhouette",
+      "status": "PASS",
+      "detail": {
+        "maximum_inertia_error": 8.640199666842818e-12,
+        "maximum_silhouette_error": 8.187894806610529e-16,
+        "method": "SciPy independent distances; per-class summation formula"
+      }
+    },
+    {
+      "check": "hazard_sensitivity_independent_ARI_and_alignment",
+      "status": "PASS",
+      "detail": "All45 hazard/normalization comparisons;tract/resident reassignment;no formal IDs"
+    },
+    {
+      "check": "eight_vector_PDFs_and600dpi_preview_dimensions",
+      "status": "PASS",
+      "detail": "8 native7.2-inch pages;alltext in page bounds;AI=false;manual visual QA recorded separately"
+    },
+    {
+      "check": "950_files_prior_packages_original_staging_preserved",
+      "status": "PASS",
+      "detail": "950 actualSHA256;allauthorityGitblobs;originaldirty/stagedstatusbytes;package-only writing"
+    }
+  ],
+  "all_checks_passed": true,
+  "python": "3.12.3",
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "geopandas": "1.1.1",
+    "shapely": "2.1.2",
+    "scikit-learn": "1.5.1",
+    "scipy": "1.11.4",
+    "matplotlib": "3.9.2",
+    "PyMuPDF": "1.28.0",
+    "Pillow": "10.4.0",
+    "requests": "2.32.3",
+    "threadpoolctl": "3.5.0"
+  },
+  "completed_UTC": "2026-10-13T06:25:37.571762+00:00",
+  "figure_checks": [
+    {
+      "name": "01_Columbia_components_and_support",
+      "width": 4320,
+      "height": 3960,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    },
+    {
+      "name": "02_Columbia_geographic_uncertainty",
+      "width": 4320,
+      "height": 3720,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    },
+    {
+      "name": "03_FEMA_frequency_and_area",
+      "width": 4320,
+      "height": 3480,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    },
+    {
+      "name": "04_FEMA_components_and_defaults",
+      "width": 4320,
+      "height": 3780,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    },
+    {
+      "name": "05_Three_way_geographic_comparison",
+      "width": 4320,
+      "height": 2700,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    },
+    {
+      "name": "06_K_evidence_and_robustness",
+      "width": 4320,
+      "height": 3600,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    },
+    {
+      "name": "07_Memberships_and_population",
+      "width": 4320,
+      "height": 3780,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    },
+    {
+      "name": "08_K4_original_unit_profiles",
+      "width": 4320,
+      "height": 3360,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "text_within_page": true
+    }
+  ],
+  "limitations": [
+    "Selected modeled source completeness is not validation of all physical layers",
+    "Geography sensitivity usesfour blocks",
+    "Exactpublishednine aggregate andnationalfrozen normalization unavailable"
+  ]
+}

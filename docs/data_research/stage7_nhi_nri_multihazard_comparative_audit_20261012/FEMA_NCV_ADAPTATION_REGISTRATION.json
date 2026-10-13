@@ -1,0 +1,43 @@
+{
+  "review_status": "EXPLORATORY MULTI-HAZARD INDEX AUDIT \u2014 NOT FORMAL STAGE 7",
+  "candidate": "FEMA_NCV14_CA_v119",
+  "hazards": [
+    "CFLD",
+    "CWAV",
+    "DRGT",
+    "ERQK",
+    "HAIL",
+    "HWAV",
+    "LNDS",
+    "LTNG",
+    "RFLD",
+    "SWND",
+    "TRND",
+    "TSUN",
+    "WFIR",
+    "WNTW"
+  ],
+  "omitted_hazards": [
+    "AVLN",
+    "HRCN",
+    "ISTM",
+    "VLCN"
+  ],
+  "selection_rule": "Retain each of 18 release hazards only if all frozen 2299 tracts have nonnegative AFREQ, valid impacted/total area and compatible fraction. Four all-null fields omitted, never zero-filled.",
+  "method": "Williams 2024 factor AFREQ*(EXP_AREA/AREA), per-hazard min-max, equal sum, final min-max",
+  "exact_paper_nine_hazard_replication": false,
+  "paper_nine_set_unresolved": true,
+  "main_normalization": "California-wide 9106 frozen records; each hazard uses its actual valid source records",
+  "sensitivities": [
+    "Los Angeles cohort-only min-max explicitly labeled regional",
+    "leave each retained hazard out",
+    "omit locally invariant CWAV only",
+    "source-defined zero masking diagnostics, not fitted imputation"
+  ],
+  "reference_population_replaced": false,
+  "clustering_not_yet_run": true,
+  "qualified_native_geography": true,
+  "all_original_physical_measurements_certified": false,
+  "final_sum_CA_complete14_reference_count": 6571,
+  "registration_stage": "Source-only pre-fit register; finalized reference count added without changing vector"
+}

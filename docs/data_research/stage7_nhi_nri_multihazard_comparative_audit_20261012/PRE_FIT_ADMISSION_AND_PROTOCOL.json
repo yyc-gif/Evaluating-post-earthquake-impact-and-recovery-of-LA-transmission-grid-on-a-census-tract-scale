@@ -1,0 +1,61 @@
+{
+  "review_status": "EXPLORATORY MULTI-HAZARD INDEX AUDIT \u2014 NOT FORMAL STAGE 7",
+  "authority": "8ce85454e9db1b6991c311b1ebec1948e5bf1fe0",
+  "admitted_new_primary": "FEMA_NCV14_CA_v119",
+  "published_as_official_FEMA": false,
+  "exact_Williams_nine_replication": false,
+  "admission_definition": "Complete actual modeled source inputs for the selected14 hazards on every target. Does not certify complete observed18-hazard coverage.",
+  "Columbia_fit": false,
+  "CBM_reused_only": true,
+  "P2_reused_only": true,
+  "main_K": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "main_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "parameters": {
+    "init": "k-means++",
+    "n_init": 50,
+    "algorithm": "lloyd",
+    "max_iter": 500,
+    "tol": 0.0001
+  },
+  "squared_distance_budgets": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.08333333333333333,
+    0.08333333333333333
+  ],
+  "registered_auxiliary_K": [
+    3,
+    4,
+    5
+  ],
+  "auxiliary_seed": 42,
+  "sensitivities": [
+    "All14 individual leaveouts",
+    "LA-only component normalization with constant CWAV omitted",
+    "all non-earthquake combined; no earthquake",
+    "earthquake-only descriptor, not an admitted multihazard model",
+    "omit Init and redistribute remaining RQ1 to1/6 each"
+  ],
+  "policy_and_geography": "Same four prior quadrants and six declared ensemble subsets includingRandom; both cohort and fixed baseline scaling for policy features",
+  "no_tuned_weights": true,
+  "no_new_physical_or_scheduling_run": true
+}

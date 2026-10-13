@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "adb3cb49ced687730beff7ebf88f9c5e161062ed",
+  "external_diagnostic_commit": "f3215176cda98197b21877e41be27ccf11d2236c",
+  "hazard": "2pc50",
+  "constrained_policy": "impact-first",
+  "legacy_stage7_policy": "direct-community",
+  "unconstrained_policy": "unconstrained",
+  "resources": "C57_D1",
+  "mapping": "M1_UTILITY_003",
+  "gate": "G1_BASELINE_050",
+  "horizon_hr": 480,
+  "realization_count": 1000,
+  "service_threshold_for_T80": 0.8,
+  "gate_threshold": 0.5,
+  "candidate_cohort": "existing residential2291; reconsider full2315 only by author approval",
+  "primary_geometry_exclusions": [],
+  "diagnostic_seed": 42,
+  "nonlinear_diagnostics": "full-cohort kNN mutual information (5 neighbors) and additive cubic spline five-fold predictive R2; descriptive, not independent validation",
+  "no_clustering_or_weighted_matrix": true,
+  "selection_principle": "Construct validity and provenance first; empirical redundancy qualifies complementary measurements, not a mechanical eligibility cutoff; no labels or separation statistics used."
+}
