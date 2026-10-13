@@ -1,0 +1,112 @@
+{
+  "all_checks_passed": true,
+  "checks": [
+    {
+      "name": "compensated_source_means_identity_and_exact94",
+      "status": "PASS",
+      "detail": "Station-sample means reduced with math.fsum then projected;manual type7 percentile;all94GEOIDs and350799people unchanged"
+    },
+    {
+      "name": "all_F_R_contingency_cells_populations_and_effects",
+      "status": "PASS",
+      "detail": "20 comparator/protocol tables independently recounted;fourcells sum to2299and9066522"
+    },
+    {
+      "name": "prespecified_thresholds_and_ties",
+      "status": "PASS",
+      "detail": "OnlyP70/P75/P80;noforcedquantilegroups;F/Rmeanincrementsemantics explicitlymarked"
+    },
+    {
+      "name": "original_quartile_and_population_weighted_profiles",
+      "status": "PASS",
+      "detail": "OriginalQ1-Q4 reused;compensatedunweighted/weightedmeans verified;noquartileconstruction"
+    },
+    {
+      "name": "D1_values_unchanged_and_GEOIDs_explicit",
+      "status": "PASS",
+      "detail": "Leadingzero restoration only,numericFIPS unchanged;2291legacy/24NAneverinheritedbynew2299cohort"
+    },
+    {
+      "name": "saved_K3_K4_and_schema_unchanged",
+      "status": "PASS",
+      "detail": "Allfrozenlabels/colors/scientificvariables copied, nofit;cohortandweights unchanged"
+    },
+    {
+      "name": "vector_artwork_and_exact_A_B_C_preservation",
+      "status": "PASS",
+      "detail": "SevenPDFs/7pages;zeroembeddedimages;600dpi;A-B/Cpixels matchpriorcandidate exactly atpublication2xrender"
+    },
+    {
+      "name": "protection_drafts_and_no_simulation_fit",
+      "status": "PASS",
+      "detail": "950actualfiles,originalstaging/untrackedstate andallpriorGitblobs unchanged;mainresults no94screenclaim;nosimulation/refitcalls"
+    }
+  ],
+  "completed_UTC": "2026-10-13T19:18:34.706036+00:00",
+  "python": "3.12.3",
+  "independent_mean_error_hr": 1.4210854715202004e-14,
+  "independent_P75_hr": 38.38135467381474,
+  "figure_checks": [
+    {
+      "file": "figures/01_Q4_vs_NonQ4_Policy_Burden.pdf",
+      "vector_only": true,
+      "text_in_bounds": true,
+      "min_font_pt": 6.5,
+      "PNG_width": 4320,
+      "PNG_height": 3900
+    },
+    {
+      "file": "figures/02_Five_vs_Four_Policy_Cooccurrence.pdf",
+      "vector_only": true,
+      "text_in_bounds": true,
+      "min_font_pt": 6.5,
+      "PNG_width": 4320,
+      "PNG_height": 3780
+    },
+    {
+      "file": "figures/03_Threshold_and_Spatial_Sensitivity.pdf",
+      "vector_only": true,
+      "text_in_bounds": true,
+      "min_font_pt": 6.5,
+      "PNG_width": 4320,
+      "PNG_height": 3840
+    },
+    {
+      "file": "figures/Figure7_D1_Review.pdf",
+      "vector_only": true,
+      "text_in_bounds": true,
+      "min_font_pt": 6.0,
+      "PNG_width": 4320,
+      "PNG_height": 4920
+    },
+    {
+      "file": "figures/Figure7_D2_Review.pdf",
+      "vector_only": true,
+      "text_in_bounds": true,
+      "min_font_pt": 6.0,
+      "PNG_width": 4320,
+      "PNG_height": 4920
+    },
+    {
+      "file": "figures/Figure7_D3_Review.pdf",
+      "vector_only": true,
+      "text_in_bounds": true,
+      "min_font_pt": 6.0,
+      "PNG_width": 4320,
+      "PNG_height": 4920
+    },
+    {
+      "file": "figures/FigureS9_Consistency_Review.pdf",
+      "vector_only": true,
+      "text_in_bounds": true,
+      "min_font_pt": 7.0,
+      "PNG_width": 4320,
+      "PNG_height": 3600
+    }
+  ],
+  "new_Kmeans_fits": 0,
+  "new_simulations": 0,
+  "formal_promotion": false,
+  "source_and_file_hashes": 125,
+  "original950protected": true
+}

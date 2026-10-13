@@ -1,0 +1,16 @@
+{
+  "internal_points": "Frozen TIGER 2020 INTPT projected UTM coordinates; no geometry exclusions.",
+  "block_sizes_m": [
+    5000,
+    10000
+  ],
+  "origin": "Fixed national UTM grid origin (0,0), floor(x/size),floor(y/size)",
+  "broad_regions": "3 east-west by 4 south-north equal-width bins of cohort point extent; fixed before outcome summaries",
+  "graph": "8 nearest distinct tract internal points, symmetrized and row-standardized",
+  "joint_standardization": "Same all-tract/resident block weights for Q4 and non-Q4, only blocks with >=5 tracts of each; descriptive, not a causal adjustment.",
+  "no_IID_pvalues": true,
+  "no_spatial_significance_claim": true,
+  "no_permutation_reason": "Fixed deterministic modeled census domain, strong nonexchangeable network/mapping and policy dependence. No validated spatial null or independent replicated regions.",
+  "temporary_leaveout_only": true,
+  "main_cohort_unchanged": true
+}

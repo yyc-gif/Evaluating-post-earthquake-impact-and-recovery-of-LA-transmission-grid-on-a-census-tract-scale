@@ -1,0 +1,73 @@
+{
+  "checked_UTC": "2026-10-13T19:16:20.439733+00:00",
+  "operator": "Codex actual rendered-page visual inspection",
+  "pages": [
+    {
+      "pdf": "figures/01_Q4_vs_NonQ4_Policy_Burden.pdf",
+      "sha256": "ed82d3320704cda26e789e385df71e28ff34061b50c2a6d9969563f4660d0c7f",
+      "rendered_review": "tmp/pdfs/01_Q4_vs_NonQ4_Policy_Burden_page1_review.png",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "visually_inspected": true
+    },
+    {
+      "pdf": "figures/02_Five_vs_Four_Policy_Cooccurrence.pdf",
+      "sha256": "a622dcef801d0e3854dbbef2eee631ccd2f0866af88ded43f57dc9d9a5d5f730",
+      "rendered_review": "tmp/pdfs/02_Five_vs_Four_Policy_Cooccurrence_page1_review.png",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "visually_inspected": true
+    },
+    {
+      "pdf": "figures/03_Threshold_and_Spatial_Sensitivity.pdf",
+      "sha256": "43eb68580827a5d6380f85e27719f4d01b22b0edd410b180d27f786fc76dcbb3",
+      "rendered_review": "tmp/pdfs/03_Threshold_and_Spatial_Sensitivity_page1_review.png",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "visually_inspected": true
+    },
+    {
+      "pdf": "figures/Figure7_D1_Review.pdf",
+      "sha256": "7e81b04ef637d2510aecd3fa47582bee22aea8e3248ee07ffc26b9ed8e568b81",
+      "rendered_review": "tmp/pdfs/Figure7_D1_Review_page1_review.png",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "visually_inspected": true
+    },
+    {
+      "pdf": "figures/Figure7_D2_Review.pdf",
+      "sha256": "185de55fb4250974378e399b14eb4d8359b05b34617af5f1bc6d9585a223c8e8",
+      "rendered_review": "tmp/pdfs/Figure7_D2_Review_page1_review.png",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "visually_inspected": true
+    },
+    {
+      "pdf": "figures/Figure7_D3_Review.pdf",
+      "sha256": "c40c5d55b5adc077dafdd1ec1856b5d0d6025be66a10c0ee5b974c177f8ee710",
+      "rendered_review": "tmp/pdfs/Figure7_D3_Review_page1_review.png",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "visually_inspected": true
+    },
+    {
+      "pdf": "figures/FigureS9_Consistency_Review.pdf",
+      "sha256": "f195e1a36785617a97e6ee99a0435effb8a3a49c96d5b3cf1c18f785938e2705",
+      "rendered_review": "tmp/pdfs/FigureS9_Consistency_Review_page1_review.png",
+      "publication_width_inches": 7.2,
+      "render_scale": 2,
+      "visually_inspected": true
+    }
+  ],
+  "readable": true,
+  "clipping_or_unintended_overlap_observed": false,
+  "corrections": [
+    "Full policy labels fit within page margins; nonQ4 and Q4 keys do not hide bars.",
+    "Leave-block figure labels explicitly reindexed to actual 5km/10km/broad-region rows.",
+    "Legacy-score GEOIDs restore leading zero only; score and original Top10 unchanged.",
+    "S9 rare class called Initial exception, not exclusively Q state."
+  ],
+  "A_C_science_and_pixels_preserved": true,
+  "D1_24_score_NA_distinguished_from_16_cluster_NA": true,
+  "output_figures_not_formal": true
+}

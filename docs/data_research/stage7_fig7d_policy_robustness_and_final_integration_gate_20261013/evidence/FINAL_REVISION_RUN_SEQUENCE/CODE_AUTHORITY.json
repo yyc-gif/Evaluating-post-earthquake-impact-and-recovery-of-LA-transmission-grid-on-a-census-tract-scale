@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "checked_out_branch": "revision/reviewer-driven-core-rebuild-v2",
+  "audited_scientific_base_commit": "2d54e737ebf3b010507b6186dcbf00a37ef0602c",
+  "current_code_files": [
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/01_VALIDATE_INPUTS/run_01_validate.py",
+      "sha256": "f43a460f4ade5da0a461ce214774723002268a0ed607076892ba146f0b0cdeee",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/02_MAPPING_AND_PHYSICAL_SAMPLES/run_02_mapping_and_physical.py",
+      "sha256": "77915e30aa0f119d469b47070d8234f2362cd508fb72a7338bc6655a0514506b",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/03_GA_AND_STRATEGY_FREEZE/run_03_strategy_freeze.py",
+      "sha256": "6061ca1caa8c4cad22c758dcc9e44c7663e4696b7b289c815ec975db0da80bbc",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/04_SCHEDULE_AND_TRAJECTORIES/run_04_trajectories.py",
+      "sha256": "56e914d3f15f8d6e80412d02b7c31ccce78b0e17ca8d9882d30513735687fcb7",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/05_SERVICE_AND_TRACT_EVALUATION/run_05_service_evaluation.py",
+      "sha256": "cac22dc5c8dc6c45f78fa14262a65a5f855b9d6727d9e7ebae4fa6f62b09c41b",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/06_SOURCE_AND_NETWORK_DIAGNOSTICS/run_06_source_network_diagnostics.py",
+      "sha256": "316398142b1bbea0585897466e8a2422849f8c659e619bcc1187d569d5a6ae80",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/07_DISTRIBUTIONAL_AND_VULNERABILITY/run_07_distributional_vulnerability.py",
+      "sha256": "9a0eb879b3651563c68d8f5478e9e4b39fe99b85776717eed48ea1c950e2c582",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/08_FINAL_STAGE7_TYPOLOGY/run_08_stage7_typology.py",
+      "sha256": "f2656fb83d1ff9211c0b7ab8fadd5478ee46735ed348cedf9a84d0970b13fc78",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/run_09_capacity_robustness.py",
+      "sha256": "6ed3f9d466fc6656150f0912bbf2876a6fb8559ebc3065149af4c75388318763",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/10_FINAL_RESULTS_AND_FIGURES/run_10_final_outputs.py",
+      "sha256": "96b8982ee4f2209596dadbd68874dadcc957ea651a207bb4a95b1ec371bb588c",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/run_all.py",
+      "sha256": "abb3fd299d1a386d47f15c05dd71b2f1992c15fcf7a35913b31bd2c55e68bfed",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "FINAL_REVISION_RUN_SEQUENCE/stage_runner.py",
+      "sha256": "a0059ac3ddb992d49ff5439a54561b359980f2f4e522126b3cd033044467ba54",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/core/legacy_entrypoints/C257H_Project_Main_expanded.py",
+      "sha256": "5203c4449bf6b795876fa2b37622bbeb8e3f33d4453fc18751d28028673e1af1",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/core/strategy_names.py",
+      "sha256": "dad732354882ae04278bfc2b88b820dec5206cbfbda7ef5a7c1d3753be3ebed6",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/diagnostics/r1_formal_dynamic_topology.py",
+      "sha256": "21417cee441ff9d497b9771e34a937d60c75238ee547847ed0b3fedecf98b726",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/diagnostics/r1_formal_mechanism_results.py",
+      "sha256": "0a82738dd909ca13c55567e0a6ba7594bfcfbd7ce74d6d774b379cc333674fdb",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/diagnostics/route_requirement_sensitivity.py",
+      "sha256": "9989251d76db2f41c4b95df29fb60319f56b27ec1c4826509528e4abb1cde832",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/diagnostics/source_terminal_operational_reliability.py",
+      "sha256": "dfe2532dd8af730b4a0e4c1a0e6b4911cd87740b8dcb2387b36a82fa84075fcc",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/diagnostics/substation_connectivity_reliability.py",
+      "sha256": "aed679793abc171da68cf5bfdeea439fc9d58a6639dd7fe7572ef7a946877018",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/build_revised_result_suite.py",
+      "sha256": "ad1b77a88a2faed21daa349e526fdcf3e595d5e0727aeabf1058e32f046166e6",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/make_methodology_workflow_figure.py",
+      "sha256": "85e7e6ca8571686bb834454bf56fc1126a03977ea363c6815db8ae1a32ca93ab",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/r1_equity_amendment_figures.py",
+      "sha256": "1b73fe1975e1193b8f8bafa004d37ba3335ed5a6b1d6f51b598cff854f5eccce",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_efficiency_distribution_tradeoff.py",
+      "sha256": "173df3b564089448a6e3018f6bbd43a0105e289cbac69dc2a4a7f6b1ac3997fe",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_revised_stage7.py",
+      "sha256": "c8ff74a2e5fa1a2437a350fb7d73890adf9b09c0f4b97b61072c8fc7c8253058",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_revised_suite.py",
+      "sha256": "2a4df516b865333405bfad36161b828b0dbe799f232a5c76bbedb2e8820e4380",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_revised_suite_comparisons.py",
+      "sha256": "1f099db93bb66412ca4adf3c52665f5b9fd9486fbdb0e25e31135f9a769ab987",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_sce_capacity_sensitivity_figure.py",
+      "sha256": "b08d9393fe91ee2349eb1a0805ed1869f2ea7431aefcfd06f32faaf8692bf30a",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_source_gate_electrical_adequacy_figure.py",
+      "sha256": "bc8eb0ef643701fc69d545e553b1c6b59c27ea08ab80528a00f0f7cf5da4f78b",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_source_reliability_figures.py",
+      "sha256": "d1b29b18112685dfad93e2d410fa58ab5ae9099d7381bfe999b06adf2a861b60",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/update_coauthor_figure_index.py",
+      "sha256": "f0b3dbf87c9c86cfac705ee89282c879021c8cf0142fa5f148a0a2530ae81162",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/capacity/run_sce_capacity_supported_sensitivity.py",
+      "sha256": "6840781cbab2cb732904b49932f2f0b7b3da4c10790cb8fcb47bdb8b69e52de7",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/capacity/sce_capacity_closure.py",
+      "sha256": "cd49cbf1501d5ff3c1cc145ed43d68800f8ccc2dc86b959be547f655ab73b5ad",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/offline.py",
+      "sha256": "686ac5c9883d2038decc2df8fc7fb1784e9779fba1d1c3a24702f322c919b968",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/results.py",
+      "sha256": "4704d9d9ca5f2f38279fc039e4bc536b5135a6d33a7e94bce618a516b8892810",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/schedule.py",
+      "sha256": "957818fffba71d08827520eb9fd68b2d3e62601206a81f8723526e4fce47002a",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/formal/stage7.py",
+      "sha256": "04cc44a653ec2cfcec9cb375d5bf59b112dca4acb2c042e67e6abf54b086de01",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_equity_amendment_results.py",
+      "sha256": "16800b09e62d40d1a6f79432357d0621fab400ee8d7b332debdd9718eb38a8b1",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_final_matrix.py",
+      "sha256": "1fdc14f1fd6243cb34a20de656593108cc1bdcb663d9f2e2d119586570043961",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_ga_revision.py",
+      "sha256": "edfd3851cbc593ed95bf48ffba022f9800f9d21102e59b1e1a2a6da11a5d9b5f",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_source_gate.py",
+      "sha256": "1afb63e18e220e33b8087db4721af1756a641a0b97469a90c1357735e58cb424",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/r1_stage7_harmonized.py",
+      "sha256": "ed381ba6541803ee05491b7009ed6fb9ed896cd5288068333b50e718a4bb614e",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/revision/run_stage7_sovi_harmonization.py",
+      "sha256": "3babb2b9eebf0ca80faa37b39d2567922aa147a2dd3f47de0e5d126d1ca7aba7",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/update_framework_figure.py",
+      "sha256": "b17790b5ac460c7a926a8597ec37f8322eb35c6458e18f4b5108c4a0805785f5",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/refine_policy_cluster_presentation.py",
+      "sha256": "6897d3815f56df35f1594176304277c99e096fba1a3f637ce97131eb6d73a7db",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/refine_supplement_assumptions_layout.py",
+      "sha256": "addeabb6f86e632e44ee29de599d3234c47ac54d3aeff748a4cd39034ff5ffdd",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/render_ga_incumbent_comparison.py",
+      "sha256": "62fc17150c0cd6e66ed3de95f4d3f63159b6a5da934805b8cbe1e008c7435548",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/apply_outcome_display_feedback.py",
+      "sha256": "c818dd561c43d0479e2057d3182b5b40dbc8579680060723ae2505662c519397",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/report_ga_search_budget.py",
+      "sha256": "155b53da6e6993ba5723c93419f8942272b313c4444cce18bd09bfe2c49fccee",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/diagnostics/ga_search_budget_sensitivity.py",
+      "sha256": "e4e36d32a269f82e4a2a2a8e5a97adf6edb27f0fbc810b71545579f4c6fa1329",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/apply_supplement_review_and_ga_diagnostic.py",
+      "sha256": "411b40232e106eec7332a636076d0137bc2901ab25b14efe24cb731b2e3414a2",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/apply_coauthor_figure_feedback.py",
+      "sha256": "02daab6df156fa81b6e5ca71ac74f3cf9a2340e6cfaf17a01d024125020d15be",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/apply_coauthor_map_legend_feedback.py",
+      "sha256": "b39a5a986acdeaee8fddb3ceecac857ba8414eb506b735cb4a003e5917d3bbc7",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/clarify_outcome_measure_identity.py",
+      "sha256": "9700c333da071b29ee3c70f587acb0231854ea1a5e91162878d86f097ddeb3f9",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/apply_map_metric_identity_feedback.py",
+      "sha256": "bca54fed4a39f3d8638714e7bb925e2d5b9604f34414154613aef817acc2a8fe",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/clarify_distribution_strategy_visibility.py",
+      "sha256": "c11bc6dc98613ab4a9a87effc89690aee9bb775952facd9786947856be3dcddc",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/apply_minor_legend_feedback.py",
+      "sha256": "5ddbc934f0e566935cd81ad7eee1b558b8a5e0d3b65f0ca9d712c1c057f2ab0a",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/Project_Visualizer.py",
+      "sha256": "5fbf0f4c3d5bba7f22b51cdb2cf77b2009b182943d762a36886c490c2c1b8449",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/selected_strategy_artwork.py",
+      "sha256": "a6e6eb53dac427b94eef352c148c311af82b35164a0ddbad3928754d85b1ba6d",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/selected_strategy_evidence.py",
+      "sha256": "faed6b09607d2a6451964b5941ee7c5be52008406084e3501e66b80ffad7b21f",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/selected_strategy_panels.py",
+      "sha256": "e532bdab4d2c4381cad6c31b612360dca1a85923a266d56ca7637f73e12810cb",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/selected_strategy_source_travel.py",
+      "sha256": "c23780309f02f9df8e0f04e45590548283f0cbed3556c7c1e10461c04d1c460b",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/integrate_selected_strategy_20261008.py",
+      "sha256": "246b40130ff163f99d10b16396b69b5a83d7beb645bada2ab5c4d479cec655b6",
+      "tracked_in_current_git": true
+    },
+    {
+      "path": "src/la_grid/plotting/extended_ga_artwork_20261008.py",
+      "sha256": "eed89ad65b754836622431c9fa7dbf4c831650e17183f9d6c1929e5dad6e5422",
+      "tracked_in_current_git": true
+    }
+  ],
+  "required_historical_executable_commits": [
+    {
+      "commit": "517a755fbf334af3c8ee269b35027f9befdf0776",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "a4cbad91698c57d79cc867d814ec7d5ee85312bf",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "9bfa628e2bc1099f4a9ce6ec1fc83b96ce83b257",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "09a7175261221568546fc4e8c9f11953deb8ddee",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "0d9c379414af40c70096929e8e855e67b3b36cf1",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "4dd2a7babb51849852bb169a59df1ca4726cc16f",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "96f15318c2900382036f0614b7966b59d0cf796f",
+      "exists_in_local_git": true
+    },
+    {
+      "commit": "2d54e737ebf3b010507b6186dcbf00a37ef0602c",
+      "exists_in_local_git": true
+    }
+  ],
+  "sibling_suite_code_files_found": 0,
+  "sibling_suite_path": "results/revised_suite/LA_Grid_Revised_Suite_20260925",
+  "from_scratch_certified": false
+}

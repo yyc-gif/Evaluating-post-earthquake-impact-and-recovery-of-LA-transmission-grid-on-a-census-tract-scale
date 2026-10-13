@@ -1,0 +1,13 @@
+> AUTHOR REVIEW - NOT FORMAL STAGE 7
+
+# Future promotion plan; NOT EXECUTED
+
+1. Obtain author approval of exact NCV14/H2/K3 and K4 source hashes, D3, coordinated drafts, the active manuscript/supplement paths and robustness-figure numbering. Record the approved candidate commit and exact files.
+2. Recheck `git status` in the actual active worktree. Preserve unrelated staged/untracked work. Create an annotated backup tag or dedicated backup branch and a timestamped patch before changes. Copy every mutable target outside active output directories and hash it. Preserve existing Git/LFS objects and manuscript bytes. Do not delete history.
+3. Create a separate promotion branch. Import saved data, preprocessing and IDs into `results/stage7/NCV14_H2_K3_2299/`. Do not refit K-means or recompute quartiles. Keep old Formal_Experiment Stage 7 directories and execution identities intact.
+4. Add version-aware readers/verifiers and routing according to the exact registry. Fail on incorrect schema, cohort or source bytes. Never fall back to old PCA/housing/hotspot inputs. Leave Stages 1-6, physical damage, schedules, GA, distributional policy results and all 950 protected files unchanged.
+5. Install approved F7/S9/robustness assets and modify only their Stage 7 text. Synchronize active figure copies, manifests, indexes and assembled collections in one coordinated commit. Preserve other numbered pages and data.
+6. Run lightweight tests of the 2299/16/8 eligibility counts, 9,066,522 population, eleven-digit IDs, exact feature values, H2 standardizer/budgets, saved K3/K4 labels, registry colors, BU+MeanDelta identity, D3 meaning and absence of old Top10 labels. Check unrelated scientific hashes and absence of formal recomputation. Render every affected page at publication width.
+7. Independently check reader imports, resume verification without simulation and clean-clone LFS payloads. Ask the author to review the final diff before merging. No automatic Release or Zenodo action belongs to this task.
+
+Rollback: before merging, abandon only the promotion branch after preserving its changes; never reset unrelated dirty work. After merging, use a scoped `git revert` of the coordinated promotion commit(s). Restore active figure/data/text pointers from the verified backup, and external DOCX/supplement files only from exact timestamped copies. Verify old manifest, source and figure hashes and all 950 protected files. The new versioned candidate may remain archived but must not stay active. Do not force-push, filter history, delete LFS objects or overwrite an unconfirmed manuscript.
