@@ -72,6 +72,16 @@ def json_read(path):
     return json.load(open(u.lp(path), encoding='utf-8'))
 
 
+def primary_source(stem):
+    if stem == 'Main/Fig01':
+        return BASE, 'results/figure_review/Main/Fig01.pdf'
+    if stem == 'Main/Fig07':
+        return FROZEN, SP + 'candidate/EIGHT_VARIABLE_FROZEN_TABLE.csv'
+    if stem == 'Supplement/FigS09':
+        return FROZEN, SP + 'inputs/EXISTING_K_EVIDENCE.csv'
+    raise ValueError(stem)
+
+
 def snapshot():
     if '--portable' in sys.argv:
         if not (QA / 'PRESERVATION_BEFORE.json').exists():
@@ -407,9 +417,9 @@ def metadata(caps, manifest, index):
         prior=row['sha256'];is_changed=stem in CHANGED
         row['change_in_this_update']='UPDATED' if is_changed else 'RETAINED'
         if is_changed:
+            input_commit,input_path=primary_source(stem)
             row.update(parent_source_file=row['current_source_file'],parent_source_commit=BASE,parent_sha256=prior,
-                source_commit=FROZEN if stem!='Main/Fig01' else BASE,
-                source_file=str((INPUTS/('K_DIAGNOSTICS.csv' if 'S09' in stem else 'EIGHT_VARIABLE_FROZEN_TABLE.csv')).relative_to(ROOT)).replace('\\','/') if stem!='Main/Fig01' else row['current_source_file'],
+                source_commit=input_commit, source_file=input_path,
                 presentation_generator=GENERATOR,presentation_generator_sha256=u.sha(__file__))
             if stem=='Main/Fig07':
                 old_mirror=ROOT/row['mirror_file']
@@ -431,9 +441,9 @@ def metadata(caps, manifest, index):
         ix=next(x.copy() for x in index if x['source_path']==row['current_source_file'])
         ix['sha256_or_lfs_oid']=sha;ix['file']=Path(row['mirror_file']).name
         if is_changed:
-            ix.update(generator=GENERATOR,source_authority=FROZEN if stem!='Main/Fig01' else BASE,
+            ix.update(generator=GENERATOR,source_authority=input_commit,
                 notes='Author-approved figure-only NCV14/H2/K3 update; archived formal Stage 7 unchanged.',
-                source_data_path=row['source_file'],source_data_sha256=u.sha(ROOT/row['source_file']) if stem!='Main/Fig01' else sha)
+                source_data_path=input_path,source_data_sha256=u.digest(source(input_commit,input_path)))
         if stem=='Main/Fig07':
             ix.update(scientific_question='How do the three RQ-defined tract types and modeled deficits vary geographically?',
                 main_message='K3, 2299 positive-population tracts; D3 continuous five-policy deficit with frozen Q4 outlines.',
@@ -456,11 +466,11 @@ def finalize_manifest(old_manifest, changes):
         r['change_in_this_update']='UPDATED' if stem in CHANGED else 'RETAINED'
         r['sha256']=c['current_sha256'];r['mirror_file']=c['mirror_file']
         if stem in CHANGED:
+            input_commit,input_path=primary_source(stem)
             d=fitz.open(u.lp(DEST/(stem+'.pdf')));page=d[0]
             spans=[s for b in page.get_text('dict')['blocks'] for l in b.get('lines',[]) for s in l['spans']]
             r.update(parent_source_file=r['current_source_file'],parent_source_commit=BASE,parent_sha256=c['baseline_sha256'],
-                source_commit=FROZEN if stem!='Main/Fig01' else BASE,
-                source_file=str((INPUTS/('K_DIAGNOSTICS.csv' if 'S09' in stem else 'EIGHT_VARIABLE_FROZEN_TABLE.csv')).relative_to(ROOT)).replace('\\','/') if stem!='Main/Fig01' else r['current_source_file'],
+                source_commit=input_commit, source_file=input_path,
                 size_mm=' x '.join(f'{v/MM:.3f}' for v in [page.rect.width,page.rect.height]),
                 min_font_pt=f"{min(s['size'] for s in spans):.3f}",status='AUTHOR_APPROVED_CURRENT_FIGURE_SUITE',
                 presentation_generator=GENERATOR,presentation_generator_sha256=u.sha(__file__))

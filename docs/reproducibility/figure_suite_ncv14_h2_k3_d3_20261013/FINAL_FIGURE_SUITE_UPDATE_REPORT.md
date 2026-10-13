@@ -29,7 +29,7 @@ Canonical command: `python src/la_grid/plotting/build_current_suite_k3.py`. Reru
 
 ## Verification and boundaries
 
-- All 18 figure-suite tests pass, including existing scientific display checks rather than removed/bypassed assertions.
+- All 19 figure-suite tests pass, including existing scientific display checks rather than removed/bypassed assertions. The added provenance test resolves each updated manifest's source path in its declared frozen commit and checks the index's actual input payload SHA256.
 - Independent script verifies exact raw coordinates, saved K3 labels, original population/quartile identities, D2 GEOIDs, native page bounds and the test report.
 - Current Fig07 and S09 are vector PDFs with zero raster image objects and native 185-mm widths; PNGs are 600 dpi. Actual native pages and assembled caption pages were visually inspected.
 - All 17 packet figure pages match actual authoritative figure renders. All mirrored PDF/PNG bytes match their authoritative files. Four complementary-evidence pages match the baseline.

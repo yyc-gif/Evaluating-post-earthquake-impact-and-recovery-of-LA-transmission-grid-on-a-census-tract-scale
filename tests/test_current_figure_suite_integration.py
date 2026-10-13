@@ -256,3 +256,15 @@ def test_frozen_scenario_authority_and_exact_current_artwork_set():
     for kind in ['Main','Supplement']:
         actual={str(p.relative_to(SUITE)).replace('\\','/') for p in (SUITE/kind).iterdir() if p.suffix in ['.pdf','.png']}
         assert actual=={r['final_name'] for r in rows if r['final_name'].startswith(kind+'/')}
+
+
+def test_updated_manifest_source_paths_resolve_in_their_declared_frozen_commits():
+    rows=list(csv.DictReader(open(lp(SUITE/'FIGURE_MANIFEST.csv'),encoding='utf-8-sig')))
+    index=list(csv.DictReader(open(lp(ROOT/'results/figures/FIGURE_INDEX.csv'),encoding='utf-8-sig')))
+    for row in rows:
+        if row['change_in_this_update']!='UPDATED':continue
+        b=source_payload(row['source_commit'],row['source_file'])
+        ix=next(r for r in index if r['source_path']==row['current_source_file'])
+        assert ix['source_data_path']==row['source_file']
+        assert ix['source_authority']==row['source_commit']
+        assert hashlib.sha256(b).hexdigest()==ix['source_data_sha256']
