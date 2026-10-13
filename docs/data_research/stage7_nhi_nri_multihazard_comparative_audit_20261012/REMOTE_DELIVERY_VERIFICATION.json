@@ -1,0 +1,840 @@
+{
+  "review_status": "EXPLORATORY MULTI-HAZARD INDEX AUDIT \u2014 NOT FORMAL STAGE 7",
+  "branch": "analysis/stage7-nhi-nri-multihazard-comparative-audit-20261012",
+  "verified_payload_commit": "2ee6aceb44038395753d448475ccce77eb7a3e7f",
+  "remote_HEAD_at_verification": "2ee6aceb44038395753d448475ccce77eb7a3e7f",
+  "git_text_files_verified": 39,
+  "actual_LFS_files": 138,
+  "actual_LFS_bytes": 259168933,
+  "all_actual_payload_bytes_verified": true,
+  "records": [
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/ALGEBRAIC_POPULATION_HAZARD_REALLOCATION.csv",
+      "sha256": "d957f8a87c97bb6cb3b8410ccd841b0c75c8b9ccb0ed2459c449f7b74827e493",
+      "bytes": 581,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/CANDIDATE_LOCAL_COMPONENT_ATTRIBUTION.csv",
+      "sha256": "79c5fc9004adbfab77551dd17b9cf2be2d64c9817b0310b5d86aa3e55c1b5c0c",
+      "bytes": 4361,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/CANDIDATE_MEMBERSHIP_COMPARISONS.csv",
+      "sha256": "b456118f17b9b050fb12ff7a0137b02008e78013a1c4508bdcbe8a596b400ca7",
+      "bytes": 9514,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/CANDIDATE_TRACT_VALUES.csv",
+      "sha256": "d52cd5ed343610ce76f4ef604c49191dc656180252c87c086a02d381ea439f4f",
+      "bytes": 310269,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/CLUSTER_MEMBERSHIP_TRANSITIONS.csv",
+      "sha256": "614665012142294381510c60e6c4ffdfcb05c268ae848f77666a1fe892341f9f",
+      "bytes": 10035,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_2010_GEOMETRY.gpkg",
+      "sha256": "c3246752061fad3aa647e6d698d7b3a8efc1eb21552e1f679a6bd7bc75573b64",
+      "bytes": 8990720,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_FIELD_SCHEMA.csv",
+      "sha256": "b8f4dbaccd0f4c5156fc489ccba5cb6b4373545ffc77ed4be4acd7f1a75224cb",
+      "bytes": 16409,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_GEOMETRIC_OVERLAP_PAIRS.csv",
+      "sha256": "de93811284dc79f855a5ac6762d397c1ba6171c2cbcaaa0637a3340d61708875",
+      "bytes": 1912118,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_NHI_14_HAZARD_COMPONENT_QA.csv",
+      "sha256": "a425df84feb7c5da61ede396c989b0b50285c1fe3f0ced0810c60875ab54741b",
+      "bytes": 6553,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_NHI_2010_TO_2020_GEOGRAPHY_QA.csv",
+      "sha256": "03e639f0f0fd78812779793fd91427d26e9ffd577540f2574f813836fde4ba98",
+      "bytes": 793988,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_NHI_TARGET_CLASS_COMPOSITION.csv",
+      "sha256": "44bd3a9df0cca0cb41e81ed83fd8a14cbd88ab6b8fdc62c71b0eed02a2cae514",
+      "bytes": 6428434,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_NHI_TRANSFERRED_VALUES.csv",
+      "sha256": "a3b25bbf9e2512271608dcb800082771b71fd0472874809c890ba7cb428fb0f4",
+      "bytes": 342261,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_OFFICIAL_DOCUMENTATION_TABLE1.csv",
+      "sha256": "1a8b7c97001874ab99ef2735cb4b33a404b92c34ed682d35e67d7ddeca72c3f1",
+      "bytes": 2555,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_OFFICIAL_DOCUMENTATION_TABLE2.csv",
+      "sha256": "6a6c18e73fd37548f41c3e18ac1af5711f5fd91d59ef800606d9bca65c3fd460",
+      "bytes": 1208,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_SOURCE_ATTRIBUTE_RECORDS.csv",
+      "sha256": "1d8c4a21402aa1c56d38cf276d1183ade4c281953acac6b2cec8c559d9b41ab4",
+      "bytes": 1692215,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_SOURCE_COVERAGE_BY_TARGET.csv",
+      "sha256": "17d4da431144d336fa56aec585e907b14cc99896c85eceea42a6ece3ee4e8302",
+      "bytes": 174822,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/COLUMBIA_UNCOVERED_OFFICIAL_2010_TRACTS.csv",
+      "sha256": "9ba99b4014c772d9f502c79e466db5c90aace4178e5d8440e076b59b8589355d",
+      "bytes": 291,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/CONDITIONAL_K_AND_STABILITY_RESULTS.csv",
+      "sha256": "f5c0545d0f626dbace7bb65f6317a92b7d7518467d994880f4a835aee784afc4",
+      "bytes": 68734,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/DOMAIN_AND_COORDINATE_SEPARATION.csv",
+      "sha256": "cf4e5fe688cd9253c28df561b11ff901e4f50cad4bb2eae3099c13480d278e5a",
+      "bytes": 63446,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/EIGHTH_COORDINATE_COHORT_ADMISSION.csv",
+      "sha256": "921ea4682a4d9e1efabfd3863b89f00b63441d2da08a7867821c565da3a20d03",
+      "bytes": 1191,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/EIGHT_VARIABLE_K_EVIDENCE.csv",
+      "sha256": "cbd0ce21cc9d478b56c18f77efa32856e533fde3c61d1d151302226d37ca2cef",
+      "bytes": 3427,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/ELBOW_ENDPOINT_SENSITIVITY.csv",
+      "sha256": "816806f8bc65640decd6b6c34a06bdcea3f9973ce174e3b77d57d5f044e60a33",
+      "bytes": 3173,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/EXCLUDED_ZERO_POPULATION_GEOIDS.csv",
+      "sha256": "83616717011f62e11dc43f8dc20e417239aedc8c2cd15692a63dbf244a10ef64",
+      "bytes": 1282,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_DEFAULT_MASK_MISSINGNESS_DIAGNOSTIC.csv",
+      "sha256": "091af0d363e687e244818f4a690064a38244ca270d672c937e8d9a081077be31",
+      "bytes": 414,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_CANDIDATE_VECTORS.csv",
+      "sha256": "3445fdfe9f3de3d0176bf96362ed1889fad40710fccfe3dd1e2ce8173a11c315",
+      "bytes": 257061,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_EFFECTIVE_HAZARD_CONTRIBUTIONS.csv",
+      "sha256": "be7d719d883037b8423b68a28a8d9c52429c70f68b39e33d43dcca04f2b81df1",
+      "bytes": 2980,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_HAZARD_COMPONENT_VALUES.csv",
+      "sha256": "1d9ed4344f5482162e586a43d209816762b83ec08eeb4ddc5d29b6efb4725df1",
+      "bytes": 1698648,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_NORMALIZATION_REFERENCE.csv",
+      "sha256": "36cbf09f5dc400fce18ca65afc6e1a61073d0a136dc2e5c8626f5aed8d994e99",
+      "bytes": 1989,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NCV_NORMALIZED_COMPONENTS.csv",
+      "sha256": "8346a3296febcca28cacb7be7da76bbb79339a3b6afc0ced3f46de8b0233eb84",
+      "bytes": 564497,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_NRI_V119_18_HAZARD_RAW_FIELD_REGISTER.csv",
+      "sha256": "4e54ffc81fa0f28d6474d7decb62fd57e499503f0f61886d17c03258aa50452d",
+      "bytes": 22597,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FEMA_SOCIAL_FACTOR_REMOVAL_NUMERICAL_QA.csv",
+      "sha256": "0470c31b76cf13bf40767f8525881bc6483fdd1e993696eeb4fe8c2a9d1899c1",
+      "bytes": 312,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FROZEN_COHORT_AND_COMPARATORS.csv",
+      "sha256": "72d9259576802dfc75d9d2fe42486e523a8443ab6895bd8e6a4e7f4df848d424",
+      "bytes": 1357928,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FROZEN_COMPARATOR_FIT_ARRAYS.npz",
+      "sha256": "fa61e69313f19147a4c9a04b949a184308261f03c4ae7803682b6790da9d1ef2",
+      "bytes": 7319255,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FROZEN_COMPARATOR_K_EVIDENCE.csv",
+      "sha256": "16335c1ada4acc2cf5b46791fb2de6668081f8c1e9c4201d8ee9a0cc9935f0a1",
+      "bytes": 9523,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/FROZEN_COMPARATOR_WEIGHTED_MATRICES.npz",
+      "sha256": "fc07e57ace3095ab464df3976070032a2fcc1094378d283d2b96c9115751235c",
+      "bytes": 5006556,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/GEOMETRY_VALIDATION.csv",
+      "sha256": "bb7f10bcf3f36ad7b8f980a204cb122945905c517c9cc2ca395ede409d8fdb3d",
+      "bytes": 622,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/HAZARD_INDEX_INCREMENTAL_INFORMATION.csv",
+      "sha256": "9f260b651f304bc6de7a12a6ad2b3509b8276a6a59c11e573f671a923768ccfe",
+      "bytes": 1282,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/HAZARD_INDEX_PAIRWISE_ASSOCIATIONS.csv",
+      "sha256": "8bb94197ad579093634134ce803f237c9adedd4044abf0b32d0690f497d43ccf",
+      "bytes": 4007,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/HAZARD_LEAVE_ONE_OUT_RANK_SENSITIVITY.csv",
+      "sha256": "0264c911cad8e8899a191f8457e83aabb25c311794b2a6568b4638e4cff17690",
+      "bytes": 3845,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/HAZARD_LEAVE_ONE_OUT_SENSITIVITY.csv",
+      "sha256": "4106ad9f723315defe179ced0b82b41dc36ecbc91d7e7b4f38e9a407861a7b57",
+      "bytes": 6271,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/HAZARD_LEAVE_ONE_OUT_VECTORS.csv",
+      "sha256": "dd8cc39316274f4335d5f4bdfae649682d67454404dd50981ecf8ac8a1d437dc",
+      "bytes": 862716,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/INDEPENDENT_FIT_CHECKS.csv",
+      "sha256": "eaa5f63175a5dd817e8c13937efaa6e3bbc95f7e273c87327685576c477cc910",
+      "bytes": 25814,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/K4_COMPACT_ORIGINAL_UNIT_PROFILE.csv",
+      "sha256": "c9e87a978366b64575c876765905b5f10e7da4807701a2e019268860d4e71af9",
+      "bytes": 1541,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/K4_INITIAL_STATE_EXCEPTION_GEOIDS.csv",
+      "sha256": "79be7cb529cebdcb28b567a2c9f7b979e86096a1e9da3e3e63a5374e4f6edd07",
+      "bytes": 6881,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/K4_RARE_STATE_SCALING_QA.csv",
+      "sha256": "54f65e99c6e8071c0b157d31f068eb8d01f798001be5ba3c113444caca6a3cd0",
+      "bytes": 677,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/NHI_NCV_CBM_CANDIDATE_COMPARISON.csv",
+      "sha256": "373b1d6fcde31c64ff3c56ae68f22e84b8ec1d6ff6b20c221831d62e67922a5c",
+      "bytes": 1534,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/OFFICIAL_RELATION_STUDY_ROWS.csv",
+      "sha256": "ac2755ccf00804634495d8655a8b48188117ccf8b7554de4d7ca31d0950c2d41",
+      "bytes": 582964,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/ORIGINAL_UNIT_CLUSTER_PROFILES.csv",
+      "sha256": "d65da86083a1279818381452d85567c90cb98ac224021b332d63265b8053e152",
+      "bytes": 119793,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/PER_CLUSTER_SILHOUETTE_AND_POPULATION.csv",
+      "sha256": "9e565b92f76ddf764001621915d044da88c4ad0da79db463ffe98cc1da49c874",
+      "bytes": 53645,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/POLICY_SPATIAL_SEED_INIT_STABILITY.csv",
+      "sha256": "583c21f39a8e4b70ca1436216bcbcfd2ac4f192030cc42bb18d622dc35461cc6",
+      "bytes": 26119,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/REGISTERED_CONDITIONAL_FIT_ARRAYS.npz",
+      "sha256": "8edd35f4f6eec346a4f0eada1e15fc26b94d6458f1e7e254f39054af4058163d",
+      "bytes": 3359813,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/REGISTERED_CONDITIONAL_MATRICES.npz",
+      "sha256": "036305e3e42b92be1064b09b6616a9fbedd3dee923e9a0e9f543615931894cd1",
+      "bytes": 3902738,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/REGISTERED_MODEL_CENTERS.npz",
+      "sha256": "5a9c0edfd4f04caa63e1cef1a46f8dfea9508313ee8b9dd30d734038674f7dbf",
+      "bytes": 116034,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/SOURCE_HASH_VERIFICATION_FITTING.csv",
+      "sha256": "fc4fd4e0b41c37df2052fcb6894a2a9fda7f1cd14d65eb58aeff084328047fbf",
+      "bytes": 447,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/SOURCE_HASH_VERIFICATION_INDEPENDENT.csv",
+      "sha256": "afa32fcba06440350bb4cf8ad1b013cbb774ecd4457c09f418a6a6dba4e823d1",
+      "bytes": 771,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/SOURCE_HASH_VERIFICATION_PREPARE.csv",
+      "sha256": "a69d529779c9951833e8297d7e660cdbb603937f1c81d56565f6119215159dfb",
+      "bytes": 3423,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/TARGET_2020_GEOMETRY.gpkg",
+      "sha256": "18d027f181b36843edcff1674c2691fd4154cc7c7e4eb6ff8852a8a9955a7ca5",
+      "bytes": 5181440,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/WILLIAMS_FACTOR_REAL_SOURCE_EXAMPLES.csv",
+      "sha256": "6b9990e506be44d8cdc70519797a1710f81d6ddb2dab5491b7ebfd6982236ae5",
+      "bytes": 1172,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/01_Columbia_components_and_support.pdf",
+      "sha256": "506a9654f058123509c32bb86f342eb27b5206b966279588654fdeab267a22d2",
+      "bytes": 4594178,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/01_Columbia_components_and_support.png",
+      "sha256": "b191c92049644d2d5c9ee853988f9a98015f287449b8f20aa93c663540c9dbc8",
+      "bytes": 1608960,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/02_Columbia_geographic_uncertainty.pdf",
+      "sha256": "fde41fdb24dc6654d5e4bdbf79be9c4723a8bb0016c7bbbdc592547eaabf133c",
+      "bytes": 4598572,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/02_Columbia_geographic_uncertainty.png",
+      "sha256": "5cadd295e8a6818b08da28d41b3034b5a1a61466e42cf09f033eb11b38403cf5",
+      "bytes": 1370119,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/03_FEMA_frequency_and_area.pdf",
+      "sha256": "132647a4e77cb0ffe1d6ce14c0984bd188373e7f8896c923df4288d0bfb26cd3",
+      "bytes": 8975626,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/03_FEMA_frequency_and_area.png",
+      "sha256": "27fc07199823b8685189942755ee0a1528b7642192ca7b9f40b96c69d82dcf7d",
+      "bytes": 1872914,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/04_FEMA_components_and_defaults.pdf",
+      "sha256": "245dd3c67c403aba02aaff4c8c813ea9e9521eea349ee193b6d03011fc3b4bd1",
+      "bytes": 3091171,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/04_FEMA_components_and_defaults.png",
+      "sha256": "61542386d47ca5492adf1b17c2f1f5bb10fe1f584c7ecead36acc096cf16bb83",
+      "bytes": 1200540,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/05_Three_way_geographic_comparison.pdf",
+      "sha256": "050c6ca6f4dd7f5d447b80d33d507f36061deaef48d5e4bfb45188502d1c2749",
+      "bytes": 4531464,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/05_Three_way_geographic_comparison.png",
+      "sha256": "bd03180bf271a594a9f2f5a41b9391cdb81f998f19ff899e55708c49ed506822",
+      "bytes": 1115551,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/06_K_evidence_and_robustness.pdf",
+      "sha256": "ab402a2c0057d6f1952f632269cc4922304c8a59142232f871737fc70e718068",
+      "bytes": 24014,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/06_K_evidence_and_robustness.png",
+      "sha256": "2a8fa764b3655a9b309752c36df1e068aca3521d8d075029eeaa3d888acb5d11",
+      "bytes": 782646,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/07_Memberships_and_population.pdf",
+      "sha256": "66c0f96a5a892aca638d7328e5b1c8edd949a0494a7f85abc1f733e50774e672",
+      "bytes": 4506165,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/07_Memberships_and_population.png",
+      "sha256": "9f80067175aafce8d8adf588f7423c258c5f9b97b02ec4bc2acc29214a7518e3",
+      "bytes": 1107379,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/08_K4_original_unit_profiles.pdf",
+      "sha256": "40b7a7afef7d2aae634923511d00876f38990f8e2f66b10e3695ddd7653e9514",
+      "bytes": 19962,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/figures/08_K4_original_unit_profiles.png",
+      "sha256": "ea45eff27a90f5822400217c9311f11870cbed555eb320a577807057ca100708",
+      "bytes": 503544,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/ARCHIVED_FEMA_CURRENT_VERSION_HISTORY.pdf",
+      "sha256": "8109c2dc3694dd75c7aad8ce78bd6597a88ea79524b4839403a8229076f69bf2",
+      "bytes": 479149,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/ARCHIVED_FEMA_V119_TECHNICAL_DOCUMENTATION.pdf",
+      "sha256": "23f09170a909cd1cafcbbc61b3228ccd7bda3ed5714378bf7993d3fd25a48ab9",
+      "bytes": 23091570,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/CENSUS_RELATION_CA.txt",
+      "sha256": "f25c2659c4ed6c501b3e518a18c189a0a4141e883174a461db6b437b0af69730",
+      "bytes": 1857165,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/CENSUS_RELATION_EXPLANATION.pdf",
+      "sha256": "41fc3de28f9317bef48fd5748148a8e14cfdde5fdded5c016f05904d8da10636",
+      "bytes": 123887,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/CENSUS_RELATION_PAGE.html",
+      "sha256": "3615d75f2cc1bc77e9689396ab73d0d82b4d3e320a1761dd786f6639ecc901f8",
+      "bytes": 2687592,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/CENSUS_TIGER2010_LA.zip",
+      "sha256": "ed002961e39342d801fe1bd02c3bb35b8dc48697244d9508e98d5ed4b7a5997c",
+      "bytes": 2951377,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/CENSUS_TIGER2020_CA.zip",
+      "sha256": "eb070567eb8777ac78af73df80643b70168330d8bf8c67722fdfcc2519f08ced",
+      "bytes": 31843978,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/CENSUS_TIGER2020_CATALOG.html",
+      "sha256": "bffcf776efe2acb259d43af09c6754a64e7ec5a3f68b34b84c67bb71789affa1",
+      "bytes": 247,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_APP_DATA.html",
+      "sha256": "f892c86034ac643684b3e32353b6413e934edb8c38be035e67db012055b1f0d0",
+      "bytes": 156530,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_APP_ITEM.html",
+      "sha256": "451ab6d11d0d7d915b0b1f05ba7ba05e00e22176517e82191e82734b3a7aeafb",
+      "bytes": 5667,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LAYER77.json",
+      "sha256": "d9ddda5a223cb3baa5a031059e6e7befc11d2b51e371d460e122be8fc0ba469c",
+      "bytes": 49888,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_COUNT.json",
+      "sha256": "b2a81bb4d1621a8971479b869fd4dea87bdd089efb53cfde9e9a456b85941ee5",
+      "bytes": 16,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_0.json",
+      "sha256": "7a0f2a1cec545f241ee78ae3648884bfd504de317e6458384499591d8a6268ab",
+      "bytes": 2365846,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_100.json",
+      "sha256": "9e7b73401517816bef72eb3d5e73edd7b6f8aa393ed24a2ed554154b9dab9de6",
+      "bytes": 806259,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1000.json",
+      "sha256": "64545d28b6d114ff9b7f9bd4ead879865828bfaf83cb06189fee31449f69b991",
+      "bytes": 881576,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1100.json",
+      "sha256": "43633c1eda5d049069a5c64035274b7ba8a6551899ff344badcbbd20e1bcc4b2",
+      "bytes": 708724,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1200.json",
+      "sha256": "c0c48961501964f1f65c1fbd725aec4c0aab5a9108c58df24f4600745040a263",
+      "bytes": 1055543,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1300.json",
+      "sha256": "4050bab14719b17c9564faa71fa77eaa05159b8c580c7a4f088d7155e0c43328",
+      "bytes": 605853,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1400.json",
+      "sha256": "2cec7304088cc120557aa57f563e15bf6af64db06654e0945e244efc00f3e80a",
+      "bytes": 1416722,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1500.json",
+      "sha256": "4ac87079da10ef35b73d763b9e55770fd1e87fbdcfde426e59cfe165e29baf78",
+      "bytes": 944735,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1600.json",
+      "sha256": "475c093ce15b84ae4b18f9b2465b3f50a6142f8603f03aceef8337ee7bd26acf",
+      "bytes": 663821,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1700.json",
+      "sha256": "bb3769016103f327b730ef52e93defeff17c9128888fadd449512246df07d27b",
+      "bytes": 778028,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1800.json",
+      "sha256": "8cf777431fcc36987aa5901ccc3cc3efd71bd91ce836151a68c1041b2c01de34",
+      "bytes": 774700,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_1900.json",
+      "sha256": "e57b30d51e8b53c5316f71f0e6bf2a868d6421ea7ed3e94aff52aac1168a3079",
+      "bytes": 770261,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_200.json",
+      "sha256": "443df5954ffa000bec1ed413f46c98b214b7b7dd4ba7e05413c1051d67a43dad",
+      "bytes": 657356,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_2000.json",
+      "sha256": "8ad7f75dd70fde712001ffe44b494cc2df1b3177cd680fdccd122f96b3351f38",
+      "bytes": 886702,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_2100.json",
+      "sha256": "17033786ab8ec3e5fb533bef771d1c24195e81cdd2d9860e9b5ef5683fb538d2",
+      "bytes": 984842,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_2200.json",
+      "sha256": "42c42d5f0568692e668eb3cc79e611208b8b3f3b425ff921f7439aed31f10ed0",
+      "bytes": 2019134,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_2300.json",
+      "sha256": "4edc2885018f344cd766ec7024fc24b15ac8590c3b2f4c329dcc4de921651411",
+      "bytes": 546101,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_300.json",
+      "sha256": "536da0d4395f3238bb572ca615f68b7a23b934d41fd5b54ccf778a86db165f25",
+      "bytes": 555423,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_400.json",
+      "sha256": "b0dd931b5bd33c3ba8ffa614150f441f51a497800cdd068acf16394554f30b24",
+      "bytes": 712957,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_500.json",
+      "sha256": "7271aedd88ea375098ada322366c352e3cf8a99560279816273e6e3847cca5e7",
+      "bytes": 813649,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_600.json",
+      "sha256": "d28f4aa5a04be361c9c40dc64a05cf628693679405fa4b5be21b7ee52534d4f5",
+      "bytes": 1122505,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_700.json",
+      "sha256": "6eb24d5405307d0a1d862387da32647aa364464e55927a245c7d9a869f00b8d8",
+      "bytes": 505873,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_800.json",
+      "sha256": "a5c8f58e65ba2a737489fd8011b4bb5962733376e7cd81c15aa8c112fb992cfe",
+      "bytes": 525737,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_GEOJSON_B100_900.json",
+      "sha256": "f796848a3ebf8a88f9b7d9c84be29db515424f80d89f08d5030cd597287962db",
+      "bytes": 627277,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_OBJECT_IDS.json",
+      "sha256": "0b074232be9440232145eceba5da0ff96ab6163f9ee6f24961faae0dc66925ec",
+      "bytes": 11765,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_PAGE_0.json",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+      "bytes": 1245,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_PAGE_1200.json",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+      "bytes": 1245,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_PAGE_1600.json",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+      "bytes": 1245,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_PAGE_2000.json",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+      "bytes": 1245,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_PAGE_400.json",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+      "bytes": 1245,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_LA_PAGE_800.json",
+      "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+      "bytes": 1245,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_OFFICIAL.html",
+      "sha256": "8d6b73238c6aa49d0975b5ff2bd5fd9b2bed3a7e16b3f6d19929ecd5ae3733d7",
+      "bytes": 93036,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_SERVICE.json",
+      "sha256": "55159a6a56e8d787ebf819522d907e8f6be07ebb9d0b01c1fae088a4d94f2669",
+      "bytes": 4715,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_SERVICE_ITEM_DATA.html",
+      "sha256": "b7b8d66e8072b6861b4e4b7c73e2a00cb03a838cfdd8d5ad671541dbaa2dbd06",
+      "bytes": 30184,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_SERVICE_ITEM_METADATA.html",
+      "sha256": "3f7ca3249da8540605028c3213c198d2ecdff94e7c88ec400962de9aa34c3322",
+      "bytes": 2114,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/COLUMBIA_WEBMAP_1ddc2479ea4b4fe491fd776843c73cf6.json",
+      "sha256": "7e45060ec775a9e9c646bb2b49c57bcd533cad5c85e3bbc04076a59fb6449165",
+      "bytes": 121136,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/FEMA_NRI_v119_CA_FROZEN.csv",
+      "sha256": "5248639b400f46e85d1fa751e257afcc27b43f1575aa2f9fd986d3eedd6df310",
+      "bytes": 63069432,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/FEMA_V119_COUNTIES_ARCHIVE_TRIAL.html",
+      "sha256": "e2b8b2437bc0a63af2cc76d2eb0fef951909dcd2f418c0306924b66e42326731",
+      "bytes": 462,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/FEMA_V119_TRACTS_ARCHIVE_TRIAL.html",
+      "sha256": "7fac6dc3833bf06a9a697472eaf3a9a24b4c7b80a4e3b480a2befaad17dcb6b5",
+      "bytes": 462,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/NHI_Documentation_Table1_0_RECORDS.json",
+      "sha256": "da68cef05bcdda6a76b3efe0d8b5b518c78457a18f644fcb1356e5aa29feddd4",
+      "bytes": 3158,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/NHI_Documentation_Table1_0_SCHEMA.json",
+      "sha256": "064de888cb45850cec6f112e299cfcdb5677775fd28db24950ec27da8ed1113d",
+      "bytes": 8388,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/NHI_Documentation_Table1_SERVICE.json",
+      "sha256": "737d7593c5f0b178fff35be579851c3fe167531d3a833f9806af3276d8c90f18",
+      "bytes": 3668,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/NHI_Documentation_Table2_0_RECORDS.json",
+      "sha256": "7a40e80e51c5a5e49642412b22edc089d0517e154a979d1f856e6ca76a9246b4",
+      "bytes": 2594,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/NHI_Documentation_Table2_0_SCHEMA.json",
+      "sha256": "89771e7672716cd75d5a733dc5320ef5973b5c8afd36b98fa710ef791367c6b5",
+      "bytes": 9052,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/NHI_Documentation_Table2_SERVICE.json",
+      "sha256": "a47a9240541da169f30d9706ac94d8830ba6e86fc2c55204dc2e02721c75777c",
+      "bytes": 3670,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/USFS_RPS_2020_METHOD.pdf",
+      "sha256": "d71072ab866649192a53804d4e345f7fe23b67065fb17cd93ba7745d3813da3e",
+      "bytes": 10588360,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/USFS_RPS_DEFINITION.html",
+      "sha256": "74038d70f76639199c7b7f32df1cda828cfd3c86188817992deaf677139129ef",
+      "bytes": 115043,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/WILLIAMS_MDPI_XML.xml",
+      "sha256": "e14a008686a160b28fdfb69c74f29b79e7343e538d27610427ab7b029aa773df",
+      "bytes": 409,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/WILLIAMS_OA_METADATA.html",
+      "sha256": "c9122149625980ed0c1f800d3f311176afd3d34e95d050770c183b199ec979cb",
+      "bytes": 1588,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/WILLIAMS_PMC.html",
+      "sha256": "c996c0469ef05ff6fdd1f7cefbc3f7e109bb21969de42fcf591498a828a7ad5f",
+      "bytes": 134,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/WILLIAMS_PUBLISHED_PDF_CDN_TRIAL.pdf",
+      "sha256": "3333386b224582044e5f824607515eb5add76cb2aa0390d03001326df67a3a06",
+      "bytes": 8792377,
+      "actual_payload_verified": true
+    },
+    {
+      "file": "docs/data_research/stage7_nhi_nri_multihazard_comparative_audit_20261012/sources/WILLIAMS_XML.xml",
+      "sha256": "0f13b10b5f1ade4af0df7a9cda870463cea7696b74230b40e684580ee9a3c479",
+      "bytes": 77325,
+      "actual_payload_verified": true
+    }
+  ]
+}
