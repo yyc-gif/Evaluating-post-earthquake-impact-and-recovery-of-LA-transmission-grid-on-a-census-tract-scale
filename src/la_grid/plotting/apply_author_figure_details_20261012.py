@@ -346,4 +346,10 @@ def inspect():
         d.close()
 
 if __name__ == '__main__':
-    inspect() if '--inspect' in sys.argv else main()
+    if '--inspect' in sys.argv:
+        inspect()
+    elif '--historical' in sys.argv:
+        main()
+    else:
+        from build_current_suite_k3 import main as current_main
+        current_main()

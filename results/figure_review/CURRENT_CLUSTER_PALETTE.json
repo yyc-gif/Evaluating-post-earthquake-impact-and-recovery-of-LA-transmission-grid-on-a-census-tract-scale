@@ -1,17 +1,24 @@
 {
-  "formal_cluster_count": 5,
+  "figure_cluster_count": 3,
+  "adopted_K": 3,
   "colors": {
-    "1": "#4f8fb7",
-    "2": "#e19243",
-    "3": "#6ca274",
-    "4": "#8a83b8",
-    "5": "#b45f50"
+    "1": "#147f98",
+    "2": "#d07734",
+    "3": "#7a5899"
   },
-  "NA_fill": "#ffffff",
-  "NA_outline": "#4d4d4d",
-  "NA_outline_pt": 0.45,
-  "applies_to": [
-    "Fig07 A/C"
+  "class_labels": [
+    "C1",
+    "C2",
+    "C3"
   ],
-  "cluster_assignments_and_PCA_unchanged": true
+  "NA_fill": "#e5e5e5",
+  "NA_outline": "#757575",
+  "NA_count": 16,
+  "applies_to": [
+    "Fig07 A/B/C",
+    "FigS09 D"
+  ],
+  "membership_commit": "0c5365cc39e2717e0fab4aa3b5d05b445d427eb6",
+  "membership_source": "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/K3_CLUSTER_MEMBERSHIP.csv",
+  "formal_Stage7_pipeline_migrated": false
 }

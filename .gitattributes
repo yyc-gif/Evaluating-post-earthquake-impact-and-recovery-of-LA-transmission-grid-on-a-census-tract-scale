@@ -31,3 +31,18 @@ results/diagnostics/final_ga_method_20261009/**/*.npz filter=lfs diff=lfs merge=
 results/diagnostics/final_ga_method_20261009/**/*.json -text
 results/diagnostics/final_ga_method_20261009/*.json -text
 results/diagnostics/final_ga_method_20261009/SELECTED_SEQUENCE.txt text eol=lf
+
+# Keep figure-only byte-check registries stable across Windows and other clones.
+src/la_grid/plotting/build_current_suite_k3.py text eol=lf
+tests/test_current_figure_suite_integration.py text eol=lf
+results/figure_review/CURRENT_CLUSTER_PALETTE.json text eol=lf
+results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md text eol=lf
+results/figure_review/README.md text eol=lf
+results/figure_review/UPDATE_LOG.md text eol=lf
+results/figures/README.md text eol=lf
+results/figures/FIGURE_REVIEW_GALLERY.html text eol=lf
+docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/**/*.json text eol=lf
+docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/*.json text eol=lf
+docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/*.md text eol=lf
+docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/*.py text eol=lf
+docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/*.xml text eol=lf

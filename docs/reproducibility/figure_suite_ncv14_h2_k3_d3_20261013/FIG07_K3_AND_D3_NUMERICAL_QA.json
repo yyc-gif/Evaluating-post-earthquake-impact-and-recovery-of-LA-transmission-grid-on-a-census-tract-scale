@@ -1,0 +1,48 @@
+{
+  "cohort": 2299,
+  "study_domain": 2315,
+  "zero_population_unassigned": 16,
+  "positive_population_zero_housing_classified": 8,
+  "represented_population": 9066522,
+  "class_counts": [
+    1242,
+    475,
+    582
+  ],
+  "class_population": [
+    5101704,
+    1897838,
+    2066980
+  ],
+  "frozen_Q4_count": 579,
+  "saved_K3_labels_exact": true,
+  "eight_features_exact": true,
+  "H2_budgets": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.08333333333333333,
+    0.08333333333333333
+  ],
+  "maximum_total_deficit_identity_error_h": 2.1316282072803006e-14,
+  "D3_definition": "MeanTotalDeficit_5 = B_Unconstrained + MeanDelta_5",
+  "policy_set": [
+    "impact-first",
+    "hospital-first",
+    "degree-first",
+    "betweenness-first",
+    "vulnerability-first"
+  ],
+  "random_included": false,
+  "physical_trajectories_or_fits_recomputed": false,
+  "formal_Stage7_migrated": false,
+  "projection": "EPSG:3310",
+  "palette": [
+    "#147f98",
+    "#d07734",
+    "#7a5899"
+  ]
+}

@@ -354,4 +354,9 @@ def main():
     util.dump(QA/'SOURCE_HASHES.json',SOURCE_RECORDS)
     print('Completed figure-only integration; unchanged approved S05; 19 numbered figures; 42-page complete packet.',flush=True)
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    if '--historical' in sys.argv:
+        main()
+    else:
+        from build_current_suite_k3 import main as current_main
+        current_main()

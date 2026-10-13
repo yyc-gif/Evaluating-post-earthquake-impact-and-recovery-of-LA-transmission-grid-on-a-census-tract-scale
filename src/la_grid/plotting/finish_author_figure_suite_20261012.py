@@ -542,4 +542,9 @@ def main():
     print('17 numbered figures; one merged resource figure; all science and original staged work preserved.',flush=True)
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    if '--historical' in sys.argv:
+        main()
+    else:
+        from build_current_suite_k3 import main as current_main
+        current_main()

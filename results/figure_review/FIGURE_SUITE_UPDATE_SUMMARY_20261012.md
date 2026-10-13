@@ -1,4 +1,6 @@
-# Current author figure corrections — 2026-10-12
+# Historical author figure corrections — 2026-10-12
+
+This is the dated pre-NCV14 presentation record, not the current figure specification. The current accepted NCV14/H2/K3/D3 suite is described in [README.md](README.md) and `docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/FINAL_FIGURE_SUITE_UPDATE_REPORT.md`. The current Fig01 spatial label, Fig07, S09 and captions supersede their descriptions below; other approved artwork is retained exactly.
 
 Branch: `review/official-figure-suite-final-s05-20261012`.
 Starting local/remote HEAD: `37e71b3e15b0f4e1be3a651344e3f9e6475dc24b`.
