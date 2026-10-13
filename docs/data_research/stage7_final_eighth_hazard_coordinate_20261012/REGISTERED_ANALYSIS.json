@@ -1,0 +1,37 @@
+{
+  "review_status": "EXPLORATORY EIGHT-VARIABLE AUTHOR REVIEW \u2014 NOT FORMAL STAGE 7",
+  "authority": "5eeaa02ca4dec99f27a6ee3eb470a441007e6f6b",
+  "objective": "Eight-coordinate author-review candidate; P2 is ablation only; no formal promotion",
+  "sources": "Frozen published CDC 2024 ranks; focused official/peer-reviewed alternative search",
+  "reuse": "Exact prior 492 fit labels/matrices; no main-model refit",
+  "component_extension": "H2 only K3/4/5 seed42 for six remaining individual indicator removals and Extreme Events domain; researcher sensitivity only",
+  "national_rerank": "All nine individual indicators plus three domains; exact integer 1e-4 EPL ticks; unchanged 83509 eligible records; minimum rank/(N-1)",
+  "nonlinear": "Reuse independently verified CB audit conditional R2/VIF and fixed random/spatial CV; recompute pairwise correlations",
+  "kmeans": {
+    "init": "k-means++",
+    "n_init": 50,
+    "algorithm": "lloyd",
+    "max_iter": 500,
+    "tol": 0.0001
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "K": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "no_new_physical_realizations": true,
+  "no_formal_stage7_change": true,
+  "no_provider_contact": true
+}

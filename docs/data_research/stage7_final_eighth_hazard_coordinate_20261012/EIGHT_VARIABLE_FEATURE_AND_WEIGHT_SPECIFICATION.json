@@ -1,0 +1,78 @@
+{
+  "review_status": "EXPLORATORY EIGHT-VARIABLE AUTHOR REVIEW \u2014 NOT FORMAL STAGE 7",
+  "authority": "5eeaa02ca4dec99f27a6ee3eb470a441007e6f6b",
+  "primary_candidate": "H2-CBM",
+  "features": [
+    "Init_Supply",
+    "Grid_Impact",
+    "Redundancy_HHI",
+    "B_Unconstrained",
+    "MeanDelta",
+    "SOVI_SCORE",
+    "log1p_Population",
+    "RPL_CBM"
+  ],
+  "squared_distance_budgets": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.08333333333333333,
+    0.08333333333333333
+  ],
+  "euclidean_coordinate_multipliers": [
+    0.3333333333333333,
+    0.3333333333333333,
+    0.3333333333333333,
+    0.408248290463863,
+    0.408248290463863,
+    0.408248290463863,
+    0.28867513459481287,
+    0.28867513459481287
+  ],
+  "sensitivity": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111
+  ],
+  "ablation": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666
+  ],
+  "cohort_count": 2299,
+  "full_service_domain": 2315,
+  "population": 9066522,
+  "zero_population_exclusions": 16,
+  "retained_zero_housing": 8,
+  "standardization": "Cohort mean and population SD; multiply by square root budgets; equal tract observations",
+  "frozen_setup": [
+    "2pc50",
+    "C57_D1",
+    "M1_UTILITY_003",
+    "G1_BASELINE_050",
+    "480 hours",
+    "1000 matched frozen physical evaluations"
+  ],
+  "policy_ensemble": [
+    "Impact-first",
+    "Hospital-first",
+    "Degree-first",
+    "Betweenness-first",
+    "Vulnerability-first"
+  ],
+  "hazard_field": "CDC EJI 2024 standalone RPL_CBM, published-as-is; selected climate-hazard burden; no earthquake",
+  "K_author_review": "Evidence remains open; detailed K3/4/5 and full K2-8 provided; not promoted",
+  "formal_admission": false
+}

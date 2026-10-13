@@ -1,0 +1,134 @@
+{
+  "review_status": "EXPLORATORY EIGHT-VARIABLE AUTHOR REVIEW \u2014 NOT FORMAL STAGE 7",
+  "status": "PASS_NUMERICAL_AND_PRESERVATION_WITH_DISCLOSED_CDC_LIMITATIONS",
+  "authority": "5eeaa02ca4dec99f27a6ee3eb470a441007e6f6b",
+  "candidate": "H2-CBM eight-variable author review; no formal promotion",
+  "cohort": 2299,
+  "full_service_domain": 2315,
+  "excluded_zero_population": 16,
+  "retained_zero_housing": 8,
+  "national_valid": 83509,
+  "independent_decimal_sum_error": 0,
+  "official_rounding_error": 4.999760501989137e-05,
+  "frozen_SOVI_CSV_serialization_max_error": 1.4210854715202004e-14,
+  "frozen_SOVI_comparison_tolerance": 2e-14,
+  "stored_log_population_max_error": 3.552713678800501e-15,
+  "stored_log_population_comparison_tolerance": 4e-15,
+  "exact_counterfactual_rank_max_error": 0,
+  "reused_fits_bitwise_identical": 492,
+  "existing_full_cohort_silhouette_independently_verified_seed42": 297,
+  "new_component_fits_verified": 21,
+  "one_component_deterministic_repeat": true,
+  "maximum_component_model_vs_final_centroid_WCSS_gap": 0.0033252675796120457,
+  "component_center_gap_reason": "Registered tol=1e-4 can stop before returned centers equal final label means; both objectives saved, no parameter changes",
+  "maximum_independent_silhouette_error": 1.6653345369377348e-15,
+  "maximum_inertia_error": 3.410605131648481e-12,
+  "distance_algebra_max_error": 2.842170943040401e-14,
+  "EPA_PRISM_identifier_matches": 1879,
+  "EPA_PRISM_unmatched": 420,
+  "EPA_PRISM_unmatched_population": 1392465,
+  "protected_files_unchanged": 950,
+  "prior_diagnostic_git_blobs_unchanged": 1947,
+  "original_dirty_and_staged_state_unchanged": true,
+  "physical_models_rerun": false,
+  "formal_promotion": false,
+  "unresolved_original_physical_source_flags": true,
+  "clean_clone_full_physical_archive_verified": false,
+  "source_acquisition_payloads_verified": true,
+  "graphics": [
+    {
+      "file": "01_Climate_hazard_coordinate_and_domains.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "text_within_page": true,
+      "pixels": [
+        4320,
+        4080
+      ],
+      "dpi": 600,
+      "visual_review": "Every final publication-size rendered page inspected in task"
+    },
+    {
+      "file": "02_Hazard_content_and_alternative_coverage.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "text_within_page": true,
+      "pixels": [
+        4320,
+        2760
+      ],
+      "dpi": 600,
+      "visual_review": "Every final publication-size rendered page inspected in task"
+    },
+    {
+      "file": "03_Seven_eight_variable_elbow_and_silhouette.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "text_within_page": true,
+      "pixels": [
+        4320,
+        2700
+      ],
+      "dpi": 600,
+      "visual_review": "Every final publication-size rendered page inspected in task"
+    },
+    {
+      "file": "04_Eight_variable_membership_maps.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "text_within_page": true,
+      "pixels": [
+        4320,
+        2520
+      ],
+      "dpi": 600,
+      "visual_review": "Every final publication-size rendered page inspected in task"
+    },
+    {
+      "file": "05_Original_unit_three_RQ_profiles.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "text_within_page": true,
+      "pixels": [
+        4320,
+        3120
+      ],
+      "dpi": 600,
+      "visual_review": "Every final publication-size rendered page inspected in task"
+    },
+    {
+      "file": "06_Hazard_sensitivity_and_tract_reassignment.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "text_within_page": true,
+      "pixels": [
+        4320,
+        2940
+      ],
+      "dpi": 600,
+      "visual_review": "Every final publication-size rendered page inspected in task"
+    },
+    {
+      "file": "07_Geographic_and_policy_set_stability.pdf",
+      "pages": 1,
+      "vector_without_image_objects": true,
+      "text_within_page": true,
+      "pixels": [
+        4320,
+        2640
+      ],
+      "dpi": 600,
+      "visual_review": "Every final publication-size rendered page inspected in task"
+    }
+  ],
+  "earlier_metadata_response_attachments_with_incomplete_attempt_history": 2,
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "geopandas": "1.1.1",
+    "matplotlib": "3.9.2",
+    "PyMuPDF": "1.28.0"
+  }
+}

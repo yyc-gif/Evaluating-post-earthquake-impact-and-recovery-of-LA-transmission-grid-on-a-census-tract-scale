@@ -1,0 +1,11 @@
+> EXPLORATORY EIGHT-VARIABLE AUTHOR REVIEW — NOT FORMAL STAGE 7
+
+# Proposed methods wording - not inserted into the manuscript
+
+A tract-level author-review typology was constructed for the 2,299 study tracts with positive frozen formal population. Three domains describe earthquake-conditioned initial disruption and network dependency (initial modeled service, spectral grid impact and dependency HHI), restoration behavior (unconstrained full-service-deficit hours and the equally weighted mean constrained-minus-unconstrained increment across five predefined priorities), and community context (FEMA NRI v1.19 SOVI, log-transformed frozen population and CDC/ATSDR EJI 2024 standalone Climate Burden Module rank). The five policies are a finite descriptive comparison set, not probabilities of future policy adoption or a physically executed average schedule.
+
+The CDC `RPL_CBM` coordinate ranks selected heat, wildfire and extreme-event indicators nationally; it excludes earthquakes and contains no direct SOVI/demographic, asset-value or community-resilience factor. It contextualizes frozen post-earthquake service recovery and does not simulate climate-induced station failure, actual delivered power or causal hazard interactions. Complete published ranks do not certify complete original physical observations; unresolved source-zero and flag limitations are disclosed with component-removal sensitivity.
+
+Each RQ receives one-third of the squared-distance budget. In H2, the three RQ1 coordinates each receive 1/9; the two RQ2 coordinates each receive 1/6; SOVI receives 1/6 and log population/CBM each receive 1/12. Cohort mean/population-SD standardization is followed by multiplication by square-root budgets. Tracts are equally weighted in K-means, with resident coverage reported separately. These are construct-based design weights, not statistically optimized weights or guaranteed realized separation.
+
+K1-8 inertia and full-cohort K2-8 silhouette were assessed with fixed seeds42-46, n_init50, Lloyd, max_iter500 and tolerance1e-4. Geographic and policy-set perturbations, original-unit profiles, rare initial-state sensitivity, and a seven-variable ablation were considered alongside Elbow/Silhouette. K4 is proposed for detailed author review, with K3/K5 alternatives retained. No formal Stage7 replacement has occurred.
