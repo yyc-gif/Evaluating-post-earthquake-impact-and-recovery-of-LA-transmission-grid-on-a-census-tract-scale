@@ -1,0 +1,549 @@
+{
+  "path": "C:\\2025-2026 Fall\\Local_Recovery_Snapshot_20260925\\Private_Backup_Small\\private-la-grid-research\\manuscripts\\LA_Grid_Manuscript_Resubmission_Rebuild.docx",
+  "sha256": "a61472ed6918f505dfd0c26b88ce24f9d184f6dca076194b5032014142acd253",
+  "authoritative_current": false,
+  "provisional_locations_only": true,
+  "paragraphs": [
+    {
+      "paragraph": 1,
+      "text": "Post Earthquake Power Service Recovery in Los Angeles Linking Substation Damage Restoration Logistics and Tract Level Disparities"
+    },
+    {
+      "paragraph": 2,
+      "text": "Resubmission reconstruction from the retained July 23, 2026 manuscript. Coauthor review draft; all numerical findings below are from the frozen September 2026 formal experiment unless explicitly identified as external evidence."
+    },
+    {
+      "paragraph": 3,
+      "text": "Abstract"
+    },
+    {
+      "paragraph": 4,
+      "text": "Earthquake damage can delay the recovery of electricity service unevenly across urban communities, yet a station repair order that benefits the system average may have different effects on vulnerable tracts. We retain a 92-station, 318-edge abstraction of the Los Angeles transmission network and map its source-connected station availability to 2,315 census tracts. In each of 1,000 physical realizations for each of four hazard fields, damage states and positive repair durations determine tasks and crew occupation; all restoration sequences share the same physical draw. A utility-compatible tract dependency proxy is compared with the submitted mapping and with public Southern California Edison circuit candidates. We decompose cumulative modeled service deficit into station self-damage, functional-threshold loss, and source-path disconnection. Under the 2%-in-50-year hazard and 57 pooled crews, the hospital-first sequence produces 34.306 h of population-weighted modeled burden, including 4.065 h (11.8%) from source-path loss. An impact-first sequence lowers aggregate burden by 0.713 h but raises the source-path component by 0.103 h. A fixed vulnerability-first rule lowers the highest-vulnerability quartile burden by 1.595 h relative to hospital-first, while raising the lowest-quartile burden by 1.269 h and increasing absolute group separation by 2.501 h. Thus targeted benefit, average recovery, and disparity do not move together. The direct community-objective genetic search did not improve its best deterministic incumbent, impact-first. Mapping and gate contrasts distinguish stable aggregate comparisons from more sensitive tract attribution. These are conditional service-availability estimates, not measured customer outages or delivered power."
+    },
+    {
+      "paragraph": 5,
+      "text": "Keywords: seismic damage; power system recovery; crew scheduling; source connectivity; community burden; social vulnerability; Los Angeles"
+    },
+    {
+      "paragraph": 6,
+      "text": "1 Introduction"
+    },
+    {
+      "paragraph": 7,
+      "text": "Electric power disruption after an earthquake is shaped by more than the count of damaged components. A damaged station can lose its own functionality, interrupt an upstream path to other stations, and affect tracts assigned to those stations through a spatial dependency model. Limited crews, travel, and repair durations then determine when those states change. These linked processes can make the same hazard produce different recovery paths across communities."
+    },
+    {
+      "paragraph": 8,
+      "text": "Existing studies of earthquake power recovery have advanced fragility, network connectivity, repair scheduling, and community vulnerability analysis. The retained July manuscript reviewed these streams, including community-centered recovery work by Logan and Guikema, Los Angeles earthquake risk studies, and optimization approaches to critical-service restoration. Their combination does not by itself demonstrate community benefit: an early completion objective for stations need not minimize the tract-level deficit created by source disconnection and service dependencies. Nor does a favorable vulnerability-weighted system curve reveal which groups or neighborhoods were delayed. The present comparison evaluates both mechanisms and distributional consequences within one consistent damage, repair, and service model."
+    },
+    {
+      "paragraph": 9,
+      "text": "Three questions organize the study. First, how do station damage and source-path connectivity propagate to spatially different tract service deficits? Second, how do scarce crews, travel, task duration, and fixed repair priorities alter system and community recovery under identical physical realizations? Third, where do long recovery burdens coincide with vulnerability, built-environment exposure, risk, and modeled grid dependency, and who benefits or loses when restoration priority changes? The network is an abstraction and tract assignments are dependency proxies. These boundaries motivate the external candidate benchmark, mapping and gate contrasts, and explicit loss decomposition rather than claims of feeder-level validation or delivered electricity."
+    },
+    {
+      "paragraph": 10,
+      "text": "2 Methods"
+    },
+    {
+      "paragraph": 11,
+      "text": "2.1 Study network, hazards, and tract dependency"
+    },
+    {
+      "paragraph": 12,
+      "text": "The retained study network contains 92 stations and 318 abstract station-to-station edges, with 14 retained Core upstream source nodes. It is the July submitted graph; no later 310-station topology or invented branch impedance/capacity enters this analysis. The four retained hazard fields are Northridge, San Fernando, Long Beach, and 2pc50. Each hazard has 1,000 independent physical evaluation realizations. Within a hazard, fixed station PGA and the retained fragility definitions determine station damage-state probabilities; realization-specific states are sampled once and shared across all strategies. The 2pc50 scenario also supplies 64 disjoint planning realizations for sequence search."
+    },
+    {
+      "paragraph": 13,
+      "text": "The submitted mapping uses a tract centroid, nearest eligible access station, shortest path on the retained 92-station graph, total distance, inverse-square weighting, a 0.03 minimum normalized weight cutoff, and renormalization. The revision changes candidate eligibility only: strict SCE tracts use SCE-compatible stations, strict LADWP tracts use LADWP-compatible stations, while mixed or ambiguous tracts keep general eligibility. We call the submitted mapping M0 and this production mapping M1. Both cover 2,315 tracts and 9,066,522 mapped residents. Public SCE circuits and substation names supply external candidate evidence, not customer assignment or load shares. Candidate-supported subset and no-cutoff/0.01 analyses are evaluation contrasts, not replacement production mappings."
+    },
+    {
+      "paragraph": 14,
+      "text": "2.2 Damage, tasks, and a single repair clock"
+    },
+    {
+      "paragraph": 15,
+      "text": "Damage states DS0\u2013DS4 determine both initial residual functionality and task eligibility. Only DS>0 stations enter a realization\u2019s queue. Each damaged station receives one positive draw from its retained DS-specific repair-duration scenario; DS0 duration is zero. A strategy is a complete ex-ante 92-station order, filtered by deleting DS0 stations without reranking. A crew becomes available at t=0 at its retained yard. Each dispatch uses directed base-to-task or previous-task-to-task road travel. Arrival equals crew availability plus travel; completion equals arrival plus that task\u2019s realized duration. The crew is released and raw station functionality is restored at that same completion event. There is no independent post-schedule continuous recovery clock. Within each physical realization, strategies share DS, durations, crews, roads, graph, sources, and mapping; only their order differs."
+    },
+    {
+      "paragraph": 16,
+      "text": "2.3 Source-connected availability and cumulative burden"
+    },
+    {
+      "paragraph": 17,
+      "text": "For station i at event time t, let f_i be raw functionality, F_i indicate whether f_i is at least 0.5, and C_i indicate connectivity through functional stations to an active retained Core source. Effective availability is e_i=f_i F_i C_i. We use event-exact left-rectangle integration between distinct completion times. This binary path model does not impose MW balance, thermal ratings, voltage, dispatch, or load shedding. Dynamic source counts, path-disjointness, cuts, bridges, and articulation dependence describe redundancy of the modeled graph; they are not electrical transfer capacities."
+    },
+    {
+      "paragraph": 18,
+      "text": "The identity 1\u2212e_i=(1\u2212f_i)+f_i(1\u2212F_i)+f_i F_i(1\u2212C_i) separates self-damage, threshold, and source-path losses. Tract known-available mass is the M1-weighted effective station state. Let R_r be resolved candidate mass and A_r(t) the known-available mass of tract r. Its cumulative deficit is B_r=\u222b[R_r\u2212A_r(t)]dt, and normalized burden is B_r/R_r when R_r>0. Full tract population weighting of normalized burdens and population-times-resolved-mass weighting of B_r are distinct estimands; both are recorded. In this 92-station formal mapping, every one of the 2,315 tracts has positive resolved mass. The same formulas retain an unresolved/NA category for less complete mappings rather than treating missing service as outage or restoration. Population T50/T80 are crossings of modeled resolved availability, not measures of equity or observed supply."
+    },
+    {
+      "paragraph": 19,
+      "text": "2.4 Restoration decisions and direct community search"
+    },
+    {
+      "paragraph": 20,
+      "text": "The unconstrained trajectory provides a no-crew-competition counterfactual. Seven original fixed rules remain: hospital-first, impact-first, degree-first, closeness-first, betweenness-first, centrality-first, and random. The added vulnerability-first rule orders stations by mapped population in the pre-existing highest NRI-derived SOVI_SCORE quartile, then by total mapped population and station ID. It is explicit Q4 targeting, not an equity optimum. Its sequence is fixed before the evaluation outputs are examined."
+    },
+    {
+      "paragraph": 21,
+      "text": "The July genetic algorithm ranked station-level weighted early completion, with population, hospital, vulnerability, and network-importance terms and a makespan penalty. Candidate fitness did not run source-gated tract recovery; hence its score need not rank tract T80 or burden. The revised 92-station permutation algorithm retains population 100, 100 fixed generations, crossover probability 0.8, inversion mutation probability 0.2, tournament size 3, and five independent seeds 42\u201346. For a candidate order \u03c0, each of 64 independent 2pc50 planning realizations is fully scheduled and propagated to M1 tract availability; the fitness is minus the mean population-times-resolved-mass cumulative burden. These realizations share the fixed 2pc50 PGA field but have different damage and duration draws and do not overlap the 1,000 evaluation samples. Seven deterministic rules are scored on the same planning samples first. Best-so-far retention prevents the selected solution from falling below the best deterministic incumbent. The best incumbent was impact-first; none of the five search seeds exceeded it, so the retained direct-community sequence is exactly impact-first, not an independent GA improvement."
+    },
+    {
+      "paragraph": 22,
+      "text": "2.5 Community distribution and descriptive typology"
+    },
+    {
+      "paragraph": 23,
+      "text": "The fixed NRI-derived SOVI_SCORE quartiles label Q1 lowest and Q4 highest vulnerability. For each sequence and physical realization we calculate absolute population-weighted normalized burden in each quartile, signed Q4\u2212Q1 gap, its absolute value, population-weighted tract burden Gini, and paired tract differences relative to a named rule. Improved, near-zero, and worsened tracts use a predeclared \u00b11 h practical threshold on paired mean effects; unresolved tracts remain separate. This threshold is not statistical significance. Bootstrap and direction-frequency comparisons resample physical realizations, not tracts. The retained Stage 7 PCA/K-means and hotspot screening examine co-occurrence among recovery, vulnerability, built environment, risk, and grid-dependency attributes. They are descriptive typologies and do not establish causal mechanisms."
+    },
+    {
+      "paragraph": 24,
+      "text": "2.6 Formal evaluation and contrasts"
+    },
+    {
+      "paragraph": 25,
+      "text": "The frozen evaluation contains 1,000 physical realizations for each of four hazards, each with one unconstrained and eight scheduled baseline trajectories, for 36,000 baseline trajectories. The 2pc50 one-factor-at-a-time resource study reuses the same 1,000 samples with C29, C86, C114, and repair-duration scales 0.75, 1.25, and 1.5; C57 and scale 1 are baseline. This adds 48,000 scheduled trajectories. The reviewer-directed vulnerability-first amendment adds 4,000 baseline and 6,000 resource trajectories on the same physical samples, without changing the original 84,000. The common 480 h event horizon covers the frozen schedules. M0/M1 mapping and G0/G1/G2/G3 gate contrasts are offline evaluations of saved station states: G0=e=f, production G1 uses threshold 0.5 and 14 sources, G2 uses 0.05, and G3 uses 0.75. The SCE candidate-supported mapping is restricted to its validation subset. No contrast resamples damage or reoptimizes priority."
+    },
+    {
+      "paragraph": 26,
+      "text": ""
+    },
+    {
+      "paragraph": 27,
+      "text": "3 Results"
+    },
+    {
+      "paragraph": 28,
+      "text": "3.1 Damage propagation and spatially unequal initial availability"
+    },
+    {
+      "paragraph": 29,
+      "text": "The four retained hazard fields produce distinct station damage and modeled availability distributions. Their downstream service deficit is not determined by local station damage alone: at each event, a station can be below the functional threshold or above it yet disconnected from every active Core source. In C57 hospital-first runs, source-path loss accounts for 14.9% of cumulative modeled burden in Northridge, 8.7% in San Fernando, 4.3% in Long Beach, and 11.8% in 2pc50. The 2pc50 burden decomposes into 29.278 h self-damage, 0.963 h threshold, and 4.065 h source disconnection, totaling 34.306 h. This mechanism links upstream path failures to tract-level deficits within the network proxy; it does not estimate actual feeder outage geography."
+    },
+    {
+      "paragraph": 30,
+      "text": "Dynamic path diagnostics show concentration without a universal single-node explanation. For hospital-first, the largest station accounts for a mean 17.5% of 2pc50 source-path loss per realization, versus 36.4\u201362.5% in the lower-loss historical hazards. Eight static single-path nodes together account for 23.8% of 2pc50 source loss, but their fraction is 43.3\u201359.2% in historical hazards. A source-connected station with one path is a vulnerability descriptor, not an existing service loss. The COLORADO/RS-K association is a retained graph diagnostic, not evidence of a verified unique electrical supply relation."
+    },
+    {
+      "paragraph": 31,
+      "text": "3.2 Utility-compatible dependency and robustness of tract attribution"
+    },
+    {
+      "paragraph": 32,
+      "text": "Among the 337 strict-SCE tracts whose public official candidate can be represented in the July 92 stations, any-candidate agreement rises from 320/337 (94.96%) under M0 to 329/337 (97.63%) under M1; top-1 agreement rises from 296 (87.83%) to 302 (89.61%) and top-3 from 317 (94.07%) to 324 (96.14%). Another 480 strict-SCE tracts have no directly representable public candidate. This is conditional external consistency rather than 817-tract accuracy, true service share, or feeder validation. The production 3% cutoff removes 41 of 411 public-supported station relations under M1, including a roughly 1.20%-weight LAX\u2013RS-N relation; the 1% cutoff removes 12. A small supported link can therefore disappear under sparsification."
+    },
+    {
+      "paragraph": 33,
+      "text": "In 1,000 paired hospital-first samples per hazard, the M1\u2212M0 change in mean population burden is +0.358 h for Northridge, +0.231 h for San Fernando, +0.031 h for Long Beach, and \u22120.519 h for 2pc50. Under 2pc50, 246 of 2,315 tracts shift by more than 1 h in mean paired absolute burden, affecting 932,194 mapped residents, despite the modest population mean shift. Of the tracts, 193 improve, 2,069 are near zero, and 53 worsen under the \u00b11 h paired-mean classification. On the common 320 positive-mass SCE validation tracts, hospital-first burden is 30.619 h under M0, 30.611 h under M1, and 30.396 h under the public-candidate-supported subset mapping. This subset result does not establish full-region robustness."
+    },
+    {
+      "paragraph": 34,
+      "text": "3.3 Crew logistics, sequence choice, and network mechanisms"
+    },
+    {
+      "paragraph": 35,
+      "text": "Under 2pc50/C57/M1/G1, impact-first lowers population burden by 0.713 h and population T80 by 0.719 h relative to hospital-first, but increases source-path burden by 0.103 h. Its gain comes chiefly from shorter local self-damage exposure, not a better source-path outcome. Degree-first lowers the source-path component by 1.647 h but raises total burden by 1.401 h and T80 by 3.539 h. Centrality-first has 1.207 h less source-path loss yet 1.819 h more population burden. These opposing changes explain why network connectivity priority and community burden cannot be represented by one rank. Random adds 5.082 h of population burden; unconstrained recovery, a counterfactual rather than a dispatch policy, reduces it by 2.969 h relative to hospital-first."
+    },
+    {
+      "paragraph": 36,
+      "text": "Crew scarcity magnifies burden. Hospital-first 2pc50 modeled burden rises from 34.306 h at C57 to 46.951 h at C29. Of the 12.645 h increase, 11.187 h comes from longer station self-loss and 1.049 h from extra source-path loss. C86 and C114 give 31.679 and 31.687 h; discrete depot roster and dispatch effects prevent a strict monotone ordering between these two cases. With C57, duration scales 0.75, 1.25, and 1.5 yield 25.832, 42.781, and 51.255 h, compared with 34.306 h at baseline. The source-path component rises from 3.049 to 5.081 and 6.097 h at the corresponding scales. Resource effects are thus mainly local repair delay with a measurable propagation increment; the source fraction need not rise monotonically."
+    },
+    {
+      "paragraph": 37,
+      "text": "3.4 Community distribution, targeting, and typology"
+    },
+    {
+      "paragraph": 38,
+      "text": "The 2pc50/C57/M1/G1 hospital-first Q1\u2013Q4 absolute burdens are 36.225, 34.309, 33.295, and 33.618 h. Impact-first lowers all four to 35.332, 33.714, 32.807, and 32.733 h, yet the signed Q4\u2212Q1 gap barely changes (\u22122.607 versus \u22122.599 h). Centrality-first worsens every quartile while its Gini decreases from 0.189 to 0.185. A favorable relative dispersion measure can therefore coexist with worse absolute outcomes in every group."
+    },
+    {
+      "paragraph": 39,
+      "text": "Vulnerability-first deliberately directs priority toward mapped Q4 population. Relative to hospital-first it lowers Q4 burden by 1.595 h (paired 95% bootstrap interval \u22121.631 to \u22121.558), but raises Q1 by 1.269 h and the absolute Q4\u2212Q1 separation by 2.501 h. Population burden differs by only \u22120.049 h, while T80 increases 0.466 h and hospital-tract burden increases 0.572 h. Relative to impact-first it lowers Q4 by 0.710 h but raises population burden by 0.664 h. Thus the high-vulnerability benefit is real within the model but not an unqualified equity improvement. In the 2pc50 paired-mean tract comparison with hospital-first, 328 tracts (1,325,640 people) improve, 532 (2,104,575) worsen, and 1,455 (5,636,307) are within \u00b11 h. Within Q4, 551,450 residents are in improved tracts and 139,034 in worsened tracts. These classifications summarize paired mean tract effects, not frequencies of individual earthquake outcomes."
+    },
+    {
+      "paragraph": 40,
+      "text": "The Q4 targeting tradeoff depends on resources. At C29, vulnerability-first lowers Q4 burden by 6.385 h relative to hospital-first, but adds 1.710 h to population burden, 6.255 h to T80, and 15.268 h to absolute group separation. At C86/C114, policy differences approach zero. Under the three historical hazards, Q4 gains relative to hospital-first are only 0.004\u20130.015 h; the larger 2pc50 effect cannot be generalized to every hazard. The Stage 7 descriptive typology retains recovery, vulnerability, built environment, risk, and dependency variables. Its 2,291 analyzed tracts form five clusters in the formal log-transformed specification; 24 tracts are excluded from the clustering input rather than silently assigned. Cluster membership is sensitive to raw versus log-tailed exposure features (adjusted Rand index 0.484), although the top-ten slow-vulnerable hotspot overlap is complete. These clusters screen co-occurring tract attributes; they do not attribute individual recovery times causally to vulnerability or housing."
+    },
+    {
+      "paragraph": 41,
+      "text": "3.5 Gate, physical, and optimization boundaries"
+    },
+    {
+      "paragraph": 42,
+      "text": "Under 2pc50 hospital-first, removing the gate yields 29.278 h versus 34.306 h under production. The 5.028 h difference is 0.963 h threshold loss plus 4.065 h genuine source-path loss; calling it all disconnection would be incorrect. Threshold 0.05 and 0.75 yield 34.280 and 34.310 h. The main impact-first versus hospital-first ordering survives these evaluated gates and M0/M1, while some near-tied network-rule ranks swap. The separate no-threshold connectivity test confirms that all saved station functionalities remain positive (minimum 0.03); because the 92-station graph is one source-containing component, letting every f>0 station transmit a path makes C=1 and collapses exactly to the ungated G0 case. A continuous capacity model cannot be obtained by simply deleting the threshold."
+    },
+    {
+      "paragraph": 43,
+      "text": "The direct community genetic search returned the impact-first incumbent in every seed. This is evidence of no improvement within the fixed five-seed, 100-generation budget, not proof that impact-first is globally optimal. The July surrogate and revised direct fitness solve different objectives and their numeric values are not comparable. Hospital-first can perform differently on hospital-tract burden, population T80, and source-path loss because none is identical to the aggregate mean-burden objective."
+    },
+    {
+      "paragraph": 44,
+      "text": "4 Discussion"
+    },
+    {
+      "paragraph": 45,
+      "text": "The three study questions have distinct answers. Damage propagates in the abstract network through source-path eligibility as well as local residual functionality. Crew and travel constraints create additional exposure time, and station priorities move both local repair and downstream path recovery. At the community level, a targeted Q4 benefit may accompany delay elsewhere and a wider absolute gap. These are paired decisions under identical modeled earthquake draws, which supports within-model causal comparison of the priority sequence. It does not support claims about measured Los Angeles customer outages, true feeder assignments, or socially optimal allocation."
+    },
+    {
+      "paragraph": 46,
+      "text": "The utility-compatible mapping improves public candidate agreement where the official candidate can be represented, but 480 strict-SCE tracts lack that representation. Both the candidate inventory and 3% cutoff constrain the meaning of local maps. Aggregate strategy comparisons can retain their direction while tract identities and source-loss attribution shift. Source-connected availability is an upstream reachability proxy: the 14 Core points have audited identities, but generation Pmax, power balance, branch thermal limits, voltage, switching, and load shedding are absent. A local SCE planning facility (OLINDA 66/12) has a reported demand-to-limit ratio near 1.09 in its planning convention, illustrating that connection and adequacy are different questions; the number is not an earthquake overload or a rating for one of the 318 abstract edges. A credible DC/AC benchmark would require a separate real bus/branch case, rather than fabricated impedances on this graph."
+    },
+    {
+      "paragraph": 47,
+      "text": "The positive repair-duration parameters and pooled C57 crews are scenarios rather than observed earthquake staffing or calibrated task times. Historical earthquake fields are hazard contexts, not validation against historical restoration milestones. The distributional results are normalized modeled service deficits, not resident hours without electricity. The vulnerability-first policy tests one transparent Q4-targeted decision and does not isolate a complete efficiency\u2013equity frontier. Cluster and hotspot outputs are descriptive screening. These boundaries are material to application: a future operational study would need utility feeder/customer links, switching and demand, crew records, and observed outages before recommending a specific field dispatch order."
+    },
+    {
+      "paragraph": 48,
+      "text": "5 Conclusions"
+    },
+    {
+      "paragraph": 49,
+      "text": "Using the retained Los Angeles network abstraction and four paired hazard ensembles, the revision makes damage, repair workload, crew release, and station restoration share one event clock. Under 2pc50/C57, source-path disconnection accounts for 4.065 of 34.306 h of population-weighted modeled burden under hospital-first. An impact-first order improves average burden but does not reduce this source component; connectivity-oriented rules can reduce it while worsening community burden. Utility-compatible candidate eligibility improves conditional SCE candidate agreement, though local tract attribution remains mapping-sensitive. Explicit Q4 targeting lowers Q4 absolute burden but delays Q1 and widens absolute Q4\u2013Q1 separation, showing why aggregate burden, targeted benefit, and inequality need separate reporting. The revised direct-objective genetic search retained its impact-first deterministic incumbent. These findings support conditional comparisons of restoration decisions within a transparent service-availability proxy, not predictions of delivered power or a globally optimal policy."
+    },
+    {
+      "paragraph": 50,
+      "text": "Declarations"
+    },
+    {
+      "paragraph": 51,
+      "text": "CRediT authorship contribution statement"
+    },
+    {
+      "paragraph": 52,
+      "text": "Blinded for peer review."
+    },
+    {
+      "paragraph": 53,
+      "text": "Funding"
+    },
+    {
+      "paragraph": 54,
+      "text": "This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors."
+    },
+    {
+      "paragraph": 55,
+      "text": "Declaration of competing interest"
+    },
+    {
+      "paragraph": 56,
+      "text": "The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper."
+    },
+    {
+      "paragraph": 57,
+      "text": "Data availability"
+    },
+    {
+      "paragraph": 58,
+      "text": "The code, processed and derived data, and retained results supporting the findings of this study are publicly available in an online repository. The external source datasets used in the analysis are publicly available from the agencies cited in the manuscript."
+    },
+    {
+      "paragraph": 59,
+      "text": "During the preparation of this work, the authors used ChatGPT to assist with language editing and to improve the clarity, readability, and organization of the manuscript. After using this tool, the authors carefully reviewed and edited the content as needed and take full responsibility for the content of the published article."
+    },
+    {
+      "paragraph": 60,
+      "text": "References"
+    },
+    {
+      "paragraph": 61,
+      "text": "\u00c7a\u011fnan, Z., Davidson, R. A., & Guikema, S. D. (2006). Post-earthquake restoration planning for Los Angeles electric power. Earthquake Spectra, 22(3), 589-608."
+    },
+    {
+      "paragraph": 62,
+      "text": "California Energy Commission. (n.d.). GIS data. Retrieved November 21, 2025, from https://gis.data.ca.gov/"
+    },
+    {
+      "paragraph": 63,
+      "text": "California Health and Human Services Agency. (n.d.). Licensed and Certified Healthcare Facility Listing [Data set]. Retrieved November 21, 2025, from https://data.chhs.ca.gov/dataset/licensed-healthcare-facility-listing"
+    },
+    {
+      "paragraph": 64,
+      "text": "Cavdaroglu, B., Hammel, E., Mitchell, J. E., Sharkey, T. C., & Wallace, W. A. (2013). Integrating restoration and scheduling decisions for disrupted interdependent infrastructure systems. Annals of Operations Research, 203(1), 279-294."
+    },
+    {
+      "paragraph": 65,
+      "text": "Centers for Disease Control and Prevention/Agency for Toxic Substances and Disease Registry/Geospatial Research, Analysis, and Services Program. (2022). CDC/ATSDR Social Vulnerability Index 2022 Database: California [Data set]. Retrieved November 21, 2025, from https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html"
+    },
+    {
+      "paragraph": 66,
+      "text": "Chen, Y., Li, L., Li, W., Yuan, J., & Ji, W. (2025a). Toward community-centered planning of infrastructure restorations by integrating community demographics and public facilities. Journal of Management in Engineering, 41(3), 04025004. https://doi.org/10.1061/JMENEA.MEENG-6331"
+    },
+    {
+      "paragraph": 67,
+      "text": "Chen, Y., Zhou, Z., & Yuan, J. (2025b). Human-centered infrastructure restoration: An integrated framework for demand estimation and resource allocation. Risk Analysis, 46(1), e70169. https://doi.org/10.1111/risa.70169"
+    },
+    {
+      "paragraph": 68,
+      "text": "Cheng, B., Nozick, L., Dobson, I., Davidson, R., Obiang, D., Dias, J., & Granados, M. (2024). Quantifying the earthquake risk to the electric power transmission system in Los Angeles at the census tract level. IEEE Access, 12, 126019-126032. https://doi.org/10.1109/ACCESS.2024.3408797"
+    },
+    {
+      "paragraph": 69,
+      "text": "Dhakal, S., & Zhang, L. (2022). Integrating social equity and vulnerability with infrastructure resilience assessment. In Construction Research Congress 2022: Infrastructure Sustainability and Resilience (pp. 299-309). American Society of Civil Engineers."
+    },
+    {
+      "paragraph": 70,
+      "text": "Ding, Y., Zhang, L., Zhang, Y., & Zobel, C. W. (2026). Spatial\u2013temporal dynamics of public infrastructure service inequality during disasters. Natural Hazards Review, 27(1), 04025067. https://doi.org/10.1061/NHREFO.NHENG-2507"
+    },
+    {
+      "paragraph": 71,
+      "text": "Esmalian, A., Wang, W., & Mostafavi, A. (2022). Multi-agent modeling of hazard-household-infrastructure nexus for equitable resilience assessment. Computer-Aided Civil and Infrastructure Engineering, 37(12), 1491-1520."
+    },
+    {
+      "paragraph": 72,
+      "text": "Federal Emergency Management Agency. (2013). Multi-hazard loss estimation methodology: Earthquake model, Hazus-MH 2.1 technical manual. U.S. Department of Homeland Security."
+    },
+    {
+      "paragraph": 73,
+      "text": "Federal Emergency Management Agency. (n.d.). National Risk Index data [Data set]. U.S. Department of Homeland Security. Retrieved November 21, 2025, from https://www.fema.gov/about/openfema/data-sets/national-risk-index-data"
+    },
+    {
+      "paragraph": 74,
+      "text": "Fu, X., Guo, D.-E.-R., Li, G., Li, H.-N., & Zhu, D.-J. (2024). Seismic vulnerability assessment of electrical substation system based on the hybrid fragility functions and Bayesian network. Earthquake Engineering & Structural Dynamics, 53(14), 4287\u20134309. https://doi.org/10.1002/eqe.4219"
+    },
+    {
+      "paragraph": 75,
+      "text": "Homeland Infrastructure Foundation-Level Data. (n.d.). Substations [Data set]. U.S. Department of Homeland Security. Retrieved November 21, 2025, from https://www.dhs.gov/gmo/hifld"
+    },
+    {
+      "paragraph": 76,
+      "text": "Jiang, L., Yu, D., Xu, R., Tang, T., & Wang, G. (2025). Uncertainty-aware predict-then-optimize framework for equitable post-disaster power restoration. Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence. https://doi.org/10.24963/ijcai.2025/1080"
+    },
+    {
+      "paragraph": 77,
+      "text": "Johnson, B., Chalishazar, V., Cotilla-Sanchez, E., & Brekken, T. K. A. (2020). A Monte Carlo methodology for earthquake impact analysis on the electrical grid. Electric Power Systems Research, 184, 106332."
+    },
+    {
+      "paragraph": 78,
+      "text": "Li, M., Wei, W., Xu, Y., Zhang, C., & Shi, S. (2026). Post-earthquake restoration of electricity-gas distribution systems with damage information collection and repair vehicle routing. arXiv preprint arXiv:2601.02958."
+    },
+    {
+      "paragraph": 79,
+      "text": "Li, X., Mostafavi, A., Tian, Y., Ray, I., & Zhang, Y. (2023). Integrated data-driven and equity-centered framework for highway restoration following flood inundation. Journal of Management in Engineering, 39(4), 04023019."
+    },
+    {
+      "paragraph": 80,
+      "text": "Li, Y., Zhang, C., Jia, C., Li, X., & Zhu, Y. (2019). Joint optimization of workforce scheduling and routing for restoring a disrupted critical infrastructure. Reliability Engineering & System Safety, 191, 106551."
+    },
+    {
+      "paragraph": 81,
+      "text": "Lin, Y., Wang, J., & Yue, M. (2022). Equity-based grid resilience: How do we get there? The Electricity Journal, 35(5), 107135."
+    },
+    {
+      "paragraph": 82,
+      "text": "Lloyd, S. (1982). Least squares quantization in PCM. IEEE Transactions on Information Theory, 28(2), 129\u2013137. https://doi.org/10.1109/TIT.1982.1056489"
+    },
+    {
+      "paragraph": 83,
+      "text": "Logan, T. M., & Guikema, S. D. (2020). Reframing resilience: Equitable access to essential services. Risk Analysis, 40(8), 1538-1553. https://doi.org/10.1111/risa.13492"
+    },
+    {
+      "paragraph": 84,
+      "text": "Loggins, R. A., Little, R. G., Mitchell, J. E., Sharkey, T. C., & Wallace, W. A. (2019). CRISIS: Modeling the restoration of interdependent civil and social infrastructure systems following an extreme event. Natural Hazards Review, 20(3), 04019004. https://doi.org/10.1061/(ASCE)NH.1527-6996.0000326"
+    },
+    {
+      "paragraph": 85,
+      "text": "Loni, A., & Asadi, S. (2024). A data-driven approach to quantify social vulnerability to power outages: California case study. International Journal of Disaster Risk Reduction, 100, 104191."
+    },
+    {
+      "paragraph": 86,
+      "text": "MacQueen, J. (1967). Some methods for classification and analysis of multivariate observations. In Proceedings of the Fifth Berkeley Symposium on Mathematical Statistics and Probability (Vol. 1, pp. 281-297)."
+    },
+    {
+      "paragraph": 87,
+      "text": "OpenStreetMap contributors. (n.d.). OpenStreetMap [Data set]. OpenStreetMap Foundation. Retrieved November 21, 2025, from https://www.openstreetmap.org/"
+    },
+    {
+      "paragraph": 88,
+      "text": "Rhoades, S. A. (1993). The Herfindahl-Hirschman Index. Federal Reserve Bulletin, 79, 188-189."
+    },
+    {
+      "paragraph": 89,
+      "text": "Shahverdi, B., Miller-Hooks, E., & Isaac, S. (2024). Integrating human infrastructure in post-disaster critical lifeline restoration scheduling. Computers & Industrial Engineering, 190, 110073."
+    },
+    {
+      "paragraph": 90,
+      "text": "Shahverdi, B., Miller-Hooks, E., & Isaac, S. (2025). Decision support for prioritizing critical societal services in optimal post-disaster critical lifeline recovery. OR Spectrum, 47(2), 605\u2013641. https://doi.org/10.1007/s00291-024-00777-9"
+    },
+    {
+      "paragraph": 91,
+      "text": "Shinozuka, M., Dong, X., Chen, T. C., & Jin, X. (2007). Seismic performance of electric transmission network under component failures. Earthquake Engineering & Structural Dynamics, 36(2), 227-244."
+    },
+    {
+      "paragraph": 92,
+      "text": "Soleimani, N., Davidson, R. A., Davis, C., O\u2019Rourke, T. D., & Nozick, L. K. (2021). Multihazard scenarios for regional seismic risk assessment of spatially distributed infrastructure. Journal of Infrastructure Systems, 27(2), 04021008. https://doi.org/10.1061/(ASCE)IS.1943-555X.0000598"
+    },
+    {
+      "paragraph": 93,
+      "text": "Thorndike, R. L. (1953). Who belongs in the family? Psychometrika, 18(4), 267\u2013276. https://doi.org/10.1007/BF02289263"
+    },
+    {
+      "paragraph": 94,
+      "text": "Toplu-Tutay, G., Hasenbein, J. J., & Kutanoglu, E. (2024). Impact of power outages depends on who loses it: Equity-informed grid resilience planning via stochastic optimization. Socio-Economic Planning Sciences, 95, 102036. https://doi.org/10.1016/j.seps.2024.102036"
+    },
+    {
+      "paragraph": 95,
+      "text": "U.S. Census Bureau. (n.d.-a). American Community Survey 5-year estimates. Retrieved November 21, 2025, from https://api.census.gov/data.html"
+    },
+    {
+      "paragraph": 96,
+      "text": "U.S. Census Bureau. (n.d.-b). TIGER/Line shapefiles. Retrieved November 21, 2025, from https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html"
+    },
+    {
+      "paragraph": 97,
+      "text": "U.S. Geological Survey. (n.d.). ShakeMap. Retrieved November 21, 2025, from https://earthquake.usgs.gov/data/shakemap/"
+    },
+    {
+      "paragraph": 98,
+      "text": "Xie, Q., Liu, X., & Wu, S. (2025). Resilience-based optimisation framework for post-earthquake restoration of power systems. Reliability Engineering & System Safety, 257, 110808. https://doi.org/10.1016/j.ress.2025.110808"
+    },
+    {
+      "paragraph": 99,
+      "text": "Xu, M., Ouyang, M., Du, C., Zhang, H., & Wang, H. (2026). Scheduling repair resources for post-disaster critical infrastructure systems: A review of models and algorithms. Risk Analysis, 46(4), e70220."
+    },
+    {
+      "paragraph": 100,
+      "text": "Xu, N., Guikema, S. D., Davidson, R. A., Nozick, L. K., \u00c7a\u011fnan, Z., & Vaziri, K. (2007). Optimizing scheduling of post-earthquake electric power restoration tasks. Earthquake Engineering & Structural Dynamics, 36(3), 265-284. https://doi.org/10.1002/eqe.623"
+    },
+    {
+      "paragraph": 101,
+      "text": ""
+    },
+    {
+      "paragraph": 102,
+      "text": "Figures"
+    },
+    {
+      "paragraph": 103,
+      "text": ""
+    },
+    {
+      "paragraph": 104,
+      "text": "Figure 1. Modeled 2pc50 population availability trajectories under retained restoration sequences. Formal 1,000-realization output."
+    },
+    {
+      "paragraph": 105,
+      "text": ""
+    },
+    {
+      "paragraph": 106,
+      "text": "Figure 2. Spatial variation in modeled tract T80 for the formal 2pc50 analysis. Values are service-availability proxy crossings."
+    },
+    {
+      "paragraph": 107,
+      "text": ""
+    },
+    {
+      "paragraph": 108,
+      "text": "Figure 3. Aggregate population burden versus Q4 absolute burden across hazards and selected strategies."
+    },
+    {
+      "paragraph": 109,
+      "text": ""
+    },
+    {
+      "paragraph": 110,
+      "text": "Figure 4. Q1\u2013Q4 absolute modeled burden for 2pc50/C57 with paired-realization uncertainty."
+    },
+    {
+      "paragraph": 111,
+      "text": ""
+    },
+    {
+      "paragraph": 112,
+      "text": "Figure 5. Paired-mean tract changes under vulnerability-first relative to hospital-first and impact-first."
+    },
+    {
+      "paragraph": 113,
+      "text": ""
+    },
+    {
+      "paragraph": 114,
+      "text": "Figure 6. 2pc50 one-factor-at-a-time resource contrasts for population and Q4 burden."
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "text": "Module | Revision baseline | Predeclared contrast | Interpretation"
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "text": "Network and sources | 92 stations; 318 edges; 14 Core sources | No alternate topology | Abstracted source connectivity, not power flow"
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "text": "Hazard and physical uncertainty | Northridge, San Fernando, Long Beach, 2pc50; 1,000 evaluation draws each | 64 disjoint 2pc50 planning draws | DS and positive duration shared across strategies"
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "text": "Mapping | M1 utility-compatible inverse-square, 3% cutoff | July M0; 1%/no cutoff; SCE supported subset | Candidate dependency proxy"
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "text": "Gate | Raw functionality \u00d7 threshold 0.5 \u00d7 source connectivity | Ungated; thresholds 0.05 and 0.75 | Availability proxy and loss decomposition"
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "text": "Logistics | C57 pooled crews; directed road time | C29, C86, C114; duration \u00d70.75/1.25/1.5 | One-factor-at-a-time, 2pc50 only"
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "text": "Optimization | Direct mean community burden; 5 seeds; 100 \u00d7 100 budget | Seven deterministic incumbents | Impact-first retained; no search improvement"
+    },
+    {
+      "table": 2,
+      "row": 1,
+      "text": "Hazard | Self h | Threshold h | Source path h | Total h | Source share"
+    },
+    {
+      "table": 2,
+      "row": 2,
+      "text": "Northridge | 7.776 | 0.320 | 1.416 | 9.512 | 14.9%"
+    },
+    {
+      "table": 2,
+      "row": 3,
+      "text": "San Fernando | 3.487 | 0.160 | 0.347 | 3.994 | 8.7%"
+    },
+    {
+      "table": 2,
+      "row": 4,
+      "text": "Long Beach | 4.337 | 0.193 | 0.205 | 4.734 | 4.3%"
+    },
+    {
+      "table": 2,
+      "row": 5,
+      "text": "2pc50 | 29.278 | 0.963 | 4.065 | 34.306 | 11.8%"
+    },
+    {
+      "table": 3,
+      "row": 1,
+      "text": "Strategy | Population burden h | T80 h | Hospital tract burden h | Q1 h | Q4 h | Absolute gap h | Gini"
+    },
+    {
+      "table": 3,
+      "row": 2,
+      "text": "Hospital-first | 34.306 | 45.971 | 33.367 | 36.225 | 33.618 | 2.988 | 0.189"
+    },
+    {
+      "table": 3,
+      "row": 3,
+      "text": "Impact-first / direct-community | 33.594 | 45.251 | 33.059 | 35.332 | 32.733 | 2.949 | 0.189"
+    },
+    {
+      "table": 3,
+      "row": 4,
+      "text": "Vulnerability-first | 34.258 | 46.437 | 33.939 | 37.494 | 32.023 | 5.489 | 0.194"
+    },
+    {
+      "table": 3,
+      "row": 5,
+      "text": "Random | 39.388 | 52.863 | 39.924 | 41.468 | 37.520 | 4.101 | 0.189"
+    }
+  ]
+}

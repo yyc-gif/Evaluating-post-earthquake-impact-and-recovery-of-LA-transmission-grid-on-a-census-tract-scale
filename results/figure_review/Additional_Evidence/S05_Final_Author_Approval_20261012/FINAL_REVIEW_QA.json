@@ -1,0 +1,187 @@
+{
+  "status": "READY_FOR_AUTHOR_APPROVAL",
+  "correction_required": false,
+  "candidate_sequence_sha256": "edc4ad19f61a6d89d83532c1c92f353243b5d9e7b475c1ad99873227bbfeb99a",
+  "candidate_seed": 2026103108,
+  "candidate_pdf_sha256": "58bc67206d0e418b1079a418ea2151fa75eca78e2e5365815b6d1c62db40432d",
+  "candidate_png_sha256": "f8c61dfde75b2c31c1190b1a16b2c5ff6debff2610849239edcff3ee4224db59",
+  "archived_numerical_receipt_sha256": "bdce67c07b893f22df05f47cc432d8a22b98f348aff9a978f6d42aab6510762f",
+  "source_values_reused": {
+    "mean_difference_hr": -0.5326745400470683,
+    "components": [
+      {
+        "component": "Self",
+        "mean_difference_hr": 0.27747545367176646,
+        "interpretation": "increased loss"
+      },
+      {
+        "component": "Threshold",
+        "mean_difference_hr": 0.010637992790297883,
+        "interpretation": "increased loss"
+      },
+      {
+        "component": "Source-path",
+        "mean_difference_hr": -0.8207879865091324,
+        "interpretation": "decreased loss"
+      },
+      {
+        "component": "Net",
+        "mean_difference_hr": -0.5326745400470683,
+        "interpretation": "net difference"
+      }
+    ],
+    "equity": [
+      {
+        "metric": "absolute_Q4_minus_Q1_hr",
+        "mean_difference": 0.23273315730244332
+      },
+      {
+        "metric": "burden_gini",
+        "mean_difference": 0.009790332270076018
+      }
+    ],
+    "physical_count": 2000
+  },
+  "caption_word_count": 312,
+  "exact_caption_present_in_packet": true,
+  "actual_visual_inspection_records": [
+    {
+      "path": "runtime/candidate_mupdf_1.png",
+      "sha256": "3854e06c0634ec4abbd9dae1e7c74c0c464e85ddbf25b84535ef3dbb6daa8986",
+      "pixels": [
+        1457,
+        1402
+      ],
+      "actual_visual_inspection": true,
+      "clipping_or_overlap_observed": false
+    },
+    {
+      "path": "runtime/candidate_poppler-1.png",
+      "sha256": "59cea3bc4fe25ed63f6ef132f6e980237b7245b7a3ddfa68aef7892891f0a470",
+      "pixels": [
+        1457,
+        1402
+      ],
+      "actual_visual_inspection": true,
+      "clipping_or_overlap_observed": false
+    },
+    {
+      "path": "runtime/approval_mupdf_1.png",
+      "sha256": "06a75d48b8daed1e61f99fbc2468ddda95c42c3f0e619e172716465a516ece0a",
+      "pixels": [
+        1323,
+        1871
+      ],
+      "actual_visual_inspection": true,
+      "clipping_or_overlap_observed": false
+    },
+    {
+      "path": "runtime/approval_mupdf_2.png",
+      "sha256": "e820881f09e096d925ad35a3143c8266f99e837927b26370914f343ef2637832",
+      "pixels": [
+        1323,
+        1871
+      ],
+      "actual_visual_inspection": true,
+      "clipping_or_overlap_observed": false
+    },
+    {
+      "path": "runtime/approval_poppler-1.png",
+      "sha256": "27e24ec87bb78d9b7bdf3725b2cf897ea1323837c8ca62d22ebbf25606765696",
+      "pixels": [
+        1323,
+        1871
+      ],
+      "actual_visual_inspection": true,
+      "clipping_or_overlap_observed": false
+    },
+    {
+      "path": "runtime/approval_poppler-2.png",
+      "sha256": "a97389bdf62b02bc9ce907b19e504227d325dc8024ea182ea2609e4415bb4ccf",
+      "pixels": [
+        1323,
+        1871
+      ],
+      "actual_visual_inspection": true,
+      "clipping_or_overlap_observed": false
+    }
+  ],
+  "packet": [
+    {
+      "page": 1,
+      "fonts": [
+        [
+          5,
+          "n/a",
+          "Type1",
+          "Helvetica-Bold",
+          "hebo",
+          "WinAnsiEncoding",
+          0
+        ],
+        [
+          7,
+          "n/a",
+          "Type1",
+          "Helvetica",
+          "helv",
+          "WinAnsiEncoding",
+          0
+        ],
+        [
+          11,
+          "ttf",
+          "Type0",
+          "ELUGPM+ArialMT",
+          "F1",
+          "Identity-H",
+          29
+        ],
+        [
+          18,
+          "ttf",
+          "Type0",
+          "ELUGPM+Arial-BoldMT",
+          "F2",
+          "Identity-H",
+          29
+        ]
+      ],
+      "raster_images": 0
+    },
+    {
+      "page": 2,
+      "fonts": [
+        [
+          5,
+          "n/a",
+          "Type1",
+          "Helvetica-Bold",
+          "hebo",
+          "WinAnsiEncoding",
+          0
+        ],
+        [
+          7,
+          "n/a",
+          "Type1",
+          "Helvetica",
+          "helv",
+          "WinAnsiEncoding",
+          0
+        ]
+      ],
+      "raster_images": 0
+    }
+  ],
+  "renderer_warning": "Poppler emitted 'No display font for Symbol' while rendering the approval PDF. Symbol is not in either page's font-resource list; both actual rendered pages have intact visible text under Poppler and MuPDF. Native S05 fonts are embedded Arial.",
+  "initial_read_only_retries": [
+    "Sandbox protected-worktree status access retried with scoped escalation",
+    "Windows long-path prefix adapter corrected",
+    "Missing source LFS cache objects retrieved by immutable commit and SHA256-verified"
+  ],
+  "numerical_analysis_repeated": false,
+  "statistical_resampling_repeated": false,
+  "full_current_manuscript_accessible": false,
+  "backup_not_promoted_or_restored": true
+}

@@ -1,0 +1,323 @@
+{
+  "meeting_summary_not_full_manuscript": [
+    {
+      "paragraph": 1,
+      "text": "PART II \u2014 METHODOLOGY MODIFICATIONS"
+    },
+    {
+      "paragraph": 2,
+      "text": "Symbols. r = census tract; i or s = station; m = physical realization; P\u1d63 = tract population; \u03c0 = fixed repair-priority sequence."
+    },
+    {
+      "paragraph": 3,
+      "text": ""
+    },
+    {
+      "paragraph": 4,
+      "text": "2.1 Utility-compatible tract\u2013substation mapping"
+    },
+    {
+      "paragraph": 5,
+      "text": "Main modification. The July mapping framework is retained. The revision changes the candidate set before distance-based weighting: strict SCE tracts use SCE-compatible stations, strict LADWP tracts use LADWP-compatible stations, and mixed or ambiguous tracts retain general eligibility."
+    },
+    {
+      "paragraph": 6,
+      "text": "For tract r, the access station a\u1d63 is the geographically nearest station in the eligible set E\u1d63. The effective distance to candidate station s combines tract-to-access distance and shortest-path distance through the retained station network."
+    },
+    {
+      "paragraph": 7,
+      "text": "a\u1d63 = arg min\u209b\u2208E\u1d63 d_geo(r,s)       d\u1d63\u209b = d_geo(r,a\u1d63) + d_net(a\u1d63,s)"
+    },
+    {
+      "paragraph": 8,
+      "text": "The candidate weights remain inverse-square distance weights. They are normalized, weights below 3% are removed, and the retained weights are normalized again."
+    },
+    {
+      "paragraph": 9,
+      "text": "q\u1d63\u209b = 1(s\u2208E\u1d63)d\u1d63\u209b\u207b\u00b2       w\u0303\u1d63\u209b = q\u1d63\u209b / \u03a3\u2c7cq\u1d63\u2c7c"
+    },
+    {
+      "paragraph": 10,
+      "text": "w\u1d63\u209b = w\u0303\u1d63\u209b1(w\u0303\u1d63\u209b\u22650.03) / \u03a3\u2c7c[w\u0303\u1d63\u2c7c1(w\u0303\u1d63\u2c7c\u22650.03)]"
+    },
+    {
+      "paragraph": 11,
+      "text": "The modification therefore changes which substations are allowed to serve as candidates; it does not replace the July network-distance, inverse-square weighting, or 3% sparsification logic."
+    },
+    {
+      "paragraph": 12,
+      "text": "Reviewer concerns addressed. Reviewer 1 Comment 1: tract\u2013substation dependency lacked utility/service-territory support and needed stronger robustness and clearer proxy interpretation."
+    },
+    {
+      "paragraph": 13,
+      "text": "2.2 Realization-specific repair execution"
+    },
+    {
+      "paragraph": 14,
+      "text": "Main modification. The sampled damage state and sampled damage-conditioned repair time now remain attached to each physical realization through the actual crew schedule. The July use of representative repair durations for scheduling is removed."
+    },
+    {
+      "paragraph": 15,
+      "text": "For realization m, every station with DS > 0 becomes a repair task. The policy \u03c0 remains a fixed priority sequence; undamaged stations are removed from that sequence without re-ranking the remaining tasks."
+    },
+    {
+      "paragraph": 16,
+      "text": "D\u207d\u1d50\u207e = {i : DS\u1d62\u207d\u1d50\u207e > 0}       T\u1d62\u207d\u1d50\u207e ~ G_DS\u1d62\u207d\u1d50\u207e       \u03c0\u207d\u1d50\u207e = filter(\u03c0,D\u207d\u1d50\u207e)"
+    },
+    {
+      "paragraph": 17,
+      "text": "For the crew assigned to task i, start time equals the crew\u2019s next available time plus directed travel from its current location. Completion time is start time plus the realized repair duration."
+    },
+    {
+      "paragraph": 18,
+      "text": "t\u1d62,start\u207d\u1d50\u207e = a\u2096 + \u03c4(\u2113\u2096,i)       c\u1d62\u207d\u1d50\u207e = t\u1d62,start\u207d\u1d50\u207e + T\u1d62\u207d\u1d50\u207e"
+    },
+    {
+      "paragraph": 19,
+      "text": "At completion, the station\u2019s raw functionality returns to one and the crew becomes available at that station. No second recovery-time clock is started after completion."
+    },
+    {
+      "paragraph": 20,
+      "text": "f\u1d62\u207d\u1d50\u207e(t) = f_DS\u1d62\u207d\u1d50\u207e + [1 \u2212 f_DS\u1d62\u207d\u1d50\u207e]1(t \u2265 c\u1d62\u207d\u1d50\u207e)"
+    },
+    {
+      "paragraph": 21,
+      "text": "The same realization-specific damage, repair times, road travel, and crew resources are used for every strategy. The strategy comparison therefore changes the repair order while holding the physical realization fixed."
+    },
+    {
+      "paragraph": 22,
+      "text": "Reviewer concerns addressed. Reviewer 1 Comment 3: realization-specific task sets and repair-time uncertainty were not carried clearly through scheduling. Reviewer 2 Comment 13: the meaning of logistics/resource constraints was not sufficiently clear."
+    },
+    {
+      "paragraph": 23,
+      "text": "2.3 Source-connected service, loss components, and source-route condition"
+    },
+    {
+      "paragraph": 24,
+      "text": "Main modification. The production service rule still requires a functional station to have a path to an active Core source. The revision adds two pieces of information around that rule: it separates the modeled deficit by cause, and it records the source-route condition inside states that the binary gate simply labels \u201cconnected.\u201d"
+    },
+    {
+      "paragraph": 25,
+      "text": "Station service and loss components"
+    },
+    {
+      "paragraph": 26,
+      "text": "A station first has a raw damage-dependent functionality f\u1d62(t). It is counted as functional for network connectivity when f\u1d62(t) \u2265 0.5. C\u1d62(t) equals one when that functional station can reach at least one active Core source through the current functional graph."
+    },
+    {
+      "paragraph": 27,
+      "text": "F\u1d62(t) = 1{f\u1d62(t) \u2265 0.5}       C\u1d62(t) = 1{i \u2192 S_active(t)}       e\u1d62(t) = f\u1d62(t)F\u1d62(t)C\u1d62(t)"
+    },
+    {
+      "paragraph": 28,
+      "text": "The total station-level deficit is then separated exactly into local damage, the additional functional-threshold loss, and loss caused by having no active-source path."
+    },
+    {
+      "paragraph": 29,
+      "text": "L\u1d62,self = 1 \u2212 f\u1d62       L\u1d62,threshold = f\u1d62(1 \u2212 F\u1d62)       L\u1d62,source = f\u1d62F\u1d62(1 \u2212 C\u1d62)"
+    },
+    {
+      "paragraph": 30,
+      "text": "1 \u2212 e\u1d62 = L\u1d62,self + L\u1d62,threshold + L\u1d62,source"
+    },
+    {
+      "paragraph": 31,
+      "text": "Tract service and cumulative burden"
+    },
+    {
+      "paragraph": 32,
+      "text": "Tract service is the weighted sum of effective service from its mapped stations. In the production mapping, the weights for every tract sum to one."
+    },
+    {
+      "paragraph": 33,
+      "text": "A\u1d63\u207d\u1d50\u207e(t) = \u03a3\u1d62 w\u1d63\u1d62e\u1d62\u207d\u1d50\u207e(t)"
+    },
+    {
+      "paragraph": 34,
+      "text": "Cumulative burden is the service deficit integrated over the common 480 h horizon. Because station states change only at event times, the integral is evaluated exactly as the post-event deficit multiplied by the time to the next event."
+    },
+    {
+      "paragraph": 35,
+      "text": "b\u1d63\u207d\u1d50\u207e = \u222b\u2080\u1d34[1 \u2212 A\u1d63\u207d\u1d50\u207e(t)]dt = \u03a3\u2096[1 \u2212 A\u1d63\u207d\u1d50\u207e(t\u2096)](t\u2096\u208a\u2081 \u2212 t\u2096),    H = 480 h"
+    },
+    {
+      "paragraph": 36,
+      "text": "The same mapping and event intervals are applied separately to Lself, Lthreshold, and Lsource, so the tract-level cumulative burden can be attributed to the same three causes."
+    },
+    {
+      "paragraph": 37,
+      "text": "Source-route condition inside the connected state"
+    },
+    {
+      "paragraph": 38,
+      "text": "The binary gate only distinguishes \u201cno active-source route\u201d from \u201cat least one active-source route.\u201d The added network analysis records two additional quantities for every changing functional graph: the number of reachable active sources and the number of independent station routes from a station to active sources."
+    },
+    {
+      "paragraph": 39,
+      "text": "N\u1d62,src(t) = |{s \u2208 S_active(t) : i \u2192 s}|       \u03ba\u1d62(t) = number of independent station routes to active sources"
+    },
+    {
+      "paragraph": 40,
+      "text": "For interpretation, a non-source station with \u03ba\u1d62 = 1 is one-route connected, while \u03ba\u1d62 \u2265 2 is multiple-route connected; an active Core source is identified separately. These route classes do not assign a different service value. Instead, the existing tract service can be separated according to which connection type supports it:"
+    },
+    {
+      "paragraph": 41,
+      "text": "A\u1d63(t) = A\u1d63,source(t) + A\u1d63,one-route(t) + A\u1d63,multiple-route(t)"
+    },
+    {
+      "paragraph": 42,
+      "text": "This links the path analysis directly to the reported service trajectories: total modeled service is unchanged, while the analysis shows whether that service is being supported by a local source, a single independent route, or multiple independent routes. The route composition can then be compared across restoration strategies and across tracts."
+    },
+    {
+      "paragraph": 43,
+      "text": "Reviewer concerns addressed. Reviewer 1 Comment 2: a binary source-connected gate does not distinguish the condition or redundancy of connected states and is not a power-flow model. Reviewer 2 Comments 6\u20137: network criticality/percolation needed a clearer connection to the paper\u2019s recovery question."
+    },
+    {
+      "paragraph": 44,
+      "text": "2.4 Community-burden GA objective"
+    },
+    {
+      "paragraph": 45,
+      "text": "Main modification. The GA candidate sequence is now evaluated with the same tract-level cumulative service burden used in the reported recovery results, rather than the July station-level weighted completion score."
+    },
+    {
+      "paragraph": 46,
+      "text": "For each candidate fixed sequence \u03c0, the evaluator runs the realization-specific task filter and crew schedule, updates station functionality and source connection, maps effective service to tracts, and integrates each tract\u2019s burden. Population-weighted burden for realization m is:"
+    },
+    {
+      "paragraph": 47,
+      "text": "B\u207d\u1d50\u207e(\u03c0) = [\u03a3\u1d63P\u1d63b\u1d63\u207d\u1d50\u207e(\u03c0)] / [\u03a3\u1d63P\u1d63]"
+    },
+    {
+      "paragraph": 48,
+      "text": "The planning objective is the mean burden over 64 independent 2pc50 planning realizations; fitness is its negative because the GA is written as a maximization problem."
+    },
+    {
+      "paragraph": 49,
+      "text": "B_plan(\u03c0) = (1/64)\u03a3\u2098\u208c\u2081\u2076\u2074B\u207d\u1d50\u207e(\u03c0)       J(\u03c0) = \u2212B_plan(\u03c0)"
+    },
+    {
+      "paragraph": 50,
+      "text": "The search uses population 100, 100 generations, crossover 0.8, mutation 0.2, tournament size 3, and five seeds. The seven fixed rule-based sequences are evaluated on the same 64 planning realizations before the search. No GA seed improved the Impact-first incumbent, so Impact-first appears once in the formal strategy results."
+    },
+    {
+      "paragraph": 51,
+      "text": "Reviewer concerns addressed. Reviewer 1 Comments 6\u20137: GA reproducibility, objective definition, and the earlier mismatch between GA fitness and reported recovery metrics. Reviewer 2 Comment 9: the GA was presented as a black box."
+    },
+    {
+      "paragraph": 52,
+      "text": "2.5 Distributional recovery measures"
+    },
+    {
+      "paragraph": 53,
+      "text": "Main modification. The revision no longer uses one population-and-vulnerability-weighted recovery curve as the main evidence about distributional outcomes. It reports absolute burden by vulnerability group, group separation, inequality across tracts, and paired tract-level policy effects."
+    },
+    {
+      "paragraph": 54,
+      "text": "Using the existing NRI-derived SOVI score, tracts are assigned once to four equal-count groups; Q4 is the highest-vulnerability quartile. For each realization, the population-weighted burden of group q is:"
+    },
+    {
+      "paragraph": 55,
+      "text": "B_q\u207d\u1d50\u207e = [\u03a3\u1d63\u2208Qq P\u1d63b\u1d63\u207d\u1d50\u207e] / [\u03a3\u1d63\u2208Qq P\u1d63]       B_q = (1/N)\u03a3\u2098B_q\u207d\u1d50\u207e"
+    },
+    {
+      "paragraph": 56,
+      "text": "The Q4\u2013Q1 comparison is reported both with sign and as an absolute separation. The absolute measure is calculated within each realization before averaging, so it is not the absolute value of the mean signed difference."
+    },
+    {
+      "paragraph": 57,
+      "text": "\u0394\u2084\u2081 = (1/N)\u03a3\u2098[B\u2084\u207d\u1d50\u207e \u2212 B\u2081\u207d\u1d50\u207e]       D\u2084\u2081 = (1/N)\u03a3\u2098|B\u2084\u207d\u1d50\u207e \u2212 B\u2081\u207d\u1d50\u207e|"
+    },
+    {
+      "paragraph": 58,
+      "text": "A population-weighted Gini provides a tract-wide inequality measure for each realization, and the reported value is the mean across realizations."
+    },
+    {
+      "paragraph": 59,
+      "text": "\u03bc\u207d\u1d50\u207e = [\u03a3\u1d63P\u1d63b\u1d63\u207d\u1d50\u207e]/[\u03a3\u1d63P\u1d63]"
+    },
+    {
+      "paragraph": 60,
+      "text": "G\u207d\u1d50\u207e = [\u03a3\u1d63\u03a3\u2c7cP\u1d63P\u2c7c|b\u1d63\u207d\u1d50\u207e \u2212 b\u2c7c\u207d\u1d50\u207e|] / [2\u03bc\u207d\u1d50\u207e(\u03a3\u1d63P\u1d63)\u00b2]       G = (1/N)\u03a3\u2098G\u207d\u1d50\u207e"
+    },
+    {
+      "paragraph": 61,
+      "text": "For each tract r and physical realization m, compare a candidate policy p with the reference policy p\u2080 using the continuous cumulative-burden difference:"
+    },
+    {
+      "paragraph": 62,
+      "text": "\u03b4\u1d63\u207d\u1d50\u207e = b\u1d63\u207d\u1d50\u207e(p) \u2212 b\u1d63\u207d\u1d50\u207e(p\u2080);  \u03b4\u0304\u1d63 = (1/N)\u03a3\u2098 \u03b4\u1d63\u207d\u1d50\u207e."
+    },
+    {
+      "paragraph": 63,
+      "text": "A negative \u03b4\u0304\u1d63 means the candidate reduces modeled cumulative burden for tract r; a positive value means it increases burden. Its magnitude is the size of the change. Tract maps use a continuous, zero-centered diverging scale to show direction and magnitude."
+    },
+    {
+      "paragraph": 64,
+      "text": "Population-level summaries use the population-weighted distribution and quantiles of the continuous tract differences. Paired uncertainty is estimated over physical realizations, not over tracts."
+    },
+    {
+      "paragraph": 65,
+      "text": "Reviewer concerns addressed. Reviewer 1 Comment 5: SVI-weighted T80 was not an equity measure and typologies/hotspots should remain descriptive. Reviewer 2 Comments 10 and 14\u201316: vulnerability needed a clearer role, including who benefits, who is delayed, and the system-level cost of targeted restoration."
+    },
+    {
+      "paragraph": 66,
+      "text": "2.6 Vulnerability-targeted repair priority"
+    },
+    {
+      "paragraph": 67,
+      "text": "Main modification. A new fixed rule directly prioritizes stations according to the high-vulnerability population mapped to them. It is a transparent rule-based comparator, not a second optimization problem."
+    },
+    {
+      "paragraph": 68,
+      "text": "Stations are ranked by the mapped population of Q4 tracts, V\u209b. Total mapped population is used only to resolve ties."
+    },
+    {
+      "paragraph": 69,
+      "text": "V\u209b = \u03a3\u1d63\u2208Q4 P\u1d63w\u1d63\u209b       P\u209b,mapped = \u03a3\u1d63P\u1d63w\u1d63\u209b"
+    },
+    {
+      "paragraph": 70,
+      "text": "The resulting sequence is fixed before evaluation and is tested on the same physical realizations as the other repair priorities."
+    },
+    {
+      "paragraph": 71,
+      "text": "Reviewer concerns addressed. Reviewer 2 Comment 14: the paper needed an explicit equity-informed targeted restoration comparison that quantifies the benefit to high-vulnerability communities, the cost to other objectives, and who is affected. It also supports Reviewer 1 Comment 5 and Reviewer 2 Comment 10 by giving vulnerability a direct, measurable role in the strategy comparison."
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "text": "Section | Main modification | Reviewer concern(s)"
+    },
+    {
+      "table": 1,
+      "row": 2,
+      "text": "2.1 Mapping | Restrict the candidate substations for each tract by utility context, then apply the existing July distance-based weighting and 3% cutoff. | R1-1"
+    },
+    {
+      "table": 1,
+      "row": 3,
+      "text": "2.2 Repair execution | Carry each realization\u2019s sampled damage state and repair duration into the actual repair-task set, crew travel, and completion times. | R1-3; R2-13"
+    },
+    {
+      "table": 1,
+      "row": 4,
+      "text": "2.3 Source connection | Keep the binary source-path requirement for modeled service, separate the causes of service loss, and characterize the quality of source connection during recovery. | R1-2; R2-6, R2-7"
+    },
+    {
+      "table": 1,
+      "row": 5,
+      "text": "2.4 GA objective | Evaluate GA candidates with the same tract-level cumulative burden used in the reported recovery results. | R1-6, R1-7; R2-9"
+    },
+    {
+      "table": 1,
+      "row": 6,
+      "text": "2.5 Distributional measures | Measure absolute burdens by vulnerability group, group separation, tract-level policy effects, and population affected. | R1-5; R2-10, R2-14\u201316"
+    },
+    {
+      "table": 1,
+      "row": 7,
+      "text": "2.6 Vulnerability-first | Add one fixed repair rule that ranks stations by the Q4 population mapped to them. | R1-5; R2-10, R2-14"
+    }
+  ]
+}
