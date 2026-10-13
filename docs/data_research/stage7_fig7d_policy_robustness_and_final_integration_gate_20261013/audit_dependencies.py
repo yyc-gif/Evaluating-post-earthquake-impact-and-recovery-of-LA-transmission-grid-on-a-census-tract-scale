@@ -78,7 +78,7 @@ def main():
     excerpt = []
     for i, line in enumerate(source_lines):
         if 'Hotspot_' in line or 'SlowVulnerable_Hotspot_' in line:
-            excerpt.extend(f'{j + 1}: {source_lines[j]}' for j in range(max(0, i - 2), min(len(source_lines), i + 3)))
+            excerpt.extend(f'{j + 1}: {source_lines[j]}'.rstrip() for j in range(max(0, i - 2), min(len(source_lines), i + 3)))
     md('D1_FORMAL_DEFINITION_SOURCE_EXCERPTS.md', '\n'.join(dict.fromkeys(excerpt)))
     captions = texts['results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md']
     sections = []
