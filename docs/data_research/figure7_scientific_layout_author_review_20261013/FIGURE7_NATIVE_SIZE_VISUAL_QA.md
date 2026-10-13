@@ -16,6 +16,8 @@ Candidate A's analytical labels/ticks/annotations are at least 7.5 pt, headings 
 
 The candidate PDF contains no raster image objects: empirical curves, 24 profile cells, fonts and copied maps are vector content. Comparison PDFs retain actual source objects, with image-object counts recorded rather than assumed. The old SOVI KDE's apparent tails beyond 0-100 illustrate why blindly retaining smoothing would be undesirable; Candidate A keeps every value inside its actual support. ECDFs do not identify density modes as readily as an appropriate KDE, which is an explicit trade-off for approval.
 
+No formal color-vision-deficiency simulation or universal accessibility certification is claimed. The approved class palette is locked; line patterns, class text and printed signed profile values supply redundant identification in A/B. C's map remains dependent on the inherited palette.
+
 C/D's source content stream is embedded byte-identically. After normalizing the proposed 8-mm vertical translation, all C/D pixels are identical at 160 dpi; no map rescaling, membership/geometry/colorbar/Q4 modification occurred. Candidate height is the historical 253 mm, not the current 245 mm. This placement choice is proposed, not automatically accepted.
 
 Inherited map limitations remain: dense thin Q4 borders and the current vector colorbar's narrow renderer seams. They are not redesigned here. White N/A is easier to distinguish from nearby dark deficit colors, but the current gray-vs-white trade-off and prior explicit white preference are submitted as a separate approval choice. No border width, geographic extent or Q4 color is changed in that isolated fill comparison.
