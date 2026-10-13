@@ -1,0 +1,8 @@
+{
+  "command": "python -m pytest tests/test_current_figure_suite_integration.py -q --basetemp=docs/reproducibility/s05_plain_figure_labels_20261012/pytest_tmp",
+  "passed": 9,
+  "failed": 0,
+  "duration_seconds": 25.59,
+  "actual_render_verification": "All four data regions and both assembled packet figures are pixel-identical.",
+  "scientific_evaluators_run": false
+}

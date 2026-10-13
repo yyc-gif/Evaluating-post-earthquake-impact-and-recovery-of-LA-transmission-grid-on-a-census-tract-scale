@@ -8,7 +8,7 @@ The current user task authorizes S05 integration. The older approval plan's manu
 
 | Item | Decision/action | Current target |
 |---|---|---|
-| S05 | OFFICIALLY INTEGRATED into numbered paths on this branch. Approved PDF/600-dpi PNG copied without alteration; approved concise caption body copied exactly. The older three-panel S05 is historical. No formal strategy is replaced. | `Supplement/FigS05.pdf` / `.png` |
+| S05 | OFFICIALLY INTEGRATED, then simplified following the latest author review. Plain titles and legends replace search jargon. B/D footnotes and the global footer are removed; the empty footer margin is trimmed. Actual diamond and color swatches identify the selected run and decrease/increase/net change. Curves, bars, points, numerical values and intervals remain unchanged. Scientific qualifications remain in its caption. | `Supplement/FigS05.pdf` / `.png` |
 | Fig1 | RETAIN CURRENT ARTWORK; unresolved review comment documented below. No invented missing content. | `Main/Fig01.pdf` / `.png` |
 | Fig4D | NOT APPLICABLE TO CURRENT FIG4. Current Fig4 has A/B recovery/outcome graphs and no D map. No map is invented or added. | `Main/Fig04.pdf` / `.png`, unchanged |
 | Fig7C/D N/A | White fill and 0.45-pt dark-gray boundary on the exact existing 24 N/A tracts in each map; white bordered legend swatch. Study outline/Top-10 outlines retained. | `Main/Fig07.pdf` / `.png` |
@@ -37,7 +37,7 @@ The prior four-scenario six-policy S11 PDF/PNG and caption are preserved in `pro
 
 Seven Main and twelve Supplement figures remain in the same numbered structure (S02 is already integrated into S01). PDF/PNG mirrors, manifest/index, page previews and the three packets are synchronized; figure pages retain native 185-mm width. Captions changed only for S05 and the requested S7/S10/S11 display details, plus the narrow Fig4/S12/S13 clarification that historical Direct-community coincidence does not describe the final GA. No broader paper prose, DOCX, manuscript PDF, formal candidate sequence, simulation, scheduling, trajectory, PCA, clustering or bootstrap output is changed.
 
-Source/payload hashes, original 950-file and 862-staged-item checks, tests and actual visual rendering checks are recorded under `docs/reproducibility/official_figure_suite_review_20261012/`. Commit and remote verification are recorded there and reported on delivery. This isolated branch is not automatically merged into the revision branch.
+Source/payload hashes, original 950-file and 862-staged-item checks, tests and actual visual rendering checks for the integration are recorded under `docs/reproducibility/official_figure_suite_review_20261012/`. The latest S05 text/key cleanup and its synchronized packets are verified under `docs/reproducibility/s05_plain_figure_labels_20261012/`; the other eighteen numbered figures are byte-identical to f010a4b. Commit and remote verification are recorded in those packages. This isolated branch is not automatically merged into the revision branch.
 
 ## Remaining author clarification
 

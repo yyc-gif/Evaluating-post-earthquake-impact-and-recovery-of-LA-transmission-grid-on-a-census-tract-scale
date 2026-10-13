@@ -9,7 +9,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITE = ROOT / 'results/figure_review'
-QA = ROOT / 'docs/reproducibility/official_figure_suite_review_20261012'
+QA = ROOT / 'docs/reproducibility/s05_plain_figure_labels_20261012'
 EXPECTED = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' for i in [1, *range(3, 14)]]
 
 
@@ -98,9 +98,10 @@ def test_original_science_and_staged_work_remain_unchanged():
 
 def test_approved_integration_and_bounded_display_edits_preserve_science():
     a = audit()
-    assert len(a['updated_figures']) == 5
-    assert len(a['retained_figures']) == 14
-    edits = a['operator_edits']
+    assert a['updated_figures'] == ['Supplement/FigS05']
+    assert len(a['retained_figures']) == 18
+    assert a['operator_edits']['Supplement/FigS05']['curves_bars_points_axes_intervals_and_numerical_labels_unchanged']
+    edits = a['prior_round_operator_evidence']
     assert edits['Supplement/FigS05']['reviewed_PDF_and_PNG_copied_exactly']
     assert edits['Main/Fig07']['NA']['white_NA_paths'] == 48
     assert edits['Main/Fig07']['NA']['cluster_membership_hotspot_values_and_study_boundary_unchanged']
@@ -116,15 +117,22 @@ def test_approved_integration_and_bounded_display_edits_preserve_science():
     assert 'shown in white with dark boundaries as N/A' in cap
 
 
-def test_s05_is_exact_approved_artwork_and_caption_not_a_rerender():
-    assert sha(SUITE / 'Supplement/FigS05.pdf') == '58bc67206d0e418b1079a418ea2151fa75eca78e2e5365815b6d1c62db40432d'
-    assert sha(SUITE / 'Supplement/FigS05.png') == 'f8c61dfde75b2c31c1190b1a16b2c5ff6debff2610849239edcff3ee4224db59'
-    approved = open(lp(QA/'approved_source_records/S05_CONCISE_MANUSCRIPT_CAPTION.md'),encoding='utf-8').read().split('\n\n',1)[1].strip()
+def test_s05_has_plain_labels_and_preserves_the_scientific_qualifications():
+    d = fitz.open(lp(SUITE/'Supplement/FigS05.pdf'))
+    plotted = d[0].get_text()
+    assert all(t not in plotted for t in ['Pure-random', 'incumbent injection', 'Strict proximity', 'Post-data', 'Net benefit is dominated'])
+    assert all(t in plotted for t in ['20 GA runs', 'Median best-so-far loss', 'Decrease', 'Increase', 'Net change'])
+    assert all(t in plotted for t in ['32.995522', '+0.277475', '+0.010638', '-0.820788', '-0.532675', '-0.563982', '-0.502321'])
     text = open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
     body = re.search(r'^## Supplementary Figure S5\..*?\n\n(.*?)(?=^## )',text,re.M|re.S)[1].strip()
-    assert body == approved
-    assert 'reference only, not an inserted chromosome' in body
+    assert 'it was not included in the initial population' in body
+    assert '10/20 runs' in body and '90% single-run criterion' in body
+    assert 'global optimality' in body
+    assert 'Bonferroni two-contrast family' in body
     assert 'legacy last-position elitism candidate' in body
+    assert '0-480 h' in body and '2,000' in body and '64 fixed' in body
+    assert 'burden' not in body
+    assert all(t in body for t in ['0.232733', '0.009790'])
 
 
 def test_retained_artwork_is_exact_and_s11_cells_are_archived_values():
@@ -136,10 +144,10 @@ def test_retained_artwork_is_exact_and_s11_cells_are_archived_values():
             for ext in ['pdf','png']:
                 rel = 'results/figure_review/'+stem+'.'+ext
                 assert sha(ROOT/rel) == sources[base+':'+rel]['sha256']
-    e = audit()['operator_edits']['Supplement/FigS11']
+    e = audit()['prior_round_operator_evidence']['Supplement/FigS11']
     import subprocess
     rel = e['source_path']
-    pointer = subprocess.check_output(['git','-C',str(ROOT),'show',base+':'+rel])
+    pointer = subprocess.check_output(['git','-C',str(ROOT),'show','c0a11ffb4df523111efe6c8e65cfe86eadffec3c:'+rel])
     match = re.search(rb'oid sha256:([0-9a-f]{64})',pointer)
     if match:
         assert match[1].decode()==e['source_sha256']
@@ -151,3 +159,13 @@ def test_retained_artwork_is_exact_and_s11_cells_are_archived_values():
     text=pdf[0].get_text()
     assert all(f'{x:+.2f}' in text for row in values for x in row)
     assert 'San Fernando' not in text and 'Northridge' not in text
+
+
+def test_s05_original_data_graphics_are_byte_preserved():
+    a = audit()['operator_edits']['Supplement/FigS05']
+    assert len(a['core_stream_invariance']) > 0
+    assert all(r['all_other_text_unchanged'] for r in a['core_stream_invariance'])
+    visual = json.load(open(lp(QA/'VISUAL_AND_PACKET_QA.json'),encoding='utf-8'))
+    assert all(r['unmodified_data_pixels_identical'] for r in visual['data_region_checks'])
+    assert visual['actual_packet_pixels_identical']
+    assert visual['all_current_labels_inside_page']
