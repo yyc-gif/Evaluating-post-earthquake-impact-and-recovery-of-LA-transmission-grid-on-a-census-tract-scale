@@ -268,3 +268,57 @@ def test_updated_manifest_source_paths_resolve_in_their_declared_frozen_commits(
         assert ix['source_data_path']==row['source_file']
         assert ix['source_authority']==row['source_commit']
         assert hashlib.sha256(b).hexdigest()==ix['source_data_sha256']
+
+
+def test_s10_active_cross_reference_registry_and_packet_page():
+    rows=list(csv.DictReader(open(lp(SUITE/'FIGURE_MANIFEST.csv'),encoding='utf-8-sig')))
+    active={r['final_name'].split('/')[-1].split('.')[0] for r in rows}
+    assert 'FigS11' in active and not active&{'FigS02','FigS12','FigS13'}
+    text=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    captions=dict(re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)',text,re.M|re.S))
+    heading=next(h for h in captions if h.startswith('Supplementary Figure S10.'))
+    expected='Outcome comparisons appear in Figures 4\u20136 and Supplementary Figure S11'
+    assert expected in captions[heading]
+    assert 'Supplementary Figures S12/S13' not in captions[heading]
+    # All supplementary references in active captions must resolve, including multi-reference sentences.
+    assert {'FigS'+n.zfill(2) for n in re.findall(r'\bS(\d{1,2})\b',text)}<=active
+    main_refs=re.findall(r'(?<!Supplementary )\bFigures? (\d+)',text)
+    assert {'Fig'+n.zfill(2) for n in main_refs}<=active
+    full=fitz.open(lp(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))
+    assert len(full)==38
+    assert expected in ' '.join(full[31].get_text().split())
+    assert 'Supplementary Figures S12/S13' not in full[31].get_text()
+
+
+def test_caption_only_followup_preserves_all_approved_artwork_bytes():
+    baseline='8f2dcb3b9762137b9f2686609c34480334f5d44e'
+    manifest=list(csv.DictReader(io.StringIO(source_payload(baseline,'results/figure_review/FIGURE_MANIFEST.csv').decode())))
+    assert len(manifest)==34
+    for r in manifest:
+        assert sha(ROOT/r['current_source_file'])==r['sha256']==sha(ROOT/r['mirror_file'])
+        assert hashlib.sha256(source_payload(baseline,r['current_source_file'])).hexdigest()==r['sha256']
+    for name in ['ALL_MAIN_FIGURES.pdf','ALL_SUPPLEMENT_FIGURES.pdf','CURRENT_CLUSTER_PALETTE.json']:
+        rel='results/figure_review/'+name
+        assert sha(ROOT/rel)==hashlib.sha256(source_payload(baseline,rel)).hexdigest()
+
+
+def test_canonical_caption_rule_changes_only_s10_and_is_idempotent():
+    import ast
+    path=ROOT/'src/la_grid/plotting/build_current_suite_k3.py'
+    tree=ast.parse(open(lp(path),encoding='utf-8').read())
+    nodes=[n for n in tree.body if isinstance(n,ast.Assign) and any(
+        isinstance(t,ast.Name) and t.id.startswith('S10_') for t in n.targets)]
+    nodes+=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='correct_s10_reference']
+    namespace={}
+    exec(compile(ast.Module(body=nodes,type_ignores=[]),str(path),'exec'),namespace)
+    transform=namespace['correct_s10_reference']
+    parse=lambda text:{h:b.strip() for h,b in re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)',text,re.M|re.S)}
+    baseline='8f2dcb3b9762137b9f2686609c34480334f5d44e'
+    source=parse(source_payload(baseline,'results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md').decode())
+    current=parse(open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read())
+    assert len(source)==len(current)==17 and list(source)==list(current)
+    for h,b in source.items():
+        assert current[h]==transform(h,b)==transform(h,transform(h,b))
+    assert sum(source[h]!=current[h] for h in source)==1
+    main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
+    assert 'correct_s10_reference' in ast.unparse(main)

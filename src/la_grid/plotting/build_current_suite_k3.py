@@ -33,6 +33,9 @@ BASE = '59d9001edadef57c5ff1dc6af6ca8d7817fb4f94'
 SCIENTIFIC = '49cc153c3f4d7a8c29cf94baf090dbfc0be4d068'
 FROZEN = '0c5365cc39e2717e0fab4aa3b5d05b445d427eb6'
 DECISION = '05a78645b17bf8de04326e54181f9db432d7186c'
+ACCEPTED_SUITE = '8f2dcb3b9762137b9f2686609c34480334f5d44e'
+S10_OLD_REFERENCE = 'Outcome comparisons appear in Figures 4-6 and Supplementary Figures S12/S13'
+S10_CURRENT_REFERENCE = 'Outcome comparisons appear in Figures 4\u20136 and Supplementary Figure S11'
 SP = 'docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/'
 DP = 'docs/data_research/stage7_fig7d_policy_robustness_and_final_integration_gate_20261013/'
 GENERATOR = 'src/la_grid/plotting/build_current_suite_k3.py'
@@ -378,6 +381,16 @@ def figure1():
     old.close();new.close();export_png('Main/Fig01')
 
 
+def correct_s10_reference(heading, body):
+    if not heading.startswith('Supplementary Figure S10.'):
+        return body
+    if S10_CURRENT_REFERENCE in body:
+        assert S10_OLD_REFERENCE not in body
+        return body
+    assert body.count(S10_OLD_REFERENCE) == 1, 'Unexpected S10 source caption; reconcile before editing'
+    return body.replace(S10_OLD_REFERENCE, S10_CURRENT_REFERENCE)
+
+
 def metadata(caps, manifest, index):
     updated={}
     for h in caps:
@@ -404,7 +417,7 @@ def metadata(caps, manifest, index):
                 '(D) Saved K3 tract silhouette distributions: boxes P25-P75, median line, P10-P90 whiskers; negative values indicate boundary ambiguity. '
                 'The saved K3 minus-Init_Supply ablation has ARI 0.6554 and also redistributes the remaining RQ1 coordinate budgets from 1/9 to 1/6. It is not an isolated feature-deletion effect. Initial service is zero-heavy and partly dependent on the frozen Core-source representation; a relatively nonzero initial state is not proof of resilient electrical delivery. '
                 'All diagnostics use existing fitted results (K-means++, n_init=50, Lloyd, max_iter=500, tol=1e-4). No model was refitted for figure production and no alternative classification is promoted.')
-        else: updated[h]=caps[h]
+        else: updated[h]=correct_s10_reference(h, caps[h])
     u.write(DEST/'MANUSCRIPT_FACING_CAPTIONS.md','# Manuscript-facing figure captions\n\n'+'\n\n'.join('## '+h+'\n\n'+b for h,b in updated.items())+'\n')
     palette={'figure_cluster_count':3,'adopted_K':3,'colors':{str(i):c for i,c in enumerate(COLORS,1)},
         'class_labels':['C1','C2','C3'],'NA_fill':NA,'NA_outline':'#757575','NA_count':16,
@@ -540,7 +553,7 @@ def verify_suite(manifest, before):
         'packet_checks':comparisons,'scientific_fits_or_evaluations_run':False})
 
 
-def main():
+def build_ncv14_artwork():
     checkpoint=QA/'BUILD_CHECKPOINT.json'
     if checkpoint.exists() and '--rebuild' not in sys.argv:
         q=json_read(checkpoint)
@@ -594,6 +607,73 @@ def main():
     outputs += ['results/figure_review/Page_Previews/'+Path(s).name+'.png' for s in ACTIVE]
     u.dump(checkpoint,{'generator_sha256':u.sha(__file__),'output_hashes':{rel:u.sha(ROOT/rel) for rel in outputs}})
     print('17 numbered figures, 38 complete packet pages; 950 scientific files and original Git state preserved.',flush=True)
+
+
+def main():
+    """Replay accepted artwork, changing only the S10 caption and packet page.
+
+    The original NCV14 artwork layer above is retained for historical provenance.
+    Current replay never redraws accepted artwork when its generator hash changes.
+    """
+    checkpoint = QA / 'BUILD_CHECKPOINT.json'
+    approved = json.loads(u.payload(ACCEPTED_SUITE, str(checkpoint.relative_to(ROOT)).replace('\\', '/')))
+    mutable = {'results/figure_review/' + n for n in [
+        'MANUSCRIPT_FACING_CAPTIONS.md', 'ALL_FIGURES_WITH_CAPTIONS.pdf', 'FIGURE_MANIFEST.csv', 'UPDATE_LOG.md']}
+    for rel, expected in approved['output_hashes'].items():
+        path = ROOT / rel
+        if not Path(u.lp(path)).is_file() or open(u.lp(path), 'rb').read(44).startswith(b'version https://git-lfs'):
+            data = u.payload(ACCEPTED_SUITE, rel)
+            assert u.digest(data) == expected
+            u.write(path, data)
+        if rel not in mutable:
+            assert u.sha(path) == expected, 'Unapproved artwork or metadata change: ' + rel
+    caps_rel = 'results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md'
+    source_text = u.payload(ACCEPTED_SUITE, caps_rel).decode()
+    source_caps = u.captions(source_text)
+    revised = {h: correct_s10_reference(h, b) for h, b in source_caps.items()}
+    assert len(revised) == 17
+    current_text = source_text.replace(S10_OLD_REFERENCE, S10_CURRENT_REFERENCE)
+    assert u.captions(current_text) == revised
+    if checkpoint.exists() and '--rebuild' not in sys.argv:
+        q = json_read(checkpoint)
+        if (q['generator_sha256'] == u.sha(__file__)
+                and all(u.sha(ROOT / p) == h for p, h in q['output_hashes'].items())
+                and open(u.lp(ROOT / caps_rel), encoding='utf-8').read() == current_text):
+            print('Current S10/S11 caption and accepted 17-figure suite: byte-identical idempotent reuse.', flush=True)
+            return
+    u.write(ROOT / caps_rel, current_text)
+    u.pdfmetrics.registerFont(u.TTFont('SuiteArial', 'C:/Windows/Fonts/arial.ttf'))
+    u.pdfmetrics.registerFont(u.TTFont('SuiteBold', 'C:/Windows/Fonts/arialbd.ttf'))
+    heading = next(h for h in revised if h.startswith('Supplementary Figure S10.'))
+    caption_page = 2 * list(revised).index(heading) + 1
+    old = fitz.open(stream=u.payload(ACCEPTED_SUITE, 'results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf'), filetype='pdf')
+    assert len(old) == 38 and caption_page == 31
+    full = fitz.open()
+    full.insert_pdf(old, from_page=0, to_page=caption_page - 1)
+    with u.caption_pdf(heading, revised[heading]) as caption:
+        full.insert_pdf(caption)
+    full.insert_pdf(old, from_page=caption_page + 1, to_page=37)
+    assert len(full) == 38
+    assert S10_CURRENT_REFERENCE in ' '.join(full[caption_page].get_text().split())
+    u.write(DEST / 'ALL_FIGURES_WITH_CAPTIONS.pdf', full.tobytes(garbage=4, deflate=True, no_new_id=True))
+    full.close(); old.close()
+    manifest = u.csv_rows(u.payload(ACCEPTED_SUITE, 'results/figure_review/FIGURE_MANIFEST.csv'))
+    for row in manifest:
+        # Refresh generator identity, not artwork provenance or its prior change classification.
+        if row['presentation_generator'] == GENERATOR:
+            row['presentation_generator_sha256'] = u.sha(__file__)
+        assert u.sha(ROOT / row['current_source_file']) == row['sha256'] == u.sha(ROOT / row['mirror_file'])
+    u.write_csv(DEST / 'FIGURE_MANIFEST.csv', manifest)
+    log = u.payload(ACCEPTED_SUITE, 'results/figure_review/UPDATE_LOG.md').decode()
+    u.write(DEST / 'UPDATE_LOG.md', log + '\n\n## 2026-10-13 — S10 active cross-reference correction\n\n'
+        'The S10 caption now points to Supplementary Figure S11, which contains the consolidated resource-condition outcomes. '
+        'Only this caption and its page 32 in the complete packet changed. All 17 artwork PDF/PNG pairs, mirrors, '
+        'other 16 caption pages, four evidence pages, figure-only packets, index, gallery and palette retain their approved bytes. '
+        'The canonical builder replays accepted 8f2dcb3 artwork without redrawing; the original artwork layer remains available in source. '
+        'Caption-only QA: docs/reproducibility/figure_suite_s10_crossref_fix_20261013/.\n')
+    u.dump(checkpoint, {'generator_sha256': u.sha(__file__),
+        'output_hashes': {rel: u.sha(ROOT / rel) for rel in approved['output_hashes']}})
+    print('S10 reference corrected to S11; 38 pages, 17 accepted artwork pairs unchanged.', flush=True)
 
 
 if __name__=='__main__':

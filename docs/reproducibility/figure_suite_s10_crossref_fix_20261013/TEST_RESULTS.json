@@ -1,0 +1,14 @@
+{
+  "tests": 22,
+  "passed": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "original_19_test_function_ASTs_unchanged": true,
+  "new_regression_tests": [
+    "test_canonical_caption_rule_changes_only_s10_and_is_idempotent",
+    "test_caption_only_followup_preserves_all_approved_artwork_bytes",
+    "test_s10_active_cross_reference_registry_and_packet_page"
+  ],
+  "command": "python -m pytest tests/test_current_figure_suite_integration.py -q --basetemp=_qa_tmp --junitxml=docs/reproducibility/figure_suite_s10_crossref_fix_20261013/TEST_RESULTS.xml"
+}
