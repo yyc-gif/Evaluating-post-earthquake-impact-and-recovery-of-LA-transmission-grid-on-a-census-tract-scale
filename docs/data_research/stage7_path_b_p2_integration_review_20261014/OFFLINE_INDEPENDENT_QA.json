@@ -1,0 +1,826 @@
+{
+  "passed": 163,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "source_payload:inputs/STAGE7_SVI_HARMONIZATION_DECISION.md",
+      "passed": true,
+      "detail": "5163 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/GRID_DEFINITION_QA.json",
+      "passed": true,
+      "detail": "172 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/VERIFIED_DESCRIPTORS_2315.csv",
+      "passed": true,
+      "detail": "629283 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/MULTIPOLICY_RQ2_TRACT_VALUES.csv",
+      "passed": true,
+      "detail": "2463601 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/REGISTERED_FIT_ARRAYS.npz",
+      "passed": true,
+      "detail": "9099671 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/VERIFIED_WEIGHTED_MATRICES.npz",
+      "passed": true,
+      "detail": "3059011 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/SPATIAL_REFIT_LABELS.npz",
+      "passed": true,
+      "detail": "171400 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/COHORT_STANDARDIZATION_AND_WEIGHTS.csv",
+      "passed": true,
+      "detail": "26747 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/A_VS_P2_VS_P3_CLUSTERING_RESULTS.csv",
+      "passed": true,
+      "detail": "133856 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/SEED_STABILITY.csv",
+      "passed": true,
+      "detail": "49475 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/SPATIAL_LEAVE_BLOCK_OUT_STABILITY.csv",
+      "passed": true,
+      "detail": "41716 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/POLICY_SET_CLUSTER_STABILITY.csv",
+      "passed": true,
+      "detail": "64165 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/PER_CLUSTER_SILHOUETTE_AND_SIZE.csv",
+      "passed": true,
+      "detail": "776976 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/RARE_Q_GROUP_MEMBERSHIP_AUDIT.csv",
+      "passed": true,
+      "detail": "197005 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/INIT_ALGEBRAIC_DISTANCE_DIAGNOSTICS.csv",
+      "passed": true,
+      "detail": "58864 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/POLICY_ENSEMBLE_QA.json",
+      "passed": true,
+      "detail": "9992 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/REGISTERED_ANALYSIS.json",
+      "passed": true,
+      "detail": "2305 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FROZEN_EVENT_VERIFICATION.csv",
+      "passed": true,
+      "detail": "2328106 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FROZEN_STATION_INTEGRALS_AND_MAPPING.npz",
+      "passed": true,
+      "detail": "3882506 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/VULNERABILITY_FIRST_CIRCULARITY_AUDIT.md",
+      "passed": true,
+      "detail": "2471 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FROZEN_POLICY_TRACT_MEANS_2315.csv",
+      "passed": true,
+      "detail": "565348 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/VERIFIED_ORIGINAL_94_GEOIDS.csv",
+      "passed": true,
+      "detail": "7406 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/Q4_VS_NONQ4_EFFECT_SIZES.csv",
+      "passed": true,
+      "detail": "10853 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FIXED_VS_RECOMPUTED_P75_THRESHOLDS.csv",
+      "passed": true,
+      "detail": "4551 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/THRESHOLD_P70_P75_P80_SENSITIVITY.csv",
+      "passed": true,
+      "detail": "31134 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/SPATIAL_COMMON_SUPPORT_STANDARDIZATION.csv",
+      "passed": true,
+      "detail": "4292 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/SPATIAL_DEPENDENCE_DIAGNOSTICS.csv",
+      "passed": true,
+      "detail": "1391 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/SPATIAL_BLOCK_ASSIGNMENTS.csv",
+      "passed": true,
+      "detail": "249933 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FROZEN_SOURCE_IDENTITY_QA.json",
+      "passed": true,
+      "detail": "760 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FROZEN_POLICY_SOURCE_PAIRING_QA.csv",
+      "passed": true,
+      "detail": "1314 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FROZEN_FIVE_POLICY_TOTAL_DEFICIT_IDENTITY_QA.csv",
+      "passed": true,
+      "detail": "356421 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/PHYSICAL_REALIZATION_IDENTITY.csv",
+      "passed": true,
+      "detail": "350141 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FORMAL_PROMOTION_PATH_REGISTRY.csv",
+      "passed": true,
+      "detail": "12278 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FORMAL_DEPENDENCY_MATCHES.csv",
+      "passed": true,
+      "detail": "209554 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/MANUSCRIPT_AUTHORITY_PATH_AUDIT.csv",
+      "passed": true,
+      "detail": "1090 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FULL_2315_GEOMETRY.gpkg",
+      "passed": true,
+      "detail": "5017600 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/NCV_VECTOR.csv",
+      "passed": true,
+      "detail": "257061 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/NCV_HAZARD_COMPONENTS.csv",
+      "passed": true,
+      "detail": "564497 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/NCV_CA_AND_LA_EXTREMA.csv",
+      "passed": true,
+      "detail": "1989 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/SOURCE_HAZARD_FIELD_REGISTER.csv",
+      "passed": true,
+      "detail": "22597 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/01_NATURAL_HAZARD_FINAL_DEFINITION_AND_EVIDENCE.md",
+      "passed": true,
+      "detail": "9576 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/EARTHQUAKE_NRI_CGS_SPATIAL_RANK_COMPARISON.csv",
+      "passed": true,
+      "detail": "3410 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/WEATHER_SOURCE_SCALE_AND_DEFAULT_AUDIT.csv",
+      "passed": true,
+      "detail": "6158 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/WEATHER_PAIRWISE_DEPENDENCE.csv",
+      "passed": true,
+      "detail": "829 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/HAZARD_SET_AND_NORMALIZATION_EFFECTIVE_INFLUENCE.csv",
+      "passed": true,
+      "detail": "2647 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/WILLIAMS_2024_NCV_METHOD_REPLICATION.md",
+      "passed": true,
+      "detail": "2723 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FEMA_NCV_TRACT_SCALE_ADAPTATION_AND_LIMITATIONS.md",
+      "passed": true,
+      "detail": "3228 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/FEMA_NCV_EFFECTIVE_HAZARD_CONTRIBUTIONS.csv",
+      "passed": true,
+      "detail": "2980 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/HAZARD_LEAVE_ONE_OUT_RANK_SENSITIVITY.csv",
+      "passed": true,
+      "detail": "3845 actual bytes"
+    },
+    {
+      "check": "source_payload:inputs/HISTORICAL_EIGHT_VARIABLE_K3_MEMBERSHIP.csv",
+      "passed": true,
+      "detail": "220807 actual bytes"
+    },
+    {
+      "check": "normalized_mapping",
+      "passed": true,
+      "detail": "2315 row sums"
+    },
+    {
+      "check": "1000_physical_pairings:unconstrained",
+      "passed": true,
+      "detail": "Frozen manifest hashes and realization IDs"
+    },
+    {
+      "check": "1000_physical_pairings:impact-first",
+      "passed": true,
+      "detail": "Frozen manifest hashes and realization IDs"
+    },
+    {
+      "check": "1000_physical_pairings:hospital-first",
+      "passed": true,
+      "detail": "Frozen manifest hashes and realization IDs"
+    },
+    {
+      "check": "1000_physical_pairings:degree-first",
+      "passed": true,
+      "detail": "Frozen manifest hashes and realization IDs"
+    },
+    {
+      "check": "1000_physical_pairings:betweenness-first",
+      "passed": true,
+      "detail": "Frozen manifest hashes and realization IDs"
+    },
+    {
+      "check": "1000_physical_pairings:vulnerability-first",
+      "passed": true,
+      "detail": "Frozen manifest hashes and realization IDs"
+    },
+    {
+      "check": "1000_physical_pairings:random",
+      "passed": true,
+      "detail": "Frozen manifest hashes and realization IDs"
+    },
+    {
+      "check": "station_integral_to_tract:unconstrained",
+      "passed": true,
+      "detail": "max absolute hours error 6.04e-14"
+    },
+    {
+      "check": "station_integral_to_tract:impact-first",
+      "passed": true,
+      "detail": "max absolute hours error 7.82e-14"
+    },
+    {
+      "check": "station_integral_to_tract:hospital-first",
+      "passed": true,
+      "detail": "max absolute hours error 1.21e-13"
+    },
+    {
+      "check": "station_integral_to_tract:degree-first",
+      "passed": true,
+      "detail": "max absolute hours error 1.07e-13"
+    },
+    {
+      "check": "station_integral_to_tract:betweenness-first",
+      "passed": true,
+      "detail": "max absolute hours error 1.07e-13"
+    },
+    {
+      "check": "station_integral_to_tract:vulnerability-first",
+      "passed": true,
+      "detail": "max absolute hours error 7.82e-14"
+    },
+    {
+      "check": "five_policy_identity_from_station_integrals",
+      "passed": true,
+      "detail": "No trajectories regenerated"
+    },
+    {
+      "check": "exact94_set_from_independent_integrals",
+      "passed": true,
+      "detail": "38.38135467381473"
+    },
+    {
+      "check": "frozen_population",
+      "passed": true,
+      "detail": "16 excluded; no missing imputation"
+    },
+    {
+      "check": "eight_zero_housing_retained",
+      "passed": true,
+      "detail": "All classified in P2/K3"
+    },
+    {
+      "check": "full_geometry_support",
+      "passed": true,
+      "detail": "2315 valid polygons; no inherited geometry exclusions"
+    },
+    {
+      "check": "seven_primary_columns",
+      "passed": true,
+      "detail": "NCV supplementary only"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 43, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 44, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 45, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 46, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_impact-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 43, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 44, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 45, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 46, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_hospital-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 43, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 44, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 45, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 46, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_degree-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 43, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 44, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 45, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 46, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_betweenness-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 43, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 44, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 45, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 46, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'without_vulnerability-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 43, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 44, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 45, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 46, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(3, 42, 'plus_random', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 43, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 44, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 45, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 46, 'without_impact-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_impact-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 43, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 44, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 45, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 46, 'without_hospital-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_hospital-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 43, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 44, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 45, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 46, 'without_degree-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_degree-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 43, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 44, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 45, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 46, 'without_betweenness-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_betweenness-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 43, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 44, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 45, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 46, 'without_vulnerability-first', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'without_vulnerability-first', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 43, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 44, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 45, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 46, 'plus_random', 'cohort')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_policy_ARI:(4, 42, 'plus_random', 'fixed_main5')",
+      "passed": true,
+      "detail": "Recomputed from exact saved labels"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(3, 0)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(3, 1)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(3, 2)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(3, 3)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(4, 0)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(4, 1)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(4, 2)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "saved_spatial_full_ARI:(4, 3)",
+      "passed": true,
+      "detail": "Saved training-only scaling/refit labels; not a new refit"
+    },
+    {
+      "check": "all_seven_profile_cells_C1",
+      "passed": true,
+      "detail": "ordinary ddof0 cohort-z, not weighted"
+    },
+    {
+      "check": "all_seven_profile_cells_C2",
+      "passed": true,
+      "detail": "ordinary ddof0 cohort-z, not weighted"
+    },
+    {
+      "check": "all_seven_profile_cells_C3",
+      "passed": true,
+      "detail": "ordinary ddof0 cohort-z, not weighted"
+    },
+    {
+      "check": "transparent_palette_matching",
+      "passed": true,
+      "detail": "Same display color identities, explicitly different model membership"
+    },
+    {
+      "check": "rare_source_34",
+      "passed": true,
+      "detail": "Exact frozen STATION Q proxy-linked reference"
+    },
+    {
+      "check": "native_width_A",
+      "passed": true,
+      "detail": "7.2-inch publication width"
+    },
+    {
+      "check": "vector_artwork_A",
+      "passed": true,
+      "detail": "No raster maps, legend or profile cells in PDF"
+    },
+    {
+      "check": "no_eight_variable_label_A",
+      "passed": true,
+      "detail": "P2 namespace"
+    },
+    {
+      "check": "native_width_B",
+      "passed": true,
+      "detail": "7.2-inch publication width"
+    },
+    {
+      "check": "vector_artwork_B",
+      "passed": true,
+      "detail": "No raster maps, legend or profile cells in PDF"
+    },
+    {
+      "check": "no_eight_variable_label_B",
+      "passed": true,
+      "detail": "P2 namespace"
+    },
+    {
+      "check": "matched_burden_luminance",
+      "passed": true,
+      "detail": "Equal CIELAB L* and sRGB luminance at every common hour"
+    },
+    {
+      "check": "burden_monotonic_luminance",
+      "passed": true,
+      "detail": "Higher hours are consistently darker in all four families"
+    }
+  ],
+  "all_physical_pairings_verified_from_frozen_compact_archive": true,
+  "original_worktree_preservation_rechecked": false,
+  "full_original_event_archives_recomputed": false,
+  "no_fitting": true,
+  "no_formal_promotion": true
+}
