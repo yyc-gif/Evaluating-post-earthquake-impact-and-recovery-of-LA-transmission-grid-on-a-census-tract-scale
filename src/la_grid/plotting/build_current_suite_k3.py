@@ -796,12 +796,15 @@ def build_candidate_a_suite():
 
 
 def main():
-    from apply_author_clarity_numbering_20261013 import main as corrected_suite
-    corrected_suite()
+    from short_current_captions_20261013 import main as concise_suite
+    concise_suite()
 
 
 if __name__=='__main__':
-    if '--historical-ncv14' in sys.argv:
+    if '--historical-author-clarity' in sys.argv:
+        from apply_author_clarity_numbering_20261013 import main as corrected_suite
+        corrected_suite()
+    elif '--historical-ncv14' in sys.argv:
         build_initial_ncv14_suite()
     elif '--historical-candidate-a' in sys.argv:
         build_candidate_a_suite()

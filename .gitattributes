@@ -55,6 +55,16 @@ docs/reproducibility/figure7_candidateA_approved_integration_20261013/*.md text 
 docs/reproducibility/figure7_candidateA_approved_integration_20261013/*.xml text eol=lf
 
 # Author clarity/source-control replay identities are byte-stable across clones.
+src/la_grid/plotting/short_current_captions_20261013.py text eol=lf
+docs/reproducibility/figure_suite_concise_captions_20261013/*.py text eol=lf
+docs/reproducibility/figure_suite_concise_captions_20261013/*.md text eol=lf
+docs/reproducibility/figure_suite_concise_captions_20261013/*.json text eol=lf
+docs/reproducibility/figure_suite_concise_captions_20261013/*.xml text eol=lf
+docs/data_research/stage7_path_b_p2_integration_review_20261014/**/*.npz filter=lfs diff=lfs merge=lfs -text
+docs/data_research/stage7_path_b_p2_integration_review_20261014/**/*.gpkg filter=lfs diff=lfs merge=lfs -text
+docs/data_research/stage7_path_b_p2_integration_review_20261014/*.py text eol=lf
+docs/data_research/stage7_path_b_p2_integration_review_20261014/*.md text eol=lf
+docs/data_research/stage7_path_b_p2_integration_review_20261014/*.json text eol=lf
 src/la_grid/plotting/apply_author_clarity_numbering_20261013.py text eol=lf
 src/la_grid/plotting/source_only_frozen_control_20261013.py text eol=lf
 docs/reproducibility/figure_suite_author_clarity_numbering_20261013/*.json text eol=lf

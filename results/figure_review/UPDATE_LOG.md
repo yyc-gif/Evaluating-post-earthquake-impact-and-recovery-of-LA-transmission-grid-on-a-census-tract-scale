@@ -18,3 +18,8 @@ Only Fig07 artwork changed: ECDF A, cohort-z B, original C/D translated 8 mm and
 ## 2026-10-13 Author clarity and continuous numbering
 
 Former S03-S11 now S02-S10. Fig01 definitions/fonts, former S05 language/mean-only annotation, former S06 independent source-only control and separate threshold panels, and former S10 cool population palette updated. Fig07 and all scientific data unchanged. S09/S11 content questions remain review decisions.
+
+
+## 2026-10-13 Concise captions
+
+Removed results/discussion and production commentary from captions. Native figure artwork unchanged; captions placed beneath figures. Compact packet: 21 pages including four retained evidence pages. Path B remains a separate review package.

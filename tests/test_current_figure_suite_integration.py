@@ -12,6 +12,7 @@ QA=ROOT/'docs/reproducibility/author_suite_final_layout_20261012'
 CURRENT=ROOT/'docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013'
 EXPECTED=[f'Main/Fig{i:02d}' for i in range(1,8)]+[f'Supplement/FigS{i:02d}' for i in range(1,11)]
 AUTHOR=ROOT/'docs/reproducibility/figure_suite_author_clarity_numbering_20261013'
+CONCISE=ROOT/'docs/reproducibility/figure_suite_concise_captions_20261013'
 
 
 def lp(p):
@@ -34,19 +35,26 @@ def test_all_active_artifacts_and_mirrors_match_the_manifest():
 
 
 def test_native_packets_and_readable_captions_are_complete():
-    full=fitz.open(lp(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'));assert len(full)==38
+    full=fitz.open(lp(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'));assert len(full)==21
     caps=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
     headings=re.findall(r'^## (.+)',caps,re.M);assert len(headings)==17
+    registry=list(csv.DictReader(open(lp(CONCISE/'COMPACT_PACKET_PAGE_REGISTRY.csv'),encoding='utf-8')))
     for i,(stem,title) in enumerate(zip(EXPECTED,headings)):
         source=fitz.open(lp(SUITE/(stem+'.pdf')))
-        assert tuple(source[0].rect)==tuple(full[2*i].rect)
+        page=full[i];region=source[0].rect
+        assert page.rect.width==region.width and page.rect.height>region.height
         assert abs(source[0].rect.width-185*72/25.4)<.15
-        assert full[2*i].get_text()==source[0].get_text()
-        page=full[2*i+1]
-        assert ' '.join(title.split()) in ' '.join(page.get_text().split())
-        spans=[s for b in page.get_text('dict',flags=0)['blocks'] for line in b.get('lines',[]) for s in line['spans']]
-        assert min(s['size'] for s in spans)>=9.99
-        assert all(page.rect.contains(fitz.Rect(s['bbox'])) for s in spans)
+        assert page.get_pixmap(dpi=72,clip=region).samples==source[0].get_pixmap(dpi=72).samples
+        capregion=fitz.Rect(0,region.height,page.rect.width,page.rect.height)
+        assert ' '.join(title.split()) in ' '.join(page.get_textbox(capregion).split())
+        # Clip-unaware PDF extraction also returns historical hidden source text.
+        # Verify the actual caption Form, not those nonrendered figure labels.
+        record=registry[i]
+        candidates=[full.xref_stream(x[0]) for x in page.get_xobjects()]
+        actual=[b for b in candidates if hashlib.sha256(b).hexdigest()==record['caption_stream_sha256']]
+        assert len(actual)>=1 and float(record['caption_min_font_pt'])>=9.99
+        assert record['caption_bounds_valid']=='True'
+        assert all(float(n)>=9.99 for n in re.findall(rb'([0-9.]+)\s+Tf\b',actual[0]))
     assert len(fitz.open(lp(SUITE/'ALL_MAIN_FIGURES.pdf')))==7
     assert len(fitz.open(lp(SUITE/'ALL_SUPPLEMENT_FIGURES.pdf')))==10
 
@@ -226,7 +234,8 @@ def test_d3_is_continuous_exact_five_policy_deficit_without_threshold():
     t=fitz.open(lp(SUITE/'Main/Fig07.pdf'))[0].get_text()
     caption=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
     assert all(x in t for x in ['C1','C2','C3','1,242','475','582','Q4 boundary','full-service-deficit hours'])
-    assert all(x in caption for x in ['5,101,704','1,897,838','2,066,980'])
+    assert f.groupby('K3_class').Population.sum().tolist()==[5101704,1897838,2066980]
+    assert all(x in caption for x in ['eight fitted coordinates','NCV14/H2/K3','five-policy'])
     assert not any(x in t for x in ['Top-10','Hotspot','P75','K4','C4','C5','PCA','BUILDVALUE'])
     assert len(fitz.open(lp(SUITE/'Main/Fig07.pdf'))[0].get_images())==0
     palette=read(SUITE/'CURRENT_CLUSTER_PALETTE.json')
@@ -236,12 +245,12 @@ def test_d3_is_continuous_exact_five_policy_deficit_without_threshold():
 def test_all_current_captions_registry_and_entrypoint_are_consistent():
     t=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
     assert not any(x in t.lower() for x in ['2,291','five-class','eleven-feature','hotspot score','top-10'])
-    assert all(x in t for x in ['2,299','FEMA_NCV14_CA_v119','California reference scaling','K3','0.2444','0.2337'])
-    assert 'no K4 classification is presented or adopted' in t
+    assert all(x in t for x in ['eight fitted coordinates','NCV14/H2/K3','K3 is not the silhouette maximum'])
+    assert 'calibrated' not in t
     assert 'build_current_suite_k3.py' in open(lp(SUITE/'README.md'),encoding='utf-8').read()
-    q=read(AUTHOR/'BUILD_CHECKPOINT.json')
-    assert sha(ROOT/'src/la_grid/plotting/build_current_suite_k3.py')==q['routing_SHA256']
-    assert sha(ROOT/'src/la_grid/plotting/apply_author_clarity_numbering_20261013.py')==q['generator_SHA256']
+    q=read(CONCISE/'BUILD_CHECKPOINT.json')
+    assert sha(ROOT/'src/la_grid/plotting/build_current_suite_k3.py')==q['routing_sha256']
+    assert sha(ROOT/'src/la_grid/plotting/short_current_captions_20261013.py')==q['generator_sha256']
     assert all(sha(ROOT/rel)==h for rel,h in q['output_hashes'].items())
     p=read(CURRENT/'COMPLETE_PACKET_AND_MIRROR_QA.json')
     assert p['numbered_figures']==17 and p['packet_pages']['complete']==38
@@ -299,8 +308,8 @@ def test_s10_active_cross_reference_registry_and_packet_page():
     assert {'FigS'+n.zfill(2) for n in re.findall(r'\bS(\d{1,2})\b',text)}<=active
     assert {'Fig'+n.zfill(2) for n in re.findall(r'(?<!Supplementary )\bFigures? (\d+)',text)}<=active
     full=fitz.open(lp(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))
-    assert len(full)==38 and expected in ' '.join(full[31].get_text().split())
-    assert 'Supplementary Figures S12/S13' not in full[31].get_text()
+    assert len(full)==21 and expected in ' '.join(full[15].get_text().split())
+    assert 'Supplementary Figures S12/S13' not in full[15].get_text()
 
 
 def test_followup_preserves_author_untouched_artwork_including_figure7_and_k3():
@@ -342,10 +351,11 @@ def test_canonical_legacy_s10_caption_rule_and_new_numbering_are_idempotent():
         assert transform(h,b)==transform(h,transform(h,b))
     h=next(h for h in current if h.startswith('Figure 7.'))
     frozen=parse(source_payload('3c7899f0f328d37b99d2b022f1650c5288a4a664','results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md').decode())
-    assert current[h]==frozen[h]
+    assert current[h]!=frozen[h] and len(current[h].split())<=90
+    assert 'eight fitted coordinates' in current[h] and 'NCV14/H2/K3' in current[h]
     assert [int(n) for n in re.findall(r'^## Supplementary Figure S(\d+)\.',open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read(),re.M)]==list(range(1,11))
     main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
-    assert 'apply_author_clarity_numbering_20261013' in ast.unparse(main)
+    assert 'short_current_captions_20261013' in ast.unparse(main)
 
 
 def test_all_eighteen_ecdfs_preserve_exact_observations_zeros_and_ties():
@@ -468,10 +478,23 @@ def test_ga_wording_keeps_frozen_search_and_validation_distinct():
 
 def test_actual_current_packet_has_identical_figure_pixels_and_continuous_numbering():
     full=fitz.open(lp(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))
-    assert len(full)==38
+    assert len(full)==21
     for i,stem in enumerate(EXPECTED):
         actual=fitz.open(lp(SUITE/(stem+'.pdf')))
-        assert full[2*i].get_pixmap(dpi=72).samples==actual[0].get_pixmap(dpi=72).samples
+        assert full[i].get_pixmap(dpi=72,clip=actual[0].rect).samples==actual[0].get_pixmap(dpi=72).samples
     baseline=fitz.open(stream=source_payload(ACCEPTED,'results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf'),filetype='pdf')
-    for i in range(34,38):
-        assert full[i].get_pixmap(dpi=72).samples==baseline[i].get_pixmap(dpi=72).samples
+    for i in range(4):
+        assert full[17+i].get_pixmap(dpi=72).samples==baseline[34+i].get_pixmap(dpi=72).samples
+
+
+def test_concise_captions_do_not_change_numbered_artwork_or_sneak_in_path_b():
+    q=read(CONCISE/'CAPTION_QA.json')
+    assert q['old_total_words']==4219 and q['new_total_words']<=1000
+    assert q['maximum_caption_words']<=90 and not q['figure_rescaling']
+    assert not q['PathB_artwork_promoted'] and q['artwork_pairs_byte_identical']==17
+    parent='5fbdf5a33cb8cee4790f81e896776b8b6fb4f9ae'
+    rows=list(csv.DictReader(io.StringIO(source_payload(parent,'results/figure_review/FIGURE_MANIFEST.csv').decode())))
+    for r in rows:
+        assert sha(ROOT/r['current_source_file'])==r['sha256']==sha(ROOT/r['mirror_file'])
+    caps=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    assert not any(x in caps for x in ['-0.532675','1,741','350,799','0.2444','5,101,704','7.5-point'])
