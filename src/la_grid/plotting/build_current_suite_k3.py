@@ -702,7 +702,7 @@ def replace_approved_packet_pages(caps):
     book.close()
 
 
-def main():
+def build_candidate_a_suite():
     """Current production: approved Candidate A, preserving sixteen accepted figures."""
     import figure7_candidate_a as layout
     approved = json.loads(source(ACCEPTED_SUITE,'docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/BUILD_CHECKPOINT.json'))
@@ -795,5 +795,15 @@ def main():
     print('Approved Candidate A generated; 17 figures, 38 pages, sixteen unchanged artwork pairs.',flush=True)
 
 
+def main():
+    from apply_author_clarity_numbering_20261013 import main as corrected_suite
+    corrected_suite()
+
+
 if __name__=='__main__':
-    build_initial_ncv14_suite() if '--historical-ncv14' in sys.argv else main()
+    if '--historical-ncv14' in sys.argv:
+        build_initial_ncv14_suite()
+    elif '--historical-candidate-a' in sys.argv:
+        build_candidate_a_suite()
+    else:
+        main()

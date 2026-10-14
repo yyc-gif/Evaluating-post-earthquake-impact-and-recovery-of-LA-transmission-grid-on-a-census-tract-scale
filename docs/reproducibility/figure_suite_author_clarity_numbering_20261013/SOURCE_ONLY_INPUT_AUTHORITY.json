@@ -1,0 +1,121 @@
+{
+  "MAPPING.csv": {
+    "commit": "3c7899f0f328d37b99d2b022f1650c5288a4a664",
+    "path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+    "sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446"
+  },
+  "TRACTS.csv": {
+    "commit": "3c7899f0f328d37b99d2b022f1650c5288a4a664",
+    "path": "provenance/reviewer_working/R1_Comment1_July92_Utility_Constraint/MAPPING_STRUCTURE_SENSITIVITY_TRACTS.csv",
+    "sha256": "4c9fed19d1561759edff15702daed6d448155ca3604bd8d920fb6c7d7f7ddbe1"
+  },
+  "FROZEN_GATE_DEFINITION.py": {
+    "commit": "3c7899f0f328d37b99d2b022f1650c5288a4a664",
+    "path": "src/la_grid/revision/r1_source_gate.py",
+    "sha256": "1afb63e18e220e33b8087db4721af1756a641a0b97469a90c1357735e58cb424"
+  },
+  "FROZEN_INTEGRATION_DEFINITION.py": {
+    "commit": "3c7899f0f328d37b99d2b022f1650c5288a4a664",
+    "path": "src/la_grid/revision/formal/offline.py",
+    "sha256": "686ac5c9883d2038decc2df8fc7fb1784e9779fba1d1c3a24702f322c919b968"
+  },
+  "impact-first": {
+    "external_directory": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Formal_Offline_Evaluation",
+    "summary_sha256": "0daf1c7a1898b0a31bae0e5e944a4e88c70ad21c446b83418eb5856afdd020fc",
+    "integral_sha256": "b5e2e3c5fc10d5dac65bb1747ca2317e907b577d16ae8918174d3dbe5ec59df4",
+    "evaluation_record_sha256": "1548c6540e3cfbef0bb70c7c88eb1c0fbb78c12eb8c825bba0f35d494b82a651",
+    "identity": {
+      "H_eval_hr": 480.0,
+      "gate_cases": [
+        "G0_NO_GATE",
+        "G1_BASELINE_050",
+        "G2_RELAXED_005",
+        "G3_STRICT_075"
+      ],
+      "hazard": "2pc50",
+      "mapping_cases": [
+        "M0_JULY_003",
+        "M1_UTILITY_003",
+        "M0_JULY_NO_CUTOFF",
+        "M0_JULY_001",
+        "M1_UTILITY_NO_CUTOFF",
+        "M1_UTILITY_001",
+        "M3_SCE_SUPPORTED"
+      ],
+      "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+      "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+      "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+      "resource_case": "C57_D1",
+      "strategy": "impact-first",
+      "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+    },
+    "compact_summary_sha256": "966fa9eb9d590c0e6f554f0df5509cafa282af2207a5665e2922eb0c54a59ca5",
+    "compact_integrals_sha256": "fd703ad219be6413152f0b219701f8089633ea053f0dba60feac6ac75ca510ee"
+  },
+  "hospital-first": {
+    "external_directory": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Formal_Offline_Evaluation",
+    "summary_sha256": "03d50947f57ca9b2e3f0d64c41feca576b53ff9568db3d7b70f98028d47fe8ce",
+    "integral_sha256": "19414b2b22d6a7ebe0c17720acd2931831b4efc3bef2f94591dbdac3eee7f465",
+    "evaluation_record_sha256": "c3120ca972e0592e2d156964607ddbab298f1462bc6b3374b9bceab06ba692e0",
+    "identity": {
+      "H_eval_hr": 480.0,
+      "gate_cases": [
+        "G0_NO_GATE",
+        "G1_BASELINE_050",
+        "G2_RELAXED_005",
+        "G3_STRICT_075"
+      ],
+      "hazard": "2pc50",
+      "mapping_cases": [
+        "M0_JULY_003",
+        "M1_UTILITY_003",
+        "M0_JULY_NO_CUTOFF",
+        "M0_JULY_001",
+        "M1_UTILITY_NO_CUTOFF",
+        "M1_UTILITY_001",
+        "M3_SCE_SUPPORTED"
+      ],
+      "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+      "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+      "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+      "resource_case": "C57_D1",
+      "strategy": "hospital-first",
+      "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+    },
+    "compact_summary_sha256": "a38b40b2e26edcf803683ca00f4e749a09b8d8d8a3f66fd7ed9c00d6e520d915",
+    "compact_integrals_sha256": "e2594adc02c2b24c37d257e25b477e20ea90b1719947c294d7a3a78646294b3c"
+  },
+  "degree-first": {
+    "external_directory": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Formal_Offline_Evaluation",
+    "summary_sha256": "52f82970c78e57450d0edb61a5a75504fc219693550fa97b1a4cae7dd8df1f4c",
+    "integral_sha256": "2735b58c71ecea21f2e3b9b463be6abe62c384dcdabefe2d70c1e360bd485a7e",
+    "evaluation_record_sha256": "d19a26de131a807e3ec8448aaec3c782fe2a3b84c6604b815841e605a599724c",
+    "identity": {
+      "H_eval_hr": 480.0,
+      "gate_cases": [
+        "G0_NO_GATE",
+        "G1_BASELINE_050",
+        "G2_RELAXED_005",
+        "G3_STRICT_075"
+      ],
+      "hazard": "2pc50",
+      "mapping_cases": [
+        "M0_JULY_003",
+        "M1_UTILITY_003",
+        "M0_JULY_NO_CUTOFF",
+        "M0_JULY_001",
+        "M1_UTILITY_NO_CUTOFF",
+        "M1_UTILITY_001",
+        "M3_SCE_SUPPORTED"
+      ],
+      "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+      "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+      "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+      "resource_case": "C57_D1",
+      "strategy": "degree-first",
+      "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+    },
+    "compact_summary_sha256": "652da0902553e580f6ebb41535303706d0d2c00805022124354bd7bc788a9621",
+    "compact_integrals_sha256": "823404063913b8772e68349c3d7a66b75b2f38b0049b976d671cb10fba69957c"
+  }
+}

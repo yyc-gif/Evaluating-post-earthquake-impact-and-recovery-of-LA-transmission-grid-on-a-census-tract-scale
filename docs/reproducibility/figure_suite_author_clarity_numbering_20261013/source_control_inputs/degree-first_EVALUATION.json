@@ -1,0 +1,32 @@
+{
+  "identity": {
+    "H_eval_hr": 480.0,
+    "gate_cases": [
+      "G0_NO_GATE",
+      "G1_BASELINE_050",
+      "G2_RELAXED_005",
+      "G3_STRICT_075"
+    ],
+    "hazard": "2pc50",
+    "mapping_cases": [
+      "M0_JULY_003",
+      "M1_UTILITY_003",
+      "M0_JULY_NO_CUTOFF",
+      "M0_JULY_001",
+      "M1_UTILITY_NO_CUTOFF",
+      "M1_UTILITY_001",
+      "M3_SCE_SUPPORTED"
+    ],
+    "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+    "offline_executable_code_commit_sha": "74c99ec0d15f3900c69ad16f530c89630c2a7acc",
+    "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+    "resource_case": "C57_D1",
+    "strategy": "degree-first",
+    "trajectory_executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0"
+  },
+  "integral_sha256": "2735b58c71ecea21f2e3b9b463be6abe62c384dcdabefe2d70c1e360bd485a7e",
+  "realization_count": 1000,
+  "status": "FORMAL_FROZEN_MATRIX_V1",
+  "summary_row_count": 40000,
+  "summary_sha256": "52f82970c78e57450d0edb61a5a75504fc219693550fa97b1a4cae7dd8df1f4c"
+}
