@@ -52,7 +52,8 @@ def main():
     finalize_review_qa.record_manifest()
     rows = []
     for p in sorted(Path(a.u.lp(HERE)).rglob('*')):
-        if p.is_file() and '__pycache__' not in p.parts and p.name != 'OUTPUT_HASH_MANIFEST.csv':
+        if p.is_file() and '__pycache__' not in p.parts and p.name not in [
+                'OUTPUT_HASH_MANIFEST.csv', 'REMOTE_DELIVERY_VERIFICATION.json', 'REMOTE_LFS_FETCH_OUTPUT.txt']:
             rows.append(dict(path=str(p.relative_to(Path(a.u.lp(HERE)))).replace('\\', '/'),
                              bytes=p.stat().st_size, sha256=a.u.sha(p)))
     a.u.write_csv(HERE / 'OUTPUT_HASH_MANIFEST.csv', rows)
