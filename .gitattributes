@@ -79,3 +79,8 @@ docs/reproducibility/figure_suite_author_clarity_numbering_20261013/*.xml text e
 docs/reproducibility/figure_suite_author_clarity_numbering_20261013/source_control_inputs/*.py text eol=lf
 docs/reproducibility/figure_suite_author_clarity_numbering_20261013/source_control_inputs/*.json text eol=lf
 docs/reproducibility/figure_suite_author_clarity_numbering_20261013/source_control_inputs/*.npz filter=lfs diff=lfs merge=lfs -text
+
+# Preserve exact review-package payload hashes across platforms.
+local_elsevier_review_outputs/** -text
+local_elsevier_review_outputs/*.docx filter=lfs diff=lfs merge=lfs -text
+local_elsevier_review_outputs/inputs/*.docx filter=lfs diff=lfs merge=lfs -text

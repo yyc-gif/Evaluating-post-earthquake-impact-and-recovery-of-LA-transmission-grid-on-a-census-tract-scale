@@ -1,0 +1,79 @@
+[
+  {
+    "source": "PART_V_Path_B_Seven_Variable_Figure_Structure.docx",
+    "target": "PART_V_Figure_Structure_Checked.docx",
+    "source_sha256": "9d3ca18c70c40bea6dbf2a95ffc27d3d71e13ed83d86cf87ac7bd7fef1f1cad8",
+    "output_sha256": "cfb13c1514725e0199642121cccc02183e90de24c20a04359827d0f1161d04a8",
+    "changes": [
+      {
+        "before": "A displays mean modeled service trajectories for the scheduled priorities and the independent Unconstrained reference. B compares cumulative equivalent service-deficit hours over 0–480 h for all tracts, the highest frozen social-vulnerability quartile (Q4), and hospital-linked tracts, together with population T80. Rankings depend on the specified outcome and reference; hospital-linked tract service is not hospital electricity delivery. Whiskers actually shown in this figure are 5th–95th realization ranges, not confidence intervals; service-loss bars are reported means without whiskers.",
+        "after": "A displays mean modeled service trajectories for the scheduled priorities and the common Unconstrained reference. B compares cumulative equivalent service-deficit hours over 0–480 h for all tracts, the highest frozen social-vulnerability quartile (Q4), and hospital-linked tracts, together with population T80. Rankings depend on the specified outcome and reference; hospital-linked tract service is not hospital electricity delivery. Whiskers actually shown in this figure are 5th–95th realization ranges, not confidence intervals; service-loss bars are reported means without whiskers.",
+        "reason": "Unconstrained shares the frozen physical realizations; it is not an independent sample."
+      }
+    ],
+    "original_page_sizes_inches": [
+      [
+        11.0,
+        8.5
+      ]
+    ],
+    "table_checks": [
+      {
+        "rows": 8,
+        "columns": 3,
+        "width_inches": 9.75,
+        "available_inches": 9.759722222222223,
+        "autofit": false
+      },
+      {
+        "rows": 11,
+        "columns": 2,
+        "width_inches": 9.75,
+        "available_inches": 9.759722222222223,
+        "autofit": false
+      }
+    ],
+    "source_edited": false,
+    "render_qa_pending": false,
+    "rendered_pages": 2,
+    "render_engine": "WPS DOCX-compatible read-only export",
+    "visual_inspection_all_pages_complete": true,
+    "native_Word_export_confirmed": false
+  },
+  {
+    "source": "Path_B_Elsevier_Figure_Captions.docx",
+    "target": "Path_B_Figure_Captions_Checked.docx",
+    "source_sha256": "36146a9c7db921e51644e018f4874692955884f910fd7c74d0610f6bee58db1a",
+    "output_sha256": "a172de8188a5aa4bf02da40fb269a337da8dd96fafa46c830b480da2eac02cc7",
+    "changes": [
+      {
+        "before": "(A) Six empirical feature distributions by P2/K3 class, with medians on the 50% guide. (B) Cohort-standardized means of all seven P2 variables. (C) Saved P2/K3 membership. (D) Continuous five-policy mean total equivalent service-deficit hours mapped with frozen Q1–Q4 SOVI hues; black outlines indicate Q4 tracts at or above the frozen P75 deficit. This is descriptive co-occurrence, not a composite risk score, statistically significant hotspot, or repair-priority ranking. White outlined tracts are N/A (16 zero-population tracts).",
+        "after": "(A) Six empirical feature distributions by P2/K3 class, with medians on the 50% guide. (B) Cohort-standardized means of all seven P2 variables. (C) Saved P2/K3 membership. (D) Continuous five-policy mean total equivalent service-deficit hours mapped with frozen Q1–Q4 SOVI hues and common burden-to-lightness scaling; black outlines indicate Q4 tracts at or above the frozen P75 deficit. This is descriptive co-occurrence, not a composite risk score, statistically significant hotspot, or repair-priority ranking. White outlined tracts are N/A (16 zero-population tracts).",
+        "reason": "Equal service-deficit magnitudes use the same luminance across quartile families."
+      },
+      {
+        "before": "(A, B) Finite search results and deterministic incumbent comparison. (C) Independent-realization service-loss contrasts, with a mean marker and saved realization range. (D) Saved damage-, threshold-, and source-path components of the mean contrast. Negative GA-minus-Impact-first differences favor GA. Global optimality is not established.",
+        "after": "(A, B) Finite search results and deterministic incumbent comparison. (C) The empirical distribution of independent-validation service-loss differences, with the mean marked. (D) Saved damage-, threshold-, and source-path components of the mean contrast. Negative GA-minus-Impact-first differences favor GA. Global optimality is not established.",
+        "reason": "Current S4C shows an empirical distribution and mean, not a separate realization-range whisker."
+      },
+      {
+        "before": "(A) Mapping cutoff. (B) Removing source connectivity at fixed station threshold. (C, D) Changing the station threshold to 0.05 or 0.75 while source connectivity is required. Values are model service-loss changes with realization percentile intervals. Service is not physical power delivery.",
+        "after": "(A) Mapping cutoff. (B) Removing source connectivity at the fixed 0.50 station threshold. (C, D) Changing the station threshold to 0.05 or 0.75 while source connectivity is required. Values are model service-loss changes with realization percentile intervals. Service is not physical power delivery.",
+        "reason": "Make the frozen source-only control threshold explicit."
+      }
+    ],
+    "original_page_sizes_inches": [
+      [
+        8.5,
+        11.0
+      ]
+    ],
+    "table_checks": [],
+    "source_edited": false,
+    "render_qa_pending": false,
+    "rendered_pages": 2,
+    "render_engine": "WPS DOCX-compatible read-only export",
+    "visual_inspection_all_pages_complete": true,
+    "native_Word_export_confirmed": false
+  }
+]
