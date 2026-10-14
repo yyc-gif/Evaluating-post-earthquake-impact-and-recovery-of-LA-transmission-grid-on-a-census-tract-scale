@@ -83,6 +83,21 @@ def main():
     tracts = pd.read_csv(u.lp(inputs / 'TRACTS.csv'), dtype={'tract_id': str})
     mapping = pd.read_csv(u.lp(inputs / 'MAPPING.csv'), dtype={'tract_id': str, 'substation_id': str})
     values = pd.read_csv(u.lp(HERE / 'SOURCE_ONLY_REALIZATION_VALUES.csv'), float_precision='round_trip')
+    primary_path = 'Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet'
+    primary_bytes = u.payload(BASE, primary_path)
+    primary = pd.read_parquet(io.BytesIO(primary_bytes))
+    baseline_checks = []
+    for policy, group in values.groupby('policy'):
+        ref = primary.loc[primary.hazard.eq('2pc50') & primary.resource_scenario.eq('C57_D1') &
+            primary.mapping.eq('M1_UTILITY_003') & primary.gate.eq('G1_BASELINE_050') &
+            primary.strategy_id.eq(policy) & primary.comparison_domain.eq('mapping_native_domain')]
+        ref = ref.sort_values('realization_id')
+        assert len(ref) == 1000 and ref.realization_id.tolist() == group.realization_id.tolist()
+        err = float(np.max(abs(ref.population_weighted_normalized_burden_hr.to_numpy() - group.baseline_loss_h)))
+        assert err < 1e-10
+        baseline_checks.append(dict(policy=policy, realizations=1000, maximum_error_h=err))
+    u.dump(HERE / 'FORMAL_PRIMARY_BASELINE_CROSSCHECK.json', dict(source_commit=BASE,
+        source_path=primary_path, source_sha256=u.digest(primary_bytes), checks=baseline_checks))
     independent = []
     for policy in values.policy.unique():
         with np.load(u.lp(inputs / (policy + '_INTEGRALS.npz'))) as z:

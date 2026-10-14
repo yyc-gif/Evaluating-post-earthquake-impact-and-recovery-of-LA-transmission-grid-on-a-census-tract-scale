@@ -1,0 +1,22 @@
+{
+  "source_commit": "3c7899f0f328d37b99d2b022f1650c5288a4a664",
+  "source_path": "Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",
+  "source_sha256": "7f6d7bfd55883fb05b04088e65eea02da579c553064f40d992452cc92690cc4d",
+  "checks": [
+    {
+      "policy": "degree-first",
+      "realizations": 1000,
+      "maximum_error_h": 0.0
+    },
+    {
+      "policy": "hospital-first",
+      "realizations": 1000,
+      "maximum_error_h": 0.0
+    },
+    {
+      "policy": "impact-first",
+      "realizations": 1000,
+      "maximum_error_h": 0.0
+    }
+  ]
+}
