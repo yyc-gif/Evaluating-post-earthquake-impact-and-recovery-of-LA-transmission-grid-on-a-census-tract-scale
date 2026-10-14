@@ -215,7 +215,9 @@ def test_d3_is_continuous_exact_five_policy_deficit_without_threshold():
     np.testing.assert_allclose(f.MeanTotalDeficit_5,p[scheduled].mean(axis=1),atol=1e-12,rtol=0)
     np.testing.assert_allclose(f.MeanTotalDeficit_5,f.B_Unconstrained+f.MeanDelta,atol=1e-12,rtol=0)
     t=fitz.open(lp(SUITE/'Main/Fig07.pdf'))[0].get_text()
-    assert all(x in t for x in ['C1','C2','C3','1,242','475','582','5,101,704','1,897,838','2,066,980','Q4 boundary','full-service-deficit hours'])
+    caption=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    assert all(x in t for x in ['C1','C2','C3','1,242','475','582','Q4 boundary','full-service-deficit hours'])
+    assert all(x in caption for x in ['5,101,704','1,897,838','2,066,980'])
     assert not any(x in t for x in ['Top-10','Hotspot','P75','K4','C4','C5','PCA','BUILDVALUE'])
     assert len(fitz.open(lp(SUITE/'Main/Fig07.pdf'))[0].get_images())==0
     palette=read(SUITE/'CURRENT_CLUSTER_PALETTE.json')
@@ -262,9 +264,143 @@ def test_updated_manifest_source_paths_resolve_in_their_declared_frozen_commits(
     rows=list(csv.DictReader(open(lp(SUITE/'FIGURE_MANIFEST.csv'),encoding='utf-8-sig')))
     index=list(csv.DictReader(open(lp(ROOT/'results/figures/FIGURE_INDEX.csv'),encoding='utf-8-sig')))
     for row in rows:
-        if row['change_in_this_update']!='UPDATED':continue
+        # Keep the previous Fig01/FigS09 source checks even though their artwork is retained this round.
+        if row['presentation_generator']!='src/la_grid/plotting/build_current_suite_k3.py':continue
         b=source_payload(row['source_commit'],row['source_file'])
         ix=next(r for r in index if r['source_path']==row['current_source_file'])
         assert ix['source_data_path']==row['source_file']
         assert ix['source_authority']==row['source_commit']
         assert hashlib.sha256(b).hexdigest()==ix['source_data_sha256']
+
+
+APPROVED=ROOT/'docs/reproducibility/figure7_candidateA_approved_integration_20261013'
+ACCEPTED='8f2dcb3b9762137b9f2686609c34480334f5d44e'
+
+
+def test_s10_active_cross_reference_registry_and_packet_page():
+    rows=list(csv.DictReader(open(lp(SUITE/'FIGURE_MANIFEST.csv'),encoding='utf-8-sig')))
+    active={r['final_name'].split('/')[-1].split('.')[0] for r in rows}
+    assert 'FigS11' in active and not active&{'FigS02','FigS12','FigS13'}
+    text=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    captions=dict(re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)',text,re.M|re.S))
+    heading=next(h for h in captions if h.startswith('Supplementary Figure S10.'))
+    expected='Outcome comparisons appear in Figures 4\u20136 and Supplementary Figure S11'
+    assert expected in captions[heading] and 'Supplementary Figures S12/S13' not in captions[heading]
+    assert {'FigS'+n.zfill(2) for n in re.findall(r'\bS(\d{1,2})\b',text)}<=active
+    assert {'Fig'+n.zfill(2) for n in re.findall(r'(?<!Supplementary )\bFigures? (\d+)',text)}<=active
+    full=fitz.open(lp(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))
+    assert len(full)==38 and expected in ' '.join(full[31].get_text().split())
+    assert 'Supplementary Figures S12/S13' not in full[31].get_text()
+
+
+def test_followup_preserves_sixteen_approved_artwork_pairs_and_supplement_packet():
+    manifest=list(csv.DictReader(io.StringIO(source_payload(ACCEPTED,'results/figure_review/FIGURE_MANIFEST.csv').decode())))
+    assert len(manifest)==34
+    unchanged=0
+    for r in manifest:
+        if not r['final_name'].startswith('Main/Fig07.'):
+            assert sha(ROOT/r['current_source_file'])==r['sha256']==sha(ROOT/r['mirror_file'])
+            assert hashlib.sha256(source_payload(ACCEPTED,r['current_source_file'])).hexdigest()==r['sha256']
+            unchanged+=1
+    assert unchanged==32
+    current=list(csv.DictReader(open(lp(SUITE/'FIGURE_MANIFEST.csv'),encoding='utf-8-sig')))
+    assert {r['final_name'] for r in current if r['change_in_this_update']=='UPDATED'}=={'Main/Fig07.pdf','Main/Fig07.png'}
+    rel='results/figure_review/ALL_SUPPLEMENT_FIGURES.pdf'
+    assert sha(ROOT/rel)==hashlib.sha256(source_payload(ACCEPTED,rel)).hexdigest()
+    q=read(APPROVED/'FIG07_NUMERICAL_QA.json')
+    assert q['exact_raw_feature_and_membership_match'] and not q['new_fits_or_simulations']
+
+
+def test_canonical_caption_rule_is_idempotent_and_only_two_captions_change():
+    import ast
+    path=ROOT/'src/la_grid/plotting/build_current_suite_k3.py'
+    tree=ast.parse(open(lp(path),encoding='utf-8').read())
+    nodes=[n for n in tree.body if isinstance(n,ast.Assign) and any(
+        isinstance(t,ast.Name) and t.id.startswith('S10_') for t in n.targets)]
+    nodes+=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='correct_s10_reference']
+    namespace={}
+    exec(compile(ast.Module(body=nodes,type_ignores=[]),str(path),'exec'),namespace)
+    transform=namespace['correct_s10_reference']
+    parse=lambda text:{h:b.strip() for h,b in re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)',text,re.M|re.S)}
+    source=parse(source_payload(ACCEPTED,'results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md').decode())
+    current=parse(open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read())
+    assert len(source)==len(current)==17 and list(source)==list(current)
+    changed=[]
+    for h,b in source.items():
+        assert transform(h,b)==transform(h,transform(h,b))
+        if h.startswith('Figure 7.'):
+            assert 'empirical cumulative distribution functions' in current[h]
+        else:
+            assert current[h]==transform(h,b)
+        if source[h]!=current[h]:changed.append(h)
+    assert len(changed)==2 and any(h.startswith('Figure 7.') for h in changed)
+    assert any(h.startswith('Supplementary Figure S10.') for h in changed)
+    main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
+    assert 'correct_s10_reference' in ast.unparse(main)
+
+
+def test_all_eighteen_ecdfs_preserve_exact_observations_zeros_and_ties():
+    features=['Grid_Impact','Redundancy_HHI','B_Unconstrained','MeanDelta','SOVI_SCORE','FEMA_NCV14_CA_v119']
+    f=pd.read_csv(lp(CURRENT/'inputs/EIGHT_VARIABLE_FROZEN_TABLE.csv'),float_precision='round_trip')
+    points=pd.read_csv(lp(APPROVED/'ECDF_POINTS.csv'),float_precision='round_trip')
+    medians=pd.read_csv(lp(APPROVED/'ECDF_MEDIANS.csv'),float_precision='round_trip')
+    assert set(points.variable)==set(features) and len(points.groupby(['variable','class']))==18
+    for (field,c),group in points.groupby(['variable','class']):
+        values=f.loc[f.K3_class.eq(int(c[1:])),field].to_numpy()
+        unique,counts=np.unique(values,return_counts=True)
+        np.testing.assert_array_equal(group.value,unique)
+        np.testing.assert_array_equal(group.value_count,counts)
+        np.testing.assert_array_equal(group.cumulative_fraction,np.cumsum(counts)/len(values))
+        assert int(group.value_count.sum())==len(values)
+        row=medians.loc[medians.variable.eq(field)&medians['class'].eq(c)].iloc[0]
+        assert row['median']==np.median(values) and row.marker_y==.5
+        assert row.zero_count==(values==0).sum()
+
+
+def test_twentyfour_profile_cells_use_frozen_cohort_standardization_not_centroid_scaling():
+    f=pd.read_csv(lp(CURRENT/'inputs/EIGHT_VARIABLE_FROZEN_TABLE.csv'),float_precision='round_trip')
+    weights=pd.read_csv(lp(CURRENT/'inputs/COHORT_STANDARDIZER_AND_WEIGHTS.csv'),float_precision='round_trip').set_index('variable')
+    rows=pd.read_csv(lp(APPROVED/'PROFILE_CELLS.csv'),float_precision='round_trip',dtype={'printed_value':str})
+    assert len(rows)==24 and rows.variable.nunique()==8
+    for _,row in rows.iterrows():
+        w=weights.loc[row.variable]
+        values=(f.loc[f.K3_class.eq(int(row['class'][1:])),row.variable]-w.cohort_mean)/w.population_SD
+        assert abs(row.ordinary_z_mean-values.mean())<1e-12
+        assert row.printed_value==f'{values.mean():+.2f}'
+    q=read(APPROVED/'FIG07_NUMERICAL_QA.json')
+    assert q['cohort_SD_ddof']==0 and q['Init_zero_count']==1533
+    assert q['class_counts']==[1242,475,582] and q['represented_population']==9066522
+    assert q['D3_identity_maximum_error_h']<1e-12
+
+
+def test_approved_native_layout_white_na_vector_changes_and_no_review_warning():
+    d=fitz.open(lp(SUITE/'Main/Fig07.pdf'));p=d[0]
+    assert abs(p.rect.width*25.4/72-185)<1e-4 and abs(p.rect.height*25.4/72-253)<1e-4
+    assert not p.get_images()
+    t=p.get_text()
+    assert 'LAYOUT PROPOSAL' not in t
+    assert 'Feature distributions' in t and 'Standardized eight-coordinate' in t
+    # PDF Form reuse retains nonrendered source provenance outside its C/D clip.
+    # Actual A/B pixels, not clipping-unaware text extraction, must match Candidate A.
+    pixel=read(APPROVED/'CD_VECTOR_AND_ALIGNED_PIXEL_QA.json')
+    assert pixel['approved_candidate_AB_pixels_identical_except_removed_review_warning']
+    assert pixel['outside_authorized_NA_path_masks_changed_pixels']==0
+    q=read(APPROVED/'NA_VECTOR_PAINT_QA.json')
+    assert q['authorized_NA_drawings']==34 and q['map_polygons']==32 and q['legend_swatches']==2
+    assert q['fill']=='#FFFFFF' and q['outline']=='#777777' and q['outline_width_pt']==.45
+    assert q['path_geometry_and_all_other_vector_properties_exact'] and q['non_NA_vectors_exact']
+    assert all(r['original_stream_sha256']==r['stripped_revised_stream_sha256'] for r in q['content_streams'])
+    palette=read(SUITE/'CURRENT_CLUSTER_PALETTE.json')
+    assert palette['NA_fill']=='#FFFFFF' and palette['NA_outline_width_pt']==.45
+    move=read(APPROVED/'CD_TRANSLATION_QA.json')
+    assert move['translation_mm']==[0,8] and move['scale']==1 and not move['geometry_regenerated']
+
+
+def test_candidate_a_protection_and_independent_packet_qa():
+    before=read(APPROVED/'PRESERVATION_BEFORE.json');after=read(APPROVED/'PRESERVATION_AFTER.json')
+    assert before==after and before['protected']['protected_count']==950
+    assert before['protected']['staged_count']==862
+    q=read(APPROVED/'INDEPENDENT_QA.json')
+    assert q['ecdfs_independently_reconstructed']==18 and q['standardized_profile_cells_independently_reconstructed']==24
+    assert q['unchanged_numbered_artwork_pairs']==16 and q['packet_pages']==38
+    assert q['all_unaffected_packet_pages_identical'] and q['all_packet_figure_pixels_identical_to_actual_artwork']

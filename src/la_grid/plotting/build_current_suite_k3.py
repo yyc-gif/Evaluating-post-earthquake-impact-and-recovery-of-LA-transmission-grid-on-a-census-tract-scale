@@ -45,6 +45,19 @@ COLORS = ['#147f98', '#d07734', '#7a5899']
 NA = '#e5e5e5'
 SOURCES = {}
 MM = 72 / 25.4
+ACCEPTED_SUITE = '8f2dcb3b9762137b9f2686609c34480334f5d44e'
+LAYOUT_REVIEW = 'aa55131cc5455aca9e1a6dead98e8f0eb8944217'
+APPROVED_QA = ROOT / 'docs/reproducibility/figure7_candidateA_approved_integration_20261013'
+LAYOUT_MODULE = 'src/la_grid/plotting/figure7_candidate_a.py'
+S10_OLD_REFERENCE = 'Outcome comparisons appear in Figures 4-6 and Supplementary Figures S12/S13'
+S10_CURRENT_REFERENCE = 'Outcome comparisons appear in Figures 4\u20136 and Supplementary Figure S11'
+
+
+def correct_s10_reference(heading, body):
+    if heading.startswith('Supplementary Figure S10.'):
+        assert S10_OLD_REFERENCE in body or S10_CURRENT_REFERENCE in body
+        return body.replace(S10_OLD_REFERENCE, S10_CURRENT_REFERENCE)
+    return body
 
 
 def source(commit, rel):
@@ -261,7 +274,7 @@ def draw_map(ax, g, mode):
     ax.set_axis_off()
 
 
-def figure7(f, g):
+def historical_figure7(f, g):
     fig = plt.figure(figsize=(185/25.4, 245/25.4))
     fig.text(.055, .975, 'A. Tract and resident representation', weight='bold', fontsize=10)
     ax = fig.add_axes([.10, .855, .85, .095])
@@ -540,7 +553,7 @@ def verify_suite(manifest, before):
         'packet_checks':comparisons,'scientific_fits_or_evaluations_run':False})
 
 
-def main():
+def build_initial_ncv14_suite():
     checkpoint=QA/'BUILD_CHECKPOINT.json'
     if checkpoint.exists() and '--rebuild' not in sys.argv:
         q=json_read(checkpoint)
@@ -571,7 +584,7 @@ def main():
         u.write(ROOT/rel,source(BASE,rel))
     f,g,k,stability,sil=prepare_inputs()
     style();figure1();print('Fig01 label changed; all outside-label pixels identical.',flush=True)
-    figure7(f,g);print('Fig07 NCV14/H2/K3 and D3 rendered from frozen inputs.',flush=True)
+    historical_figure7(f,g);print('Historical Fig07 NCV14/H2/K3 and D3 rendered from frozen inputs.',flush=True)
     figure_s9(f,k,stability,sil);print('FigS09 neutral K curves and K3-only evidence rendered.',flush=True)
     caps,index,changes=metadata(caps,manifest,index)
     manifest=finalize_manifest(manifest,changes)
@@ -596,5 +609,191 @@ def main():
     print('17 numbered figures, 38 complete packet pages; 950 scientific files and original Git state preserved.',flush=True)
 
 
+def approved_layout_inputs():
+    """Check pinned source matrices without modifying any archived input products."""
+    f = frame(FROZEN, SP + 'candidate/EIGHT_VARIABLE_FROZEN_TABLE.csv')
+    member = frame(FROZEN, SP + 'candidate/K3_CLUSTER_MEMBERSHIP.csv')
+    full = frame(FROZEN, SP + 'candidate/FULL_2315_COHORT_STATUS.csv')
+    w = frame(FROZEN, SP + 'candidate/COHORT_STANDARDIZER_AND_WEIGHTS.csv').set_index('variable').loc[FEATURES]
+    frozen = np.load(io.BytesIO(source(FROZEN, SP + 'candidate/FROZEN_PREPROCESSING_AND_LABELS.npz')))
+    policy = frame(DECISION, DP + 'FROZEN_POLICY_TRACT_MEANS_2315.csv').set_index('tract_id').loc[f.tract_id]
+    assert len(f) == len(member) == 2299 and len(full) == 2315
+    assert f.tract_id.equals(member.tract_id) and f.tract_id.str.fullmatch(r'\d{11}').all()
+    assert f.tract_id.is_unique
+    np.testing.assert_array_equal(f.tract_id, frozen['tract_ids'])
+    np.testing.assert_array_equal(f[FEATURES], frozen['raw'])
+    np.testing.assert_array_equal(member.saved_model_class, frozen['K3_labels'])
+    np.testing.assert_array_equal(member.candidate_display_cluster, frozen['K3_labels'] + 1)
+    np.testing.assert_allclose(w.squared_distance_budget, BUDGETS, rtol=0, atol=1e-16)
+    raw = f[FEATURES].to_numpy()
+    np.testing.assert_allclose(raw.mean(0), w.cohort_mean, rtol=1e-14, atol=1e-12)
+    np.testing.assert_allclose(raw.std(0), w.population_SD, rtol=1e-14, atol=1e-12)
+    z = (raw - w.cohort_mean.to_numpy()) / w.population_SD.to_numpy()
+    np.testing.assert_allclose(z * np.sqrt(BUDGETS), frozen['weighted_matrix'], rtol=1e-13, atol=1e-12)
+    f['class'] = member.candidate_display_cluster
+    assert f.groupby('class').size().tolist() == [1242,475,582]
+    assert f.groupby('class').Population.sum().tolist() == [5101704,1897838,2066980]
+    assert f.Population.sum() == 9066522 and (f.Population > 0).all()
+    assert f.additional_zero_housing_positive_population.sum() == 8
+    assert full.Frozen_Formal_Population.eq(0).sum() == 16
+    assert f.frozen_SOVI_quartile.eq('Q4').sum() == 579
+    np.testing.assert_array_equal(f.Population, policy.Population)
+    np.testing.assert_array_equal(f.frozen_SOVI_quartile, policy.frozen_SOVI_quartile)
+    np.testing.assert_allclose(f.B_Unconstrained, policy.B_unconstrained, rtol=0, atol=1e-12)
+    np.testing.assert_allclose(f.MeanDelta, policy.MeanDelta5, rtol=0, atol=1e-12)
+    scheduled = ['B_' + s for s in ['impact-first','hospital-first','degree-first','betweenness-first','vulnerability-first']]
+    error = (f.B_Unconstrained + f.MeanDelta).to_numpy() - policy[scheduled].mean(axis=1).to_numpy()
+    np.testing.assert_allclose(error, 0, rtol=0, atol=1e-12)
+    means = np.vstack([z[f['class'].eq(c)].mean(0) for c in [1,2,3]])
+    u.dump(APPROVED_QA / 'FIG07_NUMERICAL_QA.json', {'cohort':2299,'study_domain':2315,
+        'represented_population':9066522,'class_counts':[1242,475,582],
+        'class_population':[5101704,1897838,2066980],'N_A_zero_population':16,
+        'positive_population_zero_housing_classified':8,'Q4_count':579,
+        'exact_raw_feature_and_membership_match':True,'H2_squared_distance_budgets':BUDGETS.tolist(),
+        'ordinary_cohort_z_means':means.tolist(),'cohort_SD_ddof':0,
+        'Init_zero_count':int(f.Init_Supply.eq(0).sum()),'Init_maximum':float(f.Init_Supply.max()),
+        'D3_identity_maximum_error_h':float(abs(error).max()),'new_fits_or_simulations':False})
+    review_path = 'docs/data_research/figure7_scientific_layout_author_review_20261013/'
+    for name in ['build_layout_review.py','FIGURE7_CONSERVATIVE_RESTORATION.pdf',
+                 'FIGURE7_NA_FILL_SEPARATE_APPROVAL_COMPARISON.pdf']:
+        source(LAYOUT_REVIEW, review_path + name)
+    return f, means
+
+
+def approved_figure7_caption():
+    return (
+        'Eight-variable NCV14/H2/K3 community typology of 2,299 positive-frozen-population tracts, including eight tracts without conventional housing units. '
+        'C1 comprises 1,242 tracts and 5,101,704 residents; C2, 475 tracts and 1,897,838 residents; C3, 582 tracts and 2,066,980 residents. Total represented population is 9,066,522. '
+        '(A) Six empirical cumulative distribution functions, with equal tract weights within each class: spectral Grid_Impact and dependency Redundancy_HHI (RQ1); B_Unconstrained and five-policy MeanDelta (RQ2); SOVI_SCORE and FEMA_NCV14_CA_v119 (RQ3). All observations, repeated values and zeros are retained without smoothing or clipping. Colored markers identify median x-coordinates on the 50% guide; for tied observations a marker need not coincide exactly with the step curve. '
+        '(B) Ordinary cohort-standardized class means for all eight fitted coordinates, grouped by RQ. Each value is mean_cluster[(x - cohort_mean)/cohort_population_SD], using the frozen 2,299-tract cohort and ddof=0. Zero is the full eligible tract-cohort mean. The common diverging scale and signed values describe unweighted z-score means, not square-root-weighted K-means coordinates or exact distance contributions. Population is fitted as log1p(Population). Init_Supply is strongly zero-concentrated; standardized differences do not imply large absolute initial electrical service. '
+        'Each RQ retains one-third of the fitting squared-distance budget: 1/9 per RQ1 coordinate, 1/6 per RQ2 coordinate, and 1/6, 1/12, 1/12 for SOVI, log population and NCV14. NCV14 is a researcher-derived fourteen-hazard frequency-area screening index using FEMA March 2023 v1.19 inputs and California reference scaling, not FEMA RISK_SCORE or a calibrated multi-hazard electricity-failure probability. '
+        '(C) Exact saved K3 geography with a fixed three-class palette; the 16 zero-population tracts are N/A, shown white with dark boundaries, not a fourth class. '
+        '(D) Continuous five-policy mean total modeled service deficit, B_Unconstrained + MeanDelta_5, in equivalent full-service-deficit hours over 0-480 h. The equally weighted finite policy set is Impact-first, Hospital-first, Degree-first, Betweenness-first and Vulnerability-first; Random is excluded and Unconstrained is the baseline. This mean is neither an implemented average repair schedule nor an adoption-probability expectation. Thin outlines retain frozen SOVI Q4 geography. D is descriptive recovery-burden geography, not spatial-significance inference or validated intervention priority. '
+        'All values use frozen 2pc50/C57_D1/M1_UTILITY_003/G1_BASELINE_050 inputs and 1,000 matched physical realizations. C1 has relatively greater SOVI and smaller additional constraint deficit; C2 has lower baseline deficit and greater additional constraint burden; C3 has greater spectral impact and baseline deficit. These fitting-input profiles are descriptive, not causal or independent validation. No clustering, physical recovery or archived formal Stage 7 products were recalculated.')
+
+
+def replace_approved_packet_pages(caps):
+    u.pdfmetrics.registerFont(u.TTFont('SuiteArial','C:/Windows/Fonts/arial.ttf'))
+    u.pdfmetrics.registerFont(u.TTFont('SuiteBold','C:/Windows/Fonts/arialbd.ttf'))
+    # Deterministic ReportLab IDs and dates, including forced clean rebuilds.
+    from reportlab import rl_config
+    rl_config.invariant = 1
+    original = fitz.open(stream=source(ACCEPTED_SUITE,'results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf'),filetype='pdf')
+    book = fitz.open()
+    for page in range(38):
+        if page == 12:
+            with fitz.open(u.lp(DEST/'Main/Fig07.pdf')) as art:
+                book.insert_pdf(art)
+        elif page in [13,31]:
+            heading = list(caps)[page//2]
+            with u.caption_pdf(heading,caps[heading]) as cap:
+                book.insert_pdf(cap)
+        else:
+            book.insert_pdf(original,from_page=page,to_page=page)
+    assert len(book) == 38
+    u.write(DEST/'ALL_FIGURES_WITH_CAPTIONS.pdf',book.tobytes(garbage=4,deflate=True,no_new_id=True))
+    original.close();book.close()
+    book = fitz.open()
+    for stem in ACTIVE[:7]:
+        with fitz.open(u.lp(DEST/(stem+'.pdf'))) as art:
+            book.insert_pdf(art)
+    assert len(book) == 7
+    u.write(DEST/'ALL_MAIN_FIGURES.pdf',book.tobytes(garbage=4,deflate=True,no_new_id=True))
+    book.close()
+
+
+def main():
+    """Current production: approved Candidate A, preserving sixteen accepted figures."""
+    import figure7_candidate_a as layout
+    approved = json.loads(source(ACCEPTED_SUITE,'docs/reproducibility/figure_suite_ncv14_h2_k3_d3_20261013/BUILD_CHECKPOINT.json'))
+    checkpoint = QA/'BUILD_CHECKPOINT.json'
+    if checkpoint.exists() and '--rebuild' not in sys.argv:
+        q = json_read(checkpoint)
+        if (q['generator_sha256'] == u.sha(__file__) and q.get('layout_module_sha256') == u.sha(ROOT/LAYOUT_MODULE)
+                and all(Path(u.lp(ROOT/p)).is_file() and u.sha(ROOT/p)==h for p,h in q['output_hashes'].items())):
+            print('Approved Candidate A current suite: byte-identical idempotent reuse.',flush=True)
+            return
+    mutable = {'results/figure_review/'+n for n in ['Main/Fig07.pdf','Main/Fig07.png','Page_Previews/Fig07.png',
+        'MANUSCRIPT_FACING_CAPTIONS.md','CURRENT_CLUSTER_PALETTE.json','FIGURE_MANIFEST.csv',
+        'ALL_MAIN_FIGURES.pdf','ALL_FIGURES_WITH_CAPTIONS.pdf','README.md','UPDATE_LOG.md']}
+    mutable |= {'results/figures/'+n for n in ['Fig07_Community_Typology_and_Service_Deficit.pdf',
+        'Fig07_Community_Typology_and_Service_Deficit.png','FIGURE_INDEX.csv','FIGURE_REVIEW_GALLERY.html','README.md']}
+    for rel,expected in approved['output_hashes'].items():
+        path = ROOT/rel
+        if not Path(u.lp(path)).is_file() or open(u.lp(path),'rb').read(44).startswith(b'version https://git-lfs'):
+            payload = source(ACCEPTED_SUITE,rel)
+            assert u.digest(payload) == expected
+            u.write(path,payload)
+        if rel not in mutable:
+            assert u.sha(path) == expected, 'Unapproved change: '+rel
+    f,means = approved_layout_inputs()
+    current_bytes = source(ACCEPTED_SUITE,'results/figure_review/Main/Fig07.pdf')
+    with layout.render(f,means,FEATURES,current_bytes,APPROVED_QA) as doc:
+        u.write(DEST/'Main/Fig07.pdf',doc.tobytes(garbage=4,deflate=True,no_new_id=True))
+    export_png('Main/Fig07')
+    caps = u.captions(source(ACCEPTED_SUITE,'results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md').decode())
+    caps = {h:approved_figure7_caption() if h.startswith('Figure 7.') else correct_s10_reference(h,b) for h,b in caps.items()}
+    assert len(caps)==17
+    u.write(DEST/'MANUSCRIPT_FACING_CAPTIONS.md','# Manuscript-facing figure captions\n\n'+'\n\n'.join('## '+h+'\n\n'+b for h,b in caps.items())+'\n')
+    replace_approved_packet_pages(caps)
+    manifest = u.csv_rows(source(ACCEPTED_SUITE,'results/figure_review/FIGURE_MANIFEST.csv'))
+    index = u.csv_rows(source(ACCEPTED_SUITE,'results/figures/FIGURE_INDEX.csv'))
+    changes = []
+    for row in manifest:
+        old = row['sha256']
+        changed = row['final_name'].startswith('Main/Fig07.')
+        row['change_in_this_update'] = 'UPDATED' if changed else 'RETAINED'
+        actual = u.sha(ROOT/row['current_source_file'])
+        if changed:
+            row.update(sha256=actual,size_mm='185.000 x 253.000',min_font_pt='7.500',
+                parent_source_commit=ACCEPTED_SUITE,parent_source_file=row['current_source_file'],parent_sha256=old)
+            u.write(ROOT/row['mirror_file'],open(u.lp(ROOT/row['current_source_file']),'rb').read())
+            ix = next(r for r in index if r['source_path']==row['current_source_file'])
+            ix.update(sha256_or_lfs_oid=actual,
+                main_message='Approved Candidate A: six empirical ECDFs, eight cohort-z profiles, saved K3 and D3 geography.',
+                scientific_content='Frozen NCV14/H2/K3; ordinary cohort z-score display; white N/A with dark boundaries; no model refit.',
+                notes='Approved layout aa55131; C/D translated 8 mm without scaling; archived formal Stage 7 unchanged.')
+        else:
+            assert actual == old == u.sha(ROOT/row['mirror_file'])
+        if row['presentation_generator']==GENERATOR:
+            row['presentation_generator_sha256']=u.sha(__file__)
+        changes.append({'figure':row['final_name'],'baseline_sha256':old,'current_sha256':actual,
+            'status':'AUTHORIZED_FIG07_CHANGE' if changed else 'BYTE_IDENTICAL'})
+    u.write_csv(DEST/'FIGURE_MANIFEST.csv',manifest)
+    u.write_csv(APPROVED_QA/'FIGURE_CHANGE_MANIFEST.csv',changes)
+    gallery(index)
+    palette = json.loads(source(ACCEPTED_SUITE,'results/figure_review/CURRENT_CLUSTER_PALETTE.json'))
+    palette.update(NA_fill='#FFFFFF',NA_outline=layout.NA_OUTLINE,NA_outline_width_pt=layout.NA_WIDTH,
+                   NA_applies_to=['Fig07 C','Fig07 D'],layout_authority=LAYOUT_REVIEW)
+    u.dump(DEST/'CURRENT_CLUSTER_PALETTE.json',palette)
+    for rel in ['results/figure_review/README.md','results/figures/README.md']:
+        text = source(ACCEPTED_SUITE,rel).decode()
+        text += ('\n## Approved Figure 7 Candidate A\n\n'
+            'Current Fig07 is 185 x 253 mm: six exact class ECDF distributions (A), eight ordinary frozen cohort-z means (B), '
+            'saved K3 geography (C), and continuous five-policy deficit with frozen Q4 outlines (D). C/D are translated down '
+            '8 mm without scaling; only the 16 N/A polygons per map and their swatches have white fill / dark 0.45-pt outlines. '
+            'All other 16 numbered artwork pairs and the Supplement-only packet retain their approved bytes. '
+            'The separately approved S10-to-S11 caption correction from 7795638 is explicitly carried forward, without merging that branch.\n\n'
+            'Reproduce with `python src/la_grid/plotting/build_current_suite_k3.py --portable`; use `--rebuild` to force deterministic '
+            'frozen-source rendering. Current QA: `docs/reproducibility/figure7_candidateA_approved_integration_20261013/`. '
+            'No scientific model, formal Stage 7 input, manuscript or historical review output is changed.\n')
+        u.write(ROOT/rel,text)
+    log = source(ACCEPTED_SUITE,'results/figure_review/UPDATE_LOG.md').decode()
+    u.write(DEST/'UPDATE_LOG.md',log+'\n\n## 2026-10-13 — approved Figure 7 Candidate A integration\n\n'
+        'Only Fig07 artwork changed: ECDF A, cohort-z B, original C/D translated 8 mm and authorized white/dark N/A paint. '
+        'Sixteen other numbered pairs are byte-identical to 8f2dcb3, including Fig01, S05, S09 and S11. '
+        'Fig07 caption, main/complete packets, palette, manifest, index, gallery and mirrors synchronized; complete packet stays 38 pages. '
+        'The separate 7795638 S10/S11 caption fix is explicitly incorporated; its source branch remains unmerged. '
+        'No manuscript or formal Stage 7 products changed.\n')
+    u.dump(APPROVED_QA/'SOURCE_AUTHORITY_AND_HASHES.json',{'official_baseline':ACCEPTED_SUITE,
+        'layout_review':LAYOUT_REVIEW,'frozen_K3':FROZEN,'D3':DECISION,
+        'separate_S10_correction':'7795638a73ac533d544971c20db13cf6662d13d3','sources':SOURCES})
+    checkpoint_data = {'generator_sha256':u.sha(__file__),'layout_module_sha256':u.sha(ROOT/LAYOUT_MODULE),
+        'output_hashes':{rel:u.sha(ROOT/rel) for rel in approved['output_hashes']}}
+    u.dump(checkpoint,checkpoint_data)
+    u.dump(APPROVED_QA/'BUILD_CHECKPOINT.json',checkpoint_data)
+    print('Approved Candidate A generated; 17 figures, 38 pages, sixteen unchanged artwork pairs.',flush=True)
+
+
 if __name__=='__main__':
-    main()
+    build_initial_ncv14_suite() if '--historical-ncv14' in sys.argv else main()
