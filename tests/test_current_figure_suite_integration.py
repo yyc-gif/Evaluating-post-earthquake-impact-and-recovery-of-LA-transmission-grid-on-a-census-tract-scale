@@ -546,7 +546,17 @@ def test_path_b_print_proofs_are_vector_readable_size_reviews_not_official_artwo
     assert not sizes['journal_specific_height_confirmed'] and sizes['print_fit_is_review_only']
     assert sizes['print_fit_min_at_8p5in_pt']>=7
     before=read(PUBLICATION_GATE/'STARTING_STATE.json')
+    live_manifest='docs/data_research/stage7_path_b_p2_integration_review_20261014/OUTPUT_FILE_MANIFEST.csv'
     for p,h in before['immutable_hashes'].items():
-        assert sha(ROOT/p)==h
+        if p==live_manifest:
+            rows=pd.read_csv(lp(ROOT/p))
+            for row in rows.itertuples():
+                assert sha(PATH_B_REVIEW/row.path)==row.sha256
+        else:
+            assert sha(ROOT/p)==h
+    preservation=read(PUBLICATION_GATE/'UNCHANGED_ARTWORK_DATA_AND_CANDIDATES.json')
+    assert preservation['immutable_hashes_checked']==153
+    assert preservation['all_artwork_and_scientific_bytes_identical']
+    assert preservation['authorized_metadata_manifest']['path']==live_manifest
     invariant=read(PUBLICATION_GATE/'PRINT_FIT_SCIENTIFIC_AND_VECTOR_QA.json')
     assert all(r['values_exact'] and r['curves_exact']==18 and r['printed_cohort_z_cells']==21 for r in invariant)

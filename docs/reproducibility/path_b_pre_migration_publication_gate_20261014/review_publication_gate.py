@@ -208,10 +208,28 @@ def make_proofs():
     print('Two print-fit proofs and a six-page height-limit proof; no official artwork changed.')
 
 
+def check_frozen_files_and_live_manifest():
+    before = read_json(HERE / 'STARTING_STATE.json')
+    manifest_path = str((PB / 'OUTPUT_FILE_MANIFEST.csv').relative_to(ROOT)).replace('\\', '/')
+    # The living output registry is expected to track changed review prose/scripts.
+    # Every scientific source, numerical result and original artwork stays frozen.
+    changed = [p for p, h in before['immutable_hashes'].items()
+               if p != manifest_path and a.u.sha(ROOT / p) != h]
+    assert not changed, changed
+    rows = pd.read_csv(a.u.lp(ROOT / manifest_path))
+    for r in rows.itertuples():
+        assert a.u.sha(PB / r.path) == r.sha256, r.path
+    return dict(immutable_hashes_checked=len(before['immutable_hashes']) - 1,
+                all_artwork_and_scientific_bytes_identical=True,
+                authorized_metadata_manifest=dict(path=manifest_path,
+                    before_sha256=before['immutable_hashes'][manifest_path],
+                    after_sha256=a.u.sha(ROOT / manifest_path),
+                    live_registry_rows_verified=len(rows)))
+
+
 def verify_preservation():
     before = read_json(HERE / 'STARTING_STATE.json')
-    changed = [p for p, h in before['immutable_hashes'].items() if a.u.sha(ROOT / p) != h]
-    assert not changed, changed
+    hashes = check_frozen_files_and_live_manifest()
     protected = a.u.protected_snapshot(read_json(HERE / 'PRESERVATION_BEFORE.json'))
     assert protected == read_json(HERE / 'PRESERVATION_BEFORE.json')
     assert a.u.git('rev-parse', 'HEAD', root=ROOT.parent / '_ac13').decode().strip() == before['source_worktree_HEAD']
@@ -219,10 +237,11 @@ def verify_preservation():
                           root=ROOT.parent / '_ac13').decode().strip()) == before['source_index_sha256']
     dump('PRESERVATION_AFTER.json', protected)
     dump('UNCHANGED_ARTWORK_DATA_AND_CANDIDATES.json', dict(
-        hashes_checked=len(before['immutable_hashes']), all_bytes_identical=True,
+        **hashes, all_bytes_identical=True,
         protected_scientific_files=950, official_numbered_artwork_pairs=17,
         original_index_unchanged=True, no_new_Kmeans_or_physical_model=True))
-    print('Preservation PASS:', len(before['immutable_hashes']), 'hashes, protected950/index unchanged.')
+    print('Preservation PASS:', hashes['immutable_hashes_checked'],
+          'frozen hashes; living manifest rows verified; protected950/index unchanged.')
 
 
 def verify_caption_and_decision():
