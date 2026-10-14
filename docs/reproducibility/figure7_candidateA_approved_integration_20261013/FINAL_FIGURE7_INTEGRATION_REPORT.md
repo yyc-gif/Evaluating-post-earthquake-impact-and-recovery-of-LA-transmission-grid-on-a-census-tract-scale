@@ -79,3 +79,19 @@ See `TEST_RESULTS.json`, `BUILD_IDEMPOTENCE_QA.json`, `INDEPENDENT_QA.json`,
 `CD_VECTOR_AND_ALIGNED_PIXEL_QA.json`, and the remote delivery record for the
 actual execution results. No source or implementation branch is merged or
 force-pushed.
+
+## Actual remote delivery
+
+Artifact commit: `88d408233cbffdbe7f660a92a09cc7cc9a58e6e5`, pushed to the isolated
+implementation branch and matched to its remote HEAD. An initially empty,
+independent LFS cache downloaded and SHA256-verified 75 distinct payloads totaling
+373,986,296 bytes. This covers the 98 required current-suite/QA LFS paths and
+pinned scientific/layout/figure source payloads, with duplicate objects checked
+once by content identity. The delivery record contains the full object/path table.
+The follow-up delivery-record commit changes only this QA documentation and
+verification script, not any figure, packet, source array or production code.
+
+Final Figure 7 PDF SHA256:
+`3e606277c33c242cad7523081737611dddd922d4c51bcb2ade0d9c58f547c2ad`.
+Complete 38-page packet SHA256:
+`caabbe9c3926bbeff3fca018bec6f4830a937195bcc79ab21139248d4e85c9bd`.
