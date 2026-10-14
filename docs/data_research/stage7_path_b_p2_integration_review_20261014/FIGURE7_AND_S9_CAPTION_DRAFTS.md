@@ -2,11 +2,11 @@
 
 ## Figure 7 - candidate A
 
-(A) Class-specific empirical feature distributions; markers locate medians on the 50% guide. (B) Ordinary cohort-z means of seven P2 coordinates. (C) Saved P2/K3 geography. (D) Continuous five-policy mean total service deficit (equivalent hours), with frozen Q1-Q4 textures. Black outlines identify Q4 and deficit at or above frozen P75, a descriptive co-occurrence screen, not a new score. White outlined tracts are N/A. Population is fitted as log1p.
+(A) Six descriptive empirical feature distributions; markers locate class medians on the 50% guide. (B) Cohort-standardized class means of all seven fitted P2 variables. (C) Saved P2/K3 geography. (D) Continuous five-policy mean total service deficit (equivalent hours), with frozen Q1-Q4 textures. Black outlines identify Q4 and deficit at or above frozen P75: descriptive co-occurrence, not a composite score. White outlined tracts are N/A. Population is fitted as log1p.
 
 ## Figure 7 - candidate B
 
-(A) Class-specific empirical feature distributions; markers locate medians on the 50% guide. (B) Ordinary cohort-z means of seven P2 coordinates. (C) Saved P2/K3 geography. (D) Continuous five-policy mean total service deficit (equivalent hours), with frozen Q1-Q4 hue families and a common burden-to-lightness scale. Black outlines identify Q4 and deficit at or above frozen P75, a descriptive co-occurrence screen, not a new score. White outlined tracts are N/A. Population is fitted as log1p.
+(A) Six descriptive empirical feature distributions; markers locate class medians on the 50% guide. (B) Cohort-standardized class means of all seven fitted P2 variables. (C) Saved P2/K3 geography. (D) Continuous five-policy mean total service deficit (equivalent hours), with frozen Q1-Q4 hue families and a common burden-to-lightness scale. Black outlines identify Q4 and deficit at or above frozen P75: descriptive co-occurrence, not a composite score. White outlined tracts are N/A. Population is fitted as log1p.
 
 ## Stage 7 diagnostics (legacy Figure S9; current active Figure S8)
 

@@ -14,15 +14,15 @@ Workflow linking the transmission network and tract dependencies to earthquake d
 
 ## Figure 4. Selected restoration-policy performance
 
-Restoration-policy outcomes under 2pc50. (A) Population-weighted modeled service trajectories. (B) Mean service loss for all tracts, Q4 tracts and hospital-linked tracts, and population T80. Loss integrates the service deficit over 480 h; T80 is time to 80% service. T80 whiskers show realization percentiles. Hospital-linked outcomes are tract proxies, not hospital electricity delivery.
+Restoration-policy outcomes under 2pc50. (A) Population-weighted modeled service trajectories. (B) Mean service loss for all tracts, Q4 tracts and hospital-linked tracts, and population T80. Loss integrates service deficit over 480 h; T80 is time to 80% service. All displayed whiskers show 5th-95th realization ranges, not confidence intervals; service-loss bars show means without whiskers. Hospital-linked outcomes are tract proxies, not hospital electricity delivery.
 
 ## Figure 5. Vulnerability-targeted restoration and distributional consequences
 
-(A) Overall and Q4 mean service loss. (B) Loss across frozen vulnerability quartiles. (C, D) Vulnerability-first minus each reference policy: loss outcomes and Gini. (E) Tract-level loss differences; negative values favor Vulnerability-first. Q4 boundaries provide context. The high-low gap is the absolute Q4-Q1 loss difference within each realization. Whiskers in B-D show realization percentiles; map colors do not indicate statistical significance.
+(A) Overall and Q4 mean service loss. (B) Loss across frozen vulnerability quartiles. (C, D) Vulnerability-first minus each reference policy: loss outcomes and Gini. (E) Tract-level loss differences; negative values favor Vulnerability-first. Q4 boundaries provide context. The high-low gap is the absolute Q4-Q1 loss difference within each realization. Whiskers in B-D show 5th-95th realization ranges, not confidence intervals; map colors do not indicate statistical significance.
 
 ## Figure 6. Resource dependence of restoration-policy contrasts under 2pc50
 
-Vulnerability-first minus each reference policy as crew availability (left) or repair duration (right) changes. Rows show overall loss, Q4 loss, the absolute Q4-Q1 loss gap and hospital-linked loss. Negative values indicate lower loss under Vulnerability-first. Whiskers are saved bootstrap intervals for the mean; Degree-first hospital comparisons show means only. Crew and duration are separate one-factor comparisons.
+Vulnerability-first minus each reference policy as crew availability (left) or repair duration (right) changes. Rows show overall loss, Q4 loss, the absolute Q4-Q1 loss gap and hospital-linked loss. Negative values indicate lower loss under Vulnerability-first. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital comparisons show means only. Crew and duration are separate one-factor comparisons.
 
 ## Figure 7. Three-RQ community typology and modeled service-deficit geography
 

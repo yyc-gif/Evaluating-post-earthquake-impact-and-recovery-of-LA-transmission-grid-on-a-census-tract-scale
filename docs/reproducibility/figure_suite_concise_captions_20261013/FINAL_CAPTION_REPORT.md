@@ -11,3 +11,7 @@ Verification: 30 figure-suite tests pass, including pixel comparison of every em
 Reproduce: `python src/la_grid/plotting/build_current_suite_k3.py --portable`. Use `--rebuild` for immutable-source recomposition. Historical author-clarity and earlier suite modes remain available. The new default never redraws science.
 
 The original 950-file scientific snapshot and dirty index/staged state are compared before/after. This change is isolated from the source worktree and is not merged.
+
+## 2026-10-14 Precision follow-up
+
+The initial 856-word version above is retained as this round's history. Current captions total 874 words after precise Figure 4/5 realization-range and Figure 6 bootstrap-CI definitions were added. The packet remains 21 pages and all 17 artwork pairs remain byte-identical. The full existing suite plus three focused follow-up tests passes (33 tests). Exact source/PDF comparisons, print-size proofs and preservation receipts are in `docs/reproducibility/path_b_pre_migration_publication_gate_20261014/`. No P2 artwork is promoted.

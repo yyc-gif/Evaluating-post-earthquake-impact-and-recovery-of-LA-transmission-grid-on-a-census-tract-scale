@@ -23,3 +23,7 @@ Former S03-S11 now S02-S10. Fig01 definitions/fonts, former S05 language/mean-on
 ## 2026-10-13 Concise captions
 
 Removed results/discussion and production commentary from captions. Native figure artwork unchanged; captions placed beneath figures. Compact packet: 21 pages including four retained evidence pages. Path B remains a separate review package.
+
+## 2026-10-14 Statistical caption precision
+
+Figures 4/5 distinguish 5th-95th realization ranges from confidence intervals. Figure 4 service-loss bars have no whiskers. Figure 6 explicitly identifies 95% bootstrap confidence intervals for mean effects and its means-only exception. No artwork, numerical values or Path B classification is promoted.

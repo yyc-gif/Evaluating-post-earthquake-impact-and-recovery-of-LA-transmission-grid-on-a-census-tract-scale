@@ -498,3 +498,55 @@ def test_concise_captions_do_not_change_numbered_artwork_or_sneak_in_path_b():
         assert sha(ROOT/r['current_source_file'])==r['sha256']==sha(ROOT/r['mirror_file'])
     caps=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
     assert not any(x in caps for x in ['-0.532675','1,741','350,799','0.2444','5,101,704','7.5-point'])
+
+
+PUBLICATION_GATE=ROOT/'docs/reproducibility/path_b_pre_migration_publication_gate_20261014'
+PATH_B_REVIEW=ROOT/'docs/data_research/stage7_path_b_p2_integration_review_20261014'
+
+
+def test_short_captions_distinguish_realization_ranges_and_mean_effect_confidence_intervals():
+    text=open(lp(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md'),encoding='utf-8').read()
+    caps=dict(re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)',text,re.M|re.S))
+    for number in [4,5]:
+        body=next(b for h,b in caps.items() if h.startswith(f'Figure {number}.'))
+        assert '5th-95th realization ranges, not confidence intervals' in body
+    f4=next(b for h,b in caps.items() if h.startswith('Figure 4.'))
+    assert 'service-loss bars show means without whiskers' in f4
+    f6=next(b for h,b in caps.items() if h.startswith('Figure 6.'))
+    assert '95% bootstrap confidence intervals for mean effects' in f6
+    assert 'Degree-first hospital comparisons show means only' in f6
+    q=read(PUBLICATION_GATE/'INDEPENDENT_FOLLOWUP_QA.json')
+    assert q['caption_source_matches_export'] and q['visible_caption_text_matches']
+    assert q['other_current_captions_exact']==14 and q['packet_pages']==21
+
+
+def test_path_b_caption_and_conditional_k3_choice_do_not_promote_new_memberships():
+    draft=open(lp(PATH_B_REVIEW/'FIGURE7_AND_S9_CAPTION_DRAFTS.md'),encoding='utf-8').read()
+    assert draft.count('Six descriptive empirical feature distributions')==2
+    assert draft.count('all seven fitted P2 variables')==2
+    decision=open(lp(PATH_B_REVIEW/'K3_K4_AUTHOR_DECISION.md'),encoding='utf-8').read()
+    assert 'accepted as the conditional' in decision and 'must remain as sensitivity' in decision
+    k=pd.read_csv(lp(PATH_B_REVIEW/'K3_K4_K5_DECISION_EVIDENCE.csv')).set_index('k')
+    assert k.loc[4,'geographic_full_median_ARI']>k.loc[3,'geographic_full_median_ARI']
+    assert k.loc[4,'geographic_heldout_min_ARI']>k.loc[3,'geographic_heldout_min_ARI']
+    q=read(PUBLICATION_GATE/'INDEPENDENT_FOLLOWUP_QA.json')
+    assert q['models_fitted']==0 and not q['official_Fig07_promoted']
+
+
+def test_path_b_print_proofs_are_vector_readable_size_reviews_not_official_artwork():
+    q=read(PUBLICATION_GATE/'INDEPENDENT_FOLLOWUP_QA.json')
+    for r in q['print_fit_figures']:
+        path=PUBLICATION_GATE/r['file']
+        assert sha(path)==r['sha256'] and r['min_font_pt']>=7.49
+        with fitz.open(lp(path)) as doc:
+            assert abs(doc[0].rect.width/72-7.2)<1e-6
+            assert abs(doc[0].rect.height/72-9)<1e-6
+            assert not doc[0].get_images()
+    sizes=read(PUBLICATION_GATE/'PUBLICATION_SIZE_ASSUMPTIONS.json')
+    assert not sizes['journal_specific_height_confirmed'] and sizes['print_fit_is_review_only']
+    assert sizes['print_fit_min_at_8p5in_pt']>=7
+    before=read(PUBLICATION_GATE/'STARTING_STATE.json')
+    for p,h in before['immutable_hashes'].items():
+        assert sha(ROOT/p)==h
+    invariant=read(PUBLICATION_GATE/'PRINT_FIT_SCIENTIFIC_AND_VECTOR_QA.json')
+    assert all(r['values_exact'] and r['curves_exact']==18 and r['printed_cohort_z_cells']==21 for r in invariant)
