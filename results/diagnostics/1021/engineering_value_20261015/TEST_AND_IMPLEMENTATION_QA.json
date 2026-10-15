@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "tests": 18,
+  "failures": 0,
+  "errors": 0,
+  "compileall_exit_code": 0,
+  "source_protocol_commit": "d64cc2dd3a3ed9f733414a0dd32149bf9343d9d9",
+  "script_sha256": {
+    "analyze.py": "bd8651643153ae1e7425ffa6e95dc43ae4ff1a17ac9d1736f22d7e59a9adc524",
+    "common.py": "790e8f85c09438f26ccd92e5ca7d83992b64f16aa3f34a79cbedd34ba738ff35",
+    "extract_outcomes.py": "59d7d2590981c08b82409f43fdd85b6dea467d5623d078363fd1909a874137d1",
+    "summarize_followup.py": "fdb0d6c6ef54d65328578686611cc1194c6eb8ff2794b0f8cd551bb4a782adf9",
+    "test_followup.py": "bc2ffa07afda80693771266d3370343ee3973b6081376314f3e6e46930577678",
+    "verify_followup.py": "b0e3994be2d679bb7569f3230f3966330aed37b213428b9a3f178985c737c394"
+  },
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "matplotlib": "3.9.2",
+    "PyMuPDF": "1.28.0"
+  }
+}
