@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "unit_tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "baseline_commit": "b307e6deafc054864787a3db63ad95218be91659",
+  "protocol_commit": "e10957e0f96be5d80c1e7d4781a84e52afcb6d6b",
+  "implementation_commit_before_experiments": "0c344e7d8b5e8cc0f6cc073e1d8c2bcfdf8d785d",
+  "script_sha256": {
+    "independent_qa.py": "f99b5e610e73d47e2ccaa61b0ca10e3abd3c10cfd7aff49df927dabf220211a9",
+    "preflight.py": "60078dc52f86cb360ba4f22ae0254bd31a2e3055afdf4f5eb54f2798c1a9798f",
+    "summarize.py": "2bd0b03dfa092df73c6d1aeae3368cfc46af358790c86d2eb81454321d2a995a",
+    "test_validation.py": "5a4b5c88279b76d27ed4eac039fb7e7da4ea9ebdf0e6bb4ce64ec337ec03e4f7",
+    "validate.py": "6ceb0bdbffd32ca0a6bb3a75a25dc442b872da547c2d1d77480976c7f84e2bd5",
+    "verify_delivery.py": "851beac8d777a69693e2cbc577049a2e278c593fd29e9afc82ec8da86cec81e7"
+  },
+  "package_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "pandas": "2.2.2",
+    "geopandas": "1.1.1",
+    "matplotlib": "3.9.2",
+    "threadpoolctl": "3.5.0",
+    "pytest": "7.4.4",
+    "PyMuPDF": "1.28.0"
+  },
+  "compileall_exit_code": 0,
+  "git_diff_check_exit_code": 0,
+  "scope": "Only results/diagnostics/1021; no formal artifacts changed",
+  "numerical_replay": "17 core output payloads byte-identical across two complete registered executions"
+}

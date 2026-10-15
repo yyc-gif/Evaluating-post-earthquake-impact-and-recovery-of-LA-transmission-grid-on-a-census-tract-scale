@@ -52,3 +52,36 @@ def test_pca_rotation_preserves_distances():
     u = np.linalg.svd(x-x.mean(0), full_matrices=False)[2].T
     z = (x-x.mean(0)) @ u
     np.testing.assert_allclose(np.sum((x[0]-x[1])**2), np.sum((z[0]-z[1])**2))
+
+
+def test_frozen_feature_identity_and_weights():
+    from preflight import AUTH
+    a = np.load(AUTH / "preprocessing_and_labels.npz", allow_pickle=False)
+    assert a["weighted_matrix"].shape == (2299, 7)
+    np.testing.assert_allclose(a["budgets"], [1/9]*3+[1/6]*4)
+    rebuilt = (a["raw"]-a["raw"].mean(0))/a["raw"].std(0, ddof=0)*np.sqrt(a["budgets"])
+    np.testing.assert_allclose(rebuilt, a["weighted_matrix"], atol=1e-14)
+    assert sorted(np.bincount(a["K4_sensitivity_labels"])) == [37, 429, 616, 1217]
+
+
+def test_complete_registered_replication_counts():
+    import pandas as pd
+    from preflight import HERE
+    out = HERE / "outputs"
+    if not (out / "RUN_MANIFEST.json").exists():
+        import pytest
+        pytest.skip("Full experimental outputs not yet available")
+    assert len(pd.read_csv(out / "GAP_REPLICATES.csv")) == 2*64*8
+    assert len(pd.read_csv(out / "OBSERVED_INDICES.csv")) == 8*5
+    ps = pd.read_csv(out / "PREDICTION_STRENGTH_REPETITIONS.csv")
+    assert len(ps) == (50+20)*5*2 and ps.strength.notna().all()
+    boot = pd.read_csv(out / "BOOTSTRAP_CLUSTER_STABILITY.csv")
+    assert len(boot) == 100*sum(range(2, 7))*2
+
+
+def test_historical_membership_not_overwritten():
+    import json
+    from preflight import AUTH, HERE, sha
+    manifest = json.loads((HERE / "FROZEN_INPUT_REGISTRY.json").read_text())
+    for name, expected in manifest["frozen_payload_sha256"].items():
+        assert sha(AUTH / name) == expected

@@ -159,6 +159,11 @@ def run(pilot=False):
                                          "feature": name, "mean": vals.mean(), "median": np.median(vals),
                                          "p10": np.quantile(vals, .1), "p90": np.quantile(vals, .9),
                                          "min": vals.min(), "max": vals.max(),
+                                         "population_fraction": f.Population[mask].sum()/f.Population.sum(),
+                                         "median_tract_population": f.Population[mask].median(),
+                                         "Q1_fraction": np.mean(f.frozen_SOVI_quartile[mask] == "Q1"),
+                                         "Q2_fraction": np.mean(f.frozen_SOVI_quartile[mask] == "Q2"),
+                                         "Q3_fraction": np.mean(f.frozen_SOVI_quartile[mask] == "Q3"),
                                          "Q4_fraction": np.mean(f.frozen_SOVI_quartile[mask] == "Q4"),
                                          "zero_housing_tracts": int(f.additional_zero_housing_positive_population[mask].sum())})
             for j, name in enumerate(a["feature_names"]):
@@ -345,7 +350,7 @@ def run(pilot=False):
         "output_sha256": {p.name: sha(p) for p in sorted(out.iterdir()) if p.is_file() and p.name != "RUN_MANIFEST.json"},
         "no_physical_simulation_or_formal_output_changes": True,
     }
-    (out / "RUN_MANIFEST.json").write_text(json.dumps(manifest, indent=2)+"\n")
+    (out / "RUN_MANIFEST.json").write_text(json.dumps(manifest, indent=2)+"\n", newline="\n")
     print(json.dumps({"status": manifest["status"], "elapsed_s": elapsed, "Gap": gap_decisions}), flush=True)
 
 

@@ -74,5 +74,5 @@ if __name__ == "__main__":
     if result["source_status"]:
         renamed = SOURCE / "results/figure_review/PowerGridRestoration_Figures_20261014_YY_YL_MG.pdf"
         assert sha(renamed) == "ad31b9373a43ced979ad0bcb43ac03566f19e5b1ac3be42cae532901037a1616"
-    (HERE / "FROZEN_INPUT_REGISTRY.json").write_text(json.dumps(result, indent=2) + "\n")
+    (HERE / "FROZEN_INPUT_REGISTRY.json").write_text(json.dumps(result, indent=2) + "\n", newline="\n")
     print(json.dumps({k: v for k, v in result.items() if "payload" not in k}, indent=2))
