@@ -7,8 +7,6 @@ import io
 import json
 import re
 import sys
-import xml.etree.ElementTree as ET
-import zipfile
 
 import fitz
 import numpy as np
@@ -22,7 +20,8 @@ ROOT = u.ROOT
 BASE = '937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
 PB = 'docs/data_research/stage7_path_b_p2_integration_review_20261014/'
 REVIEW = 'local_elsevier_review_outputs/'
-AUTH = ROOT / 'results/stage7/P2_K3_2299'
+CAPTION_COMMIT = 'aecc9adadd04edc4c5f64de64f79ed4c34c1f69c'
+AUTH = ROOT / 'results/stage7/2026-10-14'
 DEST = ROOT / 'results/figure_review'
 QA = ROOT / 'docs/reproducibility/p2_final_adoption_20261014'
 GEN = 'src/la_grid/plotting/build_current_suite_p2.py'
@@ -34,9 +33,9 @@ ACTIVE = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' 
 SOURCES = {}
 
 
-def source(rel):
-    raw = u.payload(BASE, rel)
-    SOURCES[rel] = dict(commit=BASE, sha256=u.digest(raw), bytes=len(raw))
+def source(rel, commit=BASE):
+    raw = u.payload(commit, rel)
+    SOURCES[rel] = dict(commit=commit, sha256=u.digest(raw), bytes=len(raw))
     return raw
 
 
@@ -131,23 +130,16 @@ def adopt_authority():
     files = {p.name: u.sha(p)
              for p in Path(u.lp(AUTH)).iterdir() if p.is_file() and p.name != 'ARTIFACT_HASHES.json'}
     u.dump(AUTH/'ARTIFACT_HASHES.json', files)
-    u.dump(ROOT/'config/current_stage7.json', dict(version='P2_K3_2299',
-        authority='results/stage7/P2_K3_2299', primary_K=3, fitted_feature_count=7,
+    u.dump(ROOT/'config/current_stage7.json', dict(version='2026-10-14',
+        authority='results/stage7/2026-10-14', primary_K=3, fitted_feature_count=7,
         schema_sha256=u.sha(AUTH/'feature_schema_and_identity.json'), source_commit=BASE))
     return spec
 
 
 def captions():
-    raw = source(REVIEW+'Path_B_Figure_Captions_Checked.docx')
-    with zipfile.ZipFile(io.BytesIO(raw)) as z:
-        tree = ET.fromstring(z.read('word/document.xml'))
-    ns = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
-    paragraphs = [''.join(p.itertext()).strip() for p in tree.findall('.//w:p', ns)]
-    items = []
-    for i, text in enumerate(paragraphs):
-        if re.match(r'^(Figure [1-7]|Supplementary Figure S\d+)\.', text):
-            title = text.replace(' \u2014 Path B proposal', '').replace(' - Path B proposal', '')
-            items.append((title, paragraphs[i+1]))
+    text = source('results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md', CAPTION_COMMIT).decode('utf-8')
+    items = [(title.strip(), body.strip()) for title, body in
+             re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)', text, re.M | re.S)]
     assert len(items) == 17
     assert [int(x) for x in re.findall(r'^Supplementary Figure S(\d+)\.', '\n'.join(t for t,b in items), re.M)] == list(range(1,11))
     return items
@@ -228,36 +220,38 @@ def main():
             '\n\n'.join('## '+title+'\n\n'+body for title,body in caps)+'\n')
     packets(caps)
     u.dump(DEST/'CURRENT_CLUSTER_PALETTE.json', dict(figure_cluster_count=3, adopted_K=3,
-        model_version='P2_K3_2299', colors={str(i+1):c for i,c in enumerate(COLORS)}, class_labels=['C1','C2','C3'],
+        model_version='2026-10-14', colors={str(i+1):c for i,c in enumerate(COLORS)}, class_labels=['C1','C2','C3'],
         NA_fill='#FFFFFF', NA_outline='#777777', NA_outline_width_pt=.45, NA_count=16,
         membership_commit=BASE, membership_source=PB+'P2_FROZEN_MEMBERSHIPS.csv',
-        formal_Stage7_pipeline_migrated=True, primary_authority='results/stage7/P2_K3_2299'))
-    gallery = ['<!doctype html><meta charset="utf-8"><title>Current P2 figure suite</title>',
+        formal_Stage7_pipeline_migrated=True, primary_authority='results/stage7/2026-10-14'))
+    gallery = ['<!doctype html><meta charset="utf-8"><title>Figures - 2026-10-14</title>',
         '<style>body{font:16px Arial;max-width:1000px;margin:24px auto}img{width:100%;height:auto}section{margin:32px 0}</style>',
-        '<h1>Current seven-variable P2 figure suite</h1><p>Saved K3 primary; NCV14 is supplementary context only.</p>']
+        '<h1>Figures - 2026-10-14</h1><p>Three-class community typology; environmental-hazard analysis is supplementary context only.</p>']
     for stem,(title,body) in zip(ACTIVE,caps):
         row=next(r for r in manifest if r['final_name']==stem+'.png')
         gallery += [f'<section><h2>{u.escape(title)}</h2><img src="{Path(row["mirror_file"]).name}" alt="{u.escape(title)}">',
                     f'<p>{u.escape(body)}</p></section>']
     u.write(ROOT/'results/figures/FIGURE_REVIEW_GALLERY.html', '\n'.join(gallery))
-    info = ('# Current adopted P2 figure suite\n\nSeven-variable P2, saved K3 primary, 2,299 positive-population tracts '
+    info = ('# Figures - 2026-10-14\n\nSeven-variable model, saved K3 primary, 2,299 positive-population tracts '
         '(1,235 / 428 / 636), 9,066,522 residents. NCV14 is supplementary environmental context, not a fitted coordinate. '
         'K4 remains a sensitivity result, not a second primary model.\n\n17 numbered figures: Main 1-7 and Supplement 1-10. '
         'The compact combined packet has 21 pages: 17 native artwork-plus-concise-caption pages and four retained '
         'complementary-evidence pages. Figure 7 uses the approved color-family/continuous-burden map and direct Q4/P75 '
         'co-occurrence outlines; no composite hotspot score. The separate grayscale accessibility maps remain available '
-        'under local_elsevier_review_outputs/.\n\nReproduce: '
-        '`python src/la_grid/plotting/build_current_suite_k3.py --portable`. This now routes to P2 only. '
+        'under docs/figure_sources/2026-10-14/.\n\nReproduce: '
+        '`python src/la_grid/plotting/build_current_figures.py --portable`. This now routes to P2 only. '
         'Historical implementations are recoverable from Git history, not competing current builders. '
-        'No physical simulation or K-means is run. Current identity: results/stage7/P2_K3_2299/.\n')
+        'No physical simulation or K-means is run. Current identity: results/stage7/2026-10-14/.\n')
     for rel in ['results/figure_review/README.md','results/figures/README.md']:
         u.write(ROOT/rel, info)
     log = source('results/figure_review/UPDATE_LOG.md').decode()
-    u.write(DEST/'UPDATE_LOG.md', log+'\n\n## 2026-10-14 - author-adopted seven-variable P2\n\n'
+    u.write(DEST/'UPDATE_LOG.md', log+'\n\n## 2026-10-14 - current version\n\n'
         'Replaced Fig07 and FigS08 from the frozen P2 source; all other 15 numbered PDF/PNG pairs remain byte-identical. '
         'Updated concise captions, palettes, indexes, gallery, mirrors, previews and native packets. '
         'Saved K3 is primary; K4 is sensitivity and its stronger geographic agreement is disclosed. '
-        'Full service domain remains 2,315; no physical outputs or manuscript documents changed.\n')
+        'Full service domain remains 2,315; no physical outputs or manuscript documents changed. '
+        'The branch and current data directory use the date 2026-10-14; superseded presentation drafts '
+        'and per-run search archives are retained in Git history rather than the current tree.\n')
     u.dump(QA/'SOURCE_AUTHORITY_AND_HASHES.json', dict(source_commit=BASE, sources=SOURCES,
         adopted_specification=spec, author_authorization_date='2026-10-14'))
     outputs = [str(p.relative_to(ROOT)).replace('\\','/') for p in AUTH.iterdir() if p.is_file()]
@@ -275,7 +269,7 @@ def main():
         old=json.load(open(u.lp(prior),encoding='utf-8'))
         if old['generator_sha256']==u.sha(ROOT/GEN):
             assert old['output_hashes']==hashes, 'Non-idempotent current-suite replay'
-    u.dump(prior, dict(generator_sha256=u.sha(ROOT/GEN), routing_sha256=u.sha(ROOT/'src/la_grid/plotting/build_current_suite_k3.py'), output_hashes=hashes, model='P2',
+    u.dump(prior, dict(generator_sha256=u.sha(ROOT/GEN), routing_sha256=u.sha(ROOT/'src/la_grid/plotting/build_current_figures.py'), output_hashes=hashes, model='P2',
         numbered_figures=17, packet_pages=21, primary_K=3, fitted_feature_count=7))
     print('Adopted P2 authority and complete figure suite synchronized: 17 figures, 21 pages; no fits.')
 

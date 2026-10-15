@@ -4,6 +4,46 @@ __pycache__/
 *$py.class
 .pytest_cache/
 
+# Retired intermediate work is preserved in Git history, not in the current tree.
+/provenance/figure_review_history/**
+!/provenance/figure_review_history/candidate_v2.1/
+!/provenance/figure_review_history/candidate_v2.1/CROSS_HAZARD_POLICY_EFFECTS.csv
+/provenance/artwork_drafts/
+/docs/data_research/built_environment_20261009/
+/results/diagnostics/ga_optimization_20261009/*/
+/results/diagnostics/extended_ga_20261008/*/
+/results/diagnostics/ga_search_budget_20261007/*/
+/local_elsevier_review_outputs/previews/
+/local_elsevier_review_outputs/packet_previews/
+/local_elsevier_review_outputs/qa_checked/
+/local_elsevier_review_outputs/*.docx
+/local_elsevier_review_outputs/inputs/*.docx
+/local_elsevier_review_outputs/*.ps1
+/local_elsevier_review_outputs/ALL_FIGURES_WITH_CAPTIONS.pdf
+/local_elsevier_review_outputs/COLOR_GRAYSCALE_CVD_CONTACT_SHEET.png
+/local_elsevier_review_outputs/build_all_figures_with_captions.py
+/local_elsevier_review_outputs/prepare_review_documents.py
+/local_elsevier_review_outputs/render_document_pages.py
+/local_elsevier_review_outputs/
+/docs/meeting/*.docx
+/provenance/legacy_outputs/Submission_Package/
+/src/la_grid/plotting/apply_author_clarity_numbering_20261013.py
+/src/la_grid/plotting/apply_author_figure_details_20261012.py
+/src/la_grid/plotting/apply_coauthor_map_legend_feedback.py
+/src/la_grid/plotting/apply_minor_legend_feedback.py
+/src/la_grid/plotting/apply_review_terminology.py
+/src/la_grid/plotting/clarify_distribution_strategy_visibility.py
+/src/la_grid/plotting/clarify_outcome_measure_identity.py
+/src/la_grid/plotting/figure7_candidate_a.py
+/src/la_grid/plotting/finish_author_figure_suite_20261012.py
+/src/la_grid/plotting/integrate_final_s05_and_suite_review_20261012.py
+/src/la_grid/plotting/integrate_selected_strategy_20261008.py
+/src/la_grid/plotting/refine_supplement_assumptions_layout.py
+/src/la_grid/plotting/simplify_s05_figure_text_20261012.py
+/src/la_grid/plotting/update_coauthor_figure_index.py
+/src/la_grid/plotting/update_framework_figure.py
+/src/la_grid/plotting/update_s8_supported_geography.py
+
 # Local environments and package caches
 .venv/
 .uv-cache/
@@ -31,7 +71,7 @@ Sensitivity Output*/
 *audit*.csv
 *debug*.csv
 *sensitivity*.csv
-!results/stage7/P2_K3_2299/K4_sensitivity_membership.csv
+!results/stage7/2026-10-14/K4_sensitivity_membership.csv
 !Data/sensitivity_summary_2pc50.csv
 !Data/sensitivity_mapping_diagnostics.csv
 !Sensitivity Output_clean/

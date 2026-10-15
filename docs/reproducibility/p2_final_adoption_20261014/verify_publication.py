@@ -22,7 +22,7 @@ def record_test_results():
     assert suite is not None
     tests=int(suite.attrib['tests']);failed=int(suite.attrib['failures']);errors=int(suite.attrib['errors'])
     skipped=int(suite.attrib.get('skipped',0))
-    assert tests==41 and failed==errors==skipped==0
+    assert tests>=41 and failed==errors==skipped==0
     stage=json.loads((ROOT/'FINAL_REVISION_RUN_SEQUENCE/08_FINAL_STAGE7_TYPOLOGY/STAGE_VALIDATION_MANIFEST.json').read_text())
     assert stage['status']=='PASS_REUSE'
     u.dump(HERE/'TEST_RESULTS.json',dict(
@@ -68,7 +68,7 @@ def main():
             assert all(doc[0].rect.contains(fitz.Rect(s['bbox'])) for s in spans)
             assert min(s['size'] for s in spans)>=7.49
     changed=['src/la_grid/revision/current_stage7.py','src/la_grid/plotting/build_current_suite_p2.py',
-             'src/la_grid/plotting/build_current_suite_k3.py','tests/test_current_figure_suite_integration.py']
+             'src/la_grid/plotting/build_current_figures.py','tests/test_current_figure_suite_integration.py']
     for path in changed:ast.parse((ROOT/path).read_text(encoding='utf-8'))
     from la_grid.revision.current_stage7 import verify_current_stage7,verify_current_figures
     u.dump(HERE/'NUMERICAL_AND_PACKET_QA.json',dict(

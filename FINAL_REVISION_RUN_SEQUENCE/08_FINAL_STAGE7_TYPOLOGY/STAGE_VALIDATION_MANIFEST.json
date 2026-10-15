@@ -2,11 +2,11 @@
   "stage_id": "08",
   "stage_name": "08_FINAL_STAGE7_TYPOLOGY",
   "status": "PASS_REUSE",
-  "authority": "results/stage7/P2_K3_2299",
+  "authority": "results/stage7/2026-10-14",
   "inputs": {
     "stage7": {
       "status": "PASS_SAVED_P2_REUSE",
-      "authority": "results/stage7/P2_K3_2299",
+      "authority": "results/stage7/2026-10-14",
       "eligible_tracts": 2299,
       "full_domain_tracts": 2315,
       "population": 9066522,
@@ -32,21 +32,21 @@
   },
   "outputs": [
     {
-      "path": "results/stage7/P2_K3_2299/ARTIFACT_HASHES.json",
+      "path": "results/stage7/2026-10-14/ARTIFACT_HASHES.json",
       "sha256": "b7badff050821d419dee05478b9400f79e3c588a1c531a9af0c5a9dc439bbe5e"
     },
     {
       "path": "config/current_stage7.json",
-      "sha256": "221e9e43e58c3f898a5e9c7824cb41dad47162478588a0e6054a45b67385d2c9"
+      "sha256": "92084146cea2d4b52353fb3202dd88adcc3f8503782047d258696fd1749bad3f"
     }
   ],
   "output_hashes": {
-    "results/stage7/P2_K3_2299/ARTIFACT_HASHES.json": "b7badff050821d419dee05478b9400f79e3c588a1c531a9af0c5a9dc439bbe5e",
-    "config/current_stage7.json": "221e9e43e58c3f898a5e9c7824cb41dad47162478588a0e6054a45b67385d2c9"
+    "results/stage7/2026-10-14/ARTIFACT_HASHES.json": "b7badff050821d419dee05478b9400f79e3c588a1c531a9af0c5a9dc439bbe5e",
+    "config/current_stage7.json": "92084146cea2d4b52353fb3202dd88adcc3f8503782047d258696fd1749bad3f"
   },
   "reuse_source": "existing frozen Git/local/external archive; no scientific outputs regenerated",
   "code_identity": {
-    "current_validator_sha256": "0285b447a58630b7583b77d4d94b3abac57be91675a06f7c897c4f6bc53dc3d3",
+    "current_validator_sha256": "dc0b4c95309f666bbfd9c4ad3dce2abc39d898c8a597b1e978d10cf1e0d4c927",
     "historical_phase_identities_preserved": true
   },
   "scientific_generation_called": false

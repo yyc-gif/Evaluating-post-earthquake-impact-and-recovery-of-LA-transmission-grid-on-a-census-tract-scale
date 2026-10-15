@@ -17,7 +17,7 @@ from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
 SUITE=ROOT/'results/figure_review'
-AUTH=ROOT/'results/stage7/P2_K3_2299'
+AUTH=ROOT/'results/stage7/2026-10-14'
 QA=ROOT/'docs/reproducibility/p2_final_adoption_20261014'
 PB=ROOT/'docs/data_research/stage7_path_b_p2_integration_review_20261014'
 BASE='937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
@@ -42,7 +42,9 @@ def source(path):
     if not m:return blob
     oid=m[1].decode()
     common=Path(git('rev-parse','--path-format=absolute','--git-common-dir').decode().strip())
-    for candidate in [ROOT/path,common/'lfs/objects'/oid[:2]/oid[2:4]/oid]:
+    relocated=ROOT/path.replace('local_elsevier_review_outputs/','docs/figure_sources/2026-10-14/')
+    for candidate in [relocated,ROOT/path,common/'lfs/objects'/oid[:2]/oid[2:4]/oid]:
+        if os.name=='nt':candidate=Path('\\\\?\\'+str(candidate.resolve()))
         if candidate.is_file() and sha(candidate)==oid:
             data=candidate.read_bytes();assert len(data)==int(m[2]);return data
     raise AssertionError('Missing hash-bound source payload: '+path)
@@ -141,7 +143,7 @@ def test_active_cross_references_and_continuous_supplement_numbering():
 
 def test_sole_current_selector_is_p2_seven_variables():
     p=read(ROOT/'config/current_stage7.json');s=read(AUTH/'feature_schema_and_identity.json')
-    assert p['version']=='P2_K3_2299' and p['fitted_feature_count']==7
+    assert p['version']=='2026-10-14' and p['fitted_feature_count']==7
     assert s['feature_names']==FEATURES and s['primary_K']==3 and s['sensitivity_K']==4
     assert 'FEMA_NCV14_CA_v119' not in s['feature_names']
 
@@ -239,7 +241,7 @@ def test_joint94_screen_keeps_original_threshold_and_no_composite_score():
 
 def test_palette_ids_and_white_na_match_approved_registry():
     p=read(SUITE/'CURRENT_CLUSTER_PALETTE.json')
-    assert p['model_version']=='P2_K3_2299'
+    assert p['model_version']=='2026-10-14'
     assert p['colors']=={'1':'#147f98','2':'#d07734','3':'#7a5899'}
     assert p['NA_fill']=='#FFFFFF' and p['NA_count']==16 and p['NA_outline_width_pt']==.45
 
@@ -268,10 +270,10 @@ def test_k4_geographic_advantage_is_retained_as_sensitivity():
 
 
 def test_all_authority_artifacts_are_hash_verified():
-    tracked=set(git('ls-files','-z','results/stage7/P2_K3_2299').decode().split('\0'))
+    tracked=set(git('ls-files','-z','results/stage7/2026-10-14').decode().split('\0'))
     for path,h in read(AUTH/'ARTIFACT_HASHES.json').items():
         assert sha(AUTH/path)==h
-        assert 'results/stage7/P2_K3_2299/'+path in tracked
+        assert 'results/stage7/2026-10-14/'+path in tracked
     from la_grid.revision.current_stage7 import verify_current_stage7
     assert verify_current_stage7(ROOT)['status']=='PASS_SAVED_P2_REUSE'
 
@@ -285,7 +287,7 @@ def test_frozen_physical_scenario_and_five_policy_design():
 
 def test_current_entrypoint_routes_only_to_adopted_p2():
     import ast
-    path=ROOT/'src/la_grid/plotting/build_current_suite_k3.py'
+    path=ROOT/'src/la_grid/plotting/build_current_figures.py'
     tree=ast.parse(path.read_text(encoding='utf-8'));main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
     assert 'build_current_suite_p2' in ast.unparse(main)
     code=(ROOT/'src/la_grid/plotting/build_current_suite_p2.py').read_text(encoding='utf-8')
@@ -309,7 +311,7 @@ def test_current_gallery_index_and_manifest_are_synchronized():
 
 def test_current_readme_and_citation_identify_one_final_model():
     text=(ROOT/'README.md').read_text(encoding='utf-8')
-    assert 'publication/p2-seven-variable' in text and '**seven-variable P2 / saved K3**' in text
+    assert '2026-10-14' in text and '## Version 2026-10-14' in text
     assert 'Marta C.' in text and 'MIT License' in (ROOT/'LICENSE').read_text()
     assert 'Post-Earthquake Power Service Recovery in Los Angeles' in (ROOT/'CITATION.cff').read_text(encoding='utf-8')
 
@@ -318,8 +320,8 @@ def test_stage8_read_only_validator_routes_to_adopted_authority():
     path=ROOT/'FINAL_REVISION_RUN_SEQUENCE/run_all.py'
     spec=importlib.util.spec_from_file_location('current_resume_validator',path)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    assert module.EXPECTED_BRANCH=='publication/p2-seven-variable'
-    assert module.validate_stage7()['authority']=='results/stage7/P2_K3_2299'
+    assert module.EXPECTED_BRANCH=='2026-10-14'
+    assert module.validate_stage7()['authority']=='results/stage7/2026-10-14'
 
 
 def test_all_retired_tip_commits_remain_reachable():
@@ -353,3 +355,30 @@ def test_old_composite_and_stage7_render_defaults_cannot_restore_obsolete_figure
         tree=ast.parse((ROOT/'src/la_grid/plotting'/name).read_text(encoding='utf-8'))
         node=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
         assert 'build_current_suite_p2' in ast.unparse(node)
+
+
+def test_version_names_are_dates_not_feature_specification_names():
+    p=read(ROOT/'config/current_stage7.json')
+    assert p['version']=='2026-10-14' and p['authority']=='results/stage7/2026-10-14'
+    assert 'git clone --branch 2026-10-14 ' in (ROOT/'README.md').read_text(encoding='utf-8')
+    assert not (ROOT/'src/la_grid/plotting/build_current_suite_k3.py').exists()
+    assert (ROOT/'src/la_grid/plotting/build_current_figures.py').is_file()
+
+
+def test_current_tree_excludes_retired_drafts_and_run_level_archives():
+    tracked=set(git('ls-files','-z').decode().split('\0'))
+    assert not any(p.endswith(('.doc','.docx')) for p in tracked)
+    assert not any(p.startswith(('provenance/artwork_drafts/', 'local_elsevier_review_outputs/',
+                                'docs/data_research/built_environment_20261009/')) for p in tracked)
+    old=[p for p in tracked if p.startswith('provenance/figure_review_history/')]
+    assert old==['provenance/figure_review_history/candidate_v2.1/CROSS_HAZARD_POLICY_EFFECTS.csv']
+    for folder in ['ga_optimization_20261009','extended_ga_20261008','ga_search_budget_20261007']:
+        assert not any(p.startswith('results/diagnostics/'+folder+'/') and len(p.split('/'))>4 for p in tracked)
+
+
+def test_caption_replay_no_longer_depends_on_editable_word_drafts():
+    spec=importlib.util.spec_from_file_location('dated_figure_builder',ROOT/'src/la_grid/plotting/build_current_suite_p2.py')
+    sys.path.insert(0,str(ROOT/'src/la_grid/plotting'))
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    current=dict(re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)',caps(),re.M|re.S))
+    assert module.captions()==[(title,body.strip()) for title,body in current.items()]

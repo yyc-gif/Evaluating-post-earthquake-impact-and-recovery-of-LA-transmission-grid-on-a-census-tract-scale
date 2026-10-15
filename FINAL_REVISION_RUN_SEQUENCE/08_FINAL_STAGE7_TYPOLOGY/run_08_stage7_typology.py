@@ -7,7 +7,7 @@ Scientific implementation:
     Existing authority modules under src/la_grid/; this entrypoint performs validation/reuse only.
 
 Primary inputs:
-    results/stage7/P2_K3_2299 and config/current_stage7.json
+    results/stage7/2026-10-14 and config/current_stage7.json
 
 Primary outputs:
     Stage 8 output hash manifest and stage validation manifest

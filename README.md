@@ -4,65 +4,51 @@
 
 **Repository maintainers:** Yinchen Yi and Yutong Li.
 
-Code, necessary data, frozen numerical results and publication figures for the associated study. The current branch is **`publication/p2-seven-variable`**. `main` is retained unchanged as historical work; all other research branches are consolidated in [BRANCH_HISTORY_SUMMARY.md](BRANCH_HISTORY_SUMMARY.md).
+## Version 2026-10-14
 
-## Adopted Community Typology
+Code, necessary inputs, retained results and publication figures for the paper. The current version is the **`2026-10-14`** branch; `main` is retained unchanged for historical reference.
 
-The sole primary specification is **seven-variable P2 / saved K3**, with 2,299 positive-population tracts, including eight zero-housing tracts. The 16 zero-population tracts are N/A for clustering; all 2,315 tracts remain in the service model. K4 is retained only as disclosed sensitivity evidence, not a competing primary classification.
+The adopted community typology uses seven variables and three classes: initial supply, spectral grid impact, dependency HHI, Unconstrained deficit, five-policy MeanDelta, SOVI and log population. It covers 2,299 positive-population tracts, including eight zero-housing tracts. All 2,315 tracts remain in the service model. K4 is sensitivity evidence only; NCV14 is supplementary environmental context, not a clustering coordinate. This is a graph-based service-recovery workflow, not electrical power-flow analysis.
 
-- RQ1: `Init_Supply`, spectral `Grid_Impact`, `Redundancy_HHI`.
-- RQ2: `B_Unconstrained`, five-policy `MeanDelta`.
-- RQ3: FEMA `SOVI_SCORE`, `log1p(Population)`.
+## Install
 
-The frozen authority is [results/stage7/P2_K3_2299/](results/stage7/P2_K3_2299/); [config/current_stage7.json](config/current_stage7.json) selects it. NCV14 is supplementary environmental-hazard context, **not** a fitted coordinate. This is a graph-based service-recovery workflow, not an electrical power-flow model.
-
-## Installation
-
-Python 3.12 and Git LFS are required:
+Python 3.12 and Git LFS:
 
 ```bash
-git clone --branch publication/p2-seven-variable https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale.git
+git clone --branch 2026-10-14 https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale.git
 cd Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale
 git lfs install
 git lfs pull
 python -m pip install -r requirements.txt
 ```
 
-## Validate and Reproduce
-
-Validate the adopted saved typology, without fitting or running simulations:
+## Check and Build
 
 ```bash
 python src/la_grid/revision/current_stage7.py --verify
-python FINAL_REVISION_RUN_SEQUENCE/08_FINAL_STAGE7_TYPOLOGY/run_08_stage7_typology.py --resume
-```
-
-Rebuild the current 17-figure suite, concise captions, mirrors, gallery and 21-page combined packet:
-
-```bash
-python src/la_grid/plotting/build_current_suite_k3.py --portable
+python src/la_grid/plotting/build_current_figures.py --portable
 python -m pytest tests/test_current_figure_suite_integration.py -q
 ```
 
-Start with [ALL_FIGURES_WITH_CAPTIONS.pdf](results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf) or the [figure gallery](results/figures/FIGURE_REVIEW_GALLERY.html). Figure 7 uses the saved P2/K3 memberships and the approved continuous five-policy burden / frozen vulnerability-quartile display. No composite hotspot score is calculated.
+These commands reuse frozen results; they do not fit clusters or run simulations. The [combined figures and short captions](results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf) contain 17 numbered figures and four retained evidence pages, 21 pages total. A [figure gallery](results/figures/FIGURE_REVIEW_GALLERY.html) is also available.
 
-The historical full workflow remains under `FINAL_REVISION_RUN_SEQUENCE/`; Stages 1-7 and 9 still rely on their frozen original inputs and manifest-bound external archives. Full clean-room physical simulation reproduction is not newly certified by this consolidation. Current commands reuse saved results and do not run Monte Carlo, scheduling, GA or K-means.
+## Files
 
-## Contents
+| Path | Contents |
+| --- | --- |
+| `src/la_grid/` | Calculation, verification and figure code |
+| `Data/` | Input data and source notes |
+| `Formal_Experiment_20260923/` | Frozen experiment records and retained numerical outputs |
+| `results/stage7/2026-10-14/` | Current feature table, saved memberships and checksums |
+| `results/figure_review/` | Current figures, captions and combined PDF |
+| `results/figures/` | Matching artwork copies, index and gallery |
+| `FINAL_REVISION_RUN_SEQUENCE/` | Stage commands and original archive requirements |
+| `docs/` | Data provenance, necessary source audits and verification records |
 
-```text
-config/current_stage7.json        Sole current typology selector
-results/stage7/P2_K3_2299/         Seven-feature authority and saved memberships
-results/figure_review/            Current 17 figures and concise combined packet
-results/figures/                  Byte-identical mirrors, index and gallery
-src/la_grid/                     Scientific, verification and figure-production code
-Data/                            Frozen inputs; third-party terms still apply
-docs/                            Source documentation and historical diagnostics
-BRANCH_HISTORY_SUMMARY.md         One register of retired branch decisions and recovery
-```
+The original full workflow requires manifest-bound external archives and has not been newly certified on an empty machine. See [the run sequence](FINAL_REVISION_RUN_SEQUENCE/00_README.md). Historical drafts and repeated search outputs are no longer part of the current tree; their commits and recovery are recorded in [BRANCH_HISTORY_SUMMARY.md](BRANCH_HISTORY_SUMMARY.md). See [the cleanup record](docs/REPOSITORY_ORGANIZATION.md) for the current scope.
 
 ## Data, License and Citation
 
-See [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) and `Data/README.md` for provenance and third-party terms. The [MIT License](LICENSE) covers original repository code only; government, OSM, Census, USGS, FEMA, CEC, CDC and HIFLD data are not automatically relicensed. Cite this fixed commit or a subsequently archived release together with the associated paper using [CITATION.cff](CITATION.cff). No DOI is asserted before one is issued.
+See [data sources and terms](docs/DATA_SOURCES.md) and [input notes](Data/README.md). The [MIT License](LICENSE) covers original code only, not third-party data. Cite this fixed version together with the associated paper using [CITATION.cff](CITATION.cff); no DOI is claimed before one is issued.
 
-**Contact:** Yinchen Yi or Yutong Li through the repository's GitHub issues.
+**Contact:** Yinchen Yi or Yutong Li through GitHub issues.

@@ -58,7 +58,7 @@ def brief_caption_page(heading, body, width):
 
 def main():
     checkpoint=QA/'BUILD_CHECKPOINT.json'
-    routing='src/la_grid/plotting/build_current_suite_k3.py'
+    routing='src/la_grid/plotting/build_current_figures.py'
     if checkpoint.exists() and '--rebuild' not in sys.argv:
         q=json.load(open(u.lp(checkpoint)))
         if q['generator_sha256']==u.sha(ROOT/GEN) and q['routing_sha256']==u.sha(ROOT/routing) and all(

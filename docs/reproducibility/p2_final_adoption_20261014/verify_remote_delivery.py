@@ -11,7 +11,7 @@ import time
 ROOT=Path(__file__).resolve().parents[3]
 HERE=Path(__file__).resolve().parent
 BASE='937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
-BRANCH='publication/p2-seven-variable'
+BRANCH='2026-10-14'
 
 
 def git(*args):
@@ -31,7 +31,7 @@ def main():
     head=git('rev-parse','HEAD').decode().strip()
     remote=lambda:git('ls-remote','origin','refs/heads/'+BRANCH).decode().split()[0]
     assert remote()==head
-    paths=git('diff','--name-only',BASE,head).decode().splitlines()
+    paths=git('diff','--diff-filter=ACMR','--name-only',BASE,head).decode().splitlines()
     records=[]
     for path in paths:
         if not (ROOT/path).is_file():continue

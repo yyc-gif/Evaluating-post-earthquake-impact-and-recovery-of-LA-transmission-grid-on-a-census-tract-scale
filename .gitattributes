@@ -33,7 +33,7 @@ results/diagnostics/final_ga_method_20261009/*.json -text
 results/diagnostics/final_ga_method_20261009/SELECTED_SEQUENCE.txt text eol=lf
 
 # Keep figure-only byte-check registries stable across Windows and other clones.
-src/la_grid/plotting/build_current_suite_k3.py text eol=lf
+src/la_grid/plotting/build_current_figures.py text eol=lf
 tests/test_current_figure_suite_integration.py text eol=lf
 results/figure_review/CURRENT_CLUSTER_PALETTE.json text eol=lf
 results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md text eol=lf
@@ -85,11 +85,16 @@ local_elsevier_review_outputs/** -text
 local_elsevier_review_outputs/*.docx filter=lfs diff=lfs merge=lfs -text
 local_elsevier_review_outputs/inputs/*.docx filter=lfs diff=lfs merge=lfs -text
 
-results/stage7/P2_K3_2299/*.npz filter=lfs diff=lfs merge=lfs -text
-results/stage7/P2_K3_2299/*.gpkg filter=lfs diff=lfs merge=lfs -text
-results/stage7/P2_K3_2299/*.json text eol=lf
+results/stage7/2026-10-14/*.npz filter=lfs diff=lfs merge=lfs -text
+results/stage7/2026-10-14/*.gpkg filter=lfs diff=lfs merge=lfs -text
+results/stage7/2026-10-14/*.json text eol=lf
 config/current_stage7.json text eol=lf
 src/la_grid/plotting/build_current_suite_p2.py text eol=lf
 src/la_grid/revision/current_stage7.py text eol=lf
 docs/reproducibility/p2_final_adoption_20261014/** -text
 BRANCH_HISTORY_SUMMARY.md text eol=lf
+Data/README.md text eol=lf
+docs/REPOSITORY_ORGANIZATION.md text eol=lf
+docs/reproducibility/2026-10-14/** text eol=lf
+docs/figure_sources/2026-10-14/** -text
+docs/figure_sources/2026-10-14/README.md text eol=lf

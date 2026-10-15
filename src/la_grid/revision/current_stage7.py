@@ -15,7 +15,7 @@ BUDGETS = np.array([1/9,1/9,1/9,1/6,1/6,1/6,1/6])
 def verify_current_stage7(root=None):
     root = Path(root) if root else Path(__file__).resolve().parents[3]
     pointer = json.loads((root/'config/current_stage7.json').read_text(encoding='utf-8'))
-    assert pointer['version']=='P2_K3_2299' and pointer['fitted_feature_count']==7
+    assert pointer['version']=='2026-10-14' and pointer['fitted_feature_count']==7
     authority = root/pointer['authority']
     hashes = json.loads((authority/'ARTIFACT_HASHES.json').read_text(encoding='utf-8'))
     for name, expected in hashes.items():

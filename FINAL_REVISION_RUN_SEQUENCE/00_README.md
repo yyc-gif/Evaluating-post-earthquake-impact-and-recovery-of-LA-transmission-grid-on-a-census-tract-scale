@@ -1,6 +1,6 @@
 # Final revised-paper workflow
 
-Current branch: `publication/p2-seven-variable`. Stage 08 now uses the adopted seven-variable P2/K3 authority in `results/stage7/P2_K3_2299/`; K4 is sensitivity only. The current figure suite has 17 numbered figures and a 21-page concise packet. Full-workflow validation still requires the original manifest-bound external archives; this consolidation does not newly certify an empty-machine physical rerun.
+Current branch: `2026-10-14`. Stage 08 now uses the adopted seven-variable P2/K3 authority in `results/stage7/2026-10-14/`; K4 is sensitivity only. The current figure suite has 17 numbered figures and a 21-page concise packet. Full-workflow validation still requires the original manifest-bound external archives; this consolidation does not newly certify an empty-machine physical rerun.
 
 The historical PASS rows below refer to the previously frozen workflow. This consolidation rechecks the current P2 Stage 08 and figure authority, not a new full physical run. `FINAL_RUN_MANIFEST.json` makes that distinction explicit and points to the original full-run record in Git history.
 

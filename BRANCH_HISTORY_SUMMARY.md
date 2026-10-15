@@ -1,6 +1,6 @@
 # Branch Consolidation and Final Scientific Authority
 
-The author adopted the seven-variable P2 model on 2026-10-14. The sole current branch is `publication/p2-seven-variable`; `main` is preserved unchanged at `8525954d943efe9f06c98c51f218568077788b9b`.
+The author adopted the seven-variable P2 model on 2026-10-14. The sole current branch is `2026-10-14`; `main` is preserved unchanged at `8525954d943efe9f06c98c51f218568077788b9b`. The former descriptive branch name `publication/p2-seven-variable` was replaced by this date at the author's request. The model itself is unchanged.
 
 ## Final Specification
 

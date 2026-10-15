@@ -31,7 +31,7 @@ STAGES = [
     ("09", "09_CAPACITY_ROBUSTNESS"),
     ("10", "10_FINAL_RESULTS_AND_FIGURES"),
 ]
-EXPECTED_BRANCH = "publication/p2-seven-variable"
+EXPECTED_BRANCH = "2026-10-14"
 EXPECTED_BASE_COMMIT = "2d54e737ebf3b010507b6186dcbf00a37ef0602c"
 PROTECTED_SHA = "182686868cffe962739804f6bc0ccecaed73d601"
 
@@ -654,7 +654,7 @@ def stage_outputs(stage_id, registry):
         "05":["Formal_Experiment_20260923/Formal_Offline_Evaluation/FORMAL_OFFLINE_INDEX.json","Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json","Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json"],
         "06":["results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv","Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json","Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json"],
         "07":["Formal_Experiment_20260923/Equity_Amendment/EQUITY_POLICY_AMENDMENT.json","Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json"],
-        "08":["results/stage7/P2_K3_2299/ARTIFACT_HASHES.json","config/current_stage7.json"],
+        "08":["results/stage7/2026-10-14/ARTIFACT_HASHES.json","config/current_stage7.json"],
         "09":["FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json"],
     }
     out=[]
