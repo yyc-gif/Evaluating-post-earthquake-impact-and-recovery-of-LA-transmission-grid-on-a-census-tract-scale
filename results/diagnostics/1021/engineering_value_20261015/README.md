@@ -65,6 +65,9 @@ a MEAN curve, not the realization-median threshold time used here.
   test denominators. PAIRED_MAE_COMPARISONS.csv retains every paired contrast;
   the summary records the fraction reaching the preregistered notable margin.
 - SIMPLE_BENCHMARK_CUTS.csv: training-only cuts, including any collapsed ties.
+  Q2/Q3/Q4 benchmark prefixes mean two/three/four comparison bins, not the
+  original vulnerability-quartile identities. No frozen Q1-Q4 group or
+  Vulnerability-first repair priority was recomputed or reassigned.
 - SUBSAMPLING_RECOVERY_PROFILE_CHANGES.csv and the engineering contrast tables:
   all outcomes/classes/repetitions, not just favorable profile contrasts.
 
