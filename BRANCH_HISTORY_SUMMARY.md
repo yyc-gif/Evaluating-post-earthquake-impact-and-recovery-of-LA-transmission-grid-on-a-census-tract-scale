@@ -170,4 +170,6 @@ To recover a historical line: `git branch recovered/<name> <full commit from tab
 
 ## Main Identity Clarification
 
+One historical CGS LFS revision existed only on the already configured collaborator remote, not origin. Its exact 211,408,753-byte payload was recovered and SHA256-verified as `0721b63f152865a88196e4a4cb65519063622dc02ecb6f3adc2fdee286e3f374` before completing the consolidation push. The current frozen CGS input was not replaced or recomputed. No incomplete-push override was used.
+
 The unchanged remote `main` tip is dated 2026-09-12 and titled "revision: add IJDRR paired pilot evidence". The separate historical July-submission tip `182686868cffe962739804f6bc0ccecaed73d601` is recorded above and remains recoverable. The author-requested preservation of `main` means its actual existing bytes/history are kept; it is not reset to a different July commit.

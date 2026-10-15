@@ -268,7 +268,10 @@ def test_k4_geographic_advantage_is_retained_as_sensitivity():
 
 
 def test_all_authority_artifacts_are_hash_verified():
-    for path,h in read(AUTH/'ARTIFACT_HASHES.json').items():assert sha(AUTH/path)==h
+    tracked=set(git('ls-files','-z','results/stage7/P2_K3_2299').decode().split('\0'))
+    for path,h in read(AUTH/'ARTIFACT_HASHES.json').items():
+        assert sha(AUTH/path)==h
+        assert 'results/stage7/P2_K3_2299/'+path in tracked
     from la_grid.revision.current_stage7 import verify_current_stage7
     assert verify_current_stage7(ROOT)['status']=='PASS_SAVED_P2_REUSE'
 

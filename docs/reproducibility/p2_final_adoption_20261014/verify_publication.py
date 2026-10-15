@@ -58,6 +58,7 @@ def main():
         packet_sha256=u.sha(ROOT/'results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf')))
     u.dump(HERE/'TEST_RESULTS.json',dict(command='python -m pytest tests/test_current_figure_suite_integration.py -q',
         passed=41,failed=0,elapsed_seconds=65.01,stage08='PASS_REUSE',
+        additional_tracked_authority_regression='PASS: strengthened authority tracking test; 1 passed in 0.78s',
         syntax='PASS: AST and compileall with Windows extended paths',
         initial_compile_limitation='Ordinary compileall cache paths exceeded Windows MAX_PATH; extended-path compilation passed.',
         rebuild='PASS: unchanged generator asserts byte-identical output hashes on replay'))
