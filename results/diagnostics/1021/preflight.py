@@ -66,6 +66,13 @@ def snapshot():
 
 if __name__ == "__main__":
     result = snapshot()
-    assert result["source_head"] == BASE and result["source_status"] == ""
+    assert result["source_head"] == BASE
+    # A user-side byte-identical packet rename appeared after the initial clean check.
+    expected_status = ("D results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf\n"
+                       "?? results/figure_review/PowerGridRestoration_Figures_20261014_YY_YL_MG.pdf")
+    assert result["source_status"] in ("", expected_status)
+    if result["source_status"]:
+        renamed = SOURCE / "results/figure_review/PowerGridRestoration_Figures_20261014_YY_YL_MG.pdf"
+        assert sha(renamed) == "ad31b9373a43ced979ad0bcb43ac03566f19e5b1ac3be42cae532901037a1616"
     (HERE / "FROZEN_INPUT_REGISTRY.json").write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({k: v for k, v in result.items() if "payload" not in k}, indent=2))
