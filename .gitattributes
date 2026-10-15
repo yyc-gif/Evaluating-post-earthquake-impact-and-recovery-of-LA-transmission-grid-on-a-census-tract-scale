@@ -84,3 +84,12 @@ docs/reproducibility/figure_suite_author_clarity_numbering_20261013/source_contr
 local_elsevier_review_outputs/** -text
 local_elsevier_review_outputs/*.docx filter=lfs diff=lfs merge=lfs -text
 local_elsevier_review_outputs/inputs/*.docx filter=lfs diff=lfs merge=lfs -text
+
+results/stage7/P2_K3_2299/*.npz filter=lfs diff=lfs merge=lfs -text
+results/stage7/P2_K3_2299/*.gpkg filter=lfs diff=lfs merge=lfs -text
+results/stage7/P2_K3_2299/*.json text eol=lf
+config/current_stage7.json text eol=lf
+src/la_grid/plotting/build_current_suite_p2.py text eol=lf
+src/la_grid/revision/current_stage7.py text eol=lf
+docs/reproducibility/p2_final_adoption_20261014/** -text
+BRANCH_HISTORY_SUMMARY.md text eol=lf

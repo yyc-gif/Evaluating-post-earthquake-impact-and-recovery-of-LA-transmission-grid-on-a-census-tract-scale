@@ -31,7 +31,7 @@ STAGES = [
     ("09", "09_CAPACITY_ROBUSTNESS"),
     ("10", "10_FINAL_RESULTS_AND_FIGURES"),
 ]
-EXPECTED_BRANCH = "revision/reviewer-driven-core-rebuild-v2"
+EXPECTED_BRANCH = "publication/p2-seven-variable"
 EXPECTED_BASE_COMMIT = "2d54e737ebf3b010507b6186dcbf00a37ef0602c"
 PROTECTED_SHA = "182686868cffe962739804f6bc0ccecaed73d601"
 
@@ -440,6 +440,13 @@ def validate_strategy_registry():
 
 
 def validate_stage7():
+    """Verify the author-adopted P2 authority; never fit historical typologies."""
+    sys.path.insert(0, str(ROOT / "src"))
+    from la_grid.revision.current_stage7 import verify_current_stage7
+    return verify_current_stage7(ROOT)
+
+
+def validate_stage7_historical():
     output_dir = repo_path("Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized")
     root = repo_path("Formal_Experiment_20260923")
     if not output_dir.is_dir():
@@ -483,6 +490,12 @@ def validate_formal_result_authorities():
 
 
 def validate_final_figures():
+    sys.path.insert(0, str(ROOT / "src"))
+    from la_grid.revision.current_stage7 import verify_current_figures
+    return verify_current_figures(ROOT)
+
+
+def validate_final_figures_historical():
     figure_dir=repo_path("results/figures")
     require_dir(figure_dir)
     # Stage 10 has already validated this registered external archive and its
@@ -564,6 +577,8 @@ def validate_final_figures():
     return {"file_count":len(included),"inventory_rows":len(rows),"figure_hashes":hashes,"source_authority_hashes":source_checks,"index_sha256":sha256(index_path),"unique_content_count":len(seen_hashes),"byte_identical_copy_count":duplicate_files}
 
 def validate_suite(item):
+    if (ROOT / "config/current_stage7.json").is_file():
+        return validate_final_figures()
     path=archive_path(item)
     # The suite manifest path is external, so verify its hash directly against the frozen registry.
     manifest=path/"RESULT_SUITE_MANIFEST.csv"; require_file(manifest)
@@ -639,7 +654,7 @@ def stage_outputs(stage_id, registry):
         "05":["Formal_Experiment_20260923/Formal_Offline_Evaluation/FORMAL_OFFLINE_INDEX.json","Formal_Experiment_20260923/Formal_Results/FORMAL_RESULTS_INDEX.json","Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json"],
         "06":["results/diagnostics/SOURCE_TERMINAL_STATION_RELIABILITY_2PC50.csv","Formal_Experiment_20260923/Formal_Dynamic_Topology/FORMAL_DYNAMIC_TOPOLOGY_INDEX.json","Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json"],
         "07":["Formal_Experiment_20260923/Equity_Amendment/EQUITY_POLICY_AMENDMENT.json","Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_RESULTS_INDEX.json"],
-        "08":["FINAL_REVISION_RUN_SEQUENCE/08_FINAL_STAGE7_TYPOLOGY/STAGE8_OUTPUT_HASHES.json"],
+        "08":["results/stage7/P2_K3_2299/ARTIFACT_HASHES.json","config/current_stage7.json"],
         "09":["FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/STAGE9_OUTPUT_HASHES.json"],
     }
     out=[]
@@ -652,7 +667,7 @@ def stage_outputs(stage_id, registry):
         out.extend({"path":"results/figures/"+row["file"],"sha256":row["sha256_or_lfs_oid"].removeprefix("sha256:")} for row in figure_rows if row["include_in_final_figure_collection"].strip().lower()=="true")
         out.append({"path":"results/figures/FIGURE_INDEX.csv","sha256":sha256(index_path)})
         out.append({"path":"results/figures/README.md","sha256":sha256(repo_path("results/figures/README.md"))})
-    artifact_ids={"04":["formal_trajectories","vulnerability_first_trajectories"],"05":["formal_offline_shards","equity_offline_shards"],"06":["dynamic_topology_archive","connectivity_state_cache"],"10":["revised_suite"]}.get(stage_id,[])
+    artifact_ids={"04":["formal_trajectories","vulnerability_first_trajectories"],"05":["formal_offline_shards","equity_offline_shards"],"06":["dynamic_topology_archive","connectivity_state_cache"]}.get(stage_id,[])
     byid={x["artifact_id"]:x for x in read_json(HERE/"EXTERNAL_ARCHIVE_MANIFEST.json")["artifacts"]}
     for aid in artifact_ids:
         item=byid[aid]

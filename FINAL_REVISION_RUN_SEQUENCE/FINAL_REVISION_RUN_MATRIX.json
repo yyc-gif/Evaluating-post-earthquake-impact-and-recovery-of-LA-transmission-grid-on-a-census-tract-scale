@@ -13,10 +13,6 @@
       "sequence": "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_FIRST_SEQUENCE.json",
       "status": "accepted frozen strategy added after parent matrix freeze"
     },
-    "final_stage7_sovi_harmonization": {
-      "authority": "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized",
-      "social_vulnerability_field": "FEMA NRI v1.19 SOVI_SCORE"
-    },
     "capacity_robustness": {
       "authority_commit": "2d54e737ebf3b010507b6186dcbf00a37ef0602c",
       "entrypoint": "src/la_grid/revision/capacity/sce_capacity_closure.py",
@@ -47,6 +43,18 @@
     "source_network_diagnostics": {
       "authority": "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_CONNECTIVITY_STATE_IDENTITY.json",
       "role": "supporting diagnostics; production source gate unchanged"
+    },
+    "historical_stage7_sovi_harmonization": {
+      "authority": "Formal_Experiment_20260923/Stage 7 Output_SOVI_Harmonized",
+      "social_vulnerability_field": "FEMA NRI v1.19 SOVI_SCORE"
+    },
+    "adopted_stage7_P2": {
+      "authority": "results/stage7/P2_K3_2299",
+      "selector": "config/current_stage7.json",
+      "variables": 7,
+      "primary_K": 3,
+      "sensitivity_K": 4,
+      "author_adoption_date": "2026-10-14"
     }
   },
   "final_reporting_view": {
@@ -130,7 +138,7 @@
       "M1 utility-compatible production",
       "M1 cutoff sensitivity: no cutoff, 1%, 3%"
     ],
-    "tract_effects": "continuous paired burden differences; no \u00c2\u00b11 h classification"
+    "tract_effects": "continuous paired burden differences; no Â±1 h classification"
   },
   "stage_authorities": {
     "01": "FINAL_EXECUTION_VALIDATION.json",
@@ -140,9 +148,9 @@
     "05": "formal offline/results indexes and accepted equity outputs",
     "06": "retained source/network diagnostic identities and tables",
     "07": "Equity Amendment final distributional results",
-    "08": "Stage 7 Output_SOVI_Harmonized",
+    "08": "results/stage7/P2_K3_2299",
     "09": "Original capacity closure provenance plus evidence-supported geographic post-processing in results/capacity/SCE_SUPPORTED_GEOGRAPHY",
-    "10": "Current complete Fig01\u2013Fig07, combined FigS01 and FigS03\u2013FigS13; results/figures/FIGURE_INDEX.csv; complete author packet results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf"
+    "10": "Current complete Fig01–Fig07, combined FigS01 and FigS03–FigS13; results/figures/FIGURE_INDEX.csv; complete author packet results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf"
   },
   "execution_modes": {
     "resume": "authoritative validate/reuse only",

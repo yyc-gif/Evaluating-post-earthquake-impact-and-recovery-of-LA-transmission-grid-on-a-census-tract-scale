@@ -1,0 +1,22 @@
+name: Current seven-variable P2
+on: [push, pull_request]
+jobs:
+  verify-frozen-authority-and-figures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve only compact current verification inputs
+        run: |
+          git lfs install
+          git lfs pull --include="results/stage7/P2_K3_2299/**,results/figure_review/**,results/figures/**,docs/reproducibility/p2_final_adoption_20261014/**,docs/data_research/stage7_path_b_p2_integration_review_20261014/**,local_elsevier_review_outputs/**"
+      - name: Install verification dependencies
+        run: python -m pip install numpy==1.26.4 pandas==2.2.2 Pillow==10.4.0 PyMuPDF==1.28.0 pytest
+      - name: Check current Stage 7 without fitting or simulation
+        run: python src/la_grid/revision/current_stage7.py --verify
+      - name: Check current suite and saved scientific authority
+        run: python -m pytest tests/test_current_figure_suite_integration.py -q

@@ -5096,6 +5096,13 @@ def run_stage_7(
         logging.info("--- STAGE 7: Skipped ---")
         return {}
 
+    current_root = Path(__file__).resolve().parents[3]
+    if (current_root / "config/current_stage7.json").is_file():
+        from la_grid.revision.current_stage7 import verify_current_stage7
+        identity = verify_current_stage7(current_root)
+        table = current_root / identity["authority"] / "tract_features.csv"
+        return {"clusters": pd.read_csv(table, dtype={"tract_id": str}), "identity": identity}
+
     logger = logging.getLogger()
     logger.info("=" * 50)
     logger.info("--- STAGE 7: K-Means + PCA Diagnostics (Final Enhanced) ---")
@@ -6991,14 +6998,14 @@ def run_formal_results(cfg):
 
 
 def run_formal_stage_7(cfg):
-    """Select the completed harmonized Stage 7 without rerunning clustering."""
-    from la_grid.revision.r1_stage7_harmonized import verify_harmonized_stage7
+    """Select the adopted frozen seven-variable P2 Stage 7; never refit."""
+    from la_grid.revision.current_stage7 import verify_current_stage7
     if not getattr(cfg, "REVISION_FORMAL", False) or getattr(cfg, "REVISION_TRIAL", False):
         raise ValueError("Formal Stage 7 requires the frozen-matrix configuration")
     executable_sha = getattr(cfg, "REVISION_EXECUTABLE_SHA", None)
     if not executable_sha:
         raise ValueError("Formal Stage 7 lacks executable commit identity")
-    return verify_harmonized_stage7(Path(cfg.OUTPUT_DIRECTORY))
+    return verify_current_stage7(Path(__file__).resolve().parents[3])
 
 
 def run_formal_figures(cfg):

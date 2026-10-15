@@ -1,16 +1,7 @@
-# Current publication figures
+# Current adopted P2 figure suite
 
-Main Fig01-Fig07; Supplement FigS01-FigS10: 17 numbered figures, 21 compact packet pages. Numbering is continuous: former S03-S11 shifted down one position because former S02 content was already merged into S01. Current S02 is former S03, not the retired artwork. See NUMBERING_AND_ARTWORK_CHANGES.csv.
+Seven-variable P2, saved K3 primary, 2,299 positive-population tracts (1,235 / 428 / 636), 9,066,522 residents. NCV14 is supplementary environmental context, not a fitted coordinate. K4 remains a sensitivity result, not a second primary model.
 
-Figure 7 remains byte-identical to 3c7899f pending the next author instruction for its hotspot panel. Figure 1 states the intended high-vulnerability/slow-recovery hotspot concept without calculating a new score. Former S09 C/D and former S11 are retained, renumbered to S08 and S10; their necessity is reviewed separately, not assumed to validate the selected model.
+17 numbered figures: Main 1-7 and Supplement 1-10. The compact combined packet has 21 pages: 17 native artwork-plus-concise-caption pages and four retained complementary-evidence pages. Figure 7 uses the approved color-family/continuous-burden map and direct Q4/P75 co-occurrence outlines; no composite hotspot score. The separate grayscale accessibility maps remain available under local_elsevier_review_outputs/.
 
-Canonical build: `python src/la_grid/plotting/build_current_suite_k3.py --portable`. Use `--rebuild` for immutable-source replay. No model, optimization, simulation or scientific source is altered.
-
-Current S05 separates the mapping cutoff, a newly calculated source-only control at fixed 0.50 functionality threshold, and the saved threshold-only comparisons. The control is exact post-processing of frozen station-loss integrals, not a new physical or scheduling simulation.
-
-Mirrors match authoritative artwork bytes.
-
-
-## Concise captions
-
-The current packet has 17 native-size figures with short captions directly below them, plus four unchanged evidence pages (21 pages total). No numbered artwork or scientific value changes. The separate Path B review is not promoted here.
+Reproduce: `python src/la_grid/plotting/build_current_suite_k3.py --portable`. This now routes to P2 only. Historical implementations are recoverable from Git history, not competing current builders. No physical simulation or K-means is run. Current identity: results/stage7/P2_K3_2299/.

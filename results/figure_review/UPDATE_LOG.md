@@ -27,3 +27,8 @@ Removed results/discussion and production commentary from captions. Native figur
 ## 2026-10-14 Statistical caption precision
 
 Figures 4/5 distinguish 5th-95th realization ranges from confidence intervals. Figure 4 service-loss bars have no whiskers. Figure 6 explicitly identifies 95% bootstrap confidence intervals for mean effects and its means-only exception. No artwork, numerical values or Path B classification is promoted.
+
+
+## 2026-10-14 - author-adopted seven-variable P2
+
+Replaced Fig07 and FigS08 from the frozen P2 source; all other 15 numbered PDF/PNG pairs remain byte-identical. Updated concise captions, palettes, indexes, gallery, mirrors, previews and native packets. Saved K3 is primary; K4 is sensitivity and its stronger geographic agreement is disclosed. Full service domain remains 2,315; no physical outputs or manuscript documents changed.

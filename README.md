@@ -1,133 +1,68 @@
-## October 2026 revision
+# Post-Earthquake Power Service Recovery in Los Angeles: Linking Substation Damage, Restoration Logistics, and Tract-Level Disparities
 
-The current working version is on `revision/reviewer-driven-core-rebuild-v2`.
+**Paper authors:** Yinchen Yi, Yutong Li, and Marta C. González.
 
-**Current figure review: [results/figure_review/](results/figure_review/)** — one current set, with all figures and captions in [ALL_FIGURES_WITH_CAPTIONS.pdf](results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf).
+**Repository maintainers:** Yinchen Yi and Yutong Li.
 
-`main` and `archive/ijdrr-submission-20260722` retain the July history. Earlier experimental branches are preserved as archive tags.
+Code, necessary data, frozen numerical results and publication figures for the associated study. The current branch is **`publication/p2-seven-variable`**. `main` is retained unchanged as historical work; all other research branches are consolidated in [BRANCH_HISTORY_SUMMARY.md](BRANCH_HISTORY_SUMMARY.md).
 
----
+## Adopted Community Typology
 
-# Evaluating Post-Earthquake Impact and Recovery of the LA Transmission Grid
+The sole primary specification is **seven-variable P2 / saved K3**, with 2,299 positive-population tracts, including eight zero-housing tracts. The 16 zero-population tracts are N/A for clustering; all 2,315 tracts remain in the service model. K4 is retained only as disclosed sensitivity evidence, not a competing primary classification.
 
-**Authors:** Yinchen Yi and Yutong Li
+- RQ1: `Init_Supply`, spectral `Grid_Impact`, `Redundancy_HHI`.
+- RQ2: `B_Unconstrained`, five-policy `MeanDelta`.
+- RQ3: FEMA `SOVI_SCORE`, `log1p(Population)`.
 
-This repository contains the scripts, required data, and generated results for a
-census-tract-scale study of post-earthquake electric-power service disruption
-and restoration in the Los Angeles study area. The model combines a reduced
-transmission/substation topology, scenario-based substation damage, tract-to-
-substation dependency weights, active-source connectivity, road-network travel
-times, and rule-based or genetic-algorithm restoration schedules.
+The frozen authority is [results/stage7/P2_K3_2299/](results/stage7/P2_K3_2299/); [config/current_stage7.json](config/current_stage7.json) selects it. NCV14 is supplementary environmental-hazard context, **not** a fitted coordinate. This is a graph-based service-recovery workflow, not an electrical power-flow model.
 
-Final reviewer-revision workflow:
-FINAL_REVISION_RUN_SEQUENCE/00_README.md
+## Installation
 
-Run the final reviewer-revision workflow:
-```bash
-python FINAL_REVISION_RUN_SEQUENCE/run_all.py --resume
-```
-
-Run or validate an individual stage (example):
-```bash
-python FINAL_REVISION_RUN_SEQUENCE/09_CAPACITY_ROBUSTNESS/run_09_capacity_robustness.py --resume
-```
-
-Current complete figure gallery: `results/figures/FIGURE_REVIEW_GALLERY.html`
-Scientific implementation: `src/la_grid/`
-Final numerical results: `results/`
-
-`--resume` is the currently certified reproduction mode. Full `--from-scratch`
-reproduction is not yet certified because several frozen trajectory and offline
-archives are maintained externally and are validated through the canonical
-external-archive manifest.
-
-> **Model scope:** Network robustness and service propagation are represented
-> with graph-connectivity proxies. The workflow is not an AC/DC power-flow,
-> voltage-stability, or generation-dispatch model.
-
-Tracked large files use Git LFS; registered trajectory/offline archives and the revised viewing suite are local external archives rather than Git objects. After cloning, retrieve tracked LFS objects and restore the external archives listed in the canonical manifest:
+Python 3.12 and Git LFS are required:
 
 ```bash
+git clone --branch publication/p2-seven-variable https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale.git
+cd Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale
+git lfs install
 git lfs pull
-```
-
-## Environment
-
-The project was run with Python 3.12. Install the recorded dependencies with:
-
-```bash
 python -m pip install -r requirements.txt
 ```
 
-For geospatial packages, a Conda environment may be easier on Windows. The
-versions in `requirements.txt` record the environment used for the manuscript
-results.
+## Validate and Reproduce
 
-## Legacy / Original July Manuscript Workflow
+Validate the adopted saved typology, without fitting or running simulations:
 
-The five `*_expanded.py` files describe the original July manuscript workflow.
-They are retained under `src/la_grid/core/legacy_entrypoints/` for history and
-are not the canonical entry point for the final reviewer revision. Their shared
-implementations are under `src/la_grid/core/`.
+```bash
+python src/la_grid/revision/current_stage7.py --verify
+python FINAL_REVISION_RUN_SEQUENCE/08_FINAL_STAGE7_TYPOLOGY/run_08_stage7_typology.py --resume
+```
 
-Shared July implementation modules are in `src/la_grid/core/`; plotting tools are in `src/la_grid/plotting/`.
+Rebuild the current 17-figure suite, concise captions, mirrors, gallery and 21-page combined packet:
 
-## Repository Contents
+```bash
+python src/la_grid/plotting/build_current_suite_k3.py --portable
+python -m pytest tests/test_current_figure_suite_integration.py -q
+```
 
-- `FINAL_REVISION_RUN_SEQUENCE/`: sole canonical reviewer-revision validation/reuse entry point.
-- `src/la_grid/`: package containing core, revision, diagnostics, plotting, and utility code.
-- `config/parent_frozen_design/`: unchanged parent frozen experiment matrix.
-- `Data/`: PATH_FROZEN model inputs plus the ignored local-only `external_validation/` evidence directory.
-- `Formal_Experiment_20260923/`: PATH_FROZEN mixed formal archive; logical result indexes are under `results/formal/`, `results/vulnerability/`, and `results/stage7/`.
-- `results/formal/`, `results/revised_suite/`, `results/figures/`, `results/capacity/`, and `results/diagnostics/`: organized formal archives and final result collections.
-- `data/travel/`: the two active frozen directed travel matrices; historical stage outputs are under `provenance/legacy_outputs/`.
-- `docs/`: methodology, reviewer, data-research, meeting, and reproducibility records.
-- `provenance/`: legacy and reviewer-working records retained for traceability.
-- `tests/`: reviewer-revision tests.
+Start with [ALL_FIGURES_WITH_CAPTIONS.pdf](results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf) or the [figure gallery](results/figures/FIGURE_REVIEW_GALLERY.html). Figure 7 uses the saved P2/K3 memberships and the approved continuous five-policy burden / frozen vulnerability-quartile display. No composite hotspot score is calculated.
 
-Generated caches, logs, one-off mechanism experiments, audit/debug files,
-downloaded literature PDFs, and intermediate composite panels are intentionally
-excluded from version control.
+The historical full workflow remains under `FINAL_REVISION_RUN_SEQUENCE/`; Stages 1-7 and 9 still rely on their frozen original inputs and manifest-bound external archives. Full clean-room physical simulation reproduction is not newly certified by this consolidation. Current commands reuse saved results and do not run Monte Carlo, scheduling, GA or K-means.
 
-## Main Data Sources
+## Contents
 
-- [OpenStreetMap road network](https://www.openstreetmap.org/)
-- [California Energy Commission transmission lines](https://gis.data.ca.gov/datasets/CAEnergy::california-electric-transmission-lines-1/about)
-- [California Energy Commission substations](https://hub.arcgis.com/datasets/c2d4e65fe7b84c67a94e98ff9555c3ac_0)
-- [California Geological Survey Map Sheet 48](https://www.conservation.ca.gov/cgs/publications/ms48)
-- [USGS ShakeMap](https://earthquake.usgs.gov/data/shakemap/)
-- [FEMA National Risk Index](https://www.fema.gov/flood-maps/products-tools/national-risk-index)
-- [US Census TIGER/Line](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
-- [US Census ACS](https://api.census.gov/data.html)
-- [CDC/ATSDR Social Vulnerability Index](https://www.atsdr.cdc.gov/place-health/php/svi/index.html)
-- [HIFLD electric substations](https://catalog.data.gov/dataset/electric-substations)
-- [City of Los Angeles GeoHub](https://geohub.lacity.org/)
+```text
+config/current_stage7.json        Sole current typology selector
+results/stage7/P2_K3_2299/         Seven-feature authority and saved memberships
+results/figure_review/            Current 17 figures and concise combined packet
+results/figures/                  Byte-identical mirrors, index and gallery
+src/la_grid/                     Scientific, verification and figure-production code
+Data/                            Frozen inputs; third-party terms still apply
+docs/                            Source documentation and historical diagnostics
+BRANCH_HISTORY_SUMMARY.md         One register of retired branch decisions and recovery
+```
 
-## Important Limitations
+## Data, License and Citation
 
-- Tract service availability depends on the tract-substation weighting model
-  and its distance-decay and threshold assumptions.
-- Recovery curves represent modeled service restoration, not only physical
-  repair completion.
-- Travel times use a static pre-event road network and simplified crew/task
-  abstractions.
-- Results depend on fragility, restoration-time, active-source, and repair-task
-  assumptions documented in the associated manuscript.
+See [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) and `Data/README.md` for provenance and third-party terms. The [MIT License](LICENSE) covers original repository code only; government, OSM, Census, USGS, FEMA, CEC, CDC and HIFLD data are not automatically relicensed. Cite this fixed commit or a subsequently archived release together with the associated paper using [CITATION.cff](CITATION.cff). No DOI is asserted before one is issued.
 
-## Selected Methodological References
-
-- Cheng, B., Nozick, L., Dobson, I., Davidson, R., Obiang, D., Dias, J., &
-  Granados, M. (2024). Quantifying the earthquake risk to the electric power
-  transmission system in Los Angeles at the census tract level. *IEEE Access*.
-  <https://doi.org/10.1109/ACCESS.2024.3408797>
-- Cagnan, Z., Davidson, R. A., & Guikema, S. D. (2006). Post-earthquake
-  restoration planning for Los Angeles electric power. *Earthquake Spectra*,
-  22(3), 589-608. <https://doi.org/10.1193/1.2222400>
-- Xu, N., Guikema, S. D., Davidson, R. A., Nozick, L. K., Cagnan, Z., & Vaziri,
-  K. (2007). Optimizing scheduling of post-earthquake electric power
-  restoration tasks. *Earthquake Engineering & Structural Dynamics*, 36(3),
-  265-284. <https://doi.org/10.1002/eqe.623>
-- Cavdaroglu, B., Hammel, E., Mitchell, J. E., Sharkey, T. C., & Wallace, W. A.
-  (2013). Integrating restoration and scheduling decisions for disrupted
-  interdependent infrastructure systems. *Annals of Operations Research*,
-  203(1), 279-294. <https://doi.org/10.1007/s10479-011-0959-3>
+**Contact:** Yinchen Yi or Yutong Li through the repository's GitHub issues.

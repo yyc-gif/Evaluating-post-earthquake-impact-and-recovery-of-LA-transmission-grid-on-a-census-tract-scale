@@ -1,13 +1,13 @@
 """Stage 08 — Final Stage 7 Typology
 
 Purpose:
-    Validate the harmonized Stage 7 authority and its saved products.
+    Validate the adopted seven-variable P2/K3 authority and saved products.
 
 Scientific implementation:
     Existing authority modules under src/la_grid/; this entrypoint performs validation/reuse only.
 
 Primary inputs:
-    Stage 7 Output_SOVI_Harmonized identity and output inventory
+    results/stage7/P2_K3_2299 and config/current_stage7.json
 
 Primary outputs:
     Stage 8 output hash manifest and stage validation manifest

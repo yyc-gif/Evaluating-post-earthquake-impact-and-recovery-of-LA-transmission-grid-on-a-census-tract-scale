@@ -1,0 +1,10 @@
+{
+  "command": "python -m pytest tests/test_current_figure_suite_integration.py -q",
+  "passed": 41,
+  "failed": 0,
+  "elapsed_seconds": 65.01,
+  "stage08": "PASS_REUSE",
+  "syntax": "PASS: AST and compileall with Windows extended paths",
+  "initial_compile_limitation": "Ordinary compileall cache paths exceeded Windows MAX_PATH; extended-path compilation passed.",
+  "rebuild": "PASS: unchanged generator asserts byte-identical output hashes on replay"
+}

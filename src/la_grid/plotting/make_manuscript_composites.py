@@ -656,11 +656,16 @@ def make_topology_composite() -> None:
         save_pair(fig, "topology_abstraction_and_robustness_composite")
 
 
-def main() -> None:
+def main_historical() -> None:
     make_t80_composite()
     make_recovery_composite()
     make_typology_composite()
     make_topology_composite()
+
+
+def main() -> None:
+    from build_current_suite_p2 import main as current_p2_suite
+    current_p2_suite()
 
 
 if __name__ == "__main__":

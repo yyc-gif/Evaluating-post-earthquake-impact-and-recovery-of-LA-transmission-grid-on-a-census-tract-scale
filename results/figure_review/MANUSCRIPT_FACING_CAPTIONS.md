@@ -2,68 +2,68 @@
 
 ## Figure 1. Analytical framework
 
-Workflow linking the transmission network and tract dependencies to earthquake damage, modeled service, restoration and community outcomes. Service loss is the integral of the modeled service deficit; T80 is the time to 80% service availability. Q1-Q4 are frozen social-vulnerability quartiles. The vulnerability gap is the absolute Q4-Q1 service-loss difference. Spatial screening identifies co-occurrence, not a composite risk score.
+Five stages connect tract–substation dependencies and the station network to simulated earthquake damage, modeled service availability, finite-resource restoration, and community outcomes. Service loss integrates one minus modeled availability; T80 is time to 80% modeled service. Q1–Q4 denote the frozen SOVI quartiles. Service availability is a network-based proxy rather than delivered electricity.
 
-## Figure 2. System representation and tract-to-substation mapping
+## Figure 2. Transmission network and tract dependencies
 
-(A) CEC transmission lines and substations. (B) Derived substation connections. (C) Utility-compatible tract assignments. (D) Agreement between assigned substations and public SCE records, comparing all assignments, the highest-weight assignment and the three highest-weight assignments. Agreement assesses mapping correspondence, not feeder-level electricity delivery.
+(A) Transmission-system reference. (B) Derived station graph. (C) Utility-compatible candidate assignments. (D) Agreement with public SCE assignments among 337 comparable tracts, using top-1, top-3, and any-match criteria. These agreement metrics support geographic assignment but do not establish feeder boundaries or recovery-model accuracy.
 
-## Figure 3. Earthquake damage, service-loss mechanisms and unconstrained recovery
+## Figure 3. Damage and Unconstrained recovery
 
-(A) Substation damage distributions. (B) Initial modeled tract service. (C) Unconstrained service-loss components. (D) Population T80 distribution. (E) Conditional mean tract T80 among realizations reaching the threshold. T80 measures time to 80% service; loss integrates service deficit over 480 h. Historical scenarios and 2pc50 use different fragility parameterizations.
+(A) Station damage-state distributions. (B) Initial tract availability. (C) Unconstrained service-loss decomposition. (D) Population-weighted T80 distribution. (E) Mean tract T80 conditional on reaching the threshold. Service loss covers 0–480 h. The historical scenarios and 2pc50 employ different fragility parameterizations; results are not a pure intensity experiment.
 
-## Figure 4. Selected restoration-policy performance
+## Figure 4. Restoration-policy performance under 2pc50
 
-Restoration-policy outcomes under 2pc50. (A) Population-weighted modeled service trajectories. (B) Mean service loss for all tracts, Q4 tracts and hospital-linked tracts, and population T80. Loss integrates service deficit over 480 h; T80 is time to 80% service. All displayed whiskers show 5th-95th realization ranges, not confidence intervals; service-loss bars show means without whiskers. Hospital-linked outcomes are tract proxies, not hospital electricity delivery.
+(A) Mean population-weighted modeled recovery trajectories. (B) Mean service losses for all tracts, Q4 tracts, and hospital-linked tracts, plus population T80. Service loss integrates modeled deficits over 480 h. All displayed whiskers are 5th–95th realization ranges, not confidence intervals; service-loss bars are means without whiskers. Hospital-linked service is a tract proxy, not actual power delivered to hospitals.
 
-## Figure 5. Vulnerability-targeted restoration and distributional consequences
+## Figure 5. Vulnerability-targeted recovery and distributional effects
 
-(A) Overall and Q4 mean service loss. (B) Loss across frozen vulnerability quartiles. (C, D) Vulnerability-first minus each reference policy: loss outcomes and Gini. (E) Tract-level loss differences; negative values favor Vulnerability-first. Q4 boundaries provide context. The high-low gap is the absolute Q4-Q1 loss difference within each realization. Whiskers in B-D show 5th-95th realization ranges, not confidence intervals; map colors do not indicate statistical significance.
+(A) Overall and Q4 mean loss. (B) Loss across frozen SOVI quartiles. (C, D) Vulnerability-first minus each named reference for service loss, absolute Q4–Q1 gap, and Gini. (E) Tract-level changes in cumulative modeled service deficit; negative values favor Vulnerability-first. In B–D, whiskers show 5th–95th realization ranges, not confidence intervals. Map colors do not encode statistical significance.
 
-## Figure 6. Resource dependence of restoration-policy contrasts under 2pc50
+## Figure 6. Resource dependence of policy contrasts under 2pc50
 
-Vulnerability-first minus each reference policy as crew availability (left) or repair duration (right) changes. Rows show overall loss, Q4 loss, the absolute Q4-Q1 loss gap and hospital-linked loss. Negative values indicate lower loss under Vulnerability-first. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital comparisons show means only. Crew and duration are separate one-factor comparisons.
+Vulnerability-first minus named reference policies across the tested crew availability (left) and repair duration (right) families. Rows show total service loss, Q4 loss, within-realization absolute Q4–Q1 gap, and hospital-linked loss. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons have means only. The resource variations are separate one-factor designs.
 
-## Figure 7. Three-RQ community typology and modeled service-deficit geography
+## Figure 7. Seven-variable recovery typology and joint vulnerability geography
 
-(A) Empirical feature distributions by class; markers locate medians on the 50% guide. (B) Ordinary cohort-z means of the eight fitted coordinates, not weighted-distance contributions. (C) Saved NCV14/H2/K3 geography. (D) Continuous five-policy mean total service deficit, with frozen Q4 outlines. White outlined tracts are N/A. NCV14 is a geographic hazard-screening measure, not FEMA risk or outage probability.
+(A) Six empirical feature distributions by P2/K3 class, with medians on the 50% guide. (B) Cohort-standardized means of all seven P2 variables. (C) Saved P2/K3 membership. (D) Continuous five-policy mean total equivalent service-deficit hours mapped with frozen Q1–Q4 SOVI hues and common burden-to-lightness scaling; black outlines indicate Q4 tracts at or above the frozen P75 deficit. This is descriptive co-occurrence, not a composite risk score, statistically significant hotspot, or repair-priority ranking. White outlined tracts are N/A (16 zero-population tracts).
 
-## Supplementary Figure S1. Earthquake damage and initial modeled tract service
+## Supplementary Figure S1. Damage and initial service
 
-(A) Distributions across substations of scenario-mean damage, with median and interquartile summaries. (B) Initial modeled tract service on a shared availability scale. Tract service includes functionality and source connectivity and is not delivered power. Historical scenarios and 2pc50 use different fragility parameterizations.
+(A) Scenario-mean station damage distributions. (B) Mean initial modeled tract service under the same geographic extent and availability scale. Network/source connectivity influences service; physical MW and customer outages are not measured.
 
-## Supplementary Figure S2. Crew origins and directed travel inputs
+## Supplementary Figure S2. Restoration logistics
 
-(A) Crew origins and substation tasks. (B) Directed task-to-task travel times in hours, with origins in rows and destinations in columns. Reverse-direction times are not assumed equal. These are frozen dispatch inputs, not predictions of post-earthquake congestion.
+(A) Crew origins and station tasks. (B) Directed task-to-task travel times in hours, with origin stations in rows and destinations in columns. Reverse directions are retained separately; times are frozen scheduling inputs, not post-earthquake traffic forecasts.
 
-## Supplementary Figure S3. Static network criticality and dynamic functional-network recovery
+## Supplementary Figure S3. Structural criticality and functional-network recovery
 
-(A) Static network-removal comparisons. (B, C) Largest functional component size and internal degree during recovery. Functional stations meet the 0.50 cutoff. Spectral network impact differs from the population-impact restoration priority. Curves describe graph structure, not electrical feasibility or optimal repair order.
+(A) Static station-removal responses. (B, C) Largest functional component size and internal degree during modeled recovery with station-functionality threshold 0.50. Structural graph metrics do not prove delivered electricity or repair optimality.
 
-## Supplementary Figure S4. GA search and independent validation
+## Supplementary Figure S4. Genetic-algorithm diagnostics
 
-(A) Minimum service loss as repair sequences are evaluated. (B) Initial and final minima for each GA run. (C) Service-loss gaps for independent validation realizations, with the mean marked. (D) Damage-, threshold- and source-path contributions to that mean gap. A gap is GA minus Impact-first; negative values indicate lower loss. Validation samples are separate from optimization samples.
+(A, B) Finite search results and deterministic incumbent comparison. (C) The empirical distribution of independent-validation service-loss differences, with the mean marked. (D) Saved damage-, threshold-, and source-path components of the mean contrast. Negative GA-minus-Impact-first differences favor GA. Global optimality is not established.
 
-## Supplementary Figure S5. Dependency mapping, source connectivity and functionality thresholds
+## Supplementary Figure S5. Dependency and service-gate sensitivity
 
-(A) Mapping-weight cutoff sensitivity. (B) Source connectivity disabled with functionality threshold fixed at 0.50. (C, D) Only the functionality threshold changes, to 0.05 or 0.75; source connectivity remains required. Gaps are control minus reference service loss. Points show means; lines show realization percentiles. The source-only control uses exact frozen loss components and does not represent physical power delivery.
+(A) Mapping cutoff. (B) Removing source connectivity at the fixed 0.50 station threshold. (C, D) Changing the station threshold to 0.05 or 0.75 while source connectivity is required. Values are model service-loss changes with realization percentile intervals. Service is not physical power delivery.
 
-## Supplementary Figure S6. Dynamic source connectivity and static alternative-route reliability
+## Supplementary Figure S6. Source connectivity and alternate paths
 
-(A) Dynamic joint functionality and source connectivity, comparing all paths with a fixed reliable path. (B) Additional contribution of alternative routes. (C) Static source access conditional on target functionality. (D) Additional conditional connection beyond the fixed path. Static and dynamic probabilities have different conditioning; neither measures delivered power or generation adequacy.
+(A, B) Dynamic joint source-connectivity probabilities and fixed-path contrasts. (C, D) Static source-access probabilities conditional on target-station functionality and additional alternate-route contributions. Conditioning differs across panels; the values do not measure delivered MW.
 
-## Supplementary Figure S7. Facility planning limits and the OLINDA-bound sensitivity
+## Supplementary Figure S7. Facility planning limits
 
-(A) Provider-defined facility planning loads and limits. (B) Modeled service-loss increments from the supported planning ceiling, over the evidence-supported domain and local binding domain. Points show population-weighted means; whiskers show realization percentiles. Unsupported contributions are unchanged. This is a planning-bound sensitivity, not post-earthquake load flow or a full-network capacity assessment.
+(A) Supported provider planning loads and limits. (B) Capacity-ceiling-induced modeled service-loss changes for supported and locally binding domains. Whiskers show realization percentiles. No post-earthquake load-flow or complete electrical-capacity adequacy calculation is performed.
 
-## Supplementary Figure S8. NCV14/H2/K3 selection evidence and stability
+## Supplementary Figure S8. Seven-variable typology sensitivity
 
-(A, B) Weighted-space inertia and full-cohort silhouette over K. (C) Initialization, geographic and policy-set sensitivity of the saved eight-variable K3 classification. (D) Within-class silhouette distributions. K3 is not the silhouette maximum. Stability and silhouette are internal diagnostics, not independent physical validation. Removing Init_Supply also redistributes the RQ1 distance budget.
+Weighted-space inertia, full-cohort silhouette, saved initialization and geographic/policy-set agreement, and within-class silhouette distributions for P2. K3 is the parsimonious primary typology; K4 is mandatory sensitivity and has stronger held-out geographic agreement. All results are internal clustering diagnostics, not independent physical validation.
 
-## Supplementary Figure S9. Hospital, vulnerability and population-impact repair priorities
+## Supplementary Figure S9. Restoration-priority geography
 
-(A) Hospital-linked priority context. (B) Frozen Q4 vulnerability context. (C) Tract population on a logarithmic scale. Numbered substations identify the first repair priorities; population shading is not the Impact-first score. Outcome comparisons appear in Figures 4–6 and Supplementary Figure S10. Repair tasks are substations, not tracts.
+(A) Hospital-linked priority context. (B) Frozen highest social-vulnerability quartile Q4. (C) Tract population context. Numbered substations indicate early policy priorities. The prioritized repair tasks are substations, not tracts.
 
-## Supplementary Figure S10. Service-loss outcomes across resource conditions
+## Supplementary Figure S10. Outcomes under resource variation
 
-Absolute service-loss outcomes across crew availability (left) and repair duration (right). Rows show overall loss, Q4 loss, the absolute Q4-Q1 gap and hospital-linked loss. Points are means; whiskers are realization percentiles. Resource factors are varied separately. These absolute outcomes complement the policy differences in Figure 6; they are not independent experiments.
+Absolute cumulative modeled service losses across the tested crew-availability and repair-duration families for the scheduled policies. Overall, Q4, high–low gap, and hospital-linked outcomes are kept distinct. Means and realization-percentile whiskers complement the between-policy effects in Figure 6.

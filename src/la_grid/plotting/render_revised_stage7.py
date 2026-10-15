@@ -42,7 +42,7 @@ EXPECTED = (
 )
 
 
-def main() -> None:
+def main_historical() -> None:
     identity = verify_harmonized_stage7(FORMAL)
     if not SUITE.is_dir() or not STAGE.is_dir():
         raise FileNotFoundError("Existing revised suite Stage 7 directory is required")
@@ -96,6 +96,11 @@ def main() -> None:
     subprocess.run([sys.executable, str(ROOT / "index_revised_suite.py")],
                    cwd=ROOT, check=True)
     print(f"Refreshed {len(EXPECTED)} Stage 7 panel pairs from {identity['source_directory']}")
+
+
+def main() -> None:
+    from build_current_suite_p2 import main as current_p2_suite
+    current_p2_suite()
 
 
 if __name__ == "__main__":
