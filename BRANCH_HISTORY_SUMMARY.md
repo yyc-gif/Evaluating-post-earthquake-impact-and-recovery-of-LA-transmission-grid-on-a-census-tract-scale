@@ -168,7 +168,15 @@ Original dirty worktree indexes and binary diffs were backed up separately. Chec
 
 To recover a historical line: `git branch recovered/<name> <full commit from table>`; alternatively inspect `git bundle list-heads <backup>/all-branches.bundle` and fetch the required ref from that bundle. Obtain LFS bytes with Git LFS; a pointer alone is not a data backup.
 
-## Main Identity Clarification
+## Completed Consolidation
+
+Remote and local branch registries now contain only `main` and `publication/p2-seven-variable`; the latter is the GitHub default. The operation retired **59 remote** and **71 local** branch references. Every recorded former tip remains an ancestor of the final branch. All original worktree HEAD commits, indexes, staged states and working files were preserved; obsolete checked-out branches were detached without removing their directories. The verified offline bundle provides a second recovery route.
+
+The adopted artifact commit `dd9870e4091eb420705943fba2690ac7084733f6` passed GitHub Actions and actual remote-byte checks for 35 changed LFS paths (169,490,546 unique bytes). The final local suite has 41 passing tests, unchanged physical inputs and 15 byte-identical unaffected numbered artwork pairs. Later delivery-record commits do not change the adopted numerical results or artwork.
+
+GitHub emitted a warning about one pre-existing 60.15-MiB ordinary Git CSV in historical ancestry. It is retained to avoid rewriting history; current large publication artifacts and versioned P2 data use Git LFS. No scientific data, manuscripts or old worktree directories were deleted.
+
+## Main Identity Details
 
 Two historical CGS LFS revisions were recovered from the already configured collaborator remote before completing the consolidation push. The exact 211,408,753-byte payload hashes to `0721b63f152865a88196e4a4cb65519063622dc02ecb6f3adc2fdee286e3f374`; the 63,224,388-byte payload hashes to `465076f35ca75c96e96d93e7dcf77b10f9a153058d0f495c00799a0cb256c63c`. A complete incoming-history inventory found 115 LFS objects and no unresolved missing objects after these recoveries. The current frozen CGS inputs were not replaced or recomputed. No incomplete-push override was used.
 

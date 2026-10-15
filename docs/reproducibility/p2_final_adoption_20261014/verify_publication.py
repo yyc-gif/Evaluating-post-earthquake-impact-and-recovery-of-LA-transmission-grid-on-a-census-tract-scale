@@ -3,6 +3,7 @@ from pathlib import Path
 import ast
 import json
 import sys
+import xml.etree.ElementTree as ET
 
 import fitz
 import pandas as pd
@@ -13,6 +14,26 @@ HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT/'src/la_grid/plotting'))
 import build_current_suite_p2 as p
 import consolidate_current_figure_suite as u
+
+
+def record_test_results():
+    xml=HERE/'PYTEST_RESULTS.xml'
+    suite=ET.parse(u.lp(xml)).getroot().find('testsuite')
+    assert suite is not None
+    tests=int(suite.attrib['tests']);failed=int(suite.attrib['failures']);errors=int(suite.attrib['errors'])
+    skipped=int(suite.attrib.get('skipped',0))
+    assert tests==41 and failed==errors==skipped==0
+    stage=json.loads((ROOT/'FINAL_REVISION_RUN_SEQUENCE/08_FINAL_STAGE7_TYPOLOGY/STAGE_VALIDATION_MANIFEST.json').read_text())
+    assert stage['status']=='PASS_REUSE'
+    u.dump(HERE/'TEST_RESULTS.json',dict(
+        command='python -m pytest tests/test_current_figure_suite_integration.py -q',
+        passed=tests-failed-errors-skipped,failed=failed,errors=errors,skipped=skipped,
+        elapsed_seconds=float(suite.attrib['time']),stage08=stage['status'],
+        junit_xml=str(xml.relative_to(ROOT)).replace('\\','/'),junit_xml_sha256=u.sha(xml),
+        tracking_regression_included_in_full_run=True,
+        syntax='PASS: AST and compileall with Windows extended paths',
+        initial_compile_limitation='Ordinary compileall cache paths exceeded Windows MAX_PATH; extended-path compilation passed.',
+        rebuild='PASS: unchanged generator asserts byte-identical output hashes on replay'))
 
 
 def main():
@@ -56,12 +77,7 @@ def main():
         changed_artwork_vector_only=True,changed_artwork_text_inside_page=True,
         frozen_source_pixels_preserved=True,no_fitting_or_new_physics=True,
         packet_sha256=u.sha(ROOT/'results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf')))
-    u.dump(HERE/'TEST_RESULTS.json',dict(command='python -m pytest tests/test_current_figure_suite_integration.py -q',
-        passed=41,failed=0,elapsed_seconds=65.01,stage08='PASS_REUSE',
-        additional_tracked_authority_regression='PASS: strengthened authority tracking test; 1 passed in 0.78s',
-        syntax='PASS: AST and compileall with Windows extended paths',
-        initial_compile_limitation='Ordinary compileall cache paths exceeded Windows MAX_PATH; extended-path compilation passed.',
-        rebuild='PASS: unchanged generator asserts byte-identical output hashes on replay'))
+    record_test_results()
     print('PASS: 21 pages, all short captions in bounds, original evidence pages exact, adopted P2 source identities.')
 
 
