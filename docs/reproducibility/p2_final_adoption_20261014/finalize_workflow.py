@@ -21,7 +21,10 @@ def main():
     ca['checked_out_branch']='2026-10-14'
     current=ca['current_code_files']
     for name in ['src/la_grid/revision/current_stage7.py','src/la_grid/plotting/build_current_suite_p2.py',
-                 'src/la_grid/plotting/build_current_figures.py']:
+                 'src/la_grid/plotting/build_current_figures.py',
+                 'src/la_grid/plotting/figure_presentation.py',
+                 'src/la_grid/plotting/consolidate_current_figure_suite.py',
+                 'src/la_grid/plotting/short_current_captions_20261013.py']:
         if not any(r['path']==name for r in current):
             current.append(dict(path=name,sha256='',tracked_in_current_git=True))
     tracked=set(subprocess.check_output(['git','-C',str(ROOT),'ls-files','-z']).decode().split('\0'))

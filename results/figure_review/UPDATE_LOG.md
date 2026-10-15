@@ -32,3 +32,5 @@ Figures 4/5 distinguish 5th-95th realization ranges from confidence intervals. F
 ## 2026-10-14 - current version
 
 Replaced Fig07 and FigS08 from the frozen P2 source; all other 15 numbered PDF/PNG pairs remain byte-identical. Updated concise captions, palettes, indexes, gallery, mirrors, previews and native packets. Saved K3 is primary; K4 is sensitivity and its stronger geographic agreement is disclosed. Full service domain remains 2,315; no physical outputs or manuscript documents changed. The branch and current data directory use the date 2026-10-14; superseded presentation drafts and per-run search archives are retained in Git history rather than the current tree.
+
+Figure 5 now uses balanced row-title spacing. Figure 7 uses concise titles and no embedded explanatory footnotes; its original graphs and maps are translated without scaling. Supplement S8 removes process-only labels. All other 14 artwork pairs retain their approved bytes.

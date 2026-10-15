@@ -63,17 +63,17 @@ def test_every_mirror_is_byte_identical():
     for r in rows():assert sha(ROOT/r['mirror_file'])==r['sha256']
 
 
-def test_exactly_15_unaffected_artwork_pairs():
+def test_exactly_14_unaffected_artwork_pairs():
     changes=df(QA/'FIGURE_CHANGE_MANIFEST.csv')
-    assert int(changes.unchanged.sum())==30
+    assert int(changes.unchanged.sum())==28
     for r in changes.itertuples():
         if r.unchanged:assert sha(SUITE/r.figure)==r.baseline_sha256==r.current_sha256
-    assert set(changes.loc[~changes.unchanged,'figure'])=={s+'.'+e for s in ['Main/Fig07','Supplement/FigS08'] for e in ['pdf','png']}
+    assert set(changes.loc[~changes.unchanged,'figure'])=={s+'.'+e for s in ['Main/Fig05','Main/Fig07','Supplement/FigS08'] for e in ['pdf','png']}
 
 
 def test_s05_and_merged_resource_artwork_preserved():
     changes=df(QA/'FIGURE_CHANGE_MANIFEST.csv').set_index('figure')
-    for s in ['Main/Fig01','Main/Fig05','Supplement/FigS04','Supplement/FigS05','Supplement/FigS10']:
+    for s in ['Main/Fig01','Supplement/FigS04','Supplement/FigS05','Supplement/FigS10']:
         for e in ['pdf','png']:assert bool(changes.loc[s+'.'+e,'unchanged'])
 
 
@@ -209,17 +209,19 @@ def test_all_21_profile_cells_are_ordinary_cohort_z_means():
     assert profile.shape==(3,8)
 
 
-def test_figure7_is_exact_approved_p2_artwork():
-    for ext in ['pdf','png']:
-        assert (SUITE/('Main/Fig07.'+ext)).read_bytes()==source('local_elsevier_review_outputs/FIG07_P2_K3_B_COLOR_NO_REVIEW_BANNER.'+ext)
+def test_figure7_preserves_approved_scientific_artwork():
+    path=ROOT/'docs/reproducibility/figure_presentation_20261014/verify_presentation.py'
+    spec=importlib.util.spec_from_file_location('presentation_checks',path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    assert len(module.region_checks('Main/Fig07'))==5
 
 
 def test_panel_a_has_six_descriptive_distributions_b_has_seven_fitted_coordinates():
-    text=fitz.open(SUITE/'Main/Fig07.pdf')[0].get_text()
-    assert 'Seven-coordinate' in text and 'Population exposure' in text
-    assert 'Cumulative fraction' in text and 'cohort' in text
-    assert 'NCV14 clustering coordinate' in text
-    assert 'Six empirical feature distributions' in caps() and 'all seven P2 variables' in caps()
+    text=fitz.open(SUITE/'Main/Fig07.pdf')[0].get_text().replace('\u00a0',' ')
+    assert 'B. Profiles' in text and 'Population exposure' in text
+    assert 'Cumulative fraction' in text and 'Class mean z-score' in text
+    assert 'Six empirical feature distributions' in caps() and 'all seven clustering variables' in caps()
+    assert not any(s.lower() in text.lower() for s in ['saved','frozen','P2/','Seven-coordinate','Exact empirical CDFs;','Ordinary feature z means,','no NCV14'])
     assert not any(x in text for x in ['C4','C5','K4','PCA','Top-10','Hotspot score'])
 
 
@@ -248,9 +250,9 @@ def test_palette_ids_and_white_na_match_approved_registry():
 
 def test_s8_uses_p2_not_ncv14_diagnostics():
     t=fitz.open(SUITE/'Supplement/FigS08.pdf')[0].get_text()
-    assert 'P2 seven-variable' in t and 'K3 primary' in t and 'K4 sensitivity' in t
+    assert 'Clustering diagnostics' in t and 'K3 primary' in t and 'K4 sensitivity' in t
     assert not any(x in t for x in ['NCV14','PCA','PC1','PC2'])
-    assert (SUITE/'Supplement/FigS08.pdf').read_bytes()==source('local_elsevier_review_outputs/FigS08_P2_K3_K4_Saved_Diagnostics.pdf')
+    assert not re.search(r'\b(?:P2|saved|frozen)\b',t,re.I)
 
 
 def test_authentic_full_k_curve_without_claiming_k3_maximizes_silhouette():
@@ -299,6 +301,7 @@ def test_every_generator_checkpoint_output_is_current():
     assert q['fitted_feature_count']==7 and q['model']=='P2' and q['primary_K']==3
     assert q['packet_pages']==21 and q['numbered_figures']==17
     assert sha(ROOT/'src/la_grid/plotting/build_current_suite_p2.py')==q['generator_sha256']
+    assert sha(ROOT/'src/la_grid/plotting/figure_presentation.py')==q['presentation_sha256']
     assert all(sha(ROOT/p)==h for p,h in q['output_hashes'].items())
 
 
@@ -382,3 +385,47 @@ def test_caption_replay_no_longer_depends_on_editable_word_drafts():
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     current=dict(re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)',caps(),re.M|re.S))
     assert module.captions()==[(title,body.strip()) for title,body in current.items()]
+
+
+def test_figure5_scientific_panels_are_render_identical_after_translation():
+    path=ROOT/'docs/reproducibility/figure_presentation_20261014/verify_presentation.py'
+    spec=importlib.util.spec_from_file_location('figure5_pixel_checks',path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    assert all(r['changed_channel_fraction']==0 for r in module.region_checks('Main/Fig05'))
+
+
+def test_figure5_has_consistent_row_title_gaps():
+    with fitz.open(SUITE/'Main/Fig05.pdf') as d:
+        ss=[s for b in d[0].get_text('dict')['blocks'] for l in b.get('lines',[]) for s in l['spans']]
+    tt={s['text'][0]:s for s in ss if re.match(r'^[A-E]\. ',s['text'].replace('\u00a0',' '))}
+    assert len(tt)==5 and all(abs(s['size']-9.5)<.01 for s in tt.values())
+    ab=max(s['bbox'][3] for s in ss if 80<s['bbox'][1]<250)
+    cd=max(s['bbox'][3] for s in ss if 281<s['bbox'][1]<451)
+    gaps=[tt['C']['bbox'][1]-ab,tt['E']['bbox'][1]-cd]
+    assert all(23.5<g<24.5 for g in gaps) and abs(gaps[0]-gaps[1])<.3
+    assert abs(tt['A']['bbox'][1]-64)<.05
+
+
+def test_figure7_has_consistent_title_spacing_without_embedded_explanations():
+    with fitz.open(SUITE/'Main/Fig07.pdf') as d:
+        ss=[s for b in d[0].get_text('dict')['blocks'] for l in b.get('lines',[]) for s in l['spans']]
+    for s in ss:s['text']=s['text'].replace('\u00a0',' ')
+    tt={s['text'][0]:s for s in ss if re.match(r'^[A-D]\. ',s['text'])}
+    assert [tt[c]['text'] for c in 'ABCD']==['A. Feature distributions','B. Profiles','C. Community types',
+                                                            'D. Recovery burden and social vulnerability']
+    assert all(abs(s['size']-9.5)<.01 for s in tt.values())
+    a=max(s['bbox'][3] for s in ss if 50<s['bbox'][1]<265)
+    b=max(s['bbox'][3] for s in ss if 290<s['bbox'][1]<405)
+    gaps=[tt['B']['bbox'][1]-a,tt['C']['bbox'][1]-b]
+    assert all(19.5<g<20.5 for g in gaps) and abs(gaps[0]-gaps[1])<.3
+    text='\n'.join(s['text'] for s in ss)
+    assert not any(s in text for s in ['Exact empirical CDFs;','Ordinary feature z means,',
+                                      'Finite five-policy comparison.','Descriptive co-occurrence;','model IDs;'])
+    assert 'C1' in text and '(n=1,235)' in text and 'N/A' in text
+
+
+def test_no_internal_process_names_in_current_publication_artwork_or_captions():
+    forbidden=re.compile(r'\b(?:frozen|saved|P2)\b|Seven-coordinate',re.I)
+    for stem in ACTIVE:
+        with fitz.open(SUITE/(stem+'.pdf')) as d:assert not forbidden.search(d[0].get_text()),stem
+    assert not forbidden.search(caps())

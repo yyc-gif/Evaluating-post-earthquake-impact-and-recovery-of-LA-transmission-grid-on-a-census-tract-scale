@@ -15,6 +15,7 @@ from reportlab import rl_config
 
 import consolidate_current_figure_suite as u
 from short_current_captions_20261013 import brief_caption_page
+import figure_presentation
 
 ROOT = u.ROOT
 BASE = '937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
@@ -25,6 +26,8 @@ AUTH = ROOT / 'results/stage7/2026-10-14'
 DEST = ROOT / 'results/figure_review'
 QA = ROOT / 'docs/reproducibility/p2_final_adoption_20261014'
 GEN = 'src/la_grid/plotting/build_current_suite_p2.py'
+PRESENTATION = 'src/la_grid/plotting/figure_presentation.py'
+STYLE_QA = ROOT/'docs/reproducibility/figure_presentation_20261014'
 FEATURES = ['Init_Supply', 'Grid_Impact', 'Redundancy_HHI', 'B_Unconstrained',
             'MeanDelta', 'SOVI_SCORE', 'log1p_Population']
 BUDGETS = np.array([1/9, 1/9, 1/9, 1/6, 1/6, 1/6, 1/6])
@@ -140,6 +143,19 @@ def captions():
     text = source('results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md', CAPTION_COMMIT).decode('utf-8')
     items = [(title.strip(), body.strip()) for title, body in
              re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)', text, re.M | re.S)]
+    items=[(title,body.replace('frozen SOVI quartiles','SOVI quartiles')
+            .replace('frozen scheduling inputs','pre-event scheduling inputs')
+            .replace('Saved damage-,','Damage-,')) for title,body in items]
+    items[6]=('Figure 7. Community recovery types and social vulnerability',
+        '(A) Six empirical feature distributions; markers locate class medians on the 50% guide. '
+        '(B) Cohort-standardized means of all seven clustering variables; zero is the cohort mean. '
+        '(C) Community types. (D) Five-policy mean total equivalent service-deficit hours and SOVI quartiles, '
+        'using common burden-to-lightness scaling. Outlines mark Q4 tracts at or above the cohort P75 deficit. '
+        'This is descriptive co-occurrence, not a composite risk score, statistically significant hotspot, '
+        'or repair-priority ranking. White outlined tracts are N/A (16 zero-population tracts).')
+    items=[(title,body.replace('frozen ','').replace('Saved ','').replace('saved ','')) for title,body in items]
+    items=[(title,re.sub(r'\bfrozen\s+','',body,flags=re.I).replace('for P2.','for the community typology.'))
+           for title,body in items]
     assert len(items) == 17
     assert [int(x) for x in re.findall(r'^Supplementary Figure S(\d+)\.', '\n'.join(t for t,b in items), re.M)] == list(range(1,11))
     return items
@@ -164,7 +180,7 @@ def packets(caps):
                     caption_min_font_pt=10, caption_bounds_valid=True, title=title, caption=body))
             preview = 'results/figure_review/Page_Previews/'+Path(stem).name+'.png'
             u.write(ROOT/preview, art[0].get_pixmap(dpi=150).tobytes('png')
-                    if stem in ['Main/Fig07','Supplement/FigS08'] else source(preview))
+                    if stem in ['Main/Fig05','Main/Fig07','Supplement/FigS08'] else source(preview))
     with fitz.open(stream=source('results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf'), filetype='pdf') as baseline:
         assert len(baseline)==21
         book.insert_pdf(baseline, from_page=17, to_page=20)
@@ -177,23 +193,43 @@ def packets(caps):
 
 def main():
     spec = adopt_authority()
+    previous=QA/'BUILD_CHECKPOINT.json'
+    old_outputs=json.loads(previous.read_text(encoding='utf-8'))['output_hashes'] if previous.exists() else {}
     manifest = u.csv_rows(source('results/figure_review/FIGURE_MANIFEST.csv'))
     index = u.csv_rows(source('results/figures/FIGURE_INDEX.csv'))
     replacements = {'Main/Fig07': 'FIG07_P2_K3_B_COLOR_NO_REVIEW_BANNER',
                     'Supplement/FigS08': 'FigS08_P2_K3_K4_Saved_Diagnostics'}
+    style={};style_checks={}
+    for stem in ['Main/Fig05','Main/Fig07','Supplement/FigS08']:
+        rel=REVIEW+replacements[stem]+'.pdf' if stem in replacements else 'results/figure_review/'+stem+'.pdf'
+        style[stem],style_checks[stem]=figure_presentation.apply(stem,source(rel))
+    u.dump(STYLE_QA/'PRESENTATION_QA.json',dict(source_commit=BASE,figures=style_checks,
+        generator_sha256=u.sha(ROOT/PRESENTATION),no_scientific_calculations=True))
     changes = []
     for row in manifest:
         stem, ext = row['final_name'].rsplit('.', 1)
         path = REVIEW+replacements[stem]+'.'+ext if stem in replacements else row['current_source_file']
         raw = source(path)
+        source_hash=u.digest(raw)
+        if stem in style:
+            if ext=='pdf':raw=style[stem]
+            else:
+                png=row['current_source_file'];pdf=png.removesuffix('.png')+'.pdf'
+                if (ROOT/png).is_file() and old_outputs.get(pdf)==u.digest(style[stem]) and old_outputs.get(png)==u.sha(ROOT/png):
+                    raw=(ROOT/png).read_bytes()
+                else:
+                    with fitz.open(stream=style[stem],filetype='pdf') as art:
+                        raw=art[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
         u.write(ROOT/row['current_source_file'], raw)
         u.write(ROOT/row['mirror_file'], raw)
         before = row['sha256']
-        row.update(sha256=u.digest(raw), change_in_this_update='UPDATED' if stem in replacements else 'RETAINED')
-        if stem in replacements:
+        row.update(sha256=u.digest(raw), change_in_this_update='UPDATED' if stem in style else 'RETAINED')
+        if stem in style:
+            with fitz.open(stream=style[stem],filetype='pdf') as art:
+                size=f'{art[0].rect.width*25.4/72:.3f} x {art[0].rect.height*25.4/72:.3f}'
             row.update(source_commit=BASE, source_file=path, presentation_generator=GEN,
                        presentation_generator_sha256=u.sha(ROOT/GEN), status='AUTHOR_ADOPTED_P2_CURRENT',
-                       min_font_pt='7.500', size_mm='182.880 x '+('228.600' if stem=='Main/Fig07' else '157.480'),
+                       min_font_pt='7.500', size_mm=size,
                        parent_sha256=before, parent_source_commit=BASE, parent_source_file=row['current_source_file'])
         else:
             assert u.digest(raw)==before
@@ -201,17 +237,12 @@ def main():
         ix['sha256_or_lfs_oid']=u.digest(raw)
         ix['current_status']='CURRENT_ADOPTED_P2_SUITE'
         ix['submission_status']='Current author-approved seven-variable suite'
-        if stem in replacements:
-            ix.update(source_authority=BASE, source_data_path=path, source_data_sha256=u.digest(raw), generator=GEN,
-                scientific_question='How do saved seven-variable P2 community profiles and burden/vulnerability geography differ?'
-                    if stem=='Main/Fig07' else 'What do saved P2 partition diagnostics and sensitivity show?',
-                scientific_content='Seven-variable P2; saved K3 primary, K4 sensitivity only; no new fitting.',
-                main_message='Seven-variable P2 typology and burden/vulnerability co-occurrence.' if stem=='Main/Fig07'
-                    else 'Saved P2 K-selection, seed, geographic and policy-set sensitivity.',
-                notes='Exact adopted frozen artwork; NCV14 is supplementary context, not a fitted coordinate.')
+        if stem in style:
+            ix.update(source_authority=BASE, source_data_path=path, source_data_sha256=source_hash, generator=GEN,
+                notes='Presentation-only spacing and wording corrections; scientific vectors and values retained.')
         changes.append(dict(figure=row['final_name'], baseline_sha256=before, current_sha256=u.digest(raw),
                             unchanged=before==u.digest(raw)))
-    assert sum(not r['unchanged'] for r in changes)==4
+    assert sum(not r['unchanged'] for r in changes)==6
     u.write_csv(DEST/'FIGURE_MANIFEST.csv', manifest)
     u.write_csv(ROOT/'results/figures/FIGURE_INDEX.csv', index)
     u.write_csv(QA/'FIGURE_CHANGE_MANIFEST.csv', changes)
@@ -232,14 +263,14 @@ def main():
         gallery += [f'<section><h2>{u.escape(title)}</h2><img src="{Path(row["mirror_file"]).name}" alt="{u.escape(title)}">',
                     f'<p>{u.escape(body)}</p></section>']
     u.write(ROOT/'results/figures/FIGURE_REVIEW_GALLERY.html', '\n'.join(gallery))
-    info = ('# Figures - 2026-10-14\n\nSeven-variable model, saved K3 primary, 2,299 positive-population tracts '
+    info = ('# Figures - 2026-10-14\n\nSeven-variable model, three primary classes, 2,299 positive-population tracts '
         '(1,235 / 428 / 636), 9,066,522 residents. NCV14 is supplementary environmental context, not a fitted coordinate. '
         'K4 remains a sensitivity result, not a second primary model.\n\n17 numbered figures: Main 1-7 and Supplement 1-10. '
         'The compact combined packet has 21 pages: 17 native artwork-plus-concise-caption pages and four retained '
         'complementary-evidence pages. Figure 7 uses the approved color-family/continuous-burden map and direct Q4/P75 '
         'co-occurrence outlines; no composite hotspot score. The separate grayscale accessibility maps remain available '
         'under docs/figure_sources/2026-10-14/.\n\nReproduce: '
-        '`python src/la_grid/plotting/build_current_figures.py --portable`. This now routes to P2 only. '
+        '`python src/la_grid/plotting/build_current_figures.py --portable`. This replays the current figures. '
         'Historical implementations are recoverable from Git history, not competing current builders. '
         'No physical simulation or K-means is run. Current identity: results/stage7/2026-10-14/.\n')
     for rel in ['results/figure_review/README.md','results/figures/README.md']:
@@ -251,7 +282,10 @@ def main():
         'Saved K3 is primary; K4 is sensitivity and its stronger geographic agreement is disclosed. '
         'Full service domain remains 2,315; no physical outputs or manuscript documents changed. '
         'The branch and current data directory use the date 2026-10-14; superseded presentation drafts '
-        'and per-run search archives are retained in Git history rather than the current tree.\n')
+        'and per-run search archives are retained in Git history rather than the current tree.\n\n'
+        'Figure 5 now uses balanced row-title spacing. Figure 7 uses concise titles and no embedded explanatory '
+        'footnotes; its original graphs and maps are translated without scaling. Supplement S8 removes '
+        'process-only labels. All other 14 artwork pairs retain their approved bytes.\n')
     u.dump(QA/'SOURCE_AUTHORITY_AND_HASHES.json', dict(source_commit=BASE, sources=SOURCES,
         adopted_specification=spec, author_authorization_date='2026-10-14'))
     outputs = [str(p.relative_to(ROOT)).replace('\\','/') for p in AUTH.iterdir() if p.is_file()]
@@ -267,9 +301,9 @@ def main():
     prior = QA/'BUILD_CHECKPOINT.json'
     if prior.exists():
         old=json.load(open(u.lp(prior),encoding='utf-8'))
-        if old['generator_sha256']==u.sha(ROOT/GEN):
+        if old['generator_sha256']==u.sha(ROOT/GEN) and old.get('presentation_sha256')==u.sha(ROOT/PRESENTATION):
             assert old['output_hashes']==hashes, 'Non-idempotent current-suite replay'
-    u.dump(prior, dict(generator_sha256=u.sha(ROOT/GEN), routing_sha256=u.sha(ROOT/'src/la_grid/plotting/build_current_figures.py'), output_hashes=hashes, model='P2',
+    u.dump(prior, dict(generator_sha256=u.sha(ROOT/GEN), presentation_sha256=u.sha(ROOT/PRESENTATION), routing_sha256=u.sha(ROOT/'src/la_grid/plotting/build_current_figures.py'), output_hashes=hashes, model='P2',
         numbered_figures=17, packet_pages=21, primary_K=3, fitted_feature_count=7))
     print('Adopted P2 authority and complete figure suite synchronized: 17 figures, 21 pages; no fits.')
 

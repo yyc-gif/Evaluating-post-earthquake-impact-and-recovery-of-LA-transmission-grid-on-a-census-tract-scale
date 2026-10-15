@@ -49,6 +49,8 @@ FIGURES = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}'
 
 def lp(p):
     p = str(Path(p).resolve())
+    if os.name != 'nt':
+        return p
     return p if p.startswith('\\\\?\\') else '\\\\?\\' + p
 
 

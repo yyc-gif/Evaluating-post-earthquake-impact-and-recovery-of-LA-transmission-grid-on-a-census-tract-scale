@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Five stages connect tract–substation dependencies and the station network to simulated earthquake damage, modeled service availability, finite-resource restoration, and community outcomes. Service loss integrates one minus modeled availability; T80 is time to 80% modeled service. Q1–Q4 denote the frozen SOVI quartiles. Service availability is a network-based proxy rather than delivered electricity.
+Five stages connect tract–substation dependencies and the station network to simulated earthquake damage, modeled service availability, finite-resource restoration, and community outcomes. Service loss integrates one minus modeled availability; T80 is time to 80% modeled service. Q1–Q4 denote the SOVI quartiles. Service availability is a network-based proxy rather than delivered electricity.
 
 ## Figure 2. Transmission network and tract dependencies
 
@@ -18,15 +18,15 @@ Five stages connect tract–substation dependencies and the station network to s
 
 ## Figure 5. Vulnerability-targeted recovery and distributional effects
 
-(A) Overall and Q4 mean loss. (B) Loss across frozen SOVI quartiles. (C, D) Vulnerability-first minus each named reference for service loss, absolute Q4–Q1 gap, and Gini. (E) Tract-level changes in cumulative modeled service deficit; negative values favor Vulnerability-first. In B–D, whiskers show 5th–95th realization ranges, not confidence intervals. Map colors do not encode statistical significance.
+(A) Overall and Q4 mean loss. (B) Loss across SOVI quartiles. (C, D) Vulnerability-first minus each named reference for service loss, absolute Q4–Q1 gap, and Gini. (E) Tract-level changes in cumulative modeled service deficit; negative values favor Vulnerability-first. In B–D, whiskers show 5th–95th realization ranges, not confidence intervals. Map colors do not encode statistical significance.
 
 ## Figure 6. Resource dependence of policy contrasts under 2pc50
 
 Vulnerability-first minus named reference policies across the tested crew availability (left) and repair duration (right) families. Rows show total service loss, Q4 loss, within-realization absolute Q4–Q1 gap, and hospital-linked loss. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons have means only. The resource variations are separate one-factor designs.
 
-## Figure 7. Seven-variable recovery typology and joint vulnerability geography
+## Figure 7. Community recovery types and social vulnerability
 
-(A) Six empirical feature distributions by P2/K3 class, with medians on the 50% guide. (B) Cohort-standardized means of all seven P2 variables. (C) Saved P2/K3 membership. (D) Continuous five-policy mean total equivalent service-deficit hours mapped with frozen Q1–Q4 SOVI hues and common burden-to-lightness scaling; black outlines indicate Q4 tracts at or above the frozen P75 deficit. This is descriptive co-occurrence, not a composite risk score, statistically significant hotspot, or repair-priority ranking. White outlined tracts are N/A (16 zero-population tracts).
+(A) Six empirical feature distributions; markers locate class medians on the 50% guide. (B) Cohort-standardized means of all seven clustering variables; zero is the cohort mean. (C) Community types. (D) Five-policy mean total equivalent service-deficit hours and SOVI quartiles, using common burden-to-lightness scaling. Outlines mark Q4 tracts at or above the cohort P75 deficit. This is descriptive co-occurrence, not a composite risk score, statistically significant hotspot, or repair-priority ranking. White outlined tracts are N/A (16 zero-population tracts).
 
 ## Supplementary Figure S1. Damage and initial service
 
@@ -34,7 +34,7 @@ Vulnerability-first minus named reference policies across the tested crew availa
 
 ## Supplementary Figure S2. Restoration logistics
 
-(A) Crew origins and station tasks. (B) Directed task-to-task travel times in hours, with origin stations in rows and destinations in columns. Reverse directions are retained separately; times are frozen scheduling inputs, not post-earthquake traffic forecasts.
+(A) Crew origins and station tasks. (B) Directed task-to-task travel times in hours, with origin stations in rows and destinations in columns. Reverse directions are retained separately; times are pre-event scheduling inputs, not post-earthquake traffic forecasts.
 
 ## Supplementary Figure S3. Structural criticality and functional-network recovery
 
@@ -42,7 +42,7 @@ Vulnerability-first minus named reference policies across the tested crew availa
 
 ## Supplementary Figure S4. Genetic-algorithm diagnostics
 
-(A, B) Finite search results and deterministic incumbent comparison. (C) The empirical distribution of independent-validation service-loss differences, with the mean marked. (D) Saved damage-, threshold-, and source-path components of the mean contrast. Negative GA-minus-Impact-first differences favor GA. Global optimality is not established.
+(A, B) Finite search results and deterministic incumbent comparison. (C) The empirical distribution of independent-validation service-loss differences, with the mean marked. (D) Damage-, threshold-, and source-path components of the mean contrast. Negative GA-minus-Impact-first differences favor GA. Global optimality is not established.
 
 ## Supplementary Figure S5. Dependency and service-gate sensitivity
 
@@ -58,11 +58,11 @@ Vulnerability-first minus named reference policies across the tested crew availa
 
 ## Supplementary Figure S8. Seven-variable typology sensitivity
 
-Weighted-space inertia, full-cohort silhouette, saved initialization and geographic/policy-set agreement, and within-class silhouette distributions for P2. K3 is the parsimonious primary typology; K4 is mandatory sensitivity and has stronger held-out geographic agreement. All results are internal clustering diagnostics, not independent physical validation.
+Weighted-space inertia, full-cohort silhouette, initialization and geographic/policy-set agreement, and within-class silhouette distributions for the community typology. K3 is the parsimonious primary typology; K4 is mandatory sensitivity and has stronger held-out geographic agreement. All results are internal clustering diagnostics, not independent physical validation.
 
 ## Supplementary Figure S9. Restoration-priority geography
 
-(A) Hospital-linked priority context. (B) Frozen highest social-vulnerability quartile Q4. (C) Tract population context. Numbered substations indicate early policy priorities. The prioritized repair tasks are substations, not tracts.
+(A) Hospital-linked priority context. (B) highest social-vulnerability quartile Q4. (C) Tract population context. Numbered substations indicate early policy priorities. The prioritized repair tasks are substations, not tracts.
 
 ## Supplementary Figure S10. Outcomes under resource variation
 
