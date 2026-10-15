@@ -1,0 +1,30 @@
+{
+  "protocol_commit": "bc7d7c0798588ac585426a59f98046f282df2383",
+  "protocol_sha256": "e750420038ebd09e09552d70daacfba1870b34f87239cea3a5ecbb9d64709604",
+  "runtime_seconds": 133.79022240638733,
+  "new_full_fits": 90,
+  "new_resampling_fits": 1125,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "n_init": 50,
+  "max_iter": 500,
+  "tol": 0.0001,
+  "algorithm": "lloyd",
+  "init": "k-means++",
+  "source_matrix_sha256": "9af872a5779915f66ddba5b59e84a353697a3ee5626eb442f2567a63cc5f1eb5",
+  "prior_subsamples_sha256": "e4b6a9f116fb9ff5b7364c01b97fd2d28005f90297fe17f0ab8c2338bba96ce3",
+  "A_PCA_reference_components": 2,
+  "A_PCA_explained_variance": [
+    0.90920632233296,
+    0.08954068763380706
+  ],
+  "all_withheld_T80_uncensored": true,
+  "no_social_variables_in_fit": true,
+  "no_new_physical_model_runs": true,
+  "observations": "Equal-tract fitting; held-out tract experiments are conditional same-simulation tests, not empirical validation."
+}

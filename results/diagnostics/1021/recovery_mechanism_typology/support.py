@@ -15,10 +15,31 @@ spec = importlib.util.spec_from_file_location("prior_source_authority", PRIOR / 
 legacy = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(legacy)
 ROOT, AUTH, ARCHIVE, FORMAL = legacy.ROOT, legacy.AUTH, legacy.ARCHIVE, legacy.FORMAL
-sha, git, payload, csv_payload = legacy.sha, legacy.git, legacy.payload, legacy.csv_payload
+sha, git = legacy.sha, legacy.git
 START = "5e6a950e2bf58fc72279991430dd0ed5731f6d3f"
 import numpy as np
 import pandas as pd
+
+
+def payload(rel):
+    try:
+        return legacy.payload(rel)
+    except FileNotFoundError:
+        pointer = git("show", legacy.START+":"+rel)
+        match = legacy.re.search(rb"oid sha256:([0-9a-f]{64})", pointer)
+        if not match:
+            raise
+        oid = match[1].decode()
+        common = Path(git("rev-parse", "--git-common-dir").decode().strip())
+        # Windows' normal path APIs can reject this shared cache's long paths.
+        p = Path("\\\\?\\"+str(common/"lfs/objects"/oid[:2]/oid[2:4]/oid))
+        if p.is_file() and sha(p) == oid:
+            return p.read_bytes()
+        raise
+
+
+def csv_payload(rel, **kwargs):
+    return pd.read_csv(legacy.io.BytesIO(payload(rel)), **kwargs)
 
 
 def save(name, rows):
