@@ -55,7 +55,7 @@ def main():
         bytes_downloaded=sum({r['oid']:r['size'] for r in records}.values()),payloads=records,
         no_simulation_or_fitting=True)
     if '--no-write' not in sys.argv:
-        (HERE/'REMOTE_DELIVERY_VERIFICATION.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+        (HERE/'REMOTE_DELIVERY_VERIFICATION.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps({k:v for k,v in report.items() if k!='payloads'}))
 
 
