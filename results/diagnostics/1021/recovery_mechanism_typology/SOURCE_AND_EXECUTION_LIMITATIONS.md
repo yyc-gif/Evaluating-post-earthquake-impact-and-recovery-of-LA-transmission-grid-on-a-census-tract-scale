@@ -64,6 +64,15 @@ local archive, whose absolute path/configuration is recorded; Git delivery does
 not claim that this external archive is included. No missing source values are
 imputed. No cluster-dependent external empirical evidence was acquired.
 
+The analysis and summary steps can reuse the delivered compact matrices.
+The preservation portions of tests/verification also compare the original
+neighboring `_final_p2` checkout and its index/status snapshot; these are
+machine-local preservation checks, not portable index-hash expectations.
+No cross-machine clean-clone reproduction was performed. P2 benchmark refits
+retain their previously registered fixed full-cohort feature standardizer;
+new B/PCA resampling refits preprocessing on training tracts as registered.
+Their preprocessing rules are not claimed to be identical.
+
 Random/split uncertainty is conditional on the frozen simulation realization
 set. Geographic leave-cell-out refits are dependent sensitivity experiments;
 their15 cells are not15 independent validation regions. Ward and K-means share
