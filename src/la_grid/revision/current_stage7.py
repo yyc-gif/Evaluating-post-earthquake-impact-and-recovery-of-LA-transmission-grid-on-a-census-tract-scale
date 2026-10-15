@@ -52,14 +52,14 @@ def verify_current_figures(root=None):
     for name,h in checkpoint['output_hashes'].items():
         assert hashlib.sha256((root/name).read_bytes()).hexdigest()==h,name
     manifest=list(csv.DictReader((root/'results/figure_review/FIGURE_MANIFEST.csv').open(encoding='utf-8')))
-    assert len(manifest)==34
+    assert len(manifest)==32
     for row in manifest:
         assert hashlib.sha256((root/row['current_source_file']).read_bytes()).hexdigest()==row['sha256']
         assert hashlib.sha256((root/row['mirror_file']).read_bytes()).hexdigest()==row['sha256']
     with fitz.open(root/'results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf') as packet:
-        assert len(packet)==21
-    return dict(status='PASS_CURRENT_P2_FIGURES',numbered_figures=17,packet_pages=21,
-                mirrored_files=34,output_hashes_checked=len(checkpoint['output_hashes']),
+        assert len(packet)==20
+    return dict(status='PASS_CURRENT_P2_FIGURES',numbered_figures=16,packet_pages=20,
+                mirrored_files=32,output_hashes_checked=len(checkpoint['output_hashes']),
                 no_new_fits_or_simulations=True)
 
 

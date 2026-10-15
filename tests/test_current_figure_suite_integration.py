@@ -23,7 +23,7 @@ PB=ROOT/'docs/data_research/stage7_path_b_p2_integration_review_20261014'
 BASE='937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
 FEATURES=['Init_Supply','Grid_Impact','Redundancy_HHI','B_Unconstrained','MeanDelta','SOVI_SCORE','log1p_Population']
 BUDGET=np.array([1/9,1/9,1/9,1/6,1/6,1/6,1/6])
-ACTIVE=[f'Main/Fig{i:02d}' for i in range(1,8)]+[f'Supplement/FigS{i:02d}' for i in range(1,11)]
+ACTIVE=[f'Main/Fig{i:02d}' for i in range(1,8)]+[f'Supplement/FigS{i:02d}' for i in range(1,10)]
 sys.path.insert(0,str(ROOT/'src'))
 
 
@@ -50,9 +50,9 @@ def source(path):
     raise AssertionError('Missing hash-bound source payload: '+path)
 
 
-def test_exact_17_numbered_pairs():
+def test_exact_16_numbered_pairs():
     assert {r['final_name'] for r in rows()}=={s+'.'+e for s in ACTIVE for e in ['pdf','png']}
-    assert len(rows())==34
+    assert len(rows())==32
 
 
 def test_manifest_matches_actual_artwork():
@@ -63,17 +63,17 @@ def test_every_mirror_is_byte_identical():
     for r in rows():assert sha(ROOT/r['mirror_file'])==r['sha256']
 
 
-def test_exactly_14_unaffected_artwork_pairs():
+def test_unchanged_and_updated_artwork_are_explicitly_recorded():
     changes=df(QA/'FIGURE_CHANGE_MANIFEST.csv')
-    assert int(changes.unchanged.sum())==28
+    assert len(changes)==32
     for r in changes.itertuples():
         if r.unchanged:assert sha(SUITE/r.figure)==r.baseline_sha256==r.current_sha256
-    assert set(changes.loc[~changes.unchanged,'figure'])=={s+'.'+e for s in ['Main/Fig05','Main/Fig07','Supplement/FigS08'] for e in ['pdf','png']}
+    assert set(changes.loc[changes.unchanged,'figure'])=={s+'.'+e for s in ['Main/Fig01','Main/Fig04','Main/Fig05','Main/Fig06','Supplement/FigS09'] for e in ['pdf','png']}
 
 
-def test_s05_and_merged_resource_artwork_preserved():
+def test_independent_main_results_and_merged_resource_artwork_preserved():
     changes=df(QA/'FIGURE_CHANGE_MANIFEST.csv').set_index('figure')
-    for s in ['Main/Fig01','Supplement/FigS04','Supplement/FigS05','Supplement/FigS10']:
+    for s in ['Main/Fig01','Main/Fig04','Main/Fig05','Main/Fig06','Supplement/FigS09']:
         for e in ['pdf','png']:assert bool(changes.loc[s+'.'+e,'unchanged'])
 
 
@@ -81,7 +81,7 @@ def test_no_extra_numbered_artwork_or_retired_numbering():
     for folder in ['Main','Supplement']:
         actual={str(p.relative_to(SUITE)).replace('\\','/') for p in (SUITE/folder).iterdir() if p.suffix in ['.pdf','.png']}
         assert actual=={r['final_name'] for r in rows() if r['final_name'].startswith(folder+'/')}
-    assert not any((SUITE/'Supplement'/f'FigS{n:02d}.pdf').exists() for n in [11,12,13])
+    assert not any((SUITE/'Supplement'/f'FigS{n:02d}.pdf').exists() for n in [10,11,12,13])
 
 
 def test_publication_pngs_and_native_dimensions():
@@ -89,7 +89,7 @@ def test_publication_pngs_and_native_dimensions():
         with fitz.open(SUITE/(stem+'.pdf')) as art,Image.open(SUITE/(stem+'.png')) as im:
             assert im.width>=4320
             assert abs(im.width/im.height-art[0].rect.width/art[0].rect.height)<.002
-            assert abs(art[0].rect.width-(7.2*72 if stem in ['Main/Fig07','Supplement/FigS08'] else 185*72/25.4))<.2
+            assert abs(art[0].rect.width-(7.2*72 if stem=='Main/Fig07' else 185*72/25.4))<.2
 
 
 def test_all_native_previews_exist():
@@ -97,9 +97,9 @@ def test_all_native_previews_exist():
 
 
 def test_packet_page_counts():
-    assert len(fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))==21
+    assert len(fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))==20
     assert len(fitz.open(SUITE/'ALL_MAIN_FIGURES.pdf'))==7
-    assert len(fitz.open(SUITE/'ALL_SUPPLEMENT_FIGURES.pdf'))==10
+    assert len(fitz.open(SUITE/'ALL_SUPPLEMENT_FIGURES.pdf'))==9
 
 
 def test_packet_embeds_each_actual_artwork_at_native_size():
@@ -113,7 +113,7 @@ def test_packet_embeds_each_actual_artwork_at_native_size():
 
 def test_all_caption_forms_are_short_and_legible():
     registry=list(csv.DictReader((QA/'COMPACT_PACKET_PAGE_REGISTRY.csv').open(encoding='utf-8')))
-    assert len(registry)==17
+    assert len(registry)==16
     with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as book:
         for i,r in enumerate(registry):
             p=book[i];rect=fitz.Rect(0,float(r['figure_height_pt']),p.rect.width,p.rect.height)
@@ -135,10 +135,10 @@ def test_realization_ranges_are_distinct_from_mean_effect_confidence_intervals()
 
 def test_active_cross_references_and_continuous_supplement_numbering():
     text=caps()
-    assert [int(n) for n in re.findall(r'^## Supplementary Figure S(\d+)\.',text,re.M)]==list(range(1,11))
-    assert not re.search(r'\bS(?:11|12|13)\b',text)
+    assert [int(n) for n in re.findall(r'^## Supplementary Figure S(\d+)\.',text,re.M)]==list(range(1,10))
+    assert not re.search(r'\bS(?:10|11|12|13)\b',text)
     assert 'Supplementary Figures S12/S13' not in text
-    assert 'Supplementary Figure S10' in text
+    assert 'Supplementary Figure S9' in text
 
 
 def test_sole_current_selector_is_p2_seven_variables():
@@ -248,9 +248,10 @@ def test_palette_ids_and_white_na_match_approved_registry():
     assert p['NA_fill']=='#FFFFFF' and p['NA_count']==16 and p['NA_outline_width_pt']==.45
 
 
-def test_s8_uses_p2_not_ncv14_diagnostics():
-    t=fitz.open(SUITE/'Supplement/FigS08.pdf')[0].get_text()
-    assert 'Clustering diagnostics' in t and 'K3 primary' in t and 'K4 sensitivity' in t
+def test_s8_now_shows_repair_priorities_not_removed_clustering_diagnostics():
+    t=fitz.open(SUITE/'Supplement/FigS08.pdf')[0].get_text().replace('\u00a0',' ').replace('\u00ad','-')
+    assert 'Hospital-first repair priority' in t and 'Impact-first repair priority' in t
+    assert 'Clustering diagnostics' not in t and 'K4 sensitivity' not in t
     assert not any(x in t for x in ['NCV14','PCA','PC1','PC2'])
     assert not re.search(r'\b(?:P2|saved|frozen)\b',t,re.I)
 
@@ -267,7 +268,7 @@ def test_k4_geographic_advantage_is_retained_as_sensitivity():
     d=df(AUTH/'geographic_stability.csv');k3=d.loc[d.k.eq(3),'held_out_ARI'];k4=d.loc[d.k.eq(4),'held_out_ARI']
     assert abs(k3.min()-.4189314331)<1e-9 and abs(k4.min()-.805674)<1e-6
     assert k4.min()>k3.min()
-    assert 'K4 is mandatory sensitivity and has stronger held-out geographic agreement' in caps()
+    assert 'K4 remains a saved sensitivity result' in (SUITE/'README.md').read_text()
     m=df(AUTH/'K4_sensitivity_membership.csv');assert m.K4_sensitivity_class.value_counts().sort_index().tolist()==[37,1217,429,616]
 
 
@@ -299,7 +300,7 @@ def test_current_entrypoint_routes_only_to_adopted_p2():
 def test_every_generator_checkpoint_output_is_current():
     q=read(QA/'BUILD_CHECKPOINT.json')
     assert q['fitted_feature_count']==7 and q['model']=='P2' and q['primary_K']==3
-    assert q['packet_pages']==21 and q['numbered_figures']==17
+    assert q['packet_pages']==20 and q['numbered_figures']==16
     assert sha(ROOT/'src/la_grid/plotting/build_current_suite_p2.py')==q['generator_sha256']
     assert sha(ROOT/'src/la_grid/plotting/figure_presentation.py')==q['presentation_sha256']
     assert all(sha(ROOT/p)==h for p,h in q['output_hashes'].items())
@@ -307,9 +308,9 @@ def test_every_generator_checkpoint_output_is_current():
 
 def test_current_gallery_index_and_manifest_are_synchronized():
     index=list(csv.DictReader((ROOT/'results/figures/FIGURE_INDEX.csv').open(encoding='utf-8')))
-    assert len(index)==34
+    assert len(index)==32
     for r in index:assert sha(ROOT/'results/figures'/r['file'])==r['sha256_or_lfs_oid']
-    assert (ROOT/'results/figures/FIGURE_REVIEW_GALLERY.html').read_text(encoding='utf-8').count('<img ')==17
+    assert (ROOT/'results/figures/FIGURE_REVIEW_GALLERY.html').read_text(encoding='utf-8').count('<img ')==16
 
 
 def test_current_readme_and_citation_identify_one_final_model():
@@ -335,12 +336,12 @@ def test_all_retired_tip_commits_remain_reachable():
 
 
 def test_current_figures_have_embedded_fonts_and_vector_typology():
-    for stem in ['Main/Fig07','Supplement/FigS08']:
+    for stem in ['Main/Fig07','Supplement/FigS05']:
         with fitz.open(SUITE/(stem+'.pdf')) as d:
             assert not d[0].get_images()
             assert all(d.extract_font(f[0])[3] for f in d[0].get_fonts())
             spans=[s for b in d[0].get_text('dict')['blocks'] if 'lines' in b for l in b['lines'] for s in l['spans']]
-            assert min(s['size'] for s in spans)>=7.49
+            assert min(s['size'] for s in spans)>=(6.99 if stem.endswith('S05') else 7.49)
 
 
 def test_formal_and_original_stage7_entries_reuse_current_p2():
@@ -429,3 +430,106 @@ def test_no_internal_process_names_in_current_publication_artwork_or_captions():
     for stem in ACTIVE:
         with fitz.open(SUITE/(stem+'.pdf')) as d:assert not forbidden.search(d[0].get_text()),stem
     assert not forbidden.search(caps())
+
+
+def test_travel_title_is_task_to_task_without_extra_qualifier():
+    text=fitz.open(SUITE/'Supplement/FigS02.pdf')[0].get_text().replace('\u00a0',' ').replace('\u00ad','-')
+    assert 'B. Task-to-task travel' in text and 'Directed task-to-task' not in text
+
+
+def test_static_percolation_is_distinct_from_time_dependent_recovery():
+    text=fitz.open(SUITE/'Supplement/FigS03.pdf')[0].get_text().replace('\u00a0',' ').replace('\u00ad','-')
+    for t in ['A. Static percolation','B. Recovery of largest-component fraction',
+              'C. Recovery of mean degree in the largest component','Time after earthquake (h)']:
+        assert t in text
+    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/PRESENTATION_QA.json')['figures']['Supplement/FigS03']
+    assert q['preceding_content_to_title_gap_pt']==[20,20]
+    with fitz.open(SUITE/'Supplement/FigS03.pdf') as d:
+        axes=[v['rect'] for v in d[0].get_drawings() if abs(v['rect'].x0-57.685)<.02
+              and abs(v['rect'].width-188.787)<.02 and abs(v['rect'].height-102.047)<.02]
+    assert any(abs(r.y0-239.7716)<.02 for r in axes)
+    assert any(abs(r.y0-434.7697)<.02 for r in axes)
+    assert abs((434.7697-387)-(239.7716-192))<.01
+
+
+def test_ga_initial_and_final_orders_are_both_per_run():
+    text=fitz.open(SUITE/'Supplement/FigS04.pdf')[0].get_text().replace('\u00a0',' ')
+    assert all(t in text for t in ['Best initial order','100 orders per run','Best final order','At run completion'])
+    assert 'Initial best' not in text and 'Final minimum' not in text
+    assert 'Each run\'s best initial order' in caps()
+
+
+def test_service_gate_panel_has_three_clear_titles_and_no_explanatory_footer():
+    with fitz.open(SUITE/'Supplement/FigS05.pdf') as d:
+        ss=[s for b in d[0].get_text('dict')['blocks'] for l in b.get('lines',[]) for s in l['spans']]
+    titles=[s for s in ss if re.match(r'^[A-D]\. ',s['text'].replace('\u00a0',' '))]
+    assert len(titles)==3 and all(abs(s['size']-9.5)<.01 for s in titles)
+    assert all(abs((s['bbox'][0]+s['bbox'][2])/2-185*72/25.4/2)<.1 for s in titles)
+    text='\n'.join(s['text'] for s in ss)
+    assert 'Threshold 0.05' in text and 'Threshold 0.75' in text
+    assert 'C and D retain' not in text and 'Mean and 5th' not in text
+    assert '(C) Functionality thresholds 0.05 and 0.75' in caps()
+
+
+def test_all_nine_service_gate_display_values_match_saved_source():
+    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/PRESENTATION_QA.json')['figures']['Supplement/FigS05']
+    original=df(ROOT/'docs/reproducibility/figure_suite_author_clarity_numbering_20261013/SOURCE_AND_THRESHOLD_DISPLAY_VALUES.csv')
+    actual=pd.DataFrame(q['saved_display_records'])
+    keys=['policy','case']
+    pd.testing.assert_frame_equal(actual.sort_values(keys).reset_index(drop=True)[original.columns],
+                                 original.sort_values(keys).reset_index(drop=True),check_exact=True)
+    assert q['reference_threshold']==.5 and q['source_control_separate']
+
+
+def test_priority_population_scale_is_neutral_without_geometry_change():
+    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/PRESENTATION_QA.json')['figures']['Supplement/FigS08']
+    assert q['population_palette']=='Greys' and q['all_geometry_and_nonfill_properties_unchanged']
+    with fitz.open(SUITE/'Supplement/FigS08.pdf') as d:
+        fills=[v['fill'] for v in d[0].get_drawings() if v['fill'] and v['rect'].y0>525]
+    # Only station markers retain their muted blue-gray identity.
+    assert not any(c[2]-c[0]>.15 and c[2]>c[1] for c in fills)
+
+
+def test_saved_scientific_authority_matches_this_rounds_initial_snapshot():
+    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/BEFORE.json')
+    files={p:h for p,h in q['hashes'].items() if p.startswith('results/stage7/')}
+    assert len(files)==17
+    assert all(sha(ROOT/p)==h for p,h in files.items())
+
+
+def test_threshold_errorbar_coordinates_independently_match_saved_values():
+    values=df(ROOT/'docs/reproducibility/figure_suite_author_clarity_numbering_20261013/SOURCE_AND_THRESHOLD_DISPLAY_VALUES.csv')
+    with fitz.open(SUITE/'Supplement/FigS05.pdf') as d:
+        width=d[0].rect.width;drawings=d[0].get_drawings()
+    for row in values.itertuples():
+        i=['impact-first','hospital-first','degree-first'].index(row.policy)
+        lo,hi,top,offset=(-7.3,.3,232,0) if row.threshold==.5 else (-.17,.06,450,.14 if row.threshold==.05 else -.14)
+        xp=lambda v:.23*width+(v-lo)/(hi-lo)*.70*width
+        y=top+(i+.5-offset)*36
+        wanted=sorted([xp(row.p05_gap_h),xp(row.p95_gap_h)])
+        found=False
+        for drawing in drawings:
+            for item in drawing['items']:
+                if item[0]=='l':
+                    a,b=item[1:]
+                    if abs(a.y-y)<.02 and abs(b.y-y)<.02 and max(abs(a-b) for a,b in zip(sorted([a.x,b.x]),wanted))<.02:
+                        found=True
+        assert found,(row.case,row.policy,wanted,y)
+
+
+def test_centered_panel_titles_use_one_font_size_within_each_figure():
+    for stem in ACTIVE:
+        with fitz.open(SUITE/(stem+'.pdf')) as d:
+            ss=[s for b in d[0].get_text('dict')['blocks'] for l in b.get('lines',[]) for s in l['spans']]
+            titles=[s for s in ss if re.match(r'^[A-H]\. ',s['text'].replace('\u00a0',' '))]
+            if titles:assert max(s['size'] for s in titles)-min(s['size'] for s in titles)<.02,stem
+            for s in titles:assert d[0].rect.contains(fitz.Rect(s['bbox'])),(stem,s['text'])
+
+
+def test_damage_state_y_label_is_not_clipped_by_title_alignment():
+    sys.path.insert(0,str(ROOT/'src/la_grid/plotting'))
+    import consolidate_current_figure_suite as u
+    raw=u.payload('96297fb12fceb8e61137b456648d2655a5909b6b','results/figure_review/Main/Fig03.pdf')
+    with fitz.open(stream=raw,filetype='pdf') as a,fitz.open(SUITE/'Main/Fig03.pdf') as b:
+        rect=fitz.Rect(40,25,56,195)
+        assert a[0].get_pixmap(matrix=fitz.Matrix(2,2),clip=rect).samples==b[0].get_pixmap(matrix=fitz.Matrix(2,2),clip=rect).samples

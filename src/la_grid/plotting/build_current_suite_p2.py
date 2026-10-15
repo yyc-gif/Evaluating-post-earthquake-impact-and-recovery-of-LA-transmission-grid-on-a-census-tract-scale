@@ -7,6 +7,7 @@ import io
 import json
 import re
 import sys
+import shutil
 
 import fitz
 import numpy as np
@@ -21,18 +22,17 @@ ROOT = u.ROOT
 BASE = '937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
 PB = 'docs/data_research/stage7_path_b_p2_integration_review_20261014/'
 REVIEW = 'local_elsevier_review_outputs/'
-CAPTION_COMMIT = 'aecc9adadd04edc4c5f64de64f79ed4c34c1f69c'
+PRESENTATION_BASE = '96297fb12fceb8e61137b456648d2655a5909b6b'
 AUTH = ROOT / 'results/stage7/2026-10-14'
 DEST = ROOT / 'results/figure_review'
 QA = ROOT / 'docs/reproducibility/p2_final_adoption_20261014'
 GEN = 'src/la_grid/plotting/build_current_suite_p2.py'
 PRESENTATION = 'src/la_grid/plotting/figure_presentation.py'
-STYLE_QA = ROOT/'docs/reproducibility/figure_presentation_20261014'
 FEATURES = ['Init_Supply', 'Grid_Impact', 'Redundancy_HHI', 'B_Unconstrained',
             'MeanDelta', 'SOVI_SCORE', 'log1p_Population']
 BUDGETS = np.array([1/9, 1/9, 1/9, 1/6, 1/6, 1/6, 1/6])
 COLORS = ['#147f98', '#d07734', '#7a5899']
-ACTIVE = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' for i in range(1, 11)]
+ACTIVE = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' for i in range(1, 10)]
 SOURCES = {}
 
 
@@ -140,7 +140,7 @@ def adopt_authority():
 
 
 def captions():
-    text = source('results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md', CAPTION_COMMIT).decode('utf-8')
+    text = source('results/figure_review/MANUSCRIPT_FACING_CAPTIONS.md', PRESENTATION_BASE).decode('utf-8')
     items = [(title.strip(), body.strip()) for title, body in
              re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)', text, re.M | re.S)]
     items=[(title,body.replace('frozen SOVI quartiles','SOVI quartiles')
@@ -156,8 +156,15 @@ def captions():
     items=[(title,body.replace('frozen ','').replace('Saved ','').replace('saved ','')) for title,body in items]
     items=[(title,re.sub(r'\bfrozen\s+','',body,flags=re.I).replace('for P2.','for the community typology.'))
            for title,body in items]
-    assert len(items) == 17
-    assert [int(x) for x in re.findall(r'^Supplementary Figure S(\d+)\.', '\n'.join(t for t,b in items), re.M)] == list(range(1,11))
+    items[8]=(items[8][0],items[8][1].replace('Directed task-to-task','Task-to-task'))
+    items[9]=(items[9][0], '(A) Static percolation under station removal. (B, C) Time-dependent recovery of the largest functional component and its mean degree, with station-functionality threshold 0.50. Static removal and post-earthquake recovery are distinct comparisons; neither establishes delivered electricity.')
+    items[10]=(items[10][0], '(A) Minimum service loss during each of 20 GA searches. (B) Each run\'s best initial order among 100 random orders and its best order at completion. (C) Independent validation across 2,000 realizations. (D) Mean damage-, threshold-, and source-path loss differences. Gaps are GA minus Impact-first; global optimality is not established.')
+    items[11]=(items[11][0], '(A) Mapping-weight cutoff. (B) Source connectivity removed with functionality threshold fixed at 0.50. (C) Functionality thresholds 0.05 and 0.75, both retaining source connectivity, relative to 0.50. Points show mean service-loss gaps; lines show 5th-95th realization ranges. Gaps are control minus reference. No power-flow adequacy is implied.')
+    del items[14]
+    items[14]=('Supplementary Figure S8. Restoration-priority geography', '(A-C) Hospital-first, Vulnerability-first, and Impact-first substation repair priorities. Maps show hospital-linked tracts, SOVI Q4, and population context, respectively. Numbers and tables identify the first five station priorities; the ordered gray scale denotes tract population, not repair order.')
+    items[15]=(items[15][0].replace('S10.','S9.'),items[15][1])
+    assert len(items) == 16
+    assert [int(x) for x in re.findall(r'^Supplementary Figure S(\d+)\.', '\n'.join(t for t,b in items), re.M)] == list(range(1,10))
     return items
 
 
@@ -179,8 +186,7 @@ def packets(caps):
                     caption_height_pt=cap[0].rect.height, caption_stream_sha256=u.digest(cap[0].read_contents()),
                     caption_min_font_pt=10, caption_bounds_valid=True, title=title, caption=body))
             preview = 'results/figure_review/Page_Previews/'+Path(stem).name+'.png'
-            u.write(ROOT/preview, art[0].get_pixmap(dpi=150).tobytes('png')
-                    if stem in ['Main/Fig05','Main/Fig07','Supplement/FigS08'] else source(preview))
+            u.write(ROOT/preview, art[0].get_pixmap(dpi=150).tobytes('png'))
     with fitz.open(stream=source('results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf'), filetype='pdf') as baseline:
         assert len(baseline)==21
         book.insert_pdf(baseline, from_page=17, to_page=20)
@@ -195,21 +201,60 @@ def main():
     spec = adopt_authority()
     previous=QA/'BUILD_CHECKPOINT.json'
     old_outputs=json.loads(previous.read_text(encoding='utf-8'))['output_hashes'] if previous.exists() else {}
-    manifest = u.csv_rows(source('results/figure_review/FIGURE_MANIFEST.csv'))
-    index = u.csv_rows(source('results/figures/FIGURE_INDEX.csv'))
-    replacements = {'Main/Fig07': 'FIG07_P2_K3_B_COLOR_NO_REVIEW_BANNER',
-                    'Supplement/FigS08': 'FigS08_P2_K3_K4_Saved_Diagnostics'}
+    original_manifest = u.csv_rows(source('results/figure_review/FIGURE_MANIFEST.csv',PRESENTATION_BASE))
+    original_index = u.csv_rows(source('results/figures/FIGURE_INDEX.csv',PRESENTATION_BASE))
+    existing = u.csv_rows((DEST/'FIGURE_MANIFEST.csv').read_bytes())
+    manifest=[];index=[]
     style={};style_checks={}
-    for stem in ['Main/Fig05','Main/Fig07','Supplement/FigS08']:
-        rel=REVIEW+replacements[stem]+'.pdf' if stem in replacements else 'results/figure_review/'+stem+'.pdf'
-        style[stem],style_checks[stem]=figure_presentation.apply(stem,source(rel))
-    u.dump(STYLE_QA/'PRESENTATION_QA.json',dict(source_commit=BASE,figures=style_checks,
-        generator_sha256=u.sha(ROOT/PRESENTATION),no_scientific_calculations=True))
+    display_path='docs/reproducibility/figure_suite_author_clarity_numbering_20261013/SOURCE_AND_THRESHOLD_DISPLAY_VALUES.csv'
+    display=pd.read_csv(io.BytesIO(source(display_path,PRESENTATION_BASE)),float_precision='round_trip')
+    for stem in ACTIVE:
+        old_stem={'Supplement/FigS08':'Supplement/FigS09','Supplement/FigS09':'Supplement/FigS10'}.get(stem,stem)
+        raw=source('results/figure_review/'+old_stem+'.pdf',PRESENTATION_BASE)
+        checks={}
+        if stem=='Supplement/FigS02':
+            raw=figure_presentation.relabel(raw,{'B. Directed task-to-task travel':'B. Task-to-task travel'})
+        elif stem=='Supplement/FigS03':raw,checks=figure_presentation.recovery_network(raw)
+        elif stem=='Supplement/FigS04':
+            raw=figure_presentation.relabel(raw,{'Initial best':'Best initial order','100 random orders':'100 orders per run',
+                'Final minimum':'Best final order',
+                'One initial and one final result per GA run':'One initial and final minimum per run'})
+            # Only the x-axis label uses 7.5 pt; the separate 8 pt legend stays intact.
+            with fitz.open(stream=raw,filetype='pdf') as d:
+                p=d[0];s=next(s for s in figure_presentation.spans(p) if s['text']=='20 GA runs' and s['size']<7.6)
+                body,metrics=figure_presentation.fonts(d,False,'At run completion')
+                cleaned=figure_presentation.cut_text(d,[s]);p=cleaned[0]
+                p.insert_font(fontname='FinalOrder',fontbuffer=body)
+                p.insert_text(((s['bbox'][0]+s['bbox'][2]-metrics.text_length('At run completion',fontsize=7.5))/2,s['origin'][1]),
+                    'At run completion',fontname='FinalOrder',fontsize=7.5)
+                raw=figure_presentation.finish(cleaned);cleaned.close()
+        elif stem=='Supplement/FigS05':raw,checks=figure_presentation.gate_sensitivity(raw,display)
+        elif stem=='Supplement/FigS08':raw,checks=figure_presentation.priority_geography(raw)
+        raw,aligned=figure_presentation.centered_titles(stem,raw)
+        print('Prepared '+stem,flush=True)
+        checks.update(aligned)
+        original=source('results/figure_review/'+old_stem+'.pdf',PRESENTATION_BASE)
+        if raw!=original:style[stem]=raw
+        style_checks[stem]=checks
+        for ext in ['pdf','png']:
+            row=next(r.copy() for r in original_manifest if r['final_name']==old_stem+'.'+ext)
+            ix=next(r.copy() for r in original_index if r['source_path']==row['current_source_file'])
+            row['final_name']=stem+'.'+ext
+            row['current_source_file']='results/figure_review/'+stem+'.'+ext
+            row['mirror_file']=row['mirror_file'].replace(Path(old_stem).name+'_',Path(stem).name+'_')
+            if stem=='Supplement/FigS02':
+                row['mirror_file']=row['mirror_file'].replace('Crew_Bases_and_Directed_Travel','Crew_Bases_and_Task_Travel')
+            ix['source_path']=row['current_source_file'];ix['file']=Path(row['mirror_file']).name
+            manifest.append(row);index.append(ix)
+    u.dump(ROOT/'docs/reproducibility/supplement_presentation_20261014/PRESENTATION_QA.json',
+        dict(source_commit=PRESENTATION_BASE,figures=style_checks,generator_sha256=u.sha(ROOT/PRESENTATION),
+             no_simulation_or_new_statistical_estimates=True))
     changes = []
     for row in manifest:
         stem, ext = row['final_name'].rsplit('.', 1)
-        path = REVIEW+replacements[stem]+'.'+ext if stem in replacements else row['current_source_file']
-        raw = source(path)
+        old_stem={'Supplement/FigS08':'Supplement/FigS09','Supplement/FigS09':'Supplement/FigS10'}.get(stem,stem)
+        path = 'results/figure_review/'+old_stem+'.'+ext
+        raw = source(path,PRESENTATION_BASE)
         source_hash=u.digest(raw)
         if stem in style:
             if ext=='pdf':raw=style[stem]
@@ -227,10 +272,10 @@ def main():
         if stem in style:
             with fitz.open(stream=style[stem],filetype='pdf') as art:
                 size=f'{art[0].rect.width*25.4/72:.3f} x {art[0].rect.height*25.4/72:.3f}'
-            row.update(source_commit=BASE, source_file=path, presentation_generator=GEN,
+            row.update(source_commit=PRESENTATION_BASE, source_file=path, presentation_generator=GEN,
                        presentation_generator_sha256=u.sha(ROOT/GEN), status='AUTHOR_ADOPTED_P2_CURRENT',
                        min_font_pt='7.500', size_mm=size,
-                       parent_sha256=before, parent_source_commit=BASE, parent_source_file=row['current_source_file'])
+                       parent_sha256=before, parent_source_commit=PRESENTATION_BASE, parent_source_file=path)
         else:
             assert u.digest(raw)==before
         ix=next(r for r in index if r['source_path']==row['current_source_file'])
@@ -238,11 +283,24 @@ def main():
         ix['current_status']='CURRENT_ADOPTED_P2_SUITE'
         ix['submission_status']='Current author-approved seven-variable suite'
         if stem in style:
-            ix.update(source_authority=BASE, source_data_path=path, source_data_sha256=source_hash, generator=GEN,
-                notes='Presentation-only spacing and wording corrections; scientific vectors and values retained.')
+            ix.update(source_authority=PRESENTATION_BASE, source_data_path=path, source_data_sha256=source_hash, generator=GEN,
+                notes='Presentation-only correction; frozen values retained. Previous S08 artwork removed; S09/S10 renumbered S08/S09.')
         changes.append(dict(figure=row['final_name'], baseline_sha256=before, current_sha256=u.digest(raw),
                             unchanged=before==u.digest(raw)))
-    assert sum(not r['unchanged'] for r in changes)==6
+    # Retire only paths formerly in the active registry, after preserving their bytes.
+    keep={r[k] for r in manifest for k in ['current_source_file','mirror_file']}
+    keep.update('results/figure_review/Page_Previews/'+Path(s).name+'.png' for s in ACTIVE)
+    retired={r[k] for r in existing for k in ['current_source_file','mirror_file']}
+    retired.update('results/figure_review/Page_Previews/'+Path(r['final_name']).stem+'.png' for r in existing)
+    for rel in sorted(retired-keep):
+        p=ROOT/rel
+        if p.is_file():
+            backup=ROOT/'build/retired_artwork_20261014'/rel
+            backup.parent.mkdir(parents=True,exist_ok=True)
+            if not backup.exists():shutil.copy2(p,backup)
+            assert u.sha(backup)==u.sha(p)
+            assert p.resolve().is_relative_to((ROOT/'results').resolve())
+            p.unlink()
     u.write_csv(DEST/'FIGURE_MANIFEST.csv', manifest)
     u.write_csv(ROOT/'results/figures/FIGURE_INDEX.csv', index)
     u.write_csv(QA/'FIGURE_CHANGE_MANIFEST.csv', changes)
@@ -265,8 +323,8 @@ def main():
     u.write(ROOT/'results/figures/FIGURE_REVIEW_GALLERY.html', '\n'.join(gallery))
     info = ('# Figures - 2026-10-14\n\nSeven-variable model, three primary classes, 2,299 positive-population tracts '
         '(1,235 / 428 / 636), 9,066,522 residents. NCV14 is supplementary environmental context, not a fitted coordinate. '
-        'K4 remains a sensitivity result, not a second primary model.\n\n17 numbered figures: Main 1-7 and Supplement 1-10. '
-        'The compact combined packet has 21 pages: 17 native artwork-plus-concise-caption pages and four retained '
+        'K4 remains a saved sensitivity result, not a second primary model.\n\n16 numbered figures: Main 1-7 and Supplement 1-9. '
+        'The compact combined packet has 20 pages: 16 native artwork-plus-concise-caption pages and four retained '
         'complementary-evidence pages. Figure 7 uses the approved color-family/continuous-burden map and direct Q4/P75 '
         'co-occurrence outlines; no composite hotspot score. The separate grayscale accessibility maps remain available '
         'under docs/figure_sources/2026-10-14/.\n\nReproduce: '
@@ -275,18 +333,15 @@ def main():
         'No physical simulation or K-means is run. Current identity: results/stage7/2026-10-14/.\n')
     for rel in ['results/figure_review/README.md','results/figures/README.md']:
         u.write(ROOT/rel, info)
-    log = source('results/figure_review/UPDATE_LOG.md').decode()
-    u.write(DEST/'UPDATE_LOG.md', log+'\n\n## 2026-10-14 - current version\n\n'
-        'Replaced Fig07 and FigS08 from the frozen P2 source; all other 15 numbered PDF/PNG pairs remain byte-identical. '
-        'Updated concise captions, palettes, indexes, gallery, mirrors, previews and native packets. '
-        'Saved K3 is primary; K4 is sensitivity and its stronger geographic agreement is disclosed. '
-        'Full service domain remains 2,315; no physical outputs or manuscript documents changed. '
-        'The branch and current data directory use the date 2026-10-14; superseded presentation drafts '
-        'and per-run search archives are retained in Git history rather than the current tree.\n\n'
-        'Figure 5 now uses balanced row-title spacing. Figure 7 uses concise titles and no embedded explanatory '
-        'footnotes; its original graphs and maps are translated without scaling. Supplement S8 removes '
-        'process-only labels. All other 14 artwork pairs retain their approved bytes.\n')
-    u.dump(QA/'SOURCE_AUTHORITY_AND_HASHES.json', dict(source_commit=BASE, sources=SOURCES,
+    log = source('results/figure_review/UPDATE_LOG.md',PRESENTATION_BASE).decode()
+    u.write(DEST/'UPDATE_LOG.md', log+'\n\n## 2026-10-14 - supplementary presentation corrections\n\n'
+        'Panel headings are centered consistently. S02 removes Directed; S03 distinguishes static percolation '
+        'from recovery over time; S04 identifies each run\'s initial and final best orders; S05 separates '
+        'source connectivity from a combined threshold comparison, with no explanatory footer. '
+        'The previous S08 clustering artwork is removed by author instruction. Previous S09/S10 become '
+        'S08/S09; S08 identifies repair priorities and uses a neutral population scale. '
+        'Current registry: 16 numbered figures and 20 packet pages; saved clustering evidence is retained.\n')
+    u.dump(QA/'SOURCE_AUTHORITY_AND_HASHES.json', dict(source_commit=BASE,presentation_source_commit=PRESENTATION_BASE,sources=SOURCES,
         adopted_specification=spec, author_authorization_date='2026-10-14'))
     outputs = [str(p.relative_to(ROOT)).replace('\\','/') for p in AUTH.iterdir() if p.is_file()]
     outputs += ['config/current_stage7.json', 'results/figure_review/FIGURE_MANIFEST.csv',
@@ -304,8 +359,8 @@ def main():
         if old['generator_sha256']==u.sha(ROOT/GEN) and old.get('presentation_sha256')==u.sha(ROOT/PRESENTATION):
             assert old['output_hashes']==hashes, 'Non-idempotent current-suite replay'
     u.dump(prior, dict(generator_sha256=u.sha(ROOT/GEN), presentation_sha256=u.sha(ROOT/PRESENTATION), routing_sha256=u.sha(ROOT/'src/la_grid/plotting/build_current_figures.py'), output_hashes=hashes, model='P2',
-        numbered_figures=17, packet_pages=21, primary_K=3, fitted_feature_count=7))
-    print('Adopted P2 authority and complete figure suite synchronized: 17 figures, 21 pages; no fits.')
+        numbered_figures=16, packet_pages=20, primary_K=3, fitted_feature_count=7))
+    print('Current suite synchronized: 16 figures, 20 pages; no fits or simulations.')
 
 
 if __name__ == '__main__':

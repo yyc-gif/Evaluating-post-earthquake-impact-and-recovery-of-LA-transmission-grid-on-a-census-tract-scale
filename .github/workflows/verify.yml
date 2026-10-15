@@ -13,8 +13,9 @@ jobs:
       - name: Retrieve only compact current verification inputs
         run: |
           git lfs install
-          git lfs pull --include="results/stage7/2026-10-14/**,results/figure_review/**,results/figures/**,docs/reproducibility/p2_final_adoption_20261014/**,docs/data_research/stage7_path_b_p2_integration_review_20261014/**,docs/figure_sources/2026-10-14/**"
+          git lfs pull --include="results/stage7/2026-10-14/**,results/figure_review/**,results/figures/**,docs/reproducibility/p2_final_adoption_20261014/**,docs/data_research/stage7_path_b_p2_integration_review_20261014/**,docs/figure_sources/2026-10-14/**,docs/reproducibility/figure_suite_author_clarity_numbering_20261013/SOURCE_AND_THRESHOLD_DISPLAY_VALUES.csv,docs/reproducibility/supplement_presentation_20261014/**"
           git lfs fetch --include="results/figure_review/Main/Fig05.*,results/figure_review/Main/Fig07.*,results/figure_review/Supplement/FigS08.*" --exclude="" origin b6e9e19bc990350f831f97444f375aa2d66cf43d
+          git lfs fetch --include="results/figure_review/Main/Fig03.pdf" --exclude="" origin 96297fb12fceb8e61137b456648d2655a5909b6b
       - name: Install verification dependencies
         run: python -m pip install numpy==1.26.4 pandas==2.2.2 Pillow==10.4.0 PyMuPDF==1.28.0 reportlab==4.4.9 pytest
       - name: Check current Stage 7 without fitting or simulation

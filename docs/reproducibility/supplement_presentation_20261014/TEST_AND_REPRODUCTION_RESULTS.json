@@ -1,0 +1,33 @@
+{
+  "build_idempotent": true,
+  "output_hashes_checked": 109,
+  "commands": [
+    [
+      "C:\\Users\\yinch\\anaconda3\\python.exe",
+      "src/la_grid/plotting/build_current_figures.py",
+      "--portable"
+    ],
+    [
+      "C:\\Users\\yinch\\anaconda3\\python.exe",
+      "-m",
+      "pytest",
+      "tests/test_current_figure_suite_integration.py",
+      "-q",
+      "--junitxml=C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_final_p2\\docs\\reproducibility\\supplement_presentation_20261014\\tests.xml"
+    ],
+    [
+      "C:\\Users\\yinch\\anaconda3\\python.exe",
+      "C:\\2025-2026 Fall\\Network science\\Project\\Evaluating post-earthquake impact and recovery of LA transmission grid on a census tract scale\\_final_p2\\docs\\reproducibility\\supplement_presentation_20261014\\verify_update.py",
+      "--protected-root",
+      "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision"
+    ],
+    [
+      "C:\\Users\\yinch\\anaconda3\\python.exe",
+      "docs/reproducibility/p2_final_adoption_20261014/finalize_workflow.py"
+    ]
+  ],
+  "tests": 58,
+  "failures": 0,
+  "errors": 0,
+  "no_simulation_or_fitting": true
+}

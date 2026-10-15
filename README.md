@@ -30,7 +30,7 @@ python src/la_grid/plotting/build_current_figures.py --portable
 python -m pytest tests/test_current_figure_suite_integration.py -q
 ```
 
-These commands reuse frozen results; they do not fit clusters or run simulations. The [combined figures and short captions](results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf) contain 17 numbered figures and four retained evidence pages, 21 pages total. A [figure gallery](results/figures/FIGURE_REVIEW_GALLERY.html) is also available.
+These commands reuse frozen results; they do not fit clusters or run simulations. The [combined figures and short captions](results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf) contain 16 numbered figures and four retained evidence pages, 20 pages total. Supplementary figures run consecutively from S1 to S9. A [figure gallery](results/figures/FIGURE_REVIEW_GALLERY.html) is also available.
 
 ## Files
 

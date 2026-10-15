@@ -34,19 +34,19 @@ Vulnerability-first minus named reference policies across the tested crew availa
 
 ## Supplementary Figure S2. Restoration logistics
 
-(A) Crew origins and station tasks. (B) Directed task-to-task travel times in hours, with origin stations in rows and destinations in columns. Reverse directions are retained separately; times are pre-event scheduling inputs, not post-earthquake traffic forecasts.
+(A) Crew origins and station tasks. (B) Task-to-task travel times in hours, with origin stations in rows and destinations in columns. Reverse directions are retained separately; times are pre-event scheduling inputs, not post-earthquake traffic forecasts.
 
 ## Supplementary Figure S3. Structural criticality and functional-network recovery
 
-(A) Static station-removal responses. (B, C) Largest functional component size and internal degree during modeled recovery with station-functionality threshold 0.50. Structural graph metrics do not prove delivered electricity or repair optimality.
+(A) Static percolation under station removal. (B, C) Time-dependent recovery of the largest functional component and its mean degree, with station-functionality threshold 0.50. Static removal and post-earthquake recovery are distinct comparisons; neither establishes delivered electricity.
 
 ## Supplementary Figure S4. Genetic-algorithm diagnostics
 
-(A, B) Finite search results and deterministic incumbent comparison. (C) The empirical distribution of independent-validation service-loss differences, with the mean marked. (D) Damage-, threshold-, and source-path components of the mean contrast. Negative GA-minus-Impact-first differences favor GA. Global optimality is not established.
+(A) Minimum service loss during each of 20 GA searches. (B) Each run's best initial order among 100 random orders and its best order at completion. (C) Independent validation across 2,000 realizations. (D) Mean damage-, threshold-, and source-path loss differences. Gaps are GA minus Impact-first; global optimality is not established.
 
 ## Supplementary Figure S5. Dependency and service-gate sensitivity
 
-(A) Mapping cutoff. (B) Removing source connectivity at the fixed 0.50 station threshold. (C, D) Changing the station threshold to 0.05 or 0.75 while source connectivity is required. Values are model service-loss changes with realization percentile intervals. Service is not physical power delivery.
+(A) Mapping-weight cutoff. (B) Source connectivity removed with functionality threshold fixed at 0.50. (C) Functionality thresholds 0.05 and 0.75, both retaining source connectivity, relative to 0.50. Points show mean service-loss gaps; lines show 5th-95th realization ranges. Gaps are control minus reference. No power-flow adequacy is implied.
 
 ## Supplementary Figure S6. Source connectivity and alternate paths
 
@@ -56,14 +56,10 @@ Vulnerability-first minus named reference policies across the tested crew availa
 
 (A) Supported provider planning loads and limits. (B) Capacity-ceiling-induced modeled service-loss changes for supported and locally binding domains. Whiskers show realization percentiles. No post-earthquake load-flow or complete electrical-capacity adequacy calculation is performed.
 
-## Supplementary Figure S8. Seven-variable typology sensitivity
+## Supplementary Figure S8. Restoration-priority geography
 
-Weighted-space inertia, full-cohort silhouette, initialization and geographic/policy-set agreement, and within-class silhouette distributions for the community typology. K3 is the parsimonious primary typology; K4 is mandatory sensitivity and has stronger held-out geographic agreement. All results are internal clustering diagnostics, not independent physical validation.
+(A-C) Hospital-first, Vulnerability-first, and Impact-first substation repair priorities. Maps show hospital-linked tracts, SOVI Q4, and population context, respectively. Numbers and tables identify the first five station priorities; the ordered gray scale denotes tract population, not repair order.
 
-## Supplementary Figure S9. Restoration-priority geography
-
-(A) Hospital-linked priority context. (B) highest social-vulnerability quartile Q4. (C) Tract population context. Numbered substations indicate early policy priorities. The prioritized repair tasks are substations, not tracts.
-
-## Supplementary Figure S10. Outcomes under resource variation
+## Supplementary Figure S9. Outcomes under resource variation
 
 Absolute cumulative modeled service losses across the tested crew-availability and repair-duration families for the scheduled policies. Overall, Q4, high–low gap, and hospital-linked outcomes are kept distinct. Means and realization-percentile whiskers complement the between-policy effects in Figure 6.

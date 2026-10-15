@@ -34,3 +34,8 @@ Figures 4/5 distinguish 5th-95th realization ranges from confidence intervals. F
 Replaced Fig07 and FigS08 from the frozen P2 source; all other 15 numbered PDF/PNG pairs remain byte-identical. Updated concise captions, palettes, indexes, gallery, mirrors, previews and native packets. Saved K3 is primary; K4 is sensitivity and its stronger geographic agreement is disclosed. Full service domain remains 2,315; no physical outputs or manuscript documents changed. The branch and current data directory use the date 2026-10-14; superseded presentation drafts and per-run search archives are retained in Git history rather than the current tree.
 
 Figure 5 now uses balanced row-title spacing. Figure 7 uses concise titles and no embedded explanatory footnotes; its original graphs and maps are translated without scaling. Supplement S8 removes process-only labels. All other 14 artwork pairs retain their approved bytes.
+
+
+## 2026-10-14 - supplementary presentation corrections
+
+Panel headings are centered consistently. S02 removes Directed; S03 distinguishes static percolation from recovery over time; S04 identifies each run's initial and final best orders; S05 separates source connectivity from a combined threshold comparison, with no explanatory footer. The previous S08 clustering artwork is removed by author instruction. Previous S09/S10 become S08/S09; S08 identifies repair priorities and uses a neutral population scale. Current registry: 16 numbered figures and 20 packet pages; saved clustering evidence is retained.
