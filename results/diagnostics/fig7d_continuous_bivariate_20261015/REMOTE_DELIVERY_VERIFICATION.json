@@ -1,0 +1,293 @@
+{
+  "status": "PASS_ACTUAL_REMOTE_LFS_BYTES",
+  "verified_commit": "46a4cd1269be17ecc632ddaef7d88a5acc47eae7",
+  "remote_refs": {
+    "refs/heads/1021": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+    "refs/heads/2026-10-14": "b307e6deafc054864787a3db63ad95218be91659",
+    "refs/heads/review/fig7d-continuous-bivariate-20261015": "46a4cd1269be17ecc632ddaef7d88a5acc47eae7"
+  },
+  "fresh_verification_store": "C:\\ABAQUS\\temp\\AppData\\Local\\Temp\\bv15_remote_mxmwfty0",
+  "experiment_paths_only": true,
+  "LFS_payloads": 46,
+  "total_verified_LFS_bytes": 54890204,
+  "payloads": [
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/ABC_PIXEL_PRESERVATION.csv",
+      "sha256": "56b60649e5edc4e21cd26d8f882fdcbe44d2b7588c5c63681582192cf028bd34",
+      "bytes": 139,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/ACCESSIBILITY_COMPARISON.png",
+      "sha256": "11f98911d2443c9c3b9b72d58d95a3a4d06281576bc4a3ef4487f9cf576fa47b",
+      "bytes": 1501957,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/ALIGNED_SEPARATE_MAPS.pdf",
+      "sha256": "a099874c0601fbf8765c00b535fd26be57e6974b3160607ac496205b1ba1e3df",
+      "bytes": 4885748,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/ALIGNED_SEPARATE_MAPS.png",
+      "sha256": "811b41c89fce764df10bf95ced183c2cb8620013e0a7e347c49652f7fbdf9db5",
+      "bytes": 968046,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/BASELINE_NATIVE.png",
+      "sha256": "39125ced432d59b46db68c0944cc1324beca7994253417f0a0b796ced572e257",
+      "bytes": 330735,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/CONTINUOUS_2D_LEGENDS.pdf",
+      "sha256": "51a76b21c855684f16cd710635250635ba7cef39dfb699ceebd9a1c55e467012",
+      "bytes": 1347320,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/CONTINUOUS_2D_LEGENDS_01.png",
+      "sha256": "2e3bd2bdff22e85e8cc883c94cf8fb282d1cb6465001579c43da685bc271008d",
+      "bytes": 1101201,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/CONTINUOUS_2D_LEGENDS_02.png",
+      "sha256": "ea60a1665afce70700cbebb60928169221c2cbef4325f595110f209e4878ebd7",
+      "bytes": 1035739,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/FIGURE7D_CONTINUOUS.pdf",
+      "sha256": "fedb591066758343e39029c5741cd4e9fc7ee7a859d1d400f57f1b8783aafd4a",
+      "bytes": 7246985,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/FIGURE7D_CONTINUOUS.png",
+      "sha256": "6b9eff441f86c0d408088ee60fa34e4c116b0ae9a3557d425eb48e1fac16828c",
+      "bytes": 1879908,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/FIGURE7_CONTINUOUS_REVIEW.pdf",
+      "sha256": "881c8e16c5a663e2de6a1f807b51cdb8587b41c98673e0ac090aa51ae5402da4",
+      "bytes": 7246938,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/FIGURE7_CONTINUOUS_REVIEW.png",
+      "sha256": "ee00c7df2ac1137bd10a2864e83674463fa8adbf59b7d7c2d6351e4dc5a41bd3",
+      "bytes": 1953213,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/HIGH_HIGH_94_GEOIDS.csv",
+      "sha256": "5c945fa548b72cf10720cd450746ffcf3518435b84b504b61aaab2707d03d056",
+      "bytes": 5292,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/INDEPENDENT_OUTPUT_VECTOR_QA.csv",
+      "sha256": "7a13a7a2b5de90dea7003012cde723242af339a95cfdbbcaf5a39ddfd8ccc9d3",
+      "bytes": 152096,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/ORIGINAL_VS_CONTINUOUS_COMPARISON.pdf",
+      "sha256": "7be2c3faa71a1f21cdd532a6a6bef4adee2dbf4b6c808dad26f1be580ca08219",
+      "bytes": 12183255,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/ORIGINAL_VS_CONTINUOUS_COMPARISON_01.png",
+      "sha256": "2fcc7b1a13c86ac14386325d1a6302a67e5e0488957af4b0b35da06388cb9c3c",
+      "bytes": 1204676,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/ORIGINAL_VS_CONTINUOUS_COMPARISON_02.png",
+      "sha256": "9d29b371d14d9c2e0fd47952f07d32b80ef509404fbc60d59ef9d95bb7eea629",
+      "bytes": 915306,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/PALETTE_CORNER_COLORS.csv",
+      "sha256": "3d2e585564b792fd6cc89fde9325d14dc4c7afc13e88ae3cf9e37b3ecef1d84f",
+      "bytes": 635,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/PDF_PUBLICATION_QA.csv",
+      "sha256": "f9b7cdbefc48ebdd8edfcf0aaeca6ede4cfd8cd848c700de199fe1d15a95d9f7",
+      "bytes": 661,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/PERCEPTUAL_ACCESSIBILITY_DIAGNOSTICS.csv",
+      "sha256": "7d6cee7dc3c7e6d79adc3a358d5dd571547dcdc97df2926cf8c3101521d40e74",
+      "bytes": 1053,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/REBUILD_ARTWORK_HASH_COMPARISON.csv",
+      "sha256": "f1dde8577532bf4746977a6e9f2594978100e7a48289719a1ad796619413e5ff",
+      "bytes": 4986,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/SOURCE_HASHES.csv",
+      "sha256": "fbc5c2fbe111e58b79c14b018a4066ffabf45aeef82b86021213d9bfdb4183b0",
+      "bytes": 1245,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/SOURCE_VECTOR_TO_GEOID_QA.csv",
+      "sha256": "e3c45f8c96d3595c6ad0605f1ceff8887dcc12c03ca03f4acf25f7d2c1e7b7b2",
+      "bytes": 279673,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/TRACT_DISPLAY_COLORS.csv",
+      "sha256": "50cbd9f693dc7289dc7afc79c5993cd2573ec98c0822fa034910c36d1685a2de",
+      "bytes": 491987,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/TRACT_NATIVE_DISPLAY_SUPPORT.csv",
+      "sha256": "482a6a8ff2616073b67eeba043d47fa4fc41b404bef4238f67c5d20eae235a6d",
+      "bytes": 111817,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/VERIFIED_TRACT_DISPLAY_VALUES.csv",
+      "sha256": "a70ab6998392b47e745dbbb814d4649265e2c70d668aa2a8534209e4190d9b91",
+      "bytes": 233415,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/inputs/FIGURE7_APPROVED.pdf",
+      "sha256": "16407d2060dfce8cb791deda60dd77ae6fcae34ab89b2212e4b858474b10bc3d",
+      "bytes": 4679606,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/inputs/ORIGINAL_94_GEOIDS.csv",
+      "sha256": "f245b59de52e0f3aa17620b4c2a41ef9c5c045d80fce6d1af2b0c011eb92f167",
+      "bytes": 3908,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/inputs/SOURCE_D_VECTOR_PATHS.npz",
+      "sha256": "89b5c4724baf719fa9d5404c75a131c30fff1cae17cf060a967f4561e6794abf",
+      "bytes": 2905138,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/inputs/full_domain_status.csv",
+      "sha256": "2287cded666e8348f8c2e06368a1f84ae79bca41168cbb24e74e738a1ea97988",
+      "bytes": 76427,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/inputs/tract_features.csv",
+      "sha256": "641d6af084dbb052f4011c946577153212f06981bf51d2c7a598f4b94dcbc5fb",
+      "bytes": 371100,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_blue_amber_deuteranopia.png",
+      "sha256": "8af3d247e121925110e594c7e3b3fa6b035849f5531806a882eb5488204bb6ff",
+      "bytes": 128330,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_blue_amber_grayscale.png",
+      "sha256": "9dba609be608f9d120127b814263f0ea0105092ca8d35c22732f31971bef8365",
+      "bytes": 96951,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_blue_amber_normal.png",
+      "sha256": "7abe2c465e24d14630a8cae39cdc5df2f2f97fadc9330c0b25c892a7d04a9e0d",
+      "bytes": 127855,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_blue_amber_protanopia.png",
+      "sha256": "0653076225031d7ddc1d6ad6efe9e2a383f909f7d3ffe9fcdb9d51c01f27e1d1",
+      "bytes": 127443,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_blue_amber_tritanopia.png",
+      "sha256": "ce1192ace183340162ed1c5e9fc425150d5c7c46350b449b998cb5743fcda7d5",
+      "bytes": 127695,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_teal_wine_deuteranopia.png",
+      "sha256": "3233759be4f62fb5a551439da81b3ce9c43d57229b422cc61ef3fe8e0d7f13a5",
+      "bytes": 126410,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_teal_wine_grayscale.png",
+      "sha256": "56187d5a21312d27bae6f43da4a24463792f849bab618ee97bc214ac8701123e",
+      "bytes": 97899,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_teal_wine_normal.png",
+      "sha256": "cb1694fdb1e0801dc2b34dddd3205feb13be71acc16cc3af85c4a0453cb04358",
+      "bytes": 126566,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_teal_wine_protanopia.png",
+      "sha256": "e7da1ed061163074ddbe3b964462a24458d08a2403019f19d7e1461b6abf4ea4",
+      "bytes": 125028,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/continuous_teal_wine_tritanopia.png",
+      "sha256": "2b0f4d61464939e8392d8f29671f3e9f492f7dd4846d9ddc70ea11e63f391845",
+      "bytes": 127710,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/original_deuteranopia.png",
+      "sha256": "5a60a960fc31b243e0b2502d9b751830fe65ba18e463027a7dcba14a63b6b97e",
+      "bytes": 116145,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/original_grayscale.png",
+      "sha256": "86ecee393c768aab8ea4a473cc0038d02f168351b6b4b35083ac28a014fba0a5",
+      "bytes": 91978,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/original_normal.png",
+      "sha256": "4e3ad16e09c39b433a3fb0dbe03c3d179477e06628e90a100ac8499930666487",
+      "bytes": 117227,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/original_protanopia.png",
+      "sha256": "4ef1771e9777935fc4054aeac4519fa590c7207acb1a314af57e33277ce8cd1a",
+      "bytes": 115530,
+      "fresh_remote_payload_sha256_matches": true
+    },
+    {
+      "path": "results/diagnostics/fig7d_continuous_bivariate_20261015/previews/original_tritanopia.png",
+      "sha256": "a02ac935711c01f0def0d34b714a4765d6113d5f131abf23bbb8da48f72979b5",
+      "bytes": 117232,
+      "fresh_remote_payload_sha256_matches": true
+    }
+  ],
+  "publication_and_1021_remote_heads_unchanged": true,
+  "no_merge_or_force_push": true
+}
