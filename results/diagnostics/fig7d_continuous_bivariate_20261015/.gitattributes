@@ -1,0 +1,6 @@
+*.npz filter=lfs diff=lfs merge=lfs -text
+*.json -text
+*.xml -text
+*.py text eol=lf
+*.md text eol=lf
+.gitattributes text eol=lf
