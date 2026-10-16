@@ -26,7 +26,7 @@ Vulnerability-first minus named reference policies across the tested crew availa
 
 ## Figure 7. Community recovery types and social vulnerability
 
-(A) Six empirical feature distributions; markers locate class medians on the 50% guide. (B) Cohort-standardized means of all seven clustering variables; zero is the cohort mean. (C) Community types. (D) Five-policy mean total equivalent service-deficit hours and SOVI quartiles, using common burden-to-lightness scaling. Outlines mark Q4 tracts at or above the cohort P75 deficit. This is descriptive co-occurrence, not a composite risk score, statistically significant hotspot, or repair-priority ranking. White outlined tracts are N/A (16 zero-population tracts).
+(A) Six empirical feature distributions by class; dots mark medians. (B) Profiles show standardized means for all seven fitted variables. (C) Tract classes. (D) Five-policy recovery burden (lightness) and continuous SOVI score (blue-to-amber hue). Outlines identify Q4 tracts at or above the 75th-percentile burden; this is a descriptive screen, not a composite score or inferential hotspot test. White outlined tracts are N/A.
 
 ## Supplementary Figure S1. Damage and initial service
 

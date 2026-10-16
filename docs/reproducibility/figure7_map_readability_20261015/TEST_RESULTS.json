@@ -1,0 +1,12 @@
+{
+  "command": "python -m pytest tests/test_current_figure_suite_integration.py -q",
+  "python_executable": "C:/Users/yinch/anaconda3/python.exe",
+  "result": "PASS",
+  "tests_passed": 58,
+  "tests_failed": 0,
+  "duration_seconds": 256.16,
+  "canonical_builder": "python src/la_grid/plotting/build_current_figures.py --portable",
+  "canonical_builder_result": "PASS; 16 numbered figures; 20 packet pages",
+  "idempotence": "PASS; repeated build checkpoint output hashes stable",
+  "independent_suite_verifier": "PASS"
+}

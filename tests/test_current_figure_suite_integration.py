@@ -19,17 +19,26 @@ ROOT=Path(__file__).resolve().parents[1]
 SUITE=ROOT/'results/figure_review'
 AUTH=ROOT/'results/stage7/2026-10-14'
 QA=ROOT/'docs/reproducibility/p2_final_adoption_20261014'
+MAP_QA=ROOT/'docs/reproducibility/figure7_map_readability_20261015'
 PB=ROOT/'docs/data_research/stage7_path_b_p2_integration_review_20261014'
 BASE='937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
+CURRENT_SUITE_BASE='0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68'
 FEATURES=['Init_Supply','Grid_Impact','Redundancy_HHI','B_Unconstrained','MeanDelta','SOVI_SCORE','log1p_Population']
 BUDGET=np.array([1/9,1/9,1/9,1/6,1/6,1/6,1/6])
 ACTIVE=[f'Main/Fig{i:02d}' for i in range(1,8)]+[f'Supplement/FigS{i:02d}' for i in range(1,10)]
 sys.path.insert(0,str(ROOT/'src'))
+sys.path.insert(0,str(ROOT/'src/la_grid/plotting'))
+import consolidate_current_figure_suite as suite_utils
 
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-def read(p):return json.loads(p.read_text(encoding='utf-8'))
-def df(p):return pd.read_csv(p,dtype={'tract_id':str},float_precision='round_trip')
+def payload_bytes(p):
+    raw=p.read_bytes()
+    if raw.startswith(b'version https://git-lfs.github.com/spec/v1'):
+        return suite_utils.payload(CURRENT_SUITE_BASE,p.relative_to(ROOT).as_posix())
+    return raw
+def read(p):return json.loads(payload_bytes(p))
+def df(p):return pd.read_csv(io.BytesIO(payload_bytes(p)),dtype={'tract_id':str},float_precision='round_trip')
 def features():return df(AUTH/'tract_features.csv')
 def rows():return list(csv.DictReader((SUITE/'FIGURE_MANIFEST.csv').open(encoding='utf-8-sig')))
 def caps():return (SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
@@ -37,17 +46,7 @@ def git(*args):return subprocess.check_output(['git','-C',str(ROOT),*args],env=d
 
 
 def source(path):
-    blob=git('show',BASE+':'+path)
-    m=re.search(rb'oid sha256:([a-f0-9]{64})\nsize (\d+)',blob)
-    if not m:return blob
-    oid=m[1].decode()
-    common=Path(git('rev-parse','--path-format=absolute','--git-common-dir').decode().strip())
-    relocated=ROOT/path.replace('local_elsevier_review_outputs/','docs/figure_sources/2026-10-14/')
-    for candidate in [relocated,ROOT/path,common/'lfs/objects'/oid[:2]/oid[2:4]/oid]:
-        if os.name=='nt':candidate=Path('\\\\?\\'+str(candidate.resolve()))
-        if candidate.is_file() and sha(candidate)==oid:
-            data=candidate.read_bytes();assert len(data)==int(m[2]);return data
-    raise AssertionError('Missing hash-bound source payload: '+path)
+    return suite_utils.payload(BASE,path)
 
 
 def test_exact_16_numbered_pairs():
@@ -64,15 +63,16 @@ def test_every_mirror_is_byte_identical():
 
 
 def test_unchanged_and_updated_artwork_are_explicitly_recorded():
-    changes=df(QA/'FIGURE_CHANGE_MANIFEST.csv')
+    changes=df(MAP_QA/'FIGURE_CHANGE_MANIFEST.csv')
     assert len(changes)==32
     for r in changes.itertuples():
         if r.unchanged:assert sha(SUITE/r.figure)==r.baseline_sha256==r.current_sha256
-    assert set(changes.loc[changes.unchanged,'figure'])=={s+'.'+e for s in ['Main/Fig01','Main/Fig04','Main/Fig05','Main/Fig06','Supplement/FigS09'] for e in ['pdf','png']}
+    assert set(changes.loc[changes.unchanged,'figure'])=={s+'.'+e for s in ACTIVE if s!='Main/Fig07' for e in ['pdf','png']}
+    assert set(changes.loc[~changes.unchanged,'figure'])=={'Main/Fig07.pdf','Main/Fig07.png'}
 
 
 def test_independent_main_results_and_merged_resource_artwork_preserved():
-    changes=df(QA/'FIGURE_CHANGE_MANIFEST.csv').set_index('figure')
+    changes=df(MAP_QA/'FIGURE_CHANGE_MANIFEST.csv').set_index('figure')
     for s in ['Main/Fig01','Main/Fig04','Main/Fig05','Main/Fig06','Supplement/FigS09']:
         for e in ['pdf','png']:assert bool(changes.loc[s+'.'+e,'unchanged'])
 
@@ -112,7 +112,7 @@ def test_packet_embeds_each_actual_artwork_at_native_size():
 
 
 def test_all_caption_forms_are_short_and_legible():
-    registry=list(csv.DictReader((QA/'COMPACT_PACKET_PAGE_REGISTRY.csv').open(encoding='utf-8')))
+    registry=list(csv.DictReader((MAP_QA/'COMPACT_PACKET_PAGE_REGISTRY.csv').open(encoding='utf-8')))
     assert len(registry)==16
     with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as book:
         for i,r in enumerate(registry):
@@ -156,7 +156,7 @@ def test_every_primary_feature_is_finite_and_exactly_saved():
 
 
 def test_every_saved_k3_membership_and_class_identity():
-    f=features();saved=np.load(PB/'inputs/REGISTERED_FIT_ARRAYS.npz')
+    f=features();saved=np.load(io.BytesIO(payload_bytes(PB/'inputs/REGISTERED_FIT_ARRAYS.npz')))
     idx=list(saved['keys']).index('P2__main5__cohort__k3__s42')
     np.testing.assert_array_equal(f.K3_class,saved['labels'][idx]+1)
     np.testing.assert_array_equal(f.tract_id,saved['tract_ids'])
@@ -196,31 +196,39 @@ def test_frozen_population_sd_standardization():
 
 
 def test_weighted_matrix_is_the_original_registered_p2_matrix():
-    current=np.load(AUTH/'preprocessing_and_labels.npz')
-    frozen=np.load(PB/'inputs/VERIFIED_WEIGHTED_MATRICES.npz')
+    current=np.load(io.BytesIO(payload_bytes(AUTH/'preprocessing_and_labels.npz')))
+    frozen=np.load(io.BytesIO(payload_bytes(PB/'inputs/VERIFIED_WEIGHTED_MATRICES.npz')))
     np.testing.assert_array_equal(current['weighted_matrix'],frozen['P2__main5__cohort'])
     np.testing.assert_array_equal(current['feature_names'],FEATURES)
 
 
 def test_all_21_profile_cells_are_ordinary_cohort_z_means():
-    f=features();w=df(AUTH/'standardizer_and_weights.csv');profile=pd.read_csv(AUTH/'ordinary_cohort_z_class_means.csv',float_precision='round_trip')
+    f=features();w=df(AUTH/'standardizer_and_weights.csv');profile=df(AUTH/'ordinary_cohort_z_class_means.csv')
     z=(f[FEATURES].to_numpy()-w.cohort_mean.to_numpy())/w.population_SD.to_numpy()
     for c in range(1,4):np.testing.assert_allclose(z[f.K3_class.eq(c)].mean(0),profile.iloc[c-1][FEATURES].to_numpy(dtype=float),atol=1e-12,rtol=0)
     assert profile.shape==(3,8)
 
 
-def test_figure7_preserves_approved_scientific_artwork():
-    path=ROOT/'docs/reproducibility/figure_presentation_20261014/verify_presentation.py'
-    spec=importlib.util.spec_from_file_location('presentation_checks',path)
-    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    assert len(module.region_checks('Main/Fig07'))==5
+def test_figure7_preserves_top_panels_and_uses_vector_only_maps():
+    baseline=fitz.open(ROOT/'results/diagnostics/1021/figure7_readability_20261015/FIG07_BASELINE.pdf')
+    current=fitz.open(SUITE/'Main/Fig07.pdf')
+    assert current[0].rect.width==baseline[0].rect.width
+    clip=fitz.Rect(0,0,baseline[0].rect.width,410)
+    assert current[0].get_pixmap(clip=clip,dpi=72,alpha=False).samples==baseline[0].get_pixmap(clip=clip,dpi=72,alpha=False).samples
+    assert not current[0].get_images()
+    assert abs(current[0].rect.height/72-10)<1e-8
+    q=read(MAP_QA/'PRESENTATION_QA.json')['figures']['Main/Fig07']
+    assert q['positive_GEOIDs']==2299 and q['NA_polygon_count']==16
+    assert q['high_high_outline_count']==94 and q['high_high_population']==350799
+    assert q['contrasting_internal_tract_boundaries'] is False
+    assert q['same_fill_edge_overprint_pt']==.12 and q['chosen_outline_width_pt']==.25
 
 
 def test_panel_a_has_six_descriptive_distributions_b_has_seven_fitted_coordinates():
     text=fitz.open(SUITE/'Main/Fig07.pdf')[0].get_text().replace('\u00a0',' ')
     assert 'B. Profiles' in text and 'Population exposure' in text
     assert 'Cumulative fraction' in text and 'Class mean z-score' in text
-    assert 'Six empirical feature distributions' in caps() and 'all seven clustering variables' in caps()
+    assert 'Six empirical feature distributions' in caps() and 'all seven fitted variables' in caps()
     assert not any(s.lower() in text.lower() for s in ['saved','frozen','P2/','Seven-coordinate','Exact empirical CDFs;','Ordinary feature z means,','no NCV14'])
     assert not any(x in text for x in ['C4','C5','K4','PCA','Top-10','Hotspot score'])
 
@@ -237,15 +245,16 @@ def test_joint94_screen_keeps_original_threshold_and_no_composite_score():
     assert abs(threshold-38.38135467381475)<1e-12
     high=f.MeanTotal5.ge(threshold);joint=high&f.frozen_SOVI_quartile.eq('Q4')
     assert high.sum()==575 and joint.sum()==94 and f.loc[joint,'Population'].sum()==350799
-    assert 'not a composite risk score' in caps() and 'statistically significant hotspot' in caps()
+    assert 'not a composite score' in caps() and 'inferential hotspot test' in caps()
     assert not any('Hotspot_Score' in x for x in f.columns)
 
 
 def test_palette_ids_and_white_na_match_approved_registry():
     p=read(SUITE/'CURRENT_CLUSTER_PALETTE.json')
-    assert p['model_version']=='2026-10-14'
+    assert p['model_version']=='2026-10-14' and p['map_version']=='2026-10-15'
     assert p['colors']=={'1':'#147f98','2':'#d07734','3':'#7a5899'}
     assert p['NA_fill']=='#FFFFFF' and p['NA_count']==16 and p['NA_outline_width_pt']==.45
+    assert p['map_regular_tract_outlines'] is False and p['screening_outline_width_pt']==.25
 
 
 def test_s8_now_shows_repair_priorities_not_removed_clustering_diagnostics():
@@ -275,7 +284,7 @@ def test_k4_geographic_advantage_is_retained_as_sensitivity():
 def test_all_authority_artifacts_are_hash_verified():
     tracked=set(git('ls-files','-z','results/stage7/2026-10-14').decode().split('\0'))
     for path,h in read(AUTH/'ARTIFACT_HASHES.json').items():
-        assert sha(AUTH/path)==h
+        assert hashlib.sha256(payload_bytes(AUTH/path)).hexdigest()==h
         assert 'results/stage7/2026-10-14/'+path in tracked
     from la_grid.revision.current_stage7 import verify_current_stage7
     assert verify_current_stage7(ROOT)['status']=='PASS_SAVED_P2_REUSE'
@@ -298,7 +307,7 @@ def test_current_entrypoint_routes_only_to_adopted_p2():
 
 
 def test_every_generator_checkpoint_output_is_current():
-    q=read(QA/'BUILD_CHECKPOINT.json')
+    q=read(MAP_QA/'BUILD_CHECKPOINT.json')
     assert q['fitted_feature_count']==7 and q['model']=='P2' and q['primary_K']==3
     assert q['packet_pages']==20 and q['numbered_figures']==16
     assert sha(ROOT/'src/la_grid/plotting/build_current_suite_p2.py')==q['generator_sha256']
@@ -389,10 +398,8 @@ def test_caption_replay_no_longer_depends_on_editable_word_drafts():
 
 
 def test_figure5_scientific_panels_are_render_identical_after_translation():
-    path=ROOT/'docs/reproducibility/figure_presentation_20261014/verify_presentation.py'
-    spec=importlib.util.spec_from_file_location('figure5_pixel_checks',path)
-    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    assert all(r['changed_channel_fraction']==0 for r in module.region_checks('Main/Fig05'))
+    expected=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Main/Fig05.pdf')
+    assert sha(SUITE/'Main/Fig05.pdf')==hashlib.sha256(expected).hexdigest()
 
 
 def test_figure5_has_consistent_row_title_gaps():
@@ -442,8 +449,8 @@ def test_static_percolation_is_distinct_from_time_dependent_recovery():
     for t in ['A. Static percolation','B. Recovery of largest-component fraction',
               'C. Recovery of mean degree in the largest component','Time after earthquake (h)']:
         assert t in text
-    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/PRESENTATION_QA.json')['figures']['Supplement/FigS03']
-    assert q['preceding_content_to_title_gap_pt']==[20,20]
+    expected=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Supplement/FigS03.pdf')
+    assert sha(SUITE/'Supplement/FigS03.pdf')==hashlib.sha256(expected).hexdigest()
     with fitz.open(SUITE/'Supplement/FigS03.pdf') as d:
         axes=[v['rect'] for v in d[0].get_drawings() if abs(v['rect'].x0-57.685)<.02
               and abs(v['rect'].width-188.787)<.02 and abs(v['rect'].height-102.047)<.02]
@@ -472,18 +479,18 @@ def test_service_gate_panel_has_three_clear_titles_and_no_explanatory_footer():
 
 
 def test_all_nine_service_gate_display_values_match_saved_source():
-    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/PRESENTATION_QA.json')['figures']['Supplement/FigS05']
     original=df(ROOT/'docs/reproducibility/figure_suite_author_clarity_numbering_20261013/SOURCE_AND_THRESHOLD_DISPLAY_VALUES.csv')
-    actual=pd.DataFrame(q['saved_display_records'])
-    keys=['policy','case']
-    pd.testing.assert_frame_equal(actual.sort_values(keys).reset_index(drop=True)[original.columns],
-                                 original.sort_values(keys).reset_index(drop=True),check_exact=True)
-    assert q['reference_threshold']==.5 and q['source_control_separate']
+    assert len(original)==9 and set(original.policy)=={'impact-first','hospital-first','degree-first'}
+    assert set(original.threshold)=={.05,.5,.75} and original.n.eq(1000).all()
+    assert original.loc[original.threshold.eq(.5),'source_gate'].eq('disabled').all()
+    assert original.loc[original.threshold.ne(.5),'source_gate'].eq('retained').all()
+    expected=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Supplement/FigS05.pdf')
+    assert sha(SUITE/'Supplement/FigS05.pdf')==hashlib.sha256(expected).hexdigest()
 
 
 def test_priority_population_scale_is_neutral_without_geometry_change():
-    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/PRESENTATION_QA.json')['figures']['Supplement/FigS08']
-    assert q['population_palette']=='Greys' and q['all_geometry_and_nonfill_properties_unchanged']
+    expected=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Supplement/FigS08.pdf')
+    assert sha(SUITE/'Supplement/FigS08.pdf')==hashlib.sha256(expected).hexdigest()
     with fitz.open(SUITE/'Supplement/FigS08.pdf') as d:
         fills=[v['fill'] for v in d[0].get_drawings() if v['fill'] and v['rect'].y0>525]
     # Only station markers retain their muted blue-gray identity.
@@ -491,10 +498,14 @@ def test_priority_population_scale_is_neutral_without_geometry_change():
 
 
 def test_saved_scientific_authority_matches_this_rounds_initial_snapshot():
-    q=read(ROOT/'docs/reproducibility/supplement_presentation_20261014/BEFORE.json')
-    files={p:h for p,h in q['hashes'].items() if p.startswith('results/stage7/')}
+    q=read(ROOT/'results/diagnostics/1021/figure7_readability_20261015/PRESERVATION_BEFORE.json')
+    files=q['stage7_2026_10_14_blob_ids']
     assert len(files)==17
-    assert all(sha(ROOT/p)==h for p,h in files.items())
+    for path,blob_id in files.items():
+        assert git('rev-parse',q['source_commit']+':'+path).decode().strip()==blob_id
+        worktree=ROOT.joinpath(*path.split('/')).read_bytes()
+        expected=suite_utils.payload(q['source_commit'],path)
+        assert hashlib.sha256(worktree).digest()==hashlib.sha256(expected).digest()
 
 
 def test_threshold_errorbar_coordinates_independently_match_saved_values():
