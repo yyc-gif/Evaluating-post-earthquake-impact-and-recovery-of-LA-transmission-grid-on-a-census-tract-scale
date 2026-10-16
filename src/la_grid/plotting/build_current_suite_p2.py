@@ -17,21 +17,24 @@ import consolidate_current_figure_suite as u
 from short_current_captions_20261013 import brief_caption_page
 import figure_presentation
 import figure7_map_readability_20261015 as figure7_maps
+import figure7_final_presentation_20261016 as figure7_final
 
 ROOT = u.ROOT
 BASE = '937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
 CURRENT_SUITE_BASE = '0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68'
 MAP_REVIEW_BASE = '0134bfc5b27a8c518078873e21c6151675523b68'
+FIGURE_BASELINE_COMMIT = '2779c0b0f2694af2818debeb69241edbe8762260'
+FIGURE_BASELINE_SHA256 = '7a85c1d46e9d28309b955f986fb61b12b33064744aceb573ac3c598ed5f93b21'
 PB = 'docs/data_research/stage7_path_b_p2_integration_review_20261014/'
 AUTH = ROOT / 'results/stage7/2026-10-14'
 DEST = ROOT / 'results/figure_review'
-QA = ROOT / 'docs/reproducibility/figure7_map_readability_20261015'
+QA = ROOT / 'docs/reproducibility/figure7_final_presentation_20261016'
 GEN = 'src/la_grid/plotting/build_current_suite_p2.py'
 PRESENTATION = 'src/la_grid/plotting/figure_presentation.py'
 FEATURES = ['Init_Supply', 'Grid_Impact', 'Redundancy_HHI', 'B_Unconstrained',
             'MeanDelta', 'SOVI_SCORE', 'log1p_Population']
 BUDGETS = np.array([1/9, 1/9, 1/9, 1/6, 1/6, 1/6, 1/6])
-COLORS = ['#147f98', '#d07734', '#7a5899']
+COLORS = ['#3C9198', '#52699E', '#C69EBA']
 ACTIVE = [f'Main/Fig{i:02d}' for i in range(1, 8)] + [f'Supplement/FigS{i:02d}' for i in range(1, 10)]
 SOURCES = {}
 
@@ -116,11 +119,13 @@ def captions():
     assert len(items) == 16
     title, _ = items[6]
     items[6]=(title,
-        '(A) Six empirical feature distributions by class; dots mark medians. '
-        '(B) Profiles show standardized means for all seven fitted variables. '
-        '(C) Tract classes. (D) Five-policy recovery burden (lightness) and continuous SOVI score '
-        '(blue-to-amber hue). Outlines identify Q4 tracts at or above the 75th-percentile burden; this is a descriptive screen, '
-        'not a composite score or inferential hotspot test. White outlined tracts are N/A.')
+        '(A) Empirical distributions for six selected variables; points mark medians. '
+        '(B) Standardized means for all seven fitted variables; population is in persons in A and log1p(Population) in B. '
+        'Initial service availability has many zeros; z-scores do not imply high absolute service. '
+        'Spectral impact is dependency-weighted, not an Impact-first priority; HHI measures tract-substation dependency concentration. '
+        'Unconstrained service deficit is cumulative deficit under Unconstrained restoration; mean additional deficit is equal-weight constrained-minus-Unconstrained across five policies. '
+        '(C) Community types. (D) Five-policy mean service-deficit hours (0-480 h; lightness) and FEMA NRI v1.19 SOVI score (hue). '
+        'Outlines mark Q4 tracts at/above cohort P75: descriptive, not a composite score or significance test. White outlined tracts are N/A.')
     assert len(items) == 16
     assert [int(x) for x in re.findall(r'^Supplementary Figure S(\d+)\.', '\n'.join(t for t,b in items), re.M)] == list(range(1,10))
     return items
@@ -182,66 +187,59 @@ def main():
     expected_geoids = {'NA':set(full.loc[full.Population.eq(0),'tract_id']),
                        'high_high':set(source_screen.tract_id)}
     table, display = figure7_maps.verify_inputs(table, display, paths, specification, expected_geoids)
-    source_pdf = source('results/figure_review/Main/Fig07.pdf', CURRENT_SUITE_BASE)
-    candidate_a = figure7_maps.build_full_figure(source_pdf, table, paths, display,
-                                                  specification, layout='A', outline_width=0.25)
-    candidate_b = figure7_maps.build_full_figure(source_pdf, table, paths, display,
-                                                  specification, layout='B', outline_width=0.25)
-    diagnostic_dir = ROOT/'results/diagnostics/1021/figure7_readability_20261015'
-    figure7_maps.write_pdf(diagnostic_dir/'FIG07_LAYOUT_A_BORDERLESS.pdf', candidate_a)
-    figure7_maps.write_pdf(diagnostic_dir/'FIG07_LAYOUT_B_ENLARGED.pdf', candidate_b)
-    figure7_maps.export_png(diagnostic_dir/'FIG07_LAYOUT_A_BORDERLESS.pdf', diagnostic_dir/'FIG07_LAYOUT_A_BORDERLESS.png')
-    figure7_maps.export_png(diagnostic_dir/'FIG07_LAYOUT_B_ENLARGED.pdf', diagnostic_dir/'FIG07_LAYOUT_B_ENLARGED.png')
+    weights = frame(PB + 'P2_STANDARDIZER_AND_WEIGHTS.csv')
+    source_profile = frame(PB + 'P2_ORDINARY_COHORT_Z_CLASS_MEANS.csv').set_index('class_id')
+    profile = figure7_final.profile_means(table, weights)
+    np.testing.assert_allclose(profile[figure7_final.FEATURES].to_numpy(),
+        source_profile.loc[['C1','C2','C3'],figure7_final.FEATURES].to_numpy(), atol=1e-12, rtol=0)
+    source_pdf = source('results/figure_review/Main/Fig07.pdf', FIGURE_BASELINE_COMMIT)
+    source_pdf_sha = u.digest(source_pdf)
+    assert source_pdf_sha == FIGURE_BASELINE_SHA256
+    source_png = source('results/figure_review/Main/Fig07.png', FIGURE_BASELINE_COMMIT)
+    diagnostic_dir = ROOT/'results/diagnostics/1021/figure7_final_presentation_20261016'
+    diagnostic_dir.mkdir(parents=True, exist_ok=True)
+    u.write(diagnostic_dir/'FIG07_CURRENT_REFERENCE.pdf', source_pdf)
+    u.write(diagnostic_dir/'FIG07_CURRENT_REFERENCE.png', source_png)
+    top_b = figure7_final.build_top_panel(table, profile, figure7_final.PROPOSED, layout='B')
+    top_c = figure7_final.build_top_panel(table, profile, figure7_final.PROPOSED, layout='C')
+    candidate_b = figure7_final.compose_figure(top_b, table, display, paths, specification,
+                                                figure7_final.PROPOSED, layout='B')
+    candidate_c = figure7_final.compose_figure(top_c, table, display, paths, specification,
+                                                figure7_final.PROPOSED, layout='C')
+    top_alt = figure7_final.build_top_panel(table, profile, figure7_final.DARKER_MAUVE, layout='B')
+    candidate_alt = figure7_final.compose_figure(top_alt, table, display, paths, specification,
+                                                   figure7_final.DARKER_MAUVE, layout='B')
+    for name, doc in [('FIG07_LAYOUT_B_REVISED', candidate_b),
+                      ('FIG07_LAYOUT_C_COMPACT', candidate_c)]:
+        figure7_maps.write_pdf(diagnostic_dir/(name+'.pdf'), doc)
+        figure7_maps.export_png(diagnostic_dir/(name+'.pdf'), diagnostic_dir/(name+'.png'), dpi=600)
+    palette_comparison = fitz.open()
+    palette_comparison.insert_pdf(candidate_b)
+    palette_comparison.insert_pdf(candidate_alt)
+    palette_comparison.set_toc([[1,'Proposed mauve palette',1],[1,'Alternative darker mauve',2]])
+    figure7_maps.write_pdf(diagnostic_dir/'FIG07_PALETTE_COMPARISON.pdf', palette_comparison)
+    layout_comparison = fitz.open()
+    with fitz.open(stream=source_pdf,filetype='pdf') as original:
+        layout_comparison.insert_pdf(original)
+    layout_comparison.insert_pdf(candidate_b)
+    layout_comparison.insert_pdf(candidate_c)
+    layout_comparison.set_toc([[1,'Current Figure 7 reference',1],
+        [1,'Layout B: 7.2 x 10.0 in, revised palette and labels',2],
+        [1,'Layout C: 7.2 x 9.03 in, compact',3]])
+    figure7_maps.write_pdf(diagnostic_dir/'FIG07_LAYOUT_COMPARISON.pdf',layout_comparison)
+    figure7_maps.COLORS = dict(figure7_final.PROPOSED)
     details = figure7_maps.build_details(table, paths, display, specification, diagnostic_dir,
                                          outline_width=0.25)
     figure7_maps.write_pdf(diagnostic_dir/'FIG07_MAP_DETAILS_C_D.pdf', details)
     for n, page in enumerate(details, start=1):
         page.get_pixmap(dpi=600, alpha=False).save(str(diagnostic_dir/f'FIG07_MAP_DETAILS_PAGE_{n}.png'))
-    accessibility = figure7_maps.build_accessibility_reference(table, paths, specification,
-                                                               outline_width=0.25)
-    figure7_maps.write_pdf(diagnostic_dir/'FIG07_ACCESSIBILITY_ALIGNED_SEPARATE_MAPS.pdf', accessibility)
-    accessibility[0].get_pixmap(dpi=600, alpha=False).save(str(diagnostic_dir/'FIG07_ACCESSIBILITY_ALIGNED_SEPARATE_MAPS.png'))
-    width_comparison=figure7_maps.build_outline_comparison(table,paths,display,specification)
-    figure7_maps.write_pdf(diagnostic_dir/'FIG07_SCREENING_OUTLINE_WIDTH_COMPARISON.pdf',width_comparison)
-    for n, page in enumerate(width_comparison, start=1):
-        page.get_pixmap(dpi=300, alpha=False).save(str(diagnostic_dir/f'FIG07_OUTLINE_WIDTH_{n}_300DPI.png'))
-    # Three native-width pages compare the unmodified reference, borderless layout A, and enlarged layout B.
-    layout_comparison=fitz.open()
-    with fitz.open(stream=source_pdf,filetype='pdf') as original:
-        layout_comparison.insert_pdf(original)
-    layout_comparison.insert_pdf(candidate_a)
-    layout_comparison.insert_pdf(candidate_b)
-    layout_comparison.set_toc([[1,'Starting Figure 7 with ordinary strokes',1],
-                               [1,'Layout A: borderless maps, original footprint',2],
-                               [1,'Layout B: borderless maps, enlarged C/D',3]])
-    figure7_maps.write_pdf(diagnostic_dir/'FIG07_BOUNDARY_AND_LAYOUT_COMPARISON.pdf',layout_comparison)
-    from PIL import Image, ImageDraw, ImageOps
-    thumbs=[]
-    with fitz.open(diagnostic_dir/'FIG07_BOUNDARY_AND_LAYOUT_COMPARISON.pdf') as comparison:
-        for page in comparison:
-            pix=page.get_pixmap(dpi=150,alpha=False)
-            thumbs.append(Image.open(io.BytesIO(pix.tobytes('png'))).convert('RGB'))
-    header=34; gap=18
-    sheet=Image.new('RGB',(sum(im.width for im in thumbs)+gap*(len(thumbs)-1),
-                           max(im.height for im in thumbs)+header),'white')
-    draw=ImageDraw.Draw(sheet)
-    labels=['Starting map strokes','A: borderless, original map size','B: enlarged C/D']
-    x=0
-    for label,im in zip(labels,thumbs):
-        draw.text((x+8,8),label,fill='#222222')
-        sheet.paste(im,(x,header));x+=im.width+gap
-    sheet.save(u.lp(diagnostic_dir/'FIG07_BOUNDARY_AND_LAYOUT_COMPARISON.png'))
-    figure7_maps.export_png(diagnostic_dir/'FIG07_LAYOUT_B_ENLARGED.pdf',
-                            diagnostic_dir/'FIG07_LAYOUT_B_GRAYSCALE_SOURCE.png',dpi=150)
-    gray_path=diagnostic_dir/'FIG07_LAYOUT_B_GRAYSCALE_SOURCE.png'
-    with Image.open(u.lp(gray_path)) as source_image:
-        ImageOps.grayscale(source_image).save(u.lp(diagnostic_dir/'FIG07_LAYOUT_B_GRAYSCALE.png'))
-    gray_path.unlink()
-    source_pdf_sha=u.digest(source_pdf)
-    assert source_pdf_sha=='16407d2060dfce8cb791deda60dd77ae6fcae34ab89b2212e4b858474b10bc3d'
-    changed['Main/Fig07']=candidate_b.tobytes(garbage=4,deflate=True,no_new_id=True)
+    figure7_final.write_palette_metrics(diagnostic_dir)
+    figure7_final.write_accessibility_previews(candidate_b, candidate_c, candidate_alt, diagnostic_dir)
+    figure7_final.write_narrow_width_previews(candidate_c, diagnostic_dir)
+    figure7_final.write_layout_contact_sheet(source_pdf,candidate_b,candidate_c,diagnostic_dir)
+    changed['Main/Fig07']=candidate_c.tobytes(garbage=4,deflate=True,no_new_id=True)
     style_checks['Main/Fig07']={
-        'source_commit':CURRENT_SUITE_BASE,'source_pdf_sha256':source_pdf_sha,
+        'source_commit':FIGURE_BASELINE_COMMIT,'source_pdf_sha256':source_pdf_sha,
         'approved_map_source_commit':MAP_REVIEW_BASE,
         'positive_polygon_parts':len(paths['positive']),'positive_GEOIDs':len(table),
         'NA_polygon_count':len(paths['NA']),'high_high_outline_count':len(paths['high_high']),
@@ -250,9 +248,37 @@ def main():
         'high_high_threshold_hr':38.38135467381475,'chosen_outline_width_pt':0.25,
         'contrasting_internal_tract_boundaries':False,
         'same_fill_edge_overprint_pt':figure7_maps.SEAM_OVERLAP_PT,
-        'A_and_B_top_panels_preserved_from_source':True,
-        'layout_A_size_in':[7.2,9.0],'layout_B_size_in':[7.2,10.0],
-        'layout_B_map_scale':1.25,'all_map_geometry_vector':True}
+        'A_ECDF_variable_count':6,'A_ECDF_class_variable_curves':18,
+        'B_standardized_profile_cells':21,'B_feature_count':7,
+        'profile_reconstruction_max_abs_error':float(np.max(np.abs(
+            profile[figure7_final.FEATURES].to_numpy()-source_profile.loc[['C1','C2','C3'],figure7_final.FEATURES].to_numpy()))),
+        'palette':{str(k):v for k,v in figure7_final.PROPOSED.items()},
+        'layout_B_size_in':[7.2,10.0],'layout_C_size_in':[7.2,figure7_final.LAYOUT_C_H/72],
+        'layout_B_map_scale':1.25,'layout_C_map_scale':1.25,'all_map_geometry_vector':True,
+        'D_continuous_color_function_unchanged':True,'all_16_non_Fig07_artwork_pairs_retained':True}
+    ecdf_rows=figure7_final.ecdf_qa(table)
+    u.write_csv(diagnostic_dir/'ECDF_DISTRIBUTION_QA.csv',ecdf_rows)
+    profile_rows=[]
+    for class_id in ['C1','C2','C3']:
+        for variable in figure7_final.FEATURES:
+            profile_rows.append(dict(class_id=class_id,variable=variable,
+                standardized_mean=float(profile.loc[class_id,variable]),
+                saved_reference_mean=float(source_profile.loc[class_id,variable]),
+                absolute_difference=abs(float(profile.loc[class_id,variable])-float(source_profile.loc[class_id,variable])),
+                display_label=figure7_final.LABELS[variable]))
+    u.write_csv(diagnostic_dir/'STANDARDIZED_PROFILE_QA.csv',profile_rows)
+    u.dump(diagnostic_dir/'FEATURE_LABELS_AND_PALETTES.json',dict(
+        labels=figure7_final.LABELS,panel_A_variables=figure7_final.PANEL_A,
+        proposed_palette={str(k):v for k,v in figure7_final.PROPOSED.items()},
+        alternative_darker_C3={str(k):v for k,v in figure7_final.DARKER_MAUVE.items()},
+        Figure7D_color_function='unchanged pinned CIELAB blue-amber hue and burden lightness'))
+    u.dump(diagnostic_dir/'LAYOUT_SPECIFICATIONS.json',dict(
+        layout_B={'width_in':7.2,'height_in':10.0,'page_points':[518.4,720],
+                  'map_scale':1.25,'text_floor_pt':7.5},
+        layout_C={'width_in':7.2,'height_in':figure7_final.LAYOUT_C_H/72,
+                  'height_mm':figure7_final.LAYOUT_C_H*25.4/72,
+                  'page_points':[518.4,figure7_final.LAYOUT_C_H],
+                  'map_scale':1.25,'text_floor_pt':7.5}))
     for stem in ACTIVE:
         original_path='results/figure_review/'+stem+'.pdf'
         original=source(original_path,CURRENT_SUITE_BASE)
@@ -275,13 +301,13 @@ def main():
             if stem in changed:
                 with fitz.open(stream=raw,filetype='pdf') as art:
                     size=f'{art[0].rect.width*25.4/72:.3f} x {art[0].rect.height*25.4/72:.3f}'
-                row.update(source_commit=CURRENT_SUITE_BASE,source_file=original_path,
+                row.update(source_commit=FIGURE_BASELINE_COMMIT,source_file=original_path,
                     presentation_generator=GEN,presentation_generator_sha256=u.sha(ROOT/GEN),
-                    status='AUTHOR_REVIEW_1021_FIGURE7_MAP_UPDATE',min_font_pt='7.500',size_mm=size,
-                    parent_sha256=before,parent_source_commit=CURRENT_SUITE_BASE,parent_source_file=original_path)
-                ix.update(source_authority=CURRENT_SUITE_BASE,source_data_path=original_path,
+                    status='CURRENT_1021_FIGURE7_PRESENTATION_20261016',min_font_pt='7.500',size_mm=size,
+                    parent_sha256=before,parent_source_commit=FIGURE_BASELINE_COMMIT,parent_source_file=original_path)
+                ix.update(source_authority=FIGURE_BASELINE_COMMIT,source_data_path=original_path,
                     source_data_sha256=source_pdf_sha,generator=GEN,
-                    notes='Figure 7 map presentation only: no tract values or K3 assignments changed.')
+                    notes='Figure 7 palette, labels and layout only; tract values and K3 assignments are unchanged.')
             ix['sha256_or_lfs_oid']=current_hash
             ix['current_status']='CURRENT_1021_P2_K3_SUITE'
             manifest.append(row);index.append(ix)
@@ -302,37 +328,40 @@ def main():
             '\n\n'.join('## '+title+'\n\n'+body for title,body in caps)+'\n')
     packets(caps)
     palette=json.loads(source('results/figure_review/CURRENT_CLUSTER_PALETTE.json',CURRENT_SUITE_BASE))
-    palette.update(map_version='2026-10-15',map_encoding='continuous SOVI blue-to-amber hue; five-policy service deficit lightness',
+    palette.update(colors={str(k):v for k,v in figure7_final.PROPOSED.items()},
+        cluster_palette_version='2026-10-16',map_version='2026-10-15',
+        map_encoding='continuous SOVI blue-to-amber hue; five-policy service deficit lightness',
         map_regular_tract_outlines=False,NA_fill='#FFFFFF',NA_outline='#333333',NA_outline_width_pt=.45,
         screening_outline_width_pt=.25,map_same_fill_edge_overprint_pt=figure7_maps.SEAM_OVERLAP_PT,
         screening_rule='Frozen SOVI Q4 and five-policy deficit >= cohort P75',
-        screening_tracts=94,screening_population=350799,formal_Stage7_pipeline_migrated=False)
+        screening_tracts=94,screening_population=350799,formal_Stage7_pipeline_migrated=False,
+        Figure7_layout='7.2 x 9.03 in; compact map-forward layout',Figure7_NA_fill='#FFFFFF')
     u.dump(DEST/'CURRENT_CLUSTER_PALETTE.json',palette)
-    gallery = ['<!doctype html><meta charset="utf-8"><title>Figures - 2026-10-15</title>',
+    gallery = ['<!doctype html><meta charset="utf-8"><title>Figures - 2026-10-16</title>',
         '<style>body{font:16px Arial;max-width:1000px;margin:24px auto}img{width:100%;height:auto}section{margin:32px 0}</style>',
-        '<h1>Figures - 2026-10-15</h1><p>Seven-variable P2/K3 community types; Figure 7D maps continuous SOVI and five-policy recovery burden.</p>']
+        '<h1>Figures - 2026-10-16</h1><p>Seven-variable P2/K3 community types; Figure 7D maps continuous SOVI and five-policy recovery burden.</p>']
     for stem,(title,body) in zip(ACTIVE,caps):
         row=next(r for r in manifest if r['final_name']==stem+'.png')
         gallery += [f'<section><h2>{u.escape(title)}</h2><img src="{Path(row["mirror_file"]).name}" alt="{u.escape(title)}">',
                     f'<p>{u.escape(body)}</p></section>']
     u.write(ROOT/'results/figures/FIGURE_REVIEW_GALLERY.html', '\n'.join(gallery))
-    info = ('# Figures - 2026-10-15\n\nSeven-variable P2 model, three primary classes, 2,299 positive-population tracts '
+    info = ('# Figures - 2026-10-16\n\nSeven-variable P2 model, three primary classes, 2,299 positive-population tracts '
         '(1,235 / 428 / 636), 9,066,522 residents. NCV14 is supplementary environmental context, not a fitted coordinate. '
         'K4 remains a saved sensitivity result, not a second primary model.\n\n16 numbered figures: Main 1-7 and Supplement 1-9. '
         'The compact combined packet has 20 pages: 16 native artwork-plus-concise-caption pages and four retained '
-        'complementary-evidence pages. Figure 7 uses borderless tract fills, continuous blue-to-amber SOVI hue and '
-        'five-policy burden lightness. Thin outlines show the frozen Q4/cohort-P75 screen; this is not a new score. '
-        'Unnumbered enlarged map and aligned single-variable accessibility views are in results/diagnostics/1021/figure7_readability_20261015/.\n\nReproduce: '
+        'complementary-evidence pages. Figure 7 uses a muted teal, slate and mauve K3 palette, cohort-standardized profiles, '
+        'borderless tract fills, continuous blue-to-amber SOVI hue and five-policy burden lightness. Thin outlines show the Q4/cohort-P75 screen. '
+        'Unnumbered map details and accessibility views are in results/diagnostics/1021/figure7_final_presentation_20261016/.\n\nReproduce: '
         '`python src/la_grid/plotting/build_current_figures.py --portable`. This replays the current figures.\n')
     for rel in ['results/figure_review/README.md','results/figures/README.md']:
         u.write(ROOT/rel, info)
     log = source('results/figure_review/UPDATE_LOG.md',CURRENT_SUITE_BASE).decode()
-    u.write(DEST/'UPDATE_LOG.md', log+'\n\n## 2026-10-15 - Figure 7 map readability update\n\n'
-        'Figure 7C/D now use the exact tract paths without ordinary internal strokes. The 16 N/A tracts retain white fill and charcoal boundaries. '
-        'Panel D uses continuous SOVI hue and five-policy recovery-burden lightness; the 94 frozen Q4/P75 outlines use 0.25-pt strokes. '
-        'Layout B enlarges the maps to 1.25 times their prior linear scale. Other numbered figure artwork is byte-identical to the 1021 starting suite. '
-        'No Stage 7 data, manuscript, simulation, or K-means output was written.\n')
+    u.write(DEST/'UPDATE_LOG.md', log+'\n\n## 2026-10-16 - Figure 7 palette, terminology and publication layout\n\n'
+        'Figure 7A/B labels now use the seven registered publication-facing variable names; all six ECDFs and 21 standardized profile values are reconstructed from the verified P2/K3 tract table. '
+        'The K3 palette is muted lake teal, slate blue and mauve. Figure 7C/D retain the same vector geography and map scale in a 7.2 x 9.03 in page; the D continuous blue-amber/luminance mapping is unchanged. '
+        'Only Figure 7 changed among the 16 numbered artwork pairs. No feature values, memberships, SOVI groups, recovery results or simulations changed.\n')
     u.dump(QA/'SOURCE_AUTHORITY_AND_HASHES.json', dict(source_commit=BASE,current_suite_source_commit=CURRENT_SUITE_BASE,
+        actual_current_figure_baseline_commit=FIGURE_BASELINE_COMMIT,actual_current_figure_baseline_sha256=source_pdf_sha,
         map_experiment_source_commit=MAP_REVIEW_BASE,sources=SOURCES,adopted_specification=spec,
         no_stage7_or_simulation_changes=True,figure7_map_qa=style_checks['Main/Fig07']))
     outputs = ['results/figure_review/FIGURE_MANIFEST.csv',
@@ -343,16 +372,21 @@ def main():
         'results/figures/README.md', 'results/figure_review/UPDATE_LOG.md']
     outputs += [r[field] for r in manifest for field in ['current_source_file','mirror_file']]
     outputs += ['results/figure_review/Page_Previews/'+Path(s).name+'.png' for s in ACTIVE]
+    outputs += [str(p.relative_to(ROOT)) for p in diagnostic_dir.iterdir() if p.is_file()]
     hashes = {rel:u.sha(ROOT/rel) for rel in outputs}
     prior = QA/'BUILD_CHECKPOINT.json'
     if prior.exists():
         old=json.load(open(u.lp(prior),encoding='utf-8'))
-        if old['generator_sha256']==u.sha(ROOT/GEN) and old.get('presentation_sha256')==u.sha(ROOT/PRESENTATION):
+        if (old['generator_sha256']==u.sha(ROOT/GEN)
+                and old.get('presentation_sha256')==u.sha(ROOT/PRESENTATION)
+                and old.get('figure7_presentation_sha256')==u.sha(ROOT/'src/la_grid/plotting/figure7_final_presentation_20261016.py')):
             assert old['output_hashes']==hashes, 'Non-idempotent current-suite replay'
-    u.dump(prior, dict(generator_sha256=u.sha(ROOT/GEN), presentation_sha256=u.sha(ROOT/PRESENTATION), routing_sha256=u.sha(ROOT/'src/la_grid/plotting/build_current_figures.py'), output_hashes=hashes, model='P2',
+    u.dump(prior, dict(generator_sha256=u.sha(ROOT/GEN), presentation_sha256=u.sha(ROOT/PRESENTATION),
+        figure7_presentation_sha256=u.sha(ROOT/'src/la_grid/plotting/figure7_final_presentation_20261016.py'),
+        routing_sha256=u.sha(ROOT/'src/la_grid/plotting/build_current_figures.py'), output_hashes=hashes, model='P2',
         numbered_figures=16, packet_pages=20, primary_K=3, fitted_feature_count=7,
-        figure7_layout='B',current_source_commit=CURRENT_SUITE_BASE))
-    print('Current suite synchronized: 16 figures, 20 pages; Figure 7C/D rebuilt from frozen vectors; no fits or simulations.')
+        figure7_layout='C',current_source_commit=CURRENT_SUITE_BASE,figure_baseline_commit=FIGURE_BASELINE_COMMIT))
+    print('Current suite synchronized: 16 figures, 20 pages; compact Figure 7 rebuilt from verified vectors; no fits or simulations.')
 
 
 if __name__ == '__main__':

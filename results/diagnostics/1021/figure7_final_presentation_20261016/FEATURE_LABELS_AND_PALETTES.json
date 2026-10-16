@@ -1,0 +1,30 @@
+{
+  "labels": {
+    "Init_Supply": "Initial service availability",
+    "Grid_Impact": "Spectral network impact",
+    "Redundancy_HHI": "Dependency concentration (HHI)",
+    "B_Unconstrained": "Unconstrained service deficit",
+    "MeanDelta": "Mean additional service deficit (five policies)",
+    "SOVI_SCORE": "Social vulnerability score",
+    "log1p_Population": "Tract population"
+  },
+  "panel_A_variables": [
+    "Grid_Impact",
+    "Redundancy_HHI",
+    "B_Unconstrained",
+    "MeanDelta",
+    "SOVI_SCORE",
+    "Population"
+  ],
+  "proposed_palette": {
+    "1": "#3C9198",
+    "2": "#52699E",
+    "3": "#C69EBA"
+  },
+  "alternative_darker_C3": {
+    "1": "#3C9198",
+    "2": "#52699E",
+    "3": "#A87596"
+  },
+  "Figure7D_color_function": "unchanged pinned CIELAB blue-amber hue and burden lightness"
+}

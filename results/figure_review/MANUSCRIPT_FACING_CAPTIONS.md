@@ -26,7 +26,7 @@ Vulnerability-first minus named reference policies across the tested crew availa
 
 ## Figure 7. Community recovery types and social vulnerability
 
-(A) Six empirical feature distributions by class; dots mark medians. (B) Profiles show standardized means for all seven fitted variables. (C) Tract classes. (D) Five-policy recovery burden (lightness) and continuous SOVI score (blue-to-amber hue). Outlines identify Q4 tracts at or above the 75th-percentile burden; this is a descriptive screen, not a composite score or inferential hotspot test. White outlined tracts are N/A.
+(A) Empirical distributions for six selected variables; points mark medians. (B) Standardized means for all seven fitted variables; population is in persons in A and log1p(Population) in B. Initial service availability has many zeros; z-scores do not imply high absolute service. Spectral impact is dependency-weighted, not an Impact-first priority; HHI measures tract-substation dependency concentration. Unconstrained service deficit is cumulative deficit under Unconstrained restoration; mean additional deficit is equal-weight constrained-minus-Unconstrained across five policies. (C) Community types. (D) Five-policy mean service-deficit hours (0-480 h; lightness) and FEMA NRI v1.19 SOVI score (hue). Outlines mark Q4 tracts at/above cohort P75: descriptive, not a composite score or significance test. White outlined tracts are N/A.
 
 ## Supplementary Figure S1. Damage and initial service
 

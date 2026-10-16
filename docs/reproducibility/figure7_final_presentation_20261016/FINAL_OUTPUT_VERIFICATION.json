@@ -1,0 +1,78 @@
+{
+  "branch_baseline_commit": "2779c0b0f2694af2818debeb69241edbe8762260",
+  "science_input_commit": "937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f",
+  "numbered_artwork_files": 32,
+  "unchanged_non_figure7_artwork_files": 30,
+  "figure7_artwork_files_changed": 2,
+  "all_mirrors_match": true,
+  "cohort": {
+    "tracts": 2299,
+    "population": 9066522,
+    "class_counts": [
+      1235,
+      428,
+      636
+    ],
+    "zero_population_na": 16,
+    "zero_housing_positive_population": 8
+  },
+  "screen": {
+    "P75_hours": 38.38135467381474,
+    "tracts": 94,
+    "population": 350799
+  },
+  "figure7": {
+    "page_points": [
+      518.4,
+      650
+    ],
+    "width_in": 7.2,
+    "height_in": 9.027777777777779,
+    "height_mm": 229.30555555555554,
+    "min_text_pt": 7.5,
+    "embedded_fonts": [
+      {
+        "xref": 26,
+        "name": "Arial Regular",
+        "extension": "ttf",
+        "embedded_bytes": 1045720
+      },
+      {
+        "xref": 32,
+        "name": "Arial Bold",
+        "extension": "ttf",
+        "embedded_bytes": 989780
+      },
+      {
+        "xref": 7,
+        "name": "ELUGPM+ArialMT",
+        "extension": "ttf",
+        "embedded_bytes": 46864
+      },
+      {
+        "xref": 14,
+        "name": "ELUGPM+Arial-BoldMT",
+        "extension": "ttf",
+        "embedded_bytes": 25576
+      }
+    ],
+    "image_objects": 0,
+    "vector_drawing_objects": 5276
+  },
+  "packets": {
+    "results/figure_review/ALL_MAIN_FIGURES.pdf": {
+      "pages": 7,
+      "sha256": "2ed44569a53cc8364e80ca3582e8a20cf1b71f6420e0ecf617b40a4116a0f9a6"
+    },
+    "results/figure_review/ALL_SUPPLEMENT_FIGURES.pdf": {
+      "pages": 9,
+      "sha256": "ae65ce64ce0a188b46cc84a6f79d68590f09b6a643ced631f4cef72eeb696d2b"
+    },
+    "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf": {
+      "pages": 20,
+      "sha256": "0c20770c78aec3e95a4f2deb078e81da86cdbeb169535e8d6b000adc32f8a860"
+    }
+  },
+  "all_16_pdf_png_artwork_mirrors_verified": true,
+  "pass": true
+}

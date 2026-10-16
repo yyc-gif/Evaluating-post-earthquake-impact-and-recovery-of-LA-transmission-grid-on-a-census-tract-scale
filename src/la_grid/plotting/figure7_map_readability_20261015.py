@@ -16,7 +16,7 @@ PAGE_B_H = 720.0
 TITLE_C = "C.\u00a0Community\u00a0types"
 TITLE_D = "D.\u00a0Recovery\u00a0burden\u00a0and\u00a0social\u00a0vulnerability"
 P75 = 38.38135467381475
-COLORS = {1: "#147f98", 2: "#d07734", 3: "#7a5899"}
+COLORS = {1: "#3C9198", 2: "#52699E", 3: "#C69EBA"}
 NA_STROKE = (0.20, 0.20, 0.20)
 SCREEN_STROKE = (0.0666819289, 0.0666819289, 0.0666819289)
 BLUE_AMBER = "blue_amber"
@@ -287,10 +287,10 @@ def _class_legend(page, y, scale=1.0, detail=False):
         _text(page, x + sw + 4, label_y, label, size=size)
 
 
-def _screening_keys(page, y, line_width, n_a_x=466, label_size=7.5):
-    page.draw_rect(fitz.Rect(276.5, y - 7, 285.5, y - 1),
+def _screening_keys(page, y, line_width, n_a_x=466, label_size=7.5, q4_x=276.5):
+    page.draw_rect(fitz.Rect(q4_x, y - 7, q4_x + 9, y - 1),
                    color=SCREEN_STROKE, width=line_width)
-    _text(page, 290, y, "Q4 + burden >= P75", size=label_size)
+    _text(page, q4_x + 13.5, y, "Q4 + burden >= P75", size=label_size)
     page.draw_rect(fitz.Rect(n_a_x, y - 7, n_a_x + 9, y - 1),
                    color=NA_STROKE, fill=(1, 1, 1), width=0.45)
     _text(page, n_a_x + 13, y, "N/A (16)", size=label_size)

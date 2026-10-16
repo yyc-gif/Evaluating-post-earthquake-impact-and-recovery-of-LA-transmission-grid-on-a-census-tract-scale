@@ -41,6 +41,6 @@ Figure 5 now uses balanced row-title spacing. Figure 7 uses concise titles and n
 Panel headings are centered consistently. S02 removes Directed; S03 distinguishes static percolation from recovery over time; S04 identifies each run's initial and final best orders; S05 separates source connectivity from a combined threshold comparison, with no explanatory footer. The previous S08 clustering artwork is removed by author instruction. Previous S09/S10 become S08/S09; S08 identifies repair priorities and uses a neutral population scale. Current registry: 16 numbered figures and 20 packet pages; saved clustering evidence is retained.
 
 
-## 2026-10-15 - Figure 7 map readability update
+## 2026-10-16 - Figure 7 palette, terminology and publication layout
 
-Figure 7C/D now use the exact tract paths without ordinary internal strokes. The 16 N/A tracts retain white fill and charcoal boundaries. Panel D uses continuous SOVI hue and five-policy recovery-burden lightness; the 94 frozen Q4/P75 outlines use 0.25-pt strokes. Layout B enlarges the maps to 1.25 times their prior linear scale. Other numbered figure artwork is byte-identical to the 1021 starting suite. No Stage 7 data, manuscript, simulation, or K-means output was written.
+Figure 7A/B labels now use the seven registered publication-facing variable names; all six ECDFs and 21 standardized profile values are reconstructed from the verified P2/K3 tract table. The K3 palette is muted lake teal, slate blue and mauve. Figure 7C/D retain the same vector geography and map scale in a 7.2 x 9.03 in page; the D continuous blue-amber/luminance mapping is unchanged. Only Figure 7 changed among the 16 numbered artwork pairs. No feature values, memberships, SOVI groups, recovery results or simulations changed.

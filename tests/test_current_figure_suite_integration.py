@@ -19,7 +19,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SUITE=ROOT/'results/figure_review'
 AUTH=ROOT/'results/stage7/2026-10-14'
 QA=ROOT/'docs/reproducibility/p2_final_adoption_20261014'
-MAP_QA=ROOT/'docs/reproducibility/figure7_map_readability_20261015'
+MAP_QA=ROOT/'docs/reproducibility/figure7_final_presentation_20261016'
 PB=ROOT/'docs/data_research/stage7_path_b_p2_integration_review_20261014'
 BASE='937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f'
 CURRENT_SUITE_BASE='0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68'
@@ -89,7 +89,9 @@ def test_publication_pngs_and_native_dimensions():
         with fitz.open(SUITE/(stem+'.pdf')) as art,Image.open(SUITE/(stem+'.png')) as im:
             assert im.width>=4320
             assert abs(im.width/im.height-art[0].rect.width/art[0].rect.height)<.002
+            expected_height=(650 if stem=='Main/Fig07' else None)
             assert abs(art[0].rect.width-(7.2*72 if stem=='Main/Fig07' else 185*72/25.4))<.2
+            if expected_height is not None:assert abs(art[0].rect.height-expected_height)<.01
 
 
 def test_all_native_previews_exist():
@@ -209,26 +211,35 @@ def test_all_21_profile_cells_are_ordinary_cohort_z_means():
     assert profile.shape==(3,8)
 
 
-def test_figure7_preserves_top_panels_and_uses_vector_only_maps():
-    baseline=fitz.open(ROOT/'results/diagnostics/1021/figure7_readability_20261015/FIG07_BASELINE.pdf')
-    current=fitz.open(SUITE/'Main/Fig07.pdf')
-    assert current[0].rect.width==baseline[0].rect.width
-    clip=fitz.Rect(0,0,baseline[0].rect.width,410)
-    assert current[0].get_pixmap(clip=clip,dpi=72,alpha=False).samples==baseline[0].get_pixmap(clip=clip,dpi=72,alpha=False).samples
-    assert not current[0].get_images()
-    assert abs(current[0].rect.height/72-10)<1e-8
+def test_figure7_rebuilds_panels_and_keeps_map_inputs_vector_and_unchanged():
     q=read(MAP_QA/'PRESENTATION_QA.json')['figures']['Main/Fig07']
-    assert q['positive_GEOIDs']==2299 and q['NA_polygon_count']==16
-    assert q['high_high_outline_count']==94 and q['high_high_population']==350799
-    assert q['contrasting_internal_tract_boundaries'] is False
-    assert q['same_fill_edge_overprint_pt']==.12 and q['chosen_outline_width_pt']==.25
+    with fitz.open(SUITE/'Main/Fig07.pdf') as current:
+        assert abs(current[0].rect.width-7.2*72)<.01 and abs(current[0].rect.height-650)<.01
+        assert not current[0].get_images()
+        assert q['positive_GEOIDs']==2299 and q['NA_polygon_count']==16
+        assert q['high_high_outline_count']==94 and q['high_high_population']==350799
+        assert q['contrasting_internal_tract_boundaries'] is False
+        assert q['same_fill_edge_overprint_pt']==.12 and q['chosen_outline_width_pt']==.25
+        assert q['layout_B_map_scale']==q['layout_C_map_scale']==1.25
+        assert q['D_continuous_color_function_unchanged'] is True
+        assert q['A_ECDF_class_variable_curves']==18 and q['B_standardized_profile_cells']==21
+    for name, height in [('FIG07_LAYOUT_B_REVISED.pdf',720),('FIG07_LAYOUT_C_COMPACT.pdf',650)]:
+        with fitz.open(ROOT/'results/diagnostics/1021/figure7_final_presentation_20261016'/name) as doc:
+            assert abs(doc[0].rect.width-7.2*72)<.01 and abs(doc[0].rect.height-height)<.01
+            assert not doc[0].get_images()
 
 
 def test_panel_a_has_six_descriptive_distributions_b_has_seven_fitted_coordinates():
-    text=fitz.open(SUITE/'Main/Fig07.pdf')[0].get_text().replace('\u00a0',' ')
-    assert 'B. Profiles' in text and 'Population exposure' in text
-    assert 'Cumulative fraction' in text and 'Class mean z-score' in text
-    assert 'Six empirical feature distributions' in caps() and 'all seven fitted variables' in caps()
+    with fitz.open(SUITE/'Main/Fig07.pdf') as doc:text=doc[0].get_text().replace('\u00a0',' ')
+    normalized=' '.join(text.split())
+    assert 'B. Standardized cluster profiles' in normalized and 'Cumulative fraction' in text
+    assert 'Class mean z-score' in text
+    labels=['Initial service availability','Spectral network impact','Dependency concentration (HHI)',
+        'Unconstrained service deficit','Mean additional service deficit (five policies)',
+        'Social vulnerability score','Tract population']
+    for label in labels:assert label in normalized,label
+    assert 'empirical distributions for six selected variables' in caps().lower()
+    assert 'standardized means for all seven fitted variables' in caps().lower()
     assert not any(s.lower() in text.lower() for s in ['saved','frozen','P2/','Seven-coordinate','Exact empirical CDFs;','Ordinary feature z means,','no NCV14'])
     assert not any(x in text for x in ['C4','C5','K4','PCA','Top-10','Hotspot score'])
 
@@ -245,14 +256,15 @@ def test_joint94_screen_keeps_original_threshold_and_no_composite_score():
     assert abs(threshold-38.38135467381475)<1e-12
     high=f.MeanTotal5.ge(threshold);joint=high&f.frozen_SOVI_quartile.eq('Q4')
     assert high.sum()==575 and joint.sum()==94 and f.loc[joint,'Population'].sum()==350799
-    assert 'not a composite score' in caps() and 'inferential hotspot test' in caps()
+    assert 'not a composite score' in caps() and 'significance test' in caps()
     assert not any('Hotspot_Score' in x for x in f.columns)
 
 
 def test_palette_ids_and_white_na_match_approved_registry():
     p=read(SUITE/'CURRENT_CLUSTER_PALETTE.json')
     assert p['model_version']=='2026-10-14' and p['map_version']=='2026-10-15'
-    assert p['colors']=={'1':'#147f98','2':'#d07734','3':'#7a5899'}
+    assert p['cluster_palette_version']=='2026-10-16'
+    assert p['colors']=={'1':'#3C9198','2':'#52699E','3':'#C69EBA'}
     assert p['NA_fill']=='#FFFFFF' and p['NA_count']==16 and p['NA_outline_width_pt']==.45
     assert p['map_regular_tract_outlines'] is False and p['screening_outline_width_pt']==.25
 
@@ -419,17 +431,28 @@ def test_figure7_has_consistent_title_spacing_without_embedded_explanations():
         ss=[s for b in d[0].get_text('dict')['blocks'] for l in b.get('lines',[]) for s in l['spans']]
     for s in ss:s['text']=s['text'].replace('\u00a0',' ')
     tt={s['text'][0]:s for s in ss if re.match(r'^[A-D]\. ',s['text'])}
-    assert [tt[c]['text'] for c in 'ABCD']==['A. Feature distributions','B. Profiles','C. Community types',
+    assert [tt[c]['text'] for c in 'ABCD']==['A. Feature distributions','B. Standardized cluster profiles','C. Community types',
                                                             'D. Recovery burden and social vulnerability']
-    assert all(abs(s['size']-9.5)<.01 for s in tt.values())
-    a=max(s['bbox'][3] for s in ss if 50<s['bbox'][1]<265)
-    b=max(s['bbox'][3] for s in ss if 290<s['bbox'][1]<405)
-    gaps=[tt['B']['bbox'][1]-a,tt['C']['bbox'][1]-b]
-    assert all(19.5<g<20.5 for g in gaps) and abs(gaps[0]-gaps[1])<.3
+    assert all(abs(s['size']-9.5)<.02 for s in tt.values())
+    centers={c:(tt[c]['bbox'][0]+tt[c]['bbox'][2])/2 for c in 'ABCD'}
+    assert abs(centers['A']-259.2)<.1 and abs(centers['B']-259.2)<.1
+    assert abs(centers['C']-145.0)<.2 and abs(centers['D']-394.0)<.2
     text='\n'.join(s['text'] for s in ss)
     assert not any(s in text for s in ['Exact empirical CDFs;','Ordinary feature z means,',
                                       'Finite five-policy comparison.','Descriptive co-occurrence;','model IDs;'])
     assert 'C1' in text and '(n=1,235)' in text and 'N/A' in text
+
+
+def test_figure7_profile_and_ecdf_reconstruction_and_palette_diagnostics():
+    profiles=df(ROOT/'results/diagnostics/1021/figure7_final_presentation_20261016/STANDARDIZED_PROFILE_QA.csv')
+    assert len(profiles)==21 and profiles.absolute_difference.max()<1e-12
+    ecdf=df(ROOT/'results/diagnostics/1021/figure7_final_presentation_20261016/ECDF_DISTRIBUTION_QA.csv')
+    assert len(ecdf)==18 and ecdf.empirical_step.all() and not ecdf.smoothed.any() and not ecdf.clipped.any()
+    palette=df(ROOT/'results/diagnostics/1021/figure7_final_presentation_20261016/PALETTE_PAIRWISE_DISTANCES.csv')
+    assert set(palette.design)=={'proposed','darker_mauve'}
+    assert set(palette.view)=={'normal','grayscale','protanopia','deuteranopia','tritanopia'}
+    assert all((ROOT/'results/diagnostics/1021/figure7_final_presentation_20261016'/f'LAYOUT_C_{m}.png').exists()
+               for m in ['GRAYSCALE','PROTANOPIA','DEUTERANOPIA','TRITANOPIA'])
 
 
 def test_no_internal_process_names_in_current_publication_artwork_or_captions():

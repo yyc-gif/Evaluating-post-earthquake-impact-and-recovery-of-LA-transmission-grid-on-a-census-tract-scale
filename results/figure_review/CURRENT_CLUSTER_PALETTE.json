@@ -3,9 +3,9 @@
   "adopted_K": 3,
   "model_version": "2026-10-14",
   "colors": {
-    "1": "#147f98",
-    "2": "#d07734",
-    "3": "#7a5899"
+    "1": "#3C9198",
+    "2": "#52699E",
+    "3": "#C69EBA"
   },
   "class_labels": [
     "C1",
@@ -20,6 +20,7 @@
   "membership_source": "docs/data_research/stage7_path_b_p2_integration_review_20261014/P2_FROZEN_MEMBERSHIPS.csv",
   "formal_Stage7_pipeline_migrated": false,
   "primary_authority": "results/stage7/2026-10-14",
+  "cluster_palette_version": "2026-10-16",
   "map_version": "2026-10-15",
   "map_encoding": "continuous SOVI blue-to-amber hue; five-policy service deficit lightness",
   "map_regular_tract_outlines": false,
@@ -27,5 +28,7 @@
   "map_same_fill_edge_overprint_pt": 0.12,
   "screening_rule": "Frozen SOVI Q4 and five-policy deficit >= cohort P75",
   "screening_tracts": 94,
-  "screening_population": 350799
+  "screening_population": 350799,
+  "Figure7_layout": "7.2 x 9.03 in; compact map-forward layout",
+  "Figure7_NA_fill": "#FFFFFF"
 }
