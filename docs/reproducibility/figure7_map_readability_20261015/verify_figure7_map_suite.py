@@ -111,8 +111,17 @@ def main() -> None:
         "results/figures/Fig07_Community_Typology_and_Service_Deficit.png",
         "results/figures/README.md",
         "src/la_grid/plotting/build_current_suite_p2.py",
+        "src/la_grid/plotting/figure7_map_readability_20261015.py",
         "tests/test_current_figure_suite_integration.py",
     }
+    repo_paths = subprocess.check_output(
+        ["git", "-C", str(ROOT), "ls-files", "-z"],
+    ).decode().split("\0")
+    allowed_tracked.update(
+        rel for rel in repo_paths
+        if rel.startswith("docs/reproducibility/figure7_map_readability_20261015/")
+        or rel.startswith("results/diagnostics/1021/figure7_readability_20261015/")
+    )
     assert changed_tracked == allowed_tracked, sorted(changed_tracked ^ allowed_tracked)
     protected_inventory = json.loads(
         (ROOT / "docs/reproducibility/figure_suite_concise_captions_20261013/PRESERVATION_BEFORE.json")
