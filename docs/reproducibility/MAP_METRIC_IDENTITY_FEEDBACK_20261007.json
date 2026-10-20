@@ -1,0 +1,262 @@
+{
+  "base_commit": "09fa6b08da4aaa0d88bde9b4bd62e4a567ccc6fe",
+  "records": [
+    {
+      "cluster_color_operator_counts": [
+        0,
+        49,
+        49,
+        49,
+        0
+      ],
+      "file": "Main/Fig01.pdf",
+      "size_mm": [
+        184.99999118381075,
+        220.0000081380208
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "0053bf11ef38edb4178a13f5684f0593fca7f111d93bdbd5e862790a70f65a5e",
+      "png_sha256": "b8941091388bb9342df212e104df3c3084a3c74df9c603643128379d92b4030c"
+    },
+    {
+      "text_changes": [
+        {
+          "old": "Population-weighted",
+          "new": "All-tract"
+        },
+        {
+          "old": "Q4 population-weighted",
+          "new": "Q4 tract"
+        },
+        {
+          "old": "Hospital-linked",
+          "new": "Hospital-tract"
+        },
+        {
+          "old": "mean service",
+          "new": "service"
+        }
+      ],
+      "file": "Main/Fig04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        204.99999779595268
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "28536f50577b3b38e5c855667ef7c13fa8decd3861bc2cfe670c9c34e07a16b8",
+      "png_sha256": "2986ebe5ace5430939f73d229845b0c15e82c984481668c49d4d137d787bbc54"
+    },
+    {
+      "text_changes": [
+        {
+          "old": "Population-weighted",
+          "new": "All-tract"
+        },
+        {
+          "old": "Q4 population-weighted",
+          "new": "Q4 tract"
+        },
+        {
+          "old": "Population-weighted",
+          "new": "Tract"
+        },
+        {
+          "old": "Population-weighted",
+          "new": "All-tract"
+        },
+        {
+          "old": "Q4 population-weighted",
+          "new": "Q4 tract"
+        },
+        {
+          "old": "Hospital-linked mean",
+          "new": "Hospital-tract"
+        }
+      ],
+      "spatial_panel": {
+        "saved_sources": [
+          "Formal_Experiment_20260923\\Equity_Amendment\\VULNERABILITY_TRACT_EFFECTS.parquet",
+          "Formal_Experiment_20260923\\Formal_Results\\TRACT_PAIRED_EFFECTS.parquet"
+        ],
+        "domain_tracts": 2315,
+        "realizations": 1000,
+        "degree_formula": "(Vulnerability - Hospital) - (Degree - Hospital)",
+        "degree_population_weighted_display_change_hr": -1.4498597117736645,
+        "degree_source_summary_change_hr": -1.4498597117736622,
+        "common_color_range_hr": [
+          -24.018302801579285,
+          24.018302801579285
+        ],
+        "colormap": [
+          "#2166ac",
+          "#80b4d4",
+          "#c4c4c4",
+          "#f4ae62",
+          "#d96518"
+        ]
+      },
+      "file": "Main/Fig05.pdf",
+      "size_mm": [
+        184.99999118381075,
+        250.0000072903103
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "6df0611affa54d357f403be7a465702917ceba32f728eb776f804d8e9a655273",
+      "png_sha256": "091dab1222879d335897b0deaf95a70665406be9fd427033f6ce4879cb05a36d"
+    },
+    {
+      "text_changes": [
+        {
+          "old": "A. Population-weighted service loss",
+          "new": "A. All-tract service loss"
+        },
+        {
+          "old": "B. Population-weighted service loss",
+          "new": "B. All-tract service loss"
+        },
+        {
+          "old": "C. Q4 population-weighted service loss",
+          "new": "C. Q4 tract service loss"
+        },
+        {
+          "old": "D. Q4 population-weighted service loss",
+          "new": "D. Q4 tract service loss"
+        },
+        {
+          "old": "G. Hospital-linked mean service loss",
+          "new": "G. Hospital-tract service loss"
+        },
+        {
+          "old": "H. Hospital-linked mean service loss",
+          "new": "H. Hospital-tract service loss"
+        },
+        {
+          "old": "Hospital-linked tract panels: Degree-first triangles show means only.",
+          "new": "Hospital-tract panels: Degree-first triangles show means only."
+        }
+      ],
+      "file": "Main/Fig06.pdf",
+      "size_mm": [
+        184.99999118381075,
+        224.00000084771048
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "043e1083d3f60841220f61a35464ac98de25f3849d6ef3be14e96930a4c39236",
+      "png_sha256": "8940a81ed43fb6038350cf7bf832834dfdac52a934408659585c3ff2dbb581a0"
+    },
+    {
+      "cluster_color_operator_counts": [
+        49,
+        49,
+        49,
+        49,
+        49
+      ],
+      "file": "Main/Fig07.pdf",
+      "size_mm": [
+        184.99999118381075,
+        252.99999643961587
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "ff2c21505bbb7c8f24da4de82e984cedff13e1dc775c2f25eb4c217b648b53b2",
+      "png_sha256": "1b607be53d0f82e446c2d68c149af0837bd58e10830ed345ccbb860722e325e2"
+    },
+    {
+      "cluster_color_operator_counts": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "file": "Supplement/FigS09.pdf",
+      "size_mm": [
+        184.99999118381075,
+        173.99999508327906
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "f7587ca1a73777ee03b9ec9abe59a4b662a50ac4a3ade969dd84ad892dc58edf",
+      "png_sha256": "8957cb5bb711af4be18fd7c0b879e22d106c3ca0cb91c024867428a468e32c1e"
+    },
+    {
+      "text_changes": [
+        {
+          "old": "A. Population-weighted",
+          "new": "A. All-tract"
+        },
+        {
+          "old": "C. Q4 population-weighted",
+          "new": "C. Q4 tract"
+        },
+        {
+          "old": "D. Hospital-linked mean",
+          "new": "D. Hospital-tract"
+        }
+      ],
+      "file": "Supplement/FigS11.pdf",
+      "size_mm": [
+        184.99999118381075,
+        197.99999440511067
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "2779adca9798905bcb420cbea94ceb20e4e4b000b6b448b93970fba2fdf71d29",
+      "png_sha256": "e160036ff03a42eb8045e1472d17f876e8c3252986f98eba76d26f05c18be6e2"
+    },
+    {
+      "text_changes": [
+        {
+          "old": "A. Population-weighted service loss",
+          "new": "A. All-tract service loss"
+        },
+        {
+          "old": "B. Q4 population-weighted service loss",
+          "new": "B. Q4 tract service loss"
+        },
+        {
+          "old": "D. Hospital-linked mean service loss",
+          "new": "D. Hospital-tract service loss"
+        }
+      ],
+      "file": "Supplement/FigS12.pdf",
+      "size_mm": [
+        184.99999118381075,
+        170.9999951680501
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "f7349e1052650552d7be43bfdfd699b0ec741c09eb1d9d467aa18ecad5b6fd77",
+      "png_sha256": "9873f794c0863a8c52616b23cfec414a72880fd9a0f13a6669a83540eaa2d5e9"
+    },
+    {
+      "text_changes": [
+        {
+          "old": "A. Population-weighted service loss",
+          "new": "A. All-tract service loss"
+        },
+        {
+          "old": "B. Q4 population-weighted service loss",
+          "new": "B. Q4 tract service loss"
+        },
+        {
+          "old": "D. Hospital-linked mean service loss",
+          "new": "D. Hospital-tract service loss"
+        }
+      ],
+      "file": "Supplement/FigS13.pdf",
+      "size_mm": [
+        184.99999118381075,
+        170.9999951680501
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "4d9ab810a1bdaae29bb01b82ff9d31754786205ced84cc7ed87def4ea6713f31",
+      "png_sha256": "e658e6dcfe3e67ebc38ba6a3ecab1e9bfe9bd7b2f3ac34b10523760aeeecf725"
+    }
+  ],
+  "cluster_id_colors": {
+    "1": "#4f8fb7",
+    "2": "#e19243",
+    "3": "#6ca274",
+    "4": "#c5aa63",
+    "5": "#87949e"
+  },
+  "scientific_source_changed": false
+}

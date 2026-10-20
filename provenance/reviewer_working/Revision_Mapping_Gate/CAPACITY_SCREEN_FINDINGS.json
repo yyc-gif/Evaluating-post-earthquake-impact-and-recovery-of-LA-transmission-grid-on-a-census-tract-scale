@@ -1,0 +1,29 @@
+{
+  "matched_July_names": 33,
+  "named_voltage_facilities": 44,
+  "2026_rows": 44,
+  "2026_screenable": 34,
+  "2026_above_limit": [
+    {
+      "July_ID": "306279",
+      "facility": "OLINDA 66/12",
+      "loading_ratio": 1.0904561134534305,
+      "cumulative_demand": 28.45,
+      "fac_load_limit": 26.09,
+      "facility_loading": 109.04,
+      "subst_capacity": -2.36
+    }
+  ],
+  "new_generation_source_decisions": false,
+  "network_limits_populated": false,
+  "physical_interpretation": "Same-facility planning constraint context, not observed post-earthquake overload",
+  "ICA_interpretation": "hosting/integration capacity, not deliverable earthquake MW",
+  "LADWP_geometry_interpretation": "segment kW capacity bands not summed or assigned to stations",
+  "input_hashes": {
+    "External_Validation_Data\\normalized\\SCE_GNA_Layer_5_Substation_Level_Planning_Assumptions.csv": "f8451c0f349b10f0d7489c3ff7d175090510393e73e61dca5b9b2ef1656da5c0",
+    "R1_Comment1_2_External_Evidence_20260922\\SCE_REPRESENTED_HISTORICAL_LOAD.csv": "2e5e5cf6ce24b0dc750ed27d69439e1571821a069cdae214fb8fa46bd65ed431",
+    "R1_Comment1_2_External_Evidence_20260922\\SCE_REPRESENTED_ICA_CAPACITY_CONTEXT.csv": "734758f6d6af1a572086467389ba4b99aa1321d7e531300725204977ed4c3452",
+    "External_Validation_Data\\raw\\references\\ZEPEO_MND_2025.pdf": "df9ddfcf87af143471ea077eb1359f561d716f02a1cd2cb818f414e4ae932c8e",
+    "External_Validation_Data\\raw\\references\\Adelanto_Rinaldi_MND_2025.pdf": "4ba600b4eed7b4d1c3f9b99ed293e7d86f07fea0f37debbe3f62550a5f25138d"
+  }
+}

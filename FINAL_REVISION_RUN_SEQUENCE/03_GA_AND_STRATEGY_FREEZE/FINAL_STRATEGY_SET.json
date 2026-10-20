@@ -1,0 +1,52 @@
+{
+  "status": "FROZEN_RESOLVED_REPORTING_VIEW",
+  "strategies": [
+    {
+      "name": "centrality-first",
+      "sequence_authority": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+      "sequence_sha256": "435904b411b7c96a533548418ae9a0d8fa1cc46946d92799d2cc0eddc61d5b79"
+    },
+    {
+      "name": "impact-first",
+      "sequence_authority": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+      "sequence_sha256": "6a06093cbc06afc1bb4b6c938d77f1240de233202c390339daad7d3dce77fc42"
+    },
+    {
+      "name": "betweenness-first",
+      "sequence_authority": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+      "sequence_sha256": "cc3998207d4cbd90dd22908efb0ebd40b88be2c062e995b8d5459a15f176834e"
+    },
+    {
+      "name": "degree-first",
+      "sequence_authority": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+      "sequence_sha256": "9142da6227427c6ca52fe661b04580d2a1ad1cd6d5ff0ec83febaccd9425dc5f"
+    },
+    {
+      "name": "closeness-first",
+      "sequence_authority": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+      "sequence_sha256": "48f239f2f85b4180ad5eb9150e0f48c9d9809de43075d8a45cee76331fdc2475"
+    },
+    {
+      "name": "hospital-first",
+      "sequence_authority": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+      "sequence_sha256": "850718197879f6f3e17ec5283dcf2a1903f6c27d71929c468e781231f79f117f"
+    },
+    {
+      "name": "random",
+      "sequence_authority": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+      "sequence_sha256": "5cdcc18300e8a50336e9c98753adb980f1f2f6d03dec63cd1df672a87b25e264"
+    },
+    {
+      "name": "vulnerability-first",
+      "sequence_authority": "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_FIRST_SEQUENCE.json",
+      "sequence_sha256": "7473a0a8170ed5bb40cdd0f1e13d3c55723acc6809ce5e2768a5f4e4fa5d717f"
+    }
+  ],
+  "reference": "unconstrained",
+  "direct_community": {
+    "provenance_status": "retained historical GA output",
+    "sequence_equivalent_to": "impact-first",
+    "report_separately": false,
+    "identity_file": "Formal_Experiment_20260923/Formal_Reviewer_Results/DIRECT_IMPACT_IDENTITY.json"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "predeclared_on": "2026-10-09",
+  "original_64_preserved": true,
+  "new_physical_sampling": false,
+  "internal_cv": {
+    "folds": 4,
+    "split_seed": 19371,
+    "train_samples": 48,
+    "heldout_samples": 16,
+    "run_seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "training_unique_budget": 25000,
+    "predeclared_configs": [
+      {
+        "population": 100,
+        "mutation": 0.2,
+        "crossover": 0.8,
+        "tournament": 3,
+        "elites": 0,
+        "initialization": "legacy"
+      },
+      {
+        "population": 100,
+        "mutation": 0.2,
+        "crossover": 0.8,
+        "tournament": 3,
+        "elites": 1,
+        "initialization": "legacy"
+      }
+    ],
+    "purpose": "Fixed-algorithm internal generalization diagnostic; not an unbiased validation of the subsequently tuned hyperparameters"
+  },
+  "final_candidate_selection": {
+    "uses": "Only full-64 planning loss and sequence identity",
+    "maximum_new_distinct_sequences": 3,
+    "ranking": "Lowest planning loss, then configuration mean reliability; exclude existing two fixed exploratory comparator identities",
+    "freeze_before_evaluation": true
+  },
+  "evaluation_cohort": "Existing inspected 1000-realization 2pc50/C57/D1 cohort; exploratory reuse, not untouched test set",
+  "evaluation_guided_reselection": false,
+  "independent_new_final_validation": "Not available without separate physical-sampling authorization"
+}

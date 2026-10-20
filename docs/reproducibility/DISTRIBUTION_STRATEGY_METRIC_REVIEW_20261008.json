@@ -1,0 +1,674 @@
+{
+  "same_realization_correlations": [
+    {
+      "strategy": "betweenness-first",
+      "n": 1000,
+      "Pearson": 0.6423000207235463,
+      "Spearman": 0.6256603216603217,
+      "loss_mean": 35.52157245879788,
+      "T80_mean": 47.83094218068314
+    },
+    {
+      "strategy": "centrality-first",
+      "n": 1000,
+      "Pearson": 0.6383954767776784,
+      "Spearman": 0.6207702327702328,
+      "loss_mean": 36.12592228299649,
+      "T80_mean": 48.44182437972154
+    },
+    {
+      "strategy": "closeness-first",
+      "n": 1000,
+      "Pearson": 0.6580405441668028,
+      "Spearman": 0.6415045855045856,
+      "loss_mean": 35.512499896383254,
+      "T80_mean": 49.53179571268763
+    },
+    {
+      "strategy": "degree-first",
+      "n": 1000,
+      "Pearson": 0.6353526886476483,
+      "Spearman": 0.6196847836847837,
+      "loss_mean": 35.707709164451444,
+      "T80_mean": 49.50967725147978
+    },
+    {
+      "strategy": "hospital-first",
+      "n": 1000,
+      "Pearson": 0.6286781899541132,
+      "Spearman": 0.6120596400596401,
+      "loss_mean": 34.30646521839252,
+      "T80_mean": 45.97053519389106
+    },
+    {
+      "strategy": "impact-first",
+      "n": 1000,
+      "Pearson": 0.6100533572046307,
+      "Spearman": 0.5920913080913082,
+      "loss_mean": 33.593686467844854,
+      "T80_mean": 45.251090655927634
+    },
+    {
+      "strategy": "random",
+      "n": 1000,
+      "Pearson": 0.7018371584050139,
+      "Spearman": 0.679845307845308,
+      "loss_mean": 39.3884897974452,
+      "T80_mean": 52.86287270549062
+    },
+    {
+      "strategy": "unconstrained",
+      "n": 1000,
+      "Pearson": 0.6364459033915378,
+      "Spearman": 0.6362229962229963,
+      "loss_mean": 31.337776981796647,
+      "T80_mean": 43.399848296543865
+    },
+    {
+      "strategy": "vulnerability-first",
+      "n": 1000,
+      "Pearson": 0.6273554326373426,
+      "Spearman": 0.6238210678210678,
+      "loss_mean": 34.25784945267778,
+      "T80_mean": 46.43682784802011
+    }
+  ],
+  "between_policy_mean_Spearman": 0.8666666666666667,
+  "Vulnerability_minus_Hospital": {
+    "population_weighted_normalized_burden_hr": -0.048615765714735915,
+    "population_T80_hr": 0.46629265412904175
+  },
+  "mean_values": {
+    "betweenness-first": {
+      "population_weighted_normalized_burden_hr": 35.52157245879788,
+      "population_T80_hr": 47.83094218068314
+    },
+    "centrality-first": {
+      "population_weighted_normalized_burden_hr": 36.125922282996484,
+      "population_T80_hr": 48.44182437972153
+    },
+    "closeness-first": {
+      "population_weighted_normalized_burden_hr": 35.512499896383254,
+      "population_T80_hr": 49.53179571268763
+    },
+    "degree-first": {
+      "population_weighted_normalized_burden_hr": 35.707709164451444,
+      "population_T80_hr": 49.50967725147978
+    },
+    "hospital-first": {
+      "population_weighted_normalized_burden_hr": 34.306465218392525,
+      "population_T80_hr": 45.97053519389107
+    },
+    "impact-first": {
+      "population_weighted_normalized_burden_hr": 33.593686467844854,
+      "population_T80_hr": 45.25109065592763
+    },
+    "random": {
+      "population_weighted_normalized_burden_hr": 39.388489797445196,
+      "population_T80_hr": 52.86287270549062
+    },
+    "unconstrained": {
+      "population_weighted_normalized_burden_hr": 31.337776981796647,
+      "population_T80_hr": 43.399848296543865
+    },
+    "vulnerability-first": {
+      "population_weighted_normalized_burden_hr": 34.25784945267779,
+      "population_T80_hr": 46.43682784802011
+    }
+  },
+  "source_tables": [
+    {
+      "path": "Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet",
+      "sha256": "7f6d7bfd55883fb05b04088e65eea02da579c553064f40d992452cc92690cc4d"
+    },
+    {
+      "path": "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet",
+      "sha256": "8212425edf96dc1ebc6f98d8f80d08e7a7e378ce72d814f86e80983548d4997c"
+    }
+  ],
+  "base_commit": "34e93cae76fb3c229909b4044b761d88265bfc18",
+  "figures": [
+    {
+      "before_sha256": "519095da000fa3b558dec46dd4d92fabaca7e4bec97375dd73b923678dfd7993",
+      "change": "Violin density of the same station-average values, median/IQR/range; initial-service maps unchanged.",
+      "scientific_sources": [
+        {
+          "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925/Stage 1 Output_expanded/MC_Device_Damage_AvgDS_LongBeach.csv",
+          "sha256": "a900e398af9526c6038fc651179af95da1ba77c50d3984d9919d0ce0fb1e40bf"
+        },
+        {
+          "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925/Stage 1 Output_expanded/MC_Device_Damage_AvgDS_SanFernando.csv",
+          "sha256": "5932639c389ca7df03771430cafced0f9a0e5035216519049960700ea7282bca"
+        },
+        {
+          "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925/Stage 1 Output_expanded/MC_Device_Damage_AvgDS_Northridge.csv",
+          "sha256": "a6d2c7f41b1bf148e7387f7c3ea0d9a07af07ad063a6a754046c8e186e9e265e"
+        },
+        {
+          "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925/Stage 1 Output_expanded/MC_Device_Damage_AvgDS_2pc50.csv",
+          "sha256": "97f7d6b04ea5296e25c2c1d1dedfb0c7e47029d1daf5472b81ee493f099d8afd"
+        }
+      ],
+      "distribution_domain": "92 station means per hazard, not pooled individual damage draws",
+      "density_rule": "Scott bandwidth, display only; source values unchanged",
+      "quartiles": [
+        {
+          "hazard": "LongBeach",
+          "station_count": 92,
+          "min": 0.082,
+          "q25": 0.4945,
+          "median": 1.187,
+          "q75": 1.947,
+          "max": 3.48
+        },
+        {
+          "hazard": "SanFernando",
+          "station_count": 92,
+          "min": 0.123,
+          "q25": 0.2855,
+          "median": 0.476,
+          "q75": 0.84025,
+          "max": 3.795
+        },
+        {
+          "hazard": "Northridge",
+          "station_count": 92,
+          "min": 0.334,
+          "q25": 0.71775,
+          "median": 1.2095,
+          "q75": 2.17325,
+          "max": 3.977
+        },
+        {
+          "hazard": "2pc50",
+          "station_count": 92,
+          "min": 3.174,
+          "q25": 3.4065,
+          "median": 3.543,
+          "q75": 3.7495000000000003,
+          "max": 3.991
+        }
+      ],
+      "initial_service_maps_changed": false,
+      "file": "Supplement/FigS01.pdf",
+      "size_mm": [
+        184.99999118381075,
+        214.00000830756292
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
+      "png_sha256": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74"
+    },
+    {
+      "before_sha256": "0a3833929ed6fd18174f273a8a39ca9008fc49e58fe796700e3df602d429f02e",
+      "scientific_sources": [
+        {
+          "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925/Stage 6 Output_expanded/ALL_DISTINCT_STRATEGY_RECOVERY_CURVES.csv",
+          "sha256": "369095d2e0cbb52f9be0998067ad12cf03c4b7008b5cdb3c260a83414368f005"
+        }
+      ],
+      "displayed_series": [
+        {
+          "strategy": "impact-first",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "hospital-first",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "degree-first",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "vulnerability-first",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "unconstrained",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "centrality-first",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "betweenness-first",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "closeness-first",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "random",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        },
+        {
+          "strategy": "unconstrained",
+          "column": "mean_population_availability_proxy",
+          "rows": 101
+        }
+      ],
+      "change": "Same-scale adjacent views: focal policies and other policies, each with Unconstrained; all solid and opaque.",
+      "outcome_panel_B_changed": false,
+      "all_eight_scheduled_policies_preserved": true,
+      "file": "Main/Fig04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        204.99999779595268
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "4383101ff2fb257cab3b6ab777ca249d126a3db25aad9fcd099998519109ab44",
+      "png_sha256": "cc900a724f7bf69597ddbf04b575d219d1bc54f63fc60591606df2df0926e0c5"
+    },
+    {
+      "before_sha256": "c58cfe913d8864fc5d6e1ca747373c598647f01d8142244c2ebbe856d42a4170",
+      "scientific_sources": [
+        {
+          "path": "results/revised_suite/LA_Grid_Revised_Suite_20260925/Stage 6 Output_expanded/NETWORK_TOPOLOGY_DISPLAY_CURVES_2pc50.csv",
+          "sha256": "b7e4dd65ce141594d2de75a30238037812409c85b3c7c7d77e686c183d193062"
+        }
+      ],
+      "displayed_series": [
+        {
+          "strategy": "impact-first",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "hospital-first",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "degree-first",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "vulnerability-first",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "unconstrained",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "centrality-first",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "betweenness-first",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "closeness-first",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "random",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "unconstrained",
+          "column": "mean_lcc_fraction",
+          "rows": 121
+        },
+        {
+          "strategy": "impact-first",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "hospital-first",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "degree-first",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "vulnerability-first",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "unconstrained",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "centrality-first",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "betweenness-first",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "closeness-first",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "random",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        },
+        {
+          "strategy": "unconstrained",
+          "column": "mean_lcc_average_degree",
+          "rows": 121
+        }
+      ],
+      "static_panel_A_changed": false,
+      "all_eight_scheduled_policies_preserved": true,
+      "change": "B/C have identical-scale focal and other-policy views; solid opaque lines, common grouped policy key.",
+      "file": "Supplement/FigS04.pdf",
+      "size_mm": [
+        184.99999118381075,
+        215.99999389648434
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "0b186742b8925dc629dad294240e26ceaad576b64c41e2e743e92397ad006846",
+      "png_sha256": "6ba9f583a4ed56461031549e0eec4c71c2e4fcdb7321f0347706a673d4b49a78"
+    },
+    {
+      "before_sha256": "b8ca79e7bea5ef5ddc26d1041e6206529e0007d5fadbb5e15573caa37ddac053",
+      "scientific_sources": [
+        {
+          "path": "Data/substation_graph_CEC_nodes_expanded.csv",
+          "sha256": "cf01e03faba73891179b17af277d997ce239d69207af00416733d15154e5d647"
+        },
+        {
+          "path": "Data/Substations_PGA_IDW_CEC_expanded.csv",
+          "sha256": "10367d947a2f7e887f06cd8ac690c5a91999f427cdcfb69486437d8e7fe8ccb5"
+        },
+        {
+          "path": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+          "sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446"
+        },
+        {
+          "path": "Data/hospital_with_tract_expanded.csv",
+          "sha256": "60481dde007c7890d1e0911b847ba8f2c43e6d86a1de55f86ff94bf3ad7fe88c"
+        },
+        {
+          "path": "provenance/reviewer_working/R1_Comment1_July92_Utility_Constraint/MAPPING_STRUCTURE_SENSITIVITY_TRACTS.csv",
+          "sha256": "4c9fed19d1561759edff15702daed6d448155ca3604bd8d920fb6c7d7f7ddbe1"
+        },
+        {
+          "path": "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json",
+          "sha256": "9a9f8c81aa8b9ec920fefd3441855e53c4cbb6228c6e6f4838c10c9af32f798c"
+        },
+        {
+          "path": "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_FIRST_SEQUENCE.json",
+          "sha256": "4783c7032519829c2995343c08ec3e5a8f1a44683fa437d9b6082e513e6057b2"
+        }
+      ],
+      "display_crs": "EPSG:3310",
+      "equal_aspect": true,
+      "same_extent_all_panels": true,
+      "station_orders_changed": false,
+      "top_five_stations": [
+        {
+          "policy": "hospital-first",
+          "rank": 1,
+          "station_id": "301194",
+          "name": "STATION G (ATWATER)",
+          "label_offset_pt": [
+            8,
+            8
+          ]
+        },
+        {
+          "policy": "hospital-first",
+          "rank": 2,
+          "station_id": "301541",
+          "name": "MESA",
+          "label_offset_pt": [
+            8,
+            -8
+          ]
+        },
+        {
+          "policy": "hospital-first",
+          "rank": 3,
+          "station_id": "300648",
+          "name": "ROSEMEAD",
+          "label_offset_pt": [
+            8,
+            8
+          ]
+        },
+        {
+          "policy": "hospital-first",
+          "rank": 4,
+          "station_id": "309042",
+          "name": "RIVER",
+          "label_offset_pt": [
+            -8,
+            -8
+          ]
+        },
+        {
+          "policy": "hospital-first",
+          "rank": 5,
+          "station_id": "310527",
+          "name": "STATION A (ST. JOHN)",
+          "label_offset_pt": [
+            14,
+            0
+          ]
+        },
+        {
+          "policy": "vulnerability-first",
+          "rank": 1,
+          "station_id": "304073",
+          "name": "STATION B (CENTURY)",
+          "label_offset_pt": [
+            8,
+            8
+          ]
+        },
+        {
+          "policy": "vulnerability-first",
+          "rank": 2,
+          "station_id": "309042",
+          "name": "RIVER",
+          "label_offset_pt": [
+            0,
+            14
+          ]
+        },
+        {
+          "policy": "vulnerability-first",
+          "rank": 3,
+          "station_id": "303169",
+          "name": "LIGHTPIPE",
+          "label_offset_pt": [
+            0,
+            -14
+          ]
+        },
+        {
+          "policy": "vulnerability-first",
+          "rank": 4,
+          "station_id": "310527",
+          "name": "STATION A (ST. JOHN)",
+          "label_offset_pt": [
+            8,
+            -8
+          ]
+        },
+        {
+          "policy": "vulnerability-first",
+          "rank": 5,
+          "station_id": "309569",
+          "name": "STATION M(VALLEY)",
+          "label_offset_pt": [
+            -8,
+            8
+          ]
+        },
+        {
+          "policy": "impact-first",
+          "rank": 1,
+          "station_id": "303620",
+          "name": "TARZANA(STATION U)",
+          "label_offset_pt": [
+            8,
+            8
+          ]
+        },
+        {
+          "policy": "impact-first",
+          "rank": 2,
+          "station_id": "303099",
+          "name": "STATION D (FAIRFAX)",
+          "label_offset_pt": [
+            0,
+            -14
+          ]
+        },
+        {
+          "policy": "impact-first",
+          "rank": 3,
+          "station_id": "305984",
+          "name": "RIO HONDO",
+          "label_offset_pt": [
+            14,
+            0
+          ]
+        },
+        {
+          "policy": "impact-first",
+          "rank": 4,
+          "station_id": "300429",
+          "name": "STATION E (TOLUCA)",
+          "label_offset_pt": [
+            14,
+            0
+          ]
+        },
+        {
+          "policy": "impact-first",
+          "rank": 5,
+          "station_id": "300558",
+          "name": "GANESHA",
+          "label_offset_pt": [
+            14,
+            0
+          ]
+        }
+      ],
+      "maximum_label_offset_pt": 14,
+      "long_cross_map_leaders_removed": true,
+      "impact_background": "Existing tract population, continuous log color scale; context, not the Impact-first score.",
+      "file": "Supplement/FigS10.pdf",
+      "size_mm": [
+        184.99999118381075,
+        263.99999254014756
+      ],
+      "min_font_pt": 7.0,
+      "pdf_sha256": "ee643a4def847918938f034de798a9b5cbe06fe2b1c8a64b82f2c508c9f94038",
+      "png_sha256": "3a40853b607b373ec17d6c5cee78cbea404eb732967667dfaf47327e47fe065e"
+    },
+    {
+      "before_sha256": "92ce964d29ab8e6029aff6cd33ec1bda97d688ea7135f5a1c852c54a3f397b3e",
+      "scientific_sources": [
+        {
+          "path": "provenance/figure_review_history/candidate_v2.1/CROSS_HAZARD_POLICY_EFFECTS.csv",
+          "sha256": "2827deeb2a021e9599a8a1f6673f1feff8e5545bcbc28cca7cd7d21d55c1a2ab"
+        }
+      ],
+      "change": "Parallel service-loss labels; time-to-80% column explicitly distinct from integrals; same saved values and common hour color scale.",
+      "metrics": [
+        "population_weighted_normalized_burden_hr",
+        "burden_Q4_hr",
+        "hospital_mean_normalized_burden_hr",
+        "population_T80_hr"
+      ],
+      "display_values": [
+        [
+          2.2559094860482056,
+          2.095061930488774,
+          1.6564124829265578,
+          1.8512423593837608
+        ],
+        [
+          2.9686882365958818,
+          2.9802221799236404,
+          1.96377306931632,
+          2.570686897347202
+        ],
+        [
+          4.369932182654801,
+          4.2624264658876525,
+          4.328091193619083,
+          6.109828954935908
+        ],
+        [
+          2.9200724708811365,
+          1.385551193242079,
+          2.5361616197838783,
+          3.0369795514762457
+        ],
+        [
+          4.788145301199842,
+          5.057407477746583,
+          4.423867908268103,
+          5.041976083177666
+        ],
+        [
+          4.183795477001228,
+          4.092174315618408,
+          3.9766255074109846,
+          4.43109388413927
+        ],
+        [
+          4.174722914586607,
+          3.428117534396732,
+          4.217224764499788,
+          6.131947416143767
+        ],
+        [
+          8.05071281564855,
+          6.88190256764745,
+          8.521349831943066,
+          9.463024408946756
+        ]
+      ],
+      "metric_relationship_review": "docs/reproducibility/DISTRIBUTION_STRATEGY_METRIC_REVIEW_20261008.json",
+      "file": "Supplement/FigS11.pdf",
+      "size_mm": [
+        184.99999118381075,
+        118.00000025431314
+      ],
+      "min_font_pt": 7.5,
+      "pdf_sha256": "b354eee4d1a5ffee76138efa78ffc314f92ea954616d7e4e1c8638e24a1168dc",
+      "png_sha256": "e6042cdf33a36b68150b72ad6cd2ba154338c9205142f2be1322307f0020407a"
+    }
+  ],
+  "formal_scientific_result_changed": false,
+  "decision": "Retain T80 as a distinct threshold outcome; preserve all eight policies; S12/S13 remain complete outcome supplements to Fig06."
+}

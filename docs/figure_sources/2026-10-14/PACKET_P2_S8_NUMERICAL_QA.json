@@ -1,0 +1,100 @@
+{
+  "cohort_tracts": 2299,
+  "population": 9066522,
+  "K3_counts": [
+    1235,
+    428,
+    636
+  ],
+  "frozen_label_identity": true,
+  "full_cohort_silhouette_recomputed": true,
+  "silhouette_mean": 0.2484574186724346,
+  "no_fitting": true,
+  "feature_space": "P2 seven-variable weighted standardized Euclidean",
+  "input_hashes": {
+    "inputs/REGISTERED_FIT_ARRAYS.npz": "ba459b7d6cabb718fa84bf53c01dbd6e9c3cd005ab6f568d8c74c74de557d271",
+    "inputs/VERIFIED_WEIGHTED_MATRICES.npz": "e4c9a66500fa781ea33c49da3066dc8c744aa0a063cfaf9f00eba8a5bb8f4293",
+    "P2_REGISTERED_K_EVIDENCE.csv": "9f4fb18e2a89426bc3115561e90f89d9840e1e08420b55c4250387764187045c",
+    "P2_SEED_STABILITY.csv": "6dc9fab4240e0cd22b6248f2326ff69b0a0b3f8dd62d8a95f3789b9399f80131",
+    "P2_SPATIAL_LEAVE_BLOCK_OUT_STABILITY.csv": "9566b2097a12218f3d39f2956c6db0874b3a08182310a6bb0f334800a66c46d1",
+    "P2_POLICY_SET_CLUSTER_STABILITY.csv": "4dcadcd90d68072d2dfc3a6f48c8b2bc291e18557332b0dcd2b128ab6b3e4578"
+  },
+  "stability_values": [
+    {
+      "k": 3,
+      "check": "Initialization",
+      "values": [
+        0.9926420905660654,
+        1.0,
+        1.0,
+        0.9941099502796492,
+        0.9926420905660654,
+        0.9926420905660654,
+        0.9985258208109244,
+        1.0,
+        0.9941099502796492,
+        0.9941099502796492
+      ]
+    },
+    {
+      "k": 3,
+      "check": "Geographic leave-out",
+      "values": [
+        0.8859457353052754,
+        0.4189314330657604,
+        0.7448395177875801,
+        0.9468959135620384
+      ]
+    },
+    {
+      "k": 3,
+      "check": "Policy leave-one-out",
+      "values": [
+        0.6540396292352219,
+        0.6186600373352105,
+        0.7916354936367171,
+        0.6615587548484199,
+        0.6897617324917029
+      ]
+    },
+    {
+      "k": 4,
+      "check": "Initialization",
+      "values": [
+        1.0,
+        0.988416586764185,
+        0.9924835904565376,
+        1.0,
+        0.988416586764185,
+        0.9924835904565376,
+        1.0,
+        0.9959128835414026,
+        0.988416586764185,
+        0.9924835904565376
+      ]
+    },
+    {
+      "k": 4,
+      "check": "Geographic leave-out",
+      "values": [
+        0.8428979840806443,
+        0.9458746863510668,
+        0.8056741459557033,
+        0.8447786355310487
+      ]
+    },
+    {
+      "k": 4,
+      "check": "Policy leave-one-out",
+      "values": [
+        0.6265724269811705,
+        0.5721735354831243,
+        0.7482791589175333,
+        0.809386743160983,
+        0.7827140039116584
+      ]
+    }
+  ],
+  "K4_is_sensitivity_only": true,
+  "no_NCV14_coordinate": true
+}

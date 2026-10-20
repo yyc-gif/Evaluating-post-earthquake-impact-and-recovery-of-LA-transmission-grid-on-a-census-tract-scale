@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "protocol_commit": "bc7d7c0798588ac585426a59f98046f282df2383",
+  "protocol_sha256": "e750420038ebd09e09552d70daacfba1870b34f87239cea3a5ecbb9d64709604",
+  "source_events": 1000,
+  "eligible_tracts": 2299,
+  "population": 9066522,
+  "zero_housing_included": 8,
+  "mean_curve_event_times": 91690,
+  "occupied_spatial_blocks": 15,
+  "exact_total_integral_max_error": 6.473044322774513e-12,
+  "initial_availability_max_error": 2.984266479766351e-16,
+  "merged_step_integral_max_error": 6.0254023992456496e-12,
+  "hospital_source": "docs/data_research/stage7_path_b_p2_integration_review_20261014/FROZEN_P2_TRACT_TABLE_2315.csv",
+  "hospital_source_sha256": "4f5ca1fab302443ed899c919894de89622ec60b458b6511325105ac3d934f211",
+  "no_interpolation_or_physical_recalculation": true,
+  "A_variance": [
+    2.7911187570046745e-05,
+    0.006553330038544438,
+    0.0063905839658825875,
+    4.538870368833258e-07,
+    3.016463717607842e-28
+  ],
+  "B_variance": [
+    6.038593722331063e-06,
+    22.17250651181461,
+    9.214364567279798
+  ]
+}

@@ -1,0 +1,818 @@
+{
+  "checked_UTC": "2026-10-14T00:47:18.613472+00:00",
+  "verified_artifact_commit": "88d408233cbffdbe7f660a92a09cc7cc9a58e6e5",
+  "remote_HEAD": "88d408233cbffdbe7f660a92a09cc7cc9a58e6e5",
+  "branch": "review/official-figure7-candidateA-approved-20261013",
+  "isolated_cache_initially_empty": true,
+  "cache_path": "C:\\ABAQUS\\temp\\AppData\\Local\\Temp\\fa13_remote_lfs_9vxy1ojs",
+  "unique_real_LFS_payloads": 75,
+  "payload_bytes": 373986296,
+  "required_LFS_paths": 98,
+  "all_actual_remote_payload_bytes_verified": true,
+  "fetch_stdout": "",
+  "fetch_stderr": "Fetching reference 88d408233cbffdbe7f660a92a09cc7cc9a58e6e5\n",
+  "source_fetches": [
+    {
+      "commit": "0c5365cc39e2717e0fab4aa3b5d05b445d427eb6",
+      "paths": [
+        "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/EIGHT_VARIABLE_FROZEN_TABLE.csv",
+        "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/K3_CLUSTER_MEMBERSHIP.csv",
+        "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/FULL_2315_COHORT_STATUS.csv",
+        "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/COHORT_STANDARDIZER_AND_WEIGHTS.csv",
+        "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/FROZEN_PREPROCESSING_AND_LABELS.npz"
+      ],
+      "stdout": "",
+      "stderr": "Fetching reference 0c5365cc39e2717e0fab4aa3b5d05b445d427eb6\n"
+    },
+    {
+      "commit": "05a78645b17bf8de04326e54181f9db432d7186c",
+      "paths": [
+        "docs/data_research/stage7_fig7d_policy_robustness_and_final_integration_gate_20261013/FROZEN_POLICY_TRACT_MEANS_2315.csv"
+      ],
+      "stdout": "",
+      "stderr": "Fetching reference 05a78645b17bf8de04326e54181f9db432d7186c\n"
+    },
+    {
+      "commit": "aa55131cc5455aca9e1a6dead98e8f0eb8944217",
+      "paths": [
+        "docs/data_research/figure7_scientific_layout_author_review_20261013/FIGURE7_CONSERVATIVE_RESTORATION.pdf",
+        "docs/data_research/figure7_scientific_layout_author_review_20261013/FIGURE7_NA_FILL_SEPARATE_APPROVAL_COMPARISON.pdf"
+      ],
+      "stdout": "",
+      "stderr": "Fetching reference aa55131cc5455aca9e1a6dead98e8f0eb8944217\n"
+    },
+    {
+      "commit": "8f2dcb3b9762137b9f2686609c34480334f5d44e",
+      "paths": [
+        "results/figure_review/Main/Fig07.pdf",
+        "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf",
+        "results/figure_review/FIGURE_MANIFEST.csv",
+        "results/figures/FIGURE_INDEX.csv"
+      ],
+      "stdout": "",
+      "stderr": "Fetching reference 8f2dcb3b9762137b9f2686609c34480334f5d44e\n"
+    }
+  ],
+  "payloads": [
+    {
+      "oid": "23dc19894d865e2a48ee79d8a017987ea0a9b4d392d7a735acba7269127f34bd",
+      "bytes": 27360481,
+      "paths": [
+        "results/figure_review/Main/Fig01.pdf",
+        "results/figures/Fig01_Methodology_Workflow.pdf"
+      ],
+      "actual_download_SHA256": "23dc19894d865e2a48ee79d8a017987ea0a9b4d392d7a735acba7269127f34bd",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "3e3ad010d6c03df3f299760739c29828000dc5bdc4924e3e8d53851bb6591f01",
+      "bytes": 1714433,
+      "paths": [
+        "results/figure_review/Main/Fig01.png",
+        "results/figures/Fig01_Methodology_Workflow.png"
+      ],
+      "actual_download_SHA256": "3e3ad010d6c03df3f299760739c29828000dc5bdc4924e3e8d53851bb6591f01",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "2ff271d8479a93e71b733178c2880977bb31a74f77b4ea509f1e4b4f326a45de",
+      "bytes": 3875301,
+      "paths": [
+        "results/figure_review/Main/Fig02.pdf",
+        "results/figures/Fig02_System_Network_and_Mapping.pdf"
+      ],
+      "actual_download_SHA256": "2ff271d8479a93e71b733178c2880977bb31a74f77b4ea509f1e4b4f326a45de",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
+      "bytes": 3058799,
+      "paths": [
+        "results/figure_review/Main/Fig02.png",
+        "results/figures/Fig02_System_Network_and_Mapping.png"
+      ],
+      "actual_download_SHA256": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "98e0bf8d3da0bc94670e48f7cf189e88329592071e6d24e3b3ff6f7d9f33e6d6",
+      "bytes": 2625488,
+      "paths": [
+        "results/figure_review/Main/Fig03.pdf",
+        "results/figures/Fig03_Unconstrained_Recovery.pdf"
+      ],
+      "actual_download_SHA256": "98e0bf8d3da0bc94670e48f7cf189e88329592071e6d24e3b3ff6f7d9f33e6d6",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "9c0f22cf0b056f62ab4ec6072674350912745e7162a62a940f2c413acdebc9fc",
+      "bytes": 1095686,
+      "paths": [
+        "results/figure_review/Main/Fig03.png",
+        "results/figures/Fig03_Unconstrained_Recovery.png"
+      ],
+      "actual_download_SHA256": "9c0f22cf0b056f62ab4ec6072674350912745e7162a62a940f2c413acdebc9fc",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+      "bytes": 60234,
+      "paths": [
+        "results/figure_review/Main/Fig04.pdf",
+        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf"
+      ],
+      "actual_download_SHA256": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+      "bytes": 545986,
+      "paths": [
+        "results/figure_review/Main/Fig04.png",
+        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png"
+      ],
+      "actual_download_SHA256": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "77ec55a0ce4b8aff198b45ee79347c9d765232633de53acbd6b188e90b6dffe4",
+      "bytes": 7873253,
+      "paths": [
+        "results/figure_review/Main/Fig05.pdf",
+        "results/figures/Fig05_Distributional_Outcomes.pdf"
+      ],
+      "actual_download_SHA256": "77ec55a0ce4b8aff198b45ee79347c9d765232633de53acbd6b188e90b6dffe4",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "8b2876bda24f2f871e6db3e8bf6cb28d88377fbf8556177e7eaebfbdfea882a6",
+      "bytes": 2023996,
+      "paths": [
+        "results/figure_review/Main/Fig05.png",
+        "results/figures/Fig05_Distributional_Outcomes.png"
+      ],
+      "actual_download_SHA256": "8b2876bda24f2f871e6db3e8bf6cb28d88377fbf8556177e7eaebfbdfea882a6",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
+      "bytes": 2265179,
+      "paths": [
+        "results/figure_review/Main/Fig06.pdf",
+        "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.pdf"
+      ],
+      "actual_download_SHA256": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
+      "bytes": 473200,
+      "paths": [
+        "results/figure_review/Main/Fig06.png",
+        "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.png"
+      ],
+      "actual_download_SHA256": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "3e606277c33c242cad7523081737611dddd922d4c51bcb2ade0d9c58f547c2ad",
+      "bytes": 3478523,
+      "paths": [
+        "results/figure_review/Main/Fig07.pdf",
+        "results/figures/Fig07_Community_Typology_and_Service_Deficit.pdf"
+      ],
+      "actual_download_SHA256": "3e606277c33c242cad7523081737611dddd922d4c51bcb2ade0d9c58f547c2ad",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "b58dd99dce0cebadddf49bb26fa6ff85980c92dd62e7087f6f5e91d08e56c7b9",
+      "bytes": 2267687,
+      "paths": [
+        "results/figure_review/Main/Fig07.png",
+        "results/figures/Fig07_Community_Typology_and_Service_Deficit.png"
+      ],
+      "actual_download_SHA256": "b58dd99dce0cebadddf49bb26fa6ff85980c92dd62e7087f6f5e91d08e56c7b9",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
+      "bytes": 11512333,
+      "paths": [
+        "results/figure_review/Supplement/FigS01.pdf",
+        "results/figures/FigS01_Damage_Severity.pdf"
+      ],
+      "actual_download_SHA256": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
+      "bytes": 2591006,
+      "paths": [
+        "results/figure_review/Supplement/FigS01.png",
+        "results/figures/FigS01_Damage_Severity.png"
+      ],
+      "actual_download_SHA256": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "7daa3d7f0932475159923c2c1e127d1aabbe4c6c820f41c35b921727ae0b0d46",
+      "bytes": 9269820,
+      "paths": [
+        "results/figure_review/Supplement/FigS03.pdf",
+        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf"
+      ],
+      "actual_download_SHA256": "7daa3d7f0932475159923c2c1e127d1aabbe4c6c820f41c35b921727ae0b0d46",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "f18b8a88048a7cd03ee549899f4faf915345de21ba6c27c8c1646bd57efc4a27",
+      "bytes": 1264900,
+      "paths": [
+        "results/figure_review/Supplement/FigS03.png",
+        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.png"
+      ],
+      "actual_download_SHA256": "f18b8a88048a7cd03ee549899f4faf915345de21ba6c27c8c1646bd57efc4a27",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+      "bytes": 1314684,
+      "paths": [
+        "results/figure_review/Supplement/FigS04.pdf",
+        "results/figures/FigS04_Network_Criticality_and_Percolation.pdf"
+      ],
+      "actual_download_SHA256": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+      "bytes": 701876,
+      "paths": [
+        "results/figure_review/Supplement/FigS04.png",
+        "results/figures/FigS04_Network_Criticality_and_Percolation.png"
+      ],
+      "actual_download_SHA256": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "ecc0379c386386e80d1bd7ca18beaf78f63821bbf284bbf1d1e30f13a9184449",
+      "bytes": 1247027,
+      "paths": [
+        "results/figure_review/Supplement/FigS05.pdf",
+        "results/figures/FigS05_GA_Reproducibility.pdf"
+      ],
+      "actual_download_SHA256": "ecc0379c386386e80d1bd7ca18beaf78f63821bbf284bbf1d1e30f13a9184449",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "3367c6d7b0a2ac02731c6bec5fa34d156c1fdc402ee020b2a0858fac8947e604",
+      "bytes": 724963,
+      "paths": [
+        "results/figure_review/Supplement/FigS05.png",
+        "results/figures/FigS05_GA_Reproducibility.png"
+      ],
+      "actual_download_SHA256": "3367c6d7b0a2ac02731c6bec5fa34d156c1fdc402ee020b2a0858fac8947e604",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "072267e023fa04ba3889e6503519945fcddcc01d466bbbb716d392c9a3bbda51",
+      "bytes": 2394000,
+      "paths": [
+        "results/figure_review/Supplement/FigS06.pdf",
+        "results/figures/FigS06_Dependency_and_Threshold_Sensitivity.pdf"
+      ],
+      "actual_download_SHA256": "072267e023fa04ba3889e6503519945fcddcc01d466bbbb716d392c9a3bbda51",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "0956a0537ead287a68f7932b771835af2c9dd0835156edeaa866ca599e116efb",
+      "bytes": 277873,
+      "paths": [
+        "results/figure_review/Supplement/FigS06.png",
+        "results/figures/FigS06_Dependency_and_Threshold_Sensitivity.png"
+      ],
+      "actual_download_SHA256": "0956a0537ead287a68f7932b771835af2c9dd0835156edeaa866ca599e116efb",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "b9daff0f1823abad6ddd801b031beb73f5bf65e37ed5746c90884d20f0ebaa19",
+      "bytes": 7952831,
+      "paths": [
+        "results/figure_review/Supplement/FigS07.pdf",
+        "results/figures/FigS07_Source_Redundancy.pdf"
+      ],
+      "actual_download_SHA256": "b9daff0f1823abad6ddd801b031beb73f5bf65e37ed5746c90884d20f0ebaa19",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "cf1805a5635bda7613fa853690eea3adb55ad03b63f1e594dd44b2cb4081f185",
+      "bytes": 2154446,
+      "paths": [
+        "results/figure_review/Supplement/FigS07.png",
+        "results/figures/FigS07_Source_Redundancy.png"
+      ],
+      "actual_download_SHA256": "cf1805a5635bda7613fa853690eea3adb55ad03b63f1e594dd44b2cb4081f185",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
+      "bytes": 1800977,
+      "paths": [
+        "results/figure_review/Supplement/FigS08.pdf",
+        "results/figures/FigS08_Capacity_Sensitivity.pdf"
+      ],
+      "actual_download_SHA256": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
+      "bytes": 647156,
+      "paths": [
+        "results/figure_review/Supplement/FigS08.png",
+        "results/figures/FigS08_Capacity_Sensitivity.png"
+      ],
+      "actual_download_SHA256": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "47e45a947f0b8d85c4f8bb0e52f3227753313e6a0d553b8e65324188aae8803d",
+      "bytes": 40395,
+      "paths": [
+        "results/figure_review/Supplement/FigS09.pdf",
+        "results/figures/FigS09_Stage7_Diagnostics.pdf"
+      ],
+      "actual_download_SHA256": "47e45a947f0b8d85c4f8bb0e52f3227753313e6a0d553b8e65324188aae8803d",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "94ebb28fced8267e5d62d735b3cfb241b17e8d9b4f5b2aa218cd055a7db1b8e2",
+      "bytes": 479366,
+      "paths": [
+        "results/figure_review/Supplement/FigS09.png",
+        "results/figures/FigS09_Stage7_Diagnostics.png"
+      ],
+      "actual_download_SHA256": "94ebb28fced8267e5d62d735b3cfb241b17e8d9b4f5b2aa218cd055a7db1b8e2",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "1f897be3b24bc90e9e3f1f76ed6cd90fe17bdf8519aad298deb55e78c2d70337",
+      "bytes": 7898785,
+      "paths": [
+        "results/figure_review/Supplement/FigS10.pdf",
+        "results/figures/FigS10_Priority_Construction.pdf"
+      ],
+      "actual_download_SHA256": "1f897be3b24bc90e9e3f1f76ed6cd90fe17bdf8519aad298deb55e78c2d70337",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "cf1cba9c8183a91f8906ea7bc9fe2590e8fdd37854cfce2c4baf3f3de4c422f8",
+      "bytes": 2113665,
+      "paths": [
+        "results/figure_review/Supplement/FigS10.png",
+        "results/figures/FigS10_Priority_Construction.png"
+      ],
+      "actual_download_SHA256": "cf1cba9c8183a91f8906ea7bc9fe2590e8fdd37854cfce2c4baf3f3de4c422f8",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
+      "bytes": 1287482,
+      "paths": [
+        "results/figure_review/Supplement/FigS11.pdf",
+        "results/figures/FigS11_Resource_Outcomes.pdf"
+      ],
+      "actual_download_SHA256": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df",
+      "bytes": 655803,
+      "paths": [
+        "results/figure_review/Supplement/FigS11.png",
+        "results/figures/FigS11_Resource_Outcomes.png"
+      ],
+      "actual_download_SHA256": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "924186de7012cee64867cfa6add5d4472741188402fe63adcea5500c88fd84cd",
+      "bytes": 20706,
+      "paths": [
+        "results/figure_review/FIGURE_MANIFEST.csv"
+      ],
+      "actual_download_SHA256": "924186de7012cee64867cfa6add5d4472741188402fe63adcea5500c88fd84cd",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "16f14ccda93c62247ef2a554def4d730a585e5ef4578a803392253314a5f9abf",
+      "bytes": 41889720,
+      "paths": [
+        "results/figure_review/ALL_MAIN_FIGURES.pdf"
+      ],
+      "actual_download_SHA256": "16f14ccda93c62247ef2a554def4d730a585e5ef4578a803392253314a5f9abf",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "e403ab9a0c85a747893a1e7ea799ff98c85dd854a0ddef99e0a79edd7bc6794f",
+      "bytes": 35060743,
+      "paths": [
+        "results/figure_review/ALL_SUPPLEMENT_FIGURES.pdf"
+      ],
+      "actual_download_SHA256": "e403ab9a0c85a747893a1e7ea799ff98c85dd854a0ddef99e0a79edd7bc6794f",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "caabbe9c3926bbeff3fca018bec6f4830a937195bcc79ab21139248d4e85c9bd",
+      "bytes": 80108864,
+      "paths": [
+        "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf"
+      ],
+      "actual_download_SHA256": "caabbe9c3926bbeff3fca018bec6f4830a937195bcc79ab21139248d4e85c9bd",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "e1c4f855faf3166f033c9b0494f5769d269057712136c36aa534f5a61b5ced3f",
+      "bytes": 24936,
+      "paths": [
+        "results/figures/FIGURE_INDEX.csv"
+      ],
+      "actual_download_SHA256": "e1c4f855faf3166f033c9b0494f5769d269057712136c36aa534f5a61b5ced3f",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "d4d75937ed3eb79656a0073fba0435e54e209b380917b0aadff08d773c514fe8",
+      "bytes": 288854,
+      "paths": [
+        "results/figure_review/Page_Previews/Fig01.png"
+      ],
+      "actual_download_SHA256": "d4d75937ed3eb79656a0073fba0435e54e209b380917b0aadff08d773c514fe8",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "4fedba2cddb48216f02829c29364e39b360561184fb2ee21f3d29b1742f8cfba",
+      "bytes": 407024,
+      "paths": [
+        "results/figure_review/Page_Previews/Fig02.png"
+      ],
+      "actual_download_SHA256": "4fedba2cddb48216f02829c29364e39b360561184fb2ee21f3d29b1742f8cfba",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "1637f3113f70a953efddf489cb9d812be65172d23d334293551926fdf5235e70",
+      "bytes": 236095,
+      "paths": [
+        "results/figure_review/Page_Previews/Fig03.png"
+      ],
+      "actual_download_SHA256": "1637f3113f70a953efddf489cb9d812be65172d23d334293551926fdf5235e70",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "64ea8b5e78346750737152812d639182d9050c8c5a123050aa097d0ae028664f",
+      "bytes": 127974,
+      "paths": [
+        "results/figure_review/Page_Previews/Fig04.png"
+      ],
+      "actual_download_SHA256": "64ea8b5e78346750737152812d639182d9050c8c5a123050aa097d0ae028664f",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "c1ae41218d053c5f9390cae571b5bf0352941f023d206cae064105066ca7c598",
+      "bytes": 392303,
+      "paths": [
+        "results/figure_review/Page_Previews/Fig05.png"
+      ],
+      "actual_download_SHA256": "c1ae41218d053c5f9390cae571b5bf0352941f023d206cae064105066ca7c598",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "910a01292b5adf4cc9419dad5e025d193cf917bf64f6a9c5287d77edf18b402b",
+      "bytes": 131463,
+      "paths": [
+        "results/figure_review/Page_Previews/Fig06.png"
+      ],
+      "actual_download_SHA256": "910a01292b5adf4cc9419dad5e025d193cf917bf64f6a9c5287d77edf18b402b",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "34b89f903dc25da65eb9ff3181f4f77dcf01b9e1ec3714bdc5a8170bd3ec7c49",
+      "bytes": 440411,
+      "paths": [
+        "results/figure_review/Page_Previews/Fig07.png",
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/PACKET_FIG07_NATIVE_PREVIEW.png"
+      ],
+      "actual_download_SHA256": "34b89f903dc25da65eb9ff3181f4f77dcf01b9e1ec3714bdc5a8170bd3ec7c49",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "598181fedccfe7c8dcd015fd9cd116de3e0d31bc2c9728edb94309eb6011e7d0",
+      "bytes": 480231,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS01.png"
+      ],
+      "actual_download_SHA256": "598181fedccfe7c8dcd015fd9cd116de3e0d31bc2c9728edb94309eb6011e7d0",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "a7396d3228bf03e1784413bb56185408e73c3b91651850649171106f0a2e3448",
+      "bytes": 278507,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS03.png"
+      ],
+      "actual_download_SHA256": "a7396d3228bf03e1784413bb56185408e73c3b91651850649171106f0a2e3448",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "1bc5d6e3ef910705766d6e16359f58f3ac144c47cb50d8ffa4a7401dd83dbb57",
+      "bytes": 163894,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS04.png"
+      ],
+      "actual_download_SHA256": "1bc5d6e3ef910705766d6e16359f58f3ac144c47cb50d8ffa4a7401dd83dbb57",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "ccadb1735e93099bf775bbab0176a718c54122a2dd7bb2180f472a94b2375eb8",
+      "bytes": 163916,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS05.png"
+      ],
+      "actual_download_SHA256": "ccadb1735e93099bf775bbab0176a718c54122a2dd7bb2180f472a94b2375eb8",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "d3b626bb726b37c13cbca9b6c34fedd431dfe396c9b6be35cb599ca296c92585",
+      "bytes": 69693,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS06.png"
+      ],
+      "actual_download_SHA256": "d3b626bb726b37c13cbca9b6c34fedd431dfe396c9b6be35cb599ca296c92585",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "11c5811e4ee90b456337161f22a5be16740b8cbbc90b4b5d0005c847be883864",
+      "bytes": 391936,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS07.png"
+      ],
+      "actual_download_SHA256": "11c5811e4ee90b456337161f22a5be16740b8cbbc90b4b5d0005c847be883864",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "6d29c1d79bbddd3721c9a580fec78b77229f91c7d32ffdb5bcfe0785a95d2124",
+      "bytes": 151470,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS08.png"
+      ],
+      "actual_download_SHA256": "6d29c1d79bbddd3721c9a580fec78b77229f91c7d32ffdb5bcfe0785a95d2124",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "0f9caf3e2f05b91ae436c670d53fda640f6e629253f31e6cf6b566ca22bc2ea1",
+      "bytes": 102491,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS09.png"
+      ],
+      "actual_download_SHA256": "0f9caf3e2f05b91ae436c670d53fda640f6e629253f31e6cf6b566ca22bc2ea1",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "6fbcc9413bfa5de734d46b4046cccc8c04e732960e4cad51bf2dc62c473329fd",
+      "bytes": 387929,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS10.png"
+      ],
+      "actual_download_SHA256": "6fbcc9413bfa5de734d46b4046cccc8c04e732960e4cad51bf2dc62c473329fd",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "2fee0c8ceb58e844e507d44fa86fe34c9098e4314b167e7412e9f1ae781cbbdc",
+      "bytes": 171743,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS11.png"
+      ],
+      "actual_download_SHA256": "2fee0c8ceb58e844e507d44fa86fe34c9098e4314b167e7412e9f1ae781cbbdc",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "32721d0f51fabce14cd5165766ff21419e1252b7445660c7958c35627e28cd6f",
+      "bytes": 885,
+      "paths": [
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/ECDF_MEDIANS.csv"
+      ],
+      "actual_download_SHA256": "32721d0f51fabce14cd5165766ff21419e1252b7445660c7958c35627e28cd6f",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "d040785380e0619629923249c3f14a6deaf34bb003fc7194a700fe661606729e",
+      "bytes": 746610,
+      "paths": [
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/ECDF_POINTS.csv"
+      ],
+      "actual_download_SHA256": "d040785380e0619629923249c3f14a6deaf34bb003fc7194a700fe661606729e",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "8e5ecdcdc4ada180f8e9043daf14e875702086c863de2d419eeeaeb2d43f9698",
+      "bytes": 301181,
+      "paths": [
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/FIG07_CAPTION_NATIVE_PREVIEW.png"
+      ],
+      "actual_download_SHA256": "8e5ecdcdc4ada180f8e9043daf14e875702086c863de2d419eeeaeb2d43f9698",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "837e87265bd78a25d358333762cdbd6e23521e4c2df03970c5e021ca725ef044",
+      "bytes": 5678,
+      "paths": [
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/FIGURE_CHANGE_MANIFEST.csv"
+      ],
+      "actual_download_SHA256": "837e87265bd78a25d358333762cdbd6e23521e4c2df03970c5e021ca725ef044",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "406a52856c2fd39e14cfbf7080f89dd8e1a05342f50027905618118bb1b5a223",
+      "bytes": 1106,
+      "paths": [
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/PROFILE_CELLS.csv"
+      ],
+      "actual_download_SHA256": "406a52856c2fd39e14cfbf7080f89dd8e1a05342f50027905618118bb1b5a223",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "7c3e4374fc1a54a1cddd7fe1d64c2c6dbf0bf8b1c04b311712715feb88c06490",
+      "bytes": 142858,
+      "paths": [
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/S10_CAPTION_NATIVE_PREVIEW.png"
+      ],
+      "actual_download_SHA256": "7c3e4374fc1a54a1cddd7fe1d64c2c6dbf0bf8b1c04b311712715feb88c06490",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "550007d62460bd1d14710ed2656968357d4a8cd98b03494d40efc62b12991a0e",
+      "bytes": 13186,
+      "paths": [
+        "docs/reproducibility/figure7_candidateA_approved_integration_20261013/UNCHANGED_ARTWORK_HASH_COMPARISON.csv"
+      ],
+      "actual_download_SHA256": "550007d62460bd1d14710ed2656968357d4a8cd98b03494d40efc62b12991a0e",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "4fb5de54c2e538100787ea1165244079d47eceba997ac484703b7d14b3bd25e9",
+      "bytes": 476807,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "0c5365cc39e2717e0fab4aa3b5d05b445d427eb6",
+          "path": "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/EIGHT_VARIABLE_FROZEN_TABLE.csv"
+        }
+      ],
+      "actual_download_SHA256": "4fb5de54c2e538100787ea1165244079d47eceba997ac484703b7d14b3bd25e9",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "7ed821bbfa5089812ff811a001e8d315efd185004641eccca1ed7fb5e194abd0",
+      "bytes": 220807,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "0c5365cc39e2717e0fab4aa3b5d05b445d427eb6",
+          "path": "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/K3_CLUSTER_MEMBERSHIP.csv"
+        }
+      ],
+      "actual_download_SHA256": "7ed821bbfa5089812ff811a001e8d315efd185004641eccca1ed7fb5e194abd0",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "69130e02d8233c2b1c5539057affae5b4d91ce36a5f6c191fb2c9092c3a5f65c",
+      "bytes": 167565,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "0c5365cc39e2717e0fab4aa3b5d05b445d427eb6",
+          "path": "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/FULL_2315_COHORT_STATUS.csv"
+        }
+      ],
+      "actual_download_SHA256": "69130e02d8233c2b1c5539057affae5b4d91ce36a5f6c191fb2c9092c3a5f65c",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "6ef4734adbdffb460e62938c6f8fd3e72aaa66999fa65e147d8f60ebbd8e123c",
+      "bytes": 1373,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "0c5365cc39e2717e0fab4aa3b5d05b445d427eb6",
+          "path": "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/COHORT_STANDARDIZER_AND_WEIGHTS.csv"
+        }
+      ],
+      "actual_download_SHA256": "6ef4734adbdffb460e62938c6f8fd3e72aaa66999fa65e147d8f60ebbd8e123c",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "e199c456caeccd9730c7de5db9fe0c7e8fe6ae7f35d5beeade4086b765747cb0",
+      "bytes": 234302,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "0c5365cc39e2717e0fab4aa3b5d05b445d427eb6",
+          "path": "docs/data_research/stage7_natural_hazard_k3_k4_integration_review_20261012/candidate/FROZEN_PREPROCESSING_AND_LABELS.npz"
+        }
+      ],
+      "actual_download_SHA256": "e199c456caeccd9730c7de5db9fe0c7e8fe6ae7f35d5beeade4086b765747cb0",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "f2746d8b985ddc89c0930a0b334aa7eb5c3f7b0a83035f31f861adad4a310a30",
+      "bytes": 565348,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "05a78645b17bf8de04326e54181f9db432d7186c",
+          "path": "docs/data_research/stage7_fig7d_policy_robustness_and_final_integration_gate_20261013/FROZEN_POLICY_TRACT_MEANS_2315.csv"
+        }
+      ],
+      "actual_download_SHA256": "f2746d8b985ddc89c0930a0b334aa7eb5c3f7b0a83035f31f861adad4a310a30",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "35d928a7de89b6b95bce95f6c79999ab9c02f15a79fb970777a4212760091929",
+      "bytes": 3480036,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "aa55131cc5455aca9e1a6dead98e8f0eb8944217",
+          "path": "docs/data_research/figure7_scientific_layout_author_review_20261013/FIGURE7_CONSERVATIVE_RESTORATION.pdf"
+        }
+      ],
+      "actual_download_SHA256": "35d928a7de89b6b95bce95f6c79999ab9c02f15a79fb970777a4212760091929",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "8fa0556bfe610e630349626b6da3d3650d30a16246a3a5b8b82491f19b23b428",
+      "bytes": 7802688,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "aa55131cc5455aca9e1a6dead98e8f0eb8944217",
+          "path": "docs/data_research/figure7_scientific_layout_author_review_20261013/FIGURE7_NA_FILL_SEPARATE_APPROVAL_COMPARISON.pdf"
+        }
+      ],
+      "actual_download_SHA256": "8fa0556bfe610e630349626b6da3d3650d30a16246a3a5b8b82491f19b23b428",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "4d28da27903a2b8e6f3e82a2050006b463240c53eaa20829e7ff926b635fb0a4",
+      "bytes": 3361799,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "8f2dcb3b9762137b9f2686609c34480334f5d44e",
+          "path": "results/figure_review/Main/Fig07.pdf"
+        }
+      ],
+      "actual_download_SHA256": "4d28da27903a2b8e6f3e82a2050006b463240c53eaa20829e7ff926b635fb0a4",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "527a74223e5a2b24c65cd2148dbb1dc9038582ce5a48ee9fef269bf9dd0a612e",
+      "bytes": 79879924,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "8f2dcb3b9762137b9f2686609c34480334f5d44e",
+          "path": "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf"
+        }
+      ],
+      "actual_download_SHA256": "527a74223e5a2b24c65cd2148dbb1dc9038582ce5a48ee9fef269bf9dd0a612e",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "c9243281959e34cfacbfa2ead4d84159c635c95695b301b9caab069c37cd7d14",
+      "bytes": 20702,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "8f2dcb3b9762137b9f2686609c34480334f5d44e",
+          "path": "results/figure_review/FIGURE_MANIFEST.csv"
+        }
+      ],
+      "actual_download_SHA256": "c9243281959e34cfacbfa2ead4d84159c635c95695b301b9caab069c37cd7d14",
+      "verified_from_independent_remote_download": true
+    },
+    {
+      "oid": "5e2b988f1c7de7abec927e7450f55c6fc77c27089697045e49f37adcb12dcf28",
+      "bytes": 24904,
+      "paths": [],
+      "pinned_source_references": [
+        {
+          "commit": "8f2dcb3b9762137b9f2686609c34480334f5d44e",
+          "path": "results/figures/FIGURE_INDEX.csv"
+        }
+      ],
+      "actual_download_SHA256": "5e2b988f1c7de7abec927e7450f55c6fc77c27089697045e49f37adcb12dcf28",
+      "verified_from_independent_remote_download": true
+    }
+  ],
+  "source_or_scientific_branch_merged": false,
+  "force_push_used": false
+}

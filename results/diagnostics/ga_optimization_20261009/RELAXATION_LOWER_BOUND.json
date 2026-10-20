@@ -1,0 +1,11 @@
+{
+  "bound_type": "Rigorous relaxation lower bound for the original fixed-64 planning model",
+  "lower_bound_hr": 31.360999855946936,
+  "relaxation": "Unlimited crews, zero travel, each damaged station completes at its saved repair duration; original functionality threshold and source-connected gate retained",
+  "proof": "Any feasible schedule finishes station i no earlier than its saved duration: clocks and travel are nonnegative. Raw functionality under the relaxation is pointwise at least the feasible schedule. Functionality threshold, source-connected components and e=fFC are monotone under earlier station restoration. Nonnegative station population-dependency weights imply the relaxed service-loss integral is no larger for every realization and hence for their mean.",
+  "original_objective_unchanged": true,
+  "original_constraints_relaxed_not_redefined": true,
+  "scope": "Original fixed 64 realizations and model, not an out-of-sample performance guarantee",
+  "previous_upper_bound_hr": 33.03813174326729,
+  "certifies_unique_optimum": false
+}

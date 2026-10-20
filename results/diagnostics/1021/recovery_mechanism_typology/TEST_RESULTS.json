@@ -1,0 +1,34 @@
+{
+  "tests": 31,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "python": "3.12.3",
+  "versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "scikit-learn": "1.5.1",
+    "pandas": "2.2.2",
+    "geopandas": "1.1.1",
+    "matplotlib": "3.9.2",
+    "pytest": "7.4.4",
+    "threadpoolctl": "3.5.0"
+  },
+  "independent_qa": {
+    "status": "PASS",
+    "full_fit_geometry_checks": 90,
+    "resampled_fit_geometry_checks": 1125,
+    "independent_Jaccard_checks": 9000,
+    "cluster_withheld_score_checks": 9000,
+    "independent_benchmark_outcome_checks": 11400,
+    "eligible_GEOIDs": 2299,
+    "population": 9066522,
+    "protected_scientific_files": 950,
+    "prior_diagnostic_payloads_unchanged": 139,
+    "exact_event_integrals_and_initial_identity": true,
+    "ordinary_PCA_not_whitened": true,
+    "no_social_coordinate_in_fit": true,
+    "publication_worktree_and_index_unchanged": true
+  },
+  "scope": "All prior1021 method tests plus prior engineering tests plus this experiment's regression tests."
+}

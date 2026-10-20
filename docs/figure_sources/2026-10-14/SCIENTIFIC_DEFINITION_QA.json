@@ -1,0 +1,49 @@
+{
+  "study_tracts": 2315,
+  "eligible_tracts": 2299,
+  "excluded_zero_population": 16,
+  "included_zero_housing": 8,
+  "population": 9066522,
+  "K3_tract_counts": [
+    1235,
+    428,
+    636
+  ],
+  "variables": [
+    "Init_Supply",
+    "Grid_Impact",
+    "Redundancy_HHI",
+    "B_Unconstrained",
+    "MeanDelta",
+    "SOVI_SCORE",
+    "log1p_Population"
+  ],
+  "squared_distance_budgets": [
+    0.1111111111111111,
+    0.1111111111111111,
+    0.1111111111111111,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666,
+    0.16666666666666666
+  ],
+  "fitted_NCV14": false,
+  "MeanTotal5_identity": true,
+  "physical_realizations": 1000,
+  "frozen_P75_h": 38.38135467381475,
+  "computed_linear_P75_h": 38.38135467381474,
+  "joint_tracts": 94,
+  "joint_population": 350799,
+  "q4_tracts": 579,
+  "K3_heldout_min_ARI": 0.4189314330657604,
+  "K4_heldout_min_ARI": 0.8056741459557033,
+  "no_refitting_or_new_simulation": true,
+  "K4_tract_counts": [
+    37,
+    1217,
+    429,
+    616
+  ],
+  "physical_realization_IDs_read_from_frozen_archive": 1000,
+  "physical_sample_hashes_read": 1000
+}

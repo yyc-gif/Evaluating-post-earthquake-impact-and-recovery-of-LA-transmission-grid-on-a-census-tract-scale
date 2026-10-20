@@ -1,0 +1,84 @@
+{
+  "input_commit": "37e71b3e15b0f4e1be3a651344e3f9e6475dc24b",
+  "function_hash": "9bc9b8edbd553c163ff0a98540a6f915aa11972296b0dc2f500c701d4f31370f",
+  "info": {
+    "size_mm": [
+      184.99999118381075,
+      144.99999949137367
+    ],
+    "min_font_pt": 7.0,
+    "page_count": 1,
+    "image_count": 0
+  },
+  "edit": {
+    "displayed_gate_cases": [
+      "G2_RELAXED_005",
+      "G3_STRICT_075"
+    ],
+    "source_connectivity_fixed": true,
+    "source_only_control_available": false,
+    "joint_removal_panel_removed_from_numbered_figure": true,
+    "means_and_5th_95th_ranges_reused_without_recalculation": [
+      {
+        "policy": "impact-first",
+        "gate": "G2_RELAXED_005",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -0.03926646588603377,
+        "p05_h": -0.160117612289892,
+        "p95_h": 0.0,
+        "n": 1000
+      },
+      {
+        "policy": "impact-first",
+        "gate": "G3_STRICT_075",
+        "reference": "G1_BASELINE_050",
+        "mean_h": 0.006144545469606449,
+        "p05_h": 0.0,
+        "p95_h": 0.01783790390928085,
+        "n": 1000
+      },
+      {
+        "policy": "hospital-first",
+        "gate": "G2_RELAXED_005",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -0.026781195426974713,
+        "p05_h": -0.105732452341298,
+        "p95_h": 0.0,
+        "n": 1000
+      },
+      {
+        "policy": "hospital-first",
+        "gate": "G3_STRICT_075",
+        "reference": "G1_BASELINE_050",
+        "mean_h": 0.0037978996190059285,
+        "p05_h": 0.0,
+        "p95_h": 0.018911782853906434,
+        "n": 1000
+      },
+      {
+        "policy": "degree-first",
+        "gate": "G2_RELAXED_005",
+        "reference": "G1_BASELINE_050",
+        "mean_h": -0.0324261231876894,
+        "p05_h": -0.09306443926509082,
+        "p95_h": 0.0,
+        "n": 1000
+      },
+      {
+        "policy": "degree-first",
+        "gate": "G3_STRICT_075",
+        "reference": "G1_BASELINE_050",
+        "mean_h": 0.011852696726920048,
+        "p05_h": 0.0,
+        "p95_h": 0.045158887265696966,
+        "n": 1000
+      }
+    ],
+    "source_A_and_threshold_graphics_reused_at_native_scale": true
+  },
+  "output_hashes": {
+    "results/figure_review/Supplement/FigS06.pdf": "072267e023fa04ba3889e6503519945fcddcc01d466bbbb716d392c9a3bbda51",
+    "results/figure_review/Supplement/FigS06.png": "0956a0537ead287a68f7932b771835af2c9dd0835156edeaa866ca599e116efb",
+    "results/figure_review/Page_Previews/FigS06.png": "d3b626bb726b37c13cbca9b6c34fedd431dfe396c9b6be35cb599ca296c92585"
+  }
+}

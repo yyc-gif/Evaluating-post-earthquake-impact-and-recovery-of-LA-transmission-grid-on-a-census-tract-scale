@@ -1,0 +1,57 @@
+{
+  "OFAT_2pc50": [
+    "C29_D1",
+    "C86_D1",
+    "C114_D1",
+    "C57_D075",
+    "C57_D125",
+    "C57_D150"
+  ],
+  "additional_OFAT_trajectories": 6000,
+  "additional_baseline_trajectories": 4000,
+  "amendment_id": "JULY92_REVIEWER_EQUITY_POLICY_V1",
+  "crew_baseline": "C57",
+  "effect_practical_threshold_hr": 1.0,
+  "evaluation_hazards": [
+    "Northridge",
+    "SanFernando",
+    "LongBeach",
+    "2pc50"
+  ],
+  "evaluation_samples_per_hazard": 1000,
+  "fixed_quartile_field": "SOVI_quartile",
+  "horizon_hr": 480,
+  "input_sha256": {
+    "fixed_formal_tract_metadata": "4c9fed19d1561759edff15702daed6d448155ca3604bd8d920fb6c7d7f7ddbe1",
+    "formal_evaluation_horizon": "384349487fe5759121e5c143183f328d6175d7b8432d2ed2041ae9ea252c9cbe",
+    "formal_physical_manifest": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba",
+    "frozen_direct_community_sequence": "233f857c99be5dd6f6ba7f9dc734b8b73e1e280d8c5cd0664c3f87d361137708",
+    "production_M1_mapping": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446"
+  },
+  "mapping_id": "JULY_UTILITY_CONSTRAINED_92",
+  "no_GA_or_objective_change": true,
+  "no_existing_strategy_rerun": true,
+  "no_new_physical_samples": true,
+  "parent_matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+  "parent_matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+  "preserve_existing_formal_results": true,
+  "priority_formula": "V_s = sum over fixed Q4 tracts of Population_r * W_M1[r,s]",
+  "production_gate": "14 Core sources; functional threshold 0.5",
+  "protected_archive_commit": "182686868cffe962739804f6bc0ccecaed73d601",
+  "reason": "Reviewer 2 #14 requests an explicitly equity-informed targeted restoration comparison, disparity, system cost, benefits and adverse effects. Existing direct-community minimizes aggregate burden and is not an equity objective.",
+  "reference_strategies": [
+    "hospital-first",
+    "impact-first"
+  ],
+  "sequence_domain": "complete July92 92-station ex-ante permutation",
+  "status": "FROZEN_BEFORE_EQUITY_POLICY_EXECUTION",
+  "strategy_id": "vulnerability-first",
+  "target_quartile": "Q4",
+  "task_filter": "remove DS0 only; retain full-sequence relative order",
+  "tie_break": [
+    "V_s descending",
+    "P_s = sum all tract Population_r * W_M1[r,s] descending",
+    "station ID ascending"
+  ],
+  "vulnerability_variable": "NRI-derived SOVI_SCORE"
+}

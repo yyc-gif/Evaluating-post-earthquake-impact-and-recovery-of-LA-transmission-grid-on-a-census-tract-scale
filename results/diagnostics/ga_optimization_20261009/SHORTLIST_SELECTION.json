@@ -1,0 +1,14 @@
+{
+  "rule": "Lowest five-seed mean at identical 50,000 distinct evaluations, then standard deviation; baseline retained. No evaluation-cohort values consulted.",
+  "config_ids": [
+    "original_p100",
+    "p100_e1",
+    "focused_p100_quality_m01_e1"
+  ],
+  "shortlist_seed_count": 20,
+  "seed_range": [
+    42,
+    61
+  ],
+  "budget": 100000
+}
