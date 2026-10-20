@@ -1,0 +1,28 @@
+{
+  "C_positive_all_known_states": true,
+  "amendment_index_sha256": "d9a0d4864c6e3a0dea6243029d94cf9f6e870d85a0ef4e08132cb79855635ce4",
+  "amendment_trajectory_count": 10000,
+  "conclusion": "Under the retained DS residual states and full 92-node source-reachable graph, removing the binary functionality threshold makes all stations and 14 sources passable at every saved event; thus C_positive=1 and e=f. This does not model continuous MW transfer capacity.",
+  "definition": "C_positive uses all f>0 stations and active Core sources; e=f*C_positive",
+  "e_equals_f_on_all_known_states": true,
+  "equivalent_existing_case": "G0_NO_GATE",
+  "full_graph_component_count": 1,
+  "full_graph_edge_count": 318,
+  "full_graph_station_count": 92,
+  "initial_functionality_by_DS": {
+    "0": 1.0,
+    "1": 0.5,
+    "2": 0.09,
+    "3": 0.04,
+    "4": 0.03
+  },
+  "minimum_known_f": 0.03,
+  "minimum_source_f": 0.03,
+  "missing_f_cells": 0,
+  "nonpositive_f_cells": 0,
+  "original_archive_index_sha256": "e888aac5aeadc2d5de01ab6ed979d91f2384062aeb404ab96e135c072e6f1ef6",
+  "original_trajectory_count": 84000,
+  "source_count": 14,
+  "status": "FORMAL_EQUITY_AMENDMENT_EXPLANATORY_DIAGNOSTIC",
+  "total_known_event_station_cells": 717233104
+}

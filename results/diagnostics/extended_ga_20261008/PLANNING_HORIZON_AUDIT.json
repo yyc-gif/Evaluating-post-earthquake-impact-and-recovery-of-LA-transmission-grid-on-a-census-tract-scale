@@ -1,0 +1,176 @@
+{
+  "planning_horizon_hr": 2855.2540131100995,
+  "manuscript_horizon_hr": 480,
+  "all_permutation_completion_upper_bound_hr": 134.33255016512265,
+  "per_realization_upper_bound_hr": [
+    109.79970065993555,
+    114.56576794230998,
+    119.80225775757864,
+    116.15008168911669,
+    107.50092215030038,
+    99.94915127580546,
+    107.35342948901038,
+    100.84648127248799,
+    104.14499753602439,
+    109.403727064735,
+    96.9964725621668,
+    113.91944750667345,
+    111.29565619270937,
+    99.34164920126992,
+    116.7390669652338,
+    100.11832393493947,
+    109.27705088683088,
+    113.51998607624874,
+    108.8593573630788,
+    110.70975505431107,
+    106.98089902790602,
+    116.17248169576987,
+    115.68561783873156,
+    112.0984118729057,
+    106.34709079429902,
+    134.33255016512265,
+    109.655447154726,
+    104.05533261132516,
+    107.52193469935715,
+    112.76587814412557,
+    115.85907689554206,
+    115.49852314829818,
+    100.38406288130679,
+    118.05325064847503,
+    109.11612573530286,
+    103.51196046168243,
+    111.31125714097617,
+    114.73816598935883,
+    111.63813334268406,
+    104.16037364114541,
+    112.52467587511563,
+    109.60539576722854,
+    109.67648146686736,
+    102.57291256863064,
+    100.3353925078318,
+    101.55090474660011,
+    109.0915709222349,
+    105.07062714574317,
+    109.05803140978912,
+    101.86091791832513,
+    121.83491576818136,
+    105.80691886747027,
+    97.10562833686689,
+    101.4570686444302,
+    106.67269264569053,
+    109.65182470234939,
+    105.49696739397942,
+    112.36220204277436,
+    109.49537456011805,
+    106.45910067892055,
+    104.51607376582163,
+    113.79627975298706,
+    108.00968014414549,
+    103.52408732895503
+  ],
+  "proof": "Earliest-release dispatch has each job occupation bounded by duration+maximum directed travel. Thus makespan <= sum(job bounds)/C + (1-1/C)*max(job bound), for every order. After all repairs, every intact component has a Core source, so service loss is zero beyond this bound.",
+  "completion_bound_is_order_independent": true,
+  "full_graph_components_all_source_connected": true,
+  "numerical_checks": [
+    {
+      "run": "p100_g100_s42",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g100_s43",
+      "max_realization_abs_difference": 2.4371615836571436e-12
+    },
+    {
+      "run": "p100_g100_s44",
+      "max_realization_abs_difference": 1.9397816686250735e-12
+    },
+    {
+      "run": "p100_g100_s45",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g100_s46",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s42",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s43",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s44",
+      "max_realization_abs_difference": 1.9468870959826745e-12
+    },
+    {
+      "run": "p100_g250_s45",
+      "max_realization_abs_difference": 2.447819724693545e-12
+    },
+    {
+      "run": "p100_g250_s46",
+      "max_realization_abs_difference": 2.4442670110147446e-12
+    },
+    {
+      "run": "p100_g250_s47",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s48",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s49",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s50",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s51",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s52",
+      "max_realization_abs_difference": 1.4637180356658064e-12
+    },
+    {
+      "run": "p100_g250_s53",
+      "max_realization_abs_difference": 2.4442670110147446e-12
+    },
+    {
+      "run": "p100_g250_s54",
+      "max_realization_abs_difference": 2.4371615836571436e-12
+    },
+    {
+      "run": "p100_g250_s55",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s56",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s57",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s58",
+      "max_realization_abs_difference": 2.4442670110147446e-12
+    },
+    {
+      "run": "p100_g250_s59",
+      "max_realization_abs_difference": 1.4637180356658064e-12
+    },
+    {
+      "run": "p100_g250_s60",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    },
+    {
+      "run": "p100_g250_s61",
+      "max_realization_abs_difference": 1.9539925233402755e-12
+    }
+  ]
+}

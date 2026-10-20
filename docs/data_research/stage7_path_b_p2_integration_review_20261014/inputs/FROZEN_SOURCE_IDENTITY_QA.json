@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "source_arrays_reverified": true,
+  "cohort_count": 2299,
+  "full_domain_count": 2315,
+  "population": 9066522,
+  "policies": [
+    "impact-first",
+    "hospital-first",
+    "degree-first",
+    "betweenness-first",
+    "vulnerability-first"
+  ],
+  "physical_realizations": 1000,
+  "identity_max_error_hr": 2.1316282072803006e-14,
+  "projection_max_error_hr": 4.263256414560601e-14,
+  "all_source_events_previously_verified": true,
+  "original_event_files_not_reread_this_round": true,
+  "clean_clone_reproduction": "Core arithmetic uses archived compact station-integral/mapping snapshot; original integral/summary source re-audit needs manifest-bound local archive.",
+  "no_new_trajectory_or_schedule": true,
+  "no_simulation": true
+}

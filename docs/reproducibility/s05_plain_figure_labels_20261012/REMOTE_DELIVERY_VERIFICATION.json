@@ -1,0 +1,414 @@
+{
+  "branch": "review/official-figure-suite-final-s05-20261012",
+  "verified_payload_commit": "b1986c7238429927cd6acb8cbb54e6b9f9de5399",
+  "remote_HEAD_at_verification": "b1986c7238429927cd6acb8cbb54e6b9f9de5399",
+  "numbered_files": 38,
+  "github_directory_listing": [
+    {
+      "directory": "Main",
+      "required_files": 14,
+      "all_present_on_GitHub": true
+    },
+    {
+      "directory": "Supplement",
+      "required_files": 24,
+      "all_present_on_GitHub": true
+    }
+  ],
+  "unique_LFS_payloads": 44,
+  "actual_bytes_downloaded": 240862066,
+  "all_actual_remote_bytes_verified": true,
+  "scope_is_figure_only": true,
+  "files": [
+    {
+      "sha256": "7371216547674df365b71c5fdc8a103b82509e7c700362513e885a86328fc667",
+      "bytes": 174306,
+      "paths": [
+        "docs/reproducibility/s05_plain_figure_labels_20261012/S05_CAPTION_PAGE_PREVIEW.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "733ea9e6ab2a5f4d98b5a3d6d74217e7200f225eeb1bce99c9a00ffc454cac7c",
+      "bytes": 84634837,
+      "paths": [
+        "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "2da6b00671f1a1789938d6b123cd004ca077c786fed5b13dc26dfb8006351fe4",
+      "bytes": 35220367,
+      "paths": [
+        "results/figure_review/ALL_SUPPLEMENT_FIGURES.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "325ee91d1aac6b78422f547db46ce2c6e8243407fc7ad58fe7d6217d78cede4c",
+      "bytes": 22216,
+      "paths": [
+        "results/figure_review/FIGURE_MANIFEST.csv"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "c92ec3165433a02a98741a6315b0f22a149b95e8d4e055b111c567cad8e663b4",
+      "bytes": 30126692,
+      "paths": [
+        "results/figure_review/Main/Fig01.pdf",
+        "results/figures/Fig01_Methodology_Workflow.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "c764be42577410e59ccb374770386786930886f964ce1f14eede685f2ee7a262",
+      "bytes": 1501079,
+      "paths": [
+        "results/figure_review/Main/Fig01.png",
+        "results/figures/Fig01_Methodology_Workflow.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "2ff271d8479a93e71b733178c2880977bb31a74f77b4ea509f1e4b4f326a45de",
+      "bytes": 3875301,
+      "paths": [
+        "results/figure_review/Main/Fig02.pdf",
+        "results/figures/Fig02_System_Network_and_Mapping.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "a8b5cc888f1415f963446be4ed791fff527c2216fb10a063c76f2084c416446e",
+      "bytes": 3058799,
+      "paths": [
+        "results/figure_review/Main/Fig02.png",
+        "results/figures/Fig02_System_Network_and_Mapping.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "98e0bf8d3da0bc94670e48f7cf189e88329592071e6d24e3b3ff6f7d9f33e6d6",
+      "bytes": 2625488,
+      "paths": [
+        "results/figure_review/Main/Fig03.pdf",
+        "results/figures/Fig03_Unconstrained_Recovery.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "9c0f22cf0b056f62ab4ec6072674350912745e7162a62a940f2c413acdebc9fc",
+      "bytes": 1095686,
+      "paths": [
+        "results/figure_review/Main/Fig03.png",
+        "results/figures/Fig03_Unconstrained_Recovery.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+      "bytes": 60234,
+      "paths": [
+        "results/figure_review/Main/Fig04.pdf",
+        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "931789750439b130685dabb5fefb3e9c8ad152656b2bb86718b1016a71806fb7",
+      "bytes": 545986,
+      "paths": [
+        "results/figure_review/Main/Fig04.png",
+        "results/figures/Fig04_Restoration_Strategy_Tradeoffs.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "000f7b7cf0b628551167080fc9338fc4c531ddac843a888a4e1c4843a25f1880",
+      "bytes": 7230226,
+      "paths": [
+        "results/figure_review/Main/Fig05.pdf",
+        "results/figures/Fig05_Distributional_Outcomes.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "d831ad074465d703ddcc7c5935cda09d9f1e09ca7d0731ed610c1c8161e78f14",
+      "bytes": 2007425,
+      "paths": [
+        "results/figure_review/Main/Fig05.png",
+        "results/figures/Fig05_Distributional_Outcomes.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
+      "bytes": 2265179,
+      "paths": [
+        "results/figure_review/Main/Fig06.pdf",
+        "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
+      "bytes": 473200,
+      "paths": [
+        "results/figure_review/Main/Fig06.png",
+        "results/figures/Fig06_Resource_Dependent_Policy_Contrasts.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "dfd3d04fedeece81c6f3597b1b534d606235c3b2229bd435058a205918057322",
+      "bytes": 5936989,
+      "paths": [
+        "results/figure_review/Main/Fig07.pdf",
+        "results/figures/Fig07_Community_Typology_and_Hotspots.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "95c9dd1e05d4f9b97ec8e19c196e8e33eb444bb015b56b6ed1bdf33ed31f1d1c",
+      "bytes": 2137704,
+      "paths": [
+        "results/figure_review/Main/Fig07.png",
+        "results/figures/Fig07_Community_Typology_and_Hotspots.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "ccadb1735e93099bf775bbab0176a718c54122a2dd7bb2180f472a94b2375eb8",
+      "bytes": 163916,
+      "paths": [
+        "results/figure_review/Page_Previews/FigS05.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "e795fcfa01b1b5b260e9dd1a1f7188814902a99356014416764a7e355016f285",
+      "bytes": 11512333,
+      "paths": [
+        "results/figure_review/Supplement/FigS01.pdf",
+        "results/figures/FigS01_Damage_Severity.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "0ff1eeb2c28f50df36ed5f294fd80c53bd34f8294868f4fd9a2034a979806b74",
+      "bytes": 2591006,
+      "paths": [
+        "results/figure_review/Supplement/FigS01.png",
+        "results/figures/FigS01_Damage_Severity.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "7daa3d7f0932475159923c2c1e127d1aabbe4c6c820f41c35b921727ae0b0d46",
+      "bytes": 9269820,
+      "paths": [
+        "results/figure_review/Supplement/FigS03.pdf",
+        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "f18b8a88048a7cd03ee549899f4faf915345de21ba6c27c8c1646bd57efc4a27",
+      "bytes": 1264900,
+      "paths": [
+        "results/figure_review/Supplement/FigS03.png",
+        "results/figures/FigS03_Crew_Bases_and_Directed_Travel.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "2af6fbe0f778e81d60ef1e45707483d9e929b70c1f8ada251fe1cedc077cee56",
+      "bytes": 1314684,
+      "paths": [
+        "results/figure_review/Supplement/FigS04.pdf",
+        "results/figures/FigS04_Network_Criticality_and_Percolation.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "72acd2e4b509e38219c5744324b2f0c7d9775712f8a00edeb985c79e3cd831f0",
+      "bytes": 701876,
+      "paths": [
+        "results/figure_review/Supplement/FigS04.png",
+        "results/figures/FigS04_Network_Criticality_and_Percolation.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "ecc0379c386386e80d1bd7ca18beaf78f63821bbf284bbf1d1e30f13a9184449",
+      "bytes": 1247027,
+      "paths": [
+        "results/figure_review/Supplement/FigS05.pdf",
+        "results/figures/FigS05_GA_Reproducibility.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "3367c6d7b0a2ac02731c6bec5fa34d156c1fdc402ee020b2a0858fac8947e604",
+      "bytes": 724963,
+      "paths": [
+        "results/figure_review/Supplement/FigS05.png",
+        "results/figures/FigS05_GA_Reproducibility.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "eb42cfcaeaad050eb007ee656cd6c9227ac0f7da851394eea23df247a9156ace",
+      "bytes": 2401973,
+      "paths": [
+        "results/figure_review/Supplement/FigS06.pdf",
+        "results/figures/FigS06_Mapping_Robustness.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "c7f2ff249d9d3b4682bb5126de9e9c8523ee84b6825e02077649cb0c24d9cb78",
+      "bytes": 401057,
+      "paths": [
+        "results/figure_review/Supplement/FigS06.png",
+        "results/figures/FigS06_Mapping_Robustness.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "b9daff0f1823abad6ddd801b031beb73f5bf65e37ed5746c90884d20f0ebaa19",
+      "bytes": 7952831,
+      "paths": [
+        "results/figure_review/Supplement/FigS07.pdf",
+        "results/figures/FigS07_Source_Redundancy.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "cf1805a5635bda7613fa853690eea3adb55ad03b63f1e594dd44b2cb4081f185",
+      "bytes": 2154446,
+      "paths": [
+        "results/figure_review/Supplement/FigS07.png",
+        "results/figures/FigS07_Source_Redundancy.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "61678715a4cb6242085b85ccdb645d2af4e8826d4c0f4916221e1485ea4b237c",
+      "bytes": 1800977,
+      "paths": [
+        "results/figure_review/Supplement/FigS08.pdf",
+        "results/figures/FigS08_Capacity_Sensitivity.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "a2e04264489af98d138f1676bc647eabc11da96e4bb87f2102e00599338572b6",
+      "bytes": 647156,
+      "paths": [
+        "results/figure_review/Supplement/FigS08.png",
+        "results/figures/FigS08_Capacity_Sensitivity.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "15d364e27126a83ddb03f812bf6ac59bda4dc1847a162d62d6baa979b2408e8d",
+      "bytes": 1350910,
+      "paths": [
+        "results/figure_review/Supplement/FigS09.pdf",
+        "results/figures/FigS09_Stage7_Diagnostics.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "a392329d74457dbb42273415f38a1d06a70ab6b9ada41a2d150fbc5d37075778",
+      "bytes": 989978,
+      "paths": [
+        "results/figure_review/Supplement/FigS09.png",
+        "results/figures/FigS09_Stage7_Diagnostics.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "5a4af85aa33b5d1ce6912bba250d15612da3973f8ea1aa17ad69c2c3a1eb5989",
+      "bytes": 7901098,
+      "paths": [
+        "results/figure_review/Supplement/FigS10.pdf",
+        "results/figures/FigS10_Priority_Construction.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "5c692b14478ba9be8f31061ba0036d25c66ce0d53bc355057040616240c7759c",
+      "bytes": 2131318,
+      "paths": [
+        "results/figure_review/Supplement/FigS10.png",
+        "results/figures/FigS10_Priority_Construction.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "493c33ac58e6d5f42ce91d858422c9eaf153eb856c00f28f7b670a2bde2bc368",
+      "bytes": 50260,
+      "paths": [
+        "results/figure_review/Supplement/FigS11.pdf",
+        "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "44231298a4f6b5f2afe524376bee1ca0acd2d778657a70f5ed240200ff4bed1d",
+      "bytes": 282173,
+      "paths": [
+        "results/figure_review/Supplement/FigS11.png",
+        "results/figures/FigS11_Cross_Hazard_Policy_Contrasts.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "a29a1dbc3b75d2738f33a2156dad6c0ad75a42cae551643edc13f5605baaa71e",
+      "bytes": 54601,
+      "paths": [
+        "results/figure_review/Supplement/FigS12.pdf",
+        "results/figures/FigS12_Crew_Resource_Contrasts.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "285332616680e8d6b8cb84e18879995e463c380a10fdd50c0826979fdf84f36c",
+      "bytes": 432517,
+      "paths": [
+        "results/figure_review/Supplement/FigS12.png",
+        "results/figures/FigS12_Crew_Resource_Contrasts.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "c956561cd49c690b13c3bdc79c35b3c3e04f16403df6d2f8ac33ee54c0e1116c",
+      "bytes": 53907,
+      "paths": [
+        "results/figure_review/Supplement/FigS13.pdf",
+        "results/figures/FigS13_Repair_Duration_Contrasts.pdf"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "7d1043bf28953243962986dccd45fff720e6dede766d4c895190598f3de644cd",
+      "bytes": 448375,
+      "paths": [
+        "results/figure_review/Supplement/FigS13.png",
+        "results/figures/FigS13_Repair_Duration_Contrasts.png"
+      ],
+      "actual_remote_bytes_verified": true
+    },
+    {
+      "sha256": "2ce99a553c2167bf465ea876af9a1044f03f84c81dd4eae53c23bb6d9c9e5ec9",
+      "bytes": 26250,
+      "paths": [
+        "results/figures/FIGURE_INDEX.csv"
+      ],
+      "actual_remote_bytes_verified": true
+    }
+  ]
+}

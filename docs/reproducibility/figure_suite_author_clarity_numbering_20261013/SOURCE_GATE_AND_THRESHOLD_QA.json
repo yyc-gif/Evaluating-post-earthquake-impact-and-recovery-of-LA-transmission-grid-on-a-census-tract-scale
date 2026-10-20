@@ -1,0 +1,57 @@
+{
+  "source_gate_visible_and_separate": true,
+  "independent_source_only_control_available": true,
+  "counterfactual": "e_off = f * 1[f >= 0.50]; connectivity factor alone removed",
+  "exact_integral_identity": "B_off = B_reference - L_source",
+  "reference_gate": "G1_BASELINE_050",
+  "new_control": "G4_SOURCE_OFF_050",
+  "functionality_threshold": 0.5,
+  "threshold_tests": [
+    0.05,
+    0.75
+  ],
+  "source_connectivity_fixed_in_threshold_tests": true,
+  "station_order_identical": true,
+  "physical_sample_hashes_identical": true,
+  "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+  "all_1000_realization_ids_matched": true,
+  "full_study_population": 9066522,
+  "G0": "Removes BOTH F and C; excluded from this source-only control",
+  "no_damage_scheduling_ga_sampling_or_trajectory_generation": true,
+  "checks": [
+    {
+      "policy": "impact-first",
+      "realizations": 1000,
+      "stations": 92,
+      "tracts": 2315,
+      "baseline_normalization_max_error_h": 2.1316282072803006e-14,
+      "source_off_identity_max_error_h": 2.842170943040401e-14,
+      "mean_baseline_loss_h": 33.593686467844854,
+      "mean_source_off_loss_h": 29.425966034492472,
+      "mean_gap_h": -4.167720433352381
+    },
+    {
+      "policy": "hospital-first",
+      "realizations": 1000,
+      "stations": 92,
+      "tracts": 2315,
+      "baseline_normalization_max_error_h": 2.1316282072803006e-14,
+      "source_off_identity_max_error_h": 2.842170943040401e-14,
+      "mean_baseline_loss_h": 34.30646521839252,
+      "mean_source_off_loss_h": 30.241334731548733,
+      "mean_gap_h": -4.065130486843792
+    },
+    {
+      "policy": "degree-first",
+      "realizations": 1000,
+      "stations": 92,
+      "tracts": 2315,
+      "baseline_normalization_max_error_h": 2.1316282072803006e-14,
+      "source_off_identity_max_error_h": 2.842170943040401e-14,
+      "mean_baseline_loss_h": 35.707709164451444,
+      "mean_source_off_loss_h": 33.289271086067025,
+      "mean_gap_h": -2.418438078384416
+    }
+  ],
+  "interpretation": "Diagnostic relaxation, not evidence of delivered electricity"
+}

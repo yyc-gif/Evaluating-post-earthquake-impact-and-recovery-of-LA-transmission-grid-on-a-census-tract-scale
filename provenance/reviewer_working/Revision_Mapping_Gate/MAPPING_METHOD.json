@@ -1,0 +1,25 @@
+{
+  "production": "JULY_UTILITY_CONSTRAINED_92",
+  "baseline": "JULY_BASELINE_92",
+  "baseline_path": "Data\\tract_to_substation_mapping_CEC_expanded.csv",
+  "production_path": "Data\\JULY_UTILITY_CONSTRAINED_92.csv",
+  "eligibility": "strict SCE/LADWP exact retained Owner compatibility; mixed/general unchanged",
+  "unchanged": {
+    "stations": 92,
+    "edges": 318,
+    "tracts": 2315,
+    "IDW_power": 2,
+    "cutoff": 0.03
+  },
+  "generator": "python r1_mapping.py",
+  "validation": "2 tests passed; max regenerated-retained revised weight error 2.220446049250313e-16",
+  "input_and_output_sha256": {
+    "Data\\tract_to_substation_mapping_CEC_expanded.csv": "04b3f83a7be7a0a60fbfb6968b5bcee5a6e722722155f351712508f2c438fd93",
+    "Data\\JULY_UTILITY_CONSTRAINED_92.csv": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+    "Data\\JULY_UTILITY_CONSTRAINED_92_UNTHRESHOLDED.csv": "836d7580b6e02e842aaf9cb6a62f6bcc717d7759ef381ee33e894c56ca1a648b",
+    "Data\\substation_graph_CEC_edges_expanded.csv": "1a3073240a6dca3e902e0bf5c2b975c67ff100892d85f007270e9855250bd225",
+    "Data\\working_area_substations_with_fragility.csv": "d28565de3d549b6655f1d7ca263712078ded38a73cf4a6f8e00fe969c026ff00",
+    "R1_Comment1_July92_Utility_Constraint\\MAPPING_STRUCTURE_SENSITIVITY_TRACTS.csv": "4c9fed19d1561759edff15702daed6d448155ca3604bd8d920fb6c7d7f7ddbe1"
+  },
+  "note": "Topology builder remains a July reconstruction tool; revision evaluation default is ExpandedConfig.MAP_TRACT_SUB_CSV. No pipeline executed."
+}

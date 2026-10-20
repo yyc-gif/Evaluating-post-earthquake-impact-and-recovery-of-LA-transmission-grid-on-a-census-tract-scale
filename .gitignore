@@ -1,0 +1,130 @@
+# Python/runtime cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Retired intermediate work is preserved in Git history, not in the current tree.
+/provenance/figure_review_history/**
+!/provenance/figure_review_history/candidate_v2.1/
+!/provenance/figure_review_history/candidate_v2.1/CROSS_HAZARD_POLICY_EFFECTS.csv
+/provenance/artwork_drafts/
+/docs/data_research/built_environment_20261009/
+/results/diagnostics/ga_optimization_20261009/*/
+/results/diagnostics/extended_ga_20261008/*/
+/results/diagnostics/ga_search_budget_20261007/*/
+/local_elsevier_review_outputs/previews/
+/local_elsevier_review_outputs/packet_previews/
+/local_elsevier_review_outputs/qa_checked/
+/local_elsevier_review_outputs/*.docx
+/local_elsevier_review_outputs/inputs/*.docx
+/local_elsevier_review_outputs/*.ps1
+/local_elsevier_review_outputs/ALL_FIGURES_WITH_CAPTIONS.pdf
+/local_elsevier_review_outputs/COLOR_GRAYSCALE_CVD_CONTACT_SHEET.png
+/local_elsevier_review_outputs/build_all_figures_with_captions.py
+/local_elsevier_review_outputs/prepare_review_documents.py
+/local_elsevier_review_outputs/render_document_pages.py
+/local_elsevier_review_outputs/
+/docs/meeting/*.docx
+/provenance/legacy_outputs/Submission_Package/
+/src/la_grid/plotting/apply_author_clarity_numbering_20261013.py
+/src/la_grid/plotting/apply_author_figure_details_20261012.py
+/src/la_grid/plotting/apply_coauthor_map_legend_feedback.py
+/src/la_grid/plotting/apply_minor_legend_feedback.py
+/src/la_grid/plotting/apply_review_terminology.py
+/src/la_grid/plotting/clarify_distribution_strategy_visibility.py
+/src/la_grid/plotting/clarify_outcome_measure_identity.py
+/src/la_grid/plotting/figure7_candidate_a.py
+/src/la_grid/plotting/finish_author_figure_suite_20261012.py
+/src/la_grid/plotting/integrate_final_s05_and_suite_review_20261012.py
+/src/la_grid/plotting/integrate_selected_strategy_20261008.py
+/src/la_grid/plotting/refine_supplement_assumptions_layout.py
+/src/la_grid/plotting/simplify_s05_figure_text_20261012.py
+/src/la_grid/plotting/update_coauthor_figure_index.py
+/src/la_grid/plotting/update_framework_figure.py
+/src/la_grid/plotting/update_s8_supported_geography.py
+
+# Local environments and package caches
+.venv/
+.uv-cache/
+.ipynb_checkpoints/
+
+# Logs and transient run metadata
+*.log
+
+# Local manuscript copies and downloaded reference PDFs
+/LA Grid Paper*.pdf
+/literaturefolder/
+/Manuscript_Figures/composite_ready_panels/
+/Manuscript_Figures/composite_source_archive_*/
+
+# One-off mechanism experiments (not part of the manuscript workflow)
+/Mechanism_Check_Output/
+/run_hospital_weight_mechanism_check.py
+Stage 5 Output*/hospital_score_*.csv
+Stage 5 Output*/hospital_weight_*.csv
+Stage 5 Output*/hospitalfirst_*mechanism*.csv
+Stage 5 Output*/hospitalfirst_early_priority_capture_*.csv
+
+# Non-core diagnostics and sensitivity runs
+Sensitivity Output*/
+*audit*.csv
+*debug*.csv
+*sensitivity*.csv
+!results/stage7/2026-10-14/K4_sensitivity_membership.csv
+!Data/sensitivity_summary_2pc50.csv
+!Data/sensitivity_mapping_diagnostics.csv
+!Sensitivity Output_clean/
+!Sensitivity Output_clean/**
+Data/substations_suppressed_by_threshold*.csv
+Stage 2 Output*/_visualizer_*_boundary.geojson
+Stage 2 Output*/bullis_neighbors*.csv
+Stage 2 Output*/current_*.csv
+Stage 2 Output*/degree_*blocker*.csv
+Stage 2 Output*/direct_link_*probe*.csv
+Stage 2 Output*/endpoint_merge*.csv
+Stage 2 Output*/graph_degree_distribution.csv
+Stage 2 Output*/graph_edge_length_distribution.csv
+Stage 2 Output*/graph_hub_sanity_rank.csv
+Stage 2 Output*/graph_node_degree_rank.csv
+Stage 2 Output*/graph_top_links_sanity.csv
+Stage 2 Output*/line_split_*probe*.csv
+Stage 2 Output*/low_voltage_high_degree_stations.csv
+Stage 2 Output*/path_proximity_*probe*.csv
+Stage 2 Output*/secondary*.csv
+Stage 2 Output*/split_*diagnostics.csv
+Stage 2 Output*/substation_line_split_*probe*.csv
+Stage 2 Output*/suspicious_*.csv
+Stage 2 Output*/zoom_suspicious_*.png
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local external archives / derived viewing suite (registered by canonical manifests)
+/Data/external_validation/
+/results/revised_suite/
+
+# Registered local-only formal archives (tracked authority files remain tracked)
+/Formal_Experiment_20260923/Formal_Trajectories/
+/Formal_Experiment_20260923/Formal_Offline_Evaluation/
+/Formal_Experiment_20260923/Formal_Dynamic_Topology/
+/Formal_Experiment_20260923/Equity_Amendment/T/
+/Formal_Experiment_20260923/Equity_Amendment/Trajectories/
+/Formal_Experiment_20260923/Equity_Amendment/Offline/
+/Formal_Experiment_20260923/Formal_Reviewer_Results/
+
+.pytest_cache/
+
+# GA optimization diagnostics: restart caches and worker logs are local only
+/results/diagnostics/ga_optimization_20261009/local_logs/
+/results/diagnostics/ga_optimization_20261009/**/CHECKPOINT.pkl.gz
+/results/diagnostics/ga_optimization_20261009/**/LOCAL_CHECKPOINT.pkl.gz
+/results/diagnostics/ga_optimization_20261009/original_behavior_replay/**/CANDIDATES.npz
+!results/diagnostics/ga_optimization_20261009/GA_PARAMETER_SENSITIVITY.csv
+!results/diagnostics/ga_optimization_20261009/LFS_OBJECT_AUDIT.csv
+
+# Final GA method: completed histories are retained; local resume caches/logs are ignored
+/results/diagnostics/final_ga_method_20261009/logs/
+/results/diagnostics/final_ga_method_20261009/**/CHECKPOINT.pkl.gz

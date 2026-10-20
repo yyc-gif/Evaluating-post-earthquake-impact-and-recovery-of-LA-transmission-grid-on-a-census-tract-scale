@@ -1,0 +1,7 @@
+# GA optimization diagnostic — 2026-10-09
+
+Start with GA_HYPERPARAMETER_AND_OPERATOR_AUDIT.md and GA_SOLUTION_QUALITY_AND_GENERALIZATION.md. CSVs contain equal-budget parameters, computational accounting, diversity/selection, local/hybrid moves, planning quality and reused-cohort outcomes. Each run contains its configuration/seed, complete candidate orders/objectives, generation observations, parent frequencies and best sequence. Restart caches and worker logs are local-only; the scripts reproduce the records from protected inputs.
+
+Run order: ga_hyperparameter_study_20261009 --stage parity/screen/focused/shortlist/operators; ga_optimization_followup_20261009 --stage confirm/budgets/hybrid; ga_local_refinement_20261009 --task local; ga_generalization_20261009 --task cv/stability/previous-pair/evaluate; summarize_ga_optimization_20261009; ga_relaxation_rational_bound_20261009; verify_ga_candidate_production_20261009; ga_schedule_phenotypes_20261009; ga_budget_identity_20261009; ga_selected_pair_20261009; ga_new_candidate_local_20261009. Use python -m la_grid.diagnostics.<module> in the installed src layout. Parameters and allocation rules are recorded in STUDY_DESIGN.md and selection JSONs. Fixed sequence selection precedes reused-cohort evaluation.
+
+No original formal policy, scientific source, sample, mapping, gate, trajectory or manuscript figure is replaced. New review artwork: ../../figure_review/Additional_Evidence/GA_Optimization_20261009/GA_OPTIMIZATION_REVIEW_PACKET.pdf. Reused evaluation is exploratory, not an untouched test.

@@ -1,0 +1,37 @@
+{
+  "status": "PASS_P2_ADOPTION_FROZEN_REUSE_ONLY",
+  "stage7_version": "2026-10-14",
+  "scientific_computation_performed": false,
+  "full_workflow_revalidated": false,
+  "stage7_current_verification": {
+    "status": "PASS_SAVED_P2_REUSE",
+    "authority": "results/stage7/2026-10-14",
+    "eligible_tracts": 2299,
+    "full_domain_tracts": 2315,
+    "population": 9066522,
+    "class_counts": [
+      1235,
+      428,
+      636
+    ],
+    "fitted_feature_count": 7,
+    "primary_K": 3,
+    "sensitivity_K": 4,
+    "artifact_count": 16,
+    "no_new_fits_or_simulations": true
+  },
+  "figures_current_verification": {
+    "status": "PASS_CURRENT_P2_FIGURES",
+    "numbered_figures": 16,
+    "packet_pages": 20,
+    "mirrored_files": 32,
+    "output_hashes_checked": 109,
+    "no_new_fits_or_simulations": true
+  },
+  "prior_full_validation": {
+    "source_commit": "937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f",
+    "path": "FINAL_REVISION_RUN_SEQUENCE/FINAL_RUN_MANIFEST.json",
+    "status": "PASS_ALL_STAGES_REUSE_OR_VALIDATE"
+  },
+  "limitation": "The original manifest-bound physical archives were not rerun or newly clean-room certified."
+}

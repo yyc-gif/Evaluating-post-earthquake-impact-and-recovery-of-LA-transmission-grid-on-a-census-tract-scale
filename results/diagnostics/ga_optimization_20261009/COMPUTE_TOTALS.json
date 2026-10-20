@@ -1,0 +1,19 @@
+{
+  "new_expensive_queries_by_phase": {
+    "budget_extension": 5000000,
+    "focused": 2000000,
+    "hybrid": 1000000,
+    "internal_cv": 1000000,
+    "local_search": 480784,
+    "operator_confirmation": 4000000,
+    "operators": 2250000,
+    "screen": 7000000,
+    "shortlist": 6000000
+  },
+  "all_query_total": 28730784,
+  "setup_reporting_and_bound_checks_outside_search_budget": true,
+  "cross_validation_queries_use_48_samples_not64": true,
+  "hybrid_prefix_already_executed_not_counted_twice": true,
+  "existing_replay_expensive_queries": 0,
+  "note": "Query totals exclude saved-score replay, independent verification, rational bound, reduced720 exact checks, postselection summaries and evaluation; these are separate diagnostic operations."
+}
