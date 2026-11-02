@@ -1,0 +1,221 @@
+{
+  "source_pdf_sha256": "76bb5868f12fcdfa7e914c087b793b175208f2667f00e076467cc7951322fafa",
+  "source_A_B_D_E_and_map_vectors_preserved": true,
+  "source_C_panel_replaced_with_vector_plot_from_realization_rows": true,
+  "n_vulnerability_first_rows": 1000,
+  "n_matched_realization_ids": 1000,
+  "physical_sample_hash_unique_count": 1000,
+  "comparison_rows": [
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "population_weighted_normalized_burden_hr",
+      "label": "All tracts",
+      "mean_vulnerability_first_minus_reference_hr": -0.04861576571474483,
+      "p05": -0.8347014695322426,
+      "p95": 0.6839966501017194,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "burden_Q4_hr",
+      "label": "Q4 tracts",
+      "mean_vulnerability_first_minus_reference_hr": -1.5946709866815612,
+      "p05": -2.518464333667681,
+      "p95": -0.6146634580940646,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "signed_Q4_minus_Q1_hr",
+      "label": "Signed Q4-Q1 gap",
+      "mean_vulnerability_first_minus_reference_hr": -2.863895739015039,
+      "p05": -4.0099193555586,
+      "p95": -1.6122447154435844,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "absolute_Q4_minus_Q1_hr",
+      "label": "Mean within-realization |Q4-Q1|",
+      "mean_vulnerability_first_minus_reference_hr": 2.5012826200876908,
+      "p05": 0.12066506076417928,
+      "p95": 3.9113830555732556,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "hospital_mean_normalized_burden_hr",
+      "label": "Hospital-linked tracts",
+      "mean_vulnerability_first_minus_reference_hr": 0.5723885504675589,
+      "p05": -0.30467090316749607,
+      "p95": 1.4945276393170752,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "population_weighted_normalized_burden_hr",
+      "label": "All tracts",
+      "mean_vulnerability_first_minus_reference_hr": 0.664162984832931,
+      "p05": -0.23963798174953865,
+      "p95": 1.5764852344284888,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "burden_Q4_hr",
+      "label": "Q4 tracts",
+      "mean_vulnerability_first_minus_reference_hr": -0.7095107372466946,
+      "p05": -1.7150637999237275,
+      "p95": 0.13435859669054231,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "signed_Q4_minus_Q1_hr",
+      "label": "Signed Q4-Q1 gap",
+      "mean_vulnerability_first_minus_reference_hr": -2.8714783882870645,
+      "p05": -4.074191273578654,
+      "p95": -1.720095362664083,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "absolute_Q4_minus_Q1_hr",
+      "label": "Mean within-realization |Q4-Q1|",
+      "mean_vulnerability_first_minus_reference_hr": 2.540275051172138,
+      "p05": 0.32911801730199003,
+      "p95": 4.010938156300258,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "hospital_mean_normalized_burden_hr",
+      "label": "Hospital-linked tracts",
+      "mean_vulnerability_first_minus_reference_hr": 0.8797491368573206,
+      "p05": -0.09422262227156428,
+      "p95": 1.9874636094043718,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "degree-first",
+      "outcome": "population_weighted_normalized_burden_hr",
+      "label": "All tracts",
+      "mean_vulnerability_first_minus_reference_hr": -1.4498597117736642,
+      "p05": -2.930103625472333,
+      "p95": -0.012489966681356225,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "degree-first",
+      "outcome": "burden_Q4_hr",
+      "label": "Q4 tracts",
+      "mean_vulnerability_first_minus_reference_hr": -2.8768752726455737,
+      "p05": -4.550469537507045,
+      "p95": -1.2494771523888246,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "degree-first",
+      "outcome": "signed_Q4_minus_Q1_hr",
+      "label": "Signed Q4-Q1 gap",
+      "mean_vulnerability_first_minus_reference_hr": -3.437268917589351,
+      "p05": -4.810441503996014,
+      "p95": -1.8932697603587705,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "degree-first",
+      "outcome": "absolute_Q4_minus_Q1_hr",
+      "label": "Mean within-realization |Q4-Q1|",
+      "mean_vulnerability_first_minus_reference_hr": 2.9139016407900398,
+      "p05": -0.3252338260157866,
+      "p95": 4.760161749511871,
+      "n_paired_realizations": 1000
+    },
+    {
+      "reference_strategy": "degree-first",
+      "outcome": "hospital_mean_normalized_burden_hr",
+      "label": "Hospital-linked tracts",
+      "mean_vulnerability_first_minus_reference_hr": -1.7919295738352055,
+      "p05": -3.358997066187167,
+      "p95": -0.22645054064548306,
+      "n_paired_realizations": 1000
+    }
+  ],
+  "pairwise_summary_mean_check_rows": [
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "population_weighted_normalized_burden_hr",
+      "raw_mean": -0.04861576571474483,
+      "saved_mean": -0.0486157657147448
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "burden_Q4_hr",
+      "raw_mean": -1.5946709866815612,
+      "saved_mean": -1.5946709866815612
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "signed_Q4_minus_Q1_hr",
+      "raw_mean": -2.863895739015039,
+      "saved_mean": -2.863895739015039
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "absolute_Q4_minus_Q1_hr",
+      "raw_mean": 2.5012826200876908,
+      "saved_mean": 2.5012826200876908
+    },
+    {
+      "reference_strategy": "hospital-first",
+      "outcome": "hospital_mean_normalized_burden_hr",
+      "raw_mean": 0.5723885504675589,
+      "saved_mean": 0.5723885504675589
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "population_weighted_normalized_burden_hr",
+      "raw_mean": 0.664162984832931,
+      "saved_mean": 0.664162984832931
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "burden_Q4_hr",
+      "raw_mean": -0.7095107372466946,
+      "saved_mean": -0.7095107372466946
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "signed_Q4_minus_Q1_hr",
+      "raw_mean": -2.8714783882870645,
+      "saved_mean": -2.8714783882870645
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "absolute_Q4_minus_Q1_hr",
+      "raw_mean": 2.540275051172138,
+      "saved_mean": 2.540275051172138
+    },
+    {
+      "reference_strategy": "impact-first",
+      "outcome": "hospital_mean_normalized_burden_hr",
+      "raw_mean": 0.8797491368573206,
+      "saved_mean": 0.8797491368573206
+    }
+  ],
+  "pairwise_summary_mean_checks_passed": true,
+  "uncertainty": "5th-95th quantiles of paired realization differences, not confidence intervals",
+  "panel_C_row_order": [
+    "All tracts",
+    "Q4 tracts",
+    "Signed Q4-Q1 gap",
+    "Mean within-realization |Q4-Q1|",
+    "Hospital-linked tracts"
+  ],
+  "panel_C_xlim_hr": [
+    -5.0,
+    5.0
+  ],
+  "ordinary_plot_values_or_strategy_results_changed": false
+}

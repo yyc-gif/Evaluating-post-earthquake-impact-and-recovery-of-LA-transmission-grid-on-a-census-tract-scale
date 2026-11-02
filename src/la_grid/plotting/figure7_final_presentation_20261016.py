@@ -21,7 +21,7 @@ import figure7_map_readability_20261015 as maps
 
 PAGE_W = 7.2 * 72
 LAYOUT_B_H = 10 * 72
-LAYOUT_C_H = 650
+LAYOUT_C_H = 684
 FEATURES = ["Init_Supply", "Grid_Impact", "Redundancy_HHI", "B_Unconstrained",
             "MeanDelta", "SOVI_SCORE", "log1p_Population"]
 LABELS = {
@@ -253,6 +253,23 @@ def compose_figure(top_pdf, data, display, paths, specification, palette, *, lay
         maps._class_legend(page, 588, scale=1.25)
         maps._bivariate_legend(page, specification, (318, 584, 493, 614))
         maps._screening_keys(page, 638, 0.25, n_a_x=132, q4_x=20)
+        cohort = data.loc[data.Population.gt(0)]
+        p75 = float(cohort.MeanTotal5.quantile(.75, interpolation="linear"))
+        q4 = cohort.frozen_SOVI_quartile.eq("Q4")
+        high = cohort.MeanTotal5.ge(p75)
+        overlap = q4 & high
+        assert len(cohort) == 2299 and int(q4.sum()) == 579 and int(high.sum()) == 575
+        assert int(overlap.sum()) == 94 and int(cohort.loc[overlap, "Population"].sum()) == 350799
+        q4_rate = float(high.loc[q4].mean() * 100)
+        non_q4_rate = float(high.loc[~q4].mean() * 100)
+        assert abs(p75 - 38.38135467381475) < 1e-12
+        assert abs(q4_rate - 16.2349) < .001 and abs(non_q4_rate - 27.9651) < .001
+        maps._text(page, 20, 661,
+            f"Q4: {int(q4.sum())} tracts | Cohort P75: {p75:.5f} h ({int(high.sum())} tracts) | Joint screen: {int(overlap.sum())} tracts ({int(cohort.loc[overlap, 'Population'].sum()):,} residents)",
+            size=7.0)
+        maps._text(page, 20, 674,
+            f"High-burden prevalence: {q4_rate:.2f}% in Q4; {non_q4_rate:.2f}% outside Q4. Descriptive five-policy comparison.",
+            size=7.0)
     output.set_metadata({"title": "Figure 7. Community recovery types and social vulnerability",
                          "subject": "P2/K3 classes; continuous SOVI and five-policy recovery burden"})
     return output

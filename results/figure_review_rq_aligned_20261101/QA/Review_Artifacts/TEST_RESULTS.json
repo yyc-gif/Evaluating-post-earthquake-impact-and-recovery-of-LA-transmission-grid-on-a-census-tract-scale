@@ -1,0 +1,29 @@
+{
+  "review_branch": "review/1021-rq-aligned-results",
+  "baseline_commit": "1887bca4872f24d6d547637440db5619a4423452",
+  "dedicated_test_command": "C:\\Users\\yinch\\anaconda3\\python.exe -m pytest tests/test_rq_aligned_figure_suite_20261101.py -q",
+  "dedicated_test_result": "11 passed",
+  "dedicated_test_elapsed_seconds": 75.87,
+  "canonical_build_command": "python src/la_grid/plotting/build_current_figures.py --portable --output-dir results/figure_review_rq_aligned_20261101 --mirror-dir results/figures_rq_aligned_20261101",
+  "deterministic_rebuild": {
+    "second_run_hashes_match": true,
+    "second_run_pending": false,
+    "main_pages": 7,
+    "supplement_pages": 9,
+    "combined_pages": 16,
+    "combined_packet_sha256": "891276fd634f05499f00cd9a22541eefab9cbdfaa6a61ec364ed005efa760c90"
+  },
+  "changed_numbered_figures": ["Fig01", "Fig04", "Fig05", "Fig07", "FigS03", "FigS08"],
+  "unchanged_numbered_figures": ["Fig02", "Fig03", "Fig06", "FigS01", "FigS02", "FigS04", "FigS05", "FigS06", "FigS07", "FigS09"],
+  "source_preservation_scope": "23 registered scientific-source files available in the isolated worktree; not a full historical 950-file inventory verification",
+  "legacy_official_path_integration_tests": "Not used as review-output tests; they are bound to the official results/figure_review paths. Dedicated isolated-suite tests were run.",
+  "lfs_staging": {
+    "pointer_entries": 85,
+    "unique_payloads": 53,
+    "unique_payload_mib": 267.72,
+    "local_payload_hashes_verified": true,
+    "staging_method": "Git LFS clean output and verified pointer blobs; no ordinary-Git binary fallback"
+  },
+  "remote_delivery": "Pending; no matching branch existed at initial GitHub lookup and direct git ls-remote failed due a DNS/thread-start error.",
+  "lfs_payload_delivery": "Pending; local payloads are prepared but remote upload has not yet been verified."
+}

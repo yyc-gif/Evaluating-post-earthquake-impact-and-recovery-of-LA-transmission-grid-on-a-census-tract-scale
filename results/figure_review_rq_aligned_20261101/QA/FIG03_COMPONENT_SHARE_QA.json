@@ -1,0 +1,59 @@
+{
+  "source_commit": "937fa2b1ab9953d8411a08fbbd0400cf3b52bd8f",
+  "source_sha256": "fe7723e54f8818c46598a8858e77200381024c9c4fe91750078d9bd16d3eba42",
+  "rows": [
+    {
+      "hazard": "2pc50",
+      "strategy_id": "unconstrained",
+      "n": 1000,
+      "self_mean_hr": 26.887247240546063,
+      "share_substation_damage": 0.8579819575640037,
+      "threshold_mean_hr": 0.8764917719738314,
+      "share_functionality_threshold": 0.02796917511037762,
+      "source_mean_hr": 3.57403796927675,
+      "share_source_path": 0.1140488673256186,
+      "total_mean_hr": 31.337776981796647,
+      "component_sum_max_abs_error_hr": 2.4868995751603507e-14
+    },
+    {
+      "hazard": "LongBeach",
+      "strategy_id": "unconstrained",
+      "n": 1000,
+      "self_mean_hr": 4.1769044978108125,
+      "share_substation_damage": 0.9151943884826905,
+      "threshold_mean_hr": 0.18630935939806786,
+      "share_functionality_threshold": 0.04082192454538604,
+      "source_mean_hr": 0.2007394956255273,
+      "share_source_path": 0.043983686971923036,
+      "total_mean_hr": 4.563953352834409,
+      "component_sum_max_abs_error_hr": 2.6645352591003757e-15
+    },
+    {
+      "hazard": "Northridge",
+      "strategy_id": "unconstrained",
+      "n": 1000,
+      "self_mean_hr": 7.589886836502079,
+      "share_substation_damage": 0.8153495019059742,
+      "threshold_mean_hr": 0.3126799963622468,
+      "share_functionality_threshold": 0.03358989202102709,
+      "source_mean_hr": 1.4061858170849737,
+      "share_source_path": 0.15106060607299868,
+      "total_mean_hr": 9.3087526499493,
+      "component_sum_max_abs_error_hr": 7.105427357601002e-15
+    },
+    {
+      "hazard": "SanFernando",
+      "strategy_id": "unconstrained",
+      "n": 1000,
+      "self_mean_hr": 3.3745069058253407,
+      "share_substation_damage": 0.8714414962175988,
+      "threshold_mean_hr": 0.15549734899667164,
+      "share_functionality_threshold": 0.040156042423148415,
+      "source_mean_hr": 0.3423232857782886,
+      "share_source_path": 0.08840246135925281,
+      "total_mean_hr": 3.872327540600301,
+      "component_sum_max_abs_error_hr": 1.7763568394002505e-15
+    }
+  ],
+  "displayed_percentages_are_source_component_means": true
+}

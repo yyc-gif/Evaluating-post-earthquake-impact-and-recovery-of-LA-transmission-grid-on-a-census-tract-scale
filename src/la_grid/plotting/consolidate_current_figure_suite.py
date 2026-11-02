@@ -79,7 +79,17 @@ def payload(commit, rel):
         return blob
     expected, size = m.group(1).decode(), int(m.group(2))
     common = Path(git('rev-parse', '--path-format=absolute', '--git-common-dir').decode().strip())
-    paths = [common / 'lfs/objects' / expected[:2] / expected[2:4] / expected,
+    lfs_stores = [common / 'lfs/objects']
+    try:
+        configured_store = Path(git('config', '--path', '--get', 'lfs.storage').decode().strip())
+        if not configured_store.is_absolute():
+            configured_store = ROOT / configured_store
+        lfs_stores.append(configured_store if configured_store.name.lower() == 'objects'
+                          else configured_store / 'objects')
+    except subprocess.CalledProcessError:
+        pass
+    paths = [store / expected[:2] / expected[2:4] / expected for store in lfs_stores]
+    paths += [
              ROOT.parent / '_fr11' / rel, ORIGINAL / rel, ROOT / rel]
     for p in paths:
         try:

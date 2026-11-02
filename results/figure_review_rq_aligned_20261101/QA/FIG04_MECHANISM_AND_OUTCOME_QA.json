@@ -1,0 +1,305 @@
+{
+  "source_pdf_vector_panel_A_preserved": true,
+  "source_pdf_sha256": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+  "source_trajectory_curves_regenerated": false,
+  "outcome_source_rows": 7000,
+  "strategies": {
+    "betweenness-first": 1000,
+    "degree-first": 1000,
+    "hospital-first": 1000,
+    "impact-first": 1000,
+    "random": 1000,
+    "unconstrained": 1000,
+    "vulnerability-first": 1000
+  },
+  "shared_realization_identity_across_strategies": true,
+  "service_loss_and_T80_rows": [
+    {
+      "strategy_id": "impact-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 33.593686467844854,
+      "p05": 29.47939488907694,
+      "p95": 37.6928302662577,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "impact-first",
+      "metric": "burden_Q4_hr",
+      "mean": 32.73300490554173,
+      "p05": 28.053174298439206,
+      "p95": 37.459694282430384,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "impact-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 33.05932720079036,
+      "p05": 28.63122667922893,
+      "p95": 37.4363307890268,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "impact-first",
+      "metric": "population_T80_hr",
+      "mean": 45.251090655927634,
+      "p05": 40.18090902988713,
+      "p95": 50.60176271925809,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 34.30646521839252,
+      "p05": 30.132437271673204,
+      "p95": 38.387729126186166,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "burden_Q4_hr",
+      "mean": 33.618165154976595,
+      "p05": 28.83473337571684,
+      "p95": 38.327967908954754,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 33.366687787180126,
+      "p05": 28.878285831937003,
+      "p95": 37.81770798870994,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "population_T80_hr",
+      "mean": 45.97053519389106,
+      "p05": 40.599154375503076,
+      "p95": 51.25960814775676,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 35.707709164451444,
+      "p05": 31.441243471536957,
+      "p95": 40.10001345662655,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "burden_Q4_hr",
+      "mean": 34.90036944094061,
+      "p05": 30.132807720411844,
+      "p95": 39.69285431067533,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 35.73100591148288,
+      "p05": 31.01763535739453,
+      "p95": 40.52049912777076,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "population_T80_hr",
+      "mean": 49.50967725147978,
+      "p05": 43.772286406871,
+      "p95": 55.38989447024263,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 34.25784945267778,
+      "p05": 30.100819151961225,
+      "p95": 38.37673675661431,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "burden_Q4_hr",
+      "mean": 32.02349416829504,
+      "p05": 27.46253962554764,
+      "p95": 36.80707368283731,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 33.93907633764768,
+      "p05": 29.34974622356871,
+      "p95": 38.443648780533316,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "population_T80_hr",
+      "mean": 46.43682784802011,
+      "p05": 41.18240329404675,
+      "p95": 51.88608457268979,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 35.52157245879788,
+      "p05": 31.25864400402996,
+      "p95": 39.94200504566688,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "burden_Q4_hr",
+      "mean": 34.73011729067136,
+      "p05": 29.886003185622325,
+      "p95": 39.40378685340413,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 35.37954022527479,
+      "p05": 30.660913995675045,
+      "p95": 40.16580281197064,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "population_T80_hr",
+      "mean": 47.83094218068314,
+      "p05": 42.23549030377364,
+      "p95": 53.076140922518555,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 39.3884897974452,
+      "p05": 34.55176251816403,
+      "p95": 44.303414312837106,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "burden_Q4_hr",
+      "mean": 37.51984554270041,
+      "p05": 32.35397540191517,
+      "p95": 43.071333061475414,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 39.92426454980686,
+      "p05": 34.4434854521834,
+      "p95": 45.152500536625894,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "population_T80_hr",
+      "mean": 52.86287270549062,
+      "p05": 46.349108643789975,
+      "p95": 59.989969085701496,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 31.337776981796647,
+      "p05": 27.59068173865704,
+      "p95": 35.105784158681104,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "burden_Q4_hr",
+      "mean": 30.637942975052958,
+      "p05": 26.141422737502783,
+      "p95": 35.3521354614291,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 31.402914717863798,
+      "p05": 27.05274244265606,
+      "p95": 35.51867384654218,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "population_T80_hr",
+      "mean": 43.399848296543865,
+      "p05": 38.46480994740435,
+      "p95": 48.51803681572963,
+      "n_realizations": 1000
+    }
+  ],
+  "paired_component_rows": [
+    {
+      "component": "L_self_population_mass_weighted_hr",
+      "label": "Substation damage",
+      "degree_minus_hospital_mean_hr": 2.944701949630948,
+      "p05": 2.2777557911430906,
+      "p95": 3.7443651111204557,
+      "n_paired_realizations": 1000
+    },
+    {
+      "component": "L_threshold_population_mass_weighted_hr",
+      "label": "Functionality threshold",
+      "degree_minus_hospital_mean_hr": 0.1032344048873476,
+      "p05": 0.0724655418708217,
+      "p95": 0.14035448241312135,
+      "n_paired_realizations": 1000
+    },
+    {
+      "component": "L_source_population_mass_weighted_hr",
+      "label": "Source-path loss",
+      "degree_minus_hospital_mean_hr": -1.6466924084593768,
+      "p05": -3.1820139956140365,
+      "p95": -0.3537241041946505,
+      "n_paired_realizations": 1000
+    },
+    {
+      "component": "L_total_population_mass_weighted_hr",
+      "label": "Total service loss",
+      "degree_minus_hospital_mean_hr": 1.4012439460589194,
+      "p05": -0.17550362366852598,
+      "p95": 2.7844498143397014,
+      "n_paired_realizations": 1000
+    }
+  ],
+  "aggregate_component_mean_crosscheck": {
+    "L_self_population_mass_weighted_hr": {
+      "paired_realization_mean": 2.944701949630948,
+      "difference_of_saved_strategy_means": 2.9447019496309466,
+      "absolute_error": 1.3322676295501878e-15
+    },
+    "L_threshold_population_mass_weighted_hr": {
+      "paired_realization_mean": 0.1032344048873476,
+      "difference_of_saved_strategy_means": 0.1032344048873477,
+      "absolute_error": 9.71445146547012e-17
+    },
+    "L_source_population_mass_weighted_hr": {
+      "paired_realization_mean": -1.6466924084593768,
+      "difference_of_saved_strategy_means": -1.6466924084593768,
+      "absolute_error": 0.0
+    },
+    "L_total_population_mass_weighted_hr": {
+      "paired_realization_mean": 1.4012439460589194,
+      "difference_of_saved_strategy_means": 1.4012439460589263,
+      "absolute_error": 6.8833827526759706e-15
+    }
+  },
+  "component_additivity_max_abs_error_hr": 3.907985046680551e-14,
+  "component_mean_difference_sum_error_hr": 6.661338147750939e-16,
+  "page_size_mm": [
+    184.99999118381075,
+    250.0
+  ],
+  "uncertainty": "5th-95th realization ranges, not confidence intervals"
+}

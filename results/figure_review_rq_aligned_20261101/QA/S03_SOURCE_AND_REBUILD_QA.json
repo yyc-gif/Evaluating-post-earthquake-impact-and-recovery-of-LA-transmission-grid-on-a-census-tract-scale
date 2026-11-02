@@ -1,0 +1,169 @@
+{
+  "source_commit": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+  "source_pdf_sha256": "6e550f1afd7fcdfc7ae6fdb0e5918ed6f0f6a79a3fec2522118153766f2eddb3",
+  "source_png_sha256": "d384b9d8e25ca11b5237b3c3cba7d8bb0a31c6d6c0cb7e9aad53cd19784f46f6",
+  "revised_pdf_sha256": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c",
+  "revised_png_sha256": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478",
+  "comparison_pdf_sha256": "537b35cb01bcd62f145b0c6fcb38736d5074fdff0b4b09d0b98ab8ce46d66021",
+  "layout": {
+    "source_vector_signature": "f6e1984a2a4fbcb7ec626bafdca51558aacf180d7cfecb2dd62b503327f8f3cb",
+    "selected_source_regions_pt": {
+      "largest_component_recovery": [
+        0.0,
+        220.0,
+        524.409423828125,
+        375.0
+      ],
+      "mean_degree_recovery": [
+        0.0,
+        416.0,
+        524.409423828125,
+        570.0
+      ],
+      "shared_policy_legend": [
+        0.0,
+        576.0,
+        524.409423828125,
+        628.0
+      ]
+    },
+    "translations_pt": {
+      "largest_component_recovery": -195,
+      "mean_degree_recovery": -205,
+      "shared_policy_legend": -201
+    },
+    "panel_titles": [
+      "A. Recovery of largest-component fraction",
+      "B. Recovery of mean degree in the largest component"
+    ],
+    "title_top_pt": [
+      5,
+      184
+    ],
+    "page_points": [
+      524.409423828125,
+      432
+    ],
+    "source_plots_retained_as_vector_clips": true,
+    "static_percolation_excluded": true,
+    "recovery_column_headers_repeated": true
+  },
+  "active_caption": [
+    "Supplementary Figure S3. Functional-network recovery",
+    "Recovery of the largest connected-component fraction and mean degree within that component among functional substations. The curves describe network topology, not power flow or delivered electricity."
+  ],
+  "manifest_rows": [
+    {
+      "final_name": "Supplement/FigS03.pdf",
+      "source_file": "results/figure_review/Supplement/FigS03.pdf",
+      "source_commit": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+      "sha256": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c",
+      "size_mm": "185.000 x 152.400",
+      "min_font_pt": "7.500",
+      "status": "CURRENT_1021_FUNCTIONAL_NETWORK_RECOVERY",
+      "current_source_file": "results/figure_review_rq_aligned_20261101/Supplement/FigS03.pdf",
+      "parent_source_file": "results/figure_review/Supplement/FigS03.pdf",
+      "parent_source_commit": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+      "parent_sha256": "6e550f1afd7fcdfc7ae6fdb0e5918ed6f0f6a79a3fec2522118153766f2eddb3",
+      "parent_current_source_file": "results/figure_review/Supplement/FigS03.pdf",
+      "change_in_this_update": "UPDATED",
+      "mirror_file": "results/figures_rq_aligned_20261101/FigS03_Functional_Network_Recovery.pdf",
+      "presentation_generator": "src/la_grid/plotting/figure_presentation.py",
+      "presentation_generator_sha256": "ec8adce07f3b2cf4d3ca5049240b21c0178f6dee49309344f640c95d1b1d6432",
+      "additional_source_file": "",
+      "additional_source_sha256": ""
+    },
+    {
+      "final_name": "Supplement/FigS03.png",
+      "source_file": "results/figure_review/Supplement/FigS03.pdf",
+      "source_commit": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+      "sha256": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478",
+      "size_mm": "185.039 x 152.400",
+      "min_font_pt": "7.500",
+      "status": "CURRENT_1021_FUNCTIONAL_NETWORK_RECOVERY",
+      "current_source_file": "results/figure_review_rq_aligned_20261101/Supplement/FigS03.png",
+      "parent_source_file": "results/figure_review/Supplement/FigS03.pdf",
+      "parent_source_commit": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+      "parent_sha256": "d384b9d8e25ca11b5237b3c3cba7d8bb0a31c6d6c0cb7e9aad53cd19784f46f6",
+      "parent_current_source_file": "results/figure_review/Supplement/FigS03.png",
+      "change_in_this_update": "UPDATED",
+      "mirror_file": "results/figures_rq_aligned_20261101/FigS03_Functional_Network_Recovery.png",
+      "presentation_generator": "src/la_grid/plotting/figure_presentation.py",
+      "presentation_generator_sha256": "ec8adce07f3b2cf4d3ca5049240b21c0178f6dee49309344f640c95d1b1d6432",
+      "additional_source_file": "",
+      "additional_source_sha256": ""
+    }
+  ],
+  "index_rows": [
+    {
+      "figure_number": "FigS03",
+      "file": "FigS03_Functional_Network_Recovery.pdf",
+      "role": "Supplement",
+      "scientific_question": "How does functional-network topology recover over time?",
+      "main_message": "Largest-component fraction and within-component mean degree recover over time.",
+      "source_authority": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+      "source_path": "results/figure_review_rq_aligned_20261101/Supplement/FigS03.pdf",
+      "generator": "src/la_grid/plotting/figure_presentation.py",
+      "format": "pdf",
+      "submission_status": "Current author-approved seven-variable suite",
+      "notes": "Only the two original time-dependent network-recovery panels and their shared legend are shown.",
+      "scientific_content": "Largest-component fraction and within-component mean degree recover over time.",
+      "current_status": "CURRENT_1021_P2_K3_SUITE",
+      "main_or_supplement": "supplement",
+      "sha256_or_lfs_oid": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c",
+      "include_in_final_figure_collection": "True",
+      "source_data_path": "results/figure_review/Supplement/FigS03.pdf",
+      "source_data_sha256": "6e550f1afd7fcdfc7ae6fdb0e5918ed6f0f6a79a3fec2522118153766f2eddb3"
+    },
+    {
+      "figure_number": "FigS03",
+      "file": "FigS03_Functional_Network_Recovery.png",
+      "role": "Supplement",
+      "scientific_question": "How does functional-network topology recover over time?",
+      "main_message": "Largest-component fraction and within-component mean degree recover over time.",
+      "source_authority": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+      "source_path": "results/figure_review_rq_aligned_20261101/Supplement/FigS03.png",
+      "generator": "src/la_grid/plotting/figure_presentation.py",
+      "format": "png",
+      "submission_status": "Current author-approved seven-variable suite",
+      "notes": "Only the two original time-dependent network-recovery panels and their shared legend are shown.",
+      "scientific_content": "Largest-component fraction and within-component mean degree recover over time.",
+      "current_status": "CURRENT_1021_P2_K3_SUITE",
+      "main_or_supplement": "supplement",
+      "sha256_or_lfs_oid": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478",
+      "include_in_final_figure_collection": "True",
+      "source_data_path": "results/figure_review/Supplement/FigS03.pdf",
+      "source_data_sha256": "6e550f1afd7fcdfc7ae6fdb0e5918ed6f0f6a79a3fec2522118153766f2eddb3"
+    }
+  ],
+  "explorer_sha256": "635e8b1681c42716e291066df00dbfe047febd5fd0774160e7ef2d511bbefd21",
+  "legacy_strategy_display_occurrences_before": {
+    "Main/Fig04": 0,
+    "Main/Fig05": 0,
+    "Main/Fig06": 0,
+    "Supplement/FigS03": 0,
+    "Supplement/FigS08": 0
+  },
+  "legacy_strategy_display_occurrences_after": {
+    "Main/Fig04": 0,
+    "Main/Fig05": 0,
+    "Main/Fig06": 0,
+    "Supplement/FigS03": 0,
+    "Supplement/FigS08": 0
+  },
+  "packet": {
+    "complete_packet_pages": 16,
+    "main_figure_pages": 7,
+    "supplementary_figure_pages": 9,
+    "figure7_sha256": "9bf35ecd70bf3644fe73aecbebdded0e6f8265b4a9b2b25c1206b0f0ef31c833",
+    "figure7_matches_starting_hash": false
+  },
+  "static_analysis_code_or_results_modified": false,
+  "strategy_id": "centrality-first",
+  "strategy_display_name": "Spectral-connectivity-first",
+  "frozen_sequence_sha256": "435904b411b7c96a533548418ae9a0d8fa1cc46946d92799d2cc0eddc61d5b79",
+  "frozen_strategy_registry_sha256": "fdace5df66795045625465859f5bfd2b6e02d9517a0245ad93a5b8b91f3f0d99",
+  "strategy_id_and_registered_sequence_digest_unchanged": true,
+  "raw_sequence_payload_available": false,
+  "raw_sequence_payload_independently_replayed": false
+}

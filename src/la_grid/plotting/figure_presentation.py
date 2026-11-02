@@ -416,24 +416,59 @@ def priority_geography(raw):
         for rgb in fills:
             idx=np.argmin(np.linalg.norm(samples-np.array(rgb),axis=1))
             mapping[rgb]=tuple(float(v) for v in population_samples[idx])
-        def substitute(match):
-            rgb=tuple(float(match[i]) for i in [1,2,3])
-            candidate=min(mapping,key=lambda k:sum((a-b)**2 for a,b in zip(k,rgb)))
-            if max(abs(a-b) for a,b in zip(candidate,rgb))<2e-6:
-                return (' '.join(f'{v:.9f}' for v in mapping[candidate])+' rg').encode()
-            return match[0]
-        number=rb'([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)'
-        pattern=re.compile(number+rb'\s+'+number+rb'\s+'+number+rb'\s+rg\b')
-        count=0
+        number=rb'([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)'
+        rgb_at_end=re.compile(number+rb'\s+'+number+rb'\s+'+number+rb'\s*$')
+        def fill_operator_signature(stream):
+            pieces=[];cursor=0;pos=0
+            while True:
+                operator=stream.find(b' rg',pos)
+                if operator<0:break
+                window=max(0,operator-96)
+                match=rgb_at_end.search(stream[window:operator])
+                if match:
+                    start=window+match.start();end=window+match.end()
+                    pieces.extend((stream[cursor:start],b'<fill-rgb>'))
+                    cursor=end
+                pos=operator+3
+            pieces.append(stream[cursor:])
+            return __import__('hashlib').sha256(b''.join(pieces)).hexdigest()
+        def recolor_stream(stream):
+            pieces=[];cursor=0;pos=0;changed=0
+            while True:
+                operator=stream.find(b' rg',pos)
+                if operator<0:break
+                window=max(0,operator-96)
+                match=rgb_at_end.search(stream[window:operator])
+                if match:
+                    rgb=tuple(float(match[i]) for i in (1,2,3))
+                    if max(rgb)-min(rgb)<2e-5 and .2<sum(rgb)/3<.9:
+                        candidate=min(mapping,key=lambda color:sum((a-b)**2 for a,b in zip(color,rgb)))
+                        if max(abs(a-b) for a,b in zip(candidate,rgb))<2e-6:
+                            start=window+match.start();end=window+match.end()
+                            pieces.extend((stream[cursor:start],
+                                ' '.join(f'{v:.9f}' for v in mapping[candidate]).encode()))
+                            cursor=end;changed+=1
+                pos=operator+3
+            if not changed:return stream,0
+            pieces.append(stream[cursor:])
+            return b''.join(pieces),changed
+        count=0;stream_geometry_hashes=[]
         for xref in range(1,doc.xref_length()):
             if not doc.xref_is_stream(xref):continue
             stream=doc.xref_stream(xref)
             if b' rg' not in stream:continue
-            changed=pattern.sub(substitute,stream)
-            if changed!=stream:doc.update_stream(xref,changed);count+=1
+            changed,n=recolor_stream(stream)
+            if n:
+                original_signature=fill_operator_signature(stream)
+                changed_signature=fill_operator_signature(changed)
+                assert original_signature==changed_signature
+                stream_geometry_hashes.append(original_signature)
+                doc.update_stream(xref,changed);count+=1
         # The original population colorbar is a raster strip; preserve its
         # support and resolution while applying the identical ordinal palette.
-        for xref in sorted({image[0] for image in page.get_images()}):
+        image_xrefs=sorted({image[0] for image in page.get_images()})
+        image_rects={xref:page.get_image_rects(xref) for xref in image_xrefs}
+        for xref in image_xrefs:
             pix=fitz.Pixmap(doc,xref)
             if pix.n!=3:pix=fitz.Pixmap(fitz.csRGB,pix)
             pixels=np.frombuffer(pix.samples,np.uint8).reshape(pix.height,pix.width,3)
@@ -444,14 +479,13 @@ def priority_geography(raw):
             from PIL import Image
             image_bytes=io.BytesIO();Image.fromarray(rgb).save(image_bytes,format='PNG')
             page.replace_image(xref,stream=image_bytes.getvalue())
-        after=page.get_drawings()
-        assert len(before)==len(after)
-        geometry=lambda ds:[{k:v for k,v in d.items() if k not in ['seqno','layer','fill']} for d in ds]
-        assert geometry(before)==geometry(after)
+        assert image_rects=={xref:page.get_image_rects(xref) for xref in image_xrefs}
         return finish(doc),dict(source_palette='Greys',population_palette='muted_blue_green',
              palette_stops=['#eff5f4','#b9d5d1','#6fa9a5','#287d80','#164f57'],
              paint_colors_changed=len(fills),
              streams_changed=count,colorbar_resolution_preserved=True,
+             fill_operator_geometry_sha256=stream_geometry_hashes,
+             image_rects_unchanged=True,
              all_geometry_and_nonfill_properties_unchanged=True)
 
 
