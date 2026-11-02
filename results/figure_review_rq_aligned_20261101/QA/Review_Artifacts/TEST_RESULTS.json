@@ -24,6 +24,19 @@
     "local_payload_hashes_verified": true,
     "staging_method": "Git LFS clean output and verified pointer blobs; no ordinary-Git binary fallback"
   },
-  "remote_delivery": "Pending; no matching branch existed at initial GitHub lookup and direct git ls-remote failed due a DNS/thread-start error.",
-  "lfs_payload_delivery": "Pending; local payloads are prepared but remote upload has not yet been verified."
+  "commit": "f2a7ce41df9c4beda4814b9c0ec1ab27426ae3bf",
+  "remote_delivery": {
+    "review_branch": "refs/heads/review/1021-rq-aligned-results",
+    "review_branch_head": "f2a7ce41df9c4beda4814b9c0ec1ab27426ae3bf",
+    "original_1021_head_unchanged": "1887bca4872f24d6d547637440db5619a4423452"
+  },
+  "lfs_payload_delivery": {
+    "verified_by_remote_fetch": true,
+    "pointer_entries": 85,
+    "unique_payloads": 53,
+    "unique_payload_bytes": 280719667,
+    "unique_payload_mib": 267.72,
+    "sha256_and_size_failures": 0,
+    "transfer_note": "Initial git-lfs push reported 1,081 objects and 2.7 GB transferred, including historical LFS objects reachable from branch ancestry; follow-up branch push reported the same aggregate with 0 B/s. Net account storage/billing delta is not established by the transfer summary."
+  }
 }

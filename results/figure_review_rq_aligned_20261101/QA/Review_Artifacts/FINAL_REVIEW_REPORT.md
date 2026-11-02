@@ -28,7 +28,11 @@ For Figure 7, the verified cohort is 2,299 positive-population tracts and 9,066,
 
 These results are derived from frozen model outputs, not observed customer-outage data. Figure 4A could not be regenerated from unavailable event histories. The existing legacy integration test is tied to the official `results/figure_review/` paths and does not target this isolated output directory; the dedicated review tests and canonical double-build were used for this review output.
 
-The review branch is separate from `1021` and the October 14 publication baseline. The remote branch lookup returned no matching branch and direct GitHub access failed with a DNS/thread-start error. Standard Git LFS staging failed in this isolated Windows worktree, so the final artifacts were encoded as verified Git LFS pointers using the local clean operation. The index contains 85 LFS file entries backed by 53 unique, locally verified payloads (267.72 MiB). Commit and remote delivery are pending; no remote upload is claimed here.
+The review branch is separate from `1021` and the October 14 publication baseline. The review branch was pushed at commit `f2a7ce41df9c4beda4814b9c0ec1ab27426ae3bf`; remote `refs/heads/1021` remains at its original `1887bca4872f24d6d547637440db5619a4423452` baseline. The committed review directories contain 85 LFS pointer entries backed by 53 unique payloads (280,719,667 bytes; 267.72 MiB). Those 53 objects were fetched from the remote into an isolated verification store and each SHA-256 and byte count matched its committed pointer.
+
+LFS transfer incident: the initial `git lfs push` reported 1,081 objects and 2.7 GB transferred, substantially more than the 53 unique new review payloads. This indicates the push also uploaded historical LFS objects reachable from the branch ancestry that were not present in the remote LFS store. The follow-up branch push reported the same object count with 0 B/s. Git's transfer summary does not establish the resulting billing/storage delta, so no claim is made about net account storage. The new review payloads themselves have been verified independently as described above.
+
+Standard Git LFS staging failed in this isolated Windows worktree, so final artifacts were staged as verified Git LFS pointer blobs using the local clean operation. No artifacts were committed as ordinary-Git binary blobs.
 
 Rebuild command:
 
