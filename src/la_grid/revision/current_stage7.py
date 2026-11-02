@@ -47,7 +47,7 @@ def verify_current_figures(root=None):
     import csv
     import fitz
     root=Path(root) if root else Path(__file__).resolve().parents[3]
-    checkpoint=json.loads((root/'docs/reproducibility/p2_final_adoption_20261014/BUILD_CHECKPOINT.json').read_text(encoding='utf-8'))
+    checkpoint=json.loads((root/'results/diagnostics/1021/restoration_methods_s03_revision_20261019/BUILD_CHECKPOINT.json').read_text(encoding='utf-8'))
     assert checkpoint['model']=='P2' and checkpoint['fitted_feature_count']==7
     for name,h in checkpoint['output_hashes'].items():
         assert hashlib.sha256((root/name).read_bytes()).hexdigest()==h,name
@@ -57,8 +57,8 @@ def verify_current_figures(root=None):
         assert hashlib.sha256((root/row['current_source_file']).read_bytes()).hexdigest()==row['sha256']
         assert hashlib.sha256((root/row['mirror_file']).read_bytes()).hexdigest()==row['sha256']
     with fitz.open(root/'results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf') as packet:
-        assert len(packet)==20
-    return dict(status='PASS_CURRENT_P2_FIGURES',numbered_figures=16,packet_pages=20,
+        assert len(packet)==16
+    return dict(status='PASS_CURRENT_P2_FIGURES',numbered_figures=16,packet_pages=16,
                 mirrored_files=32,output_hashes_checked=len(checkpoint['output_hashes']),
                 no_new_fits_or_simulations=True)
 

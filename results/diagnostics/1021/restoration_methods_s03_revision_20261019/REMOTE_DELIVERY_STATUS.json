@@ -1,0 +1,24 @@
+{
+  "target_ref": "refs/heads/1021",
+  "local_head_at_check": "3f38d42bedffe64652e6d00ec0a61b4c012b1df3",
+  "remote_head_after_attempt": "382f50c385069c54d8970c443c50ee108ead13ab",
+  "push_attempted": true,
+  "push_succeeded": false,
+  "server_response": "This repository exceeded its LFS budget. The account responsible for the budget should increase it to restore access.",
+  "lfs_dry_run_objects": [
+    {"oid_sha256": "b5085d20fe40df6e1d759c6d5331e97458ee662c9d4e6d1cec0d9b938aee37fe", "path": "results/diagnostics/1021/restoration_methods_s03_revision_20261019/COMPACT_PACKET_PAGE_REGISTRY.csv"},
+    {"oid_sha256": "42dc7fa68aeac1818cbd390c4d8a612f06db0d874f451d9a387ea53dd9451391", "path": "results/diagnostics/1021/restoration_methods_s03_revision_20261019/FIGURE_ARTWORK_AND_SCIENCE_PRESERVATION.csv"},
+    {"oid_sha256": "719b9c1d2698882ca68d157e0030889535d55c1f0b9041086f4585336e81081f", "path": "results/diagnostics/1021/restoration_methods_s03_revision_20261019/FIGURE_CHANGE_MANIFEST.csv"},
+    {"oid_sha256": "537b35cb01bcd62f145b0c6fcb38736d5074fdff0b4b09d0b98ab8ce46d66021", "path": "results/diagnostics/1021/restoration_methods_s03_revision_20261019/S03_ORIGINAL_VS_REVISED.pdf"},
+    {"oid_sha256": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c", "path": "results/diagnostics/1021/restoration_methods_s03_revision_20261019/S03_REVISED.pdf"},
+    {"oid_sha256": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478", "path": "results/diagnostics/1021/restoration_methods_s03_revision_20261019/S03_REVISED.png"},
+    {"oid_sha256": "cb7f420819c7747e0c26caec7d16a35760626c6111b10d95f226e0a825661d6f", "path": "results/figure_review/ALL_FIGURES_WITH_CAPTIONS.pdf"},
+    {"oid_sha256": "bc4846a477dcf2ce67419f0cf4a774ee6b0df1d4e9f6ff75cc0650e3eafe21c6", "path": "results/figure_review/ALL_SUPPLEMENT_FIGURES.pdf"},
+    {"oid_sha256": "481d7574d683699a3bda4d1a8c8eae42e23e04b4139f89d80c09797cc8fe6c75", "path": "results/figure_review/FIGURE_MANIFEST.csv"},
+    {"oid_sha256": "1b3b975a0daae8d155ef5eafcf9f3bde1151c767bcce26327ac1cccc448f4680", "path": "results/figures/FIGURE_INDEX.csv"}
+  ],
+  "lfs_payloads_remotely_verified": false,
+  "lfs_payloads_locally_verified": true,
+  "local_lfs_payload_count_verified": 10,
+  "note": "Local files and staged Git LFS pointers were hash-checked. The server rejected the upload before accepting these new payloads; no remote-byte verification is claimed."
+}

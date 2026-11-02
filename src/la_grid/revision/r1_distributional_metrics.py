@@ -62,14 +62,17 @@ def population_weighted_gini(values:pd.Series,population:pd.Series)->float:
 
 
 def summarize_distribution(burden:pd.DataFrame,population:pd.Series,quartile:pd.Series)->pd.Series:
-    """Return absolute group burdens, two population denominators, gaps and Gini."""
+    """Return population-weighted normalized burdens over resolved tracts.
+
+    Partial resolved mass defines each tract's normalized burden and eligibility;
+    it does not multiply tract population again in the aggregate.
+    """
     pop=pd.to_numeric(population,errors='raise'); pop.index=pop.index.astype(str); pop=pop.reindex(burden.index)
     q=quartile.copy(); q.index=q.index.astype(str); q=q.reindex(burden.index)
     if pop.isna().any() or (pop<0).any() or q.isna().any(): raise ValueError('Population/quartile coverage is incomplete.')
     resolved=burden.status.eq('resolved'); norm=burden.normalized_burden_hr
     out={}
     denom=float(pop[resolved].sum()); out['population_weighted_normalized_burden_hr']=float((pop[resolved]*norm[resolved]).sum()/denom) if denom>0 else np.nan
-    mass_weight=pop*burden.resolved_mass; denom_mass=float(mass_weight[resolved].sum()); out['population_resolved_mass_weighted_burden_hr']=float((pop[resolved]*burden.restoration_burden_mass_hr[resolved]).sum()/denom_mass) if denom_mass>0 else np.nan
     for label in ['Q1','Q2','Q3','Q4']:
         use=resolved&q.eq(label); d=float(pop[use].sum()); out[f'burden_{label}_hr']=float((pop[use]*norm[use]).sum()/d) if d>0 else np.nan
     out['signed_Q4_minus_Q1_hr']=out['burden_Q4_hr']-out['burden_Q1_hr']; out['absolute_Q4_minus_Q1_hr']=abs(out['signed_Q4_minus_Q1_hr'])

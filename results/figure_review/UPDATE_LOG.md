@@ -44,3 +44,11 @@ Panel headings are centered consistently. S02 removes Directed; S03 distinguishe
 ## 2026-10-16 - Figure 7 palette, terminology and publication layout
 
 Figure 7A/B labels now use the seven registered publication-facing variable names; all six ECDFs and 21 standardized profile values are reconstructed from the verified P2/K3 tract table. The K3 palette is muted lake teal, slate blue and mauve. Figure 7C/D retain the same vector geography and map scale in a 7.2 x 9.03 in page; the D continuous blue-amber/luminance mapping is unchanged. Only Figure 7 changed among the 16 numbered artwork pairs. No feature values, memberships, SOVI groups, recovery results or simulations changed.
+
+## 2026-10-19 - Restoration strategy terminology and S3 recovery panels
+
+Spectral-connectivity-first is the display name for the unchanged centrality-first ID and station sequence. Supplementary Figure S3 shows the two time-dependent functional-network recovery analyses; static percolation remains in historical calculations but is omitted from the active figure. No scientific model or result changed.
+
+## 2026-10-21 - Figure S8 palette and publication packet
+
+Figure S8 population shading and its colorbar use a muted blue-green sequential palette; map geometry, station priorities and data are unchanged. The caption identifies the scale and points to active Supplementary Figure S9. Two unnumbered evidence candidates remain archived separately and are excluded from the 16-page numbered publication packet. Current figure text uses the Arial font family.

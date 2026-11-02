@@ -80,10 +80,10 @@ def evaluate_mapping(trace, weights, population, quartile, hospital_tracts):
     summary['population_times_resolved_mass']=mass_denom
     summary['unresolved_population']=float(pop[resolved<=1e-15].sum())
     summary['horizon_hr']=float(trace.f.index[-1])
-    for name in ['L_self','L_threshold','L_source','L_total']:
+    for name in ['L_self','L_threshold','L_source']:
         value=float(np.nansum(pop*b[name+'_mass_hr'].to_numpy()))/mass_denom if mass_denom>0 else np.nan
         summary[name+'_population_mass_weighted_hr']=value
-    total=summary['L_total_population_mass_weighted_hr']
+    total=float(np.nansum(pop*b['L_total_mass_hr'].to_numpy()))/mass_denom if mass_denom>0 else np.nan
     for name in ['L_self','L_threshold','L_source']:
         summary[name+'_fraction']=summary[name+'_population_mass_weighted_hr']/total if total>0 else np.nan
     return summary,b

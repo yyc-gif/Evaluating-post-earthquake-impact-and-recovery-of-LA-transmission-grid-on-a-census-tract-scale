@@ -163,35 +163,93 @@ def figure7(raw):
 
 
 def supplementary8(raw):
-    replacements={
-        'Thin curves: saved seeds 42-46':'Thin curves: seeds 42-46',
-        'C  Saved partition agreement':'C  Partition agreement',
-        'P2 seven-variable typology: saved selection and sensitivity evidence':'Clustering diagnostics',
-        'Agreement comparisons are descriptive internal diagnostics, not independent physical validation.':'',
-    }
+    output, palette_audit = priority_geography(raw)
+    return output,dict(population_color_audit=palette_audit,
+        text_and_nonpopulation_content_unchanged=True)
+
+
+def restoration_workflow(raw):
+    """Clarify the two restoration execution modes in Figure 1, Part 4 only."""
     with fitz.open(stream=raw,filetype='pdf') as doc:
-        p=doc[0];old=[s for s in spans(p) if s['text'] in replacements]
-        assert len(old)==4,len(old)
-        selected={}
-        for bold in [False,True]:
-            required=''.join(replacements[s['text']] for s in old if ('Bold' in s['font'])==bold)
-            selected[bold]=fonts(doc,bold,required)
-        signature=remove(p,old)
-        for s in old:
-            text=replacements[s['text']]
-            if not text:continue
-            bold='Bold' in s['font'];raw_font,metrics=selected[bold]
-            name='CleanBold' if bold else 'CleanBody'
-            p.insert_font(fontname=name,fontbuffer=raw_font)
-            point=s['origin']
-            if text=='Clustering diagnostics':
-                point=((p.rect.width-metrics.text_length(text,fontsize=s['size']))/2,point[1])
-            p.insert_text(point,text,fontname=name,fontsize=s['size'])
-        return finish(doc),dict(scientific_vectors_unchanged=signature,text_only_replacements=replacements)
+        page=doc[0]
+        w,h=page.rect.width,page.rect.height
+        old=[s for s in spans(page)
+             if s['bbox'][0] > 20 and s['bbox'][0] < 258
+             and s['bbox'][1] > 464 and s['bbox'][3] < 614]
+        old_text={' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-').split()) for s in old}
+        assert 'Restoration Policies and Execution' in old_text
+        assert {'Unconstrained','reference','Crew dispatch','and directed travel',
+                'Priority-strategy','recovery','80% service'}.issubset(old_text),old_text
+        white=(1.,1.,1.)
+        header=(232/255,244/255,242/255)
+        ink=(32/255,40/255,43/255)
+        muted=(103/255,116/255,121/255)
+        teal=(39/255,137/255,126/255)
+        page.draw_rect(fitz.Rect(9.5,481.7,256.3,614.7),color=None,fill=white,overlay=True)
+        page.draw_rect(fitz.Rect(21.8,465.2,250.5,480.5),color=None,fill=header,overlay=True)
+        page.insert_font(fontname='Fig1RestorationBold',fontfile='C:/Windows/Fonts/arialbd.ttf')
+        page.insert_font(fontname='Fig1RestorationBody',fontfile='C:/Windows/Fonts/arial.ttf')
+
+        title_text='Restoration Strategies and Execution'
+        title_font=fitz.Font(fontfile='C:/Windows/Fonts/arialbd.ttf')
+        assert title_font.text_length(title_text,fontsize=9.5) < 224
+        page.insert_text((22.677,475.654),title_text,fontname='Fig1RestorationBold',
+                         fontsize=9.5,color=ink,overlay=True)
+
+        def label(text,x,y,size=7.1,bold=False,color=ink):
+            page.insert_text((x,y),text,
+                fontname='Fig1RestorationBold' if bold else 'Fig1RestorationBody',
+                fontsize=size,color=color,overlay=True)
+
+        label('UNCONSTRAINED REFERENCE',15.5,497.5,bold=True,color=teal)
+        for text,y in [('Repairs proceed in parallel',510.0),
+                       ('using sampled durations; no',519.0),
+                       ('crew or travel constraints.',528.0)]:
+            label(text,15.5,y,7.2)
+
+        label('CONSTRAINED RESTORATION',15.5,561.5,bold=True,color=teal)
+        for text,y in [('Priority strategy sets repair order',574.0),
+                       ('Finite crews; dispatch accounts for',583.0),
+                       ('repair duration and directed travel.',592.0)]:
+            label(text,15.5,y,7.0)
+
+        page.draw_line(fitz.Point(15.5,546.0),fitz.Point(250.0,546.0),
+                       color=(0.82,0.85,0.86),width=0.45,overlay=True)
+        curve_x0,curve_x1=139.0,249.0
+        for top,bottom,title_y,time_y in [(500.5,530.5,495.5,540.0),
+                                          (564.5,594.5,559.5,604.0)]:
+            label('Modeled service availability',curve_x0,title_y,6.8,color=muted)
+            page.draw_line(fitz.Point(curve_x0,top),fitz.Point(curve_x0,bottom),
+                           color=muted,width=0.55,overlay=True)
+            page.draw_line(fitz.Point(curve_x0,bottom),fitz.Point(curve_x1,bottom),
+                           color=muted,width=0.55,overlay=True)
+            pts=[(curve_x0+4,bottom-2),(curve_x0+16,bottom-2),
+                 (curve_x0+16,bottom-8),(curve_x0+36,bottom-8),
+                 (curve_x0+36,bottom-14),(curve_x0+61,bottom-14),
+                 (curve_x0+61,bottom-21),(curve_x0+84,bottom-21),
+                 (curve_x0+84,top+1),(curve_x1-2,top+1)]
+            page.draw_polyline([fitz.Point(x,y) for x,y in pts],
+                               color=teal,width=1.25,overlay=True,lineCap=1,lineJoin=1)
+            label('Time',curve_x1-15,time_y,6.8,color=muted)
+
+        result=finish(doc)
+        return result,dict(
+            panel='4',title=title_text,
+            execution_modes=['Unconstrained reference','Constrained restoration'],
+            old_internal_labels_visually_replaced=sorted(old_text),
+            output='Modeled service availability trajectory in each mode',
+            no_threshold_or_T80_in_panel=True,
+            unconstrained='Repairs proceed in parallel using sampled durations; no crew or travel constraints.',
+            constrained='Priority strategy sets repair order; finite crews and dispatch account for repair duration and directed travel.',
+            panel_bounds_preserved=True,other_panels_and_stage_5_content_unchanged=True,
+            original_panel_graphics_covered_by_opaque_vector_replacement=True,
+            source_vector_signature='outside authorized panel verified by native-render pixel test',
+            width_pt=w,height_pt=h)
 
 
 def apply(stem,raw):
-    return {'Main/Fig05':figure5,'Main/Fig07':figure7,'Supplement/FigS08':supplementary8}[stem](raw)
+    return {'Main/Fig01':restoration_workflow,'Main/Fig05':figure5,'Main/Fig07':figure7,'Supplement/FigS03':functional_network_recovery,
+            'Supplement/FigS08':supplementary8}[stem](raw)
 
 
 def relabel(raw, replacements):
@@ -227,32 +285,41 @@ def cut_text(doc, selected):
     return out
 
 
-def recovery_network(raw):
-    """Separate static removal from the two time-dependent recovery measures."""
+def functional_network_recovery(raw):
+    """Keep only the two original time-dependent recovery panels and shared legend."""
     with fitz.open(stream=raw,filetype='pdf') as doc:
         p=doc[0];w=p.rect.width
-        old=[s for s in spans(p) if re.match(r'^[ABC]\. ',s['text'])]
+        old=[s for s in spans(p) if re.match(r'^[ABC]\. ',
+            s['text'].replace('\u00a0',' ').replace('\u00ad','-'))]
         assert len(old)==3
-        names=['A. Static percolation','B. Recovery of largest-component fraction',
-               'C. Recovery of mean degree in the largest component']
-        font=fonts(doc,True,''.join(names));signature=vector_signature(p)
-        out=fitz.open();page=out.new_page(width=w,height=642)
-        tile(page,doc,(0,36,w,168),4)
-        tile(page,doc,(0,210,w,354),13)
-        tile(page,doc,(0,390,w,530),32.25)
-        tile(page,doc,(0,540,w,610),32.25)
-        header=Path('C:/Windows/Fonts/arialbd.ttf').read_bytes()
-        metric=fitz.Font(fontbuffer=header)
-        page.insert_font(fontname='RecoveryColumnHeading',fontbuffer=header)
-        for label,x in [('Four focal policies',152.0),('Other selected policies',411.6)]:
-            page.insert_text((x-metric.text_length(label,fontsize=7.5)/2,424+metric.ascender*7.5),
-                             label,fontname='RecoveryColumnHeading',fontsize=7.5)
-        for name,y in zip(names,[12,192,387]):title(page,name,w/2,y,font,center=True)
+        names=['A. Recovery of largest-component fraction',
+               'B. Recovery of mean degree in the largest component']
+        signature=vector_signature(p)
+        out=fitz.open();page=out.new_page(width=w,height=432)
+        first=fitz.Rect(0,220,w,375)
+        second=fitz.Rect(0,416,w,570)
+        legend=fitz.Rect(0,576,w,628)
+        tile(page,doc,first,-195)
+        tile(page,doc,second,-205)
+        tile(page,doc,legend,-201)
+        heading_file='C:/Windows/Fonts/arialbd.ttf'
+        heading=fitz.Font(fontfile=heading_file)
+        for name,y in zip(names,[5,184]):
+            x=(w-heading.text_length(name,fontsize=9.5))/2
+            page.insert_text((x,y+heading.ascender*9.5),name,fontname='S3PanelHeading',
+                             fontfile=heading_file,fontsize=9.5,color=(0,0,0))
         result=finish(out);out.close()
-        return result,dict(scientific_vector_signature=signature,
-            translations_pt=dict(static=4,component_recovery=13,degree_recovery=32.25,legend=32.25),
-            recovery_column_headers_repeated=True,
-            title_top_pt=[12,192,387],preceding_content_to_title_gap_pt=[20,20])
+        with fitz.open(stream=result,filetype='pdf') as check:
+            visible=' '.join(check[0].get_text().replace('\u00a0',' ').replace('\u00ad','-').split())
+            assert all(name in visible for name in names),visible[-300:]
+        return result,dict(source_vector_signature=signature,
+            selected_source_regions_pt={'largest_component_recovery':list(first),
+                'mean_degree_recovery':list(second),'shared_policy_legend':list(legend)},
+            translations_pt={'largest_component_recovery':-195,
+                'mean_degree_recovery':-205,'shared_policy_legend':-201},
+            panel_titles=names,title_top_pt=[5,184],page_points=[w,432],
+            source_plots_retained_as_vector_clips=True,static_percolation_excluded=True,
+            recovery_column_headers_repeated=True)
 
 
 def gate_sensitivity(raw, values):
@@ -330,22 +397,25 @@ def gate_sensitivity(raw, values):
 
 
 def priority_geography(raw):
-    """Change only the population-context fill/colorbar to ordered neutral gray."""
-    from matplotlib import colormaps,colors
+    """Recolor only the population-context map and colorbar in muted teal."""
+    from matplotlib import colormaps
+    from matplotlib.colors import LinearSegmentedColormap
     import numpy as np
+    population_palette=LinearSegmentedColormap.from_list(
+        'MutedPopulationTeal',['#eff5f4','#b9d5d1','#6fa9a5','#287d80','#164f57'],N=256)
+    population_samples=population_palette(np.linspace(0,1,256))[:,:3]
     with fitz.open(stream=raw,filetype='pdf') as doc:
         page=doc[0]
         before=page.get_drawings()
-        fills={d['fill'] for d in before if d['fill'] and d['rect'].y0>525 and
-               d['fill'][2]-d['fill'][0]>.04 and d['fill'][2]>d['fill'][1]}
-        samples=colormaps['Blues'](np.linspace(0,1,256))[:,:3]
-        fills={rgb for rgb in fills if np.min(np.linalg.norm(samples-np.array(rgb),axis=1))<2e-5}
+        fills={d['fill'] for d in before if d['fill'] and d['rect'].y0>525}
+        samples=colormaps['Greys'](np.linspace(0,1,256))[:,:3]
+        fills={rgb for rgb in fills if max(rgb)-min(rgb)<2e-5 and .2<sum(rgb)/3<.9
+               and np.min(np.linalg.norm(samples-np.array(rgb),axis=1))<2e-5}
         assert len(fills)>20
         mapping={}
         for rgb in fills:
             idx=np.argmin(np.linalg.norm(samples-np.array(rgb),axis=1))
-            gray=float(colormaps['Greys'](idx/255)[0])
-            mapping[rgb]=(gray,gray,gray)
+            mapping[rgb]=tuple(float(v) for v in population_samples[idx])
         def substitute(match):
             rgb=tuple(float(match[i]) for i in [1,2,3])
             candidate=min(mapping,key=lambda k:sum((a-b)**2 for a,b in zip(k,rgb)))
@@ -363,23 +433,24 @@ def priority_geography(raw):
             if changed!=stream:doc.update_stream(xref,changed);count+=1
         # The original population colorbar is a raster strip; preserve its
         # support and resolution while applying the identical ordinal palette.
-        for image in page.get_images():
-            xref=image[0]
+        for xref in sorted({image[0] for image in page.get_images()}):
             pix=fitz.Pixmap(doc,xref)
             if pix.n!=3:pix=fitz.Pixmap(fitz.csRGB,pix)
             pixels=np.frombuffer(pix.samples,np.uint8).reshape(pix.height,pix.width,3)
             unique,inverse=np.unique(pixels.reshape(-1,3),axis=0,return_inverse=True)
             indices=np.argmin(np.sum((unique[:,None,:]/255-samples[None,:,:])**2,axis=2),axis=1)
-            gray=np.round(colormaps['Greys'](indices/255)[:,:3]*255).astype(np.uint8)
-            rgb=gray[inverse].reshape(pixels.shape)
+            colors=np.round(population_samples[indices]*255).astype(np.uint8)
+            rgb=colors[inverse].reshape(pixels.shape)
             from PIL import Image
             image_bytes=io.BytesIO();Image.fromarray(rgb).save(image_bytes,format='PNG')
             page.replace_image(xref,stream=image_bytes.getvalue())
         after=page.get_drawings()
         assert len(before)==len(after)
-        geometry=lambda ds:[{k:repr(v) for k,v in d.items() if k not in ['seqno','layer','fill']} for d in ds]
+        geometry=lambda ds:[{k:v for k,v in d.items() if k not in ['seqno','layer','fill']} for d in ds]
         assert geometry(before)==geometry(after)
-        return finish(doc),dict(population_palette='Greys',paint_colors_changed=len(fills),
+        return finish(doc),dict(source_palette='Greys',population_palette='muted_blue_green',
+             palette_stops=['#eff5f4','#b9d5d1','#6fa9a5','#287d80','#164f57'],
+             paint_colors_changed=len(fills),
              streams_changed=count,colorbar_resolution_preserved=True,
              all_geometry_and_nonfill_properties_unchanged=True)
 

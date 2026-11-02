@@ -20,7 +20,6 @@ from la_grid.revision.r1_mapping_gate_robustness import mapping_cases
 
 BOOTSTRAP_METRICS = (
     "population_T80_hr", "population_weighted_normalized_burden_hr",
-    "population_resolved_mass_weighted_burden_hr",
     "hospital_mean_normalized_burden_hr", "burden_Q4_hr",
     "signed_Q4_minus_Q1_hr", "absolute_Q4_minus_Q1_hr",
     "burden_gini", "makespan_hr",
@@ -106,6 +105,10 @@ def _primary_summary(root: Path, logistics: pd.DataFrame) -> pd.DataFrame:
         all_views.mapping.eq("M1_UTILITY_003") &
         all_views.gate.eq("G1_BASELINE_050") &
         all_views.comparison_domain.eq("mapping_native_domain")].copy()
+    primary = primary.drop(columns=[
+        "population_resolved_mass_weighted_burden_hr",
+        "L_total_population_mass_weighted_hr",
+    ], errors="ignore")
     if len(primary) != 84000:
         raise ValueError("Formal production primary view count differs")
     primary = primary.merge(logistics, on=["hazard", "realization_id", "strategy_id",

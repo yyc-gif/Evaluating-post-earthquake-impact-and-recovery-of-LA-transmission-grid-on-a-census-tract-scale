@@ -135,11 +135,11 @@ vbase=flt(vulnerable)
 assert len(base)==32000 and len(vbase)==4000
 combined=pd.concat([base,vbase[base.columns]],ignore_index=True)
 assert set(combined.strategy_id)==set(STRATEGIES) and len(combined)==36000
-metric_cols=['population_weighted_normalized_burden_hr','population_resolved_mass_weighted_burden_hr',
+metric_cols=['population_weighted_normalized_burden_hr',
  'population_T50_hr','population_T80_hr','hospital_mean_normalized_burden_hr','burden_Q1_hr','burden_Q2_hr',
  'burden_Q3_hr','burden_Q4_hr','signed_Q4_minus_Q1_hr','absolute_Q4_minus_Q1_hr','burden_gini',
  'L_self_population_mass_weighted_hr','L_threshold_population_mass_weighted_hr',
- 'L_source_population_mass_weighted_hr','L_total_population_mass_weighted_hr','makespan_hr','total_travel_hr']
+ 'L_source_population_mass_weighted_hr','makespan_hr','total_travel_hr']
 summary=combined.groupby(['hazard','strategy_id'])[metric_cols].agg(['mean','median','std']).reset_index()
 summary.columns=['_'.join(str(v) for v in c if v) for c in summary.columns]
 summary['strategy_id']=pd.Categorical(summary.strategy_id,STRATEGIES,ordered=True)

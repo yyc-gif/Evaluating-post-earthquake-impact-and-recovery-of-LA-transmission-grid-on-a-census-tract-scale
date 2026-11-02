@@ -1,0 +1,14 @@
+{
+  "branch": "refs/heads/1021",
+  "starting_commit": "382f50c385069c54d8970c443c50ee108ead13ab",
+  "command": "python -m pytest tests/test_current_figure_suite_integration.py -q",
+  "result": "passed",
+  "passed": 61,
+  "failed": 0,
+  "duration_seconds": 155.28,
+  "canonical_build_command": "python src/la_grid/plotting/build_current_figures.py --portable",
+  "canonical_build_runs": 2,
+  "second_run_hashes_match": true,
+  "second_run_pending": false,
+  "scope": "Figure-presentation generation and integration tests; no simulation, scheduling, GA, recovery, or clustering model was rerun."
+}

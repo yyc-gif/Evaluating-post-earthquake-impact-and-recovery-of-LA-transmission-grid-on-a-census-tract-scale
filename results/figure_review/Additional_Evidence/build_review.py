@@ -19,6 +19,8 @@ import fitz
 from plotly.offline import get_plotlyjs
 
 ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT/'src'))
+from la_grid.plotting.restoration_strategy_display import STRATEGY_DISPLAY_NAMES
 OUT=Path(__file__).resolve().parent
 F=ROOT/'Formal_Experiment_20260923/Formal_Results'
 E=ROOT/'Formal_Experiment_20260923/Equity_Amendment'
@@ -32,7 +34,7 @@ def literal_constants(path, names):
 
 C=literal_constants(ROOT/'provenance/figure_review_history/candidate_v2/build_candidate_v2.py',
                     ['STRATEGY_ORDER','LABEL','STYLE','HAZARDS','HAZARD_LABEL'])
-POLICIES=C['STRATEGY_ORDER']; LABEL=C['LABEL']; STYLE=C['STYLE']
+POLICIES=C['STRATEGY_ORDER']; LABEL={k:STRATEGY_DISPLAY_NAMES.get(k,v) for k,v in C['LABEL'].items()}; STYLE=C['STYLE']
 HAZARDS=C['HAZARDS']; HL=C['HAZARD_LABEL']
 METRICS={
  'population_weighted_normalized_burden_hr':'Population-weighted cumulative service loss (h)',

@@ -289,7 +289,7 @@ def resource_means(metric: str, scenarios: list[str]) -> pd.DataFrame:
 
     # Guard the population-burden display values against the already-published
     # OFAT summary where that same metric is available.
-    if metric == "population_resolved_mass_weighted_burden_hr":
+    if metric == "population_weighted_normalized_burden_hr":
         published = pd.read_csv(SUITE / "Sensitivity Output_clean" / "FORMAL_RESOURCE_EFFECTS.csv")
         published = published[published.metric.eq(metric) & published.resource_scenario.isin(scenarios)
                               & published.strategy_id.ne("direct-community")]
@@ -339,7 +339,7 @@ def plot_population_by_hazard() -> None:
         for i, key in enumerate(strategies):
             style_key = "S3_Mean" if key == "unconstrained" else key
             st = line_style(style_key, i)
-            ax.plot(part.loc[key, "population_resolved_mass_weighted_burden_hr_mean"],
+            ax.plot(part.loc[key, "population_weighted_normalized_burden_hr_mean"],
                     y[i], marker=st["marker"], linestyle="none", markersize=4.0,
                     color=st["color"], zorder=3)
         ax.set_yticks(y, [DISPLAY[k] for k in strategies])
@@ -399,7 +399,7 @@ def plot_cutoff_robustness() -> None:
     for comparison in ("2pc50_cutoff_M1_none", "2pc50_cutoff_M1_001"):
         row = d.loc[(d.comparison.eq(comparison)) &
                     (d.strategy_id.eq("hospital-first")) &
-                    (d.metric.eq("population_resolved_mass_weighted_burden_hr"))]
+                    (d.metric.eq("population_weighted_normalized_burden_hr"))]
         if len(row) != 1 or not np.isfinite(row.mean_delta.iloc[0]):
             raise ValueError(f"Expected one frozen Hospital-first cutoff row for {comparison}")
         values.append(float(row.mean_delta.iloc[0]))
@@ -586,7 +586,7 @@ def main() -> None:
     configure()
     plot_recovery()
     plot_paired("Candidate_Figure_Population_Burden",
-                "population_resolved_mass_weighted_burden_hr",
+                "population_weighted_normalized_burden_hr",
                 "2pc50: population cumulative burden",
                 "Paired difference from Hospital-first (h); 95% bootstrap CI")
     plot_paired("Candidate_Figure_Hospital_Burden",
@@ -600,7 +600,7 @@ def main() -> None:
     plot_quartile_burden()
     plot_loss_decomposition()
     plot_resource(
-        "Candidate_S17_Resource_Sensitivity", "population_resolved_mass_weighted_burden_hr",
+        "Candidate_S17_Resource_Sensitivity", "population_weighted_normalized_burden_hr",
         [("C29_D1", 29), ("C57_D1", 57), ("C86_D1", 86), ("C114_D1", 114)],
         "2pc50: population cumulative burden — crew OFAT",
         "Available crews (one factor at a time)", "Cumulative burden (h)",

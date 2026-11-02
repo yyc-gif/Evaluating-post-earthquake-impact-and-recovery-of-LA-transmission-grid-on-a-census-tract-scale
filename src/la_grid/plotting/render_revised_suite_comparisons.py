@@ -59,7 +59,7 @@ vuln_rows = pd.read_parquet(FORMAL / "Equity_Amendment" /
                            "VULNERABILITY_PRIMARY_SUMMARY.parquet")
 vuln_rows = vuln_rows[vuln_rows.resource_scenario == "C57_D1"]
 metric_specs = [
-    ("population_resolved_mass_weighted_burden_hr", "Population cumulative burden", "h"),
+    ("population_weighted_normalized_burden_hr", "Population-weighted normalized burden", "h"),
     ("population_T80_hr", "Population T80", "h"),
     ("hospital_mean_normalized_burden_hr", "Hospital-tract burden", "h"),
     ("burden_Q4_hr", "Change in Q4 burden relative to Hospital First", "h"),
@@ -126,10 +126,10 @@ for hazard in HAZARDS:
     fig, ax = plt.subplots(figsize=july.get_figsize("PANEL_FULLROW", height_cm=7.0))
     for s,row in d.iterrows():
         st = july.STAGE6_RECOVERY_STYLE_CONFIG[s]
-        ax.scatter(row.population_resolved_mass_weighted_burden_hr_mean,
+        ax.scatter(row.population_weighted_normalized_burden_hr_mean,
                    row.burden_Q4_hr_mean, s=25, color=st["color"], label=st["label"])
     july.style_axis(ax, title=f"{hazard}: system burden and Q4 burden",
-                    xlabel="Population-resolved-mass cumulative burden (h)",
+                    xlabel="Population-weighted normalized burden (h)",
                     ylabel="Q4 absolute burden (h)")
     lg = ax.legend(ncol=2, frameon=False, loc="best"); july.format_legend(lg)
     export(fig, S6, f"vis_stage6_equity_efficiency_{hazard}")
@@ -144,11 +144,9 @@ v_component_cols = ["L_self_population_mass_weighted_hr",
                     "L_threshold_population_mass_weighted_hr",
                     "L_source_population_mass_weighted_hr"]
 assert np.isfinite(v_gate[v_component_cols +
-                           ["L_total_population_mass_weighted_hr"]].to_numpy(float)).all()
+                           ["population_weighted_normalized_burden_hr"]].to_numpy(float)).all()
 assert np.allclose(v_gate[v_component_cols].sum(axis=1),
-                   v_gate.L_total_population_mass_weighted_hr, atol=1e-9)
-assert np.allclose(v_gate.L_total_population_mass_weighted_hr,
-                   v_gate.population_resolved_mass_weighted_burden_hr, atol=1e-9)
+                   v_gate.population_weighted_normalized_burden_hr, atol=1e-9)
 extra = []
 for hazard, rows in v_gate.groupby("hazard"):
     assert len(rows) == 1000
@@ -157,7 +155,7 @@ for hazard, rows in v_gate.groupby("hazard"):
                   "strategy_id":"vulnerability-first",
                   "self_mean_hr":values.iloc[0],"threshold_mean_hr":values.iloc[1],
                   "source_mean_hr":values.iloc[2],
-                  "total_mean_hr":rows.L_total_population_mass_weighted_hr.mean()})
+                  "total_mean_hr":rows[v_component_cols].sum(axis=1).mean()})
 gate = pd.concat([gate, pd.DataFrame(extra)], ignore_index=True)
 gate.to_csv(S3 / "LOSS_DECOMPOSITION_ALL_DISTINCT_STRATEGIES.csv",index=False)
 for hazard in HAZARDS:
@@ -255,8 +253,8 @@ export(fig, S5, "vis_stage5_five_seed_convergence")
 # Resource response keeps crew count and repair-duration scaling separate.
 resource = pd.read_csv(FORMAL / "Formal_Reviewer_Results" / "FORMAL_RESOURCE_EFFECTS.csv")
 vuln_resource = pd.read_parquet(FORMAL / "Equity_Amendment" / "VULNERABILITY_PRIMARY_SUMMARY.parquet")
-for metric in ("population_resolved_mass_weighted_burden_hr", "burden_Q4_hr", "L_source_population_mass_weighted_hr"):
-    readable = {"population_resolved_mass_weighted_burden_hr":"Population cumulative burden",
+for metric in ("population_weighted_normalized_burden_hr", "burden_Q4_hr", "L_source_population_mass_weighted_hr"):
+    readable = {"population_weighted_normalized_burden_hr":"Population-weighted normalized burden",
                 "burden_Q4_hr":"Q4 absolute burden",
                 "L_source_population_mass_weighted_hr":"Source-path cumulative burden"}[metric]
     for kind, cases, xs, xlabel in (
@@ -439,7 +437,7 @@ for family,color in (("M1","#b22222"),):
     for comp in (f"2pc50_cutoff_{family}_none",f"2pc50_cutoff_{family}_001"):
         d=mapping_effects[(mapping_effects.comparison==comp)&
             (mapping_effects.strategy_id=="hospital-first")&
-            (mapping_effects.metric=="population_resolved_mass_weighted_burden_hr")]
+            (mapping_effects.metric=="population_weighted_normalized_burden_hr")]
         assert len(d)==1,(comp,len(d))
         values.append(float(d.mean_delta.iloc[0]))
     values.append(0.0)
@@ -480,7 +478,7 @@ g = offline[(offline.mapping=="M1_UTILITY_003") &
             (offline.comparison_domain=="mapping_native_domain") &
             (offline.gate.isin(gate_ids))]
 assert len(g)==4000 and all(g.groupby("gate").size().reindex(gate_ids)==1000)
-gm = g.groupby("gate").population_resolved_mass_weighted_burden_hr.agg(["mean","median"])
+gm = g.groupby("gate").population_weighted_normalized_burden_hr.agg(["mean","median"])
 gm = gm.reindex(gate_ids)
 fig,ax=plt.subplots(figsize=july.get_figsize("PANEL_FULLROW",height_cm=7.0))
 ax.bar(np.arange(4),gm["mean"],color=["#4c78a8","#72b7b2","#b22222","#f39c34"],
@@ -545,7 +543,7 @@ ax_b.axvline(0,color="0.4",ls="--",lw=.6)
 ax_b.set_yticks([0,1],["All tracts","Q4"]);ax_b.invert_yaxis()
 july.style_axis(ax_b,title="B  Population-weighted tract effects",
                 xlabel="Burden change (h); 5–95% and 25–75% quantiles")
-cost=[("population_resolved_mass_weighted_burden_hr","Pop. burden"),
+cost=[("population_weighted_normalized_burden_hr","Pop. burden"),
       ("population_T80_hr","Pop. T80"),
       ("hospital_mean_normalized_burden_hr","Hospital burden"),
       ("absolute_Q4_minus_Q1_hr","|Q4–Q1| gap")]

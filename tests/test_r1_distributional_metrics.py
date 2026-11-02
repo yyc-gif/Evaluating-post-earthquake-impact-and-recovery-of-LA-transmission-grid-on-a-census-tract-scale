@@ -10,7 +10,14 @@ class Metrics(unittest.TestCase):
  def test_gini(self):self.assertAlmostEqual(population_weighted_gini(pd.Series([0.,10.]),pd.Series([1.,1.])),.5)
  def test_fixed_groups_and_absolute_outputs(self):
   q=assign_fixed_vulnerability_quartiles(pd.Series([1.,2.,3.,4.],index=['1','2','3','4']));self.assertEqual(q.tolist(),['Q1','Q2','Q3','Q4'])
-  b=pd.DataFrame({'resolved_mass':[1.,1.,1.,1.],'restoration_burden_mass_hr':[1.,2.,3.,4.],'normalized_burden_hr':[1.,2.,3.,4.],'status':['resolved']*4},index=['1','2','3','4']);s=summarize_distribution(b,pd.Series(1.,index=b.index),q);self.assertEqual(s.burden_Q1_hr,1.);self.assertEqual(s.burden_Q4_hr,4.);self.assertEqual(s.signed_Q4_minus_Q1_hr,3.)
+  b=pd.DataFrame({'resolved_mass':[1.,1.,1.,1.],'restoration_burden_mass_hr':[1.,2.,3.,4.],'normalized_burden_hr':[1.,2.,3.,4.],'status':['resolved']*4},index=['1','2','3','4']);s=summarize_distribution(b,pd.Series(1.,index=b.index),q);self.assertEqual(s.burden_Q1_hr,1.);self.assertEqual(s.burden_Q4_hr,4.);self.assertEqual(s.signed_Q4_minus_Q1_hr,3.);self.assertNotIn('population_resolved_mass_weighted_burden_hr',s.index)
+ def test_population_burden_uses_population_weights_for_resolved_tracts(self):
+  q=pd.Series(['Q1','Q4'],index=['a','b'])
+  b=pd.DataFrame({'resolved_mass':[.5,1.],'restoration_burden_mass_hr':[1.,4.],
+                  'normalized_burden_hr':[2.,4.],'status':['resolved','resolved']},index=['a','b'])
+  s=summarize_distribution(b,pd.Series([100.,300.],index=b.index),q)
+  self.assertEqual(s.population_weighted_normalized_burden_hr,3.5)
+  self.assertNotIn('population_resolved_mass_weighted_burden_hr',s.index)
  def test_effects_and_paired_bootstrap(self):
   x=classify_tract_effects(pd.Series({'1':1.,'2':3.,'3':np.nan}),pd.Series({'1':3.,'2':1.,'3':np.nan}));self.assertEqual(x.classification.tolist(),['improved','worsened','unresolved'])
   m=pd.DataFrame({'HF':[3.,4.,5.],'GA':[2.,5.,4.]},index=['r1','r2','r3']);a=paired_realization_summary(m,'HF',bootstrap_resamples=200,bootstrap_seed=9);b=paired_realization_summary(m,'HF',bootstrap_resamples=200,bootstrap_seed=9);pd.testing.assert_frame_equal(a,b);self.assertEqual(a.loc['GA','n_realizations'],3)

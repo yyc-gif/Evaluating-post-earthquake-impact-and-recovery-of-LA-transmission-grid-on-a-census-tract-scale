@@ -5,7 +5,7 @@ from pathlib import Path
 from la_grid.plotting import selected_strategy_artwork as a
 from la_grid.plotting.selected_strategy_panels import all_summary,MARK
 R=a.ROOT;OUT=R/'results/diagnostics/selected_strategy_20261008'
-METRICS={'population_weighted_normalized_burden_hr':'All-tract service loss (h)','population_resolved_mass_weighted_burden_hr':'Population-dependency-weighted service loss (h)','population_T80_hr':'Population T80 (h)','hospital_mean_normalized_burden_hr':'Hospital-tract service loss (h)','burden_gini':'Population-weighted Gini','signed_Q4_minus_Q1_hr':'Signed Q4-Q1 service-loss difference (h)','absolute_Q4_minus_Q1_hr':'High-low vulnerability service-loss gap (h)','L_self_population_mass_weighted_hr':'Substation-damage service loss (h)','L_threshold_population_mass_weighted_hr':'Functionality-threshold service loss (h)','L_source_population_mass_weighted_hr':'Source-path service loss (h)'}
+METRICS={'population_weighted_normalized_burden_hr':'Population-weighted service loss (h)','population_T80_hr':'Population T80 (h)','hospital_mean_normalized_burden_hr':'Hospital-tract service loss (h)','burden_gini':'Population-weighted Gini','signed_Q4_minus_Q1_hr':'Signed Q4-Q1 service-loss difference (h)','absolute_Q4_minus_Q1_hr':'High-low vulnerability service-loss gap (h)','L_self_population_mass_weighted_hr':'Substation-damage service loss (h)','L_threshold_population_mass_weighted_hr':'Functionality-threshold service loss (h)','L_source_population_mass_weighted_hr':'Source-path service loss (h)'}
 METRICS.update({f'burden_Q{i}_hr':f'Q{i} tract service loss (h)' for i in range(1,5)})
 
 def tables(d):

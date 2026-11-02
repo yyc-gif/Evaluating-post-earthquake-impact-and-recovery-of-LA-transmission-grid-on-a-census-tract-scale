@@ -529,7 +529,7 @@ def plot_fig04(data: pd.DataFrame) -> None:
                columnspacing=1.1, handletextpad=.38)
 
     panels = [
-        ("population_resolved_mass_weighted_burden_hr", "B. Population-weighted cumulative service burden", "Cumulative burden (h)"),
+        ("population_weighted_normalized_burden_hr", "B. Population-weighted cumulative service burden", "Cumulative burden (h)"),
         ("hospital_mean_normalized_burden_hr", "C. Hospital-linked tract cumulative burden", "Cumulative burden (h)"),
         ("population_T80_hr", "D. Population time to 80% service", "Time (h)"),
     ]
@@ -678,7 +678,7 @@ def plot_fig06(data: pd.DataFrame) -> None:
     # Panel C is a dot-and-interval effect profile, not a numeric table. Each
     # row has its own scale because the effects have different units/magnitudes.
     effect_rows = [
-        ("population_resolved_mass_weighted_burden_hr", "Population-weighted cumulative\nservice burden (h)", "h"),
+        ("population_weighted_normalized_burden_hr", "Population-weighted cumulative\nservice burden (h)", "h"),
         ("absolute_Q4_minus_Q1_hr", "High–low vulnerability burden\ndifference (h)", "h"),
         ("burden_gini", "Tract-burden inequality\n(population-weighted Gini)", ""),
         ("population_T80_hr", "Population time to 80%\nservice (h)", "h"),
@@ -876,13 +876,13 @@ def plot_mapping_shift_panel() -> Path:
     d=pd.read_csv(p)
     d=d[(d.hazard=="2pc50")&(d.comparison=="full92")&(d.domain=="mapping_native_domain")&
         (d.reference_mapping=="M0_JULY_003")&(d.target_mapping=="M1_UTILITY_003")&
-        (d.metric.isin(["population_resolved_mass_weighted_burden_hr","population_T80_hr"]))].copy()
+        (d.metric.isin(["population_weighted_normalized_burden_hr","population_T80_hr"]))].copy()
     keys=["centrality-first","impact-first","betweenness-first","degree-first","closeness-first","hospital-first","random","unconstrained"]
     d=d[~d.strategy_id.eq("direct-community")]
     if set(d.strategy_id)!=set(keys) or any(d.groupby(["metric","strategy_id"]).size()!=1):
         raise ValueError("Frozen M0/M1 mapping effects do not cover the expected distinct policies")
     fig,axes=plt.subplots(1,2,figsize=(18.5*CM,10.1*CM))
-    metrics=[("population_resolved_mass_weighted_burden_hr","Population-weighted modeled service burden (h)"),
+    metrics=[("population_weighted_normalized_burden_hr","Population-weighted modeled service burden (h)"),
              ("population_T80_hr","Population time to 80% service (h)")]
     markers={"centrality-first":"o","impact-first":"s","betweenness-first":"^","degree-first":"D","closeness-first":"v","hospital-first":"P","random":"X","unconstrained":"o"}
     for ax,(metric,label) in zip(axes,metrics):
@@ -971,7 +971,7 @@ def plot_supp_fig06() -> None:
     effects=pd.read_csv(effects_path)
     effects=effects[(effects.comparison.eq("full92"))&(effects.domain.eq("mapping_native_domain"))&
                     (effects.reference_mapping.eq("M0_JULY_003"))&(effects.target_mapping.eq("M1_UTILITY_003"))&
-                    (effects.metric.eq("population_resolved_mass_weighted_burden_hr"))&
+                    (effects.metric.eq("population_weighted_normalized_burden_hr"))&
                     (effects.strategy_id.eq("hospital-first"))].copy()
     if len(effects)!=4:
         raise ValueError("Expected four frozen hazard-level July-to-revised mapping effects")

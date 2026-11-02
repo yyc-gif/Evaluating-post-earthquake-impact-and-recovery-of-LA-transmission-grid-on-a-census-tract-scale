@@ -29,7 +29,7 @@ def render_formal_figures(output_root: Path, tract_ids, population, weights,
                   "closeness-first", "betweenness-first", "centrality-first", "random",
                   "direct-community"]
     means = primary.groupby(["hazard", "strategy_id"], sort=False)[
-        "population_resolved_mass_weighted_burden_hr"].mean().unstack()
+        "population_weighted_normalized_burden_hr"].mean().unstack()
     fig, axes = plt.subplots(2, 2, figsize=(11, 7), constrained_layout=True)
     for ax, hazard in zip(axes.flat, order):
         values = means.loc[hazard, strategies]

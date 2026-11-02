@@ -74,10 +74,12 @@ class PreparedMapping:
 def evaluate_exact_event_arrays(*, mapping: PreparedMapping, event_time_hr,
                                 f, e, L_self, L_threshold, L_source, L_total,
                                 L_capacity=None):
-    """Evaluate the frozen exact-event service metrics.
+    """Evaluate exact-event service metrics with one reported total burden.
 
     L_capacity is an optional sensitivity-only additive loss component.
-    When omitted, legacy callers retain the same returned fields and accounting.
+    Total burden is population-weighted over resolved tracts using each tract's
+    normalized burden. Resolved mass remains for tract normalization, coverage,
+    component accounting, and the resolved-population T50/T80/T90 denominator.
     Production source-gate semantics are unchanged.
     """
     time = np.asarray(event_time_hr, float)
@@ -114,8 +116,6 @@ def evaluate_exact_event_arrays(*, mapping: PreparedMapping, event_time_hr,
     summary = {
         "population_weighted_normalized_burden_hr":
             float(np.dot(p[eligible], burden[eligible]) / denominator_pop) if denominator_pop else np.nan,
-        "population_resolved_mass_weighted_burden_hr":
-            float(np.dot(p, component["L_total"]) / denominator_mass) if denominator_mass else np.nan,
         "represented_population": denominator_pop,
         "population_times_resolved_mass": denominator_mass,
         "unresolved_population": float(p[~eligible].sum()),
@@ -138,10 +138,11 @@ def evaluate_exact_event_arrays(*, mapping: PreparedMapping, event_time_hr,
     for target, label in ((.5, "T50"), (.8, "T80"), (.9, "T90")):
         hit = np.flatnonzero(curve >= target)
         summary[f"population_{label}_hr"] = float(time[hit[0]]) if len(hit) else np.nan
-    for name in station_names:
+    for name in loss_names:
         summary[name + "_population_mass_weighted_hr"] = (
             float(np.dot(p, component[name]) / denominator_mass) if denominator_mass else np.nan)
-    total = summary["L_total_population_mass_weighted_hr"]
+    total = (float(np.dot(p, component["L_total"]) / denominator_mass)
+             if denominator_mass else np.nan)
     for name in loss_names:
         summary[name + "_fraction"] = summary[name + "_population_mass_weighted_hr"] / total if total > 0 else np.nan
     tract = dict(resolved_mass=resolved, normalized_burden_hr=burden,

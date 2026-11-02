@@ -23,8 +23,7 @@ from la_grid.revision.r1_mapping_gate_robustness import mapping_cases
 
 
 METRICS = ("population_weighted_normalized_burden_hr",
-           "population_resolved_mass_weighted_burden_hr", "population_T50_hr",
-           "population_T80_hr", "hospital_mean_normalized_burden_hr",
+           "population_T50_hr", "population_T80_hr", "hospital_mean_normalized_burden_hr",
            "burden_Q1_hr", "burden_Q2_hr", "burden_Q3_hr", "burden_Q4_hr",
            "signed_Q4_minus_Q1_hr", "absolute_Q4_minus_Q1_hr", "burden_gini",
            "makespan_hr", "total_travel_hr")
@@ -106,6 +105,8 @@ def _primary():
         logistics[["hazard","realization_id","resource_scenario","strategy_id",
                    "physical_sample_hash","task_count","makespan_hr","total_travel_hr"]],
         on=["hazard","realization_id","resource_scenario","strategy_id"],validate="one_to_one")
+    result=result.drop(columns=["population_resolved_mass_weighted_burden_hr",
+                                "L_total_population_mass_weighted_hr"],errors="ignore")
     if len(result)!=10000 or result.physical_sample_hash.isna().any():
         raise ValueError("Equity primary summary/physical pairing differs")
     return result

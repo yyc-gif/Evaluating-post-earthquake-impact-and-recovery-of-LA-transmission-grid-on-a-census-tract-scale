@@ -5,6 +5,7 @@ from la_grid.revision.formal.offline import PreparedMapping, evaluate_exact_even
 from la_grid.revision.r1_mapping_gate_robustness import evaluate_mapping
 from la_grid.revision.r1_source_gate import GateTrace
 from la_grid.revision.r1_distributional_metrics import population_weighted_gini
+from la_grid.revision.formal.results import BOOTSTRAP_METRICS
 
 
 def test_exact_station_integral_matches_retained_tract_evaluator():
@@ -39,6 +40,11 @@ def test_exact_station_integral_matches_retained_tract_evaluator():
     for name, value in retained.items():
         if name in fast and isinstance(value, (int, float, np.number)):
             assert np.isclose(value, fast[name], rtol=0, atol=1e-12, equal_nan=True), name
+    assert "population_resolved_mass_weighted_burden_hr" not in fast
+    assert "L_total_population_mass_weighted_hr" not in fast
+    assert "population_resolved_mass_weighted_burden_hr" not in BOOTSTRAP_METRICS
+    assert np.isclose(fast["population_weighted_normalized_burden_hr"], 5.8)
+    assert fast["population_times_resolved_mass"] == 300.0
     assert np.allclose(rows.normalized_burden_hr.to_numpy(),
                        tract["normalized_burden_hr"], rtol=0, atol=1e-12,
                        equal_nan=True)

@@ -9,6 +9,7 @@ import os
 import re
 import subprocess
 import sys
+import zipfile
 
 import fitz
 import numpy as np
@@ -29,6 +30,8 @@ ACTIVE=[f'Main/Fig{i:02d}' for i in range(1,8)]+[f'Supplement/FigS{i:02d}' for i
 sys.path.insert(0,str(ROOT/'src'))
 sys.path.insert(0,str(ROOT/'src/la_grid/plotting'))
 import consolidate_current_figure_suite as suite_utils
+sys.path.insert(0,str(ROOT/'src/la_grid/plotting'))
+from restoration_strategy_display import STRATEGY_DISPLAY_NAMES
 
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -63,18 +66,56 @@ def test_every_mirror_is_byte_identical():
 
 
 def test_unchanged_and_updated_artwork_are_explicitly_recorded():
-    changes=df(MAP_QA/'FIGURE_CHANGE_MANIFEST.csv')
+    changes=df(ROOT/'results/diagnostics/1021/restoration_methods_s03_revision_20261019/FIGURE_CHANGE_MANIFEST.csv')
     assert len(changes)==32
     for r in changes.itertuples():
         if r.unchanged:assert sha(SUITE/r.figure)==r.baseline_sha256==r.current_sha256
-    assert set(changes.loc[changes.unchanged,'figure'])=={s+'.'+e for s in ACTIVE if s!='Main/Fig07' for e in ['pdf','png']}
-    assert set(changes.loc[~changes.unchanged,'figure'])=={'Main/Fig07.pdf','Main/Fig07.png'}
+    assert set(changes.loc[changes.unchanged,'figure'])=={s+'.'+e for s in ACTIVE if s not in {'Main/Fig01','Supplement/FigS03','Supplement/FigS08'} for e in ['pdf','png']}
+    assert set(changes.loc[~changes.unchanged,'figure'])=={
+        'Main/Fig01.pdf','Main/Fig01.png',
+        'Supplement/FigS03.pdf','Supplement/FigS03.png',
+        'Supplement/FigS08.pdf','Supplement/FigS08.png'}
 
 
 def test_independent_main_results_and_merged_resource_artwork_preserved():
     changes=df(MAP_QA/'FIGURE_CHANGE_MANIFEST.csv').set_index('figure')
-    for s in ['Main/Fig01','Main/Fig04','Main/Fig05','Main/Fig06','Supplement/FigS09']:
+    for s in ['Main/Fig04','Main/Fig05','Main/Fig06','Supplement/FigS09']:
         for e in ['pdf','png']:assert bool(changes.loc[s+'.'+e,'unchanged'])
+
+
+def test_figure1_restoration_modes_are_distinct_and_only_part4_changes():
+    source_pdf=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Main/Fig01.pdf')
+    with fitz.open(stream=source_pdf,filetype='pdf') as original, fitz.open(SUITE/'Main/Fig01.pdf') as revised:
+        assert len(original)==len(revised)==1
+        page=revised[0]
+        text=' '.join(page.get_text().split())
+        assert 'Restoration Strategies and Execution' in text
+        assert 'UNCONSTRAINED REFERENCE' in text
+        assert 'CONSTRAINED RESTORATION' in text
+        assert 'Repairs proceed in parallel' in text
+        assert 'Priority strategy sets repair order' in text
+        assert 'Finite crews' in text and 'directed travel' in text
+        assert 'Modeled service availability' in text
+        assert 'Time to 80% service' in text and '(T80)' in text
+        source_spans=[s for b in original[0].get_text('dict')['blocks'] for line in b.get('lines',[])
+                      for s in line['spans'] if s['bbox'][0]>20 and s['bbox'][0]<258
+                      and s['bbox'][1]>464 and s['bbox'][3]<614]
+        source_labels={' '.join(s['text'].replace('\xa0',' ').split()) for s in source_spans}
+        assert {'Crew dispatch','Priority\xadstrategy','80% service'}.issubset(source_labels)
+        assert all(9.5<=s['bbox'][0] and s['bbox'][2]<=256.3 and 465.2<=s['bbox'][1]
+                   and s['bbox'][3]<=614.7 for s in source_spans if s['bbox'][1]>=481.7)
+        source_pix=original[0].get_pixmap(dpi=150,alpha=False)
+        a=Image.frombytes('RGB',(source_pix.width,source_pix.height),source_pix.samples)
+        pix=revised[0].get_pixmap(dpi=150,alpha=False)
+        b=Image.frombytes('RGB',(pix.width,pix.height),pix.samples)
+        assert a.size==b.size
+        scale=150/72
+        x0,x1=round(8*scale),round(258*scale)
+        y0,y1=round(464*scale),round(616*scale)
+        outside=np.ones((a.height,a.width),dtype=bool)
+        outside[y0:y1,x0:x1]=False
+        aa=np.asarray(a);bb=np.asarray(b)
+        assert np.array_equal(aa[outside],bb[outside]),'Figure 1 changed outside the authorized Part 4 panel.'
 
 
 def test_no_extra_numbered_artwork_or_retired_numbering():
@@ -99,9 +140,29 @@ def test_all_native_previews_exist():
 
 
 def test_packet_page_counts():
-    assert len(fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))==20
+    assert len(fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))==16
     assert len(fitz.open(SUITE/'ALL_MAIN_FIGURES.pdf'))==7
     assert len(fitz.open(SUITE/'ALL_SUPPLEMENT_FIGURES.pdf'))==9
+
+
+def test_coauthor_package_has_individual_pngs_and_separate_captions():
+    archive_path=ROOT/'results/drive_upload/2026-10-23/LA_Grid_Figures_2026-10-23.zip'
+    with zipfile.ZipFile(archive_path) as archive:
+        names=set(archive.namelist())
+        assert archive.testzip() is None
+        images={n for n in names if n.startswith('Figures/') and n.endswith('.png')}
+        assert len(images)==16
+        assert 'CAPTIONS.md' in names and 'README.md' in names
+        assert not any(n.lower().endswith(('.pdf','.csv')) for n in names)
+        captions=archive.read('CAPTIONS.md').decode('utf-8')
+        assert captions.count('\n## ')==16
+        manifest={Path(r['mirror_file']).name:r for r in rows() if r['final_name'].endswith('.png')}
+        for name in images:
+            basename=Path(name).name
+            data=archive.read(name)
+            assert hashlib.sha256(data).hexdigest()==manifest[basename]['sha256']
+            with Image.open(io.BytesIO(data)) as image:
+                assert image.format=='PNG' and min(image.info.get('dpi',(0,0)))>=599
 
 
 def test_packet_embeds_each_actual_artwork_at_native_size():
@@ -114,7 +175,7 @@ def test_packet_embeds_each_actual_artwork_at_native_size():
 
 
 def test_all_caption_forms_are_short_and_legible():
-    registry=list(csv.DictReader((MAP_QA/'COMPACT_PACKET_PAGE_REGISTRY.csv').open(encoding='utf-8')))
+    registry=list(csv.DictReader((ROOT/'results/diagnostics/1021/restoration_methods_s03_revision_20261019/COMPACT_PACKET_PAGE_REGISTRY.csv').open(encoding='utf-8')))
     assert len(registry)==16
     with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as book:
         for i,r in enumerate(registry):
@@ -319,12 +380,43 @@ def test_current_entrypoint_routes_only_to_adopted_p2():
 
 
 def test_every_generator_checkpoint_output_is_current():
-    q=read(MAP_QA/'BUILD_CHECKPOINT.json')
+    q=read(ROOT/'results/diagnostics/1021/restoration_methods_s03_revision_20261019/BUILD_CHECKPOINT.json')
     assert q['fitted_feature_count']==7 and q['model']=='P2' and q['primary_K']==3
-    assert q['packet_pages']==20 and q['numbered_figures']==16
+    assert q['packet_pages']==16 and q['numbered_figures']==16
     assert sha(ROOT/'src/la_grid/plotting/build_current_suite_p2.py')==q['generator_sha256']
     assert sha(ROOT/'src/la_grid/plotting/figure_presentation.py')==q['presentation_sha256']
     assert all(sha(ROOT/p)==h for p,h in q['output_hashes'].items())
+
+
+def test_current_suite_uses_arial_and_s8_population_scale_is_blue_green():
+    for stem in ACTIVE:
+        with fitz.open(SUITE/(stem+'.pdf')) as doc:
+            names={font[3].split('+')[-1].strip() for page in doc for font in page.get_fonts()}
+            assert names and all(name.lower().startswith('arial') for name in names),(stem,names)
+    with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as doc:
+        names={font[3].split('+')[-1].strip() for page in doc for font in page.get_fonts()}
+        assert names and all(name.lower().startswith('arial') for name in names),names
+    qa=read(ROOT/'results/diagnostics/1021/restoration_methods_s03_revision_20261019/FIGURE_PRESENTATION_QA.json')
+    s8=qa['figures']['Supplement/FigS08']['presentation']['population_color_audit']
+    assert s8['population_palette']=='muted_blue_green'
+    assert len(s8['palette_stops'])>=4
+    caption=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
+    s8_caption=caption.split('## Supplementary Figure S8.',1)[1].split('\n## ',1)[0]
+    assert 'blue-green' in s8_caption.lower()
+    assert 'gray' not in s8_caption.lower() and 'grey' not in s8_caption.lower()
+    assert 'Supplementary Figure S9' in s8_caption
+    assert 'Supplementary Figure S10' not in s8_caption
+    with fitz.open(SUITE/'Supplement/FigS08.pdf') as doc:
+        fills=[drawing['fill'] for drawing in doc[0].get_drawings()
+               if drawing['fill'] and drawing['rect'].y0>525
+               and max(drawing['fill'])-min(drawing['fill'])>.08]
+        assert len(fills)>20
+
+
+def test_unnumbered_evidence_candidates_are_not_in_publication_packet_but_preserved():
+    assert (SUITE/'Additional_Evidence/Degree_and_Betweenness.pdf').is_file()
+    assert (SUITE/'Additional_Evidence/Network_Station_Community_Tradeoffs.pdf').is_file()
+    assert len(fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf'))==16
 
 
 def test_current_gallery_index_and_manifest_are_synchronized():
@@ -467,19 +559,54 @@ def test_travel_title_is_task_to_task_without_extra_qualifier():
     assert 'B. Task-to-task travel' in text and 'Directed task-to-task' not in text
 
 
-def test_static_percolation_is_distinct_from_time_dependent_recovery():
+def test_s3_contains_only_the_two_original_time_dependent_recovery_panels():
     text=fitz.open(SUITE/'Supplement/FigS03.pdf')[0].get_text().replace('\u00a0',' ').replace('\u00ad','-')
-    for t in ['A. Static percolation','B. Recovery of largest-component fraction',
-              'C. Recovery of mean degree in the largest component','Time after earthquake (h)']:
-        assert t in text
-    expected=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Supplement/FigS03.pdf')
-    assert sha(SUITE/'Supplement/FigS03.pdf')==hashlib.sha256(expected).hexdigest()
+    assert 'A. Recovery of largest-component fraction' in text
+    assert 'B. Recovery of mean degree in the largest component' in text
+    assert 'Static percolation' not in text and 'C. Recovery' not in text
+    assert text.count('Time after earthquake (h)')==4
+    assert 'Four focal policies' in text and 'Other selected policies' in text
     with fitz.open(SUITE/'Supplement/FigS03.pdf') as d:
-        axes=[v['rect'] for v in d[0].get_drawings() if abs(v['rect'].x0-57.685)<.02
-              and abs(v['rect'].width-188.787)<.02 and abs(v['rect'].height-102.047)<.02]
-    assert any(abs(r.y0-239.7716)<.02 for r in axes)
-    assert any(abs(r.y0-434.7697)<.02 for r in axes)
-    assert abs((434.7697-387)-(239.7716-192))<.01
+        assert len(d)==1 and abs(d[0].rect.width-185*72/25.4)<.2
+        assert abs(d[0].rect.height-432)<.01 and d[0].get_images(full=True)==[]
+    assert 'Static percolation' not in caps()
+    assert 'Supplementary Figure S3. Functional-network recovery' in caps()
+    with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as book:
+        assert 'Supplementary Figure S3. Functional-network recovery' in book[9].get_text()
+
+
+def test_s3_recovery_plots_and_shared_legend_retain_source_vector_streams():
+    source=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Supplement/FigS03.pdf')
+    with fitz.open(stream=source,filetype='pdf') as before, fitz.open(SUITE/'Supplement/FigS03.pdf') as after:
+        src_streams={hashlib.sha256(before.xref_stream(x[0]) or b'').hexdigest()
+                     for x in before[0].get_xobjects()}
+        dst_streams={hashlib.sha256(after.xref_stream(x[0]) or b'').hexdigest()
+                     for x in after[0].get_xobjects()}
+        assert src_streams<=dst_streams
+        assert after[0].get_images(full=True)==[]
+
+
+def test_strategy_display_mapping_preserves_internal_ids_and_is_active():
+    expected={
+        'centrality-first':'Spectral-connectivity-first','impact-first':'Impact-first',
+        'betweenness-first':'Betweenness-first','degree-first':'Degree-first',
+        'closeness-first':'Closeness-first','hospital-first':'Hospital-first',
+        'vulnerability-first':'Vulnerability-first','random':'Random'}
+    assert STRATEGY_DISPLAY_NAMES==expected
+    registry=json.loads((SUITE/'STRATEGY_DISPLAY_NAMES.json').read_text(encoding='utf-8'))
+    assert registry['strategy_id_to_display_name']==expected
+    assert registry['strategy_ids_unchanged'] is True
+    assert registry['centrality_first_sequence_sha256']=='435904b411b7c96a533548418ae9a0d8fa1cc46946d92799d2cc0eddc61d5b79'
+    viewer=(SUITE/'Additional_Evidence/METRIC_EXPLORER.html').read_text(encoding='utf-8')
+    assert 'const strategyDisplayNames=' in viewer
+    assert 'strategyDisplayNames[p]||D.policies[p]||p' in viewer
+    for stem in ACTIVE:
+        with fitz.open(SUITE/(stem+'.pdf')) as doc:
+            assert 'Centrality-first' not in doc[0].get_text(),stem
+    assert 'Centrality-first' not in caps()
+    method_path=ROOT/'results/diagnostics/1021/restoration_methods_s03_revision_20261019/METHODS_REFERENCE.md'
+    assert method_path.is_file()
+    assert 'Spectral-connectivity-first' in method_path.read_text(encoding='utf-8')
 
 
 def test_ga_initial_and_final_orders_are_both_per_run():
@@ -511,13 +638,20 @@ def test_all_nine_service_gate_display_values_match_saved_source():
     assert sha(SUITE/'Supplement/FigS05.pdf')==hashlib.sha256(expected).hexdigest()
 
 
-def test_priority_population_scale_is_neutral_without_geometry_change():
+def test_priority_population_scale_is_blue_green_without_geometry_change():
     expected=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Supplement/FigS08.pdf')
-    assert sha(SUITE/'Supplement/FigS08.pdf')==hashlib.sha256(expected).hexdigest()
+    assert sha(SUITE/'Supplement/FigS08.pdf')!=hashlib.sha256(expected).hexdigest()
+    qa=read(ROOT/'results/diagnostics/1021/restoration_methods_s03_revision_20261019/FIGURE_PRESENTATION_QA.json')
+    audit=qa['figures']['Supplement/FigS08']['presentation']['population_color_audit']
+    assert audit['source_palette']=='Greys'
+    assert audit['population_palette']=='muted_blue_green'
+    assert audit['paint_colors_changed']>20 and audit['colorbar_resolution_preserved']
+    assert audit['all_geometry_and_nonfill_properties_unchanged']
     with fitz.open(SUITE/'Supplement/FigS08.pdf') as d:
         fills=[v['fill'] for v in d[0].get_drawings() if v['fill'] and v['rect'].y0>525]
-    # Only station markers retain their muted blue-gray identity.
-    assert not any(c[2]-c[0]>.15 and c[2]>c[1] for c in fills)
+    assert sum(max(c)-min(c)>.08 for c in fills)>20
+    s8_caption=caps().split('## Supplementary Figure S8.',1)[1].split('\n## ',1)[0]
+    assert 'blue-green scale shows population' in s8_caption
 
 
 def test_saved_scientific_authority_matches_this_rounds_initial_snapshot():
