@@ -1,0 +1,47 @@
+{
+  "confidence_method": "10,000 paired realization bootstrap; fixed seed 20261107",
+  "degree_minus_hospital_mean_expected_errors_hr": {
+    "self": 0.0,
+    "source": 0.0,
+    "threshold": 0.0,
+    "total": 0.0
+  },
+  "degree_minus_hospital_paired_means_hr": {
+    "self": 2.944701949630948,
+    "source": -1.6466924084593768,
+    "threshold": 0.1032344048873476,
+    "total": 1.4012439460589194
+  },
+  "degree_minus_hospital_realization_p05_p95_hr": {
+    "self": [
+      2.2777557911430906,
+      3.7443651111204557
+    ],
+    "source": [
+      -3.1820139956140365,
+      -0.3537241041946505
+    ],
+    "threshold": [
+      0.0724655418708217,
+      0.14035448241312135
+    ],
+    "total": [
+      -0.17550362366852598,
+      2.7844498143397014
+    ]
+  },
+  "max_integrated_additivity_error_hr": 3.552713678800501e-14,
+  "paired_unit": "physical realization ID",
+  "unconstrained_expected_errors_hr": {
+    "self": 0.0,
+    "source": -4.440892098500626e-16,
+    "threshold": -1.1102230246251565e-16,
+    "total": 0.0
+  },
+  "unconstrained_means_hr": {
+    "self": 26.887247240546063,
+    "source": 3.5740379692767497,
+    "threshold": 0.8764917719738313,
+    "total": 31.337776981796647
+  }
+}

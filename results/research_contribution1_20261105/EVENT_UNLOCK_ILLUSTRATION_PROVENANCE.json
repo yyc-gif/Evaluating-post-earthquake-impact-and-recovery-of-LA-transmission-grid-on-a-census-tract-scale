@@ -1,0 +1,39 @@
+{
+  "events": [
+    {
+      "completion_time_hr": 40.23672633601559,
+      "damage_state": 4,
+      "indirect_service_gain_person_equiv": 130622.05291721827,
+      "newly_source_connected_other_count": 1,
+      "newly_source_connected_other_dependency_mass_people": 130622.05291721827,
+      "physical_sample_hash": "1e61acf3996e1e1c75e4ec4ec0595ce1588f93c3a5f173f251952301d109ea48",
+      "policy": "impact-first",
+      "realization_id": "2pc50__evaluation_0003",
+      "station_id": "300558"
+    },
+    {
+      "completion_time_hr": 27.55602537939405,
+      "damage_state": 3,
+      "indirect_service_gain_person_equiv": 125526.0037584278,
+      "newly_source_connected_other_count": 1,
+      "newly_source_connected_other_dependency_mass_people": 125526.0037584278,
+      "physical_sample_hash": "7170fac4727ef3ad5d6a23a7bc89a580190570c703a6b32080e32e340ed30c6d",
+      "policy": "hospital-first",
+      "realization_id": "2pc50__evaluation_0007",
+      "station_id": "306768"
+    },
+    {
+      "completion_time_hr": 21.683989018437202,
+      "damage_state": 4,
+      "indirect_service_gain_person_equiv": 144159.57785871916,
+      "newly_source_connected_other_count": 3,
+      "newly_source_connected_other_dependency_mass_people": 144159.57785871916,
+      "physical_sample_hash": "9cc203281b1a685055f3175be17e1cac48035e4f3bfb83b1838184c46926a72c",
+      "policy": "degree-first",
+      "realization_id": "2pc50__evaluation_0002",
+      "station_id": "310204"
+    }
+  ],
+  "interpretation": "illustrative verified pre/post network states only; not representative effect estimates",
+  "selection": "single-station external-unlock event nearest the median positive indirect gain within each of Impact-first, Hospital-first, and Degree-first"
+}
