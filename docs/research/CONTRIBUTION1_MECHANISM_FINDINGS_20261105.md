@@ -1,0 +1,7 @@
+# Contribution 1: Mechanism Findings
+
+**Decision:** Contribution 1 is supported as a bounded, model-internal mechanism finding. Frozen unconstrained burden is dominated by station self-functionality loss (26.8872 of 31.3378 h, 85.8%), while repair-order changes create event-time opportunities through source-connected topological unlocking. This is not evidence of actual MW delivery or customer outages and does not establish a general repair-priority rule.
+
+Across 1,000 paired realizations, Degree-first minus Hospital-first changes were +2.9447 h self loss, +0.1032 h threshold loss, and -1.6467 h source-path loss, netting +1.4012 h total (paired-bootstrap 95% CI 1.3442–1.4574 h). For every event-reconstructed strategy, DS1-only completion batches produced no external unlock; DS2–DS4 batches produced unlocks in 9.0%–13.3% of completion batches. In the registered 128-realization local perturbation sample, moving a pre-event low-direct-mass/high-unlock-potential target five ranks earlier reduced modeled burden by 0.1348 h under Impact-first and 0.0981 h under Hospital-first. These are small, target- and model-dependent effects.
+
+Travel, crew-clock, and duration mechanisms are not fully separable; Vulnerability-first event timing and a realization-paired GA validation archive were unavailable locally. The exact source archive, numerical QA, figures, tests, and fuller interpretation are recorded in [the branch results package](../../results/research_contribution1_20261105/SCIENTIFIC_DECISION.md).
