@@ -19,8 +19,7 @@ The 52,767,419-byte formal realization summary is locally materialized at `resul
 - The event-history pass used the production completion-step service gate and checked each policy-realization integrated component burden against the saved realization summary with a `<1e-10 h` stop condition. The successful earlier pass did not persist the exact maximum error value; the current checkpoint revalidates all 641,816 event keys and physical sample hashes. Consequently `max_reconstructed_vs_archived_burden_difference_hr` is intentionally null in `NUMERICAL_QA.json`, not imputed.
 - Integrated component additivity maximum error: `3.552713678800501e-14 h`.
 - The final event-checkpoint run reproduced 6,144 paired perturbation rows for 128 realization IDs and regenerates both primary figures plus the three-event illustration.
-- The focused mechanism tests and adjacent frozen source-gate/schedule tests passed: `6 passed` across `tests/test_c1_mechanism_actionability.py`, `tests/test_r1_source_gate.py`, and `tests/test_r1_formal_schedule.py`.
-- A broader collection attempt including `tests/test_r1_formal_offline.py` stopped before execution because the existing test imports missing module `la_grid.paths`. This unrelated repository collection failure is not reported as a passing test.
+- Eight tests passed across `tests/test_c1_mechanism_actionability.py`, `tests/test_r1_source_gate.py`, `tests/test_r1_formal_schedule.py`, and `tests/test_r1_formal_offline.py`. The initial broad collection failed because the sparse worktree omitted tracked `src/la_grid/paths.py`; the exact file was temporarily materialized from the frozen commit for the successful run and then removed, leaving the sparse worktree unchanged.
 - The three final PDFs were inspected for vector content and embedded fonts; the event illustration contains vector drawing paths and no raster images. PNGs are high-resolution previews, not the analytical source.
 
 ## Runtime note
