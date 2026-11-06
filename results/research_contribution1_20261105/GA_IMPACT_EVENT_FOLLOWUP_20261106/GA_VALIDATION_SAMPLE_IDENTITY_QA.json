@@ -1,0 +1,62 @@
+{
+  "archived_sample_seed_records_verified": 2000,
+  "freeze_sha256": "45d157c0a3b9460d7c29e389b649afef0f0e6bc568bfba8eb773f9b5b974ae15",
+  "independently_regenerated_indices": [
+    {
+      "damage_duration_bitwise_match": true,
+      "physical_sha256": "1e77d838bfbe8cb7977ec5ed3883d414bc7c01a14c6082861f223854a17aff1d",
+      "r": 0,
+      "seed_entropy": [
+        202610091,
+        3,
+        2,
+        0
+      ]
+    },
+    {
+      "damage_duration_bitwise_match": true,
+      "physical_sha256": "2cc64ef45ddf752b2d2bfa239a670394714b46eb4ee401134ac5fbc213479657",
+      "r": 1,
+      "seed_entropy": [
+        202610091,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "damage_duration_bitwise_match": true,
+      "physical_sha256": "cc9237508b0cf134f9832a34b68cc84f19d00175cea1fae2590871b594d8f22e",
+      "r": 1000,
+      "seed_entropy": [
+        202610091,
+        3,
+        2,
+        1000
+      ]
+    },
+    {
+      "damage_duration_bitwise_match": true,
+      "physical_sha256": "1f2eb01dabadbea1e4491476a38a815eafc9a0231f3bf002ce1b83a2639d1c9e",
+      "r": 1999,
+      "seed_entropy": [
+        202610091,
+        3,
+        2,
+        1999
+      ]
+    }
+  ],
+  "interpretation": "Four prespecified draws were regenerated only to verify archive identity; no schedules or service trajectories were rerun.",
+  "original_planning_and_evaluation_hashes": 1064,
+  "overlap_with_original_physical_hashes": 0,
+  "sampler_sources": {
+    "Formal_Experiment_20260923/Stage 1 Output_expanded/physical_inputs_2pc50.npz": "fa40cc26567c22e7d8195e04949e2ef7dbc960a9751f4b9af3d687edf542cdcb",
+    "src/la_grid/core/C257H_Project_Main.py": "f1f70952ae2c7cc0767543a32fdc20a8ad1c7d58c76f576e980ca23d00f2facd",
+    "src/la_grid/revision/r1_realization_scheduling.py": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22"
+  },
+  "seed_protocol": "numpy.default_rng(numpy.random.SeedSequence([202610091,3,2,r]))",
+  "status": "PASS",
+  "unique_validation_physical_hashes": 2000,
+  "validation_archive_sha256": "74d83734549c83b7bcb57270a07db3ab4c696d4384c5a851461184cfcb28947d"
+}
