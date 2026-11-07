@@ -2,6 +2,16 @@
   "source_pdf_vector_panel_A_preserved": true,
   "source_pdf_sha256": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
   "source_trajectory_curves_regenerated": false,
+  "main_panels": [
+    "A",
+    "B"
+  ],
+  "single_pair_decomposition_in_main": false,
+  "pairwise_rows_retained_as_diagnostic_only": true,
+  "source_panel_A_translations_pt": {
+    "legend": 22.92,
+    "curves": -18.43
+  },
   "outcome_source_rows": 7000,
   "strategies": {
     "betweenness-first": 1000,
@@ -299,7 +309,94 @@
   "component_mean_difference_sum_error_hr": 6.661338147750939e-16,
   "page_size_mm": [
     184.99999118381075,
-    250.0
+    186.9722222222222
   ],
-  "uncertainty": "5th-95th realization ranges, not confidence intervals"
+  "uncertainty": "5th-95th realization ranges, not confidence intervals",
+  "baseline": "d65f82ced0b9e9e01cd42f9d2f5e3b9261961da1",
+  "original_layout_commit": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+  "original_panels": [
+    "A",
+    "B"
+  ],
+  "pair_panel_added_by": "f2a7ce41df9c4beda4814b9c0ec1ab27426ae3bf",
+  "source_hashes": {
+    "Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet": "7f6d7bfd55883fb05b04088e65eea02da579c553064f40d992452cc92690cc4d",
+    "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet": "8212425edf96dc1ebc6f98d8f80d08e7a7e378ce72d814f86e80983548d4997c",
+    "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_GATE_COMPONENTS.csv": "fe7723e54f8818c46598a8858e77200381024c9c4fe91750078d9bd16d3eba42"
+  },
+  "saved_outcome_rows_identical": true,
+  "saved_component_rows_identical": true,
+  "deterministic_renderer": true,
+  "title_legend_gaps_pt": [
+    11.99908447265625,
+    11.998992919921875
+  ],
+  "previous_plot_to_next_title_pt": 21.800079345703125,
+  "preserved_artwork": [
+    "Main/Fig01.pdf",
+    "Main/Fig01.png",
+    "Main/Fig02.pdf",
+    "Main/Fig02.png",
+    "Main/Fig03.pdf",
+    "Main/Fig03.png",
+    "Main/Fig05.pdf",
+    "Main/Fig05.png",
+    "Main/Fig06.pdf",
+    "Main/Fig06.png",
+    "Main/Fig07.pdf",
+    "Main/Fig07.png",
+    "Supplement/FigS01.pdf",
+    "Supplement/FigS01.png",
+    "Supplement/FigS02.pdf",
+    "Supplement/FigS02.png",
+    "Supplement/FigS03.pdf",
+    "Supplement/FigS03.png",
+    "Supplement/FigS04.pdf",
+    "Supplement/FigS04.png",
+    "Supplement/FigS05.pdf",
+    "Supplement/FigS05.png",
+    "Supplement/FigS06.pdf",
+    "Supplement/FigS06.png",
+    "Supplement/FigS07.pdf",
+    "Supplement/FigS07.png",
+    "Supplement/FigS08.pdf",
+    "Supplement/FigS08.png",
+    "Supplement/FigS09.pdf",
+    "Supplement/FigS09.png"
+  ],
+  "preserved_artwork_sha256": {
+    "Main/Fig01.pdf": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
+    "Main/Fig01.png": "d9ece2443130ca479dfa960f93ad5dfbe4445b4669d8b82aea63bc2a86b7c9e3",
+    "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
+    "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
+    "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
+    "Main/Fig03.png": "0c9de6d72a414a5d654157f395494e430ac77e3e07c5dda7907b7e8730516157",
+    "Main/Fig05.pdf": "4beef11842ee57170b91c823dcf882cd40f3ceda2b3075a69c1137b183a30f0c",
+    "Main/Fig05.png": "bd2934d6022d5e0a32b14dbb7900f4e8a13991e61ca336c60d70019de5de1fbb",
+    "Main/Fig06.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
+    "Main/Fig06.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
+    "Main/Fig07.pdf": "9bf35ecd70bf3644fe73aecbebdded0e6f8265b4a9b2b25c1206b0f0ef31c833",
+    "Main/Fig07.png": "230fd8998e32c50c848a7fba32f2f51f77358f6ffe8bb1b007f2b581ba2c0aa3",
+    "Supplement/FigS01.pdf": "09bb755f7a5a58ffcc399264a280504ccaff5262012e675a31a1a81c81a4c16e",
+    "Supplement/FigS01.png": "c84381403277a5ddccd54f88188f254345c7bef29103c82e479a42342063253e",
+    "Supplement/FigS02.pdf": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+    "Supplement/FigS02.png": "73d7955993a3b3ffbf58a707684cd16593ca9fe825be2254e36b2b0078c53cc0",
+    "Supplement/FigS03.pdf": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c",
+    "Supplement/FigS03.png": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478",
+    "Supplement/FigS04.pdf": "1d9e97a4642992b00bb9c6abfd1f0f0e190ae1689e04f109dcfa8cd9ac7c1ec7",
+    "Supplement/FigS04.png": "86302144c3c28c2026e5d6b1dc938a919f480bff0b2bb67dce1e4eca093c4192",
+    "Supplement/FigS05.pdf": "f35e8ce330f5d19cac844dc973dbcdffb0608e6b29f57f08efebd525723244fe",
+    "Supplement/FigS05.png": "0ed9cc1f0a7a2f2bcad7afe8193e8475501955699e0c4fbc4600ced0195aa478",
+    "Supplement/FigS06.pdf": "6966b64a775e461a0ae36281a5fee41782299bf2250ce9aa7772e3b314d5591b",
+    "Supplement/FigS06.png": "7ade1c00816475ebbbdf74ffa2c57d0bb1383f7986fd3383eb065b8b99ac9c34",
+    "Supplement/FigS07.pdf": "fae0fc5774ecbfa8c9f7d7b4c3b94af059726de648255f061f4188745f0dc051",
+    "Supplement/FigS07.png": "fe45ed66139828ecb943d855876fb9c8188f7a03021b5c5bcd762726442c45f1",
+    "Supplement/FigS08.pdf": "83f5453fa5298821752bf714b3d4b5e21f3c62f1d88f3ce8ee543168713bbd26",
+    "Supplement/FigS08.png": "493be140ef6d8e4a28992e92794d3badb617757950667459f22ad50939959f02",
+    "Supplement/FigS09.pdf": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
+    "Supplement/FigS09.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
+  },
+  "title_font_size_pt": 9.5,
+  "new_sha256": "75011f91ecb9e2c06dbfa250a5f5d3b274968ba459e81d9e174c8546b9a2acd8",
+  "scientific_files_modified": false
 }

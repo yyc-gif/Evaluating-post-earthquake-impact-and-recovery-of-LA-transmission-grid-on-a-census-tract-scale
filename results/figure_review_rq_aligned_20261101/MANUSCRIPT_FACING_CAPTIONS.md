@@ -14,7 +14,7 @@ Earthquake damage and initial modeled service are followed by Unconstrained reco
 
 ## Figure 4. Restoration-policy performance under 2pc50
 
-A retains population-weighted service-availability trajectories. B reports mean service loss and population T80, with 5th-95th realization ranges. C decomposes paired Degree-first minus Hospital-first service loss into substation-damage, threshold, and source-path components; whiskers are 5th-95th paired-realization ranges (n=1,000).
+Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.
 
 ## Figure 5. Vulnerability-targeted recovery and distributional effects
 

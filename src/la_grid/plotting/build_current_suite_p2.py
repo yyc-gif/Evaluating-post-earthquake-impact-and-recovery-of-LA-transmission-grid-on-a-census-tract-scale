@@ -136,7 +136,7 @@ def captions():
         'Study workflow from tract-substation mapping and earthquake damage to modeled service recovery, restoration strategies, and community outcomes. T80 is time to 80% modeled tract-service availability; availability is a network proxy, not delivered electricity.',
         'Transmission network, tract-substation mapping, and comparison of candidate tract assignments with public SCE assignments. Assignment agreement does not validate feeder boundaries or recovery outcomes.',
         'Earthquake damage and initial modeled service are followed by Unconstrained recovery. Panel C reports the mean loss shares from substation damage, functionality threshold, and source-path loss; D/E show population-weighted and tract-mean T80. T80 is time to 80% modeled service; applicable whiskers show 5th-95th realization ranges.',
-        'A retains population-weighted service-availability trajectories. B reports mean service loss and population T80, with 5th-95th realization ranges. C decomposes paired Degree-first minus Hospital-first service loss into substation-damage, threshold, and source-path components; whiskers are 5th-95th paired-realization ranges (n=1,000).',
+        'Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.',
         'A/B show overall and quartile service loss. C compares Vulnerability-first with Hospital-first, Impact-first, and Degree-first for overall loss, Q4 loss, signed Q4-Q1 gap, mean within-realization absolute |Q4-Q1| gap, and hospital-linked loss; D shows Gini change and E maps tract-level mean changes. B-D whiskers show 5th-95th realization ranges; negative map values favor Vulnerability-first.',
         'Vulnerability-first effects across crew-availability and repair-duration scenarios. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons show means only. Negative values indicate lower deficit under Vulnerability-first.',
         'A shows six feature distributions; B shows standardized means for all seven fitted variables; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines mark frozen Q4 and the cohort P75. The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.',
@@ -176,7 +176,7 @@ def update_explorer_display_labels(path):
     return u.sha(path)
 
 
-def packets(caps, registry_path):
+def packets(caps, registry_path, preview_stems=None):
     u.pdfmetrics.registerFont(u.TTFont('SuiteArial', 'C:/Windows/Fonts/arial.ttf'))
     u.pdfmetrics.registerFont(u.TTFont('SuiteBold', 'C:/Windows/Fonts/arialbd.ttf'))
     rl_config.invariant = 1
@@ -194,9 +194,10 @@ def packets(caps, registry_path):
                     caption_height_pt=cap[0].rect.height, caption_stream_sha256=u.digest(cap[0].read_contents()),
                     caption_min_font_pt=10, caption_bounds_valid=True, title=title, caption=body))
             preview = DEST/'Page_Previews'/(Path(stem).name+'.png')
-            pix = art[0].get_pixmap(matrix=fitz.Matrix(160/72, 160/72), alpha=False)
-            pix.set_dpi(160, 160)
-            u.write(preview, pix.tobytes('png'))
+            if preview_stems is None or stem in preview_stems:
+                pix = art[0].get_pixmap(matrix=fitz.Matrix(160/72, 160/72), alpha=False)
+                pix.set_dpi(160, 160)
+                u.write(preview, pix.tobytes('png'))
     for name, doc in [('ALL_FIGURES_WITH_CAPTIONS.pdf', book), ('ALL_MAIN_FIGURES.pdf', main),
                       ('ALL_SUPPLEMENT_FIGURES.pdf', supp)]:
         u.write(DEST/name, doc.tobytes(garbage=4, deflate=True, no_new_id=True))
@@ -486,9 +487,9 @@ def main(output_dir=None, mirror_dir=None):
                 ix['scientific_content']=ix['main_message']
                 ix['notes']='Component identity and four-scenario means checked against 1,000 saved realizations per scenario.'
             elif stem=='Main/Fig04':
-                ix['main_message']='Contrasts restoration strategies and separates Degree-first versus Hospital-first loss mechanisms.'
+                ix['main_message']='Compares recovery trajectories, service loss and recovery time across seven strategies.'
                 ix['scientific_content']=ix['main_message']
-                ix['notes']='Saved realization ranges are not confidence intervals; paired mechanism differences use matched realizations.'
+                ix['notes']='Whiskers show 5th-95th realization ranges, not confidence intervals.'
             elif stem=='Main/Fig05':
                 ix['main_message']='Shows service-loss redistribution, signed Q4-Q1 differences and within-realization absolute gaps.'
                 ix['scientific_content']=ix['main_message']
@@ -547,11 +548,11 @@ def main(output_dir=None, mirror_dir=None):
                     row.update(source_commit=BASE,source_file=original_path,
                         presentation_generator='src/la_grid/plotting/rq_aligned_figure_updates.py',
                         presentation_generator_sha256=u.sha(ROOT/'src/la_grid/plotting/rq_aligned_figure_updates.py'),
-                        status='RQ_ALIGNED_STRATEGY_AND_MECHANISM',size_mm=size,
+                        status='SEVEN_STRATEGY_OVERVIEW_TWO_PANEL',size_mm=size,
                         parent_sha256=before,parent_source_commit=CURRENT_SUITE_BASE,parent_source_file=original_path)
                     ix.update(source_authority=BASE,source_data_path='Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet',
                         source_data_sha256=u.digest(primary_raw),generator='src/la_grid/plotting/rq_aligned_figure_updates.py',
-                        notes='Panel A retains its saved vector source; B uses realization-level outcomes; C shows paired component differences.')
+                        notes='A/B cover all seven displayed strategies. The single-pair decomposition remains diagnostic evidence, not a main panel.')
                 elif stem=='Main/Fig05':
                     row.update(source_commit=BASE,source_file=original_path,
                         presentation_generator='src/la_grid/plotting/rq_aligned_figure_updates.py',
@@ -658,7 +659,7 @@ def main(output_dir=None, mirror_dir=None):
         '(1,235 / 428 / 636), 9,066,522 residents. NCV14 is supplementary environmental context, not a fitted coordinate. '
         'K4 remains a saved sensitivity result, not a second primary model.\n\n16 numbered figures: Main 1-7 and Supplement 1-9. '
         'Figures 3-7 align the saved mechanism decomposition, paired policy effects, vulnerability gaps, resource uncertainty and K3 burden context with the results structure. '
-        'Figure 4 adds realization-level outcome and component comparisons; Figure 5 distinguishes signed and absolute Q4-Q1 gaps; Figure 7 states the verified Q4/P75 overlap and prevalence. '
+        'Figure 4 compares recovery and realization-level outcomes across seven strategies; Figure 5 distinguishes signed and absolute Q4-Q1 gaps; Figure 7 states the verified Q4/P75 overlap and prevalence. '
         'The combined publication packet has 16 pages, one per numbered figure with its concise caption. '
         'The source suite and all prior approved artwork remain unchanged; this output is a separate RQ-aligned review build. '
         'Figure S8 uses a muted blue-green population scale. Figure 7 uses a muted teal, slate and mauve K3 palette, cohort-standardized profiles, '
@@ -676,7 +677,9 @@ def main(output_dir=None, mirror_dir=None):
         '\n## 2026-10-21 - Figure S8 palette and publication packet\n\n'
         'Figure S8 population shading and its colorbar use a muted blue-green sequential palette; map geometry, station priorities and data are unchanged. The caption identifies the scale and points to active Supplementary Figure S9. Two unnumbered evidence candidates remain archived separately and are excluded from the 16-page numbered publication packet. Current figure text uses the Arial font family.\n'
         '\n## 2026-11-01 - RQ-aligned figure evidence\n\n'
-        'Figure 3 component shares were checked against the saved formal component table. Figure 4 reports service-loss and T80 realization ranges and adds paired Degree-first minus Hospital-first component differences. Figure 5 distinguishes signed Q4-Q1 from the absolute within-realization gap. Figure 7 states the verified Q4/P75 overlap and prevalence. No model, simulation, restoration schedule, or clustering fit was rerun.\n')
+        'Figure 3 component shares were checked against the saved formal component table. Figure 4 reports service-loss and T80 realization ranges and adds paired Degree-first minus Hospital-first component differences. Figure 5 distinguishes signed Q4-Q1 from the absolute within-realization gap. Figure 7 states the verified Q4/P75 overlap and prevalence. No model, simulation, restoration schedule, or clustering fit was rerun.\n'
+        '\n## 2026-11-07 - Figure 4 scope and spacing correction\n\n'
+        'Restored the A/B seven-strategy overview. The single-pair component comparison is diagnostic evidence, not a main panel. Saved recovery vectors and all outcome values and realization ranges are unchanged. Title/legend clearances are matched.\n')
     addition=('\nSupplementary Figure S3 shows only time-dependent functional-network recovery. '
               'Spectral-connectivity-first is the publication display name for the unchanged centrality-first strategy ID.\n')
     for path in [DEST/'README.md',MIRROR_DEST/'README.md']:
@@ -692,7 +695,7 @@ This figure-only organization uses saved results. No physical model, restoration
 | Figure 1 | Workflow overview | Inputs; topology/dependency; damage-to-service translation; unconstrained and constrained execution; community outcomes. | Execution panel clarified as two modes; other framework content retained. |
 | Figure 2 | RQ1: network and tract dependencies | Physical transmission network; substation connection paths; utility areas used in tract mapping; comparison with public SCE records. | Retained. |
 | Figure 3 | RQ1: damage and unconstrained recovery | Mean station damage state; initial tract-service distributions; service-loss component shares; population-weighted T80; tract-mean T80 geography. | Component shares checked for four frozen scenarios; saved results and artwork retained. |
-| Figure 4 | RQ2: strategy outcomes and mechanism | Population-weighted recovery curves; service loss and population T80; paired Degree-first minus Hospital-first component differences. | B/C rebuilt from matched saved outcomes; A retained from saved vector artwork. |
+| Figure 4 | RQ2: strategy outcomes | A: population-weighted recovery curves. B: service loss and population T80 for all seven displayed strategies. | Saved trajectory vectors retained; B uses matched saved outcomes and realization ranges. Single-pair decomposition remains separate diagnostic evidence. |
 | Figure 5 | RQ2: distributional outcomes | Overall/Q4 loss; Q1-Q4 loss; strategy contrasts including signed and within-realization absolute gaps; Gini; tract change maps. | C rebuilt from paired saved outcomes; other panels retained. |
 | Figure 6 | RQ2: resource dependence | Vulnerability-first effects over crew and repair-duration conditions for all-tract, Q4, high-low vulnerability, and hospital-linked outcomes. | Retained; caption distinguishes bootstrap confidence intervals for means. |
 | Figure 7 | RQ3: community recovery context | Six feature ECDFs; seven-variable standardized P2/K3 profiles; K3 geography; continuous SOVI/recovery-burden map and Q4/P75 overlap. | Retained as the seven-variable P2/K3 result; overlap is descriptive and policy-conditioned. |

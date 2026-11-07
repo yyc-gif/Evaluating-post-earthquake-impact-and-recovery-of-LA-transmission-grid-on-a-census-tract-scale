@@ -120,7 +120,13 @@ def test_figure4_uses_matched_outcomes_and_paired_mechanism_components():
     assert all(r["n_paired_realizations"] == 1000 for r in audit["paired_component_rows"])
     with fitz.open(SUITE / "Main/Fig04.pdf") as doc:
         text = re.sub(r"\s+", " ", doc[0].get_text())
-        assert "Degree-first minus Hospital-first (h)" in text
+        assert audit['main_panels']==['A','B']
+        assert audit['single_pair_decomposition_in_main'] is False
+        assert "Degree-first minus Hospital-first (h)" not in text
+        assert "C. Why" not in text
+        for strategy in ['Impact-first','Hospital-first','Degree-first',
+                         'Vulnerability-first','Betweenness-first','Random','Unconstrained']:
+            assert strategy in text
         assert "Points: paired means" not in text
 
 

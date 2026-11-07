@@ -1,0 +1,402 @@
+{
+  "source_pdf_vector_panel_A_preserved": true,
+  "source_pdf_sha256": "9f9d4d1b5cf31f728f7b54017cfaa1011639ce28ab253e792d412cc546556ac4",
+  "source_trajectory_curves_regenerated": false,
+  "main_panels": [
+    "A",
+    "B"
+  ],
+  "single_pair_decomposition_in_main": false,
+  "pairwise_rows_retained_as_diagnostic_only": true,
+  "source_panel_A_translations_pt": {
+    "legend": 22.92,
+    "curves": -18.43
+  },
+  "outcome_source_rows": 7000,
+  "strategies": {
+    "betweenness-first": 1000,
+    "degree-first": 1000,
+    "hospital-first": 1000,
+    "impact-first": 1000,
+    "random": 1000,
+    "unconstrained": 1000,
+    "vulnerability-first": 1000
+  },
+  "shared_realization_identity_across_strategies": true,
+  "service_loss_and_T80_rows": [
+    {
+      "strategy_id": "impact-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 33.593686467844854,
+      "p05": 29.47939488907694,
+      "p95": 37.6928302662577,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "impact-first",
+      "metric": "burden_Q4_hr",
+      "mean": 32.73300490554173,
+      "p05": 28.053174298439206,
+      "p95": 37.459694282430384,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "impact-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 33.05932720079036,
+      "p05": 28.63122667922893,
+      "p95": 37.4363307890268,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "impact-first",
+      "metric": "population_T80_hr",
+      "mean": 45.251090655927634,
+      "p05": 40.18090902988713,
+      "p95": 50.60176271925809,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 34.30646521839252,
+      "p05": 30.132437271673204,
+      "p95": 38.387729126186166,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "burden_Q4_hr",
+      "mean": 33.618165154976595,
+      "p05": 28.83473337571684,
+      "p95": 38.327967908954754,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 33.366687787180126,
+      "p05": 28.878285831937003,
+      "p95": 37.81770798870994,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "hospital-first",
+      "metric": "population_T80_hr",
+      "mean": 45.97053519389106,
+      "p05": 40.599154375503076,
+      "p95": 51.25960814775676,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 35.707709164451444,
+      "p05": 31.441243471536957,
+      "p95": 40.10001345662655,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "burden_Q4_hr",
+      "mean": 34.90036944094061,
+      "p05": 30.132807720411844,
+      "p95": 39.69285431067533,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 35.73100591148288,
+      "p05": 31.01763535739453,
+      "p95": 40.52049912777076,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "degree-first",
+      "metric": "population_T80_hr",
+      "mean": 49.50967725147978,
+      "p05": 43.772286406871,
+      "p95": 55.38989447024263,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 34.25784945267778,
+      "p05": 30.100819151961225,
+      "p95": 38.37673675661431,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "burden_Q4_hr",
+      "mean": 32.02349416829504,
+      "p05": 27.46253962554764,
+      "p95": 36.80707368283731,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 33.93907633764768,
+      "p05": 29.34974622356871,
+      "p95": 38.443648780533316,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "vulnerability-first",
+      "metric": "population_T80_hr",
+      "mean": 46.43682784802011,
+      "p05": 41.18240329404675,
+      "p95": 51.88608457268979,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 35.52157245879788,
+      "p05": 31.25864400402996,
+      "p95": 39.94200504566688,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "burden_Q4_hr",
+      "mean": 34.73011729067136,
+      "p05": 29.886003185622325,
+      "p95": 39.40378685340413,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 35.37954022527479,
+      "p05": 30.660913995675045,
+      "p95": 40.16580281197064,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "betweenness-first",
+      "metric": "population_T80_hr",
+      "mean": 47.83094218068314,
+      "p05": 42.23549030377364,
+      "p95": 53.076140922518555,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 39.3884897974452,
+      "p05": 34.55176251816403,
+      "p95": 44.303414312837106,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "burden_Q4_hr",
+      "mean": 37.51984554270041,
+      "p05": 32.35397540191517,
+      "p95": 43.071333061475414,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 39.92426454980686,
+      "p05": 34.4434854521834,
+      "p95": 45.152500536625894,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "random",
+      "metric": "population_T80_hr",
+      "mean": 52.86287270549062,
+      "p05": 46.349108643789975,
+      "p95": 59.989969085701496,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "population_weighted_normalized_burden_hr",
+      "mean": 31.337776981796647,
+      "p05": 27.59068173865704,
+      "p95": 35.105784158681104,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "burden_Q4_hr",
+      "mean": 30.637942975052958,
+      "p05": 26.141422737502783,
+      "p95": 35.3521354614291,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "hospital_mean_normalized_burden_hr",
+      "mean": 31.402914717863798,
+      "p05": 27.05274244265606,
+      "p95": 35.51867384654218,
+      "n_realizations": 1000
+    },
+    {
+      "strategy_id": "unconstrained",
+      "metric": "population_T80_hr",
+      "mean": 43.399848296543865,
+      "p05": 38.46480994740435,
+      "p95": 48.51803681572963,
+      "n_realizations": 1000
+    }
+  ],
+  "paired_component_rows": [
+    {
+      "component": "L_self_population_mass_weighted_hr",
+      "label": "Substation damage",
+      "degree_minus_hospital_mean_hr": 2.944701949630948,
+      "p05": 2.2777557911430906,
+      "p95": 3.7443651111204557,
+      "n_paired_realizations": 1000
+    },
+    {
+      "component": "L_threshold_population_mass_weighted_hr",
+      "label": "Functionality threshold",
+      "degree_minus_hospital_mean_hr": 0.1032344048873476,
+      "p05": 0.0724655418708217,
+      "p95": 0.14035448241312135,
+      "n_paired_realizations": 1000
+    },
+    {
+      "component": "L_source_population_mass_weighted_hr",
+      "label": "Source-path loss",
+      "degree_minus_hospital_mean_hr": -1.6466924084593768,
+      "p05": -3.1820139956140365,
+      "p95": -0.3537241041946505,
+      "n_paired_realizations": 1000
+    },
+    {
+      "component": "L_total_population_mass_weighted_hr",
+      "label": "Total service loss",
+      "degree_minus_hospital_mean_hr": 1.4012439460589194,
+      "p05": -0.17550362366852598,
+      "p95": 2.7844498143397014,
+      "n_paired_realizations": 1000
+    }
+  ],
+  "aggregate_component_mean_crosscheck": {
+    "L_self_population_mass_weighted_hr": {
+      "paired_realization_mean": 2.944701949630948,
+      "difference_of_saved_strategy_means": 2.9447019496309466,
+      "absolute_error": 1.3322676295501878e-15
+    },
+    "L_threshold_population_mass_weighted_hr": {
+      "paired_realization_mean": 0.1032344048873476,
+      "difference_of_saved_strategy_means": 0.1032344048873477,
+      "absolute_error": 9.71445146547012e-17
+    },
+    "L_source_population_mass_weighted_hr": {
+      "paired_realization_mean": -1.6466924084593768,
+      "difference_of_saved_strategy_means": -1.6466924084593768,
+      "absolute_error": 0.0
+    },
+    "L_total_population_mass_weighted_hr": {
+      "paired_realization_mean": 1.4012439460589194,
+      "difference_of_saved_strategy_means": 1.4012439460589263,
+      "absolute_error": 6.8833827526759706e-15
+    }
+  },
+  "component_additivity_max_abs_error_hr": 3.907985046680551e-14,
+  "component_mean_difference_sum_error_hr": 6.661338147750939e-16,
+  "page_size_mm": [
+    184.99999118381075,
+    186.9722222222222
+  ],
+  "uncertainty": "5th-95th realization ranges, not confidence intervals",
+  "baseline": "d65f82ced0b9e9e01cd42f9d2f5e3b9261961da1",
+  "original_layout_commit": "0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68",
+  "original_panels": [
+    "A",
+    "B"
+  ],
+  "pair_panel_added_by": "f2a7ce41df9c4beda4814b9c0ec1ab27426ae3bf",
+  "source_hashes": {
+    "Formal_Experiment_20260923/Formal_Results/PRIMARY_REALIZATION_STRATEGY_SUMMARY.parquet": "7f6d7bfd55883fb05b04088e65eea02da579c553064f40d992452cc92690cc4d",
+    "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet": "8212425edf96dc1ebc6f98d8f80d08e7a7e378ce72d814f86e80983548d4997c",
+    "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_GATE_COMPONENTS.csv": "fe7723e54f8818c46598a8858e77200381024c9c4fe91750078d9bd16d3eba42"
+  },
+  "saved_outcome_rows_identical": true,
+  "saved_component_rows_identical": true,
+  "deterministic_renderer": true,
+  "title_legend_gaps_pt": [
+    11.99908447265625,
+    11.998992919921875
+  ],
+  "previous_plot_to_next_title_pt": 21.800079345703125,
+  "preserved_artwork": [
+    "Main/Fig01.pdf",
+    "Main/Fig01.png",
+    "Main/Fig02.pdf",
+    "Main/Fig02.png",
+    "Main/Fig03.pdf",
+    "Main/Fig03.png",
+    "Main/Fig05.pdf",
+    "Main/Fig05.png",
+    "Main/Fig06.pdf",
+    "Main/Fig06.png",
+    "Main/Fig07.pdf",
+    "Main/Fig07.png",
+    "Supplement/FigS01.pdf",
+    "Supplement/FigS01.png",
+    "Supplement/FigS02.pdf",
+    "Supplement/FigS02.png",
+    "Supplement/FigS03.pdf",
+    "Supplement/FigS03.png",
+    "Supplement/FigS04.pdf",
+    "Supplement/FigS04.png",
+    "Supplement/FigS05.pdf",
+    "Supplement/FigS05.png",
+    "Supplement/FigS06.pdf",
+    "Supplement/FigS06.png",
+    "Supplement/FigS07.pdf",
+    "Supplement/FigS07.png",
+    "Supplement/FigS08.pdf",
+    "Supplement/FigS08.png",
+    "Supplement/FigS09.pdf",
+    "Supplement/FigS09.png"
+  ],
+  "preserved_artwork_sha256": {
+    "Main/Fig01.pdf": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
+    "Main/Fig01.png": "d9ece2443130ca479dfa960f93ad5dfbe4445b4669d8b82aea63bc2a86b7c9e3",
+    "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
+    "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
+    "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
+    "Main/Fig03.png": "0c9de6d72a414a5d654157f395494e430ac77e3e07c5dda7907b7e8730516157",
+    "Main/Fig05.pdf": "4beef11842ee57170b91c823dcf882cd40f3ceda2b3075a69c1137b183a30f0c",
+    "Main/Fig05.png": "bd2934d6022d5e0a32b14dbb7900f4e8a13991e61ca336c60d70019de5de1fbb",
+    "Main/Fig06.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
+    "Main/Fig06.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
+    "Main/Fig07.pdf": "9bf35ecd70bf3644fe73aecbebdded0e6f8265b4a9b2b25c1206b0f0ef31c833",
+    "Main/Fig07.png": "230fd8998e32c50c848a7fba32f2f51f77358f6ffe8bb1b007f2b581ba2c0aa3",
+    "Supplement/FigS01.pdf": "09bb755f7a5a58ffcc399264a280504ccaff5262012e675a31a1a81c81a4c16e",
+    "Supplement/FigS01.png": "c84381403277a5ddccd54f88188f254345c7bef29103c82e479a42342063253e",
+    "Supplement/FigS02.pdf": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+    "Supplement/FigS02.png": "73d7955993a3b3ffbf58a707684cd16593ca9fe825be2254e36b2b0078c53cc0",
+    "Supplement/FigS03.pdf": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c",
+    "Supplement/FigS03.png": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478",
+    "Supplement/FigS04.pdf": "1d9e97a4642992b00bb9c6abfd1f0f0e190ae1689e04f109dcfa8cd9ac7c1ec7",
+    "Supplement/FigS04.png": "86302144c3c28c2026e5d6b1dc938a919f480bff0b2bb67dce1e4eca093c4192",
+    "Supplement/FigS05.pdf": "f35e8ce330f5d19cac844dc973dbcdffb0608e6b29f57f08efebd525723244fe",
+    "Supplement/FigS05.png": "0ed9cc1f0a7a2f2bcad7afe8193e8475501955699e0c4fbc4600ced0195aa478",
+    "Supplement/FigS06.pdf": "6966b64a775e461a0ae36281a5fee41782299bf2250ce9aa7772e3b314d5591b",
+    "Supplement/FigS06.png": "7ade1c00816475ebbbdf74ffa2c57d0bb1383f7986fd3383eb065b8b99ac9c34",
+    "Supplement/FigS07.pdf": "fae0fc5774ecbfa8c9f7d7b4c3b94af059726de648255f061f4188745f0dc051",
+    "Supplement/FigS07.png": "fe45ed66139828ecb943d855876fb9c8188f7a03021b5c5bcd762726442c45f1",
+    "Supplement/FigS08.pdf": "83f5453fa5298821752bf714b3d4b5e21f3c62f1d88f3ce8ee543168713bbd26",
+    "Supplement/FigS08.png": "493be140ef6d8e4a28992e92794d3badb617757950667459f22ad50939959f02",
+    "Supplement/FigS09.pdf": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
+    "Supplement/FigS09.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
+  },
+  "title_font_size_pt": 9.5,
+  "new_sha256": "75011f91ecb9e2c06dbfa250a5f5d3b274968ba459e81d9e174c8546b9a2acd8",
+  "scientific_files_modified": false
+}
