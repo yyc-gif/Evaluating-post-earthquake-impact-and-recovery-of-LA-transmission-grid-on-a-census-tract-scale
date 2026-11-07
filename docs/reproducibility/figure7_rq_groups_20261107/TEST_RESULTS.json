@@ -1,0 +1,16 @@
+{
+  "command": "python -m pytest -p no:cacheprovider tests/test_figure7_rq_groups_20261107.py tests/test_rq_aligned_figure_suite_20261101.py -q",
+  "passed": 11,
+  "failed": 2,
+  "elapsed_seconds": 84.62,
+  "new_RQ_grouping_tests": "2 passed",
+  "existing_missing_baseline_dependencies": [
+    "results/figure_review_rq_aligned_20261101/QA/FIGURE_CHANGE_MANIFEST.csv",
+    "results/figure_review_rq_aligned_20261101/QA/Figure7/LAYOUT_SPECIFICATIONS.json"
+  ],
+  "all_21_printed_cells_identical": true,
+  "other_panels_pixel_identical": true,
+  "all_other_numbered_artworks_byte_identical": true,
+  "unrelated_assertions_weakened": false,
+  "native_size_and_profile_detail_inspected": true
+}

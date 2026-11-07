@@ -139,7 +139,7 @@ def captions():
         'Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.',
         'A/B show overall and quartile service loss. C compares Vulnerability-first with Hospital-first, Impact-first, and Degree-first for overall loss, Q4 loss, signed Q4-Q1 gap, mean within-realization absolute |Q4-Q1| gap, and hospital-linked loss; D shows Gini change and E maps tract-level mean changes. B-D whiskers show 5th-95th realization ranges; negative map values favor Vulnerability-first.',
         'Vulnerability-first effects across crew-availability and repair-duration scenarios. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons show means only. Negative values indicate lower deficit under Vulnerability-first.',
-        'A shows six feature distributions; B shows standardized means for all seven fitted variables; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines mark frozen Q4 and the cohort P75. The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.',
+        'A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines mark frozen Q4 and the cohort P75. The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.',
         'Station damage severity and corresponding initial modeled tract-service availability. Availability is a network proxy, not physical MW or observed customer outages.',
         'Crew bases, station tasks, and task-to-task travel times used in restoration scheduling. These are pre-event scheduling inputs, not post-earthquake traffic forecasts.',
         'Recovery of the largest connected-component fraction and mean degree within that component among functional substations. The curves describe network topology, not power flow or delivered electricity.',
@@ -538,7 +538,8 @@ def main(output_dir=None, mirror_dir=None):
                         notes='Stage 4: parallel versus crew-constrained execution; completion-event service updates. No illustrative recovery plots.')
                 elif stem=='Main/Fig07':
                     row.update(source_commit=FIGURE_BASELINE_COMMIT,source_file=original_path,
-                        presentation_generator=GEN,presentation_generator_sha256=u.sha(ROOT/GEN),
+                        presentation_generator='src/la_grid/plotting/figure7_final_presentation_20261016.py',
+                        presentation_generator_sha256=u.sha(ROOT/'src/la_grid/plotting/figure7_final_presentation_20261016.py'),
                         status='CURRENT_1021_FIGURE7_PRESENTATION_20261016',min_font_pt='7.500',size_mm=size,
                         parent_sha256=before,parent_source_commit=FIGURE_BASELINE_COMMIT,parent_source_file=original_path)
                     ix.update(source_authority=FIGURE_BASELINE_COMMIT,source_data_path=original_path,

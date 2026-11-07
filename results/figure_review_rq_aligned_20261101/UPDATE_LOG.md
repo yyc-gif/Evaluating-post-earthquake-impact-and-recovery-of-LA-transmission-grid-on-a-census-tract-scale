@@ -60,3 +60,7 @@ Figure 3 component shares were checked against the saved formal component table.
 ## 2026-11-07 - Figure 4 scope and spacing correction
 
 The earlier Figure 4 had A/B only. Restored the seven-strategy overview; the November 1 single-pair mechanism panel remains archived diagnostic evidence. Saved trajectories, outcome values and realization ranges are unchanged. Title/legend clearances are matched; all other numbered figures are byte-identical.
+
+## 2026-11-07 - Figure 7B research-question groups
+
+RQ1 brackets the three initial-service/network features; RQ2 brackets the two recovery-deficit features; RQ3 brackets social vulnerability and population. Group boundaries span both labels and cells. All 21 profile values, A/C/D, and the other fifteen numbered figures are unchanged.

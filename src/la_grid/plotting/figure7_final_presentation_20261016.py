@@ -24,6 +24,9 @@ LAYOUT_B_H = 10 * 72
 LAYOUT_C_H = 684
 FEATURES = ["Init_Supply", "Grid_Impact", "Redundancy_HHI", "B_Unconstrained",
             "MeanDelta", "SOVI_SCORE", "log1p_Population"]
+RQ_GROUPS = (("RQ1", tuple(FEATURES[:3])),
+             ("RQ2", tuple(FEATURES[3:5])),
+             ("RQ3", tuple(FEATURES[5:])))
 LABELS = {
     "Init_Supply": "Initial service availability",
     "Grid_Impact": "Spectral network impact",
@@ -145,12 +148,22 @@ def _draw_profiles(fig, profile, palette, *, layout):
                     fontsize=7.5, color="white" if abs(value) > 1 else "#202020")
     for y in (3, 5):
         ax.axhline(y, color="#242424", linewidth=0.75, clip_on=False)
-    row_centers = [grid_top + grid_height * (1.5 / 7),
-                   grid_top + grid_height * (4 / 7),
-                   grid_top + grid_height * (6 / 7)]
-    for group, top in zip(("RQ1", "RQ2", "RQ3"), row_centers):
-        _fig_text(fig, 70, top - 4.0, group, size=7.5, weight="bold",
-                  align="right", page_height=page_height)
+        top=grid_top+grid_height*y/7
+        fig.add_artist(Line2D([100/PAGE_W,left/PAGE_W],
+            [1-top/page_height]*2,transform=fig.transFigure,
+            color="#242424",linewidth=.75))
+    start=0
+    for group, features in RQ_GROUPS:
+        end=start+len(features)
+        top=grid_top+grid_height*start/7+1
+        bottom=grid_top+grid_height*end/7-1
+        fig.add_artist(Line2D(np.array([100,96,96,100])/PAGE_W,
+            1-np.array([top,top,bottom,bottom])/page_height,
+            transform=fig.transFigure,color="#242424",linewidth=.75))
+        center=grid_top+grid_height*(start+end)/14
+        fig.text(88/PAGE_W,1-center/page_height,group,fontsize=7.5,
+                 fontweight="bold",ha="right",va="center",color="#202020")
+        start=end
     cax = _axes(fig, colorbar_x, grid_top, 10, grid_height, page_height)
     cmap = plt.get_cmap("RdBu_r")
     bins = 256
