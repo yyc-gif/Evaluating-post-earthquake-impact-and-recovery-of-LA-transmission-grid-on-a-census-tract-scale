@@ -180,11 +180,13 @@ def restoration_workflow(raw):
         assert 'Restoration Policies and Execution' in old_text
         assert {'Unconstrained','reference','Crew dispatch','and directed travel',
                 'Priority-strategy','recovery','80% service'}.issubset(old_text),old_text
+        # Text-only redaction keeps the surrounding scientific artwork intact.
+        for span in old:
+            page.add_redact_annot(fitz.Rect(span['bbox']),fill=None)
+        page.apply_redactions(images=0,graphics=0)
         white=(1.,1.,1.)
         header=(232/255,244/255,242/255)
         ink=(32/255,40/255,43/255)
-        muted=(103/255,116/255,121/255)
-        teal=(39/255,137/255,126/255)
         page.draw_rect(fitz.Rect(9.5,481.7,256.3,614.7),color=None,fill=white,overlay=True)
         page.draw_rect(fitz.Rect(21.8,465.2,250.5,480.5),color=None,fill=header,overlay=True)
         page.insert_font(fontname='Fig1RestorationBold',fontfile='C:/Windows/Fonts/arialbd.ttf')
@@ -196,41 +198,25 @@ def restoration_workflow(raw):
         page.insert_text((22.677,475.654),title_text,fontname='Fig1RestorationBold',
                          fontsize=9.5,color=ink,overlay=True)
 
-        def label(text,x,y,size=7.1,bold=False,color=ink):
+        def label(text,x,y,size=7.5,bold=False,color=ink):
             page.insert_text((x,y),text,
                 fontname='Fig1RestorationBold' if bold else 'Fig1RestorationBody',
                 fontsize=size,color=color,overlay=True)
 
-        label('UNCONSTRAINED REFERENCE',15.5,497.5,bold=True,color=teal)
-        for text,y in [('Repairs proceed in parallel',510.0),
-                       ('using sampled durations; no',519.0),
-                       ('crew or travel constraints.',528.0)]:
-            label(text,15.5,y,7.2)
+        label('Unconstrained reference',15.5,497.5,bold=True)
+        label('Repairs proceed in parallel using sampled durations.',15.5,511.0)
+        label('No crew or travel constraints.',15.5,523.0)
 
-        label('CONSTRAINED RESTORATION',15.5,561.5,bold=True,color=teal)
-        for text,y in [('Priority strategy sets repair order',574.0),
-                       ('Finite crews; dispatch accounts for',583.0),
-                       ('repair duration and directed travel.',592.0)]:
-            label(text,15.5,y,7.0)
+        label('Constrained restoration',15.5,544.0,bold=True)
+        label('Priority strategy sets repair order.',15.5,557.5)
+        label('Finite crews; dispatch includes directed travel and repairs.',15.5,569.5)
 
-        page.draw_line(fitz.Point(15.5,546.0),fitz.Point(250.0,546.0),
-                       color=(0.82,0.85,0.86),width=0.45,overlay=True)
-        curve_x0,curve_x1=139.0,249.0
-        for top,bottom,title_y,time_y in [(500.5,530.5,495.5,540.0),
-                                          (564.5,594.5,559.5,604.0)]:
-            label('Modeled service availability',curve_x0,title_y,6.8,color=muted)
-            page.draw_line(fitz.Point(curve_x0,top),fitz.Point(curve_x0,bottom),
-                           color=muted,width=0.55,overlay=True)
-            page.draw_line(fitz.Point(curve_x0,bottom),fitz.Point(curve_x1,bottom),
-                           color=muted,width=0.55,overlay=True)
-            pts=[(curve_x0+4,bottom-2),(curve_x0+16,bottom-2),
-                 (curve_x0+16,bottom-8),(curve_x0+36,bottom-8),
-                 (curve_x0+36,bottom-14),(curve_x0+61,bottom-14),
-                 (curve_x0+61,bottom-21),(curve_x0+84,bottom-21),
-                 (curve_x0+84,top+1),(curve_x1-2,top+1)]
-            page.draw_polyline([fitz.Point(x,y) for x,y in pts],
-                               color=teal,width=1.25,overlay=True,lineCap=1,lineJoin=1)
-            label('Time',curve_x1-15,time_y,6.8,color=muted)
+        for y in (531.5,578.0):
+            page.draw_line(fitz.Point(15.5,y),fitz.Point(250.0,y),
+                           color=(0.82,0.85,0.86),width=0.45,overlay=True)
+        label('Repair completion: station functionality = 1',15.5,590.0)
+        label('Source gate + tract weights',15.5,601.0)
+        label('Modeled service availability curves',15.5,612.0)
 
         result=finish(doc)
         return result,dict(
@@ -242,6 +228,8 @@ def restoration_workflow(raw):
             unconstrained='Repairs proceed in parallel using sampled durations; no crew or travel constraints.',
             constrained='Priority strategy sets repair order; finite crews and dispatch account for repair duration and directed travel.',
             panel_bounds_preserved=True,other_panels_and_stage_5_content_unchanged=True,
+            body_font='Arial',body_font_size_pt=7.5,
+            illustrative_curves_removed=True,completion_event_recovery=True,
             original_panel_graphics_covered_by_opaque_vector_replacement=True,
             source_vector_signature='outside authorized panel verified by native-render pixel test',
             width_pt=w,height_pt=h)

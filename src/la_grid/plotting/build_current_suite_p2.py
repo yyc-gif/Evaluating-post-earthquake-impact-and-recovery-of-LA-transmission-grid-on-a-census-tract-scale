@@ -530,11 +530,11 @@ def main(output_dir=None, mirror_dir=None):
                 if stem=='Main/Fig01':
                     row.update(source_commit=CURRENT_SUITE_BASE,source_file=original_path,
                         presentation_generator=PRESENTATION,presentation_generator_sha256=u.sha(ROOT/PRESENTATION),
-                        status='CURRENT_1021_RESTORATION_MODES_CLARIFIED',size_mm=size,
+                        status='STAGE4_EXECUTION_FONT_AND_CONTENT_CORRECTION',size_mm=size,
                         parent_sha256=before,parent_source_commit=CURRENT_SUITE_BASE,parent_source_file=original_path)
                     ix.update(source_authority=CURRENT_SUITE_BASE,source_data_path=original_path,
                         source_data_sha256=f1_source_hash,generator=PRESENTATION,
-                        notes='Part 4 distinguishes Unconstrained reference restoration from constrained strategy execution; no scientific outputs changed.')
+                        notes='Stage 4: parallel versus crew-constrained execution; completion-event service updates. No illustrative recovery plots.')
                 elif stem=='Main/Fig07':
                     row.update(source_commit=FIGURE_BASELINE_COMMIT,source_file=original_path,
                         presentation_generator=GEN,presentation_generator_sha256=u.sha(ROOT/GEN),
