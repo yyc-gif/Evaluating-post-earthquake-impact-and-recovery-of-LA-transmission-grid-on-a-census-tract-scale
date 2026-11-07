@@ -64,3 +64,7 @@ The earlier Figure 4 had A/B only. Restored the seven-strategy overview; the Nov
 ## 2026-11-07 - Figure 7B research-question groups
 
 RQ1 brackets the three initial-service/network features; RQ2 brackets the two recovery-deficit features; RQ3 brackets social vulnerability and population. Group boundaries span both labels and cells. All 21 profile values, A/C/D, and the other fifteen numbered figures are unchanged.
+
+## 2026-11-07 - Figure 7 explanatory footer removed
+
+Deleted the complete bottom annotation block and its generation calls. No replacement prose is added. Maps, legends, profile values and all other figures are unchanged. Scientific checks are retained separately in FIG07_DISPLAY_QA.json.

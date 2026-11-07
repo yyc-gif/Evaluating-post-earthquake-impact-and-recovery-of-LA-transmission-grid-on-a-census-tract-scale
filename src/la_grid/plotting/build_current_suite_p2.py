@@ -376,6 +376,7 @@ def main(output_dir=None, mirror_dir=None):
     weights = frame(PB + 'P2_STANDARDIZER_AND_WEIGHTS.csv')
     source_profile = frame(PB + 'P2_ORDINARY_COHORT_Z_CLASS_MEANS.csv').set_index('class_id')
     profile = figure7_final.profile_means(table, weights)
+    u.dump(DEST/'QA/FIG07_DISPLAY_QA.json',figure7_final.display_qa(table,profile))
     np.testing.assert_allclose(profile[figure7_final.FEATURES].to_numpy(),
         source_profile.loc[['C1','C2','C3'],figure7_final.FEATURES].to_numpy(), atol=1e-12, rtol=0)
     source_pdf = source('results/figure_review/Main/Fig07.pdf', FIGURE_BASELINE_COMMIT)
@@ -437,6 +438,7 @@ def main(output_dir=None, mirror_dir=None):
         'same_fill_edge_overprint_pt':figure7_maps.SEAM_OVERLAP_PT,
         'A_ECDF_variable_count':6,'A_ECDF_class_variable_curves':18,
         'B_standardized_profile_cells':21,'B_feature_count':7,
+        'summary_line_count':0,
         'profile_reconstruction_max_abs_error':float(np.max(np.abs(
             profile[figure7_final.FEATURES].to_numpy()-source_profile.loc[['C1','C2','C3'],figure7_final.FEATURES].to_numpy()))),
         'palette':{str(k):v for k,v in figure7_final.PROPOSED.items()},
@@ -544,7 +546,7 @@ def main(output_dir=None, mirror_dir=None):
                         parent_sha256=before,parent_source_commit=FIGURE_BASELINE_COMMIT,parent_source_file=original_path)
                     ix.update(source_authority=FIGURE_BASELINE_COMMIT,source_data_path=original_path,
                         source_data_sha256=source_pdf_sha,generator=GEN,
-                        notes='Figure 7 palette, labels and layout only; tract values and K3 assignments are unchanged. Panel D states verified Q4/P75 overlap and prevalence.')
+                        notes='Figure 7 palette, labels and layout only; tract values and K3 assignments are unchanged. Map and legends only; screening statistics are retained in QA.')
                 elif stem=='Main/Fig04':
                     row.update(source_commit=BASE,source_file=original_path,
                         presentation_generator='src/la_grid/plotting/rq_aligned_figure_updates.py',
@@ -638,7 +640,8 @@ def main(output_dir=None, mirror_dir=None):
         screening_outline_width_pt=.25,map_same_fill_edge_overprint_pt=figure7_maps.SEAM_OVERLAP_PT,
         screening_rule='Frozen SOVI Q4 and five-policy deficit >= cohort P75',
         screening_tracts=94,screening_population=350799,formal_Stage7_pipeline_migrated=False,
-        Figure7_layout='7.2 x 9.5 in; map-forward layout with quantitative Q4/P75 evidence',Figure7_NA_fill='#FFFFFF')
+        Figure7_layout='7.2 x 9.5 in; map-forward layout; maps and legends only',
+        Figure7_summary_line_count=0,Figure7_NA_fill='#FFFFFF')
     u.dump(DEST/'CURRENT_CLUSTER_PALETTE.json',palette)
     u.dump(DEST/'STRATEGY_DISPLAY_NAMES.json',dict(
         strategy_id_to_display_name=STRATEGY_DISPLAY_NAMES,
@@ -660,7 +663,7 @@ def main(output_dir=None, mirror_dir=None):
         '(1,235 / 428 / 636), 9,066,522 residents. NCV14 is supplementary environmental context, not a fitted coordinate. '
         'K4 remains a saved sensitivity result, not a second primary model.\n\n16 numbered figures: Main 1-7 and Supplement 1-9. '
         'Figures 3-7 align the saved mechanism decomposition, paired policy effects, vulnerability gaps, resource uncertainty and K3 burden context with the results structure. '
-        'Figure 4 compares recovery and realization-level outcomes across seven strategies; Figure 5 distinguishes signed and absolute Q4-Q1 gaps; Figure 7 states the verified Q4/P75 overlap and prevalence. '
+        'Figure 4 compares recovery and realization-level outcomes across seven strategies; Figure 5 distinguishes signed and absolute Q4-Q1 gaps; Figure 7 uses maps and legends only, with numerical screening statistics retained in QA. '
         'The combined publication packet has 16 pages, one per numbered figure with its concise caption. '
         'The source suite and all prior approved artwork remain unchanged; this output is a separate RQ-aligned review build. '
         'Figure S8 uses a muted blue-green population scale. Figure 7 uses a muted teal, slate and mauve K3 palette, cohort-standardized profiles, '
@@ -680,7 +683,9 @@ def main(output_dir=None, mirror_dir=None):
         '\n## 2026-11-01 - RQ-aligned figure evidence\n\n'
         'Figure 3 component shares were checked against the saved formal component table. Figure 4 reports service-loss and T80 realization ranges and adds paired Degree-first minus Hospital-first component differences. Figure 5 distinguishes signed Q4-Q1 from the absolute within-realization gap. Figure 7 states the verified Q4/P75 overlap and prevalence. No model, simulation, restoration schedule, or clustering fit was rerun.\n'
         '\n## 2026-11-07 - Figure 4 scope and spacing correction\n\n'
-        'Restored the A/B seven-strategy overview. The single-pair component comparison is diagnostic evidence, not a main panel. Saved recovery vectors and all outcome values and realization ranges are unchanged. Title/legend clearances are matched.\n')
+        'Restored the A/B seven-strategy overview. The single-pair component comparison is diagnostic evidence, not a main panel. Saved recovery vectors and all outcome values and realization ranges are unchanged. Title/legend clearances are matched.\n'
+        '\n## 2026-11-07 - Figure 7 explanatory footer removed\n\n'
+        'Deleted the complete bottom annotation block and its generation calls. No replacement prose is added. Maps, legends, profile values and all other figures are unchanged. Scientific checks are retained separately in FIG07_DISPLAY_QA.json.\n')
     addition=('\nSupplementary Figure S3 shows only time-dependent functional-network recovery. '
               'Spectral-connectivity-first is the publication display name for the unchanged centrality-first strategy ID.\n')
     for path in [DEST/'README.md',MIRROR_DEST/'README.md']:

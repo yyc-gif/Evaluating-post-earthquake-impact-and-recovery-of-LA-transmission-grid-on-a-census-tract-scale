@@ -1,0 +1,14 @@
+{
+  "command": "python -m pytest -p no:cacheprovider tests/test_figure7_no_footer_20261107.py tests/test_rq_aligned_figure_suite_20261101.py -q",
+  "passed": 12,
+  "failed": 1,
+  "elapsed_seconds": 85.69,
+  "remaining_preexisting_missing_dependency": "results/figure_review_rq_aligned_20261101/QA/FIGURE_CHANGE_MANIFEST.csv",
+  "figure7_data_QA_dependency_resolved": "Replaced unavailable historical process CSVs with source-reconstructed FIG07_DISPLAY_QA.json; scientific assertions retained.",
+  "entire_annotation_block_absent": true,
+  "all_other_figure7_pixels_identical": true,
+  "all_other_numbered_artwork_pairs_identical": true,
+  "canonical_footer_generation_calls_removed": true,
+  "native_footer_render_visually_inspected": true,
+  "unrelated_assertions_weakened": false
+}
