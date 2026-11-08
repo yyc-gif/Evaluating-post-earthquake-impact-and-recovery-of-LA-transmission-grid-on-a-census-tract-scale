@@ -1,5 +1,35 @@
 {
-  "source_commit": "0cefb5440dbf918b659a5e2f3550cdeb83998d7b",
+  "source_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+  "figure_suite_source_base_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+  "figure1_stage4_curve_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+  "stage4_result_curves": {
+    "panel": "4",
+    "plot_type": "frozen population-weighted mean service-availability curves",
+    "scenario": "2pc50",
+    "time_window_hours": [
+      0,
+      100
+    ],
+    "source_file": "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv",
+    "source_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+    "source_rows": 9601,
+    "series_columns": {
+      "Unconstrained": "2pc50 | S3_Mean | Population",
+      "Impact-first": "2pc50 | Impact population first | Population"
+    },
+    "points_plotted_per_series": 2001,
+    "endpoint_at_100h": {
+      "Unconstrained": 0.9999999608925917,
+      "Impact-first": 0.9999627847939658
+    },
+    "curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules": true,
+    "no_new_simulation_or_metric_calculation": true,
+    "figure_dimensions_pt": [
+      524.409423828125,
+      623.6220703125
+    ],
+    "outside_stage4_pixels_identical": true
+  },
   "source_main_figures": 8,
   "source_supplementary_figures": 8,
   "figure_pairs": 16,
@@ -8,8 +38,8 @@
   "browsable_individual_directory": "Individual_Figures",
   "browsable_individual_artwork_files": 32,
   "browsable_individual_artwork_sha256": {
-    "Main/Fig01_Methodology_Workflow.pdf": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
-    "Main/Fig01_Methodology_Workflow.png": "d9ece2443130ca479dfa960f93ad5dfbe4445b4669d8b82aea63bc2a86b7c9e3",
+    "Main/Fig01_Methodology_Workflow.pdf": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+    "Main/Fig01_Methodology_Workflow.png": "4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2",
     "Main/Fig02_System_Network_and_Mapping.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
     "Main/Fig02_System_Network_and_Mapping.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
     "Main/Fig03_Unconstrained_Recovery.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
@@ -41,10 +71,10 @@
     "Supplement/FigS08_Resource_Outcomes.pdf": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
     "Supplement/FigS08_Resource_Outcomes.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
   },
-  "separate_caption_file_sha256": "c38682b26d2d90db41ec2da4e10c2fca062f3276595c29a62182b174757d2f8f",
-  "combined_pdf_sha256": "50b1b99f613e9c8bf55584b5ff2a5350cabf0507507d4cba01c0061d686561d6",
-  "zip_sha256": "b61c5159576f0c9029cc1e5208a82d77881e26885bd373e17f4a09dae9ea0c14",
-  "zip_bytes": 192633634,
+  "separate_caption_file_sha256": "c9c769a6abd226838d54cec670932d1c50d664d52ceb8d7c111bc2edbb4c6d4b",
+  "combined_pdf_sha256": "c5fd310ec8f8527704952dd946e8baaf50682fb3016fc8ff2f87168719e53697",
+  "zip_sha256": "b8ce318351624c5f1ab01bd3c190728a83ad381fcdb42efa992d1821b5f64dae",
+  "zip_bytes": 192691935,
   "archive_crc_and_payload_sha256_verified": true,
   "all_figure_artwork_matches_committed_review_suite": true,
   "captions_embedded_in_individual_artwork": false

@@ -1,6 +1,35 @@
 {
   "source_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
-  "all_16_artwork_pairs_byte_identical": true,
+  "figure1_updated_only_with_frozen_result_curve": true,
+  "unaffected_15_artwork_pairs_byte_identical": true,
+  "figure1_source_curve_audit": {
+    "panel": "4",
+    "plot_type": "frozen population-weighted mean service-availability curves",
+    "scenario": "2pc50",
+    "time_window_hours": [
+      0,
+      100
+    ],
+    "source_file": "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv",
+    "source_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+    "source_rows": 9601,
+    "series_columns": {
+      "Unconstrained": "2pc50 | S3_Mean | Population",
+      "Impact-first": "2pc50 | Impact population first | Population"
+    },
+    "points_plotted_per_series": 2001,
+    "endpoint_at_100h": {
+      "Unconstrained": 0.9999999608925917,
+      "Impact-first": 0.9999627847939658
+    },
+    "curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules": true,
+    "no_new_simulation_or_metric_calculation": true,
+    "figure_dimensions_pt": [
+      524.409423828125,
+      623.6220703125
+    ],
+    "outside_stage4_pixels_identical": true
+  },
   "main_figures": 8,
   "supplementary_figures": 8,
   "complete_packet_pages": 16,

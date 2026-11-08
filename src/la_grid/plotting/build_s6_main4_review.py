@@ -14,6 +14,7 @@ import pandas as pd
 from reportlab import rl_config
 
 import consolidate_current_figure_suite as u
+import figure_presentation
 from short_current_captions_20261013 import brief_caption_page
 
 ROOT=u.ROOT
@@ -45,6 +46,7 @@ INPUTS=[
     'src/la_grid/plotting/build_meeting_figure_collection.py',
     'src/la_grid/plotting/figure_presentation.py',
     'src/la_grid/plotting/build_current_suite_p2.py',
+    'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv',
 ]
 
 def source(path):
@@ -83,6 +85,28 @@ def main(output_dir=None,mirror_dir=None):
         source_hashes[path]={'commit':BASE,'sha256':u.digest(raw),'bytes':len(raw)}
     dynamic=pd.read_csv(io.BytesIO(source(INPUTS[1])))
     station=pd.read_csv(io.BytesIO(source(INPUTS[2])),dtype={'station_id':str})
+    recovery_curves=source(INPUTS[-1])
+    stage4_pdf,stage4_audit=figure_presentation.restoration_workflow_with_results(
+        source(SOURCE+'/Main/Fig01.pdf'),recovery_curves)
+    with fitz.open(stream=source(SOURCE+'/Main/Fig01.pdf'),filetype='pdf') as before_doc, \
+         fitz.open(stream=stage4_pdf,filetype='pdf') as after_doc:
+        before_pix=before_doc[0].get_pixmap(dpi=120,alpha=False)
+        after_pix=after_doc[0].get_pixmap(dpi=120,alpha=False)
+        before_rgb=np.frombuffer(before_pix.samples,dtype=np.uint8).reshape(
+            before_pix.height,before_pix.width,3)
+        after_rgb=np.frombuffer(after_pix.samples,dtype=np.uint8).reshape(
+            after_pix.height,after_pix.width,3)
+        assert before_rgb.shape==after_rgb.shape
+        scale=120/72
+        outside=np.ones(before_rgb.shape[:2],dtype=bool)
+        outside[round(481.7*scale)-2:round(614.7*scale)+2,
+                round(9.5*scale)-2:round(256.3*scale)+2]=False
+        stage4_audit['outside_stage4_pixels_identical']=bool(
+            np.array_equal(before_rgb[outside],after_rgb[outside]))
+        assert stage4_audit['outside_stage4_pixels_identical']
+    with fitz.open(stream=stage4_pdf,filetype='pdf') as stage4_doc:
+        stage4_png=stage4_doc[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
+        stage4_preview=stage4_doc[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
     difference=(dynamic.population_dependency_weighted_R_conn-
                 dynamic.population_dependency_weighted_fixed_precomputed_best_path_connection-
                 dynamic.population_dependency_weighted_full_minus_fixed_precomputed_best_path)
@@ -94,25 +118,40 @@ def main(output_dir=None,mirror_dir=None):
         old_title,body=caps[old]
         title=label(new)+'.'+old_title.split('.',1)[1]
         body=references(body)
+        if new=='Main/Fig01':
+            body=('Five-stage workflow from network and tract mapping through seismic damage, restoration execution, and community outcomes. '
+                  'Stage 4 shows the saved population-weighted service-availability trajectories for Unconstrained and Impact-first; '
+                  'Stage 5 summarizes derived service-loss and recovery-time measures.')
         if new=='Main/Fig04':title,body=TITLE,CAPTION
         new_caps.append((title,body))
-        preview=source(f'{SOURCE}/Page_Previews/{Path(old).name}.png')
+        preview=(stage4_preview if new=='Main/Fig01' else
+                 source(f'{SOURCE}/Page_Previews/{Path(old).name}.png'))
         u.write(dest/f'Page_Previews/{Path(new).name}.png',preview)
         for ext in ('pdf','png'):
             row=next(r.copy() for r in manifest if r['final_name']==old+'.'+ext)
-            raw=source(row['current_source_file'])
-            assert u.digest(raw)==row['sha256']
-            assert source(row['mirror_file'])==raw
+            source_raw=source(row['current_source_file'])
+            assert u.digest(source_raw)==row['sha256']
+            assert source(row['mirror_file'])==source_raw
+            raw=(stage4_pdf if new=='Main/Fig01' and ext=='pdf' else
+                 stage4_png if new=='Main/Fig01' and ext=='png' else source_raw)
             ix=next(r.copy() for r in source_index if r['source_path']==row['current_source_file'])
             suffix=Path(row['mirror_file']).name.split('_',1)[1]
             new_path=dest/(new+'.'+ext)
             mirror_path=mirror/(Path(new).name+'_'+suffix)
             u.write(new_path,raw);u.write(mirror_path,raw)
-            row.update(final_name=new+'.'+ext,current_source_file=new_path.relative_to(ROOT).as_posix(),
+            row.update(final_name=new+'.'+ext,sha256=u.digest(raw),
+                current_source_file=new_path.relative_to(ROOT).as_posix(),
                 mirror_file=mirror_path.relative_to(ROOT).as_posix(),source_commit=BASE,
-                source_file=f'{SOURCE}/{old}.{ext}',status='RENUMBERED_REVIEW_ARTWORK_UNCHANGED',
+                source_file=f'{SOURCE}/{old}.{ext}',
+                status=('UPDATED_STAGE4_RESULT_CURVE' if new=='Main/Fig01' else
+                        'RENUMBERED_REVIEW_ARTWORK_UNCHANGED'),
                 promotion_generator=GEN,promotion_generator_sha256=u.sha(ROOT/GEN),
-                previous_figure=old,change_in_this_update='NUMBERING_AND_CAPTION_ONLY')
+                previous_figure=old,
+                change_in_this_update=('RESULT_CURVE_ADDED_TO_STAGE4' if new=='Main/Fig01' else
+                                       'NUMBERING_AND_CAPTION_ONLY'))
+            if new=='Main/Fig01':
+                row.update(additional_source_file=INPUTS[-1],
+                           additional_source_sha256=stage4_audit['source_sha256'])
             for key in ['notes','main_message','scientific_content','scientific_question']:
                 if key in ix:ix[key]=references(ix[key])
             ix.update(figure_number=Path(new).name,file=mirror_path.name,
@@ -125,6 +164,8 @@ def main(output_dir=None,mirror_dir=None):
                 ix.update(scientific_question='How do source connectivity and alternative paths recover under different restoration sequences?',
                     main_message='Dynamic full-network/fixed-path comparisons and conditional station maps retain all four panels.',
                     notes='Complete former S6, byte-identical artwork; insert between Sections 4.2 and 4.3.')
+            if new=='Main/Fig01':
+                ix.update(notes='Stage 4 includes the saved 2pc50 population-weighted Unconstrained and Impact-first availability curves; no T80 is displayed in this stage.')
             rows.append(row);indices.append(ix)
             preservation.append({'previous_figure':old,'new_figure':new,'format':ext,
                 'source_sha256':u.digest(raw),'output_sha256':u.sha(new_path),'byte_identical':raw==new_path.read_bytes()})
@@ -167,7 +208,10 @@ def main(output_dir=None,mirror_dir=None):
         'original_notes_describe_separate_candidates_not_exact_current_S6':True})
     u.dump(dest/'QA/PACKET_PAGE_REGISTRY.json',page_rows)
     u.dump(dest/'QA/NUMBERING_MAP.json',MAPPING)
-    qa={'source_commit':BASE,'all_16_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation),
+    qa={'source_commit':BASE,
+        'figure1_updated_only_with_frozen_result_curve':True,
+        'unaffected_15_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure']!='Main/Fig01'),
+        'figure1_source_curve_audit':stage4_audit,
         'main_figures':8,'supplementary_figures':8,'complete_packet_pages':16,
         'all_four_promoted_panels_preserved':True,'static_station_records':len(station),
         'static_core_source_records':int(station.is_core_source.sum()),'dynamic_summary_records':len(dynamic),
@@ -181,7 +225,8 @@ def main(output_dir=None,mirror_dir=None):
         'Main 4-7 become 5-8; former Supplement S7-S9 become S6-S8; Supplement S1-S5 remain unchanged. '
         'The collection contains eight main plus eight supplementary figures. Combined packet: 16 pages, each artwork followed immediately by its concise caption on the same page.\n\n'
         'This is a separate author-review collection. The source suite, manuscripts, simulation data, restoration results and clustering are unchanged. '
-        'No new scientific computation is performed; only an existing full-minus-fixed table identity is checked. '
+        'Figure 1 Stage 4 now includes the saved 2pc50 population-weighted Unconstrained and Impact-first service-availability curves; the other 15 numbered artwork pairs are byte-identical to their pinned sources. '
+        'No simulation or scientific model is rerun; only frozen result outputs are plotted. '
         'The source notes describe older candidate layouts. The actual promoted figure uses dynamic A/B curves for six scheduled strategies plus Unconstrained and static conditional C/D maps.\n\n'
         'Place Main Figure 4 after Section 4.2 and before the Section 4.3 heading. See MANUSCRIPT_INTEGRATION.md for the bridge and figure-reference substitutions. '
         'No editable manuscript document is tracked in this checkout, so manuscript placement is prepared, not falsely claimed as edited.\n\n'
@@ -189,7 +234,7 @@ def main(output_dir=None,mirror_dir=None):
         'The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. '
         'Current older-suite builders remain available and do not target this separate collection.\n')
     u.write(dest/'README.md',readme);u.write(mirror/'README.md',readme)
-    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery. All 16 artwork pairs remain byte-identical to the pinned source.\n')
+    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nAdded the saved population-weighted Unconstrained and Impact-first service-availability curves to Figure 1 Stage 4. No simulation was rerun; the other 15 numbered artwork pairs remain byte-identical to their pinned sources.\n')
     u.write(dest/'MANUSCRIPT_INTEGRATION.md',manuscript_integration())
     print(json.dumps(qa,indent=2))
 

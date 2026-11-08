@@ -235,6 +235,104 @@ def restoration_workflow(raw):
             width_pt=w,height_pt=h)
 
 
+def restoration_workflow_with_results(raw, recovery_curves_csv):
+    """Show a frozen Unconstrained/Impact-first recovery comparison in Stage 4."""
+    import csv
+    import numpy as np
+    import matplotlib
+    matplotlib.use('Agg', force=True)
+    import matplotlib.pyplot as plt
+    from matplotlib import font_manager
+
+    rows=list(csv.DictReader(io.StringIO(recovery_curves_csv.decode('utf-8-sig'))))
+    time=np.asarray([float(row['time_hr']) for row in rows],dtype=float)
+    columns={
+        'Unconstrained':'2pc50 | S3_Mean | Population',
+        'Impact-first':'2pc50 | Impact population first | Population',
+    }
+    values={name:np.asarray([float(row[column]) for row in rows],dtype=float)
+            for name,column in columns.items()}
+    assert len(time)>1 and np.all(np.isfinite(time)) and np.all(np.diff(time)>0)
+    assert time[0]==0 and time[-1]>=100 and np.any(np.isclose(time,100))
+    for series in values.values():
+        assert len(series)==len(time) and np.all(np.isfinite(series))
+        assert np.all((series>=0)&(series<=1))
+    keep=time<=100
+    curve_sha=hashlib.sha256(recovery_curves_csv).hexdigest()
+
+    font_manager.fontManager.addfont('C:/Windows/Fonts/arial.ttf')
+    font_manager.fontManager.addfont('C:/Windows/Fonts/arialbd.ttf')
+    with matplotlib.rc_context({
+        'font.family':'Arial','font.size':6.0,'pdf.fonttype':42,
+        'ps.fonttype':42,'axes.linewidth':0.45,
+    }):
+        fig=plt.figure(figsize=(234.5/72,80.0/72),facecolor='white')
+        ax=fig.add_axes([0.13,0.24,0.85,0.56])
+        ax.step(time[keep],values['Unconstrained'][keep],where='post',color='#111111',
+                linewidth=1.05,label='Unconstrained')
+        ax.step(time[keep],values['Impact-first'][keep],where='post',color='#ff7f0e',
+                linewidth=1.05,label='Impact-first')
+        ax.set_xlim(0,100);ax.set_ylim(0,1.02)
+        ax.set_xticks([0,25,50,75,100]);ax.set_yticks([0,0.5,1.0])
+        ax.set_xlabel('Time after earthquake (h)',fontsize=6.0,labelpad=1.0)
+        ax.set_ylabel('Service availability',fontsize=6.0,labelpad=1.0)
+        ax.tick_params(axis='both',labelsize=5.5,length=2,pad=1.2,width=0.4)
+        ax.grid(axis='both',color='#d8dde0',linewidth=0.35)
+        ax.set_axisbelow(True)
+        ax.spines['top'].set_visible(False);ax.spines['right'].set_visible(False)
+        ax.spines['left'].set_color('#59636f');ax.spines['bottom'].set_color('#59636f')
+        ax.legend(loc='lower left',bbox_to_anchor=(0.0,1.02),ncol=2,
+                  frameon=False,fontsize=5.5,handlelength=1.5,
+                  columnspacing=1.3,borderaxespad=0.0,handletextpad=0.4)
+        plot=io.BytesIO()
+        fig.savefig(plot,format='pdf',bbox_inches=None,
+                    metadata={'CreationDate':None,'ModDate':None,
+                              'Creator':'Figure 1 Stage 4 frozen-results inset'})
+        plt.close(fig)
+
+    with fitz.open(stream=raw,filetype='pdf') as doc:
+        page=doc[0];w,h=page.rect.width,page.rect.height
+        stage_text=[s for s in spans(page) if 9.5<s['bbox'][0]<258 and
+                    481<s['bbox'][1] and s['bbox'][3]<615]
+        text=' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
+                      for s in stage_text)
+        assert 'Unconstrained' in text and 'Priority strategy' in text
+        assert 'directed' in text and 'availability curves' in text
+        page.add_redact_annot(fitz.Rect(9.5,481.7,256.3,614.7),fill=None)
+        page.apply_redactions(images=0,graphics=0)
+        page.draw_rect(fitz.Rect(9.5,481.7,256.3,614.7),color=None,
+                       fill=(1,1,1),overlay=True)
+        page.insert_font(fontname='Fig1Stage4Bold',fontfile='C:/Windows/Fonts/arialbd.ttf')
+        page.insert_font(fontname='Fig1Stage4Body',fontfile='C:/Windows/Fonts/arial.ttf')
+        ink=(32/255,40/255,43/255)
+        def label(value,x,y,size=6.0,bold=False):
+            page.insert_text((x,y),value,
+                fontname='Fig1Stage4Bold' if bold else 'Fig1Stage4Body',
+                fontsize=size,color=ink,overlay=True)
+        label('Unconstrained',15.5,493.8,7.0,True)
+        label('Parallel repairs; no crew or travel limits.',15.5,503.2,5.8)
+        label('Constrained strategies',135.0,493.8,7.0,True)
+        label('Priority order; finite crews and directed travel.',135.0,503.2,5.5)
+        label('Mean population-weighted service availability | 2%-in-50-year scenario',15.5,515.5,5.8,True)
+        with fitz.open(stream=plot.getvalue(),filetype='pdf') as chart:
+            page.show_pdf_page(fitz.Rect(15.5,518.0,250.0,603.0),chart,0,
+                               keep_proportion=False)
+        result=finish(doc)
+    return result,{
+        'panel':'4','plot_type':'frozen population-weighted mean service-availability curves',
+        'scenario':'2pc50','time_window_hours':[0,100],
+        'source_file':'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv',
+        'source_sha256':curve_sha,'source_rows':len(rows),
+        'series_columns':columns,
+        'points_plotted_per_series':int(keep.sum()),
+        'endpoint_at_100h':{name:float(series[np.flatnonzero(np.isclose(time,100))[0]])
+                            for name,series in values.items()},
+        'curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules':True,
+        'no_new_simulation_or_metric_calculation':True,
+        'figure_dimensions_pt':[w,h],
+    }
+
+
 def apply(stem,raw):
     return {'Main/Fig01':restoration_workflow,'Main/Fig05':figure5,'Main/Fig07':figure7,'Supplement/FigS03':functional_network_recovery,
             'Supplement/FigS08':supplementary8}[stem](raw)

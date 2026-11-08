@@ -1,4 +1,4 @@
-"""Review-only renumbering must preserve every scientific artwork byte."""
+"""Review-only figure promotion preserves the source suite and S6 content."""
 import csv
 import hashlib
 import importlib.util
@@ -35,9 +35,17 @@ def test_exact_numbering_and_inventory():
 def test_every_artwork_and_mirror_matches_actual_source_bytes():
     for record in rows(SUITE/'FIGURE_MANIFEST.csv'):
         expected=builder.source(record['source_file'])
-        assert (ROOT/record['current_source_file']).read_bytes()==expected
-        assert (ROOT/record['mirror_file']).read_bytes()==expected
-        assert hashlib.sha256(expected).hexdigest()==record['sha256']
+        current=(ROOT/record['current_source_file']).read_bytes()
+        mirror=(ROOT/record['mirror_file']).read_bytes()
+        assert mirror==current
+        assert hashlib.sha256(current).hexdigest()==record['sha256']
+        if record['final_name']=='Main/Fig01.pdf' or record['final_name']=='Main/Fig01.png':
+            assert current!=expected
+            qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text())
+            assert qa['figure1_updated_only_with_frozen_result_curve']
+            assert qa['figure1_source_curve_audit']['outside_stage4_pixels_identical']
+        else:
+            assert current==expected
     index=rows(MIRROR/'FIGURE_INDEX.csv')
     assert len(index)==32
     assert {r['figure_number'] for r in index}=={Path(s).name for s in builder.NEW}
@@ -99,7 +107,9 @@ def test_palette_and_source_science_preserved():
     actual=json.loads((SUITE/'CURRENT_CLUSTER_PALETTE.json').read_text())
     assert {k.replace('Figure7_','Figure8_'):v for k,v in expected.items()}==actual
     q=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text())
-    assert q['all_four_promoted_panels_preserved'] and q['all_16_artwork_pairs_byte_identical']
+    assert q['all_four_promoted_panels_preserved']
+    assert q['figure1_updated_only_with_frozen_result_curve']
+    assert q['unaffected_15_artwork_pairs_byte_identical']
     assert q['dynamic_full_minus_fixed_identity_max_abs_error']<1e-12
     assert q['static_station_records']==92 and q['static_core_source_records']==14
     for path,record in json.loads((SUITE/'QA/SOURCE_IDENTITIES.json').read_text())['source_files'].items():

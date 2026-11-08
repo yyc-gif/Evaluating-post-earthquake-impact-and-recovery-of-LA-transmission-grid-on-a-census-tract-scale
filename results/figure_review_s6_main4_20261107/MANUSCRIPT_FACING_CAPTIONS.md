@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Study workflow from tract-substation mapping and earthquake damage to modeled service recovery, restoration strategies, and community outcomes. T80 is time to 80% modeled tract-service availability; availability is a network proxy, not delivered electricity.
+Five-stage workflow from network and tract mapping through seismic damage, restoration execution, and community outcomes. Stage 4 shows the saved population-weighted service-availability trajectories for Unconstrained and Impact-first; Stage 5 summarizes derived service-loss and recovery-time measures.
 
 ## Figure 2. Transmission network and tract dependencies
 

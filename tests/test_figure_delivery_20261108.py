@@ -2,6 +2,7 @@ import hashlib
 import json
 from pathlib import Path
 import zipfile
+import fitz
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'results/figure_delivery_20261108'
@@ -43,3 +44,21 @@ def test_browsable_individual_figure_section_matches_archive():
         assert len(list((folder/'Main').glob('*.png')))==8
         assert len(list((folder/'Supplement').glob('*.pdf')))==8
         assert len(list((folder/'Supplement').glob('*.png')))==8
+
+def test_figure1_stage4_uses_frozen_recovery_curves():
+    qa=json.loads((OUT/'PACKAGE_QA.json').read_text())
+    assert qa['stage4_result_curves']['scenario']=='2pc50'
+    assert qa['stage4_result_curves']['source_sha256']=='b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922'
+    fig1=OUT/'Individual_Figures/Main/Fig01_Methodology_Workflow.pdf'
+    with fitz.open(fig1) as doc:
+        assert len(doc)==1
+        page=doc[0]
+        spans=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])
+               for s in line['spans'] if s['bbox'][0]<258 and 481<s['bbox'][1]<615]
+        stage4=' '.join(s['text'].replace('\xa0',' ').replace('\xad','-') for s in spans)
+        assert 'Mean population-weighted service availability' in stage4
+        assert 'Unconstrained' in stage4 and 'Impact-first' in stage4
+        assert 'Time after earthquake (h)' in stage4
+        assert 'Time to 80%' not in stage4
+        assert 'Time to 80% service' in page.get_text()
+        assert len(page.get_drawings())>100

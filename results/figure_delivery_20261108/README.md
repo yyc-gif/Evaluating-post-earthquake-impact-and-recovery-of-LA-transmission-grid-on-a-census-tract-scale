@@ -6,12 +6,11 @@ Download `LA_Grid_Figures_2026-11-08.zip` for a portable coauthor package with t
 
 The loose `FIGURE_CAPTIONS.md` and `ALL_FIGURES_WITH_CAPTIONS.pdf` are identical to their archive copies. Each individual artwork file is copied from the separate review collection without modifying the graphic.
 
-Source suite commit: `0cefb5440dbf918b659a5e2f3550cdeb83998d7b`.
-
-Rebuild from the pinned suite with:
+The current package is built from the refreshed S6-main4 author-review suite. Rebuild in this order:
 
 ```powershell
+python src/la_grid/plotting/build_s6_main4_review.py
 python docs/reproducibility/figure_delivery_20261108/package_delivery.py
 ```
 
-The archive was checked for CRC errors and each member's SHA-256 was independently recomputed. See `PACKAGE_QA.json`.
+Figure 1 Stage 4 includes the saved population-weighted Unconstrained and Impact-first service-availability trajectories. The package builder verifies every artwork against the active review manifest, checks archive CRCs and recomputes member hashes. See `PACKAGE_QA.json`.

@@ -1,16 +1,14 @@
-"""Build a standalone coauthor package from the committed 2026-11-07 suite."""
+"""Package the current S6-main4 suite for coauthors after rebuilding it."""
 from pathlib import Path
 import hashlib
 import json
 import sys
 import zipfile
-from datetime import datetime
 
 ROOT=Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(ROOT/'src/la_grid/plotting'))
 import consolidate_current_figure_suite as u
 
-BASE='0cefb5440dbf918b659a5e2f3550cdeb83998d7b'
 REVIEW='results/figure_review_s6_main4_20261107'
 MIRROR='results/figures_s6_main4_20261107'
 OUT=ROOT/'results/figure_delivery_20261108'
@@ -22,10 +20,13 @@ def sha(data):return hashlib.sha256(data).hexdigest()
 def entry(name,data):return {'name':name,'data':data,'sha256':sha(data),'bytes':len(data)}
 
 def build():
-    manifest=u.csv_rows(u.payload(BASE,REVIEW+'/FIGURE_MANIFEST.csv'))
-    index=u.csv_rows(u.payload(BASE,MIRROR+'/FIGURE_INDEX.csv'))
-    caps=u.payload(BASE,REVIEW+'/MANUSCRIPT_FACING_CAPTIONS.md')
-    full=u.payload(BASE,REVIEW+'/ALL_FIGURES_WITH_CAPTIONS.pdf')
+    manifest=u.csv_rows((ROOT/REVIEW/'FIGURE_MANIFEST.csv').read_bytes())
+    index=u.csv_rows((ROOT/MIRROR/'FIGURE_INDEX.csv').read_bytes())
+    caps=(ROOT/REVIEW/'MANUSCRIPT_FACING_CAPTIONS.md').read_bytes()
+    full=(ROOT/REVIEW/'ALL_FIGURES_WITH_CAPTIONS.pdf').read_bytes()
+    suite_qa=json.loads((ROOT/REVIEW/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text())
+    assert suite_qa['figure1_updated_only_with_frozen_result_curve']
+    assert suite_qa['figure1_source_curve_audit']['source_sha256']=='b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922'
     assert len(manifest)==32 and len(index)==32
     figures=[]
     for row in manifest:
@@ -35,16 +36,17 @@ def build():
         idx=next(r for r in index if r['figure_number']==Path(stem).name and r['format']=='pdf')
         friendly=Path(idx['file']).stem
         folder='Main' if stem.startswith('Main/') else 'Supplement'
-        pdf=u.payload(BASE,row['current_source_file'])
-        png=u.payload(BASE,pngrow['current_source_file'])
+        pdf=(ROOT/row['current_source_file']).read_bytes()
+        png=(ROOT/pngrow['current_source_file']).read_bytes()
         assert sha(pdf)==row['sha256'] and sha(png)==pngrow['sha256']
         figures.extend([entry(f'Figures/{folder}/{friendly}.pdf',pdf),
                         entry(f'Figures/{folder}/{friendly}.png',png)])
     assert len(figures)==32
     readme=(
-        'LA Grid manuscript figures - 2026-11-08\n\n'
+        'LA Grid manuscript figures - 2026-11-08, refreshed 2026-11-08\n\n'
         '16 numbered figures: Main Figures 1-8 and Supplementary Figures S1-S8. '
         'Each figure has a separate vector PDF and caption-free PNG. Figure 4 is the complete four-panel source-connectivity figure. '
+        'Figure 1 Stage 4 now includes saved population-weighted Unconstrained and Impact-first service-availability curves. '
         'Figure_Captions.md is separate from the artwork. All_Figures_With_Captions.pdf is the current combined collection.\n\n'
         'Contents: Figures/Main/ (8 PDF/PNG pairs); Figures/Supplement/ (8 pairs); Figure_Captions.md; All_Figures_With_Captions.pdf; SHA256SUMS.txt.\n'
     ).encode('utf-8')
@@ -81,8 +83,7 @@ def build():
         assert zf.testzip() is None
         assert set(zf.namelist())=={x['name'] for x in contents}
         for item in contents:assert sha(zf.read(item['name']))==item['sha256']
-    # Convenient loose copies are byte-identical to the already committed suite;
-    # Git LFS deduplicates the combined PDF by its existing content hash.
+    # Keep convenient loose copies alongside the portable archive.
     (OUT/'FIGURE_CAPTIONS.md').write_bytes(caps)
     (OUT/'ALL_FIGURES_WITH_CAPTIONS.pdf').write_bytes(full)
     individual_hashes={}
@@ -93,7 +94,11 @@ def build():
         data=(INDIVIDUAL/folder/parts[-1]).read_bytes()
         assert sha(data)==item['sha256']
         individual_hashes[name]=sha(data)
-    qa={'source_commit':BASE,'source_main_figures':8,'source_supplementary_figures':8,
+    qa={'source_commit':suite_qa['source_commit'],
+        'figure_suite_source_base_commit':suite_qa['source_commit'],
+        'figure1_stage4_curve_sha256':suite_qa['figure1_source_curve_audit']['source_sha256'],
+        'stage4_result_curves':suite_qa['figure1_source_curve_audit'],
+        'source_main_figures':8,'source_supplementary_figures':8,
         'figure_pairs':16,'zip_members':len(contents),'individual_artwork_files':32,
         'browsable_individual_directory':'Individual_Figures',
         'browsable_individual_artwork_files':len(individual_hashes),
