@@ -47,6 +47,7 @@ INPUTS=[
     'src/la_grid/plotting/figure_presentation.py',
     'src/la_grid/plotting/build_current_suite_p2.py',
     'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv',
+    SOURCE+'/CURRENT_CLUSTER_PALETTE.json',
 ]
 
 def source(path):
@@ -85,7 +86,12 @@ def main(output_dir=None,mirror_dir=None):
         source_hashes[path]={'commit':BASE,'sha256':u.digest(raw),'bytes':len(raw)}
     dynamic=pd.read_csv(io.BytesIO(source(INPUTS[1])))
     station=pd.read_csv(io.BytesIO(source(INPUTS[2])),dtype={'station_id':str})
-    recovery_curves=source(INPUTS[-1])
+    recovery_curve_path=INPUTS[-2]
+    palette_path=INPUTS[-1]
+    recovery_curves=source(recovery_curve_path)
+    palette_bytes=source(INPUTS[-1])
+    palette=json.loads(palette_bytes)
+    assert palette['colors']=={'1':'#3C9198','2':'#52699E','3':'#C69EBA'}
     stage4_pdf,stage4_audit=figure_presentation.restoration_workflow_with_results(
         source(SOURCE+'/Main/Fig01.pdf'),recovery_curves)
     with fitz.open(stream=source(SOURCE+'/Main/Fig01.pdf'),filetype='pdf') as before_doc, \
@@ -107,6 +113,8 @@ def main(output_dir=None,mirror_dir=None):
     with fitz.open(stream=stage4_pdf,filetype='pdf') as stage4_doc:
         stage4_png=stage4_doc[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
         stage4_preview=stage4_doc[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
+    figure8_legend_audit=None
+    figure8_pdf=figure8_png=figure8_preview=None
     difference=(dynamic.population_dependency_weighted_R_conn-
                 dynamic.population_dependency_weighted_fixed_precomputed_best_path_connection-
                 dynamic.population_dependency_weighted_full_minus_fixed_precomputed_best_path)
@@ -122,18 +130,36 @@ def main(output_dir=None,mirror_dir=None):
             body=('Five-stage workflow from network and tract mapping through seismic damage, restoration execution, and community outcomes. '
                   'Stage 4 shows the saved population-weighted service-availability trajectories for Unconstrained and Impact-first; '
                   'Stage 5 summarizes derived service-loss and recovery-time measures.')
+        if new=='Main/Fig08':
+            old_rule='outlines mark frozen Q4 and the cohort P75'
+            new_rule='outlined tracts are in the highest social-vulnerability quartile and have service deficit >=38.4 h (the cohort upper quartile)'
+            assert old_rule in body
+            body=body.replace(old_rule,new_rule)
         if new=='Main/Fig04':title,body=TITLE,CAPTION
         new_caps.append((title,body))
+        if new=='Main/Fig08':
+            pdf_row=next(r for r in manifest if r['final_name']==old+'.pdf')
+            pdf_source=source(pdf_row['current_source_file'])
+            assert u.digest(pdf_source)==pdf_row['sha256']
+            figure8_pdf,figure8_png,figure8_preview,figure8_legend_audit=(
+                figure_presentation.figure8_shared_map_legend(pdf_source,palette['colors']))
         preview=(stage4_preview if new=='Main/Fig01' else
+                 figure8_preview if new=='Main/Fig08' else
                  source(f'{SOURCE}/Page_Previews/{Path(old).name}.png'))
         u.write(dest/f'Page_Previews/{Path(new).name}.png',preview)
         for ext in ('pdf','png'):
             row=next(r.copy() for r in manifest if r['final_name']==old+'.'+ext)
+            row.setdefault('legend_source_file','')
+            row.setdefault('legend_source_sha256','')
+            row.setdefault('palette_source_file','')
+            row.setdefault('palette_source_sha256','')
             source_raw=source(row['current_source_file'])
             assert u.digest(source_raw)==row['sha256']
             assert source(row['mirror_file'])==source_raw
             raw=(stage4_pdf if new=='Main/Fig01' and ext=='pdf' else
-                 stage4_png if new=='Main/Fig01' and ext=='png' else source_raw)
+                 stage4_png if new=='Main/Fig01' and ext=='png' else
+                 figure8_pdf if new=='Main/Fig08' and ext=='pdf' else
+                 figure8_png if new=='Main/Fig08' and ext=='png' else source_raw)
             ix=next(r.copy() for r in source_index if r['source_path']==row['current_source_file'])
             suffix=Path(row['mirror_file']).name.split('_',1)[1]
             new_path=dest/(new+'.'+ext)
@@ -144,14 +170,21 @@ def main(output_dir=None,mirror_dir=None):
                 mirror_file=mirror_path.relative_to(ROOT).as_posix(),source_commit=BASE,
                 source_file=f'{SOURCE}/{old}.{ext}',
                 status=('UPDATED_STAGE4_RESULT_CURVE' if new=='Main/Fig01' else
+                        'UPDATED_SHARED_MAP_LEGEND' if new=='Main/Fig08' else
                         'RENUMBERED_REVIEW_ARTWORK_UNCHANGED'),
                 promotion_generator=GEN,promotion_generator_sha256=u.sha(ROOT/GEN),
                 previous_figure=old,
                 change_in_this_update=('RESULT_CURVE_ADDED_TO_STAGE4' if new=='Main/Fig01' else
+                                       'SHARED_LEGEND_AND_THRESHOLD_CLARIFIED' if new=='Main/Fig08' else
                                        'NUMBERING_AND_CAPTION_ONLY'))
             if new=='Main/Fig01':
-                row.update(additional_source_file=INPUTS[-1],
+                row.update(additional_source_file=recovery_curve_path,
                            additional_source_sha256=stage4_audit['source_sha256'])
+            if new=='Main/Fig08':
+                row.update(legend_source_file=f'{SOURCE}/{old}.pdf',
+                           legend_source_sha256=u.digest(source_raw),
+                           palette_source_file=palette_path,
+                           palette_source_sha256=u.digest(palette_bytes))
             for key in ['notes','main_message','scientific_content','scientific_question']:
                 if key in ix:ix[key]=references(ix[key])
             ix.update(figure_number=Path(new).name,file=mirror_path.name,
@@ -166,6 +199,8 @@ def main(output_dir=None,mirror_dir=None):
                     notes='Complete former S6, byte-identical artwork; insert between Sections 4.2 and 4.3.')
             if new=='Main/Fig01':
                 ix.update(notes='Stage 4 includes the saved 2pc50 population-weighted Unconstrained and Impact-first availability curves; no T80 is displayed in this stage.')
+            if new=='Main/Fig08':
+                ix.update(notes='One aligned legend identifies C1-C3, N/A, and tracts in the highest social-vulnerability quartile with service deficit >=38.4 h.')
             rows.append(row);indices.append(ix)
             preservation.append({'previous_figure':old,'new_figure':new,'format':ext,
                 'source_sha256':u.digest(raw),'output_sha256':u.sha(new_path),'byte_identical':raw==new_path.read_bytes()})
@@ -173,8 +208,9 @@ def main(output_dir=None,mirror_dir=None):
     u.write_csv(mirror/'FIGURE_INDEX.csv',indices)
     u.write(dest/'MANUSCRIPT_FACING_CAPTIONS.md','# Manuscript-facing figure captions\n\n'+
         '\n\n'.join('## '+title+'\n\n'+body for title,body in new_caps)+'\n')
-    palette=json.loads(source(SOURCE+'/CURRENT_CLUSTER_PALETTE.json'))
     palette={k.replace('Figure7_','Figure8_'):v for k,v in palette.items()}
+    palette['screening_rule']='Highest social-vulnerability quartile and five-policy service deficit >=38.38135467381475 equivalent hours (cohort upper quartile)'
+    palette['screening_legend_label']='Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)'
     u.dump(dest/'CURRENT_CLUSTER_PALETTE.json',palette)
     u.write(dest/'STRATEGY_DISPLAY_NAMES.json',source(SOURCE+'/STRATEGY_DISPLAY_NAMES.json'))
     u.pdfmetrics.registerFont(u.TTFont('SuiteArial','C:/Windows/Fonts/arial.ttf'))
@@ -210,7 +246,9 @@ def main(output_dir=None,mirror_dir=None):
     u.dump(dest/'QA/NUMBERING_MAP.json',MAPPING)
     qa={'source_commit':BASE,
         'figure1_updated_only_with_frozen_result_curve':True,
-        'unaffected_15_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure']!='Main/Fig01'),
+        'unaffected_14_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure'] not in ['Main/Fig01','Main/Fig07']),
+        'figure8_shared_map_legend_updated':True,
+        'figure8_legend_audit':figure8_legend_audit,
         'figure1_source_curve_audit':stage4_audit,
         'main_figures':8,'supplementary_figures':8,'complete_packet_pages':16,
         'all_four_promoted_panels_preserved':True,'static_station_records':len(station),
@@ -225,7 +263,7 @@ def main(output_dir=None,mirror_dir=None):
         'Main 4-7 become 5-8; former Supplement S7-S9 become S6-S8; Supplement S1-S5 remain unchanged. '
         'The collection contains eight main plus eight supplementary figures. Combined packet: 16 pages, each artwork followed immediately by its concise caption on the same page.\n\n'
         'This is a separate author-review collection. The source suite, manuscripts, simulation data, restoration results and clustering are unchanged. '
-        'Figure 1 Stage 4 now includes the saved 2pc50 population-weighted Unconstrained and Impact-first service-availability curves; the other 15 numbered artwork pairs are byte-identical to their pinned sources. '
+        'Figure 1 Stage 4 includes saved 2pc50 mean service-availability curves. Figure 8 uses one aligned map-legend row, one N/A entry, and plain-language upper-quartile screening criteria with the 38.4 h cutoff; the other 14 numbered artwork pairs are byte-identical to their pinned sources. '
         'No simulation or scientific model is rerun; only frozen result outputs are plotted. '
         'The source notes describe older candidate layouts. The actual promoted figure uses dynamic A/B curves for six scheduled strategies plus Unconstrained and static conditional C/D maps.\n\n'
         'Place Main Figure 4 after Section 4.2 and before the Section 4.3 heading. See MANUSCRIPT_INTEGRATION.md for the bridge and figure-reference substitutions. '
@@ -234,7 +272,7 @@ def main(output_dir=None,mirror_dir=None):
         'The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. '
         'Current older-suite builders remain available and do not target this separate collection.\n')
     u.write(dest/'README.md',readme);u.write(mirror/'README.md',readme)
-    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nAdded the saved population-weighted Unconstrained and Impact-first service-availability curves to Figure 1 Stage 4. No simulation was rerun; the other 15 numbered artwork pairs remain byte-identical to their pinned sources.\n')
+    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nAdded saved mean service-availability curves to Figure 1 Stage 4. Figure 8 now has one aligned map-legend row, one N/A entry, and plain-language screening criteria with the 38.4 h cutoff. No simulation was rerun; the other 14 numbered artwork pairs remain byte-identical to their pinned sources.\n')
     u.write(dest/'MANUSCRIPT_INTEGRATION.md',manuscript_integration())
     print(json.dumps(qa,indent=2))
 

@@ -21,6 +21,9 @@ def rows(path):
 
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def clean_pdf_text(text):
+    return ' '.join(text.replace('\xa0',' ').replace('\xad','-').split())
+
 def test_exact_numbering_and_inventory():
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
     assert len(manifest)==32
@@ -39,11 +42,16 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
         mirror=(ROOT/record['mirror_file']).read_bytes()
         assert mirror==current
         assert hashlib.sha256(current).hexdigest()==record['sha256']
-        if record['final_name']=='Main/Fig01.pdf' or record['final_name']=='Main/Fig01.png':
+        if record['final_name'] in {'Main/Fig01.pdf','Main/Fig01.png'}:
             assert current!=expected
-            qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text())
+            qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
             assert qa['figure1_updated_only_with_frozen_result_curve']
             assert qa['figure1_source_curve_audit']['outside_stage4_pixels_identical']
+        elif record['final_name'] in {'Main/Fig08.pdf','Main/Fig08.png'}:
+            assert current!=expected
+            qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
+            assert qa['figure8_shared_map_legend_updated']
+            assert qa['figure8_legend_audit']['bivariate_colorbar_and_tract_geometry_unchanged']
         else:
             assert current==expected
     index=rows(MIRROR/'FIGURE_INDEX.csv')
@@ -89,6 +97,35 @@ def test_packet_sequence_captions_and_native_scale():
             assert doc[3].get_pixmap(dpi=100,clip=rect).samples==art[0].get_pixmap(dpi=100).samples
             assert 'fragility-based station diagnostics' in doc[3].get_text()
             assert 'These topological measures are not delivered electricity' in ' '.join(doc[3].get_text().split())
+        assert 'Highest social-vulnerability quartile + upper-quarter service deficit' in clean_pdf_text(doc[7].get_text())
+
+def test_figure8_shared_map_legend_is_aligned_and_explains_cutoff():
+    path=SUITE/'Main/Fig08.pdf'
+    with fitz.open(path) as doc:
+        page=doc[0]
+        text=clean_pdf_text(page.get_text())
+        assert text.count('N/A (16)')==1
+        assert 'P75' not in text
+        assert 'Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)' in text
+        rule=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])
+              for s in line['spans'] if clean_pdf_text(s['text']).startswith('Highest social-vulnerability quartile')]
+        assert len(rule)==1 and rule[0]['size']==7.5
+        audit=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))['figure8_legend_audit']
+        assert audit['old_NA_entries']==2 and audit['new_NA_entries']==1
+        assert audit['all_discrete_legend_entries_share_baseline']
+        assert len({item['baseline'] for item in audit['shared_legend_positions']})==1
+        assert audit['screening_symbol']=='thin gray line'
+        assert clean_pdf_text(audit['screening_rule_text']) in text
+        assert audit['bivariate_colorbar_and_tract_geometry_unchanged']
+    caption=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
+    assert 'highest social-vulnerability quartile and have service deficit >=38.4 h (the cohort upper quartile)' in caption
+    assert 'cohort P75' not in caption
+    index=rows(MIRROR/'FIGURE_INDEX.csv')
+    fig8=next(row for row in index if row['figure_number']=='Fig08')
+    assert 'highest social-vulnerability quartile' in fig8['notes']
+    assert '38.4 h' in fig8['notes']
+    with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as packet:
+        assert clean_pdf_text(audit['screening_rule_text']) in clean_pdf_text(packet[7].get_text())
 
 def test_caption_references_and_simultaneous_renumbering():
     text=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
@@ -104,12 +141,16 @@ def test_caption_references_and_simultaneous_renumbering():
 
 def test_palette_and_source_science_preserved():
     expected=json.loads(builder.source(builder.SOURCE+'/CURRENT_CLUSTER_PALETTE.json'))
-    actual=json.loads((SUITE/'CURRENT_CLUSTER_PALETTE.json').read_text())
-    assert {k.replace('Figure7_','Figure8_'):v for k,v in expected.items()}==actual
-    q=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text())
+    actual=json.loads((SUITE/'CURRENT_CLUSTER_PALETTE.json').read_text(encoding='utf-8'))
+    expected={k.replace('Figure7_','Figure8_'):v for k,v in expected.items()}
+    expected['screening_rule']='Highest social-vulnerability quartile and five-policy service deficit >=38.38135467381475 equivalent hours (cohort upper quartile)'
+    expected['screening_legend_label']='Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)'
+    assert expected==actual
+    q=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
     assert q['all_four_promoted_panels_preserved']
     assert q['figure1_updated_only_with_frozen_result_curve']
-    assert q['unaffected_15_artwork_pairs_byte_identical']
+    assert q['unaffected_14_artwork_pairs_byte_identical']
+    assert q['figure8_shared_map_legend_updated']
     assert q['dynamic_full_minus_fixed_identity_max_abs_error']<1e-12
     assert q['static_station_records']==92 and q['static_core_source_records']==14
     for path,record in json.loads((SUITE/'QA/SOURCE_IDENTITIES.json').read_text())['source_files'].items():

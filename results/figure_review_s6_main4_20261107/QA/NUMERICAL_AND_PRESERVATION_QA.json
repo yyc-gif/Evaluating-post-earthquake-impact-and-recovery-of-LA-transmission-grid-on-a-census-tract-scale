@@ -1,7 +1,77 @@
 {
   "source_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
   "figure1_updated_only_with_frozen_result_curve": true,
-  "unaffected_15_artwork_pairs_byte_identical": true,
+  "unaffected_14_artwork_pairs_byte_identical": true,
+  "figure8_shared_map_legend_updated": true,
+  "figure8_legend_audit": {
+    "legend_entries": [
+      "C1",
+      "C2",
+      "C3",
+      "N/A (16)",
+      "Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)"
+    ],
+    "old_NA_entries": 2,
+    "new_NA_entries": 1,
+    "P75_shorthand_removed": true,
+    "screening_rule_text": "Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)",
+    "screening_symbol": "thin gray line",
+    "class_colors": {
+      "1": "#3C9198",
+      "2": "#52699E",
+      "3": "#C69EBA"
+    },
+    "font_size_pt": 7.5,
+    "shared_baseline_pt_from_bottom": 26.0,
+    "all_discrete_legend_entries_share_baseline": true,
+    "bivariate_colorbar_and_tract_geometry_unchanged": true,
+    "whiteout_bands_pt": [
+      [
+        35.0,
+        583.0,
+        248.0,
+        604.0
+      ],
+      [
+        15.0,
+        626.0,
+        190.0,
+        643.0
+      ]
+    ],
+    "shared_legend_positions": [
+      {
+        "label": "C1",
+        "x0": 47.34539794921875,
+        "x1": 68.93280029296875,
+        "baseline": 658.0
+      },
+      {
+        "label": "C2",
+        "x0": 80.93280029296875,
+        "x1": 102.52020263671875,
+        "baseline": 658.0
+      },
+      {
+        "label": "C3",
+        "x0": 114.52020263671875,
+        "x1": 136.10760498046875,
+        "baseline": 658.0
+      },
+      {
+        "label": "N/A (16)",
+        "x0": 148.10760498046875,
+        "x1": 192.03118896484375,
+        "baseline": 658.0
+      },
+      {
+        "label": "Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)",
+        "x0": 204.03118896484375,
+        "x1": 471.05462646484375,
+        "baseline": 658.0
+      }
+    ]
+  },
   "figure1_source_curve_audit": {
     "panel": "4",
     "plot_type": "frozen population-weighted mean service-availability curves",

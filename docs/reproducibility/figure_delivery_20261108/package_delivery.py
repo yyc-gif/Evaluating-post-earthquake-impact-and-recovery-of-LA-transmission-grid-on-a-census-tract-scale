@@ -24,9 +24,11 @@ def build():
     index=u.csv_rows((ROOT/MIRROR/'FIGURE_INDEX.csv').read_bytes())
     caps=(ROOT/REVIEW/'MANUSCRIPT_FACING_CAPTIONS.md').read_bytes()
     full=(ROOT/REVIEW/'ALL_FIGURES_WITH_CAPTIONS.pdf').read_bytes()
-    suite_qa=json.loads((ROOT/REVIEW/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text())
+    suite_qa=json.loads((ROOT/REVIEW/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
     assert suite_qa['figure1_updated_only_with_frozen_result_curve']
     assert suite_qa['figure1_source_curve_audit']['source_sha256']=='b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922'
+    assert suite_qa['figure8_shared_map_legend_updated']
+    assert suite_qa['figure8_legend_audit']['new_NA_entries']==1
     assert len(manifest)==32 and len(index)==32
     figures=[]
     for row in manifest:
@@ -47,6 +49,7 @@ def build():
         '16 numbered figures: Main Figures 1-8 and Supplementary Figures S1-S8. '
         'Each figure has a separate vector PDF and caption-free PNG. Figure 4 is the complete four-panel source-connectivity figure. '
         'Figure 1 Stage 4 now includes saved population-weighted Unconstrained and Impact-first service-availability curves. '
+        'Figure 8 uses one aligned key; N/A appears once, and the screening line spells out the upper-quarter deficit cutoff as 38.4 h. '
         'Figure_Captions.md is separate from the artwork. All_Figures_With_Captions.pdf is the current combined collection.\n\n'
         'Contents: Figures/Main/ (8 PDF/PNG pairs); Figures/Supplement/ (8 pairs); Figure_Captions.md; All_Figures_With_Captions.pdf; SHA256SUMS.txt.\n'
     ).encode('utf-8')
@@ -108,7 +111,15 @@ def build():
         'archive_crc_and_payload_sha256_verified':True,
         'all_figure_artwork_matches_committed_review_suite':True,
         'captions_embedded_in_individual_artwork':False}
+    qa['figure8_shared_legend']=suite_qa['figure8_legend_audit']
     u.dump(OUT/'PACKAGE_QA.json',qa)
+    readme_md=(
+        '# Figure package - 2026-11-08\n\n'
+        'Open `Individual_Figures/` to browse or download each figure separately. It contains eight main and eight supplementary figures, each as a separate caption-free PDF and PNG. Captions are in the standalone `FIGURE_CAPTIONS.md` file.\n\n'
+        'Download `LA_Grid_Figures_2026-11-08.zip` for the portable coauthor package. Figure 8 has one aligned legend row, one N/A entry, and a plain-language upper-quarter service-deficit cutoff (38.4 h).\n\n'
+        'Rebuild with `python src/la_grid/plotting/build_s6_main4_review.py` followed by `python docs/reproducibility/figure_delivery_20261108/package_delivery.py`. The package builder verifies every artwork against the active review manifest and checks archive CRCs and member hashes.\n'
+    )
+    (OUT/'README.md').write_text(readme_md,encoding='utf-8')
     print(json.dumps(qa,indent=2))
 
 if __name__=='__main__':build()

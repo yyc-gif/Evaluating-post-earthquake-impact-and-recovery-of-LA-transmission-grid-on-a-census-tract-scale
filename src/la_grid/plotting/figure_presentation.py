@@ -162,6 +162,114 @@ def figure7(raw):
             scientific_arrays_and_classification_reused=True)
 
 
+def figure8_shared_map_legend(raw, class_colors):
+    """Replace the split C/D keys with one aligned, plain-language map key."""
+    import numpy as np
+
+    label='Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)'
+    with fitz.open(stream=raw,filetype='pdf') as doc:
+        page=doc[0]
+        width,height=page.rect.width,page.rect.height
+        assert abs(width-518.4)<.01 and abs(height-684.0)<.01
+        source_text=' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
+                             for s in spans(page))
+        assert source_text.count('N/A (16)')==2
+        assert source_text.count('Q4 + burden >= P75')==1
+        body,_=fonts(doc,False,label)
+        old_labels=[]
+        for span in spans(page):
+            text=span['text'].replace('\u00a0',' ').replace('\u00ad','-')
+            top_row=583<=span['bbox'][1] and span['bbox'][3]<=604
+            bottom_row=626<=span['bbox'][1] and span['bbox'][3]<=643
+            if (top_row and text in {'C1','C2','C3','N/A (16)'}) or (
+                    bottom_row and text in {'Q4 + burden >= P75','N/A (16)'}):
+                old_labels.append(span)
+        assert Counter(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
+                       for s in old_labels)==Counter(
+                           {'C1':1,'C2':1,'C3':1,'N/A (16)':2,'Q4 + burden >= P75':1})
+        for span in old_labels:
+            page.add_redact_annot(fitz.Rect(span['bbox'])+(-.03,-.03,.03,.03),fill=None)
+        page.apply_redactions(images=0,graphics=0)
+        # These bands contain only the two old legend rows; the bivariate
+        # gradient and its axis labels remain outside the masked regions.
+        old_legend_bands=[fitz.Rect(35,583,248,604),fitz.Rect(15,626,190,643)]
+        for band in old_legend_bands:
+            page.draw_rect(band,color=None,fill=(1,1,1),overlay=True)
+
+        page.insert_font(fontname='Figure8SharedLegend',fontbuffer=body)
+        metrics=fitz.Font(fontbuffer=body)
+        fontsize=7.5
+        items=[('fill','C1',class_colors['1'],8.0),
+               ('fill','C2',class_colors['2'],8.0),
+               ('fill','C3',class_colors['3'],8.0),
+               ('na','N/A (16)','#333333',12.0),
+               ('line',label,'#555555',14.0)]
+        gap=12.0
+        widths=[symbol+4.0+metrics.text_length(text,fontsize) for _,text,_,symbol in items]
+        cursor=(width-sum(widths)-gap*(len(items)-1))/2
+        baseline=height-26.0
+        positions=[]
+        for (kind,text,color,symbol_width),item_width in zip(items,widths):
+            text_x=cursor+symbol_width+4.0
+            if kind=='fill':
+                page.draw_rect(fitz.Rect(cursor,baseline-7.2,cursor+symbol_width,baseline+0.3),
+                               color=None,fill=tuple(int(color[i:i+2],16)/255 for i in (1,3,5)),
+                               overlay=True)
+            elif kind=='na':
+                page.draw_rect(fitz.Rect(cursor,baseline-7.2,cursor+symbol_width,baseline+0.3),
+                               color=(51/255,51/255,51/255),fill=(1,1,1),width=.45,overlay=True)
+            else:
+                page.draw_line(fitz.Point(cursor,baseline-3.5),
+                               fitz.Point(cursor+symbol_width,baseline-3.5),
+                               color=(85/255,85/255,85/255),width=.8,overlay=True)
+            page.insert_text((text_x,baseline),text,fontname='Figure8SharedLegend',
+                             fontsize=fontsize,color=(.08,.08,.08),overlay=True)
+            positions.append({'label':text,'x0':cursor,'x1':text_x+item_width-symbol_width-4.0,
+                              'baseline':baseline})
+            cursor+=item_width+gap
+
+        after_text=' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
+                            for s in spans(page))
+        assert after_text.count('N/A (16)')==1
+        assert 'P75' not in after_text
+        assert label in after_text
+        assert max(item['x1'] for item in positions)<width-10
+        assert all(item['baseline']==baseline for item in positions)
+
+        with fitz.open(stream=raw,filetype='pdf') as before:
+            before_pix=before[0].get_pixmap(dpi=120,alpha=False)
+        after_pix=page.get_pixmap(dpi=120,alpha=False)
+        before_rgb=np.frombuffer(before_pix.samples,dtype=np.uint8).reshape(
+            before_pix.height,before_pix.width,3)
+        after_rgb=np.frombuffer(after_pix.samples,dtype=np.uint8).reshape(
+            after_pix.height,after_pix.width,3)
+        assert before_rgb.shape==after_rgb.shape
+        scale=120/72
+        allowed=[*old_legend_bands,fitz.Rect(0,644,width,height)]
+        outside=np.ones(before_rgb.shape[:2],dtype=bool)
+        for band in allowed:
+            x0=max(0,round(band.x0*scale)-2);x1=min(outside.shape[1],round(band.x1*scale)+2)
+            y0=max(0,round(band.y0*scale)-2);y1=min(outside.shape[0],round(band.y1*scale)+2)
+            outside[y0:y1,x0:x1]=False
+        unchanged=bool(np.array_equal(before_rgb[outside],after_rgb[outside]))
+        assert unchanged
+        result=finish(doc)
+    with fitz.open(stream=result,filetype='pdf') as output:
+        figure_png=output[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
+        preview_png=output[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
+    return result,figure_png,preview_png,{
+        'legend_entries':['C1','C2','C3','N/A (16)',label],
+        'old_NA_entries':2,'new_NA_entries':1,'P75_shorthand_removed':True,
+        'screening_rule_text':label,'screening_symbol':'thin gray line',
+        'class_colors':class_colors,'font_size_pt':fontsize,
+        'shared_baseline_pt_from_bottom':26.0,
+        'all_discrete_legend_entries_share_baseline':True,
+        'bivariate_colorbar_and_tract_geometry_unchanged':unchanged,
+        'whiteout_bands_pt':[[r.x0,r.y0,r.x1,r.y1] for r in old_legend_bands],
+        'shared_legend_positions':positions,
+    }
+
+
 def supplementary8(raw):
     output, palette_audit = priority_geography(raw)
     return output,dict(population_color_audit=palette_audit,

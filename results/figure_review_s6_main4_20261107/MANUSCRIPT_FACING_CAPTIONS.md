@@ -30,7 +30,7 @@ Vulnerability-first effects across crew-availability and repair-duration scenari
 
 ## Figure 8. Community recovery types and social vulnerability
 
-A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines mark frozen Q4 and the cohort P75. The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.
+A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlined tracts are in the highest social-vulnerability quartile and have service deficit >=38.4 h (the cohort upper quartile). The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.
 
 ## Supplementary Figure S1. Damage and initial service
 

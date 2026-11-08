@@ -7,6 +7,9 @@ import fitz
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'results/figure_delivery_20261108'
 
+def clean_pdf_text(text):
+    return ' '.join(text.replace('\xa0',' ').replace('\xad','-').split())
+
 def test_zip_inventory_hashes_and_caption_separation():
     qa=json.loads((OUT/'PACKAGE_QA.json').read_text())
     archive=OUT/'LA_Grid_Figures_2026-11-08.zip'
@@ -62,3 +65,15 @@ def test_figure1_stage4_uses_frozen_recovery_curves():
         assert 'Time to 80%' not in stage4
         assert 'Time to 80% service' in page.get_text()
         assert len(page.get_drawings())>100
+
+def test_figure8_delivery_has_single_plain_language_map_key():
+    qa=json.loads((OUT/'PACKAGE_QA.json').read_text(encoding='utf-8'))
+    assert qa['figure8_shared_legend']['new_NA_entries']==1
+    assert qa['figure8_shared_legend']['P75_shorthand_removed']
+    assert qa['figure8_shared_legend']['screening_symbol']=='thin gray line'
+    assert qa['figure8_shared_legend']['screening_rule_text']=='Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)'
+    with fitz.open(OUT/'Individual_Figures/Main/Fig08_Community_Typology_and_Service_Deficit.pdf') as doc:
+        text=clean_pdf_text(doc[0].get_text())
+        assert text.count('N/A (16)')==1
+        assert 'P75' not in text
+        assert 'Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)' in text
