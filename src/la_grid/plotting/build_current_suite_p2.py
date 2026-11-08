@@ -299,6 +299,10 @@ def main(output_dir=None, mirror_dir=None):
     changed['Supplement/FigS08']=revised_s8
     s8_source_hash=u.digest(original_s8)
     s8_source_png_hash=u.digest(source('results/figure_review/Supplement/FigS08.png',CURRENT_SUITE_BASE))
+    original_s5=source('results/figure_review/Supplement/FigS05.pdf',CURRENT_SUITE_BASE)
+    changed['Supplement/FigS05'],s5_label_qa=figure_presentation.mapping_cutoff_labels(original_s5)
+    style_checks['Supplement/FigS05']={**s5_label_qa,'source_commit':CURRENT_SUITE_BASE,
+        'source_pdf_sha256':u.digest(original_s5),'scientific_results_changed':False}
     style_checks['Supplement/FigS08']={
         'source_commit':CURRENT_SUITE_BASE,'source_path':original_s8_path,
         'source_pdf_sha256':s8_source_hash,'source_png_sha256':s8_source_png_hash,
@@ -565,6 +569,12 @@ def main(output_dir=None, mirror_dir=None):
                     ix.update(source_authority=BASE,source_data_path='Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet',
                         source_data_sha256=u.digest(vulnerability_raw),generator='src/la_grid/plotting/rq_aligned_figure_updates.py',
                         notes='Panel C separates signed Q4-Q1 from absolute within-realization gap; A/B/D/E source vector clips are retained.')
+                elif stem=='Supplement/FigS05':
+                    row.update(source_commit=CURRENT_SUITE_BASE,source_file=original_path,
+                        presentation_generator=PRESENTATION,presentation_generator_sha256=u.sha(ROOT/PRESENTATION),
+                        status='PUBLICATION_CUTOFF_LABELS',size_mm=size)
+                    ix.update(source_authority=CURRENT_SUITE_BASE,source_data_path=original_path,
+                        generator=PRESENTATION,notes='Cutoff labels only; numerical results and all plot geometry unchanged.')
                 elif stem=='Supplement/FigS03':
                     row.update(source_commit=CURRENT_SUITE_BASE,source_file=original_path,
                         presentation_generator=PRESENTATION,presentation_generator_sha256=u.sha(ROOT/PRESENTATION),

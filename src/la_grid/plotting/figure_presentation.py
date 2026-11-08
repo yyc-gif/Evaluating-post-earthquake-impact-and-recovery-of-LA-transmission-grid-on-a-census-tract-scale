@@ -310,6 +310,39 @@ def functional_network_recovery(raw):
             recovery_column_headers_repeated=True)
 
 
+def mapping_cutoff_labels(raw):
+    """Replace workflow jargon in the active cutoff plot, without redrawing it."""
+    with fitz.open(stream=raw,filetype='pdf') as doc:
+        page=doc[0]
+        selected=[s for s in spans(page) if 'production' in s['text'].lower()]
+        assert len(selected)==2,selected
+        for span in selected:
+            span['original_label_bbox']=span['bbox']
+            if span['bbox'][3]-span['bbox'][1]>span['bbox'][2]-span['bbox'][0]:
+                # A clipped historical text run leaves its closing parenthesis
+                # just beyond the extracted span.
+                span['bbox']=tuple(fitz.Rect(span['bbox'])+(0,-5,0,1))
+        out=cut_text(doc,selected)
+        page=out[0]
+        page.insert_font(fontname='CutoffPublicationLabel',fontfile='C:/Windows/Fonts/arial.ttf')
+        font=fitz.Font(fontfile='C:/Windows/Fonts/arial.ttf')
+        changes=[]
+        for span in selected:
+            rotated=span['bbox'][3]-span['bbox'][1]>span['bbox'][2]-span['bbox'][0]
+            text='Change from 3% cutoff (h)' if rotated else '3% cutoff'
+            length=font.text_length(text,fontsize=span['size'])
+            original_box=span['original_label_bbox']
+            origin=(span['origin'][0],(original_box[1]+original_box[3]+length)/2) if rotated else (
+                (original_box[0]+original_box[2]-length)/2,span['origin'][1])
+            page.insert_text(origin,text,fontname='CutoffPublicationLabel',fontsize=span['size'],
+                             rotate=90 if rotated else 0,color=fitz.sRGB_to_pdf(span['color']))
+            changes.append(dict(before=span['text'],after=text,old_bbox=list(span['bbox']),
+                                font='Arial',font_size_pt=span['size']))
+        result=finish(out)
+        out.close()
+        return result,dict(label_changes=changes,data_and_plot_geometry_unchanged=True)
+
+
 def gate_sensitivity(raw, values):
     """Use saved means/ranges; combine both threshold tests on one common axis."""
     import matplotlib
