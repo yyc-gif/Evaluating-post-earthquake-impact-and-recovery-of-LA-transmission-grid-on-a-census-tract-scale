@@ -418,19 +418,31 @@ def gate_sensitivity(raw, values):
 
 
 def priority_geography(raw):
-    """Recolor only the population-context map and colorbar in muted teal."""
+    """Recolor only the population-context map and colorbar in white-purple."""
     from matplotlib import colormaps
     from matplotlib.colors import LinearSegmentedColormap
     import numpy as np
-    population_palette=LinearSegmentedColormap.from_list(
-        'MutedPopulationTeal',['#eff5f4','#b9d5d1','#6fa9a5','#287d80','#164f57'],N=256)
-    population_samples=population_palette(np.linspace(0,1,256))[:,:3]
+    stops=['#FFFFFF','#E0D6E9','#B69ACB','#8B63AC','#613A80']
+    population_palette=LinearSegmentedColormap.from_list('PopulationWhitePurple',stops,N=256)
     with fitz.open(stream=raw,filetype='pdf') as doc:
         page=doc[0]
+        samples=colormaps['Greys'](np.linspace(0,1,256))[:,:3]
+        image_xrefs=sorted({image[0] for image in page.get_images()})
+        source_indices=[]
+        for xref in image_xrefs:
+            pix=fitz.Pixmap(doc,xref)
+            assert pix.n==3,'Unexpected population colorbar image format'
+            colors=np.unique(np.frombuffer(pix.samples,np.uint8).reshape(-1,3),axis=0)
+            source_indices.extend(np.argmin(np.sum((colors[:,None,:]/255-samples[None,:,:])**2,axis=2),axis=1))
+        low,high=int(min(source_indices)),int(max(source_indices))
+        assert high>low
+        # Expand the old truncated color ramp to white-purple; the existing
+        # logarithmic population normalization and tick positions are retained.
+        population_samples=population_palette(np.clip((np.arange(256)-low)/(high-low),0,1))[:,:3]
         before=page.get_drawings()
         fills={d['fill'] for d in before if d['fill'] and d['rect'].y0>525}
-        samples=colormaps['Greys'](np.linspace(0,1,256))[:,:3]
-        fills={rgb for rgb in fills if max(rgb)-min(rgb)<2e-5 and .2<sum(rgb)/3<.9
+        fills={rgb for rgb in fills if max(rgb)-min(rgb)<2e-5
+               and low<=np.argmin(np.linalg.norm(samples-np.array(rgb),axis=1))<=high
                and np.min(np.linalg.norm(samples-np.array(rgb),axis=1))<2e-5}
         assert len(fills)>20
         mapping={}
@@ -462,7 +474,7 @@ def priority_geography(raw):
                 match=rgb_at_end.search(stream[window:operator])
                 if match:
                     rgb=tuple(float(match[i]) for i in (1,2,3))
-                    if max(rgb)-min(rgb)<2e-5 and .2<sum(rgb)/3<.9:
+                    if max(rgb)-min(rgb)<2e-5:
                         candidate=min(mapping,key=lambda color:sum((a-b)**2 for a,b in zip(color,rgb)))
                         if max(abs(a-b) for a,b in zip(candidate,rgb))<2e-6:
                             start=window+match.start();end=window+match.end()
@@ -487,7 +499,6 @@ def priority_geography(raw):
                 doc.update_stream(xref,changed);count+=1
         # The original population colorbar is a raster strip; preserve its
         # support and resolution while applying the identical ordinal palette.
-        image_xrefs=sorted({image[0] for image in page.get_images()})
         image_rects={xref:page.get_image_rects(xref) for xref in image_xrefs}
         for xref in image_xrefs:
             pix=fitz.Pixmap(doc,xref)
@@ -501,8 +512,9 @@ def priority_geography(raw):
             image_bytes=io.BytesIO();Image.fromarray(rgb).save(image_bytes,format='PNG')
             page.replace_image(xref,stream=image_bytes.getvalue())
         assert image_rects=={xref:page.get_image_rects(xref) for xref in image_xrefs}
-        return finish(doc),dict(source_palette='Greys',population_palette='muted_blue_green',
-             palette_stops=['#eff5f4','#b9d5d1','#6fa9a5','#287d80','#164f57'],
+        return finish(doc),dict(source_palette='Greys',population_palette='white_purple',
+             palette_stops=stops,source_palette_index_range=[low,high],
+             logarithmic_population_normalization_unchanged=True,
              paint_colors_changed=len(fills),
              streams_changed=count,colorbar_resolution_preserved=True,
              fill_operator_geometry_sha256=stream_geometry_hashes,

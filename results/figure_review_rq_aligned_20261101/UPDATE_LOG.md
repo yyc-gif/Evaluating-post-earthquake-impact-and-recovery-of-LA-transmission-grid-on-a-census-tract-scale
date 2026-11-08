@@ -68,3 +68,7 @@ RQ1 brackets the three initial-service/network features; RQ2 brackets the two re
 ## 2026-11-07 - Figure 7 explanatory footer removed
 
 Deleted the complete bottom annotation block and its generation calls. No replacement prose is added. Maps, legends, profile values and all other figures are unchanged. Scientific checks are retained separately in FIG07_DISPLAY_QA.json.
+
+## 2026-11-07 - Figure S8 white-purple population shading
+
+Changed only Panel C population fills and the matching colorbar. Logarithmic population normalization, priorities, text, vector paths and Panels A/B are unchanged.

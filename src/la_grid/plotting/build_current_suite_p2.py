@@ -147,7 +147,7 @@ def captions():
         'Sensitivity of modeled service loss to dependency cutoff and source/threshold assumptions. Panel B isolates source-connectivity removal at fixed 0.50 functionality; (C) Functionality thresholds 0.05 and 0.75 retain source connectivity.',
         'Dynamic and static source-connectivity measures and alternate-path contributions under their stated conditioning. These are connectivity probabilities, not delivered power.',
         'Provider planning loads, reported limits, and modeled service-loss changes under capacity ceilings. Post-earthquake load flow and complete electrical-capacity adequacy are not assessed.',
-        'Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The blue-green scale shows population; outcome comparisons appear in Figures 4-6 and Supplementary Figure S9.',
+        'Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The white-purple scale shows population; outcome comparisons appear in Figures 4-6 and Supplementary Figure S9.',
         'Absolute modeled service losses under crew-availability and repair-duration variations, reported separately for overall, Q4, Q4-Q1, and hospital-linked outcomes. Whiskers show the 5th-95th realization range.'
     ]
     assert len(short_bodies) == len(items)
@@ -676,7 +676,7 @@ def main(output_dir=None, mirror_dir=None):
         'Figure 4 compares recovery and realization-level outcomes across seven strategies; Figure 5 distinguishes signed and absolute Q4-Q1 gaps; Figure 7 uses maps and legends only, with numerical screening statistics retained in QA. '
         'The combined publication packet has 16 pages, one per numbered figure with its concise caption. '
         'The source suite and all prior approved artwork remain unchanged; this output is a separate RQ-aligned review build. '
-        'Figure S8 uses a muted blue-green population scale. Figure 7 uses a muted teal, slate and mauve K3 palette, cohort-standardized profiles, '
+        'Figure S8 uses a white-purple population scale. Figure 7 uses a muted teal, slate and mauve K3 palette, cohort-standardized profiles, '
         'borderless tract fills, continuous blue-to-amber SOVI hue and five-policy burden lightness. Thin outlines show the Q4/cohort-P75 screen. '
         'Unnumbered map details and accessibility views are retained in the QA folder.\n\nReproduce: '+output_command+'.\n')
     u.write(DEST/'README.md',info)
@@ -695,7 +695,9 @@ def main(output_dir=None, mirror_dir=None):
         '\n## 2026-11-07 - Figure 4 scope and spacing correction\n\n'
         'Restored the A/B seven-strategy overview. The single-pair component comparison is diagnostic evidence, not a main panel. Saved recovery vectors and all outcome values and realization ranges are unchanged. Title/legend clearances are matched.\n'
         '\n## 2026-11-07 - Figure 7 explanatory footer removed\n\n'
-        'Deleted the complete bottom annotation block and its generation calls. No replacement prose is added. Maps, legends, profile values and all other figures are unchanged. Scientific checks are retained separately in FIG07_DISPLAY_QA.json.\n')
+        'Deleted the complete bottom annotation block and its generation calls. No replacement prose is added. Maps, legends, profile values and all other figures are unchanged. Scientific checks are retained separately in FIG07_DISPLAY_QA.json.\n'
+        '\n## 2026-11-07 - Figure S8 white-purple population palette\n\n'
+        'Panel C population shading and its matching colorbar now use white-purple. Population values, logarithmic normalization, station ranks, vector paths, labels and Panels A/B are unchanged.\n')
     addition=('\nSupplementary Figure S3 shows only time-dependent functional-network recovery. '
               'Spectral-connectivity-first is the publication display name for the unchanged centrality-first strategy ID.\n')
     for path in [DEST/'README.md',MIRROR_DEST/'README.md']:
@@ -722,7 +724,7 @@ This figure-only organization uses saved results. No physical model, restoration
 | Supplementary Figure S5 | RQ1 source/functionality sensitivity | Mapping-weight cutoff; source-connectivity removal at fixed functionality 0.50; functionality thresholds with source connectivity retained. | Retained with caption distinctions. |
 | Supplementary Figure S6 | RQ1 connectivity mechanism | Full-network/fixed-path source connection; alternate routes; access probability; reliability gain. | Retained. |
 | Supplementary Figure S7 | RQ2 capacity context | Provider facility loading relative to planning limits; capacity-induced loss by geography. | Retained. |
-| Supplementary Figure S8 | RQ2 strategy construction | Hospital-first, Vulnerability-first, and Impact-first priority geography. | Population background changed to muted blue-green; priority data/geometry retained. |
+| Supplementary Figure S8 | RQ2 strategy construction | Hospital-first, Vulnerability-first, and Impact-first priority geography. | White-purple population background; priority data/geometry retained. |
 | Supplementary Figure S9 | RQ2 scenario robustness | Overall, Q4, high-low vulnerability, and hospital-linked outcomes over crew and duration changes. | Retained. |
 
 ## Evidence boundaries

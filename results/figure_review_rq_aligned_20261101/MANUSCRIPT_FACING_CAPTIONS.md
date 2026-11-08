@@ -58,7 +58,7 @@ Provider planning loads, reported limits, and modeled service-loss changes under
 
 ## Supplementary Figure S8. Restoration-priority geography
 
-Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The blue-green scale shows population; outcome comparisons appear in Figures 4-6 and Supplementary Figure S9.
+Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The white-purple scale shows population; outcome comparisons appear in Figures 4-6 and Supplementary Figure S9.
 
 ## Supplementary Figure S9. Outcomes under resource variation
 
