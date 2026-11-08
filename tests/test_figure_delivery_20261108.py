@@ -29,3 +29,17 @@ def test_loose_captions_and_combined_pdf_match_archive():
     with zipfile.ZipFile(OUT/'LA_Grid_Figures_2026-11-08.zip') as z:
         assert (OUT/'FIGURE_CAPTIONS.md').read_bytes()==z.read('Figure_Captions.md')
         assert (OUT/'ALL_FIGURES_WITH_CAPTIONS.pdf').read_bytes()==z.read('All_Figures_With_Captions.pdf')
+
+def test_browsable_individual_figure_section_matches_archive():
+    folder=OUT/'Individual_Figures'
+    assert (folder/'README.md').is_file()
+    with zipfile.ZipFile(OUT/'LA_Grid_Figures_2026-11-08.zip') as z:
+        for archived in z.namelist():
+            if not archived.startswith('Figures/'):
+                continue
+            relative=Path(*Path(archived).parts[1:])
+            assert (folder/relative).read_bytes()==z.read(archived)
+        assert len(list((folder/'Main').glob('*.pdf')))==8
+        assert len(list((folder/'Main').glob('*.png')))==8
+        assert len(list((folder/'Supplement').glob('*.pdf')))==8
+        assert len(list((folder/'Supplement').glob('*.png')))==8

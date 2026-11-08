@@ -15,6 +15,7 @@ REVIEW='results/figure_review_s6_main4_20261107'
 MIRROR='results/figures_s6_main4_20261107'
 OUT=ROOT/'results/figure_delivery_20261108'
 ZIP_PATH=OUT/'LA_Grid_Figures_2026-11-08.zip'
+INDIVIDUAL=OUT/'Individual_Figures'
 
 def sha(data):return hashlib.sha256(data).hexdigest()
 
@@ -52,6 +53,21 @@ def build():
     sums='\n'.join(f"{item['sha256']}  {item['name']}" for item in contents)+'\n'
     contents.append(entry('SHA256SUMS.txt',sums.encode('utf-8')))
     OUT.mkdir(parents=True,exist_ok=True)
+    individual_index=[]
+    for item in figures:
+        parts=Path(item['name']).parts
+        folder='Main' if parts[1]=='Main' else 'Supplement'
+        target=INDIVIDUAL/folder/parts[-1]
+        target.parent.mkdir(parents=True,exist_ok=True)
+        target.write_bytes(item['data'])
+        individual_index.append(f"- `{folder}/{parts[-1]}`")
+    individual_readme=(
+        '# Individual Figures\n\n'
+        'Separate caption-free PDF and PNG for every numbered figure. Captions are in the sibling `FIGURE_CAPTIONS.md`.\n\n'
+        '## Main Figures\n' + '\n'.join(x for x in individual_index if x.startswith('- `Main/')) +
+        '\n\n## Supplementary Figures\n' + '\n'.join(x for x in individual_index if x.startswith('- `Supplement/')) + '\n'
+    )
+    (INDIVIDUAL/'README.md').write_text(individual_readme,encoding='utf-8')
     temp=ZIP_PATH.with_suffix('.zip.tmp')
     with zipfile.ZipFile(temp,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6,strict_timestamps=True) as zf:
         for item in contents:
@@ -69,8 +85,19 @@ def build():
     # Git LFS deduplicates the combined PDF by its existing content hash.
     (OUT/'FIGURE_CAPTIONS.md').write_bytes(caps)
     (OUT/'ALL_FIGURES_WITH_CAPTIONS.pdf').write_bytes(full)
+    individual_hashes={}
+    for item in figures:
+        parts=Path(item['name']).parts
+        folder='Main' if parts[1]=='Main' else 'Supplement'
+        name=f"{folder}/{parts[-1]}"
+        data=(INDIVIDUAL/folder/parts[-1]).read_bytes()
+        assert sha(data)==item['sha256']
+        individual_hashes[name]=sha(data)
     qa={'source_commit':BASE,'source_main_figures':8,'source_supplementary_figures':8,
         'figure_pairs':16,'zip_members':len(contents),'individual_artwork_files':32,
+        'browsable_individual_directory':'Individual_Figures',
+        'browsable_individual_artwork_files':len(individual_hashes),
+        'browsable_individual_artwork_sha256':individual_hashes,
         'separate_caption_file_sha256':sha(caps),'combined_pdf_sha256':sha(full),
         'zip_sha256':sha(ZIP_PATH.read_bytes()),'zip_bytes':ZIP_PATH.stat().st_size,
         'archive_crc_and_payload_sha256_verified':True,

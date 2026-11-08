@@ -1,6 +1,8 @@
 # Figure package - 2026-11-08
 
-Download `LA_Grid_Figures_2026-11-08.zip` for the complete set to share with coauthors. It contains eight main and eight supplementary figures, each as a separate caption-free PDF and PNG, a standalone `Figure_Captions.md`, the current combined `All_Figures_With_Captions.pdf`, a README, and a SHA-256 list.
+Open `Individual_Figures/` to browse or download each figure separately. It contains eight main and eight supplementary figures, each as a separate caption-free PDF and PNG. Captions are in the standalone `FIGURE_CAPTIONS.md` file.
+
+Download `LA_Grid_Figures_2026-11-08.zip` for a portable coauthor package with the same individual figures, separate captions, and the current combined `ALL_FIGURES_WITH_CAPTIONS.pdf`.
 
 The loose `FIGURE_CAPTIONS.md` and `ALL_FIGURES_WITH_CAPTIONS.pdf` are identical to their archive copies. Each individual artwork file is copied from the separate review collection without modifying the graphic.
 
