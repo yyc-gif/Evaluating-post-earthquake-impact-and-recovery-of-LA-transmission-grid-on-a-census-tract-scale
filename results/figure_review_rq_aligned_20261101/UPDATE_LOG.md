@@ -56,3 +56,19 @@ Figure S8 population shading and its colorbar use a muted blue-green sequential 
 ## 2026-11-01 - RQ-aligned figure evidence
 
 Figure 3 component shares were checked against the saved formal component table. Figure 4 reports service-loss and T80 realization ranges and adds paired Degree-first minus Hospital-first component differences. Figure 5 distinguishes signed Q4-Q1 from the absolute within-realization gap. Figure 7 states the verified Q4/P75 overlap and prevalence. No model, simulation, restoration schedule, or clustering fit was rerun.
+
+## 2026-11-07 - Figure 4 scope and spacing correction
+
+The earlier Figure 4 had A/B only. Restored the seven-strategy overview; the November 1 single-pair mechanism panel remains archived diagnostic evidence. Saved trajectories, outcome values and realization ranges are unchanged. Title/legend clearances are matched; all other numbered figures are byte-identical.
+
+## 2026-11-07 - Figure 7B research-question groups
+
+RQ1 brackets the three initial-service/network features; RQ2 brackets the two recovery-deficit features; RQ3 brackets social vulnerability and population. Group boundaries span both labels and cells. All 21 profile values, A/C/D, and the other fifteen numbered figures are unchanged.
+
+## 2026-11-07 - Figure 7 explanatory footer removed
+
+Deleted the complete bottom annotation block and its generation calls. No replacement prose is added. Maps, legends, profile values and all other figures are unchanged. Scientific checks are retained separately in FIG07_DISPLAY_QA.json.
+
+## 2026-11-07 - Figure S8 white-purple population shading
+
+Changed only Panel C population fills and the matching colorbar. Logarithmic population normalization, priorities, text, vector paths and Panels A/B are unchanged.

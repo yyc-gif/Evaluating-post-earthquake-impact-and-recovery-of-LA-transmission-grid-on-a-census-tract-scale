@@ -1,0 +1,19 @@
+{
+  "suite_command": "python -m pytest -p no:cacheprovider tests/test_figure1_execution_20261107.py::test_execution_modes_and_body_typography tests/test_rq_aligned_figure_suite_20261101.py -q",
+  "passed": 10,
+  "failed": 2,
+  "elapsed_seconds": 101.95,
+  "focused_final_tests": {"passed": 2, "failed": 0, "elapsed_seconds": 9.48},
+  "failures": [
+    {
+      "test": "test_change_manifest_and_panel_audit_cover_the_complete_active_suite",
+      "reason": "Missing prior QA/FIGURE_CHANGE_MANIFEST.csv; absent from starting Git tree."
+    },
+    {
+      "test": "test_figure7_retains_p2_k3_and_discloses_verified_overlap",
+      "reason": "Missing prior QA/Figure7/LAYOUT_SPECIFICATIONS.json; absent from starting Git tree."
+    }
+  ],
+  "unrelated_assertions_weakened": false,
+  "scientific_outputs_changed": false
+}

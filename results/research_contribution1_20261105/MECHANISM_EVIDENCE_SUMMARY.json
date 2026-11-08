@@ -1,0 +1,65 @@
+{
+  "status": "bounded_model_internal_mechanism_support",
+  "frozen_case": {
+    "hazard": "2pc50",
+    "resource": "C57_D1",
+    "mapping": "M1_UTILITY_003",
+    "source_gate": "G1_BASELINE_050",
+    "horizon_hr": 480,
+    "realizations": 1000,
+    "stations": 92,
+    "tracts": 2315
+  },
+  "unconstrained_mean_loss_hr": {
+    "self": 26.887247240546063,
+    "threshold": 0.8764917719738314,
+    "source": 3.57403796927675,
+    "total": 31.337776981796647,
+    "self_share": 0.8579819575640037
+  },
+  "degree_minus_hospital_paired_effect_hr": {
+    "self": {"mean": 2.944701949630948, "bootstrap_95ci": [2.916534, 2.972703], "realization_p05_p95": [2.2777557911430906, 3.7443651111204557]},
+    "threshold": {"mean": 0.1032344048873476, "bootstrap_95ci": [0.101941, 0.104541], "realization_p05_p95": [0.0724655418708217, 0.14035448241312135]},
+    "source": {"mean": -1.6466924084593768, "bootstrap_95ci": [-1.701464, -1.591780], "realization_p05_p95": [-3.1820139956140365, -0.3537241041946505]},
+    "total": {"mean": 1.4012439460589194, "bootstrap_95ci": [1.344237, 1.457371], "realization_p05_p95": [-0.17550362366852598, 2.7844498143397014], "positive_realizations": 936, "negative_realizations": 64}
+  },
+  "event_unlocks": {
+    "event_rows": 641816,
+    "ds1_batches": 876,
+    "ds1_realizations_with_events": 586,
+    "ds1_external_unlock_batches": 0,
+    "ds2_4_batches_per_strategy": 90812,
+    "ds2_4_external_unlock_fraction_by_policy": {
+      "betweenness-first": 0.09055710559892126,
+      "centrality-first": 0.08917841663323389,
+      "closeness-first": 0.10820328267959098,
+      "degree-first": 0.09263792843975037,
+      "hospital-first": 0.1210704298423585,
+      "impact-first": 0.1185644498898559,
+      "random": 0.13273700633085714
+    },
+    "realization_clustered_bootstrap_replicates": 10000,
+    "seed_base": 20261108
+  },
+  "local_perturbations": {
+    "sample_n": 128,
+    "seed": 20261105,
+    "rows": 6144,
+    "paired_bootstrap_replicates": 10000,
+    "bootstrap_seed": 20261107,
+    "low_direct_dynamic_bottleneck_move_5_earlier_delta_total_hr": {
+      "impact-first": {"mean": -0.134829, "bootstrap_95ci": [-0.180664, -0.093490]},
+      "hospital-first": {"mean": -0.098059, "bootstrap_95ci": [-0.133099, -0.066678]}
+    },
+    "interpretation": "small targeted modeled effects; target selection and frozen topology limit generalization"
+  },
+  "unverified": [
+    "No matching realization-paired GA held-out source table/trajectory archive was present locally; GA contrast omitted.",
+    "Vulnerability-first event-time archive unavailable; event-level conclusions cover seven scheduled policies only.",
+    "No empirical customer outage or delivered-power validation."
+  ],
+  "maximum_integrated_additivity_error_hr": 3.552713678800501e-14,
+  "event_reconstruction_max_error_hr": null,
+  "event_reconstruction_error_tolerance_hr": 1e-10,
+  "event_reconstruction_note": "The prior complete pass enforced the stated bound; exact max was not persisted. Reused checkpoint identities were independently revalidated."
+}

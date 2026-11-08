@@ -94,7 +94,7 @@ def _paired(primary, vulnerability, strategy, metric):
 
 
 def make_figure4(primary, vulnerability, gate_components, source_pdf):
-    """Keep the saved vector trajectory panel; rebuild outcome and mechanism panels from frozen rows."""
+    """Restore the two-panel, seven-strategy scope using saved curves and outcomes."""
     base_strategies = [key for key in FIG4_ORDER if key != "vulnerability-first"]
     data = pd.concat([_selected(primary, base_strategies),
                       _selected(vulnerability, ["vulnerability-first"])],
@@ -105,22 +105,19 @@ def make_figure4(primary, vulnerability, gate_components, source_pdf):
     assert all(ids == sets[0] for ids in sets[1:])
 
     # Build the service-loss/T80 panel directly from realization-level outcomes.
-    width, height = 185 / 25.4, 78 / 25.4
+    width, height = 185 / 25.4, 230 / 72
     fig = plt.figure(figsize=(width, height))
-    fig.text(.5, .975, "B. Service loss and recovery time", ha="center", va="top",
-             fontsize=9.0, fontweight="bold")
-    fig.text(.5, .915, "Means; whiskers: 5th-95th realization ranges", ha="center",
-             va="top", fontsize=7.2)
     measures = [
         ("population_weighted_normalized_burden_hr", "All-tract service loss", "#497f9b"),
         ("burden_Q4_hr", "Q4 service loss", "#c48a43"),
         ("hospital_mean_normalized_burden_hr", "Hospital-linked service loss", "#8a989f"),
     ]
     fig.legend(handles=[Patch(facecolor=color, label=label) for _, label, color in measures],
-               loc="upper center", bbox_to_anchor=(.49, .865), ncol=3, frameon=False,
+               loc="upper center", bbox_to_anchor=(.5, 1-32.4235/230), ncol=3, frameon=False,
+               fontsize=7.5,borderaxespad=0,borderpad=0,
                handlelength=1.0, handletextpad=.35, columnspacing=.75)
-    ax = fig.add_axes([.215, .20, .475, .58])
-    tx = fig.add_axes([.795, .20, .17, .58])
+    ax = fig.add_axes([.215, (230-199.8235)/230, .475, 145/230])
+    tx = fig.add_axes([.795, (230-199.8235)/230, .17, 145/230])
     outcome_rows = []
     for row, strategy in enumerate(FIG4_ORDER):
         q = data.loc[data.strategy_id.eq(strategy)]
@@ -138,7 +135,7 @@ def make_figure4(primary, vulnerability, gate_components, source_pdf):
                     color=COLORS[strategy], markersize=3, linewidth=.65, capsize=1.2)
         outcome_rows.append(dict(strategy_id=strategy, metric="population_T80_hr", mean=mean,
                                  p05=p05, p95=p95, n_realizations=1000))
-    ax.set_yticks(range(len(FIG4_ORDER)), [DISPLAY[key] for key in FIG4_ORDER])
+    ax.set_yticks(range(len(FIG4_ORDER)), [DISPLAY[key] for key in FIG4_ORDER],fontsize=7.5)
     ax.set_ylim(len(FIG4_ORDER)-.45, -.55)
     ax.set_xlim(0, 50)
     ax.set_xlabel("Service loss (h)")
@@ -147,8 +144,9 @@ def make_figure4(primary, vulnerability, gate_components, source_pdf):
     tx.set_ylim(len(FIG4_ORDER)-.45, -.55)
     tx.set_xlim(35, 62)
     tx.set_xticks([40, 50, 60])
-    tx.set_xlabel("Population T80 (h)", fontsize=7.2)
+    tx.set_xlabel("Population T80 (h)")
     for target in (ax, tx):
+        target.tick_params(labelsize=7.5)
         target.spines[["top", "right"]].set_visible(False)
         target.grid(axis="x", color="#e5e5e5", linewidth=.4, zorder=0)
     outcome_pdf = BytesIO()
@@ -162,11 +160,6 @@ def make_figure4(primary, vulnerability, gate_components, source_pdf):
     assert degree.index.equals(hospital.index) and len(degree) == 1000
     deltas = degree[[name for name, _ in COMPONENTS]] - hospital[[name for name, _ in COMPONENTS]]
     component_rows = []
-    comp_width, comp_height = 185 / 25.4, 62 / 25.4
-    fig = plt.figure(figsize=(comp_width, comp_height))
-    fig.text(.5, .97, "C. Why Degree-first and Hospital-first differ", ha="center",
-             va="top", fontsize=9.0, fontweight="bold")
-    ax = fig.add_axes([.30, .22, .62, .64])
     means = []
     for row, (field, label) in enumerate(COMPONENTS):
         values = deltas[field].to_numpy(float)
@@ -174,36 +167,28 @@ def make_figure4(primary, vulnerability, gate_components, source_pdf):
         means.append(mean)
         component_rows.append(dict(component=field, label=label, degree_minus_hospital_mean_hr=mean,
                                    p05=p05, p95=p95, n_paired_realizations=1000))
-        ax.errorbar(mean, row, xerr=[[mean-p05], [p95-mean]], fmt="o", color="#315f74",
-                    markersize=3.2, linewidth=.8, capsize=1.7)
-    ax.axvline(0, color="#555555", linestyle="--", linewidth=.65)
-    ax.set_yticks(range(len(COMPONENTS)), [label for _, label in COMPONENTS])
-    ax.set_ylim(len(COMPONENTS)-.5, -.5)
-    ax.set_xlim(-3.8, 4.3)
-    ax.set_xlabel("Degree-first minus Hospital-first (h)")
-    ax.grid(axis="x", color="#e5e5e5", linewidth=.4)
-    ax.spines[["top", "right"]].set_visible(False)
-    component_pdf = BytesIO()
-    fig.savefig(component_pdf, format="pdf", metadata={"CreationDate": None, "ModDate": None})
-    plt.close(fig)
 
     source = fitz.open(stream=source_pdf, filetype="pdf")
     assert len(source) == 1
     page_w = source[0].rect.width
-    crop_h = 312.0  # Includes the full saved vector A panel and its x-axis.
-    out_h = 250 * MM
+    out_h = 530.0
     out = fitz.open()
     page = out.new_page(width=page_w, height=out_h)
-    page.show_pdf_page(fitz.Rect(0, 0, page_w, crop_h), source, 0,
-                       clip=fitz.Rect(0, 0, page_w, crop_h))
-    b_h = 78 * MM
-    c_top = crop_h + b_h
-    page.show_pdf_page(fitz.Rect(0, crop_h, page_w, c_top),
+    # Translate (never scale) the saved legend and trajectory vectors.
+    page.show_pdf_page(fitz.Rect(0,22.92,page_w,76.92),source,0,
+                       clip=fitz.Rect(0,0,page_w,54))
+    page.show_pdf_page(fitz.Rect(0,82.57,page_w,288.57),source,0,
+                       clip=fitz.Rect(0,101,page_w,307))
+    page.show_pdf_page(fitz.Rect(0,300,page_w,out_h),
                        fitz.open(stream=outcome_pdf.getvalue(), filetype="pdf"), 0)
-    page.show_pdf_page(fitz.Rect(0, c_top, page_w, out_h),
-                       fitz.open(stream=component_pdf.getvalue(), filetype="pdf"), 0)
+    page.insert_font(fontname='Figure4Heading',fontfile='C:/Windows/Fonts/arialbd.ttf')
+    heading_font=fitz.Font(fontfile='C:/Windows/Fonts/arialbd.ttf')
+    for label,baseline in [('A. Population-weighted service recovery',16),
+                           ('B. Service loss and recovery time',317)]:
+        page.insert_text(((page_w-heading_font.text_length(label,fontsize=9.5))/2,baseline),
+                         label,fontname='Figure4Heading',fontsize=9.5,color=(0,0,0))
     out.set_metadata({"title": "Figure 4. Restoration strategy comparisons",
-                      "subject": "Frozen strategy outcomes and paired service-loss component differences"})
+                      "subject": "Seven-strategy recovery curves, service loss and recovery time"})
     source.close()
     aggregate = gate_components.loc[
         gate_components.hazard.eq("2pc50")
@@ -231,6 +216,10 @@ def make_figure4(primary, vulnerability, gate_components, source_pdf):
         "source_pdf_vector_panel_A_preserved": True,
         "source_pdf_sha256": __import__("hashlib").sha256(source_pdf).hexdigest(),
         "source_trajectory_curves_regenerated": False,
+        "main_panels": ["A", "B"],
+        "single_pair_decomposition_in_main": False,
+        "pairwise_rows_retained_as_diagnostic_only": True,
+        "source_panel_A_translations_pt": {"legend": 22.92, "curves": -18.43},
         "outcome_source_rows": len(data),
         "strategies": counts,
         "shared_realization_identity_across_strategies": True,

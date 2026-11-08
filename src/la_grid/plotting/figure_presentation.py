@@ -180,11 +180,13 @@ def restoration_workflow(raw):
         assert 'Restoration Policies and Execution' in old_text
         assert {'Unconstrained','reference','Crew dispatch','and directed travel',
                 'Priority-strategy','recovery','80% service'}.issubset(old_text),old_text
+        # Text-only redaction keeps the surrounding scientific artwork intact.
+        for span in old:
+            page.add_redact_annot(fitz.Rect(span['bbox']),fill=None)
+        page.apply_redactions(images=0,graphics=0)
         white=(1.,1.,1.)
         header=(232/255,244/255,242/255)
         ink=(32/255,40/255,43/255)
-        muted=(103/255,116/255,121/255)
-        teal=(39/255,137/255,126/255)
         page.draw_rect(fitz.Rect(9.5,481.7,256.3,614.7),color=None,fill=white,overlay=True)
         page.draw_rect(fitz.Rect(21.8,465.2,250.5,480.5),color=None,fill=header,overlay=True)
         page.insert_font(fontname='Fig1RestorationBold',fontfile='C:/Windows/Fonts/arialbd.ttf')
@@ -196,41 +198,25 @@ def restoration_workflow(raw):
         page.insert_text((22.677,475.654),title_text,fontname='Fig1RestorationBold',
                          fontsize=9.5,color=ink,overlay=True)
 
-        def label(text,x,y,size=7.1,bold=False,color=ink):
+        def label(text,x,y,size=7.5,bold=False,color=ink):
             page.insert_text((x,y),text,
                 fontname='Fig1RestorationBold' if bold else 'Fig1RestorationBody',
                 fontsize=size,color=color,overlay=True)
 
-        label('UNCONSTRAINED REFERENCE',15.5,497.5,bold=True,color=teal)
-        for text,y in [('Repairs proceed in parallel',510.0),
-                       ('using sampled durations; no',519.0),
-                       ('crew or travel constraints.',528.0)]:
-            label(text,15.5,y,7.2)
+        label('Unconstrained reference',15.5,497.5,bold=True)
+        label('Repairs proceed in parallel using sampled durations.',15.5,511.0)
+        label('No crew or travel constraints.',15.5,523.0)
 
-        label('CONSTRAINED RESTORATION',15.5,561.5,bold=True,color=teal)
-        for text,y in [('Priority strategy sets repair order',574.0),
-                       ('Finite crews; dispatch accounts for',583.0),
-                       ('repair duration and directed travel.',592.0)]:
-            label(text,15.5,y,7.0)
+        label('Constrained restoration',15.5,544.0,bold=True)
+        label('Priority strategy sets repair order.',15.5,557.5)
+        label('Finite crews; dispatch includes directed travel and repairs.',15.5,569.5)
 
-        page.draw_line(fitz.Point(15.5,546.0),fitz.Point(250.0,546.0),
-                       color=(0.82,0.85,0.86),width=0.45,overlay=True)
-        curve_x0,curve_x1=139.0,249.0
-        for top,bottom,title_y,time_y in [(500.5,530.5,495.5,540.0),
-                                          (564.5,594.5,559.5,604.0)]:
-            label('Modeled service availability',curve_x0,title_y,6.8,color=muted)
-            page.draw_line(fitz.Point(curve_x0,top),fitz.Point(curve_x0,bottom),
-                           color=muted,width=0.55,overlay=True)
-            page.draw_line(fitz.Point(curve_x0,bottom),fitz.Point(curve_x1,bottom),
-                           color=muted,width=0.55,overlay=True)
-            pts=[(curve_x0+4,bottom-2),(curve_x0+16,bottom-2),
-                 (curve_x0+16,bottom-8),(curve_x0+36,bottom-8),
-                 (curve_x0+36,bottom-14),(curve_x0+61,bottom-14),
-                 (curve_x0+61,bottom-21),(curve_x0+84,bottom-21),
-                 (curve_x0+84,top+1),(curve_x1-2,top+1)]
-            page.draw_polyline([fitz.Point(x,y) for x,y in pts],
-                               color=teal,width=1.25,overlay=True,lineCap=1,lineJoin=1)
-            label('Time',curve_x1-15,time_y,6.8,color=muted)
+        for y in (531.5,578.0):
+            page.draw_line(fitz.Point(15.5,y),fitz.Point(250.0,y),
+                           color=(0.82,0.85,0.86),width=0.45,overlay=True)
+        label('Repair completion: station functionality = 1',15.5,590.0)
+        label('Source gate + tract weights',15.5,601.0)
+        label('Modeled service availability curves',15.5,612.0)
 
         result=finish(doc)
         return result,dict(
@@ -242,6 +228,8 @@ def restoration_workflow(raw):
             unconstrained='Repairs proceed in parallel using sampled durations; no crew or travel constraints.',
             constrained='Priority strategy sets repair order; finite crews and dispatch account for repair duration and directed travel.',
             panel_bounds_preserved=True,other_panels_and_stage_5_content_unchanged=True,
+            body_font='Arial',body_font_size_pt=7.5,
+            illustrative_curves_removed=True,completion_event_recovery=True,
             original_panel_graphics_covered_by_opaque_vector_replacement=True,
             source_vector_signature='outside authorized panel verified by native-render pixel test',
             width_pt=w,height_pt=h)
@@ -322,6 +310,39 @@ def functional_network_recovery(raw):
             recovery_column_headers_repeated=True)
 
 
+def mapping_cutoff_labels(raw):
+    """Replace workflow jargon in the active cutoff plot, without redrawing it."""
+    with fitz.open(stream=raw,filetype='pdf') as doc:
+        page=doc[0]
+        selected=[s for s in spans(page) if 'production' in s['text'].lower()]
+        assert len(selected)==2,selected
+        for span in selected:
+            span['original_label_bbox']=span['bbox']
+            if span['bbox'][3]-span['bbox'][1]>span['bbox'][2]-span['bbox'][0]:
+                # A clipped historical text run leaves its closing parenthesis
+                # just beyond the extracted span.
+                span['bbox']=tuple(fitz.Rect(span['bbox'])+(0,-5,0,1))
+        out=cut_text(doc,selected)
+        page=out[0]
+        page.insert_font(fontname='CutoffPublicationLabel',fontfile='C:/Windows/Fonts/arial.ttf')
+        font=fitz.Font(fontfile='C:/Windows/Fonts/arial.ttf')
+        changes=[]
+        for span in selected:
+            rotated=span['bbox'][3]-span['bbox'][1]>span['bbox'][2]-span['bbox'][0]
+            text='Change from 3% cutoff (h)' if rotated else '3% cutoff'
+            length=font.text_length(text,fontsize=span['size'])
+            original_box=span['original_label_bbox']
+            origin=(span['origin'][0],(original_box[1]+original_box[3]+length)/2) if rotated else (
+                (original_box[0]+original_box[2]-length)/2,span['origin'][1])
+            page.insert_text(origin,text,fontname='CutoffPublicationLabel',fontsize=span['size'],
+                             rotate=90 if rotated else 0,color=fitz.sRGB_to_pdf(span['color']))
+            changes.append(dict(before=span['text'],after=text,old_bbox=list(span['bbox']),
+                                font='Arial',font_size_pt=span['size']))
+        result=finish(out)
+        out.close()
+        return result,dict(label_changes=changes,data_and_plot_geometry_unchanged=True)
+
+
 def gate_sensitivity(raw, values):
     """Use saved means/ranges; combine both threshold tests on one common axis."""
     import matplotlib
@@ -397,19 +418,31 @@ def gate_sensitivity(raw, values):
 
 
 def priority_geography(raw):
-    """Recolor only the population-context map and colorbar in muted teal."""
+    """Recolor only the population-context map and colorbar in white-purple."""
     from matplotlib import colormaps
     from matplotlib.colors import LinearSegmentedColormap
     import numpy as np
-    population_palette=LinearSegmentedColormap.from_list(
-        'MutedPopulationTeal',['#eff5f4','#b9d5d1','#6fa9a5','#287d80','#164f57'],N=256)
-    population_samples=population_palette(np.linspace(0,1,256))[:,:3]
+    stops=['#FFFFFF','#E0D6E9','#B69ACB','#8B63AC','#613A80']
+    population_palette=LinearSegmentedColormap.from_list('PopulationWhitePurple',stops,N=256)
     with fitz.open(stream=raw,filetype='pdf') as doc:
         page=doc[0]
+        samples=colormaps['Greys'](np.linspace(0,1,256))[:,:3]
+        image_xrefs=sorted({image[0] for image in page.get_images()})
+        source_indices=[]
+        for xref in image_xrefs:
+            pix=fitz.Pixmap(doc,xref)
+            assert pix.n==3,'Unexpected population colorbar image format'
+            colors=np.unique(np.frombuffer(pix.samples,np.uint8).reshape(-1,3),axis=0)
+            source_indices.extend(np.argmin(np.sum((colors[:,None,:]/255-samples[None,:,:])**2,axis=2),axis=1))
+        low,high=int(min(source_indices)),int(max(source_indices))
+        assert high>low
+        # Expand the old truncated color ramp to white-purple; the existing
+        # logarithmic population normalization and tick positions are retained.
+        population_samples=population_palette(np.clip((np.arange(256)-low)/(high-low),0,1))[:,:3]
         before=page.get_drawings()
         fills={d['fill'] for d in before if d['fill'] and d['rect'].y0>525}
-        samples=colormaps['Greys'](np.linspace(0,1,256))[:,:3]
-        fills={rgb for rgb in fills if max(rgb)-min(rgb)<2e-5 and .2<sum(rgb)/3<.9
+        fills={rgb for rgb in fills if max(rgb)-min(rgb)<2e-5
+               and low<=np.argmin(np.linalg.norm(samples-np.array(rgb),axis=1))<=high
                and np.min(np.linalg.norm(samples-np.array(rgb),axis=1))<2e-5}
         assert len(fills)>20
         mapping={}
@@ -441,7 +474,7 @@ def priority_geography(raw):
                 match=rgb_at_end.search(stream[window:operator])
                 if match:
                     rgb=tuple(float(match[i]) for i in (1,2,3))
-                    if max(rgb)-min(rgb)<2e-5 and .2<sum(rgb)/3<.9:
+                    if max(rgb)-min(rgb)<2e-5:
                         candidate=min(mapping,key=lambda color:sum((a-b)**2 for a,b in zip(color,rgb)))
                         if max(abs(a-b) for a,b in zip(candidate,rgb))<2e-6:
                             start=window+match.start();end=window+match.end()
@@ -466,7 +499,6 @@ def priority_geography(raw):
                 doc.update_stream(xref,changed);count+=1
         # The original population colorbar is a raster strip; preserve its
         # support and resolution while applying the identical ordinal palette.
-        image_xrefs=sorted({image[0] for image in page.get_images()})
         image_rects={xref:page.get_image_rects(xref) for xref in image_xrefs}
         for xref in image_xrefs:
             pix=fitz.Pixmap(doc,xref)
@@ -480,8 +512,9 @@ def priority_geography(raw):
             image_bytes=io.BytesIO();Image.fromarray(rgb).save(image_bytes,format='PNG')
             page.replace_image(xref,stream=image_bytes.getvalue())
         assert image_rects=={xref:page.get_image_rects(xref) for xref in image_xrefs}
-        return finish(doc),dict(source_palette='Greys',population_palette='muted_blue_green',
-             palette_stops=['#eff5f4','#b9d5d1','#6fa9a5','#287d80','#164f57'],
+        return finish(doc),dict(source_palette='Greys',population_palette='white_purple',
+             palette_stops=stops,source_palette_index_range=[low,high],
+             logarithmic_population_normalization_unchanged=True,
              paint_colors_changed=len(fills),
              streams_changed=count,colorbar_resolution_preserved=True,
              fill_operator_geometry_sha256=stream_geometry_hashes,

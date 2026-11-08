@@ -24,6 +24,9 @@ LAYOUT_B_H = 10 * 72
 LAYOUT_C_H = 684
 FEATURES = ["Init_Supply", "Grid_Impact", "Redundancy_HHI", "B_Unconstrained",
             "MeanDelta", "SOVI_SCORE", "log1p_Population"]
+RQ_GROUPS = (("RQ1", tuple(FEATURES[:3])),
+             ("RQ2", tuple(FEATURES[3:5])),
+             ("RQ3", tuple(FEATURES[5:])))
 LABELS = {
     "Init_Supply": "Initial service availability",
     "Grid_Impact": "Spectral network impact",
@@ -145,12 +148,22 @@ def _draw_profiles(fig, profile, palette, *, layout):
                     fontsize=7.5, color="white" if abs(value) > 1 else "#202020")
     for y in (3, 5):
         ax.axhline(y, color="#242424", linewidth=0.75, clip_on=False)
-    row_centers = [grid_top + grid_height * (1.5 / 7),
-                   grid_top + grid_height * (4 / 7),
-                   grid_top + grid_height * (6 / 7)]
-    for group, top in zip(("RQ1", "RQ2", "RQ3"), row_centers):
-        _fig_text(fig, 70, top - 4.0, group, size=7.5, weight="bold",
-                  align="right", page_height=page_height)
+        top=grid_top+grid_height*y/7
+        fig.add_artist(Line2D([100/PAGE_W,left/PAGE_W],
+            [1-top/page_height]*2,transform=fig.transFigure,
+            color="#242424",linewidth=.75))
+    start=0
+    for group, features in RQ_GROUPS:
+        end=start+len(features)
+        top=grid_top+grid_height*start/7+1
+        bottom=grid_top+grid_height*end/7-1
+        fig.add_artist(Line2D(np.array([100,96,96,100])/PAGE_W,
+            1-np.array([top,top,bottom,bottom])/page_height,
+            transform=fig.transFigure,color="#242424",linewidth=.75))
+        center=grid_top+grid_height*(start+end)/14
+        fig.text(88/PAGE_W,1-center/page_height,group,fontsize=7.5,
+                 fontweight="bold",ha="right",va="center",color="#202020")
+        start=end
     cax = _axes(fig, colorbar_x, grid_top, 10, grid_height, page_height)
     cmap = plt.get_cmap("RdBu_r")
     bins = 256
@@ -253,23 +266,6 @@ def compose_figure(top_pdf, data, display, paths, specification, palette, *, lay
         maps._class_legend(page, 588, scale=1.25)
         maps._bivariate_legend(page, specification, (318, 584, 493, 614))
         maps._screening_keys(page, 638, 0.25, n_a_x=132, q4_x=20)
-        cohort = data.loc[data.Population.gt(0)]
-        p75 = float(cohort.MeanTotal5.quantile(.75, interpolation="linear"))
-        q4 = cohort.frozen_SOVI_quartile.eq("Q4")
-        high = cohort.MeanTotal5.ge(p75)
-        overlap = q4 & high
-        assert len(cohort) == 2299 and int(q4.sum()) == 579 and int(high.sum()) == 575
-        assert int(overlap.sum()) == 94 and int(cohort.loc[overlap, "Population"].sum()) == 350799
-        q4_rate = float(high.loc[q4].mean() * 100)
-        non_q4_rate = float(high.loc[~q4].mean() * 100)
-        assert abs(p75 - 38.38135467381475) < 1e-12
-        assert abs(q4_rate - 16.2349) < .001 and abs(non_q4_rate - 27.9651) < .001
-        maps._text(page, 20, 661,
-            f"Q4: {int(q4.sum())} tracts | Cohort P75: {p75:.5f} h ({int(high.sum())} tracts) | Joint screen: {int(overlap.sum())} tracts ({int(cohort.loc[overlap, 'Population'].sum()):,} residents)",
-            size=7.0)
-        maps._text(page, 20, 674,
-            f"High-burden prevalence: {q4_rate:.2f}% in Q4; {non_q4_rate:.2f}% outside Q4. Descriptive five-policy comparison.",
-            size=7.0)
     output.set_metadata({"title": "Figure 7. Community recovery types and social vulnerability",
                          "subject": "P2/K3 classes; continuous SOVI and five-policy recovery burden"})
     return output
@@ -297,6 +293,23 @@ def ecdf_qa(data):
                          "sorted_values_sha256": __import__("hashlib").sha256(values.tobytes()).hexdigest(),
                          "empirical_step": True, "smoothed": False, "clipped": False})
     return rows
+
+
+def display_qa(data, profile):
+    """Keep numerical verification in QA, not explanatory text on the artwork."""
+    cohort=data.loc[data.Population.gt(0)]
+    threshold=float(cohort.MeanTotal5.quantile(.75,interpolation='linear'))
+    q4=cohort.frozen_SOVI_quartile.eq('Q4')
+    high=cohort.MeanTotal5.ge(threshold)
+    overlap=q4&high
+    return dict(width_in=PAGE_W/72,summary_line_count=0,
+        profile_rows=[dict(class_id=c,variable=f,standardized_mean=float(profile.loc[c,f]))
+                      for c in ['C1','C2','C3'] for f in FEATURES],
+        ecdf_rows=ecdf_qa(cohort),screen=dict(
+            threshold_hr=threshold,q4_tracts=int(q4.sum()),high_tracts=int(high.sum()),
+            joint_tracts=int(overlap.sum()),joint_population=int(cohort.loc[overlap,'Population'].sum()),
+            q4_prevalence_pct=float(high[q4].mean()*100),
+            non_q4_prevalence_pct=float(high[~q4].mean()*100)))
 
 
 def _linear(rgb):

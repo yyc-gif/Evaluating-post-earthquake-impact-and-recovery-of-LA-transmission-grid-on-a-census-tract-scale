@@ -14,7 +14,7 @@ Earthquake damage and initial modeled service are followed by Unconstrained reco
 
 ## Figure 4. Restoration-policy performance under 2pc50
 
-A retains population-weighted service-availability trajectories. B reports mean service loss and population T80, with 5th-95th realization ranges. C decomposes paired Degree-first minus Hospital-first service loss into substation-damage, threshold, and source-path components; whiskers are 5th-95th paired-realization ranges (n=1,000).
+Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.
 
 ## Figure 5. Vulnerability-targeted recovery and distributional effects
 
@@ -26,7 +26,7 @@ Vulnerability-first effects across crew-availability and repair-duration scenari
 
 ## Figure 7. Community recovery types and social vulnerability
 
-A shows six feature distributions; B shows standardized means for all seven fitted variables; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines mark frozen Q4 and the cohort P75. The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.
+A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines mark frozen Q4 and the cohort P75. The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.
 
 ## Supplementary Figure S1. Damage and initial service
 
@@ -58,7 +58,7 @@ Provider planning loads, reported limits, and modeled service-loss changes under
 
 ## Supplementary Figure S8. Restoration-priority geography
 
-Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The blue-green scale shows population; outcome comparisons appear in Figures 4-6 and Supplementary Figure S9.
+Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The white-purple scale shows population; outcome comparisons appear in Figures 4-6 and Supplementary Figure S9.
 
 ## Supplementary Figure S9. Outcomes under resource variation
 

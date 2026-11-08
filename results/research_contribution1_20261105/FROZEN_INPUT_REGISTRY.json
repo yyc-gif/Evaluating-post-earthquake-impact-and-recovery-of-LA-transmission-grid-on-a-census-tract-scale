@@ -1,0 +1,172 @@
+{
+  "Data/JULY_UTILITY_CONSTRAINED_92.csv": {
+    "sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+    "size_bytes": 587939
+  },
+  "Data/source_nodes_core_expanded.csv": {
+    "sha256": "892f5ec3e9a260db138c7fb2454dea09fcb75a8989ef13695aefca417b8c2955",
+    "size_bytes": 3539
+  },
+  "Data/stage45_C57_expanded_crew_origins.csv": {
+    "sha256": "6419deeaba0e5e41bc25a35619917835ef114e51350ea9ae60993b0ebaba7bc2",
+    "size_bytes": 5096
+  },
+  "Data/substation_graph_CEC_edges_expanded.csv": {
+    "sha256": "1a3073240a6dca3e902e0bf5c2b975c67ff100892d85f007270e9855250bd225",
+    "size_bytes": 10627
+  },
+  "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_FIRST_SEQUENCE.json": {
+    "sha256": "4783c7032519829c2995343c08ec3e5a8f1a44683fa437d9b6082e513e6057b2",
+    "size_bytes": 12555
+  },
+  "Formal_Experiment_20260923/Equity_Amendment/VULNERABILITY_PRIMARY_SUMMARY.parquet": {
+    "sha256": "8212425edf96dc1ebc6f98d8f80d08e7a7e378ce72d814f86e80983548d4997c",
+    "size_bytes": 2445448
+  },
+  "Formal_Experiment_20260923/Formal_Offline_Evaluation/FORMAL_OFFLINE_INDEX.json": {
+    "sha256": "97872aceef8f2799b991bd3f6cdb09839c79855b3b56e10ff7b09989a4b5fa5d",
+    "size_bytes": 448
+  },
+  "Formal_Experiment_20260923/Stage 1 Output_expanded/PHYSICAL_INPUTS_FROZEN.json": {
+    "sha256": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba",
+    "size_bytes": 417793
+  },
+  "Formal_Experiment_20260923/Stage 1 Output_expanded/PHYSICAL_SAMPLE_MANIFEST.csv": {
+    "sha256": "782ff0947c5583a3a1002120e1aaa99d9b94dca30549e21802f8b546a7a58a9e",
+    "size_bytes": 1318514
+  },
+  "Formal_Experiment_20260923/Stage 1 Output_expanded/physical_inputs_2pc50.npz": {
+    "sha256": "fa40cc26567c22e7d8195e04949e2ef7dbc960a9751f4b9af3d687edf542cdcb",
+    "size_bytes": 764219
+  },
+  "Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json": {
+    "sha256": "9a9f8c81aa8b9ec920fefd3441855e53c4cbb6228c6e6f4838c10c9af32f798c",
+    "size_bytes": 11190
+  },
+  "data/travel/travel_base_to_task.csv": {
+    "sha256": "7381392eb3b93ba80474086f603fdfbbb45da582a937c484710d2362fb36c630",
+    "size_bytes": 20305
+  },
+  "data/travel/travel_task_to_task.csv": {
+    "sha256": "49d0372cc98e33713a04e3d0bdab34265df32fcdede612ca9364249555ce6cb8",
+    "size_bytes": 163647
+  },
+  "external_formal_summary_dependency": {
+    "archive_path": "Formal_Experiment_20260923/Formal_Offline_Evaluation/FORMAL_REALIZATION_STRATEGY_SUMMARY.parquet",
+    "included_in_branch": false,
+    "local_materialized_path": "results/research_contribution1_20261105/.cache/formal_realization_summary.parquet",
+    "reason": "Frozen Git LFS source is required locally; do not duplicate the 52 MB source payload in this diagnostic package.",
+    "sha256": "840b826f036822bf03fec21367dc5ab3850a9a4c757d718883f439b645ba565d",
+    "size_bytes": 52767419
+  },
+  "frozen_identity": {
+    "branch_baseline": "7704f766a648f6631acc474a8b02eb6e357adbc2",
+    "edges": 318,
+    "hazard": "2pc50",
+    "horizon_hr": 480,
+    "mapping": "M1_UTILITY_003",
+    "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+    "physical_hashes_verified": 1000,
+    "population": 9066522.0,
+    "realizations": 1000,
+    "resource": "C57_D1",
+    "source_gate": "G1_BASELINE_050",
+    "sources": 14,
+    "stations": 92,
+    "tracts": 2315
+  },
+  "issue_authority": {
+    "detailed_instructions_blob_sha": "13795e3c4c715e1f5e5cb70b9d995c4f19e5a1f5",
+    "detailed_instructions_path": "docs/research/CONTRIBUTION1_REPAIR_SEQUENCING_MECHANISM_TEST_20261105.md",
+    "issue": "https://github.com/yyc-gif/Evaluating-post-earthquake-impact-and-recovery-of-LA-transmission-grid-on-a-census-tract-scale/issues/4"
+  },
+  "results/figure_review_rq_aligned_20261101/QA/FIG03_COMPONENT_SHARE_QA.json": {
+    "sha256": "328105a75de0bda9bba2d8f5e4648bee44de4f9ac523bede9a346e4c456b406f",
+    "size_bytes": 2269
+  },
+  "results/figure_review_rq_aligned_20261101/QA/FIG04_MECHANISM_AND_OUTCOME_QA.json": {
+    "sha256": "83b6e6236ba76a15200eacbf734eac5c6d4d723d9c520aa87e6663f99005abcb",
+    "size_bytes": 9382
+  },
+  "schedule_archives": [
+    {
+      "physical_hashes_match": true,
+      "policy": "centrality-first",
+      "realization_count": 1000,
+      "schedule_file": "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__centrality-first.npz",
+      "schedule_sha256": "5e232340a8afa07777d9b381aaad9600d07a81c9782bf1b8e9415e7693df3877",
+      "sequence_sha256": "41d3eec40d3d8128fe16bdb37f4f574880ea0141b5170d019af2ca2d8ba3450d",
+      "station_order_match": true
+    },
+    {
+      "physical_hashes_match": true,
+      "policy": "impact-first",
+      "realization_count": 1000,
+      "schedule_file": "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__impact-first.npz",
+      "schedule_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
+      "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168",
+      "station_order_match": true
+    },
+    {
+      "physical_hashes_match": true,
+      "policy": "betweenness-first",
+      "realization_count": 1000,
+      "schedule_file": "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__betweenness-first.npz",
+      "schedule_sha256": "05b265b341df6f7c7ecf47e21c26c626b37da0533bf9c6494057e86e7eb919d6",
+      "sequence_sha256": "30ab6f13aab75c45634c90e97519e4209d48fb056331f4190b94a5fc2e3ce5d1",
+      "station_order_match": true
+    },
+    {
+      "physical_hashes_match": true,
+      "policy": "degree-first",
+      "realization_count": 1000,
+      "schedule_file": "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__degree-first.npz",
+      "schedule_sha256": "73a5cda7dfdef66ffb023a84316320ea2786dc8ad72cc46aad84bf0a273c1cf1",
+      "sequence_sha256": "decbbc459d950430f52bcccca5f381942b8b6a9ddb0d33ef19587e5fd8bb4c72",
+      "station_order_match": true
+    },
+    {
+      "physical_hashes_match": true,
+      "policy": "closeness-first",
+      "realization_count": 1000,
+      "schedule_file": "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__closeness-first.npz",
+      "schedule_sha256": "82833327ef243ec9b296add25530c0169bd784040aef0edd4fb07420f0be7507",
+      "sequence_sha256": "0a93c3b4695e2930f132a42459691516b2c219d38cba2f1e72e5913f89833658",
+      "station_order_match": true
+    },
+    {
+      "physical_hashes_match": true,
+      "policy": "hospital-first",
+      "realization_count": 1000,
+      "schedule_file": "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__hospital-first.npz",
+      "schedule_sha256": "2e30c498e5f870056d32c8cd24052e3bd921186d88d654176e2d40ebbe12020c",
+      "sequence_sha256": "fe0d900a305155b7d1b8b506774cfedb0e4175836c0b1eda522210f285057a87",
+      "station_order_match": true
+    },
+    {
+      "physical_hashes_match": true,
+      "policy": "random",
+      "realization_count": 1000,
+      "schedule_file": "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__random.npz",
+      "schedule_sha256": "8d553733309e08483a17b2b81aece265c988063dd815e2a4fcf288866ead1dbb",
+      "sequence_sha256": "c3bcf3f4c15343925218da7bf4e9abb37f0fabf027eadf600c57bae7cc4f05a0",
+      "station_order_match": true
+    }
+  ],
+  "src/la_grid/revision/formal/offline.py": {
+    "sha256": "7d8292071d259e0198ef9dd92557a1c81494e4f0c4d1e640b89c673be55a4111",
+    "size_bytes": 23218
+  },
+  "src/la_grid/revision/formal/schedule.py": {
+    "sha256": "351e842b51e164019973ac588b9f852682406177640f90236be4be429912c3f9",
+    "size_bytes": 3889
+  },
+  "src/la_grid/revision/r1_realization_scheduling.py": {
+    "sha256": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22",
+    "size_bytes": 9362
+  },
+  "src/la_grid/revision/r1_source_gate.py": {
+    "sha256": "8d325397f42780b485f6ce093a867647eb4faadafe9a134c635f69dd5a804c44",
+    "size_bytes": 5651
+  }
+}

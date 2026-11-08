@@ -1,0 +1,17 @@
+{
+  "focused_tests_passed": 6,
+  "focused_tests_failed": 0,
+  "elapsed_seconds": 34.70,
+  "checks": [
+    "Both replacement labels appear in S5, supplementary packet and complete packet",
+    "No occurrence of the unwanted word in any of the 16 numbered artwork PDFs",
+    "All pixels outside the two label areas are identical",
+    "All other 15 numbered PDF/PNG pairs are byte-identical",
+    "Canonical builder applies the label correction",
+    "Current manifest, mirrors, numbering, packet page counts and relevant captions remain consistent"
+  ],
+  "deterministic_renderer": true,
+  "main_packet_unchanged": true,
+  "scientific_models_or_results_modified": false,
+  "scope": "Targeted checks; not a claim that the previously missing historical QA manifest was repaired."
+}

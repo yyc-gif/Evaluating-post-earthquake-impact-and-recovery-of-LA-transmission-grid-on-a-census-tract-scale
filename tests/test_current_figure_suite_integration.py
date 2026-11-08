@@ -90,12 +90,18 @@ def test_figure1_restoration_modes_are_distinct_and_only_part4_changes():
         page=revised[0]
         text=' '.join(page.get_text().split())
         assert 'Restoration Strategies and Execution' in text
-        assert 'UNCONSTRAINED REFERENCE' in text
-        assert 'CONSTRAINED RESTORATION' in text
+        assert 'Unconstrained reference' in text
+        assert 'Constrained restoration' in text
         assert 'Repairs proceed in parallel' in text
         assert 'Priority strategy sets repair order' in text
         assert 'Finite crews' in text and 'directed travel' in text
         assert 'Modeled service availability' in text
+        assert 'Repair completion: station functionality = 1' in text
+        assert 'Source gate + tract weights' in text
+        panel_spans=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])
+                     for s in line['spans'] if 481.7<s['bbox'][1] and s['bbox'][3]<614.7
+                     and 9.5<s['bbox'][0] and s['bbox'][2]<256.3]
+        assert panel_spans and all(abs(s['size']-7.5)<1e-5 for s in panel_spans)
         assert 'Time to 80% service' in text and '(T80)' in text
         source_spans=[s for b in original[0].get_text('dict')['blocks'] for line in b.get('lines',[])
                       for s in line['spans'] if s['bbox'][0]>20 and s['bbox'][0]<258

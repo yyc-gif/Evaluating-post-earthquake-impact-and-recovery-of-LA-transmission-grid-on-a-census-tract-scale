@@ -120,7 +120,13 @@ def test_figure4_uses_matched_outcomes_and_paired_mechanism_components():
     assert all(r["n_paired_realizations"] == 1000 for r in audit["paired_component_rows"])
     with fitz.open(SUITE / "Main/Fig04.pdf") as doc:
         text = re.sub(r"\s+", " ", doc[0].get_text())
-        assert "Degree-first minus Hospital-first (h)" in text
+        assert audit['main_panels']==['A','B']
+        assert audit['single_pair_decomposition_in_main'] is False
+        assert "Degree-first minus Hospital-first (h)" not in text
+        assert "C. Why" not in text
+        for strategy in ['Impact-first','Hospital-first','Degree-first',
+                         'Vulnerability-first','Betweenness-first','Random','Unconstrained']:
+            assert strategy in text
         assert "Points: paired means" not in text
 
 
@@ -136,13 +142,13 @@ def test_figure5_separates_signed_and_within_realization_absolute_gaps():
     assert "mean within-realization absolute |Q4-Q1| gap" in caption
 
 
-def test_figure7_retains_p2_k3_and_discloses_verified_overlap():
-    layout = json.loads((QA / "Figure7/LAYOUT_SPECIFICATIONS.json").read_text(encoding="utf-8"))
-    assert layout["layout_C"]["width_in"] == 7.2
+def test_figure7_preserves_science_without_bottom_annotation_block():
+    audit = json.loads((QA / 'FIG07_DISPLAY_QA.json').read_text(encoding='utf-8'))
+    assert abs(audit['width_in']-7.2)<1e-12
     palette = json.loads((SUITE / "CURRENT_CLUSTER_PALETTE.json").read_text(encoding="utf-8"))
     assert palette["colors"] == {"1": "#3C9198", "2": "#52699E", "3": "#C69EBA"}
-    profile = pd.read_csv(QA / "Figure7/STANDARDIZED_PROFILE_QA.csv")
-    ecdf = pd.read_csv(QA / "Figure7/ECDF_DISTRIBUTION_QA.csv")
+    profile = pd.DataFrame(audit['profile_rows'])
+    ecdf = pd.DataFrame(audit['ecdf_rows'])
     assert len(profile) == 21
     assert len(ecdf) == 18
     assert set(profile["class_id"]) == {"C1", "C2", "C3"}
@@ -155,9 +161,16 @@ def test_figure7_retains_p2_k3_and_discloses_verified_overlap():
         text = doc[0].get_text()
     text = re.sub(r"\s+", " ", text.replace("\u00a0", " ").replace("\u00ad", ""))
     text = text.replace("\u037e", ";")
-    assert "94 tracts" in text and "350,799 residents" in text
-    assert "38.38135" in text
-    assert "16.23%" in text and "27.97%" in text
+    screen=audit['screen']
+    assert screen['q4_tracts']==579 and screen['high_tracts']==575
+    assert screen['joint_tracts']==94 and screen['joint_population']==350799
+    assert abs(screen['threshold_hr']-38.38135467381475)<1e-12
+    assert abs(screen['q4_prevalence_pct']-16.23488773747841)<1e-10
+    assert abs(screen['non_q4_prevalence_pct']-27.96511627906977)<1e-10
+    assert audit['summary_line_count']==0
+    for phrase in ['Cohort P75:','Joint screen:','High-burden prevalence:',
+                   'Descriptive five-policy comparison.','94 tracts','350,799 residents']:
+        assert phrase not in text
     assert "NCV14" not in text
 
 

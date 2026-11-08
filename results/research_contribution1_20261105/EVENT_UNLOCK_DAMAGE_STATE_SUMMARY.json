@@ -1,0 +1,385 @@
+{
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed_base": 20261108,
+  "event_rows": 641816,
+  "summary": [
+    {
+      "damage_state_group": "DS1",
+      "event_batches": 876,
+      "external_unlock_batch_fraction": 0.0,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "indirect_gain_person_equiv_per_event": 0.0,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_dependency_mass_people_per_event": 0.0,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_other_count_per_event": 0.0,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "policy": "betweenness-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 586
+    },
+    {
+      "damage_state_group": "DS2_4",
+      "event_batches": 90812,
+      "external_unlock_batch_fraction": 0.09055710559892126,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.08917121382747512,
+        0.09196076510266261
+      ],
+      "indirect_gain_person_equiv_per_event": 26287.013110701737,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        25813.89494940938,
+        26762.221042298515
+      ],
+      "newly_connected_dependency_mass_people_per_event": 26329.48261072365,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        25855.570431251726,
+        26804.081027459142
+      ],
+      "newly_connected_other_count_per_event": 0.25377141496482114,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.24932477083939222,
+        0.2580836844935658
+      ],
+      "policy": "betweenness-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 1000
+    },
+    {
+      "damage_state_group": "DS1",
+      "event_batches": 876,
+      "external_unlock_batch_fraction": 0.0,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "indirect_gain_person_equiv_per_event": 0.0,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_dependency_mass_people_per_event": 0.0,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_other_count_per_event": 0.0,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "policy": "centrality-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 586
+    },
+    {
+      "damage_state_group": "DS2_4",
+      "event_batches": 90812,
+      "external_unlock_batch_fraction": 0.08917841663323389,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.08776740783572957,
+        0.09060139287778451
+      ],
+      "indirect_gain_person_equiv_per_event": 27090.225245041947,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        26605.959615771284,
+        27575.682713470625
+      ],
+      "newly_connected_dependency_mass_people_per_event": 27128.320923829808,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        26644.79038658305,
+        27612.708957997016
+      ],
+      "newly_connected_other_count_per_event": 0.2750323123588036,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.270461142136379,
+        0.2796067379132629
+      ],
+      "policy": "centrality-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 1000
+    },
+    {
+      "damage_state_group": "DS1",
+      "event_batches": 876,
+      "external_unlock_batch_fraction": 0.0,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "indirect_gain_person_equiv_per_event": 0.0,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_dependency_mass_people_per_event": 0.0,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_other_count_per_event": 0.0,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "policy": "closeness-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 586
+    },
+    {
+      "damage_state_group": "DS2_4",
+      "event_batches": 90812,
+      "external_unlock_batch_fraction": 0.10820328267959098,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.10662277200707797,
+        0.1097819945005311
+      ],
+      "indirect_gain_person_equiv_per_event": 26586.724493123882,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        26130.683726055886,
+        27057.592693671184
+      ],
+      "newly_connected_dependency_mass_people_per_event": 26598.617209703454,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        26141.984016658804,
+        27068.918436895867
+      ],
+      "newly_connected_other_count_per_event": 0.2836462285694523,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.2794355797277858,
+        0.287935677512056
+      ],
+      "policy": "closeness-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 1000
+    },
+    {
+      "damage_state_group": "DS1",
+      "event_batches": 876,
+      "external_unlock_batch_fraction": 0.0,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "indirect_gain_person_equiv_per_event": 0.0,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_dependency_mass_people_per_event": 0.0,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_other_count_per_event": 0.0,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "policy": "degree-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 586
+    },
+    {
+      "damage_state_group": "DS2_4",
+      "event_batches": 90812,
+      "external_unlock_batch_fraction": 0.09263792843975037,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.09116812098189905,
+        0.09409348244997932
+      ],
+      "indirect_gain_person_equiv_per_event": 25451.73155326122,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        24996.200553009778,
+        25915.254339639745
+      ],
+      "newly_connected_dependency_mass_people_per_event": 25478.12713775663,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        25021.85122298641,
+        25939.97519295993
+      ],
+      "newly_connected_other_count_per_event": 0.25383411821517965,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.24975643759359062,
+        0.25808709057971746
+      ],
+      "policy": "degree-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 1000
+    },
+    {
+      "damage_state_group": "DS1",
+      "event_batches": 876,
+      "external_unlock_batch_fraction": 0.0,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "indirect_gain_person_equiv_per_event": 0.0,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_dependency_mass_people_per_event": 0.0,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_other_count_per_event": 0.0,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "policy": "hospital-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 586
+    },
+    {
+      "damage_state_group": "DS2_4",
+      "event_batches": 90812,
+      "external_unlock_batch_fraction": 0.1210704298423585,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.11947689862534906,
+        0.12265621822838917
+      ],
+      "indirect_gain_person_equiv_per_event": 32303.894064744058,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        31849.24937867956,
+        32759.573233358187
+      ],
+      "newly_connected_dependency_mass_people_per_event": 32319.10180784478,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        31865.103925651823,
+        32773.99448496116
+      ],
+      "newly_connected_other_count_per_event": 0.2963105410700901,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.2923462850495367,
+        0.300334879014841
+      ],
+      "policy": "hospital-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 1000
+    },
+    {
+      "damage_state_group": "DS1",
+      "event_batches": 876,
+      "external_unlock_batch_fraction": 0.0,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "indirect_gain_person_equiv_per_event": 0.0,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_dependency_mass_people_per_event": 0.0,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_other_count_per_event": 0.0,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "policy": "impact-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 586
+    },
+    {
+      "damage_state_group": "DS2_4",
+      "event_batches": 90812,
+      "external_unlock_batch_fraction": 0.1185644498898559,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.11699702439411225,
+        0.12014150582833999
+      ],
+      "indirect_gain_person_equiv_per_event": 33395.52256262877,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        32943.296598634,
+        33847.75496904218
+      ],
+      "newly_connected_dependency_mass_people_per_event": 33407.95150554361,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        32955.47720430506,
+        33860.33338544893
+      ],
+      "newly_connected_other_count_per_event": 0.2908962315834746,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.2871139590669192,
+        0.29468904276403274
+      ],
+      "policy": "impact-first",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 1000
+    },
+    {
+      "damage_state_group": "DS1",
+      "event_batches": 876,
+      "external_unlock_batch_fraction": 0.0,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "indirect_gain_person_equiv_per_event": 0.0,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_dependency_mass_people_per_event": 0.0,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "newly_connected_other_count_per_event": 0.0,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "policy": "random",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 586
+    },
+    {
+      "damage_state_group": "DS2_4",
+      "event_batches": 90812,
+      "external_unlock_batch_fraction": 0.13273700633085714,
+      "external_unlock_batch_fraction_bootstrap_95ci": [
+        0.13120705734884724,
+        0.13425482380029252
+      ],
+      "indirect_gain_person_equiv_per_event": 31270.41918492406,
+      "indirect_gain_person_equiv_per_event_bootstrap_95ci": [
+        30842.001418974905,
+        31695.869437198005
+      ],
+      "newly_connected_dependency_mass_people_per_event": 31319.028327199525,
+      "newly_connected_dependency_mass_people_per_event_bootstrap_95ci": [
+        30890.651275209882,
+        31742.85475184088
+      ],
+      "newly_connected_other_count_per_event": 0.33750225438006987,
+      "newly_connected_other_count_per_event_bootstrap_95ci": [
+        0.33350989442795614,
+        0.3413407369539273
+      ],
+      "policy": "random",
+      "realization_unit": "equal-weighted realization means; bootstrap resamples realization IDs",
+      "realizations_with_events": 1000
+    }
+  ]
+}
