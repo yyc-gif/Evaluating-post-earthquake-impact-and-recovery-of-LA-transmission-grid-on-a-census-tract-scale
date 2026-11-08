@@ -1,0 +1,21 @@
+{
+  "promotion_tests": {
+    "file": "tests/test_s6_main4_promotion_20261107.py",
+    "passed": 7,
+    "failed": 0,
+    "junit": "PYTEST_RESULTS.xml"
+  },
+  "original_suite_regression": {
+    "file": "tests/test_rq_aligned_figure_suite_20261101.py",
+    "selection": "not change_manifest and not every_page_preview",
+    "passed": 9,
+    "failed": 0,
+    "deselected": 2,
+    "scope": "Existing source suite retained. The pre-existing missing change registry and exhaustive preview-render test were not selected."
+  },
+  "deterministic_review_rebuild": true,
+  "all_16_artwork_pairs_byte_identical": true,
+  "all_four_promoted_panel_renderings_pixel_identical": true,
+  "source_scientific_files_modified": false,
+  "publication_size_visual_inspection": true
+}
