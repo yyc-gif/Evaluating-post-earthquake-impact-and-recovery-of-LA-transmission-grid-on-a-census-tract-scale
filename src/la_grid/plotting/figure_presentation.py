@@ -386,6 +386,36 @@ def supplementary5_four_policy(plot_data_bytes):
             loc='upper right',bbox_to_anchor=(1,-.20),ncol=2,frameon=False,
             fontsize=6.6,handletextpad=.35,columnspacing=.8,borderaxespad=.25)
 
+        # Center the *complete visible composition* (labels, axes, legends,
+        # panel titles and tick labels), not the rectangular plotting axes.
+        # The older fixed [.305, ..., .66, .195] placement leaves conspicuously
+        # unequal visible white margins; PDF dimensions alone do not catch it.
+        from matplotlib.transforms import Bbox
+        fig.canvas.draw()
+        renderer=fig.canvas.get_renderer()
+        visual_before=Bbox.union([ax.get_tightbbox(renderer) for ax in axes])
+        width_px=float(fig.bbox.width)
+        shift_norm=(width_px/2.0-(visual_before.x0+visual_before.x1)/2.0)/width_px
+        for ax in axes:
+            p=ax.get_position()
+            ax.set_position([p.x0+shift_norm,p.y0,p.width,p.height])
+        fig.canvas.draw()
+        renderer=fig.canvas.get_renderer()
+        visual_after=Bbox.union([ax.get_tightbbox(renderer) for ax in axes])
+        mm_per_pixel=185.0/float(fig.bbox.width)
+        left_mm=float(visual_after.x0*mm_per_pixel)
+        right_mm=float((fig.bbox.width-visual_after.x1)*mm_per_pixel)
+        center_audit={
+            'before_visible_left_mm':float(visual_before.x0*mm_per_pixel),
+            'before_visible_right_mm':float((width_px-visual_before.x1)*mm_per_pixel),
+            'after_visible_left_mm':left_mm,
+            'after_visible_right_mm':right_mm,
+            'center_shift_mm':float(shift_norm*185.0),
+            'includes_strategy_labels_axis_titles_and_legends':True,
+        }
+        if min(left_mm,right_mm)<1.0 or abs(left_mm-right_mm)>0.15:
+            raise ValueError(f'S5 complete composition not centered: {center_audit}')
+
         out=io.BytesIO()
         fig.savefig(out,format='pdf',bbox_inches=None,
                     metadata={'CreationDate':None,'ModDate':None,
@@ -415,6 +445,7 @@ def supplementary5_four_policy(plot_data_bytes):
         'threshold_panels_reevaluate_source_connectivity':True,
         'width_mm':185.0,'height_mm':210.0,
         'axes_count':3,'no_recovery_model_or_schedule_rerun':True,
+        'complete_visible_composition_centering':center_audit,
     }
 
 
