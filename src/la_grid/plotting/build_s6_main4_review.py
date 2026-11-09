@@ -46,7 +46,6 @@ INPUTS=[
     'src/la_grid/plotting/build_meeting_figure_collection.py',
     'src/la_grid/plotting/figure_presentation.py',
     'src/la_grid/plotting/build_current_suite_p2.py',
-    'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv',
     SOURCE+'/CURRENT_CLUSTER_PALETTE.json',
 ]
 
@@ -84,16 +83,25 @@ def main(output_dir=None,mirror_dir=None):
     for path in INPUTS:
         raw=source(path)
         source_hashes[path]={'commit':BASE,'sha256':u.digest(raw),'bytes':len(raw)}
+    s5_plot_data_path=dest/'QA/S5_VULNERABILITY_PLOT_DATA.json'
+    s5_audit_path=dest/'QA/S5_VULNERABILITY_ARCHIVE_AUDIT.json'
+    if not s5_plot_data_path.is_file() or not s5_audit_path.is_file():
+        raise FileNotFoundError('Run audit_s5_vulnerability_extension.py before the canonical figure build.')
+    s5_plot_data=s5_plot_data_path.read_bytes()
+    s5_audit=json.loads(s5_audit_path.read_text(encoding='utf-8'))
+    assert s5_audit['status']=='PASS_FROZEN_EVENT_STATE_REANALYSIS'
+    assert s5_audit['plot_data_sha256']==u.digest(s5_plot_data)
+    source_hashes['derived/S5_VULNERABILITY_PLOT_DATA.json']={
+        'commit':'generated from manifest-bound local frozen archive',
+        'sha256':u.digest(s5_plot_data),'bytes':len(s5_plot_data)}
     dynamic=pd.read_csv(io.BytesIO(source(INPUTS[1])))
     station=pd.read_csv(io.BytesIO(source(INPUTS[2])),dtype={'station_id':str})
-    recovery_curve_path=INPUTS[-2]
     palette_path=INPUTS[-1]
-    recovery_curves=source(recovery_curve_path)
     palette_bytes=source(INPUTS[-1])
     palette=json.loads(palette_bytes)
     assert palette['colors']=={'1':'#3C9198','2':'#52699E','3':'#C69EBA'}
-    stage4_pdf,stage4_audit=figure_presentation.restoration_workflow_with_results(
-        source(SOURCE+'/Main/Fig01.pdf'),recovery_curves)
+    stage4_pdf,stage4_audit=figure_presentation.restoration_workflow(
+        source(SOURCE+'/Main/Fig01.pdf'))
     with fitz.open(stream=source(SOURCE+'/Main/Fig01.pdf'),filetype='pdf') as before_doc, \
          fitz.open(stream=stage4_pdf,filetype='pdf') as after_doc:
         before_pix=before_doc[0].get_pixmap(dpi=120,alpha=False)
@@ -115,6 +123,7 @@ def main(output_dir=None,mirror_dir=None):
         stage4_preview=stage4_doc[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
     figure8_legend_audit=None
     figure8_pdf=figure8_png=figure8_preview=None
+    s5_pdf,s5_png,s5_preview,s5_plot_audit=figure_presentation.supplementary5_four_policy(s5_plot_data)
     difference=(dynamic.population_dependency_weighted_R_conn-
                 dynamic.population_dependency_weighted_fixed_precomputed_best_path_connection-
                 dynamic.population_dependency_weighted_full_minus_fixed_precomputed_best_path)
@@ -127,14 +136,22 @@ def main(output_dir=None,mirror_dir=None):
         title=label(new)+'.'+old_title.split('.',1)[1]
         body=references(body)
         if new=='Main/Fig01':
-            body=('Five-stage workflow from network and tract mapping through seismic damage, restoration execution, and community outcomes. '
-                  'Stage 4 shows the saved population-weighted service-availability trajectories for Unconstrained and Impact-first; '
-                  'Stage 5 summarizes derived service-loss and recovery-time measures.')
+            body=('The workflow distinguishes parallel Unconstrained restoration from resource-constrained priority strategies. '
+                  'At each repair completion, station functionality is updated, source connectivity is reevaluated, and tract service '
+                  'is propagated through the dependency mapping; numerical recovery outcomes are reported in the Results figures.')
         if new=='Main/Fig08':
             old_rule='outlines mark frozen Q4 and the cohort P75'
-            new_rule='outlined tracts are in the highest social-vulnerability quartile and have service deficit >=38.4 h (the cohort upper quartile)'
+            new_rule=('outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) '
+                      'and have five-policy mean total service deficit at or above 38.38135467381475 equivalent '
+                      'full-service-deficit hours over 0-480 h (the positive-population cohort 75th percentile)')
             assert old_rule in body
             body=body.replace(old_rule,new_rule)
+        if new=='Supplement/FigS05':
+            body=('(A) Change in population-weighted normalized service deficit when the M1 mapping cutoff is relaxed from 3% to 0% or 1%. '
+                  '(B) Change when source connectivity is removed while the 0.50 functionality threshold is retained. '
+                  '(C) Change under 0.05 or 0.75 functionality thresholds, with source connectivity reevaluated. '
+                  'Points are means of paired differences across 1,000 frozen physical realizations; bars show empirical 5th-95th percentile '
+                  'ranges, not confidence intervals. No damage samples or repair schedules were regenerated.')
         if new=='Main/Fig04':title,body=TITLE,CAPTION
         new_caps.append((title,body))
         if new=='Main/Fig08':
@@ -145,6 +162,7 @@ def main(output_dir=None,mirror_dir=None):
                 figure_presentation.figure8_shared_map_legend(pdf_source,palette['colors']))
         preview=(stage4_preview if new=='Main/Fig01' else
                  figure8_preview if new=='Main/Fig08' else
+                 s5_preview if new=='Supplement/FigS05' else
                  source(f'{SOURCE}/Page_Previews/{Path(old).name}.png'))
         u.write(dest/f'Page_Previews/{Path(new).name}.png',preview)
         for ext in ('pdf','png'):
@@ -159,7 +177,9 @@ def main(output_dir=None,mirror_dir=None):
             raw=(stage4_pdf if new=='Main/Fig01' and ext=='pdf' else
                  stage4_png if new=='Main/Fig01' and ext=='png' else
                  figure8_pdf if new=='Main/Fig08' and ext=='pdf' else
-                 figure8_png if new=='Main/Fig08' and ext=='png' else source_raw)
+                 figure8_png if new=='Main/Fig08' and ext=='png' else
+                 s5_pdf if new=='Supplement/FigS05' and ext=='pdf' else
+                 s5_png if new=='Supplement/FigS05' and ext=='png' else source_raw)
             ix=next(r.copy() for r in source_index if r['source_path']==row['current_source_file'])
             suffix=Path(row['mirror_file']).name.split('_',1)[1]
             new_path=dest/(new+'.'+ext)
@@ -169,22 +189,24 @@ def main(output_dir=None,mirror_dir=None):
                 current_source_file=new_path.relative_to(ROOT).as_posix(),
                 mirror_file=mirror_path.relative_to(ROOT).as_posix(),source_commit=BASE,
                 source_file=f'{SOURCE}/{old}.{ext}',
-                status=('UPDATED_STAGE4_RESULT_CURVE' if new=='Main/Fig01' else
-                        'UPDATED_SHARED_MAP_LEGEND' if new=='Main/Fig08' else
+                status=('UPDATED_STAGE4_PROCESS_SCHEMATIC' if new=='Main/Fig01' else
+                        'UPDATED_SEPARATE_MAP_LEGENDS' if new=='Main/Fig08' else
+                        'UPDATED_FOUR_POLICY_SENSITIVITY' if new=='Supplement/FigS05' else
                         'RENUMBERED_REVIEW_ARTWORK_UNCHANGED'),
                 promotion_generator=GEN,promotion_generator_sha256=u.sha(ROOT/GEN),
                 previous_figure=old,
-                change_in_this_update=('RESULT_CURVE_ADDED_TO_STAGE4' if new=='Main/Fig01' else
-                                       'SHARED_LEGEND_AND_THRESHOLD_CLARIFIED' if new=='Main/Fig08' else
+                change_in_this_update=('STAGE4_METHOD_PROCESS_REPLACES_ACTUAL_RESULT_CURVES' if new=='Main/Fig01' else
+                                       'SEPARATE_PANEL_C_AND_D_LEGENDS' if new=='Main/Fig08' else
+                                       'VULNERABILITY_FIRST_ADDED_TO_VERIFIED_SENSITIVITY_COMPARISONS' if new=='Supplement/FigS05' else
                                        'NUMBERING_AND_CAPTION_ONLY'))
-            if new=='Main/Fig01':
-                row.update(additional_source_file=recovery_curve_path,
-                           additional_source_sha256=stage4_audit['source_sha256'])
             if new=='Main/Fig08':
                 row.update(legend_source_file=f'{SOURCE}/{old}.pdf',
                            legend_source_sha256=u.digest(source_raw),
                            palette_source_file=palette_path,
                            palette_source_sha256=u.digest(palette_bytes))
+            if new=='Supplement/FigS05':
+                row.update(additional_source_file='results/figure_review_s6_main4_20261107/QA/S5_VULNERABILITY_PLOT_DATA.json',
+                           additional_source_sha256=u.digest(s5_plot_data))
             for key in ['notes','main_message','scientific_content','scientific_question']:
                 if key in ix:ix[key]=references(ix[key])
             ix.update(figure_number=Path(new).name,file=mirror_path.name,
@@ -198,19 +220,22 @@ def main(output_dir=None,mirror_dir=None):
                     main_message='Dynamic full-network/fixed-path comparisons and conditional station maps retain all four panels.',
                     notes='Complete former S6, byte-identical artwork; insert between Sections 4.2 and 4.3.')
             if new=='Main/Fig01':
-                ix.update(notes='Stage 4 includes the saved 2pc50 population-weighted Unconstrained and Impact-first availability curves; no T80 is displayed in this stage.')
+                ix.update(notes='Stage 4 distinguishes restoration execution modes and shows repair-completion updates to station functionality, source connectivity and tract service.')
             if new=='Main/Fig08':
-                ix.update(notes='One aligned legend identifies C1-C3, N/A, and tracts in the highest social-vulnerability quartile with service deficit >=38.4 h.')
+                ix.update(notes='Panel C and Panel D have separate aligned legends; the exact Q4 and service-deficit screen definitions are in the caption.')
+            if new=='Supplement/FigS05':
+                ix.update(notes='Four-policy paired mapping, source-connectivity and functionality-threshold comparisons, including Vulnerability-first.')
             rows.append(row);indices.append(ix)
             preservation.append({'previous_figure':old,'new_figure':new,'format':ext,
-                'source_sha256':u.digest(raw),'output_sha256':u.sha(new_path),'byte_identical':raw==new_path.read_bytes()})
+                'source_sha256':u.digest(source_raw),'output_sha256':u.sha(new_path),
+                'byte_identical':source_raw==new_path.read_bytes()})
     u.write_csv(dest/'FIGURE_MANIFEST.csv',rows)
     u.write_csv(mirror/'FIGURE_INDEX.csv',indices)
     u.write(dest/'MANUSCRIPT_FACING_CAPTIONS.md','# Manuscript-facing figure captions\n\n'+
         '\n\n'.join('## '+title+'\n\n'+body for title,body in new_caps)+'\n')
     palette={k.replace('Figure7_','Figure8_'):v for k,v in palette.items()}
     palette['screening_rule']='Highest social-vulnerability quartile and five-policy service deficit >=38.38135467381475 equivalent hours (cohort upper quartile)'
-    palette['screening_legend_label']='Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)'
+    palette['screening_legend_label']='Outlined: Q4 + deficit ≥38.4 h'
     u.dump(dest/'CURRENT_CLUSTER_PALETTE.json',palette)
     u.write(dest/'STRATEGY_DISPLAY_NAMES.json',source(SOURCE+'/STRATEGY_DISPLAY_NAMES.json'))
     u.pdfmetrics.registerFont(u.TTFont('SuiteArial','C:/Windows/Fonts/arial.ttf'))
@@ -245,11 +270,14 @@ def main(output_dir=None,mirror_dir=None):
     u.dump(dest/'QA/PACKET_PAGE_REGISTRY.json',page_rows)
     u.dump(dest/'QA/NUMBERING_MAP.json',MAPPING)
     qa={'source_commit':BASE,
-        'figure1_updated_only_with_frozen_result_curve':True,
-        'unaffected_14_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure'] not in ['Main/Fig01','Main/Fig07']),
-        'figure8_shared_map_legend_updated':True,
+        'figure1_updated_only_with_method_process_schematic':True,
+        'figure1_stage4_audit':stage4_audit,
+        'unaffected_13_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure'] not in ['Main/Fig01','Main/Fig07','Supplement/FigS05']),
+        'figure8_separate_map_legends_updated':True,
         'figure8_legend_audit':figure8_legend_audit,
-        'figure1_source_curve_audit':stage4_audit,
+        's5_vulnerability_plot_audit':s5_plot_audit,
+        's5_vulnerability_archive_audit_sha256':u.digest(s5_audit_path.read_bytes()),
+        's5_vulnerability_plot_data_sha256':u.digest(s5_plot_data),
         'main_figures':8,'supplementary_figures':8,'complete_packet_pages':16,
         'all_four_promoted_panels_preserved':True,'static_station_records':len(station),
         'static_core_source_records':int(station.is_core_source.sum()),'dynamic_summary_records':len(dynamic),
@@ -257,13 +285,51 @@ def main(output_dir=None,mirror_dir=None):
         'scientific_models_rerun':False,'original_suite_written':False,
         'editable_manuscript_tracked':False,'manuscript_integration':'Separate insertion text and simultaneous reference mapping supplied; original manuscript not edited.'}
     u.dump(dest/'QA/NUMERICAL_AND_PRESERVATION_QA.json',qa)
+    s5_rows=s5_plot_data_json=json.loads(s5_plot_data)
+    audit=s5_audit
+    controls={}
+    for panel in ('A','B','C'):
+        for row in s5_rows['series']:
+            if row['panel']!=panel:
+                continue
+            controls.setdefault(panel,[]).append(
+                f"| {row['policy_name']} | {row['control']} | {row['mean_gap_h']:.4f} | "
+                f"{row['p05_gap_h']:.4f} | {row['p95_gap_h']:.4f} |")
+    s5_qa_md=(
+        '# Supplementary Figure S5: frozen four-policy verification\n\n'
+        'Vulnerability-first is included alongside Impact-first, Hospital-first and Degree-first. '
+        'Each policy uses the same 1,000 `2pc50` / `C57_D1` evaluation realization IDs and the same physical, '
+        'damage-state and repair-duration hashes. Mapping is `M1_UTILITY_003`; the reference source gate is '
+        '`G1_BASELINE_050` (functionality threshold 0.50); horizon is 480 h. The M1 matrix, graph, Core source '
+        'set and directed-travel identities match the formal archive.\n\n'
+        'Impact-first, Hospital-first and Degree-first controls reproduce their saved offline outputs: baseline '
+        'event-integral error is below 1.5e-14 h; mapping 0%/1% controls and 0.05/0.75 threshold controls '
+        'match saved results within 3e-14 h and exactly, respectively. Vulnerability-first has saved baseline '
+        'G1 integrals, but its 0%/1% mapping and G2/G3 threshold counterfactual files are unavailable; those '
+        'contrasts are therefore reconstructed from its 1,000 archived event-state files and are explicitly '
+        'not described as previously saved outputs. No damage samples, repair schedules or service trajectories were regenerated.\n\n'
+        'Panel A changes only mapping cutoff, applying the exact production threshold-renormalization and '
+        'fallback rule to the unthresholded M1 weights; the 3% outcome is the reference. Panel B removes only '
+        'source-connectivity factor C while retaining functionality threshold 0.50 (`e_off=fF`). Panel C '
+        'recomputes functionality and source reachability at thresholds 0.05 and 0.75 on the same saved `f` '
+        'event states; it does not reschedule repairs. Displayed intervals are empirical paired 5th-95th '
+        'percentile ranges, not confidence intervals.\n\n'
+        'The four strategies share physical sample hash chain `'+audit['frozen_identity']['formal_physical_hashes_sha256']+'`. '
+        'The Vulnerability-first sequence hash is `'+audit['frozen_identity']['vulnerability_sequence_sha256']+'`; '
+        'physical manifest SHA256 is `'+audit['frozen_identity']['physical_manifest_sha256']+'`. '
+        'The source-level event archives are manifest-bound local dependencies and are absent from a clean Git clone.\n\n'
+        '## Paired contrasts (h)\n\n'
+        '| Panel | Strategy | Control | Mean | P05 | P95 |\n|---|---|---|---:|---:|---:|\n'
+        + '\n'.join(line.replace('| ','| '+panel+' | ',1) for panel,lines in controls.items() for line in lines)
+        + '\n')
+    u.write(dest/'QA/S5_VULNERABILITY_FIRST_METHODS_QA.md',s5_qa_md)
     readme=(
         '# Figure promotion review - 2026-11-07\n\n'
         'Complete former Supplementary Figure S6 is Main Figure 4. All four panels are retained, with exact source PDF/PNG bytes. '
         'Main 4-7 become 5-8; former Supplement S7-S9 become S6-S8; Supplement S1-S5 remain unchanged. '
         'The collection contains eight main plus eight supplementary figures. Combined packet: 16 pages, each artwork followed immediately by its concise caption on the same page.\n\n'
         'This is a separate author-review collection. The source suite, manuscripts, simulation data, restoration results and clustering are unchanged. '
-        'Figure 1 Stage 4 includes saved 2pc50 mean service-availability curves. Figure 8 uses one aligned map-legend row, one N/A entry, and plain-language upper-quartile screening criteria with the 38.4 h cutoff; the other 14 numbered artwork pairs are byte-identical to their pinned sources. '
+        'Figure 1 Stage 4 is a restoration-execution process schematic without actual recovery curves. Figure 8 has separate Panel C and Panel D legends, with exact definitions in its caption. Supplementary Figure S5 includes Vulnerability-first comparisons calculated from its saved event-state archive; see `QA/S5_VULNERABILITY_FIRST_METHODS_QA.md` for pairing checks and estimates. The other 13 artwork pairs are byte-identical to their pinned sources. '
         'No simulation or scientific model is rerun; only frozen result outputs are plotted. '
         'The source notes describe older candidate layouts. The actual promoted figure uses dynamic A/B curves for six scheduled strategies plus Unconstrained and static conditional C/D maps.\n\n'
         'Place Main Figure 4 after Section 4.2 and before the Section 4.3 heading. See MANUSCRIPT_INTEGRATION.md for the bridge and figure-reference substitutions. '
@@ -272,7 +338,7 @@ def main(output_dir=None,mirror_dir=None):
         'The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. '
         'Current older-suite builders remain available and do not target this separate collection.\n')
     u.write(dest/'README.md',readme);u.write(mirror/'README.md',readme)
-    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nAdded saved mean service-availability curves to Figure 1 Stage 4. Figure 8 now has one aligned map-legend row, one N/A entry, and plain-language screening criteria with the 38.4 h cutoff. No simulation was rerun; the other 14 numbered artwork pairs remain byte-identical to their pinned sources.\n')
+    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 1 Stage 4 restored to a concise restoration-execution process schematic; quantitative recovery curves are not embedded in the workflow. Figure 8 now has separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated; the other 13 numbered artwork pairs remain byte-identical to their pinned sources.\n')
     u.write(dest/'MANUSCRIPT_INTEGRATION.md',manuscript_integration())
     print(json.dumps(qa,indent=2))
 

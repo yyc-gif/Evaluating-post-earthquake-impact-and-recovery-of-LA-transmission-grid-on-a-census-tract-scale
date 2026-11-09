@@ -4,4 +4,4 @@ Promoted complete S6 to Main Figure 4; renumbered remaining figures, captions, p
 
 # 2026-11-08
 
-Added saved mean service-availability curves to Figure 1 Stage 4. Figure 8 now has one aligned map-legend row, one N/A entry, and plain-language screening criteria with the 38.4 h cutoff. No simulation was rerun; the other 14 numbered artwork pairs remain byte-identical to their pinned sources.
+Figure 1 Stage 4 restored to a concise restoration-execution process schematic; quantitative recovery curves are not embedded in the workflow. Figure 8 now has separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated; the other 13 numbered artwork pairs remain byte-identical to their pinned sources.

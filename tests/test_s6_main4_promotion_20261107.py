@@ -45,12 +45,17 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
         if record['final_name'] in {'Main/Fig01.pdf','Main/Fig01.png'}:
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
-            assert qa['figure1_updated_only_with_frozen_result_curve']
-            assert qa['figure1_source_curve_audit']['outside_stage4_pixels_identical']
+            assert qa['figure1_updated_only_with_method_process_schematic']
+            assert qa['figure1_stage4_audit']['outside_stage4_pixels_identical']
+        elif record['final_name'] in {'Supplement/FigS05.pdf','Supplement/FigS05.png'}:
+            assert current!=expected
+            qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
+            assert qa['s5_vulnerability_plot_audit']['four_policies_in_all_three_panels']
+            assert qa['s5_vulnerability_plot_audit']['no_recovery_model_or_schedule_rerun']
         elif record['final_name'] in {'Main/Fig08.pdf','Main/Fig08.png'}:
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
-            assert qa['figure8_shared_map_legend_updated']
+            assert qa['figure8_separate_map_legends_updated']
             assert qa['figure8_legend_audit']['bivariate_colorbar_and_tract_geometry_unchanged']
         else:
             assert current==expected
@@ -58,6 +63,34 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
     assert len(index)==32
     assert {r['figure_number'] for r in index}=={Path(s).name for s in builder.NEW}
     for row in index:assert digest(MIRROR/row['file'])==row['sha256']==row['sha256_or_lfs_oid']
+
+def test_preservation_registry_compares_frozen_inputs_to_actual_outputs():
+    records=json.loads((SUITE/'QA/ARTWORK_PRESERVATION.json').read_text(encoding='utf-8'))
+    changed={'Main/Fig01','Main/Fig07','Supplement/FigS05'}
+    assert len(records)==32
+    for row in records:
+        assert row['output_sha256']==digest(SUITE/(row['new_figure']+'.'+row['format']))
+        assert row['byte_identical']==(row['source_sha256']==row['output_sha256'])
+        if row['previous_figure'] in changed:
+            assert not row['byte_identical']
+        else:
+            assert row['byte_identical']
+
+def test_figure1_stage4_is_execution_process_not_result_curves():
+    with fitz.open(SUITE/'Main/Fig01.pdf') as doc:
+        text=clean_pdf_text(doc[0].get_text())
+        for phrase in ('Unconstrained restoration','Constrained restoration strategies',
+                       'At each repair-completion event','Repair completes',
+                       'Station function set to 1','Re-evaluate source connectivity',
+                       'Update tract service through W'):
+            assert phrase in text
+        for obsolete in ('Mean population-weighted service availability',
+                         'Unconstrained | Impact-first','Time after earthquake (h)'):
+            assert obsolete not in text
+    captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
+    fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
+    assert 'repair completion' in fig1 and 'numerical recovery outcomes' in fig1
+    assert 'availability trajectories' not in fig1
 
 def test_all_four_promoted_panels_and_vector_contents_are_unchanged():
     raw=builder.source(builder.SOURCE+'/Supplement/FigS06.pdf')
@@ -97,33 +130,39 @@ def test_packet_sequence_captions_and_native_scale():
             assert doc[3].get_pixmap(dpi=100,clip=rect).samples==art[0].get_pixmap(dpi=100).samples
             assert 'fragility-based station diagnostics' in doc[3].get_text()
             assert 'These topological measures are not delivered electricity' in ' '.join(doc[3].get_text().split())
-        assert 'Highest social-vulnerability quartile + upper-quarter service deficit' in clean_pdf_text(doc[7].get_text())
+        assert 'Outlined: Q4 + deficit ≥38.4 h' in clean_pdf_text(doc[7].get_text())
 
-def test_figure8_shared_map_legend_is_aligned_and_explains_cutoff():
+def test_figure8_panel_legends_are_separate_aligned_and_explained_in_caption():
     path=SUITE/'Main/Fig08.pdf'
     with fitz.open(path) as doc:
         page=doc[0]
         text=clean_pdf_text(page.get_text())
         assert text.count('N/A (16)')==1
         assert 'P75' not in text
-        assert 'Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)' in text
+        assert 'Outlined: Q4 + deficit ≥38.4 h' in text
         rule=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])
-              for s in line['spans'] if clean_pdf_text(s['text']).startswith('Highest social-vulnerability quartile')]
+              for s in line['spans'] if clean_pdf_text(s['text']).startswith('Outlined: Q4')]
         assert len(rule)==1 and rule[0]['size']==7.5
         audit=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))['figure8_legend_audit']
         assert audit['old_NA_entries']==2 and audit['new_NA_entries']==1
-        assert audit['all_discrete_legend_entries_share_baseline']
+        assert audit['C_and_D_legends_separate_and_aligned']
+        assert audit['all_legend_entries_share_baseline']
         assert len({item['baseline'] for item in audit['shared_legend_positions']})==1
         assert audit['screening_symbol']=='thin gray line'
         assert clean_pdf_text(audit['screening_rule_text']) in text
+        groups={item['group'] for item in audit['shared_legend_positions']}
+        assert groups=={'C','D'}
+        assert max(x['x1'] for x in audit['shared_legend_positions'] if x['group']=='C')<254
+        assert min(x['x0'] for x in audit['shared_legend_positions'] if x['group']=='D')>264
         assert audit['bivariate_colorbar_and_tract_geometry_unchanged']
     caption=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
-    assert 'highest social-vulnerability quartile and have service deficit >=38.4 h (the cohort upper quartile)' in caption
+    assert 'frozen FEMA NRI v1.19 SOVI quartile Q4' in caption
+    assert '38.38135467381475 equivalent full-service-deficit hours' in caption
+    assert 'positive-population cohort 75th percentile' in caption
     assert 'cohort P75' not in caption
     index=rows(MIRROR/'FIGURE_INDEX.csv')
     fig8=next(row for row in index if row['figure_number']=='Fig08')
-    assert 'highest social-vulnerability quartile' in fig8['notes']
-    assert '38.4 h' in fig8['notes']
+    assert 'separate aligned legends' in fig8['notes']
     with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as packet:
         assert clean_pdf_text(audit['screening_rule_text']) in clean_pdf_text(packet[7].get_text())
 
@@ -144,17 +183,38 @@ def test_palette_and_source_science_preserved():
     actual=json.loads((SUITE/'CURRENT_CLUSTER_PALETTE.json').read_text(encoding='utf-8'))
     expected={k.replace('Figure7_','Figure8_'):v for k,v in expected.items()}
     expected['screening_rule']='Highest social-vulnerability quartile and five-policy service deficit >=38.38135467381475 equivalent hours (cohort upper quartile)'
-    expected['screening_legend_label']='Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)'
+    expected['screening_legend_label']='Outlined: Q4 + deficit ≥38.4 h'
     assert expected==actual
     q=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
     assert q['all_four_promoted_panels_preserved']
-    assert q['figure1_updated_only_with_frozen_result_curve']
-    assert q['unaffected_14_artwork_pairs_byte_identical']
-    assert q['figure8_shared_map_legend_updated']
+    assert q['figure1_updated_only_with_method_process_schematic']
+    assert q['unaffected_13_artwork_pairs_byte_identical']
+    assert q['figure8_separate_map_legends_updated']
     assert q['dynamic_full_minus_fixed_identity_max_abs_error']<1e-12
     assert q['static_station_records']==92 and q['static_core_source_records']==14
     for path,record in json.loads((SUITE/'QA/SOURCE_IDENTITIES.json').read_text())['source_files'].items():
-        assert hashlib.sha256(builder.source(path)).hexdigest()==record['sha256']
+        if not path.startswith('derived/'):
+            assert hashlib.sha256(builder.source(path)).hexdigest()==record['sha256']
+
+def test_s5_four_policy_sensitivity_contains_verified_vulnerability_first():
+    with fitz.open(SUITE/'Supplement/FigS05.pdf') as doc:
+        text=clean_pdf_text(doc[0].get_text())
+        for value in ('A. Mapping-weight cutoff','B. Source-connectivity gate',
+                      'C. Functionality threshold','Impact-first','Hospital-first',
+                      'Degree-first','Vulnerability-first','0% cutoff','1% cutoff',
+                      'Gate off minus baseline burden (h)','0.05','0.75'):
+            assert value in text
+        assert len(doc[0].get_drawings())>100
+    qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
+    audit=json.loads((SUITE/'QA/S5_VULNERABILITY_ARCHIVE_AUDIT.json').read_text(encoding='utf-8'))
+    assert audit['status']=='PASS_FROZEN_EVENT_STATE_REANALYSIS'
+    assert audit['condition']['physical_realizations_per_policy']==1000
+    assert audit['frozen_identity']['all_1000_realization_ids_and_physical_DS_duration_hashes_match_across_policies']
+    baseline_errors=audit['frozen_identity']['saved_baseline_event_integral_crosschecks_max_abs_error_h']
+    assert max(baseline_errors.values())<1e-12
+    assert audit['frozen_identity']['source_only_integral_identity_max_abs_error_h']['vulnerability-first']<1e-12
+    assert qa['s5_vulnerability_plot_data_sha256']==audit['plot_data_sha256']
+    assert qa['s5_vulnerability_plot_audit']['four_policies_in_all_three_panels']
 
 def test_source_suite_files_are_not_overwritten():
     manifest=builder.u.csv_rows(builder.source(builder.SOURCE+'/FIGURE_MANIFEST.csv'))

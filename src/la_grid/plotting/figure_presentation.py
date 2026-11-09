@@ -163,10 +163,10 @@ def figure7(raw):
 
 
 def figure8_shared_map_legend(raw, class_colors):
-    """Replace the split C/D keys with one aligned, plain-language map key."""
+    """Give the K3 map and bivariate map their own aligned legends."""
     import numpy as np
 
-    label='Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)'
+    d_label='Outlined: Q4 + deficit ≥38.4 h'
     with fitz.open(stream=raw,filetype='pdf') as doc:
         page=doc[0]
         width,height=page.rect.width,page.rect.height
@@ -175,12 +175,12 @@ def figure8_shared_map_legend(raw, class_colors):
                              for s in spans(page))
         assert source_text.count('N/A (16)')==2
         assert source_text.count('Q4 + burden >= P75')==1
-        body,_=fonts(doc,False,label)
+        body,_=fonts(doc,False,d_label)
         old_labels=[]
         for span in spans(page):
             text=span['text'].replace('\u00a0',' ').replace('\u00ad','-')
-            top_row=583<=span['bbox'][1] and span['bbox'][3]<=604
-            bottom_row=626<=span['bbox'][1] and span['bbox'][3]<=643
+            top_row=580<=span['bbox'][1] and span['bbox'][3]<=605
+            bottom_row=627<=span['bbox'][1] and span['bbox'][3]<=645
             if (top_row and text in {'C1','C2','C3','N/A (16)'}) or (
                     bottom_row and text in {'Q4 + burden >= P75','N/A (16)'}):
                 old_labels.append(span)
@@ -192,48 +192,58 @@ def figure8_shared_map_legend(raw, class_colors):
         page.apply_redactions(images=0,graphics=0)
         # These bands contain only the two old legend rows; the bivariate
         # gradient and its axis labels remain outside the masked regions.
-        old_legend_bands=[fitz.Rect(35,583,248,604),fitz.Rect(15,626,190,643)]
+        old_legend_bands=[fitz.Rect(35,580,248,605),fitz.Rect(15,627,210,645)]
         for band in old_legend_bands:
             page.draw_rect(band,color=None,fill=(1,1,1),overlay=True)
 
         page.insert_font(fontname='Figure8SharedLegend',fontbuffer=body)
         metrics=fitz.Font(fontbuffer=body)
         fontsize=7.5
-        items=[('fill','C1',class_colors['1'],8.0),
-               ('fill','C2',class_colors['2'],8.0),
-               ('fill','C3',class_colors['3'],8.0),
-               ('na','N/A (16)','#333333',12.0),
-               ('line',label,'#555555',14.0)]
-        gap=12.0
-        widths=[symbol+4.0+metrics.text_length(text,fontsize) for _,text,_,symbol in items]
-        cursor=(width-sum(widths)-gap*(len(items)-1))/2
         baseline=height-26.0
-        positions=[]
-        for (kind,text,color,symbol_width),item_width in zip(items,widths):
+        c_items=[('fill','C1',class_colors['1'],8.0),
+                 ('fill','C2',class_colors['2'],8.0),
+                 ('fill','C3',class_colors['3'],8.0),
+                 ('na','N/A (16)','#333333',12.0)]
+        c_gap=9.0
+        c_widths=[symbol+4.0+metrics.text_length(text,fontsize)
+                  for _,text,_,symbol in c_items]
+        c_total=sum(c_widths)+c_gap*(len(c_items)-1)
+        cursor=(254.0-c_total)/2
+        c_positions=[]
+        for (kind,text,color,symbol_width),item_width in zip(c_items,c_widths):
             text_x=cursor+symbol_width+4.0
             if kind=='fill':
                 page.draw_rect(fitz.Rect(cursor,baseline-7.2,cursor+symbol_width,baseline+0.3),
                                color=None,fill=tuple(int(color[i:i+2],16)/255 for i in (1,3,5)),
                                overlay=True)
-            elif kind=='na':
+            else:
                 page.draw_rect(fitz.Rect(cursor,baseline-7.2,cursor+symbol_width,baseline+0.3),
                                color=(51/255,51/255,51/255),fill=(1,1,1),width=.45,overlay=True)
-            else:
-                page.draw_line(fitz.Point(cursor,baseline-3.5),
-                               fitz.Point(cursor+symbol_width,baseline-3.5),
-                               color=(85/255,85/255,85/255),width=.8,overlay=True)
             page.insert_text((text_x,baseline),text,fontname='Figure8SharedLegend',
                              fontsize=fontsize,color=(.08,.08,.08),overlay=True)
-            positions.append({'label':text,'x0':cursor,'x1':text_x+item_width-symbol_width-4.0,
-                              'baseline':baseline})
-            cursor+=item_width+gap
+            c_positions.append({'label':text,'x0':cursor,'x1':cursor+item_width,
+                                'baseline':baseline,'group':'C'})
+            cursor+=item_width+c_gap
+
+        d_width=14.0+5.0+metrics.text_length(d_label,fontsize)
+        cursor=264.0+(width-264.0-d_width)/2
+        page.draw_line(fitz.Point(cursor,baseline-3.5),
+                       fitz.Point(cursor+14.0,baseline-3.5),
+                       color=(85/255,85/255,85/255),width=.8,overlay=True)
+        page.insert_text((cursor+19.0,baseline),d_label,
+                         fontname='Figure8SharedLegend',fontsize=fontsize,
+                         color=(.08,.08,.08),overlay=True)
+        d_positions=[{'label':d_label,'x0':cursor,'x1':cursor+d_width,
+                      'baseline':baseline,'group':'D'}]
+        positions=c_positions+d_positions
 
         after_text=' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
                             for s in spans(page))
         assert after_text.count('N/A (16)')==1
         assert 'P75' not in after_text
-        assert label in after_text
-        assert max(item['x1'] for item in positions)<width-10
+        assert d_label in after_text
+        assert max(item['x1'] for item in c_positions)<254
+        assert min(item['x0'] for item in d_positions)>264
         assert all(item['baseline']==baseline for item in positions)
 
         with fitz.open(stream=raw,filetype='pdf') as before:
@@ -258,12 +268,14 @@ def figure8_shared_map_legend(raw, class_colors):
         figure_png=output[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
         preview_png=output[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
     return result,figure_png,preview_png,{
-        'legend_entries':['C1','C2','C3','N/A (16)',label],
+            'legend_entries':{'C':['C1','C2','C3','N/A (16)'],
+                              'D':[d_label]},
         'old_NA_entries':2,'new_NA_entries':1,'P75_shorthand_removed':True,
-        'screening_rule_text':label,'screening_symbol':'thin gray line',
+            'screening_rule_text':d_label,'screening_symbol':'thin gray line',
         'class_colors':class_colors,'font_size_pt':fontsize,
         'shared_baseline_pt_from_bottom':26.0,
-        'all_discrete_legend_entries_share_baseline':True,
+            'C_and_D_legends_separate_and_aligned':True,
+            'all_legend_entries_share_baseline':True,
         'bivariate_colorbar_and_tract_geometry_unchanged':unchanged,
         'whiteout_bands_pt':[[r.x0,r.y0,r.x1,r.y1] for r in old_legend_bands],
         'shared_legend_positions':positions,
@@ -276,68 +288,219 @@ def supplementary8(raw):
         text_and_nonpopulation_content_unchanged=True)
 
 
+def supplementary5_four_policy(plot_data_bytes):
+    """Plot the saved four-policy mapping, source-gate and threshold contrasts."""
+    import json
+    import matplotlib
+    matplotlib.use('Agg', force=True)
+    import matplotlib.pyplot as plt
+    from matplotlib import font_manager
+    from matplotlib.lines import Line2D
+
+    data=json.loads(plot_data_bytes)
+    assert data['schema']=='S5_FOUR_POLICY_SENSITIVITY_V1'
+    assert data['realizations']==1000
+    policies=[item['id'] for item in data['policies']]
+    assert policies==['impact-first','hospital-first','degree-first','vulnerability-first']
+    names=[item['name'] for item in data['policies']]
+    records=data['series']
+
+    font_manager.fontManager.addfont('C:/Windows/Fonts/arial.ttf')
+    font_manager.fontManager.addfont('C:/Windows/Fonts/arialbd.ttf')
+    with matplotlib.rc_context({
+        'font.family':'Arial','font.size':7.2,'pdf.fonttype':42,
+        'ps.fonttype':42,'axes.linewidth':0.45,
+        'xtick.major.width':0.45,'ytick.major.width':0.45,
+    }):
+        fig=plt.figure(figsize=(185/25.4,210/25.4),facecolor='white')
+        axes=[fig.add_axes([.305,.705,.66,.195]),
+              fig.add_axes([.305,.395,.66,.195]),
+              fig.add_axes([.305,.085,.66,.195])]
+        y_positions={policy:3-i for i,policy in enumerate(policies)}
+        neutral='#405a72'
+        secondary='#8a6380'
+
+        def format_axis(ax,title,xlabel,xlim,xticks):
+            ax.set_title(title,loc='left',fontsize=9.2,fontweight='bold',pad=5.0)
+            ax.set_xlim(*xlim);ax.set_xticks(xticks)
+            ax.set_ylim(-.45,3.45)
+            ax.set_yticks([3,2,1,0]);ax.set_yticklabels(names,fontsize=7.2)
+            ax.set_xlabel(xlabel,fontsize=7.5,labelpad=2.6)
+            ax.tick_params(axis='x',labelsize=7.0,length=2.3,pad=1.8)
+            ax.tick_params(axis='y',length=0,pad=5.0)
+            ax.grid(axis='x',color='#e0e4e7',linewidth=.45)
+            ax.set_axisbelow(True)
+            ax.axvline(0,color='#777777',linewidth=.65,linestyle=(0,(3,2)),zorder=0)
+            ax.spines['top'].set_visible(False);ax.spines['right'].set_visible(False)
+            ax.spines['left'].set_color('#68737a');ax.spines['bottom'].set_color('#68737a')
+
+        def draw_range(ax,row,y,marker,color,offset=0.0):
+            mean=row['mean_gap_h'];low=row['p05_gap_h'];high=row['p95_gap_h']
+            assert low<=mean<=high
+            ax.errorbar(mean,y+offset,
+                xerr=[[mean-low],[high-mean]],fmt=marker,color=color,ecolor=color,
+                markersize=3.6,elinewidth=.75,capsize=2.0,capthick=.7,zorder=3)
+
+        ax=axes[0]
+        format_axis(ax,'A. Mapping-weight cutoff',
+                    'Burden change from 3% cutoff (h)',(-.25,1.35),[-.2,0,.4,.8,1.2])
+        for policy in policies:
+            rows=[r for r in records if r['panel']=='A' and r['policy']==policy]
+            assert len(rows)==2
+            for row in rows:
+                if row['control']=='M1_UTILITY_NO_CUTOFF':
+                    draw_range(ax,row,y_positions[policy], 'o',neutral,.13)
+                elif row['control']=='M1_UTILITY_001':
+                    draw_range(ax,row,y_positions[policy], 's',secondary,-.13)
+                else:
+                    raise AssertionError(row['control'])
+        ax.legend(handles=[
+            Line2D([],[],marker='o',linestyle='none',color=neutral,markersize=3.7,label='0% cutoff'),
+            Line2D([],[],marker='s',linestyle='none',color=secondary,markersize=3.7,label='1% cutoff')],
+            loc='upper right',bbox_to_anchor=(1,-.18),ncol=2,frameon=False,
+            fontsize=6.6,handletextpad=.35,columnspacing=.8,borderaxespad=.25)
+
+        ax=axes[1]
+        format_axis(ax,'B. Source-connectivity gate',
+                    'Gate off minus baseline burden (h)',(-7.4,.5),[-6,-4,-2,0])
+        for policy in policies:
+            row=next(r for r in records if r['panel']=='B' and r['policy']==policy)
+            draw_range(ax,row,y_positions[policy],'o',neutral)
+
+        ax=axes[2]
+        format_axis(ax,'C. Functionality threshold',
+                    'Burden change from 0.50 threshold (h)',(-.20,.06),[-.2,-.15,-.1,-.05,0,.05])
+        for policy in policies:
+            rows=[r for r in records if r['panel']=='C' and r['policy']==policy]
+            assert len(rows)==2
+            for row in rows:
+                if row['threshold']==.05:
+                    draw_range(ax,row,y_positions[policy],'o',neutral,.13)
+                elif row['threshold']==.75:
+                    draw_range(ax,row,y_positions[policy],'s',secondary,-.13)
+                else:
+                    raise AssertionError(row['threshold'])
+        ax.legend(handles=[
+            Line2D([],[],marker='o',linestyle='none',color=neutral,markersize=3.7,label='0.05'),
+            Line2D([],[],marker='s',linestyle='none',color=secondary,markersize=3.7,label='0.75')],
+            loc='upper right',bbox_to_anchor=(1,-.20),ncol=2,frameon=False,
+            fontsize=6.6,handletextpad=.35,columnspacing=.8,borderaxespad=.25)
+
+        out=io.BytesIO()
+        fig.savefig(out,format='pdf',bbox_inches=None,
+                    metadata={'CreationDate':None,'ModDate':None,
+                              'Creator':'Frozen four-policy sensitivity post-processing'})
+        plt.close(fig)
+    with fitz.open(stream=out.getvalue(),filetype='pdf') as doc:
+        pdf=finish(doc)
+        with fitz.open(stream=pdf,filetype='pdf') as final:
+            png=final[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
+            preview=final[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
+            assert abs(final[0].rect.width-524.40945)<.02
+            assert abs(final[0].rect.height-595.2756)<.02
+            text=' '.join(final[0].get_text().split())
+            for value in ('Impact-first','Hospital-first','Degree-first','Vulnerability-first',
+                          '0% cutoff','1% cutoff','0.05','0.75',
+                          'A. Mapping-weight cutoff','B. Source-connectivity gate',
+                          'C. Functionality threshold'):
+                assert value in text,value
+            assert '5th' not in text and 'confidence interval' not in text.lower()
+    return pdf,png,preview,{
+        'source_plot_data_sha256':hashlib.sha256(plot_data_bytes).hexdigest(),
+        'four_policies_in_all_three_panels':True,
+        'policy_labels':names,
+        'all_ranges_are_paired_5th_95th_percentiles':True,
+        'range_is_not_a_confidence_interval':True,
+        'source_off_keeps_functionality_threshold_050':True,
+        'threshold_panels_reevaluate_source_connectivity':True,
+        'width_mm':185.0,'height_mm':210.0,
+        'axes_count':3,'no_recovery_model_or_schedule_rerun':True,
+    }
+
+
 def restoration_workflow(raw):
-    """Clarify the two restoration execution modes in Figure 1, Part 4 only."""
+    """Replace Figure 1 Stage 4 with the repair-completion update process."""
     with fitz.open(stream=raw,filetype='pdf') as doc:
         page=doc[0]
         w,h=page.rect.width,page.rect.height
-        old=[s for s in spans(page)
-             if s['bbox'][0] > 20 and s['bbox'][0] < 258
-             and s['bbox'][1] > 464 and s['bbox'][3] < 614]
-        old_text={' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-').split()) for s in old}
-        assert 'Restoration Policies and Execution' in old_text
-        assert {'Unconstrained','reference','Crew dispatch','and directed travel',
-                'Priority-strategy','recovery','80% service'}.issubset(old_text),old_text
+        all_spans=spans(page)
+        title_text='Restoration Strategies and Execution'
+        assert any(' '.join(s['text'].replace('\u00a0',' ').split())==title_text
+                   for s in all_spans)
+        old=[s for s in all_spans
+             if 9.5<s['bbox'][0]<258 and 481<s['bbox'][1]<614]
+        old_text={' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
+                            .replace('\u037e',';').split()) for s in old}
+        assert {'Unconstrained reference',
+                'Repairs proceed in parallel using sampled durations.',
+                'Constrained restoration','Priority strategy sets repair order.',
+                'Finite crews; dispatch includes directed travel and repairs.',
+                'Repair completion: station functionality = 1',
+                'Source gate + tract weights','Modeled service availability curves'}.issubset(old_text),old_text
         # Text-only redaction keeps the surrounding scientific artwork intact.
         for span in old:
             page.add_redact_annot(fitz.Rect(span['bbox']),fill=None)
         page.apply_redactions(images=0,graphics=0)
         white=(1.,1.,1.)
-        header=(232/255,244/255,242/255)
         ink=(32/255,40/255,43/255)
         page.draw_rect(fitz.Rect(9.5,481.7,256.3,614.7),color=None,fill=white,overlay=True)
-        page.draw_rect(fitz.Rect(21.8,465.2,250.5,480.5),color=None,fill=header,overlay=True)
         page.insert_font(fontname='Fig1RestorationBold',fontfile='C:/Windows/Fonts/arialbd.ttf')
         page.insert_font(fontname='Fig1RestorationBody',fontfile='C:/Windows/Fonts/arial.ttf')
-
-        title_text='Restoration Strategies and Execution'
-        title_font=fitz.Font(fontfile='C:/Windows/Fonts/arialbd.ttf')
-        assert title_font.text_length(title_text,fontsize=9.5) < 224
-        page.insert_text((22.677,475.654),title_text,fontname='Fig1RestorationBold',
-                         fontsize=9.5,color=ink,overlay=True)
 
         def label(text,x,y,size=7.5,bold=False,color=ink):
             page.insert_text((x,y),text,
                 fontname='Fig1RestorationBold' if bold else 'Fig1RestorationBody',
                 fontsize=size,color=color,overlay=True)
 
-        label('Unconstrained reference',15.5,497.5,bold=True)
-        label('Repairs proceed in parallel using sampled durations.',15.5,511.0)
-        label('No crew or travel constraints.',15.5,523.0)
+        label('Unconstrained restoration',17.0,495.0,6.7,True)
+        label('Repairs proceed in parallel.',17.0,505.2,7.0)
+        label('No finite-crew or travel limits.',17.0,514.0,7.0)
+        label('Constrained restoration strategies',140.0,495.0,7.0,True)
+        label('Priority order with finite crews.',140.0,505.2,7.0)
+        label('Dispatch includes directed travel.',140.0,514.0,7.0)
+        page.draw_line(fitz.Point(132.0,487.8),fitz.Point(132.0,519.0),
+                       color=(0.82,0.85,0.86),width=0.45,overlay=True)
+        page.draw_line(fitz.Point(15.5,522.0),fitz.Point(250.0,522.0),
+                       color=(0.82,0.85,0.86),width=0.45,overlay=True)
+        label('At each repair-completion event',15.5,532.0,7.0,True)
 
-        label('Constrained restoration',15.5,544.0,bold=True)
-        label('Priority strategy sets repair order.',15.5,557.5)
-        label('Finite crews; dispatch includes directed travel and repairs.',15.5,569.5)
-
-        for y in (531.5,578.0):
-            page.draw_line(fitz.Point(15.5,y),fitz.Point(250.0,y),
-                           color=(0.82,0.85,0.86),width=0.45,overlay=True)
-        label('Repair completion: station functionality = 1',15.5,590.0)
-        label('Source gate + tract weights',15.5,601.0)
-        label('Modeled service availability curves',15.5,612.0)
+        boxes=[(15.5,'Repair\ncompletes'),(75.0,'Station\nfunction set\nto 1'),
+               (134.5,'Re-evaluate\nsource\nconnectivity'),(194.0,'Update tract\nservice\nthrough W')]
+        box_width=53.0; top=539.0; bottom=581.0
+        for x,text in boxes:
+            page.draw_rect(fitz.Rect(x,top,x+box_width,bottom),
+                           color=(.56,.62,.65),fill=(.98,.99,.99),
+                           width=.55,overlay=True)
+            lines=text.split('\n')
+            line_y=top+(bottom-top-(len(lines)-1)*8.4)/2+2.2
+            for line_text in lines:
+                text_width=fitz.Font(fontfile='C:/Windows/Fonts/arial.ttf').text_length(
+                    line_text,fontsize=7.0)
+                label(line_text,x+(box_width-text_width)/2,line_y,7.0)
+                line_y+=8.4
+        for x1,x2 in ((68.5,75.0),(128.0,134.5),(187.5,194.0)):
+            y=560.0
+            page.draw_line(fitz.Point(x1,y),fitz.Point(x2-1.5,y),
+                           color=(.30,.37,.40),width=.7,overlay=True)
+            page.draw_polyline([fitz.Point(x2-3.4,y-1.8),fitz.Point(x2-1.5,y),
+                                fitz.Point(x2-3.4,y+1.8)],
+                               color=(.30,.37,.40),width=.7,overlay=True)
+        label('Repeat the update after every repair completion.',15.5,596.0,7.0)
 
         result=finish(doc)
         return result,dict(
             panel='4',title=title_text,
             execution_modes=['Unconstrained reference','Constrained restoration'],
             old_internal_labels_visually_replaced=sorted(old_text),
-            output='Modeled service availability trajectory in each mode',
+            output='Repair completion updates functionality, source connectivity and mapped tract service.',
             no_threshold_or_T80_in_panel=True,
-            unconstrained='Repairs proceed in parallel using sampled durations; no crew or travel constraints.',
-            constrained='Priority strategy sets repair order; finite crews and dispatch account for repair duration and directed travel.',
+            unconstrained='Repairs proceed in parallel; no finite-crew or travel limits.',
+            constrained='Priority order; finite crews; dispatch includes directed travel.',
             panel_bounds_preserved=True,other_panels_and_stage_5_content_unchanged=True,
-            body_font='Arial',body_font_size_pt=7.5,
+            body_font='Arial',body_font_size_pt=7.0,
             illustrative_curves_removed=True,completion_event_recovery=True,
+            process_steps=['Repair completes','Station function set to 1',
+                           'Re-evaluate source connectivity','Update tract service through W'],
             original_panel_graphics_covered_by_opaque_vector_replacement=True,
             source_vector_signature='outside authorized panel verified by native-render pixel test',
             width_pt=w,height_pt=h)

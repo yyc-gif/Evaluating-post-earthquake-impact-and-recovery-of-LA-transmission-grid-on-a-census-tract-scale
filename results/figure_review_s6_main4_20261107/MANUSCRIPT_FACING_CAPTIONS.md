@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Five-stage workflow from network and tract mapping through seismic damage, restoration execution, and community outcomes. Stage 4 shows the saved population-weighted service-availability trajectories for Unconstrained and Impact-first; Stage 5 summarizes derived service-loss and recovery-time measures.
+The workflow distinguishes parallel Unconstrained restoration from resource-constrained priority strategies. At each repair completion, station functionality is updated, source connectivity is reevaluated, and tract service is propagated through the dependency mapping; numerical recovery outcomes are reported in the Results figures.
 
 ## Figure 2. Transmission network and tract dependencies
 
@@ -30,7 +30,7 @@ Vulnerability-first effects across crew-availability and repair-duration scenari
 
 ## Figure 8. Community recovery types and social vulnerability
 
-A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlined tracts are in the highest social-vulnerability quartile and have service deficit >=38.4 h (the cohort upper quartile). The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.
+A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) and have five-policy mean total service deficit at or above 38.38135467381475 equivalent full-service-deficit hours over 0-480 h (the positive-population cohort 75th percentile). The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.
 
 ## Supplementary Figure S1. Damage and initial service
 
@@ -50,7 +50,7 @@ A/B summarize 20 GA runs using 64 optimization realizations and 100 repair order
 
 ## Supplementary Figure S5. Dependency and service-gate sensitivity
 
-Sensitivity of modeled service loss to dependency cutoff and source/threshold assumptions. Panel B isolates source-connectivity removal at fixed 0.50 functionality; (C) Functionality thresholds 0.05 and 0.75 retain source connectivity.
+(A) Change in population-weighted normalized service deficit when the M1 mapping cutoff is relaxed from 3% to 0% or 1%. (B) Change when source connectivity is removed while the 0.50 functionality threshold is retained. (C) Change under 0.05 or 0.75 functionality thresholds, with source connectivity reevaluated. Points are means of paired differences across 1,000 frozen physical realizations; bars show empirical 5th-95th percentile ranges, not confidence intervals. No damage samples or repair schedules were regenerated.
 
 ## Supplementary Figure S6. Facility planning limits
 

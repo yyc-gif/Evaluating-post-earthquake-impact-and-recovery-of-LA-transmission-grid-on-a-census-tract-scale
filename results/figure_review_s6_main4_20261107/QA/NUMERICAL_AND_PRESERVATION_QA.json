@@ -1,20 +1,64 @@
 {
   "source_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
-  "figure1_updated_only_with_frozen_result_curve": true,
-  "unaffected_14_artwork_pairs_byte_identical": true,
-  "figure8_shared_map_legend_updated": true,
-  "figure8_legend_audit": {
-    "legend_entries": [
-      "C1",
-      "C2",
-      "C3",
-      "N/A (16)",
-      "Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)"
+  "figure1_updated_only_with_method_process_schematic": true,
+  "figure1_stage4_audit": {
+    "panel": "4",
+    "title": "Restoration Strategies and Execution",
+    "execution_modes": [
+      "Unconstrained reference",
+      "Constrained restoration"
     ],
+    "old_internal_labels_visually_replaced": [
+      "Constrained restoration",
+      "Finite crews; dispatch includes directed travel and repairs.",
+      "Modeled service availability curves",
+      "No crew or travel constraints.",
+      "Priority strategy sets repair order.",
+      "Repair completion: station functionality = 1",
+      "Repairs proceed in parallel using sampled durations.",
+      "Source gate + tract weights",
+      "Unconstrained reference"
+    ],
+    "output": "Repair completion updates functionality, source connectivity and mapped tract service.",
+    "no_threshold_or_T80_in_panel": true,
+    "unconstrained": "Repairs proceed in parallel; no finite-crew or travel limits.",
+    "constrained": "Priority order; finite crews; dispatch includes directed travel.",
+    "panel_bounds_preserved": true,
+    "other_panels_and_stage_5_content_unchanged": true,
+    "body_font": "Arial",
+    "body_font_size_pt": 7.0,
+    "illustrative_curves_removed": true,
+    "completion_event_recovery": true,
+    "process_steps": [
+      "Repair completes",
+      "Station function set to 1",
+      "Re-evaluate source connectivity",
+      "Update tract service through W"
+    ],
+    "original_panel_graphics_covered_by_opaque_vector_replacement": true,
+    "source_vector_signature": "outside authorized panel verified by native-render pixel test",
+    "width_pt": 524.409423828125,
+    "height_pt": 623.6220703125,
+    "outside_stage4_pixels_identical": true
+  },
+  "unaffected_13_artwork_pairs_byte_identical": true,
+  "figure8_separate_map_legends_updated": true,
+  "figure8_legend_audit": {
+    "legend_entries": {
+      "C": [
+        "C1",
+        "C2",
+        "C3",
+        "N/A (16)"
+      ],
+      "D": [
+        "Outlined: Q4 + deficit ≥38.4 h"
+      ]
+    },
     "old_NA_entries": 2,
     "new_NA_entries": 1,
     "P75_shorthand_removed": true,
-    "screening_rule_text": "Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)",
+    "screening_rule_text": "Outlined: Q4 + deficit ≥38.4 h",
     "screening_symbol": "thin gray line",
     "class_colors": {
       "1": "#3C9198",
@@ -23,83 +67,81 @@
     },
     "font_size_pt": 7.5,
     "shared_baseline_pt_from_bottom": 26.0,
-    "all_discrete_legend_entries_share_baseline": true,
+    "C_and_D_legends_separate_and_aligned": true,
+    "all_legend_entries_share_baseline": true,
     "bivariate_colorbar_and_tract_geometry_unchanged": true,
     "whiteout_bands_pt": [
       [
         35.0,
-        583.0,
+        580.0,
         248.0,
-        604.0
+        605.0
       ],
       [
         15.0,
-        626.0,
-        190.0,
-        643.0
+        627.0,
+        210.0,
+        645.0
       ]
     ],
     "shared_legend_positions": [
       {
         "label": "C1",
-        "x0": 47.34539794921875,
-        "x1": 68.93280029296875,
-        "baseline": 658.0
+        "x0": 59.1571044921875,
+        "x1": 80.7445068359375,
+        "baseline": 658.0,
+        "group": "C"
       },
       {
         "label": "C2",
-        "x0": 80.93280029296875,
-        "x1": 102.52020263671875,
-        "baseline": 658.0
+        "x0": 89.7445068359375,
+        "x1": 111.3319091796875,
+        "baseline": 658.0,
+        "group": "C"
       },
       {
         "label": "C3",
-        "x0": 114.52020263671875,
-        "x1": 136.10760498046875,
-        "baseline": 658.0
+        "x0": 120.3319091796875,
+        "x1": 141.9193115234375,
+        "baseline": 658.0,
+        "group": "C"
       },
       {
         "label": "N/A (16)",
-        "x0": 148.10760498046875,
-        "x1": 192.03118896484375,
-        "baseline": 658.0
+        "x0": 150.9193115234375,
+        "x1": 194.8428955078125,
+        "baseline": 658.0,
+        "group": "C"
       },
       {
-        "label": "Highest social-vulnerability quartile + upper-quarter service deficit (≥38.4 h)",
-        "x0": 204.03118896484375,
-        "x1": 471.05462646484375,
-        "baseline": 658.0
+        "label": "Outlined: Q4 + deficit ≥38.4 h",
+        "x0": 333.05072021484375,
+        "x1": 449.34930419921875,
+        "baseline": 658.0,
+        "group": "D"
       }
     ]
   },
-  "figure1_source_curve_audit": {
-    "panel": "4",
-    "plot_type": "frozen population-weighted mean service-availability curves",
-    "scenario": "2pc50",
-    "time_window_hours": [
-      0,
-      100
+  "s5_vulnerability_plot_audit": {
+    "source_plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",
+    "four_policies_in_all_three_panels": true,
+    "policy_labels": [
+      "Impact-first",
+      "Hospital-first",
+      "Degree-first",
+      "Vulnerability-first"
     ],
-    "source_file": "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv",
-    "source_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
-    "source_rows": 9601,
-    "series_columns": {
-      "Unconstrained": "2pc50 | S3_Mean | Population",
-      "Impact-first": "2pc50 | Impact population first | Population"
-    },
-    "points_plotted_per_series": 2001,
-    "endpoint_at_100h": {
-      "Unconstrained": 0.9999999608925917,
-      "Impact-first": 0.9999627847939658
-    },
-    "curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules": true,
-    "no_new_simulation_or_metric_calculation": true,
-    "figure_dimensions_pt": [
-      524.409423828125,
-      623.6220703125
-    ],
-    "outside_stage4_pixels_identical": true
+    "all_ranges_are_paired_5th_95th_percentiles": true,
+    "range_is_not_a_confidence_interval": true,
+    "source_off_keeps_functionality_threshold_050": true,
+    "threshold_panels_reevaluate_source_connectivity": true,
+    "width_mm": 185.0,
+    "height_mm": 210.0,
+    "axes_count": 3,
+    "no_recovery_model_or_schedule_rerun": true
   },
+  "s5_vulnerability_archive_audit_sha256": "a29bd3bd1fce4d88231bad9ca84e205591039dbf7d8852f6672f6bfe531b4c83",
+  "s5_vulnerability_plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",
   "main_figures": 8,
   "supplementary_figures": 8,
   "complete_packet_pages": 16,
