@@ -31,3 +31,9 @@ The event archive is a manifest-bound local dependency outside a clean Git clone
 An additional run of `tests/test_current_figure_suite_integration.py` produced 34 passed and 41 failed. That legacy suite targets a different current-suite directory and pinned baseline (including absent paths under `results/figure_review/`); it does not target this isolated S6/Main-Figure-4 review package. No tests were removed or weakened. The branch-specific tests validate this package's inventory, source/output hashes, Figure 1 process, Figure 8 legends, S5 pairing, captions, and packet counts.
 
 No simulation, restoration schedule, optimization, or clustering fit was run. No manuscript or formal scientific result was edited.
+
+## Remote delivery
+
+Commit `c8d5a283384ac99b378ec4c716fc56c2deb31c3d` was pushed to `refs/heads/review/s6-main4-20261107`; `git ls-remote` returned the same commit. The push reported 14/14 LFS objects uploaded (187,974,790 bytes). All 14 distinct objects were then fetched again from GitHub into an isolated temporary LFS store; every fetched object's byte length and SHA256 matched its committed LFS pointer.
+
+A whole-repository `git lfs fsck HEAD` is not clean because older, unrelated LFS objects are absent or non-canonical in the shared local cache. The check moved corrupt cache entries to `.git/lfs/bad`; it did not modify tracked files or any of the 14 newly delivered objects. The new objects were independently refetched and verified as described above.
