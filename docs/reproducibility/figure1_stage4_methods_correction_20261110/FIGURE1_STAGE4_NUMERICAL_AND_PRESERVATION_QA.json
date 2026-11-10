@@ -5,8 +5,8 @@
     524.409423828125,
     623.6220703125
   ],
-  "figure1_after_sha256": "0d8f692b7f979089f4f98a32dae5f65f421beb07675475a6a8c04ac30925c974",
-  "figure1_before_sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+  "figure1_after_sha256": "0068f55758790751c7405d31a42ad03773ff9d4cc159eb7c80528fd783338ceb",
+  "figure1_before_sha256": "0d8f692b7f979089f4f98a32dae5f65f421beb07675475a6a8c04ac30925c974",
   "figure1_mirror_and_manifest_match": true,
   "figure1_pdf_dimensions_pt": [
     0.0,
@@ -14,11 +14,11 @@
     524.409423828125,
     623.6220703125
   ],
-  "figure1_png_sha256": "14fa406df46aecd13b3516978fa7a4131346c89ac374ea30ed8c163df0b9e65d",
-  "figure_presentation_sha256": "9580e1b43175505dda3e9fb234af1a199b56aeab2e7cf7f6e5fcfd0ee43b5773",
+  "figure1_png_sha256": "8d11299f845eed48d608d3f68df37d74d6ae40d310d8c569fb26ed274059eb9a",
+  "figure_presentation_sha256": "35022c2244655fa2b9a0aadbac47d82fb1f8247081d11969c7cc56f7a87a80b9",
   "ga_source_sha256": "0ea6dd2e3ea74584ce707a820c8aeb035c712620c3e88ad4c33ecee78d0b7d51",
   "outside_stage4_render_pixels_identical_at_120dpi": true,
-  "p2_builder_sha256": "981452a25ab60af19ad8238e6b7835889136baa6b77835b23eeb0c43860fd537",
+  "p2_builder_sha256": "a32310be5c0121c7a8f45a785f052e0c4df0abf6b658bf6cf3baaebbf883ab63",
   "packet_page_counts": {
     "complete": 16,
     "main": 8,
@@ -38,17 +38,19 @@
       "sha256": "503590858e0f5980fdb14e1ccdff9a0d93037e0fd5e4bbde860d054286c6eb8f"
     }
   },
-  "s6_builder_sha256": "ec538be148376373ae1a0bb921e75712becae24b72314b6957f70d556ab8c8ac",
+  "s6_builder_sha256": "099c6ea4177e9c16ac17b36d623b724f35356f31d107e6d895a247965d67e8bb",
   "scheduler_source_sha256": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22",
   "simulations_or_schedules_rerun": false,
   "source_figure_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
-  "stage4_embedded_image_count": 0,
+  "stage4_embedded_image_count": 6,
   "stage4_fonts": [
+    "Arial Bold",
+    "Arial Regular",
     "ELUGPM+Arial-BoldMT",
     "ELUGPM+ArialMT"
   ],
   "stage4_generator": "src/la_grid/plotting/make_methodology_workflow_figure.py",
-  "stage4_generator_sha256": "9fcdf5738ee51c253b56e763ab93d2ffd0a4893bcd97ec4a8fd181d9da07bc9a",
+  "stage4_generator_sha256": "74ca32bd05dd70ac3f05d5ef4a8c18167b149872253e79b10227786c97bebee0",
   "stage4_implementation_checks": {
     "completion_restores_raw_functionality": true,
     "completion_state_passes_source_gate": true,
@@ -58,26 +60,16 @@
     "ga_task_order_search": true,
     "travel_then_realized_repair": true
   },
-  "stage4_panel_pdf_sha256": "0491a29e7c7cf3e662ba7de04a664a3a4755925f7fcabb5d58b9c9034aecb52b",
-  "stage4_panel_png_sha256": "31dd63f3d475b80552dbf7cb920d191ec88099c9200f3c1c12d4ce8819d57b6a",
+  "stage4_logistics_figure_sha256": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+  "stage4_panel_pdf_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
+  "stage4_panel_png_sha256": "d52fe1588d3de31068c8379bd8e4de3cb81d96401af9d3ce8292f10d3ca5fc25",
+  "stage4_priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
   "stage4_rejected_result_terms_absent": true,
   "stage4_text_checks": {
-    "DS > 0 tasks": true,
-    "DS-specific durations": true,
-    "Directed travel": true,
-    "GA plans repair-task order": true,
-    "Priority rules": true,
-    "Repair scheduling and execution": true,
-    "Repair-completion events": true,
-    "Unconstrained reference": true,
-    "Vulnerability-first": true,
-    "finite crews": true,
-    "release crew": true,
-    "source-connectivity": true,
-    "station functionality becomes 1": true,
-    "tract-service evaluation": true
+    "no_explanatory_text": true,
+    "priority_rank_markers": true
   },
-  "stage4_vector_path_count": 12,
+  "stage4_vector_content_stream_count": 33,
   "starting_branch": "review/fig1-moduleD-s5-final-20261109",
-  "starting_commit": "8d7d458b9e85bb72c4c25cd927815137bd916bbc"
+  "starting_commit": "54b64c2ad01d6b6b2dbfd5892e7567d82a71f463"
 }

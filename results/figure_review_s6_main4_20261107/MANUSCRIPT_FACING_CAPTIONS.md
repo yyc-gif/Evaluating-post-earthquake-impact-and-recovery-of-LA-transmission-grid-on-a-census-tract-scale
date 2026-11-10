@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Stage 4 separates the parallel Unconstrained reference from constrained restoration strategies. It shows priority rules and GA task-order planning, finite-crew dispatch of DS > 0 tasks using realized damage-state-specific durations and directed travel, and completion-triggered crew release, station functionality restoration and source-gated tract-service reevaluation.
+Stage 4 depicts rule-based and GA repair planning; the map illustrates Impact-first. Crew origins and task-to-task travel inform finite-crew scheduling, and repair completion updates station functionality. Unconstrained parallel repair is shown separately.
 
 ## Figure 2. Transmission network and tract dependencies
 

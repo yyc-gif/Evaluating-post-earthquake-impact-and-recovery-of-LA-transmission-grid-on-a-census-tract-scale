@@ -142,10 +142,9 @@ def main(output_dir=None,mirror_dir=None):
         title=label(new)+'.'+old_title.split('.',1)[1]
         body=references(body)
         if new=='Main/Fig01':
-            body=('Stage 4 separates the parallel Unconstrained reference from constrained restoration strategies. '
-                  'It shows priority rules and GA task-order planning, finite-crew dispatch of DS > 0 tasks using realized '
-                  'damage-state-specific durations and directed travel, and completion-triggered crew release, station '
-                  'functionality restoration and source-gated tract-service reevaluation.')
+            body=('Stage 4 depicts rule-based and GA repair planning; the map illustrates Impact-first. '
+                  'Crew origins and task-to-task travel inform finite-crew scheduling, and repair completion updates '
+                  'station functionality. Unconstrained parallel repair is shown separately.')
         if new=='Main/Fig08':
             old_rule='outlines mark frozen Q4 and the cohort P75'
             new_rule=('outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) '

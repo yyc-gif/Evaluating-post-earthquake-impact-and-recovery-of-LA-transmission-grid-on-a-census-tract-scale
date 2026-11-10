@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT / "src/la_grid/plotting"))
 import build_s6_main4_review as builder
 import figure_presentation
 
-START = "8d7d458b9e85bb72c4c25cd927815137bd916bbc"
+START = "54b64c2ad01d6b6b2dbfd5892e7567d82a71f463"
 SUITE = ROOT / "results/figure_review_s6_main4_20261107"
 OUT = ROOT / "docs/reproducibility/figure1_stage4_methods_correction_20261110"
 FIGURE = "results/figure_review_s6_main4_20261107/Main/Fig01"
@@ -81,22 +81,16 @@ def main() -> None:
     with fitz.open(stream=panel_pdf, filetype="pdf") as panel:
         panel_text = " ".join(panel[0].get_text().replace("\xa0", " ").split())
         assert len(panel) == 1
-        panel_vector_count = len(panel[0].get_drawings())
+        panel_vector_count = len(panel[0].get_contents())
         panel_image_count = len(panel[0].get_images())
         panel_fonts = sorted({font[3] for font in panel[0].get_fonts()})
-    required = (
-        "Unconstrained reference", "Priority rules", "Vulnerability-first",
-        "GA plans repair-task order", "Repair scheduling and execution",
-        "DS > 0 tasks", "finite crews", "DS-specific durations",
-        "Directed travel", "Repair-completion events", "release crew",
-        "station functionality becomes 1", "source-connectivity",
-        "tract-service evaluation",
-    )
+    required = ("1", "2", "3", "4", "5")
     rejected = ("availability curves", "Impact-first service-availability", "T80",
                 "cumulative service loss", "population-weighted service availability")
-    assert all(text in panel_text for text in required), panel_text
+    assert panel_text.split() == list(required), panel_text
+    assert panel_audit["uses_priority_map"] and panel_audit["uses_logistics_artwork"]
     assert not any(text.lower() in panel_text.lower() for text in rejected), panel_text
-    assert panel_vector_count > 0 and panel_image_count == 0
+    assert panel_vector_count > 0
 
     with fitz.open(stream=before_pdf, filetype="pdf") as before, \
             fitz.open(stream=after_pdf, filetype="pdf") as after:
@@ -155,8 +149,8 @@ def main() -> None:
         packet_pages = {"complete": len(packet), "main": len(main_packet), "supplement": len(supp_packet)}
         assert packet_pages == {"complete": 16, "main": 8, "supplement": 8}
         first_page_text = " ".join(packet[0].get_text().split())
-        assert "Repair-completion events" in first_page_text
-        assert "Stage 4 separates" in first_page_text
+        assert "map illustrates Impact-first" in first_page_text
+        assert "Unconstrained parallel repair" in first_page_text
         (OUT / "FIGURE_PACKET_PAGE1_FINAL_150DPI.png").write_bytes(
             packet[0].get_pixmap(dpi=150, alpha=False).tobytes("png"))
 
@@ -180,9 +174,11 @@ def main() -> None:
         "ga_source_sha256": sha((ROOT / builder.GA_SOURCE).read_bytes()),
         "stage4_panel_pdf_sha256": sha(panel_pdf),
         "stage4_panel_png_sha256": sha(panel_png),
-        "stage4_text_checks": {key: key in panel_text for key in required},
+        "stage4_text_checks": {"no_explanatory_text": True, "priority_rank_markers": True},
+        "stage4_priority_map_sha256": panel_audit["priority_map_sha256"],
+        "stage4_logistics_figure_sha256": panel_audit["logistics_figure_sha256"],
         "stage4_rejected_result_terms_absent": True,
-        "stage4_vector_path_count": panel_vector_count,
+        "stage4_vector_content_stream_count": panel_vector_count,
         "stage4_embedded_image_count": panel_image_count,
         "stage4_fonts": panel_fonts,
         "stage4_implementation_checks": panel_audit["implementation_checks"],

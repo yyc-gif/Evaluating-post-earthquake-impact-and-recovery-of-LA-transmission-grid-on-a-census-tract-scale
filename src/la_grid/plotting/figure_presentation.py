@@ -502,18 +502,15 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
     with fitz.open(stream=result,filetype='pdf') as final_doc:
         page=final_doc[0]
         stage_text=' '.join(page.get_textbox(rect).replace('\xa0',' ').replace('\xad','').split())
-        required=('Unconstrained reference','Priority rules','Vulnerability-first',
-                  'GA plans repair-task order','DS > 0 tasks','finite crews',
-                  'DS-specific durations','Directed travel','Repair-completion events',
-                  'release crew','station functionality becomes 1',
-                  'source-connectivity','tract-service evaluation')
-        missing=[text for text in required if text not in stage_text]
-        assert not missing,(missing,stage_text)
+        assert process_panel_audit['uses_priority_map']
+        assert process_panel_audit['uses_logistics_artwork']
+        assert process_panel_audit['no_explanatory_text']
         with fitz.open(stream=process_panel_pdf,filetype='pdf') as process_panel:
             panel_text=' '.join(process_panel[0].get_text().replace('\xa0',' ').split())
         rejected=('availability curves','T80','cumulative service loss',
                   'population-weighted service availability','Impact-first service-availability')
         assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
+        assert len(panel_text.split()) < 12, panel_text
         assert len(final_doc)==1
 
     with fitz.open(stream=raw,filetype='pdf') as before, \

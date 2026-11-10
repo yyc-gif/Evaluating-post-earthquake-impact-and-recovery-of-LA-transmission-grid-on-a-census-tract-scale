@@ -17,6 +17,7 @@ import hashlib
 import io
 import os
 from pathlib import Path
+import fitz
 
 try:
     from la_grid.paths import REPO_ROOT
@@ -144,77 +145,55 @@ def build_stage4_process_panel(width_pt: float = 246.8,
 
     width_pt = float(width_pt)
     height_pt = float(height_pt)
-    assert width_pt > 0 and height_pt > 0
-    apply_artwork_style()
-    ink = COLORS["ink"]
-    muted = COLORS["muted"]
-    outline = COLORS["outline"]
-    rule = COLORS["rule"]
-    teal = COLORS["recovery"]
-    fig = plt.figure(figsize=(width_pt / 72.0, height_pt / 72.0),
-                     facecolor=COLORS["paper"])
-    ax = fig.add_axes([0, 0, 1, 1])
-    ax.set_xlim(0, width_pt)
-    ax.set_ylim(0, height_pt)
-    ax.axis("off")
+    assert width_pt == 246.8 and height_pt == 133.0
+    priority_path = REPO_ROOT / "results/figure_review_s6_main4_20261107/Supplement/FigS07.pdf"
+    logistics_path = REPO_ROOT / "results/figure_review_s6_main4_20261107/Supplement/FigS02.pdf"
+    assert priority_path.is_file() and logistics_path.is_file()
+    doc = fitz.open()
+    page = doc.new_page(width=width_pt, height=height_pt)
+    with fitz.open(priority_path) as priority, fitz.open(logistics_path) as logistics:
+        assert len(priority) == len(logistics) == 1
+        # Actual priority-map and logistics artwork, clipped to omit its page titles.
+        page.show_pdf_page(fitz.Rect(4, 6, 77, 100), priority, 0,
+                           clip=fitz.Rect(52, 535, 302, 678), keep_proportion=True)
+        page.show_pdf_page(fitz.Rect(91, 5, 159, 55), logistics, 0,
+                           clip=fitz.Rect(68, 40, 424, 275), keep_proportion=True)
+        page.show_pdf_page(fitz.Rect(91, 60, 159, 101), logistics, 0,
+                           clip=fitz.Rect(78, 350, 430, 584), keep_proportion=True)
 
-    # The reference is deliberately outside the constrained three-step flow.
-    ref_x, ref_y, ref_w, ref_h = 5.2, 111.0, width_pt - 10.4, 18.0
-    ax.add_patch(patches.FancyBboxPatch(
-        (ref_x, ref_y), ref_w, ref_h,
-        boxstyle="round,pad=0.8,rounding_size=2.0",
-        facecolor=COLORS["soft"], edgecolor=rule, linewidth=0.55,
-    ))
-    ax.text(ref_x + 5.0, ref_y + ref_h / 2,
-            "Unconstrained reference", ha="left", va="center",
-            fontsize=6.7, fontweight="bold", color=ink)
-    ax.text(ref_x + 100.0, ref_y + ref_h / 2,
-            "Parallel repairs; no finite-crew or travel limits.",
-            ha="left", va="center", fontsize=6.2, color=muted)
+    ink = (0.19, 0.24, 0.28)
+    teal = (0.14, 0.53, 0.47)
+    muted = (0.43, 0.49, 0.53)
+    purple = (0.48, 0.31, 0.56)
+    for x0, x1 in ((78, 88), (161, 171)):
+        page.draw_line((x0, 52), (x1 - 3, 52), color=muted, width=0.8)
+        page.draw_polyline([(x1 - 5, 49), (x1, 52), (x1 - 5, 55)],
+                           color=muted, width=0.8)
 
-    rows = [
-        (77.0, "Priority rules",
-         "Predefined network and community priorities include Vulnerability-first.",
-         "GA plans repair-task order using a service-burden objective."),
-        (43.0, "Repair scheduling and execution",
-         "Queue DS > 0 tasks; finite crews; realized DS-specific durations.",
-         "Directed travel/dispatch; finish = crew available + travel + repair."),
-        (9.0, "Repair-completion events",
-         "At completion, release crew; raw station functionality becomes 1.",
-         "Pass updated state to source-connectivity and tract-service evaluation."),
-    ]
-    row_h = 24.0
-    x, w = 5.2, width_pt - 10.4
-    for number, (y, heading, line1, line2) in enumerate(rows, 1):
-        ax.add_patch(patches.FancyBboxPatch(
-            (x, y), w, row_h,
-            boxstyle="round,pad=0.7,rounding_size=1.8",
-            facecolor="white", edgecolor=rule, linewidth=0.5,
-        ))
-        ax.add_patch(patches.Circle((x + 10.0, y + row_h / 2), 5.0,
-                                    facecolor=teal, edgecolor="none"))
-        ax.text(x + 10.0, y + row_h / 2, str(number), ha="center", va="center",
-                fontsize=6.4, fontweight="bold", color="white")
-        ax.text(x + 21.0, y + row_h - 6.0, heading, ha="left", va="center",
-                fontsize=6.8, fontweight="bold", color=ink)
-        ax.text(x + 21.0, y + 9.5, line1, ha="left", va="center",
-                fontsize=6.4, color=ink)
-        ax.text(x + 21.0, y + 3.0, line2, ha="left", va="center",
-                fontsize=6.4, color=ink)
+    # Event-driven repair: travel, repair, then an instantaneous station update.
+    for y, offset in ((21, 0), (49, 12), (77, 24)):
+        page.draw_circle((181, y + 5), 3.5, color=muted, fill=muted)
+        page.draw_line((185, y + 5), (197 + offset / 3, y + 5),
+                       color=muted, width=1, dashes="[2 2] 0")
+        page.draw_rect(fitz.Rect(198 + offset / 3, y + 1, 219 + offset / 3, y + 9),
+                       color=purple, fill=purple, width=0.3)
+        finish = 220 + offset / 3
+        page.draw_line((finish, y - 2), (finish, y + 13), color=teal, width=1.3)
+        page.draw_circle((finish + 7, y + 5), 4, color=teal, fill=teal)
+        page.draw_circle((finish + 7, y + 5), 1.4, color=None, fill=(1, 1, 1))
 
-    # Short down-arrows connect constrained restoration operations only.
-    for lower_y, upper_y in ((77.0, 67.0), (43.0, 33.0)):
-        ax.annotate("", xy=(15.2, upper_y + 0.5), xytext=(15.2, lower_y - 0.5),
-                    arrowprops={"arrowstyle": "-|>", "color": muted,
-                                "linewidth": 0.65, "mutation_scale": 5.5})
-
-    pdf_out, png_out = io.BytesIO(), io.BytesIO()
-    fig.savefig(pdf_out, format="pdf", metadata={"CreationDate": None,
-                                                   "ModDate": None,
-                                                   "Creator": "methodology workflow generator"})
-    fig.savefig(png_out, format="png", dpi=DPI)
-    plt.close(fig)
-    pdf_bytes, png_bytes = pdf_out.getvalue(), png_out.getvalue()
+    # A separate parallel-repair lane denotes the Unconstrained reference.
+    page.draw_line((5, 108), (241, 108), color=(0.82, 0.85, 0.87), width=0.5)
+    for y in (115, 121, 127):
+        page.draw_rect(fitz.Rect(88, y - 1.5, 157, y + 1.5),
+                       color=(0.72, 0.77, 0.79), fill=(0.72, 0.77, 0.79), width=0.2)
+    page.draw_line((165, 113), (165, 130), color=teal, width=0.8)
+    for y in (115, 121, 127):
+        page.draw_circle((171, y), 2, color=teal, fill=teal)
+    pdf_bytes = doc.tobytes(garbage=4, deflate=True, no_new_id=True)
+    doc.close()
+    with fitz.open(stream=pdf_bytes, filetype="pdf") as rendered:
+        png_bytes = rendered[0].get_pixmap(dpi=DPI, alpha=False).tobytes("png")
     audit = {
         "source_generator": "src/la_grid/plotting/make_methodology_workflow_figure.py",
         "scheduler_source": "src/la_grid/revision/r1_realization_scheduling.py",
@@ -225,10 +204,15 @@ def build_stage4_process_panel(width_pt: float = 246.8,
         "separate_unconstrained_reference": True,
         "connected_operations": ["Priority rules", "Repair scheduling and execution",
                                  "Repair-completion events"],
+        "priority_map_sha256": hashlib.sha256(priority_path.read_bytes()).hexdigest(),
+        "logistics_figure_sha256": hashlib.sha256(logistics_path.read_bytes()).hexdigest(),
+        "uses_priority_map": True,
+        "uses_logistics_artwork": True,
+        "no_explanatory_text": True,
         "width_pt": width_pt,
         "height_pt": height_pt,
-        "body_font": "Arial",
-        "body_font_pt": 6.4,
+        "body_font": None,
+        "body_font_pt": None,
         "no_recovery_curves_or_downstream_outcomes": True,
         "no_simulation_or_schedule_rerun": True,
         "panel_pdf_sha256": hashlib.sha256(pdf_bytes).hexdigest(),

@@ -97,12 +97,9 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==expected_preview
     assert audit['outside_stage4_pixels_identical']
     assert audit['no_recovery_curves_or_downstream_outcomes']
-    for phrase in ('Priority rules','Repair scheduling and execution',
-                   'Repair-completion events','Vulnerability-first',
-                   'DS > 0 tasks','finite crews','DS-specific durations',
-                   'Directed travel','release crew','station functionality becomes 1',
-                   'source-connectivity','tract-service evaluation'):
-        assert phrase in stage_text
+    assert stage_text.split() == ['1', '2', '3', '4', '5']
+    assert panel_audit['uses_priority_map'] and panel_audit['uses_logistics_artwork']
+    assert panel_audit['no_explanatory_text']
     for phrase in ('availability curves','Impact-first service-availability',
                    'T80','cumulative service loss'):
         assert phrase.lower() not in stage_text.lower()
@@ -125,9 +122,10 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert 'saved Unconstrained and Impact-first service-availability trajectories' not in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    for phrase in ('parallel Unconstrained reference','priority rules and GA task-order planning',
-                   'DS > 0 tasks','realized damage-state-specific durations','directed travel',
-                   'completion-triggered crew release','source-gated tract-service reevaluation'):
+    for phrase in ('rule-based and GA repair planning','map illustrates Impact-first',
+                   'Crew origins and task-to-task travel','finite-crew scheduling',
+                   'repair completion updates station functionality',
+                   'Unconstrained parallel repair is shown separately'):
         assert phrase in fig1
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
     row=next(r for r in manifest if r['final_name']=='Main/Fig01.pdf')
@@ -141,7 +139,7 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
         assert len(packet)==16
         packet_text=clean_pdf_text(packet[0].get_text())
         assert 'Figure 1. Analytical framework' in packet_text
-        assert 'Repair-completion events' in packet_text
+        assert 'map illustrates Impact-first' in packet_text
 
 
 def test_supplementary_s5_remains_unchanged_by_figure1_correction():

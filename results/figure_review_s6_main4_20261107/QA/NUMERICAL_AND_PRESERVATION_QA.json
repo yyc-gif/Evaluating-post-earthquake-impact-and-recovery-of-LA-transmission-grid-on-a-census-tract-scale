@@ -5,7 +5,7 @@
     "panel": "4",
     "panel_title": "Restoration Strategies and Execution",
     "source_page_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
-    "process_panel_sha256": "0491a29e7c7cf3e662ba7de04a664a3a4755925f7fcabb5d58b9c9034aecb52b",
+    "process_panel_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -24,7 +24,7 @@
     "no_recovery_curves_or_downstream_outcomes": true,
     "old_stage4_result_labels_removed": true,
     "outside_stage4_pixels_identical": true,
-    "changed_pixels_at_120dpi": 40503,
+    "changed_pixels_at_120dpi": 32689,
     "authorized_edit_rect_pt": [
       9.5,
       481.7,
@@ -57,14 +57,19 @@
         "Repair scheduling and execution",
         "Repair-completion events"
       ],
+      "priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+      "logistics_figure_sha256": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+      "uses_priority_map": true,
+      "uses_logistics_artwork": true,
+      "no_explanatory_text": true,
       "width_pt": 246.8,
       "height_pt": 133.0,
-      "body_font": "Arial",
-      "body_font_pt": 6.4,
+      "body_font": null,
+      "body_font_pt": null,
       "no_recovery_curves_or_downstream_outcomes": true,
       "no_simulation_or_schedule_rerun": true,
-      "panel_pdf_sha256": "0491a29e7c7cf3e662ba7de04a664a3a4755925f7fcabb5d58b9c9034aecb52b",
-      "panel_png_sha256": "31dd63f3d475b80552dbf7cb920d191ec88099c9200f3c1c12d4ce8819d57b6a"
+      "panel_pdf_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
+      "panel_png_sha256": "d52fe1588d3de31068c8379bd8e4de3cb81d96401af9d3ce8292f10d3ca5fc25"
     },
     "starting_figure1_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84"
   },
@@ -89,14 +94,19 @@
       "Repair scheduling and execution",
       "Repair-completion events"
     ],
+    "priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+    "logistics_figure_sha256": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+    "uses_priority_map": true,
+    "uses_logistics_artwork": true,
+    "no_explanatory_text": true,
     "width_pt": 246.8,
     "height_pt": 133.0,
-    "body_font": "Arial",
-    "body_font_pt": 6.4,
+    "body_font": null,
+    "body_font_pt": null,
     "no_recovery_curves_or_downstream_outcomes": true,
     "no_simulation_or_schedule_rerun": true,
-    "panel_pdf_sha256": "0491a29e7c7cf3e662ba7de04a664a3a4755925f7fcabb5d58b9c9034aecb52b",
-    "panel_png_sha256": "31dd63f3d475b80552dbf7cb920d191ec88099c9200f3c1c12d4ce8819d57b6a"
+    "panel_pdf_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
+    "panel_png_sha256": "d52fe1588d3de31068c8379bd8e4de3cb81d96401af9d3ce8292f10d3ca5fc25"
   },
   "figure1_no_downstream_result_plot_in_stage4": true,
   "unaffected_13_artwork_pairs_byte_identical": true,
