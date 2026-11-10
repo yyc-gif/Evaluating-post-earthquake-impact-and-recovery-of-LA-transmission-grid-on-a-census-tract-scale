@@ -51,22 +51,47 @@
       "sha256": "1d4092b1fe61bd3b909fa204bc97ee716c38dff93f3faf8534a06274d824f720",
       "bytes": 1164
     },
+    "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv": {
+      "commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+      "sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+      "bytes": 11273762
+    },
     "derived/S5_VULNERABILITY_PLOT_DATA.json": {
       "commit": "generated from manifest-bound local frozen archive",
       "sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",
       "bytes": 9520
+    },
+    "results/figure_review_s6_main4_20261107/Main/Fig01.pdf": {
+      "commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+      "sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+      "bytes": 27862781
+    },
+    "results/figure_review_s6_main4_20261107/Main/Fig01.png": {
+      "commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+      "sha256": "4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2",
+      "bytes": 1553462
+    },
+    "results/figure_review_s6_main4_20261107/Page_Previews/Fig01.png": {
+      "commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+      "sha256": "505ec7f706c9e07b6c45443254c7916a79d961cd79582c49df9820f3200b9ae1",
+      "bytes": 270320
+    },
+    "results/figure_review_s6_main4_20261107/QA/NUMERICAL_AND_PRESERVATION_QA.json": {
+      "commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+      "sha256": "b4cab10de8ae1f9233d926df879b68e07df9e1aa01303694eda4d79a3fa2bdd5",
+      "bytes": 1714
     }
   },
   "implementation_files": {
     "src/la_grid/plotting/build_s6_main4_review.py": {
       "commit": "local implementation at build time",
-      "sha256": "43fe3df4793bd1fb5d644cf6a61ad5dd7f5e81baf439d30a0ab73af58413f64b",
-      "bytes": 28867
+      "sha256": "59e47b821ca16a79a3f4532de6766257ad4895f2c8ecbb58fd03d178233dfe6e",
+      "bytes": 30982
     },
     "src/la_grid/plotting/figure_presentation.py": {
       "commit": "local implementation at build time",
-      "sha256": "6d5126a9874320fa9d87179362da0677b0b89ed585524d78628fc596f17bcc8a",
-      "bytes": 54088
+      "sha256": "4ec256ae3c121c4108760c044dbf96e8fae6e59c2117233bf7b276c420424c93",
+      "bytes": 51653
     },
     "src/la_grid/plotting/consolidate_current_figure_suite.py": {
       "commit": "local implementation at build time",
@@ -84,5 +109,17 @@
       "bytes": 11701
     }
   },
-  "original_notes_describe_separate_candidates_not_exact_current_S6": true
+  "original_notes_describe_separate_candidates_not_exact_current_S6": true,
+  "workflow_generated_figure1_artifact": {
+    "commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+    "pdf": "results/figure_review_s6_main4_20261107/Main/Fig01.pdf",
+    "pdf_sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+    "png": "results/figure_review_s6_main4_20261107/Main/Fig01.png",
+    "png_sha256": "4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2",
+    "preview": "results/figure_review_s6_main4_20261107/Page_Previews/Fig01.png",
+    "preview_sha256": "505ec7f706c9e07b6c45443254c7916a79d961cd79582c49df9820f3200b9ae1",
+    "curve_source": "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv",
+    "curve_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+    "generation_record": "results/figure_review_s6_main4_20261107/QA/NUMERICAL_AND_PRESERVATION_QA.json"
+  }
 }

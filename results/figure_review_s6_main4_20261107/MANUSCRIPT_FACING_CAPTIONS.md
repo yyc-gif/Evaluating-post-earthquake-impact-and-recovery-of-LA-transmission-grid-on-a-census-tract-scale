@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-The workflow distinguishes parallel Unconstrained restoration from resource-constrained priority strategies. At each repair completion, station functionality is updated, source connectivity is reevaluated, and tract service is propagated through the dependency mapping; numerical recovery outcomes are reported in the Results figures.
+Stage 4 contrasts saved population-weighted service-availability trajectories for Unconstrained and Impact-first under 2pc50. Unconstrained repairs proceed in parallel; Impact-first uses finite crews, sampled repair durations and directed travel. At each completion, station functionality and source-gated tract service are updated. Curves are frozen model outputs, not averaged schedules or observed outages.
 
 ## Figure 2. Transmission network and tract dependencies
 

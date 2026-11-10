@@ -1,0 +1,114 @@
+{
+  "changed_numbered_artwork": [
+    "Main/Fig01.pdf",
+    "Main/Fig01.png",
+    "Supplement/FigS05.pdf",
+    "Supplement/FigS05.png"
+  ],
+  "figure1_curve_audit": {
+    "artifact_reused_without_replotting_or_rewriting_large_vector_page": true,
+    "curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules": true,
+    "endpoint_at_100h": {
+      "Impact-first": 0.9999627847939658,
+      "Unconstrained": 0.9999999608925917
+    },
+    "execution_mechanics_captioned": true,
+    "figure_dimensions_pt": [
+      524.409423828125,
+      623.6220703125
+    ],
+    "no_new_simulation_or_metric_calculation": true,
+    "outside_stage4_pixels_identical": true,
+    "panel": "4",
+    "plot_type": "frozen population-weighted mean service-availability curves",
+    "points_plotted_per_series": 2001,
+    "scenario": "2pc50",
+    "series_columns": {
+      "Impact-first": "2pc50 | Impact population first | Population",
+      "Unconstrained": "2pc50 | S3_Mean | Population"
+    },
+    "source_curve_values_rechecked": true,
+    "source_file": "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv",
+    "source_rows": 9601,
+    "source_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+    "time_window_hours": [
+      0,
+      100
+    ],
+    "workflow_artifact_commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+    "workflow_artifact_pdf_sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+    "workflow_artifact_png_sha256": "4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2",
+    "workflow_artifact_preview_sha256": "505ec7f706c9e07b6c45443254c7916a79d961cd79582c49df9820f3200b9ae1",
+    "workflow_generation_record_verified": true
+  },
+  "first_build_snapshot_sha256": "02ec338cf8282e749098b2d5640da3cff6ae7d7cb750190b475a1cf3338d9641",
+  "mirrors_match_manifest": true,
+  "numbered_artwork_count": 32,
+  "packet_pages": {
+    "complete": 16,
+    "main": 8,
+    "supplement": 8
+  },
+  "packet_sha256": "3838c8db9634f46b3961131cd6745faafc63044280b94d5c195a567e36a48f7c",
+  "s5_dimensions_mm": [
+    184.99999118381075,
+    144.99999949137367
+  ],
+  "s5_fonts": [
+    "Arial-BoldMT",
+    "ArialMT"
+  ],
+  "s5_minimum_text_pt": 7.0,
+  "s5_plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",
+  "s5_replay_audit": {
+    "all_ranges_are_paired_5th_95th_percentiles": true,
+    "axes_count": 3,
+    "complete_visible_composition_centering": {
+      "after_visible_left_mm": 21.185930555555537,
+      "after_visible_right_mm": 21.18593055555555,
+      "before_visible_left_mm": 35.89686111111111,
+      "before_visible_right_mm": 6.474999999999943,
+      "center_shift_mm": -14.710930555555578,
+      "includes_strategy_labels_axis_titles_and_legends": true
+    },
+    "four_policies_in_all_three_panels": true,
+    "height_mm": 145.0,
+    "independent_600dpi_png_visible_bounds": {
+      "dpi": 600,
+      "height_px": 3426,
+      "ink_threshold_rgb_lt": 248,
+      "visible_bottom_mm": 0.8887915936952715,
+      "visible_left_mm": 21.289178677648135,
+      "visible_right_mm": 21.11988103408831,
+      "visible_top_mm": 6.433158201984822,
+      "width_px": 4371
+    },
+    "no_recovery_model_or_schedule_rerun": true,
+    "policy_labels": [
+      "Impact-first",
+      "Hospital-first",
+      "Degree-first",
+      "Vulnerability-first"
+    ],
+    "range_is_not_a_confidence_interval": true,
+    "source_off_keeps_functionality_threshold_050": true,
+    "source_plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",
+    "threshold_panels_reevaluate_source_connectivity": true,
+    "width_mm": 185.0
+  },
+  "s5_replay_matches_pdf_png_preview": true,
+  "s5_visible_left_right_mm": [
+    21.289178677648135,
+    21.11988103408831
+  ],
+  "second_build_output_file_count": 103,
+  "second_canonical_build_verified": true,
+  "starting_commit": "cb3272058c0d1f244bcaff8d567876a198072ab0",
+  "unchanged_numbered_artwork_count": 28,
+  "workflow_artifact_commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+  "workflow_generation_record_verified": true,
+  "workflow_pdf_sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+  "workflow_png_sha256": "4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2",
+  "workflow_source_csv": "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv",
+  "workflow_source_csv_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922"
+}

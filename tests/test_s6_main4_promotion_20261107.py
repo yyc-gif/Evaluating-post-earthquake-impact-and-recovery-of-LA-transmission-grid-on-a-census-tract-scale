@@ -46,8 +46,8 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
         if record['final_name'] in {'Main/Fig01.pdf','Main/Fig01.png'}:
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
-            assert qa['figure1_updated_only_with_method_process_schematic']
-            assert qa['figure1_stage4_audit']['outside_stage4_pixels_identical']
+            assert qa['figure1_workflow_generated_artifact_reused']
+            assert qa['figure1_stage4_audit']['workflow_generation_record_verified']
         elif record['final_name'] in {'Supplement/FigS05.pdf','Supplement/FigS05.png'}:
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
@@ -77,53 +77,57 @@ def test_preservation_registry_compares_frozen_inputs_to_actual_outputs():
         else:
             assert row['byte_identical']
 
-def test_figure1_stage4_is_execution_process_not_result_curves():
-    import numpy as np
+def test_figure1_uses_hash_verified_workflow_generated_curves():
+    import inspect
+    import figure_presentation
+    import build_current_suite_p2
 
-    with fitz.open(SUITE/'Main/Fig01.pdf') as doc:
-        page=doc[0]
-        text=clean_pdf_text(page.get_text())
-        for phrase in ('Unconstrained reference','Repairs proceed in parallel.',
-                       'No crew or travel limits.','Priority rules and GA search',
-                       'Fixed priorities include Vulnerability-first.',
-                       'GA search uses service-burden objective.',
-                       'Finite crews schedule DS-specific tasks.',
-                       'Repair durations vary by damage state.',
-                       'Directed road travel links tasks.',
-                       'Schedules set repair-completion times.',
-                       'Repair-completion events','Raw station functionality set to 1',
-                       'Re-evaluate source connectivity','Update tract service through W'):
-            assert phrase in text
-        stage4=[s for block in page.get_text('dict')['blocks']
-                for line in block.get('lines',[]) for s in line.get('spans',[])
-                if 481.7<s['bbox'][1]<614.7 and 9.5<s['bbox'][0]<256.3]
-        stage4_text=clean_pdf_text(' '.join(s['text'] for s in stage4))
-        for obsolete in ('Mean population-weighted service availability',
-                         'Unconstrained | Impact-first','Time after earthquake (h)',
-                         'Modeled service availability curves'):
-            assert obsolete not in stage4_text
-        assert all(s['bbox'][0]>=9.5 and s['bbox'][2]<=256.3 for s in stage4)
-    source=builder.source(builder.SOURCE+'/Main/Fig01.pdf')
-    with fitz.open(stream=source,filetype='pdf') as before, fitz.open(SUITE/'Main/Fig01.pdf') as after:
-        a=before[0].get_pixmap(dpi=120,alpha=False)
-        b=after[0].get_pixmap(dpi=120,alpha=False)
-        ar=np.frombuffer(a.samples,dtype=np.uint8).reshape(a.height,a.width,3)
-        br=np.frombuffer(b.samples,dtype=np.uint8).reshape(b.height,b.width,3)
-        assert ar.shape==br.shape
-        outside=np.ones(ar.shape[:2],dtype=bool)
-        scale=120/72
-        outside[round(481.7*scale)-2:round(614.7*scale)+2,
-                round(9.5*scale)-2:round(256.3*scale)+2]=False
-        assert np.array_equal(ar[outside],br[outside])
+    artifact_commit=builder.WORKFLOW_ARTIFACT_COMMIT
+    pdf=builder.u.payload(artifact_commit,builder.WORKFLOW_ARTIFACT_PDF)
+    png=builder.u.payload(artifact_commit,builder.WORKFLOW_ARTIFACT_PNG)
+    preview=builder.u.payload(artifact_commit,builder.WORKFLOW_ARTIFACT_PREVIEW)
+    curves=builder.source(builder.WORKFLOW_CURVES)
+    record=json.loads(builder.u.payload(artifact_commit,builder.WORKFLOW_GENERATION_RECORD))
+    checked_pdf,checked_png,checked_preview,audit=(
+        figure_presentation.verify_restoration_workflow_artifact(
+            curves,pdf,png,preview,record))
+    assert (SUITE/'Main/Fig01.pdf').read_bytes()==checked_pdf
+    assert (SUITE/'Main/Fig01.png').read_bytes()==checked_png
+    assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==checked_preview
+    assert audit['source_rows']==9601
+    assert audit['points_plotted_per_series']==2001
+    assert audit['series_columns']=={
+        'Unconstrained':'2pc50 | S3_Mean | Population',
+        'Impact-first':'2pc50 | Impact population first | Population'}
+    assert audit['outside_stage4_pixels_identical']
+    generator_source=inspect.getsource(builder.main)
+    assert 'verify_restoration_workflow_artifact' in generator_source
+    assert 'restoration_workflow(' not in generator_source
+    assert 'draw_rect' not in inspect.getsource(figure_presentation.restoration_workflow)
+    p2_builder_source=inspect.getsource(build_current_suite_p2.main)
+    assert 'verify_restoration_workflow_artifact' in p2_builder_source
+    assert "source(FIG1_CURVE_SOURCE,CURRENT_SUITE_BASE)" in p2_builder_source
+    assert 'restoration_workflow(original_f1)' not in p2_builder_source
+    p2_caption=build_current_suite_p2.captions()[0][1]
+    assert 'saved Unconstrained and Impact-first service-availability trajectories' in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    assert 'repair completion' in fig1 and 'numerical recovery outcomes' in fig1
-    assert 'availability trajectories' not in fig1
+    for phrase in ('saved population-weighted service-availability trajectories',
+                   'Unconstrained and Impact-first','finite crews','sampled repair durations',
+                   'directed travel','At each completion','source-gated tract service',
+                   'not averaged schedules'):
+        assert phrase in fig1
+    manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
+    row=next(r for r in manifest if r['final_name']=='Main/Fig01.pdf')
+    assert row['workflow_artifact_commit']==artifact_commit
+    assert row['workflow_artifact_sha256']==hashlib.sha256(pdf).hexdigest()
+    assert row['workflow_curve_source_sha256']==hashlib.sha256(curves).hexdigest()
 
 
 def test_s5_actual_pdf_png_packet_and_visual_centering():
     from PIL import Image
     import numpy as np
+    import figure_presentation
 
     pdf_path=SUITE/'Supplement/FigS05.pdf'
     png_path=SUITE/'Supplement/FigS05.png'
@@ -131,12 +135,17 @@ def test_s5_actual_pdf_png_packet_and_visual_centering():
     with fitz.open(pdf_path) as doc:
         page=doc[0]
         assert abs(page.rect.width*25.4/72-185.0)<.01
-        assert abs(page.rect.height*25.4/72-210.0)<.01
+        assert abs(page.rect.height*25.4/72-145.0)<.01
         text=clean_pdf_text(page.get_text())
         for value in ('Impact-first','Hospital-first','Degree-first','Vulnerability-first',
                       'A. Mapping-weight cutoff','B. Source-connectivity gate',
                       'C. Functionality threshold','0% cutoff','1% cutoff','0.05','0.75'):
             assert value in text
+        spans=[s for block in page.get_text('dict')['blocks']
+               for line in block.get('lines',[]) for s in line.get('spans',[])
+               if s['text'].strip()]
+        assert min(s['size'] for s in spans)>=7.0
+        assert {s['font'] for s in spans}=={'ArialMT','Arial-BoldMT'}
         assert page.get_pixmap(dpi=600,alpha=False).tobytes('png')==png_path.read_bytes()
         assert page.get_pixmap(dpi=150,alpha=False).tobytes('png')==preview_path.read_bytes()
 
@@ -163,11 +172,27 @@ def test_s5_actual_pdf_png_packet_and_visual_centering():
     assert (ROOT/rec['mirror_file']).read_bytes()==pdf_path.read_bytes()
     audit=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
     margins=audit['s5_vulnerability_plot_audit']['complete_visible_composition_centering']
+    assert audit['s5_compact_height_mm']==145.0
     assert abs(margins['after_visible_left_mm']-margins['after_visible_right_mm'])<.15
     assert margins['includes_strategy_labels_axis_titles_and_legends']
     raster=audit['s5_vulnerability_plot_audit']['independent_600dpi_png_visible_bounds']
     assert abs(raster['visible_left_mm']-left)<.02
     assert abs(raster['visible_right_mm']-right)<.02
+
+    plot_data=(SUITE/'QA/S5_VULNERABILITY_PLOT_DATA.json').read_bytes()
+    series=json.loads(plot_data)['series']
+    assert len(series)==20
+    assert {panel:sum(row['panel']==panel for row in series)
+            for panel in ('A','B','C')}=={'A':8,'B':4,'C':8}
+    for panel in ('A','B','C'):
+        assert {row['policy'] for row in series if row['panel']==panel}=={
+            'impact-first','hospital-first','degree-first','vulnerability-first'}
+    replay_pdf,replay_png,replay_preview,replay_audit=(
+        figure_presentation.supplementary5_four_policy(plot_data))
+    assert replay_pdf==pdf_path.read_bytes()
+    assert replay_png==png_path.read_bytes()
+    assert replay_preview==preview_path.read_bytes()
+    assert replay_audit['source_plot_data_sha256']==audit['s5_vulnerability_plot_data_sha256']
 
     plot_rel='results/figure_review_s6_main4_20261107/QA/S5_VULNERABILITY_PLOT_DATA.json'
     committed=json.loads(subprocess.check_output(['git','show',
@@ -270,14 +295,15 @@ def test_palette_and_source_science_preserved():
     assert expected==actual
     q=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
     assert q['all_four_promoted_panels_preserved']
-    assert q['figure1_updated_only_with_method_process_schematic']
+    assert q['figure1_workflow_generated_artifact_reused']
+    assert q['figure1_curve_source_sha256']=='b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922'
     assert q['unaffected_13_artwork_pairs_byte_identical']
     assert q['figure8_separate_map_legends_updated']
     assert q['dynamic_full_minus_fixed_identity_max_abs_error']<1e-12
     assert q['static_station_records']==92 and q['static_core_source_records']==14
     for path,record in json.loads((SUITE/'QA/SOURCE_IDENTITIES.json').read_text())['source_files'].items():
         if not path.startswith('derived/'):
-            assert hashlib.sha256(builder.source(path)).hexdigest()==record['sha256']
+            assert hashlib.sha256(builder.u.payload(record['commit'],path)).hexdigest()==record['sha256']
 
 def test_s5_four_policy_sensitivity_contains_verified_vulnerability_first():
     with fitz.open(SUITE/'Supplement/FigS05.pdf') as doc:

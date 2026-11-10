@@ -314,16 +314,17 @@ def supplementary5_four_policy(plot_data_bytes):
         'ps.fonttype':42,'axes.linewidth':0.45,
         'xtick.major.width':0.45,'ytick.major.width':0.45,
     }):
-        fig=plt.figure(figsize=(185/25.4,210/25.4),facecolor='white')
-        axes=[fig.add_axes([.305,.705,.66,.195]),
-              fig.add_axes([.305,.395,.66,.195]),
-              fig.add_axes([.305,.085,.66,.195])]
+        figure_height_mm=145.0
+        fig=plt.figure(figsize=(185/25.4,figure_height_mm/25.4),facecolor='white')
+        axes=[fig.add_axes([.305,.715,.66,.215]),
+              fig.add_axes([.305,.385,.66,.215]),
+              fig.add_axes([.305,.055,.66,.215])]
         y_positions={policy:3-i for i,policy in enumerate(policies)}
         neutral='#405a72'
         secondary='#8a6380'
 
         def format_axis(ax,title,xlabel,xlim,xticks):
-            ax.set_title(title,loc='left',fontsize=9.2,fontweight='bold',pad=5.0)
+            ax.set_title(title,loc='left',fontsize=9.2,fontweight='bold',pad=3.8)
             ax.set_xlim(*xlim);ax.set_xticks(xticks)
             ax.set_ylim(-.45,3.45)
             ax.set_yticks([3,2,1,0]);ax.set_yticklabels(names,fontsize=7.2)
@@ -359,8 +360,8 @@ def supplementary5_four_policy(plot_data_bytes):
         ax.legend(handles=[
             Line2D([],[],marker='o',linestyle='none',color=neutral,markersize=3.7,label='0% cutoff'),
             Line2D([],[],marker='s',linestyle='none',color=secondary,markersize=3.7,label='1% cutoff')],
-            loc='upper right',bbox_to_anchor=(1,-.18),ncol=2,frameon=False,
-            fontsize=6.6,handletextpad=.35,columnspacing=.8,borderaxespad=.25)
+            loc='upper right',bbox_to_anchor=(1,1.12),ncol=2,frameon=False,
+            fontsize=7.0,handletextpad=.35,columnspacing=.8,borderaxespad=.15)
 
         ax=axes[1]
         format_axis(ax,'B. Source-connectivity gate',
@@ -385,8 +386,8 @@ def supplementary5_four_policy(plot_data_bytes):
         ax.legend(handles=[
             Line2D([],[],marker='o',linestyle='none',color=neutral,markersize=3.7,label='0.05'),
             Line2D([],[],marker='s',linestyle='none',color=secondary,markersize=3.7,label='0.75')],
-            loc='upper right',bbox_to_anchor=(1,-.20),ncol=2,frameon=False,
-            fontsize=6.6,handletextpad=.35,columnspacing=.8,borderaxespad=.25)
+            loc='upper right',bbox_to_anchor=(1,1.12),ncol=2,frameon=False,
+            fontsize=7.0,handletextpad=.35,columnspacing=.8,borderaxespad=.15)
 
         # Center the *complete visible composition* (labels, axes, legends,
         # panel titles and tick labels), not the rectangular plotting axes.
@@ -429,7 +430,7 @@ def supplementary5_four_policy(plot_data_bytes):
             png=final[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
             preview=final[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
             assert abs(final[0].rect.width-524.40945)<.02
-            assert abs(final[0].rect.height-595.2756)<.02
+            assert abs(final[0].rect.height-figure_height_mm*72/25.4)<.02
             text=' '.join(final[0].get_text().split())
             for value in ('Impact-first','Hospital-first','Degree-first','Vulnerability-first',
                           '0% cutoff','1% cutoff','0.05','0.75',
@@ -445,8 +446,8 @@ def supplementary5_four_policy(plot_data_bytes):
         'dpi':600,'width_px':int(raster.shape[1]),'height_px':int(raster.shape[0]),
         'visible_left_mm':float(185.0*xs.min()/raster.shape[1]),
         'visible_right_mm':float(185.0*(raster.shape[1]-1-xs.max())/raster.shape[1]),
-        'visible_top_mm':float(210.0*ys.min()/raster.shape[0]),
-        'visible_bottom_mm':float(210.0*(raster.shape[0]-1-ys.max())/raster.shape[0]),
+        'visible_top_mm':float(figure_height_mm*ys.min()/raster.shape[0]),
+        'visible_bottom_mm':float(figure_height_mm*(raster.shape[0]-1-ys.max())/raster.shape[0]),
         'ink_threshold_rgb_lt':248,
     }
     assert abs(raster_margins['visible_left_mm']-raster_margins['visible_right_mm'])<=1.0
@@ -458,113 +459,77 @@ def supplementary5_four_policy(plot_data_bytes):
         'range_is_not_a_confidence_interval':True,
         'source_off_keeps_functionality_threshold_050':True,
         'threshold_panels_reevaluate_source_connectivity':True,
-        'width_mm':185.0,'height_mm':210.0,
+        'width_mm':185.0,'height_mm':figure_height_mm,
         'axes_count':3,'no_recovery_model_or_schedule_rerun':True,
         'complete_visible_composition_centering':center_audit,
         'independent_600dpi_png_visible_bounds':raster_margins,
     }
 
 
-def restoration_workflow(raw):
-    """Replace Figure 1 Stage 4 with the repair-completion update process."""
-    with fitz.open(stream=raw,filetype='pdf') as doc:
-        page=doc[0]
-        w,h=page.rect.width,page.rect.height
-        all_spans=spans(page)
-        title_text='Restoration Strategies and Execution'
-        assert any(' '.join(s['text'].replace('\u00a0',' ').split())==title_text
-                   for s in all_spans)
-        old=[s for s in all_spans
-             if 9.5<s['bbox'][0]<258 and 481<s['bbox'][1]<614]
-        old_text={' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
-                            .replace('\u037e',';').split()) for s in old}
-        assert {'Unconstrained reference',
-                'Repairs proceed in parallel using sampled durations.',
-                'Constrained restoration','Priority strategy sets repair order.',
-                'Finite crews; dispatch includes directed travel and repairs.',
-                'Repair completion: station functionality = 1',
-                'Source gate + tract weights','Modeled service availability curves'}.issubset(old_text),old_text
-        # Text-only redaction keeps the surrounding scientific artwork intact.
-        for span in old:
-            page.add_redact_annot(fitz.Rect(span['bbox']),fill=None)
-        page.apply_redactions(images=0,graphics=0)
-        white=(1.,1.,1.)
-        ink=(32/255,40/255,43/255)
-        page.draw_rect(fitz.Rect(9.5,481.7,256.3,614.7),color=None,fill=white,overlay=True)
-        page.insert_font(fontname='Fig1RestorationBold',fontfile='C:/Windows/Fonts/arialbd.ttf')
-        page.insert_font(fontname='Fig1RestorationBody',fontfile='C:/Windows/Fonts/arial.ttf')
+def restoration_workflow(raw, recovery_curves_csv=None):
+    """Build Stage 4 from saved workflow trajectories; never substitute a schematic."""
+    if recovery_curves_csv is None:
+        raise ValueError('Figure 1 Stage 4 requires the frozen workflow recovery-curves CSV.')
+    return restoration_workflow_with_results(raw, recovery_curves_csv)
 
-        def label(text,x,y,size=7.5,bold=False,color=ink):
-            page.insert_text((x,y),text,
-                fontname='Fig1RestorationBold' if bold else 'Fig1RestorationBody',
-                fontsize=size,color=color,overlay=True)
 
-        label('Unconstrained reference',17.0,495.0,6.7,True)
-        label('Repairs proceed in parallel.',17.0,505.2,7.0)
-        label('No crew or travel limits.',17.0,514.0,7.0)
-        label('Priority rules and GA search',118.0,495.0,6.8,True)
-        right_lines=[
-            'Fixed priorities include Vulnerability-first.',
-            'GA search uses service-burden objective.',
-            'Finite crews schedule DS-specific tasks.',
-            'Repair durations vary by damage state.',
-            'Directed road travel links tasks.',
-            'Schedules set repair-completion times.',
-        ]
-        line_font=fitz.Font(fontfile='C:/Windows/Fonts/arial.ttf')
-        assert all(line_font.text_length(text,fontsize=7.0)<=132.0 for text in right_lines)
-        for text,y in zip(right_lines,[503.0,510.6,518.2,525.8,533.4,541.0]):
-            label(text,118.0,y,7.0)
-        page.draw_line(fitz.Point(108.0,487.8),fitz.Point(108.0,541.8),
-                       color=(0.82,0.85,0.86),width=0.45,overlay=True)
-        page.draw_line(fitz.Point(15.5,545.0),fitz.Point(250.0,545.0),
-                       color=(0.82,0.85,0.86),width=0.45,overlay=True)
-        label('Repair-completion events',15.5,554.0,7.0,True)
+def verify_restoration_workflow_artifact(recovery_curves_csv, workflow_pdf,
+                                        workflow_png, workflow_preview,
+                                        workflow_generation_record):
+    """Verify and return the previously generated, hash-registered workflow artwork."""
+    import csv
+    import numpy as np
 
-        boxes=[(15.5,'Repair\ncompletes'),(75.0,'Raw station\nfunctionality\nset to 1'),
-               (134.5,'Re-evaluate\nsource\nconnectivity'),(194.0,'Update tract\nservice\nthrough W')]
-        box_width=53.0; top=560.0; bottom=590.0
-        for x,text in boxes:
-            page.draw_rect(fitz.Rect(x,top,x+box_width,bottom),
-                           color=(.56,.62,.65),fill=(.98,.99,.99),
-                           width=.55,overlay=True)
-            lines=text.split('\n')
-            line_y=top+(bottom-top-(len(lines)-1)*8.4)/2+2.2
-            for line_text in lines:
-                text_width=fitz.Font(fontfile='C:/Windows/Fonts/arial.ttf').text_length(
-                    line_text,fontsize=7.0)
-                assert text_width<=box_width-4.0,(line_text,text_width,box_width)
-                label(line_text,x+(box_width-text_width)/2,line_y,7.0)
-                line_y+=8.4
-        for x1,x2 in ((68.5,75.0),(128.0,134.5),(187.5,194.0)):
-            y=575.0
-            page.draw_line(fitz.Point(x1,y),fitz.Point(x2-1.5,y),
-                           color=(.30,.37,.40),width=.7,overlay=True)
-            page.draw_polyline([fitz.Point(x2-3.4,y-1.8),fitz.Point(x2-1.5,y),
-                                fitz.Point(x2-3.4,y+1.8)],
-                               color=(.30,.37,.40),width=.7,overlay=True)
-        label('Station service is reevaluated after each repair completion.',15.5,602.0,7.0)
+    expected_curve_sha='b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922'
+    expected_pdf_sha='cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf'
+    expected_png_sha='4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2'
+    expected_preview_sha='505ec7f706c9e07b6c45443254c7916a79d961cd79582c49df9820f3200b9ae1'
+    digest=lambda raw:hashlib.sha256(raw).hexdigest()
+    assert digest(recovery_curves_csv)==expected_curve_sha
+    assert digest(workflow_pdf)==expected_pdf_sha
+    assert digest(workflow_png)==expected_png_sha
+    assert digest(workflow_preview)==expected_preview_sha
 
-        result=finish(doc)
-        return result,dict(
-            panel='4',title=title_text,
-              execution_modes=['Unconstrained reference','Constrained restoration'],
-              priority_rules=['Predefined repair priorities, including Vulnerability-first'],
-              ga='Search-based repair-order planning against service burden; no global optimum implied.',
-              scheduling=['Finite crews','DS-specific repair tasks and durations','Directed road travel between tasks'],
-            old_internal_labels_visually_replaced=sorted(old_text),
-            output='Repair completion updates functionality, source connectivity and mapped tract service.',
-            no_threshold_or_T80_in_panel=True,
-            unconstrained='Repairs proceed in parallel; no finite-crew or travel limits.',
-            constrained='Priority order; finite crews; dispatch includes directed travel.',
-            panel_bounds_preserved=True,other_panels_and_stage_5_content_unchanged=True,
-            body_font='Arial',body_font_size_pt=7.0,
-            illustrative_curves_removed=True,completion_event_recovery=True,
-              process_steps=['Repair completes','Raw station functionality set to 1',
-                             'Re-evaluate source connectivity','Update tract service through W'],
-            original_panel_graphics_covered_by_opaque_vector_replacement=True,
-            source_vector_signature='outside authorized panel verified by native-render pixel test',
-            width_pt=w,height_pt=h)
+    rows=list(csv.DictReader(io.StringIO(recovery_curves_csv.decode('utf-8-sig'))))
+    time=np.asarray([float(row['time_hr']) for row in rows],dtype=float)
+    columns={
+        'Unconstrained':'2pc50 | S3_Mean | Population',
+        'Impact-first':'2pc50 | Impact population first | Population',
+    }
+    assert len(rows)==9601 and np.all(np.isfinite(time))
+    assert time[0]==0 and np.all(np.diff(time)>0) and time[-1]>=100
+    keep=time<=100
+    assert int(keep.sum())==2001 and np.any(np.isclose(time,100))
+    endpoints={}
+    for name,column in columns.items():
+        values=np.asarray([float(row[column]) for row in rows],dtype=float)
+        assert len(values)==len(time) and np.all(np.isfinite(values))
+        assert np.all((values>=0)&(values<=1))
+        endpoints[name]=float(values[np.flatnonzero(np.isclose(time,100))[0]])
+
+    recorded=workflow_generation_record['figure1_source_curve_audit']
+    assert workflow_generation_record['figure1_updated_only_with_frozen_result_curve']
+    assert recorded['source_sha256']==expected_curve_sha
+    assert recorded['source_rows']==len(rows)
+    assert recorded['series_columns']==columns
+    assert recorded['points_plotted_per_series']==int(keep.sum())
+    assert recorded['curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules']
+    np.testing.assert_allclose(
+        [recorded['endpoint_at_100h'][name] for name in columns],
+        [endpoints[name] for name in columns],atol=1e-14,rtol=0)
+    assert recorded['outside_stage4_pixels_identical']
+    assert recorded['figure_dimensions_pt']==[524.409423828125,623.6220703125]
+    return workflow_pdf,workflow_png,workflow_preview,{
+        **recorded,
+        'workflow_artifact_commit':'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15',
+        'workflow_artifact_pdf_sha256':expected_pdf_sha,
+        'workflow_artifact_png_sha256':expected_png_sha,
+        'workflow_artifact_preview_sha256':expected_preview_sha,
+        'workflow_generation_record_verified':True,
+        'source_curve_values_rechecked':True,
+        'artifact_reused_without_replotting_or_rewriting_large_vector_page':True,
+        'execution_mechanics_captioned':True,
+    }
 
 
 def restoration_workflow_with_results(raw, recovery_curves_csv):
@@ -666,7 +631,9 @@ def restoration_workflow_with_results(raw, recovery_curves_csv):
 
 
 def apply(stem,raw):
-    return {'Main/Fig01':restoration_workflow,'Main/Fig05':figure5,'Main/Fig07':figure7,'Supplement/FigS03':functional_network_recovery,
+    if stem=='Main/Fig01':
+        raise ValueError('Use the hash-verified workflow-generated Figure 1 artifact or provide frozen curves.')
+    return {'Main/Fig05':figure5,'Main/Fig07':figure7,'Supplement/FigS03':functional_network_recovery,
             'Supplement/FigS08':supplementary8}[stem](raw)
 
 

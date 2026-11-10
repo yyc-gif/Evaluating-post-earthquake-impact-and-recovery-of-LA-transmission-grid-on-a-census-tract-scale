@@ -19,6 +19,13 @@ from short_current_captions_20261013 import brief_caption_page
 
 ROOT=u.ROOT
 BASE='75cd19d4a0249d006efa00d4532762d0ee406c5a'
+WORKFLOW_ARTIFACT_COMMIT='ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15'
+WORKFLOW_ARTIFACT_DIR='results/figure_review_s6_main4_20261107'
+WORKFLOW_ARTIFACT_PDF=WORKFLOW_ARTIFACT_DIR+'/Main/Fig01.pdf'
+WORKFLOW_ARTIFACT_PNG=WORKFLOW_ARTIFACT_DIR+'/Main/Fig01.png'
+WORKFLOW_ARTIFACT_PREVIEW=WORKFLOW_ARTIFACT_DIR+'/Page_Previews/Fig01.png'
+WORKFLOW_GENERATION_RECORD=WORKFLOW_ARTIFACT_DIR+'/QA/NUMERICAL_AND_PRESERVATION_QA.json'
+WORKFLOW_CURVES='provenance/legacy_outputs/stage6/recovery_curves_all_system.csv'
 SOURCE='results/figure_review_rq_aligned_20261101'
 SOURCE_MIRROR='results/figures_rq_aligned_20261101'
 DEST=ROOT/'results/figure_review_s6_main4_20261107'
@@ -47,6 +54,7 @@ INPUTS=[
     'src/la_grid/plotting/figure_presentation.py',
     'src/la_grid/plotting/build_current_suite_p2.py',
     SOURCE+'/CURRENT_CLUSTER_PALETTE.json',
+    WORKFLOW_CURVES,
 ]
 
 def source(path):
@@ -96,31 +104,26 @@ def main(output_dir=None,mirror_dir=None):
         'sha256':u.digest(s5_plot_data),'bytes':len(s5_plot_data)}
     dynamic=pd.read_csv(io.BytesIO(source(INPUTS[1])))
     station=pd.read_csv(io.BytesIO(source(INPUTS[2])),dtype={'station_id':str})
-    palette_path=INPUTS[-1]
-    palette_bytes=source(INPUTS[-1])
+    palette_path=SOURCE+'/CURRENT_CLUSTER_PALETTE.json'
+    palette_bytes=source(palette_path)
     palette=json.loads(palette_bytes)
     assert palette['colors']=={'1':'#3C9198','2':'#52699E','3':'#C69EBA'}
-    stage4_pdf,stage4_audit=figure_presentation.restoration_workflow(
-        source(SOURCE+'/Main/Fig01.pdf'))
-    with fitz.open(stream=source(SOURCE+'/Main/Fig01.pdf'),filetype='pdf') as before_doc, \
-         fitz.open(stream=stage4_pdf,filetype='pdf') as after_doc:
-        before_pix=before_doc[0].get_pixmap(dpi=120,alpha=False)
-        after_pix=after_doc[0].get_pixmap(dpi=120,alpha=False)
-        before_rgb=np.frombuffer(before_pix.samples,dtype=np.uint8).reshape(
-            before_pix.height,before_pix.width,3)
-        after_rgb=np.frombuffer(after_pix.samples,dtype=np.uint8).reshape(
-            after_pix.height,after_pix.width,3)
-        assert before_rgb.shape==after_rgb.shape
-        scale=120/72
-        outside=np.ones(before_rgb.shape[:2],dtype=bool)
-        outside[round(481.7*scale)-2:round(614.7*scale)+2,
-                round(9.5*scale)-2:round(256.3*scale)+2]=False
-        stage4_audit['outside_stage4_pixels_identical']=bool(
-            np.array_equal(before_rgb[outside],after_rgb[outside]))
-        assert stage4_audit['outside_stage4_pixels_identical']
-    with fitz.open(stream=stage4_pdf,filetype='pdf') as stage4_doc:
-        stage4_png=stage4_doc[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
-        stage4_preview=stage4_doc[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
+    workflow_csv=source(WORKFLOW_CURVES)
+    workflow_pdf=u.payload(WORKFLOW_ARTIFACT_COMMIT,WORKFLOW_ARTIFACT_PDF)
+    workflow_png=u.payload(WORKFLOW_ARTIFACT_COMMIT,WORKFLOW_ARTIFACT_PNG)
+    workflow_preview=u.payload(WORKFLOW_ARTIFACT_COMMIT,WORKFLOW_ARTIFACT_PREVIEW)
+    workflow_record=json.loads(u.payload(WORKFLOW_ARTIFACT_COMMIT,WORKFLOW_GENERATION_RECORD))
+    stage4_pdf,stage4_png,stage4_preview,stage4_audit=(
+        figure_presentation.verify_restoration_workflow_artifact(
+            workflow_csv,workflow_pdf,workflow_png,workflow_preview,workflow_record))
+    stage4_audit['starting_figure1_sha256']=u.digest(source(SOURCE+'/Main/Fig01.pdf'))
+    source_hashes.update({path:{'commit':WORKFLOW_ARTIFACT_COMMIT,
+                                'sha256':u.digest(raw),'bytes':len(raw)}
+                          for path,raw in [(WORKFLOW_ARTIFACT_PDF,workflow_pdf),
+                                           (WORKFLOW_ARTIFACT_PNG,workflow_png),
+                                           (WORKFLOW_ARTIFACT_PREVIEW,workflow_preview),
+                                           (WORKFLOW_GENERATION_RECORD,
+                                            u.payload(WORKFLOW_ARTIFACT_COMMIT,WORKFLOW_GENERATION_RECORD))]})
     figure8_legend_audit=None
     figure8_pdf=figure8_png=figure8_preview=None
     s5_pdf,s5_png,s5_preview,s5_plot_audit=figure_presentation.supplementary5_four_policy(s5_plot_data)
@@ -136,9 +139,10 @@ def main(output_dir=None,mirror_dir=None):
         title=label(new)+'.'+old_title.split('.',1)[1]
         body=references(body)
         if new=='Main/Fig01':
-            body=('The workflow distinguishes parallel Unconstrained restoration from resource-constrained priority strategies. '
-                  'At each repair completion, station functionality is updated, source connectivity is reevaluated, and tract service '
-                  'is propagated through the dependency mapping; numerical recovery outcomes are reported in the Results figures.')
+            body=('Stage 4 contrasts saved population-weighted service-availability trajectories for Unconstrained and Impact-first under 2pc50. '
+                  'Unconstrained repairs proceed in parallel; Impact-first uses finite crews, sampled repair durations and directed travel. '
+                  'At each completion, station functionality and source-gated tract service are updated. '
+                  'Curves are frozen model outputs, not averaged schedules or observed outages.')
         if new=='Main/Fig08':
             old_rule='outlines mark frozen Q4 and the cohort P75'
             new_rule=('outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) '
@@ -189,13 +193,13 @@ def main(output_dir=None,mirror_dir=None):
                 current_source_file=new_path.relative_to(ROOT).as_posix(),
                 mirror_file=mirror_path.relative_to(ROOT).as_posix(),source_commit=BASE,
                 source_file=f'{SOURCE}/{old}.{ext}',
-                status=('UPDATED_STAGE4_PROCESS_SCHEMATIC' if new=='Main/Fig01' else
+                status=('RESTORED_WORKFLOW_GENERATED_CURVES' if new=='Main/Fig01' else
                         'UPDATED_SEPARATE_MAP_LEGENDS' if new=='Main/Fig08' else
                         'UPDATED_FOUR_POLICY_SENSITIVITY' if new=='Supplement/FigS05' else
                         'RENUMBERED_REVIEW_ARTWORK_UNCHANGED'),
                 promotion_generator=GEN,promotion_generator_sha256=u.sha(ROOT/GEN),
                 previous_figure=old,
-                change_in_this_update=('STAGE4_METHOD_PROCESS_REPLACES_ACTUAL_RESULT_CURVES' if new=='Main/Fig01' else
+                change_in_this_update=('HASH_VERIFIED_WORKFLOW_ARTWORK_WITH_FROZEN_RECOVERY_CURVES' if new=='Main/Fig01' else
                                        'SEPARATE_PANEL_C_AND_D_LEGENDS' if new=='Main/Fig08' else
                                        'VULNERABILITY_FIRST_ADDED_TO_VERIFIED_SENSITIVITY_COMPARISONS' if new=='Supplement/FigS05' else
                                        'NUMBERING_AND_CAPTION_ONLY'))
@@ -207,6 +211,13 @@ def main(output_dir=None,mirror_dir=None):
             if new=='Supplement/FigS05':
                 row.update(additional_source_file='results/figure_review_s6_main4_20261107/QA/S5_VULNERABILITY_PLOT_DATA.json',
                            additional_source_sha256=u.digest(s5_plot_data))
+            if new=='Main/Fig01':
+                row.update(workflow_artifact_commit=WORKFLOW_ARTIFACT_COMMIT,
+                           workflow_artifact_file=WORKFLOW_ARTIFACT_PDF if ext=='pdf' else WORKFLOW_ARTIFACT_PNG,
+                           workflow_artifact_sha256=u.digest(workflow_pdf if ext=='pdf' else workflow_png),
+                           workflow_curve_source_file=WORKFLOW_CURVES,
+                           workflow_curve_source_sha256=u.digest(workflow_csv),
+                           workflow_generation_record=WORKFLOW_GENERATION_RECORD)
             for key in ['notes','main_message','scientific_content','scientific_question']:
                 if key in ix:ix[key]=references(ix[key])
             ix.update(figure_number=Path(new).name,file=mirror_path.name,
@@ -220,7 +231,7 @@ def main(output_dir=None,mirror_dir=None):
                     main_message='Dynamic full-network/fixed-path comparisons and conditional station maps retain all four panels.',
                     notes='Complete former S6, byte-identical artwork; insert between Sections 4.2 and 4.3.')
             if new=='Main/Fig01':
-                ix.update(notes='Stage 4 distinguishes restoration execution modes and shows repair-completion updates to station functionality, source connectivity and tract service.')
+                ix.update(notes='Stage 4 uses saved Unconstrained and Impact-first service-availability curves; constrained strategy execution and completion-event service updates are defined in the caption.')
             if new=='Main/Fig08':
                 ix.update(notes='Panel C and Panel D have separate aligned legends; the exact Q4 and service-deficit screen definitions are in the caption.')
             if new=='Supplement/FigS05':
@@ -274,16 +285,28 @@ def main(output_dir=None,mirror_dir=None):
         for path in implementation_files}
     u.dump(dest/'QA/SOURCE_IDENTITIES.json',{'baseline':BASE,'source_files':source_hashes,
         'implementation_files':implementation,
-        'original_notes_describe_separate_candidates_not_exact_current_S6':True})
+        'original_notes_describe_separate_candidates_not_exact_current_S6':True,
+        'workflow_generated_figure1_artifact':{
+            'commit':WORKFLOW_ARTIFACT_COMMIT,'pdf':WORKFLOW_ARTIFACT_PDF,
+            'pdf_sha256':u.digest(workflow_pdf),'png':WORKFLOW_ARTIFACT_PNG,
+            'png_sha256':u.digest(workflow_png),'preview':WORKFLOW_ARTIFACT_PREVIEW,
+            'preview_sha256':u.digest(workflow_preview),
+            'curve_source':WORKFLOW_CURVES,'curve_sha256':u.digest(workflow_csv),
+            'generation_record':WORKFLOW_GENERATION_RECORD}})
     u.dump(dest/'QA/PACKET_PAGE_REGISTRY.json',page_rows)
     u.dump(dest/'QA/NUMBERING_MAP.json',MAPPING)
     qa={'source_commit':BASE,
-        'figure1_updated_only_with_method_process_schematic':True,
+        'figure1_workflow_generated_artifact_reused':True,
         'figure1_stage4_audit':stage4_audit,
+        'figure1_curve_source_sha256':u.digest(workflow_csv),
+        'figure1_workflow_artifact_commit':WORKFLOW_ARTIFACT_COMMIT,
+        'figure1_workflow_pdf_sha256':u.digest(workflow_pdf),
+        'figure1_workflow_png_sha256':u.digest(workflow_png),
         'unaffected_13_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure'] not in ['Main/Fig01','Main/Fig07','Supplement/FigS05']),
         'figure8_separate_map_legends_updated':True,
         'figure8_legend_audit':figure8_legend_audit,
         's5_vulnerability_plot_audit':s5_plot_audit,
+        's5_compact_height_mm':s5_plot_audit['height_mm'],
         's5_vulnerability_archive_audit_sha256':u.digest(s5_audit_path.read_bytes()),
         's5_vulnerability_plot_data_sha256':u.digest(s5_plot_data),
         'main_figures':8,'supplementary_figures':8,'complete_packet_pages':16,
@@ -337,8 +360,8 @@ def main(output_dir=None,mirror_dir=None):
         'Main 4-7 become 5-8; former Supplement S7-S9 become S6-S8; Supplement S1-S5 remain unchanged. '
         'The collection contains eight main plus eight supplementary figures. Combined packet: 16 pages, each artwork followed immediately by its concise caption on the same page.\n\n'
         'This is a separate author-review collection. The source suite, manuscripts, simulation data, restoration results and clustering are unchanged. '
-        'Figure 1 Stage 4 is a restoration-execution process schematic without actual recovery curves. Figure 8 has separate Panel C and Panel D legends, with exact definitions in its caption. Supplementary Figure S5 includes Vulnerability-first comparisons calculated from its saved event-state archive; see `QA/S5_VULNERABILITY_FIRST_METHODS_QA.md` for pairing checks and estimates. The other 13 artwork pairs are byte-identical to their pinned sources. '
-        'Figure 1 Module D distinguishes fixed priority rules (including Vulnerability-first), GA repair-order search, finite-crew damage-state repairs, directed travel and completion-event service updates. S5 is centered using the full visible bounds, including strategy labels, axes, tick labels and legends. '
+        'Figure 1 Stage 4 reuses the hash-verified workflow-generated Unconstrained and Impact-first service-availability curves, with exact source and generation record in `QA/SOURCE_IDENTITIES.json`. Figure 8 has separate Panel C and Panel D legends, with exact definitions in its caption. Supplementary Figure S5 includes Vulnerability-first comparisons calculated from its saved event-state archive; see `QA/S5_VULNERABILITY_FIRST_METHODS_QA.md` for pairing checks and estimates. The other 13 artwork pairs are byte-identical to their pinned sources. '
+        'Figure 1 retains the distinct parallel Unconstrained and resource-constrained execution modes; the caption identifies priority sequencing, sampled repair durations, directed travel and completion-event service updates. S5 is centered using the full visible bounds, including strategy labels, axes, tick labels and legends, in a 185 x 145 mm layout. '
         'No simulation or scientific model is rerun; only frozen result outputs are plotted. '
         'The source notes describe older candidate layouts. The actual promoted figure uses dynamic A/B curves for six scheduled strategies plus Unconstrained and static conditional C/D maps.\n\n'
         'Place Main Figure 4 after Section 4.2 and before the Section 4.3 heading. See MANUSCRIPT_INTEGRATION.md for the bridge and figure-reference substitutions. '
@@ -347,7 +370,7 @@ def main(output_dir=None,mirror_dir=None):
         'The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. '
         'Current older-suite builders remain available and do not target this separate collection.\n')
     u.write(dest/'README.md',readme);u.write(mirror/'README.md',readme)
-    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 1 Stage 4 restored to a concise restoration-execution process schematic; quantitative recovery curves are not embedded in the workflow. Figure 8 now has separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated; the other 13 numbered artwork pairs remain byte-identical to their pinned sources.\n\n# 2026-11-09\n\nFigure 1 Module D now shows priority rules (including Vulnerability-first), GA repair-order search, finite-crew damage-state scheduling, directed travel and repair-completion service updates. S5 is centered on the complete visible composition; independent 600-dpi raster margins and PDF/PNG identity are tested. No scientific values or schedules changed.\n')
+    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 8 received separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated.\n\n# 2026-11-09\n\nFigure 1 Module 4 restored to the hash-verified workflow-generated Unconstrained and Impact-first service-availability curves. The frozen curve table, original vector artwork and prior generation record are registered in source QA. The caption distinguishes parallel Unconstrained restoration from finite-crew Impact-first execution with sampled repair durations, directed travel and completion-event service updates. Supplementary Figure S5 was compacted to 185 x 145 mm with the full visible composition centered; all three panels and frozen comparisons are retained.\n')
     u.write(dest/'MANUSCRIPT_INTEGRATION.md',manuscript_integration())
     print(json.dumps(qa,indent=2))
 

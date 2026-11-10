@@ -83,45 +83,31 @@ def test_independent_main_results_and_merged_resource_artwork_preserved():
         for e in ['pdf','png']:assert bool(changes.loc[s+'.'+e,'unchanged'])
 
 
-def test_figure1_restoration_modes_are_distinct_and_only_part4_changes():
-    source_pdf=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Main/Fig01.pdf')
-    with fitz.open(stream=source_pdf,filetype='pdf') as original, fitz.open(SUITE/'Main/Fig01.pdf') as revised:
-        assert len(original)==len(revised)==1
-        page=revised[0]
-        text=' '.join(page.get_text().split())
-        assert 'Restoration Strategies and Execution' in text
-        assert 'Unconstrained reference' in text
-        assert 'Constrained restoration' in text
-        assert 'Repairs proceed in parallel' in text
-        assert 'Priority strategy sets repair order' in text
-        assert 'Finite crews' in text and 'directed travel' in text
-        assert 'Modeled service availability' in text
-        assert 'Repair completion: station functionality = 1' in text
-        assert 'Source gate + tract weights' in text
-        panel_spans=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])
-                     for s in line['spans'] if 481.7<s['bbox'][1] and s['bbox'][3]<614.7
-                     and 9.5<s['bbox'][0] and s['bbox'][2]<256.3]
-        assert panel_spans and all(abs(s['size']-7.5)<1e-5 for s in panel_spans)
-        assert 'Time to 80% service' in text and '(T80)' in text
-        source_spans=[s for b in original[0].get_text('dict')['blocks'] for line in b.get('lines',[])
-                      for s in line['spans'] if s['bbox'][0]>20 and s['bbox'][0]<258
-                      and s['bbox'][1]>464 and s['bbox'][3]<614]
-        source_labels={' '.join(s['text'].replace('\xa0',' ').split()) for s in source_spans}
-        assert {'Crew dispatch','Priority\xadstrategy','80% service'}.issubset(source_labels)
-        assert all(9.5<=s['bbox'][0] and s['bbox'][2]<=256.3 and 465.2<=s['bbox'][1]
-                   and s['bbox'][3]<=614.7 for s in source_spans if s['bbox'][1]>=481.7)
-        source_pix=original[0].get_pixmap(dpi=150,alpha=False)
-        a=Image.frombytes('RGB',(source_pix.width,source_pix.height),source_pix.samples)
-        pix=revised[0].get_pixmap(dpi=150,alpha=False)
-        b=Image.frombytes('RGB',(pix.width,pix.height),pix.samples)
-        assert a.size==b.size
-        scale=150/72
-        x0,x1=round(8*scale),round(258*scale)
-        y0,y1=round(464*scale),round(616*scale)
-        outside=np.ones((a.height,a.width),dtype=bool)
-        outside[y0:y1,x0:x1]=False
-        aa=np.asarray(a);bb=np.asarray(b)
-        assert np.array_equal(aa[outside],bb[outside]),'Figure 1 changed outside the authorized Part 4 panel.'
+def test_figure1_builder_reuses_the_saved_workflow_output():
+    import inspect
+    import figure_presentation
+    import build_current_suite_p2
+
+    source_csv=suite_utils.payload(CURRENT_SUITE_BASE,
+        'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv')
+    source_commit='ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15'
+    source_dir='results/figure_review_s6_main4_20261107'
+    source_pdf=suite_utils.payload(source_commit,source_dir+'/Main/Fig01.pdf')
+    source_png=suite_utils.payload(source_commit,source_dir+'/Main/Fig01.png')
+    source_preview=suite_utils.payload(source_commit,source_dir+'/Page_Previews/Fig01.png')
+    record=json.loads(suite_utils.payload(source_commit,
+        source_dir+'/QA/NUMERICAL_AND_PRESERVATION_QA.json'))
+    pdf,png,preview,audit=figure_presentation.verify_restoration_workflow_artifact(
+        source_csv,source_pdf,source_png,source_preview,record)
+    assert pdf==source_pdf and png==source_png and preview==source_preview
+    assert audit['source_rows']==9601 and audit['points_plotted_per_series']==2001
+    assert audit['outside_stage4_pixels_identical']
+    builder_source=inspect.getsource(build_current_suite_p2.main)
+    assert 'verify_restoration_workflow_artifact' in builder_source
+    assert 'restoration_workflow(original_f1)' not in builder_source
+    assert 'draw_rect' not in inspect.getsource(figure_presentation.restoration_workflow)
+    assert 'saved Unconstrained and Impact-first service-availability trajectories' in \
+        build_current_suite_p2.captions()[0][1]
 
 
 def test_no_extra_numbered_artwork_or_retired_numbering():

@@ -1,55 +1,47 @@
 {
   "source_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
-  "figure1_updated_only_with_method_process_schematic": true,
+  "figure1_workflow_generated_artifact_reused": true,
   "figure1_stage4_audit": {
     "panel": "4",
-    "title": "Restoration Strategies and Execution",
-    "execution_modes": [
-      "Unconstrained reference",
-      "Constrained restoration"
+    "plot_type": "frozen population-weighted mean service-availability curves",
+    "scenario": "2pc50",
+    "time_window_hours": [
+      0,
+      100
     ],
-    "priority_rules": [
-      "Predefined repair priorities, including Vulnerability-first"
+    "source_file": "provenance/legacy_outputs/stage6/recovery_curves_all_system.csv",
+    "source_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+    "source_rows": 9601,
+    "series_columns": {
+      "Unconstrained": "2pc50 | S3_Mean | Population",
+      "Impact-first": "2pc50 | Impact population first | Population"
+    },
+    "points_plotted_per_series": 2001,
+    "endpoint_at_100h": {
+      "Unconstrained": 0.9999999608925917,
+      "Impact-first": 0.9999627847939658
+    },
+    "curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules": true,
+    "no_new_simulation_or_metric_calculation": true,
+    "figure_dimensions_pt": [
+      524.409423828125,
+      623.6220703125
     ],
-    "ga": "Search-based repair-order planning against service burden; no global optimum implied.",
-    "scheduling": [
-      "Finite crews",
-      "DS-specific repair tasks and durations",
-      "Directed road travel between tasks"
-    ],
-    "old_internal_labels_visually_replaced": [
-      "Constrained restoration",
-      "Finite crews; dispatch includes directed travel and repairs.",
-      "Modeled service availability curves",
-      "No crew or travel constraints.",
-      "Priority strategy sets repair order.",
-      "Repair completion: station functionality = 1",
-      "Repairs proceed in parallel using sampled durations.",
-      "Source gate + tract weights",
-      "Unconstrained reference"
-    ],
-    "output": "Repair completion updates functionality, source connectivity and mapped tract service.",
-    "no_threshold_or_T80_in_panel": true,
-    "unconstrained": "Repairs proceed in parallel; no finite-crew or travel limits.",
-    "constrained": "Priority order; finite crews; dispatch includes directed travel.",
-    "panel_bounds_preserved": true,
-    "other_panels_and_stage_5_content_unchanged": true,
-    "body_font": "Arial",
-    "body_font_size_pt": 7.0,
-    "illustrative_curves_removed": true,
-    "completion_event_recovery": true,
-    "process_steps": [
-      "Repair completes",
-      "Raw station functionality set to 1",
-      "Re-evaluate source connectivity",
-      "Update tract service through W"
-    ],
-    "original_panel_graphics_covered_by_opaque_vector_replacement": true,
-    "source_vector_signature": "outside authorized panel verified by native-render pixel test",
-    "width_pt": 524.409423828125,
-    "height_pt": 623.6220703125,
-    "outside_stage4_pixels_identical": true
+    "outside_stage4_pixels_identical": true,
+    "workflow_artifact_commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+    "workflow_artifact_pdf_sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+    "workflow_artifact_png_sha256": "4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2",
+    "workflow_artifact_preview_sha256": "505ec7f706c9e07b6c45443254c7916a79d961cd79582c49df9820f3200b9ae1",
+    "workflow_generation_record_verified": true,
+    "source_curve_values_rechecked": true,
+    "artifact_reused_without_replotting_or_rewriting_large_vector_page": true,
+    "execution_mechanics_captioned": true,
+    "starting_figure1_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84"
   },
+  "figure1_curve_source_sha256": "b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922",
+  "figure1_workflow_artifact_commit": "ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15",
+  "figure1_workflow_pdf_sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+  "figure1_workflow_png_sha256": "4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2",
   "unaffected_13_artwork_pairs_byte_identical": true,
   "figure8_separate_map_legends_updated": true,
   "figure8_legend_audit": {
@@ -145,7 +137,7 @@
     "source_off_keeps_functionality_threshold_050": true,
     "threshold_panels_reevaluate_source_connectivity": true,
     "width_mm": 185.0,
-    "height_mm": 210.0,
+    "height_mm": 145.0,
     "axes_count": 3,
     "no_recovery_model_or_schedule_rerun": true,
     "complete_visible_composition_centering": {
@@ -159,14 +151,15 @@
     "independent_600dpi_png_visible_bounds": {
       "dpi": 600,
       "width_px": 4371,
-      "height_px": 4961,
+      "height_px": 3426,
       "visible_left_mm": 21.289178677648135,
       "visible_right_mm": 21.11988103408831,
-      "visible_top_mm": 16.847409796412013,
-      "visible_bottom_mm": 6.434186655916146,
+      "visible_top_mm": 6.433158201984822,
+      "visible_bottom_mm": 0.8887915936952715,
       "ink_threshold_rgb_lt": 248
     }
   },
+  "s5_compact_height_mm": 145.0,
   "s5_vulnerability_archive_audit_sha256": "a29bd3bd1fce4d88231bad9ca84e205591039dbf7d8852f6672f6bfe531b4c83",
   "s5_vulnerability_plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",
   "main_figures": 8,
