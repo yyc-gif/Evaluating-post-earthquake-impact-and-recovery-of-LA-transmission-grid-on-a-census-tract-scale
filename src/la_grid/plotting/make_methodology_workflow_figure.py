@@ -13,10 +13,15 @@ matplotlib.use("Agg")
 
 from matplotlib import font_manager, patches
 import matplotlib.pyplot as plt
+import hashlib
+import io
 import os
 from pathlib import Path
 
-from la_grid.paths import REPO_ROOT
+try:
+    from la_grid.paths import REPO_ROOT
+except ModuleNotFoundError:
+    REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 BASE_NAME = "methodology_workflow_IJDRR"
@@ -117,6 +122,119 @@ def apply_artwork_style() -> None:
             "pdf.use14corefonts": False,
         }
     )
+
+
+def build_stage4_process_panel(width_pt: float = 246.8,
+                               height_pt: float = 133.0) -> tuple[bytes, bytes, dict]:
+    """Render Figure 1 Stage 4 from the implemented priority/schedule/event flow."""
+    schedule_path = REPO_ROOT / "src/la_grid/revision/r1_realization_scheduling.py"
+    ga_path = REPO_ROOT / "src/la_grid/revision/r1_ga_revision.py"
+    schedule_source = schedule_path.read_text(encoding="utf-8")
+    ga_source = ga_path.read_text(encoding="utf-8")
+    implementation_checks = {
+        "damaged_tasks_only": "queue=tuple(s for s in seq if int(ds.loc[s])>0)" in schedule_source,
+        "earliest_available_crew": "crew=int(np.argmin(clocks))" in schedule_source,
+        "travel_then_realized_repair": "arrival=free+travel; dur=float(duration.loc[station]); finish=arrival+dur" in schedule_source,
+        "completion_restores_raw_functionality": "values[times>=finish,j]=1." in schedule_source,
+        "completion_state_passes_source_gate": "gate_output=source_gate(raw.copy(deep=True))" in schedule_source,
+        "ga_task_order_search": "def run_revised_permutation_ga(" in ga_source,
+        "direct_service_burden_objective": "def direct_population_burden_objective(" in ga_source,
+    }
+    assert all(implementation_checks.values()), implementation_checks
+
+    width_pt = float(width_pt)
+    height_pt = float(height_pt)
+    assert width_pt > 0 and height_pt > 0
+    apply_artwork_style()
+    ink = COLORS["ink"]
+    muted = COLORS["muted"]
+    outline = COLORS["outline"]
+    rule = COLORS["rule"]
+    teal = COLORS["recovery"]
+    fig = plt.figure(figsize=(width_pt / 72.0, height_pt / 72.0),
+                     facecolor=COLORS["paper"])
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(0, width_pt)
+    ax.set_ylim(0, height_pt)
+    ax.axis("off")
+
+    # The reference is deliberately outside the constrained three-step flow.
+    ref_x, ref_y, ref_w, ref_h = 5.2, 111.0, width_pt - 10.4, 18.0
+    ax.add_patch(patches.FancyBboxPatch(
+        (ref_x, ref_y), ref_w, ref_h,
+        boxstyle="round,pad=0.8,rounding_size=2.0",
+        facecolor=COLORS["soft"], edgecolor=rule, linewidth=0.55,
+    ))
+    ax.text(ref_x + 5.0, ref_y + ref_h / 2,
+            "Unconstrained reference", ha="left", va="center",
+            fontsize=6.7, fontweight="bold", color=ink)
+    ax.text(ref_x + 100.0, ref_y + ref_h / 2,
+            "Parallel repairs; no finite-crew or travel limits.",
+            ha="left", va="center", fontsize=6.2, color=muted)
+
+    rows = [
+        (77.0, "Priority rules",
+         "Predefined network and community priorities include Vulnerability-first.",
+         "GA plans repair-task order using a service-burden objective."),
+        (43.0, "Repair scheduling and execution",
+         "Queue DS > 0 tasks; finite crews; realized DS-specific durations.",
+         "Directed travel/dispatch; finish = crew available + travel + repair."),
+        (9.0, "Repair-completion events",
+         "At completion, release crew; raw station functionality becomes 1.",
+         "Pass updated state to source-connectivity and tract-service evaluation."),
+    ]
+    row_h = 24.0
+    x, w = 5.2, width_pt - 10.4
+    for number, (y, heading, line1, line2) in enumerate(rows, 1):
+        ax.add_patch(patches.FancyBboxPatch(
+            (x, y), w, row_h,
+            boxstyle="round,pad=0.7,rounding_size=1.8",
+            facecolor="white", edgecolor=rule, linewidth=0.5,
+        ))
+        ax.add_patch(patches.Circle((x + 10.0, y + row_h / 2), 5.0,
+                                    facecolor=teal, edgecolor="none"))
+        ax.text(x + 10.0, y + row_h / 2, str(number), ha="center", va="center",
+                fontsize=6.4, fontweight="bold", color="white")
+        ax.text(x + 21.0, y + row_h - 6.0, heading, ha="left", va="center",
+                fontsize=6.8, fontweight="bold", color=ink)
+        ax.text(x + 21.0, y + 9.5, line1, ha="left", va="center",
+                fontsize=6.4, color=ink)
+        ax.text(x + 21.0, y + 3.0, line2, ha="left", va="center",
+                fontsize=6.4, color=ink)
+
+    # Short down-arrows connect constrained restoration operations only.
+    for lower_y, upper_y in ((77.0, 67.0), (43.0, 33.0)):
+        ax.annotate("", xy=(15.2, upper_y + 0.5), xytext=(15.2, lower_y - 0.5),
+                    arrowprops={"arrowstyle": "-|>", "color": muted,
+                                "linewidth": 0.65, "mutation_scale": 5.5})
+
+    pdf_out, png_out = io.BytesIO(), io.BytesIO()
+    fig.savefig(pdf_out, format="pdf", metadata={"CreationDate": None,
+                                                   "ModDate": None,
+                                                   "Creator": "methodology workflow generator"})
+    fig.savefig(png_out, format="png", dpi=DPI)
+    plt.close(fig)
+    pdf_bytes, png_bytes = pdf_out.getvalue(), png_out.getvalue()
+    audit = {
+        "source_generator": "src/la_grid/plotting/make_methodology_workflow_figure.py",
+        "scheduler_source": "src/la_grid/revision/r1_realization_scheduling.py",
+        "scheduler_source_sha256": hashlib.sha256(schedule_path.read_bytes()).hexdigest(),
+        "ga_source": "src/la_grid/revision/r1_ga_revision.py",
+        "ga_source_sha256": hashlib.sha256(ga_path.read_bytes()).hexdigest(),
+        "implementation_checks": implementation_checks,
+        "separate_unconstrained_reference": True,
+        "connected_operations": ["Priority rules", "Repair scheduling and execution",
+                                 "Repair-completion events"],
+        "width_pt": width_pt,
+        "height_pt": height_pt,
+        "body_font": "Arial",
+        "body_font_pt": 6.4,
+        "no_recovery_curves_or_downstream_outcomes": True,
+        "no_simulation_or_schedule_rerun": True,
+        "panel_pdf_sha256": hashlib.sha256(pdf_bytes).hexdigest(),
+        "panel_png_sha256": hashlib.sha256(png_bytes).hexdigest(),
+    }
+    return pdf_bytes, png_bytes, audit
 
 
 def add_card(ax: plt.Axes, x: float, y: float, width: float, height: float,

@@ -466,167 +466,88 @@ def supplementary5_four_policy(plot_data_bytes):
     }
 
 
-def restoration_workflow(raw, recovery_curves_csv=None):
-    """Build Stage 4 from saved workflow trajectories; never substitute a schematic."""
-    if recovery_curves_csv is None:
-        raise ValueError('Figure 1 Stage 4 requires the frozen workflow recovery-curves CSV.')
-    return restoration_workflow_with_results(raw, recovery_curves_csv)
-
-
-def verify_restoration_workflow_artifact(recovery_curves_csv, workflow_pdf,
-                                        workflow_png, workflow_preview,
-                                        workflow_generation_record):
-    """Verify and return the previously generated, hash-registered workflow artwork."""
-    import csv
+def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
+    """Replace only Figure 1 Stage 4 with the implementation-derived process flow."""
     import numpy as np
 
-    expected_curve_sha='b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922'
-    expected_pdf_sha='cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf'
-    expected_png_sha='4ba55682666c4b2d857e8337956adb53706a09be971c9e56445b5d593d4ff0c2'
-    expected_preview_sha='505ec7f706c9e07b6c45443254c7916a79d961cd79582c49df9820f3200b9ae1'
-    digest=lambda raw:hashlib.sha256(raw).hexdigest()
-    assert digest(recovery_curves_csv)==expected_curve_sha
-    assert digest(workflow_pdf)==expected_pdf_sha
-    assert digest(workflow_png)==expected_png_sha
-    assert digest(workflow_preview)==expected_preview_sha
-
-    rows=list(csv.DictReader(io.StringIO(recovery_curves_csv.decode('utf-8-sig'))))
-    time=np.asarray([float(row['time_hr']) for row in rows],dtype=float)
-    columns={
-        'Unconstrained':'2pc50 | S3_Mean | Population',
-        'Impact-first':'2pc50 | Impact population first | Population',
-    }
-    assert len(rows)==9601 and np.all(np.isfinite(time))
-    assert time[0]==0 and np.all(np.diff(time)>0) and time[-1]>=100
-    keep=time<=100
-    assert int(keep.sum())==2001 and np.any(np.isclose(time,100))
-    endpoints={}
-    for name,column in columns.items():
-        values=np.asarray([float(row[column]) for row in rows],dtype=float)
-        assert len(values)==len(time) and np.all(np.isfinite(values))
-        assert np.all((values>=0)&(values<=1))
-        endpoints[name]=float(values[np.flatnonzero(np.isclose(time,100))[0]])
-
-    recorded=workflow_generation_record['figure1_source_curve_audit']
-    assert workflow_generation_record['figure1_updated_only_with_frozen_result_curve']
-    assert recorded['source_sha256']==expected_curve_sha
-    assert recorded['source_rows']==len(rows)
-    assert recorded['series_columns']==columns
-    assert recorded['points_plotted_per_series']==int(keep.sum())
-    assert recorded['curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules']
-    np.testing.assert_allclose(
-        [recorded['endpoint_at_100h'][name] for name in columns],
-        [endpoints[name] for name in columns],atol=1e-14,rtol=0)
-    assert recorded['outside_stage4_pixels_identical']
-    assert recorded['figure_dimensions_pt']==[524.409423828125,623.6220703125]
-    return workflow_pdf,workflow_png,workflow_preview,{
-        **recorded,
-        'workflow_artifact_commit':'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15',
-        'workflow_artifact_pdf_sha256':expected_pdf_sha,
-        'workflow_artifact_png_sha256':expected_png_sha,
-        'workflow_artifact_preview_sha256':expected_preview_sha,
-        'workflow_generation_record_verified':True,
-        'source_curve_values_rechecked':True,
-        'artifact_reused_without_replotting_or_rewriting_large_vector_page':True,
-        'execution_mechanics_captioned':True,
-    }
-
-
-def restoration_workflow_with_results(raw, recovery_curves_csv):
-    """Show a frozen Unconstrained/Impact-first recovery comparison in Stage 4."""
-    import csv
-    import numpy as np
-    import matplotlib
-    matplotlib.use('Agg', force=True)
-    import matplotlib.pyplot as plt
-    from matplotlib import font_manager
-
-    rows=list(csv.DictReader(io.StringIO(recovery_curves_csv.decode('utf-8-sig'))))
-    time=np.asarray([float(row['time_hr']) for row in rows],dtype=float)
-    columns={
-        'Unconstrained':'2pc50 | S3_Mean | Population',
-        'Impact-first':'2pc50 | Impact population first | Population',
-    }
-    values={name:np.asarray([float(row[column]) for row in rows],dtype=float)
-            for name,column in columns.items()}
-    assert len(time)>1 and np.all(np.isfinite(time)) and np.all(np.diff(time)>0)
-    assert time[0]==0 and time[-1]>=100 and np.any(np.isclose(time,100))
-    for series in values.values():
-        assert len(series)==len(time) and np.all(np.isfinite(series))
-        assert np.all((series>=0)&(series<=1))
-    keep=time<=100
-    curve_sha=hashlib.sha256(recovery_curves_csv).hexdigest()
-
-    font_manager.fontManager.addfont('C:/Windows/Fonts/arial.ttf')
-    font_manager.fontManager.addfont('C:/Windows/Fonts/arialbd.ttf')
-    with matplotlib.rc_context({
-        'font.family':'Arial','font.size':6.0,'pdf.fonttype':42,
-        'ps.fonttype':42,'axes.linewidth':0.45,
-    }):
-        fig=plt.figure(figsize=(234.5/72,80.0/72),facecolor='white')
-        ax=fig.add_axes([0.13,0.24,0.85,0.56])
-        ax.step(time[keep],values['Unconstrained'][keep],where='post',color='#111111',
-                linewidth=1.05,label='Unconstrained')
-        ax.step(time[keep],values['Impact-first'][keep],where='post',color='#ff7f0e',
-                linewidth=1.05,label='Impact-first')
-        ax.set_xlim(0,100);ax.set_ylim(0,1.02)
-        ax.set_xticks([0,25,50,75,100]);ax.set_yticks([0,0.5,1.0])
-        ax.set_xlabel('Time after earthquake (h)',fontsize=6.0,labelpad=1.0)
-        ax.set_ylabel('Service availability',fontsize=6.0,labelpad=1.0)
-        ax.tick_params(axis='both',labelsize=5.5,length=2,pad=1.2,width=0.4)
-        ax.grid(axis='both',color='#d8dde0',linewidth=0.35)
-        ax.set_axisbelow(True)
-        ax.spines['top'].set_visible(False);ax.spines['right'].set_visible(False)
-        ax.spines['left'].set_color('#59636f');ax.spines['bottom'].set_color('#59636f')
-        ax.legend(loc='lower left',bbox_to_anchor=(0.0,1.02),ncol=2,
-                  frameon=False,fontsize=5.5,handlelength=1.5,
-                  columnspacing=1.3,borderaxespad=0.0,handletextpad=0.4)
-        plot=io.BytesIO()
-        fig.savefig(plot,format='pdf',bbox_inches=None,
-                    metadata={'CreationDate':None,'ModDate':None,
-                              'Creator':'Figure 1 Stage 4 frozen-results inset'})
-        plt.close(fig)
-
+    rect=fitz.Rect(9.5,481.7,256.3,614.7)
+    assert process_panel_audit['no_recovery_curves_or_downstream_outcomes']
+    assert process_panel_audit['implementation_checks'] and all(
+        process_panel_audit['implementation_checks'].values())
     with fitz.open(stream=raw,filetype='pdf') as doc:
-        page=doc[0];w,h=page.rect.width,page.rect.height
-        stage_text=[s for s in spans(page) if 9.5<s['bbox'][0]<258 and
-                    481<s['bbox'][1] and s['bbox'][3]<615]
-        text=' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
-                      for s in stage_text)
-        assert 'Unconstrained' in text and 'Priority strategy' in text
-        assert 'directed' in text and 'availability curves' in text
-        page.add_redact_annot(fitz.Rect(9.5,481.7,256.3,614.7),fill=None)
-        page.apply_redactions(images=0,graphics=0)
-        page.draw_rect(fitz.Rect(9.5,481.7,256.3,614.7),color=None,
-                       fill=(1,1,1),overlay=True)
-        page.insert_font(fontname='Fig1Stage4Bold',fontfile='C:/Windows/Fonts/arialbd.ttf')
-        page.insert_font(fontname='Fig1Stage4Body',fontfile='C:/Windows/Fonts/arial.ttf')
-        ink=(32/255,40/255,43/255)
-        def label(value,x,y,size=6.0,bold=False):
-            page.insert_text((x,y),value,
-                fontname='Fig1Stage4Bold' if bold else 'Fig1Stage4Body',
-                fontsize=size,color=ink,overlay=True)
-        label('Unconstrained',15.5,493.8,7.0,True)
-        label('Parallel repairs; no crew or travel limits.',15.5,503.2,5.8)
-        label('Constrained strategies',135.0,493.8,7.0,True)
-        label('Priority order; finite crews and directed travel.',135.0,503.2,5.5)
-        label('Mean population-weighted service availability | 2%-in-50-year scenario',15.5,515.5,5.8,True)
-        with fitz.open(stream=plot.getvalue(),filetype='pdf') as chart:
-            page.show_pdf_page(fitz.Rect(15.5,518.0,250.0,603.0),chart,0,
-                               keep_proportion=False)
+        page=doc[0]
+        width,height=page.rect.width,page.rect.height
+        assert abs(width-524.409423828125)<0.02
+        assert abs(height-623.6220703125)<0.02
+        source_spans=spans(page)
+        assert any('restoration' in
+                   s['text'].replace('\u00a0',' ').replace('\u00ad','').lower()
+                   and 'execution' in
+                   s['text'].replace('\u00a0',' ').replace('\u00ad','').lower()
+                   for s in source_spans)
+        old=[s for s in source_spans if rect.intersects(fitz.Rect(s['bbox']))]
+        for span in old:
+            overlap=rect & fitz.Rect(span['bbox'])
+            page.add_redact_annot(overlap+(-0.03,-0.03,0.03,0.03),fill=None)
+        if old:
+            page.apply_redactions(images=0,graphics=1)
+        page.draw_rect(rect,color=None,fill=(1,1,1),overlay=True)
+        with fitz.open(stream=process_panel_pdf,filetype='pdf') as panel:
+            assert len(panel)==1
+            assert abs(panel[0].rect.width-rect.width)<0.02
+            assert abs(panel[0].rect.height-rect.height)<0.02
+            page.show_pdf_page(rect,panel,0,keep_proportion=False,overlay=True)
         result=finish(doc)
+
+    with fitz.open(stream=result,filetype='pdf') as final_doc:
+        page=final_doc[0]
+        stage_text=' '.join(page.get_textbox(rect).replace('\xa0',' ').replace('\xad','').split())
+        required=('Unconstrained reference','Priority rules','Vulnerability-first',
+                  'GA plans repair-task order','DS > 0 tasks','finite crews',
+                  'DS-specific durations','Directed travel','Repair-completion events',
+                  'release crew','station functionality becomes 1',
+                  'source-connectivity','tract-service evaluation')
+        missing=[text for text in required if text not in stage_text]
+        assert not missing,(missing,stage_text)
+        with fitz.open(stream=process_panel_pdf,filetype='pdf') as process_panel:
+            panel_text=' '.join(process_panel[0].get_text().replace('\xa0',' ').split())
+        rejected=('availability curves','T80','cumulative service loss',
+                  'population-weighted service availability','Impact-first service-availability')
+        assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
+        assert len(final_doc)==1
+
+    with fitz.open(stream=raw,filetype='pdf') as before, \
+         fitz.open(stream=result,filetype='pdf') as after:
+        before_pix=before[0].get_pixmap(dpi=120,alpha=False)
+        after_pix=after[0].get_pixmap(dpi=120,alpha=False)
+        before_rgb=np.frombuffer(before_pix.samples,dtype=np.uint8).reshape(
+            before_pix.height,before_pix.width,3)
+        after_rgb=np.frombuffer(after_pix.samples,dtype=np.uint8).reshape(
+            after_pix.height,after_pix.width,3)
+        assert before_rgb.shape==after_rgb.shape
+        scale=120.0/72.0
+        x0=max(0,int(np.floor(rect.x0*scale))-2)
+        x1=min(before_pix.width,int(np.ceil(rect.x1*scale))+2)
+        y0=max(0,int(np.floor(rect.y0*scale))-2)
+        y1=min(before_pix.height,int(np.ceil(rect.y1*scale))+2)
+        outside=np.ones(before_rgb.shape[:2],dtype=bool)
+        outside[y0:y1,x0:x1]=False
+        assert np.array_equal(before_rgb[outside],after_rgb[outside])
+        changed_pixels=int(np.count_nonzero(np.any(before_rgb!=after_rgb,axis=2)))
     return result,{
-        'panel':'4','plot_type':'frozen population-weighted mean service-availability curves',
-        'scenario':'2pc50','time_window_hours':[0,100],
-        'source_file':'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv',
-        'source_sha256':curve_sha,'source_rows':len(rows),
-        'series_columns':columns,
-        'points_plotted_per_series':int(keep.sum()),
-        'endpoint_at_100h':{name:float(series[np.flatnonzero(np.isclose(time,100))[0]])
-                            for name,series in values.items()},
-        'curves_are_observed_frozen_model_outputs_not_averaged_policy_schedules':True,
-        'no_new_simulation_or_metric_calculation':True,
-        'figure_dimensions_pt':[w,h],
+        'panel':'4','panel_title':'Restoration Strategies and Execution',
+        'source_page_sha256':hashlib.sha256(raw).hexdigest(),
+        'process_panel_sha256':process_panel_audit['panel_pdf_sha256'],
+        'implementation_checks':process_panel_audit['implementation_checks'],
+        'operations':process_panel_audit['connected_operations'],
+        'unconstrained_is_separate_reference':True,
+        'no_recovery_curves_or_downstream_outcomes':True,
+        'old_stage4_result_labels_removed':True,
+        'outside_stage4_pixels_identical':True,
+        'changed_pixels_at_120dpi':changed_pixels,
+        'authorized_edit_rect_pt':[rect.x0,rect.y0,rect.x1,rect.y1],
+        'figure_dimensions_pt':[width,height],
+        'no_simulation_or_schedule_rerun':True,
     }
 
 

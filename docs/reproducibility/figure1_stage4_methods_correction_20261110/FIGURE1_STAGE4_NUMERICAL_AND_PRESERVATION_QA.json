@@ -1,0 +1,83 @@
+{
+  "figure1_after_dimensions_pt": [
+    0.0,
+    0.0,
+    524.409423828125,
+    623.6220703125
+  ],
+  "figure1_after_sha256": "0d8f692b7f979089f4f98a32dae5f65f421beb07675475a6a8c04ac30925c974",
+  "figure1_before_sha256": "cf71e10f4df852c8bf559ffd9b129a1a12fd3183506c90dd4b892f4acb1affbf",
+  "figure1_mirror_and_manifest_match": true,
+  "figure1_pdf_dimensions_pt": [
+    0.0,
+    0.0,
+    524.409423828125,
+    623.6220703125
+  ],
+  "figure1_png_sha256": "14fa406df46aecd13b3516978fa7a4131346c89ac374ea30ed8c163df0b9e65d",
+  "figure_presentation_sha256": "9580e1b43175505dda3e9fb234af1a199b56aeab2e7cf7f6e5fcfd0ee43b5773",
+  "ga_source_sha256": "0ea6dd2e3ea74584ce707a820c8aeb035c712620c3e88ad4c33ecee78d0b7d51",
+  "outside_stage4_render_pixels_identical_at_120dpi": true,
+  "p2_builder_sha256": "981452a25ab60af19ad8238e6b7835889136baa6b77835b23eeb0c43860fd537",
+  "packet_page_counts": {
+    "complete": 16,
+    "main": 8,
+    "supplement": 8
+  },
+  "s5_hashes": {
+    "results/figure_review_s6_main4_20261107/Page_Previews/FigS05.png": {
+      "byte_identical_to_start": true,
+      "sha256": "509437fc9e2080b66e8b7c28588b717b10c7a7c86d08a2a8d931c7a8d507f5b1"
+    },
+    "results/figure_review_s6_main4_20261107/Supplement/FigS05.pdf": {
+      "byte_identical_to_start": true,
+      "sha256": "47a89d75b2ba0fa2434669255da0a985b192ef0405b34f671752a1a159fddcbe"
+    },
+    "results/figure_review_s6_main4_20261107/Supplement/FigS05.png": {
+      "byte_identical_to_start": true,
+      "sha256": "503590858e0f5980fdb14e1ccdff9a0d93037e0fd5e4bbde860d054286c6eb8f"
+    }
+  },
+  "s6_builder_sha256": "ec538be148376373ae1a0bb921e75712becae24b72314b6957f70d556ab8c8ac",
+  "scheduler_source_sha256": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22",
+  "simulations_or_schedules_rerun": false,
+  "source_figure_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+  "stage4_embedded_image_count": 0,
+  "stage4_fonts": [
+    "ELUGPM+Arial-BoldMT",
+    "ELUGPM+ArialMT"
+  ],
+  "stage4_generator": "src/la_grid/plotting/make_methodology_workflow_figure.py",
+  "stage4_generator_sha256": "9fcdf5738ee51c253b56e763ab93d2ffd0a4893bcd97ec4a8fd181d9da07bc9a",
+  "stage4_implementation_checks": {
+    "completion_restores_raw_functionality": true,
+    "completion_state_passes_source_gate": true,
+    "damaged_tasks_only": true,
+    "direct_service_burden_objective": true,
+    "earliest_available_crew": true,
+    "ga_task_order_search": true,
+    "travel_then_realized_repair": true
+  },
+  "stage4_panel_pdf_sha256": "0491a29e7c7cf3e662ba7de04a664a3a4755925f7fcabb5d58b9c9034aecb52b",
+  "stage4_panel_png_sha256": "31dd63f3d475b80552dbf7cb920d191ec88099c9200f3c1c12d4ce8819d57b6a",
+  "stage4_rejected_result_terms_absent": true,
+  "stage4_text_checks": {
+    "DS > 0 tasks": true,
+    "DS-specific durations": true,
+    "Directed travel": true,
+    "GA plans repair-task order": true,
+    "Priority rules": true,
+    "Repair scheduling and execution": true,
+    "Repair-completion events": true,
+    "Unconstrained reference": true,
+    "Vulnerability-first": true,
+    "finite crews": true,
+    "release crew": true,
+    "source-connectivity": true,
+    "station functionality becomes 1": true,
+    "tract-service evaluation": true
+  },
+  "stage4_vector_path_count": 12,
+  "starting_branch": "review/fig1-moduleD-s5-final-20261109",
+  "starting_commit": "8d7d458b9e85bb72c4c25cd927815137bd916bbc"
+}

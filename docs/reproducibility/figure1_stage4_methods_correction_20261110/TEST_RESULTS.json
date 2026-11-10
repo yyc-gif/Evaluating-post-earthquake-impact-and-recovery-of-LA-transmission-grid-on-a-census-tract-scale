@@ -1,0 +1,14 @@
+{
+  "suite": "tests/test_s6_main4_promotion_20261107.py",
+  "command": "python -m pytest tests/test_s6_main4_promotion_20261107.py -q",
+  "result": "PASS",
+  "passed": 14,
+  "failed": 0,
+  "duration_seconds": 142.31,
+  "additional_targeted_test": {
+    "suite": "tests/test_current_figure_suite_integration.py::test_figure1_builder_generates_method_process_not_recovery_results",
+    "result": "PASS",
+    "note": "Verified the P2 canonical builder routes through the same method-panel generator and presentation replacement."
+  },
+  "independent_verification": "verify_correction.py passed; exact hashes, S5 preservation, outside-panel pixel identity, and packet page counts verified."
+}

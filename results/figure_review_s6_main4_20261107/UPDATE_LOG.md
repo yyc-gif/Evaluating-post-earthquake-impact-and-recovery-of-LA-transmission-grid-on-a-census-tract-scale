@@ -8,4 +8,8 @@ Figure 8 received separate aligned Panel C and Panel D legends, with exact Q4 an
 
 # 2026-11-09
 
-Figure 1 Module 4 restored to the hash-verified workflow-generated Unconstrained and Impact-first service-availability curves. The frozen curve table, original vector artwork and prior generation record are registered in source QA. The caption distinguishes parallel Unconstrained restoration from finite-crew Impact-first execution with sampled repair durations, directed travel and completion-event service updates. Supplementary Figure S5 was compacted to 185 x 145 mm with the full visible composition centered; all three panels and frozen comparisons are retained.
+Figure 1 Stage 4 was temporarily changed to display downstream recovery curves. This was a scientific placement error and is superseded by the correction below. Supplementary Figure S5 was compacted to 185 x 145 mm with the full visible composition centered; all three panels and frozen comparisons are retained.
+
+# 2026-11-10
+
+Stage 4 now shows three implementation-derived operations: priority rules, DS > 0 crew scheduling with realized damage-state repair durations and directed travel, and repair-completion updates. Unconstrained is shown separately as a parallel reference. The generator and builder no longer use `recovery_curves_all_system.csv` or the Figure 1 artwork from `ea692f4`.

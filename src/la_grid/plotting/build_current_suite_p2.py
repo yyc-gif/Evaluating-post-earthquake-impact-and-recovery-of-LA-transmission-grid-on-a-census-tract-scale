@@ -16,6 +16,7 @@ from reportlab import rl_config
 import consolidate_current_figure_suite as u
 from short_current_captions_20261013 import brief_caption_page
 import figure_presentation
+import make_methodology_workflow_figure as workflow_figure
 import figure7_map_readability_20261015 as figure7_maps
 import figure7_final_presentation_20261016 as figure7_final
 import rq_aligned_figure_updates as rq_figures
@@ -27,9 +28,9 @@ CURRENT_SUITE_BASE = '0f67aa1f2758fcf1d35c112c36eb04e6d8a5dd68'
 MAP_REVIEW_BASE = '0134bfc5b27a8c518078873e21c6151675523b68'
 FIGURE_BASELINE_COMMIT = '2779c0b0f2694af2818debeb69241edbe8762260'
 FIGURE_BASELINE_SHA256 = '7a85c1d46e9d28309b955f986fb61b12b33064744aceb573ac3c598ed5f93b21'
-FIG1_WORKFLOW_COMMIT = 'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15'
-FIG1_WORKFLOW_DIR = 'results/figure_review_s6_main4_20261107'
-FIG1_CURVE_SOURCE = 'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv'
+FIG1_WORKFLOW_GENERATOR = 'src/la_grid/plotting/make_methodology_workflow_figure.py'
+FIG1_SCHEDULER_SOURCE = 'src/la_grid/revision/r1_realization_scheduling.py'
+FIG1_GA_SOURCE = 'src/la_grid/revision/r1_ga_revision.py'
 PB = 'docs/data_research/stage7_path_b_p2_integration_review_20261014/'
 AUTH = ROOT / 'results/stage7/2026-10-14'
 DEST = ROOT / 'results/figure_review'
@@ -47,6 +48,9 @@ DEPENDENCY_FILES = [
     'src/la_grid/plotting/rq_aligned_figure_updates.py',
     'src/la_grid/plotting/short_current_captions_20261013.py',
     'src/la_grid/plotting/build_s6_main4_review.py',
+    FIG1_WORKFLOW_GENERATOR,
+    FIG1_SCHEDULER_SOURCE,
+    FIG1_GA_SOURCE,
 ]
 FEATURES = ['Init_Supply', 'Grid_Impact', 'Redundancy_HHI', 'B_Unconstrained',
             'MeanDelta', 'SOVI_SCORE', 'log1p_Population']
@@ -137,7 +141,7 @@ def captions():
              re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)', text, re.M | re.S)]
     assert len(items) == 16
     short_bodies = [
-        'Study workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 shows saved Unconstrained and Impact-first service-availability trajectories; constrained repairs use finite crews, sampled durations and directed travel, with functionality and tract service updated at completion events.',
+        'Study workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 separates the Unconstrained reference from priority-rule and GA task-order planning, finite-crew scheduling of DS > 0 tasks with realized damage-state repair durations and directed travel, and completion-triggered crew release, station-functionality restoration, and updated source-connectivity and tract-service evaluation.',
         'Transmission network, tract-substation mapping, and comparison of candidate tract assignments with public SCE assignments. Assignment agreement does not validate feeder boundaries or recovery outcomes.',
         'Earthquake damage and initial modeled service are followed by Unconstrained recovery. Panel C reports the mean loss shares from substation damage, functionality threshold, and source-path loss; D/E show population-weighted and tract-mean T80. T80 is time to 80% modeled service; applicable whiskers show 5th-95th realization ranges.',
         'Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.',
@@ -263,29 +267,31 @@ def main(output_dir=None, mirror_dir=None):
     changed={};changed_png={};style_checks={}
     original_f1_path='results/figure_review/Main/Fig01.pdf'
     original_f1=source(original_f1_path,CURRENT_SUITE_BASE)
-    workflow_curves=source(FIG1_CURVE_SOURCE,CURRENT_SUITE_BASE)
-    workflow_pdf=source(FIG1_WORKFLOW_DIR+'/Main/Fig01.pdf',FIG1_WORKFLOW_COMMIT)
-    workflow_png=source(FIG1_WORKFLOW_DIR+'/Main/Fig01.png',FIG1_WORKFLOW_COMMIT)
-    workflow_preview=source(FIG1_WORKFLOW_DIR+'/Page_Previews/Fig01.png',FIG1_WORKFLOW_COMMIT)
-    workflow_record=json.loads(source(
-        FIG1_WORKFLOW_DIR+'/QA/NUMERICAL_AND_PRESERVATION_QA.json',FIG1_WORKFLOW_COMMIT))
-    revised_f1,workflow_png,workflow_preview,f1_layout=(
-        figure_presentation.verify_restoration_workflow_artifact(
-            workflow_curves,workflow_pdf,workflow_png,workflow_preview,workflow_record))
+    stage4_panel_pdf,stage4_panel_png,stage4_generator_audit=(
+        workflow_figure.build_stage4_process_panel())
+    revised_f1,f1_layout=figure_presentation.restoration_workflow(
+        original_f1,stage4_panel_pdf,stage4_generator_audit)
+    with fitz.open(stream=revised_f1,filetype='pdf') as figure1:
+        workflow_png=figure1[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
+        workflow_preview=figure1[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
     changed['Main/Fig01']=revised_f1
     changed_png['Main/Fig01']=workflow_png
     f1_source_hash=u.digest(original_f1)
     style_checks['Main/Fig01']={
         'source_commit':CURRENT_SUITE_BASE,'source_path':original_f1_path,
         'source_sha256':f1_source_hash,'output_sha256':u.digest(revised_f1),
-        'workflow_artifact_commit':FIG1_WORKFLOW_COMMIT,
-        'workflow_artifact_path':FIG1_WORKFLOW_DIR+'/Main/Fig01.pdf',
-        'workflow_curve_source':FIG1_CURVE_SOURCE,
-        'workflow_curve_source_sha256':u.digest(workflow_curves),
+        'workflow_generator':FIG1_WORKFLOW_GENERATOR,
+        'workflow_generator_sha256':u.sha(ROOT/FIG1_WORKFLOW_GENERATOR),
+        'stage4_panel_sha256':u.digest(stage4_panel_pdf),
+        'scheduler_source':FIG1_SCHEDULER_SOURCE,
+        'scheduler_source_sha256':u.sha(ROOT/FIG1_SCHEDULER_SOURCE),
+        'ga_source':FIG1_GA_SOURCE,
+        'ga_source_sha256':u.sha(ROOT/FIG1_GA_SOURCE),
         'workflow_png_sha256':u.digest(workflow_png),
         'presentation':f1_layout,'scientific_data_changed':False,
         'community_outcomes_panel_unchanged':True}
-    print('[build] Figure 1 workflow-generated recovery curves verified and reused',flush=True)
+    style_checks['Main/Fig01']['stage4_generator_audit']=stage4_generator_audit
+    print('[build] Figure 1 Stage 4 generated from priority, scheduling and completion methods',flush=True)
     original_s3_path='results/figure_review/Supplement/FigS03.pdf'
     original_s3=source(original_s3_path,CURRENT_SUITE_BASE)
     original_s3_png=source('results/figure_review/Supplement/FigS03.png',CURRENT_SUITE_BASE)
@@ -560,20 +566,25 @@ def main(output_dir=None, mirror_dir=None):
                     with fitz.open(stream=raw,filetype='pdf') as art:
                         size=f'{art[0].rect.width*25.4/72:.3f} x {art[0].rect.height*25.4/72:.3f}'
                 if stem=='Main/Fig01':
-                    row.update(source_commit=FIG1_WORKFLOW_COMMIT,
-                        source_file=FIG1_WORKFLOW_DIR+'/Main/Fig01.pdf',
+                    row.update(source_commit=CURRENT_SUITE_BASE,
+                        source_file=original_path,
                         presentation_generator='src/la_grid/plotting/figure_presentation.py',
                         presentation_generator_sha256=u.sha(ROOT/PRESENTATION),
-                        status='RESTORED_HASH_VERIFIED_WORKFLOW_GENERATED_CURVES',size_mm=size,
-                        workflow_curve_source=FIG1_CURVE_SOURCE,
-                        workflow_curve_source_sha256=u.digest(workflow_curves),
+                        status='WORKFLOW_GENERATED_METHOD_PROCESS',size_mm=size,
+                        stage4_workflow_generator=FIG1_WORKFLOW_GENERATOR,
+                        stage4_workflow_generator_sha256=u.sha(ROOT/FIG1_WORKFLOW_GENERATOR),
+                        stage4_panel_sha256=u.digest(stage4_panel_pdf),
+                        stage4_scheduler_source=FIG1_SCHEDULER_SOURCE,
+                        stage4_scheduler_source_sha256=u.sha(ROOT/FIG1_SCHEDULER_SOURCE),
+                        stage4_ga_source=FIG1_GA_SOURCE,
+                        stage4_ga_source_sha256=u.sha(ROOT/FIG1_GA_SOURCE),
                         workflow_output_sha256=u.digest(revised_f1),
                         parent_sha256=before,parent_source_commit=CURRENT_SUITE_BASE,parent_source_file=original_path)
-                    ix.update(source_authority=FIG1_WORKFLOW_COMMIT,
-                        source_data_path=FIG1_CURVE_SOURCE,
-                        source_data_sha256=u.digest(workflow_curves),
+                    ix.update(source_authority=CURRENT_SUITE_BASE,
+                        source_data_path=FIG1_SCHEDULER_SOURCE,
+                        source_data_sha256=u.sha(ROOT/FIG1_SCHEDULER_SOURCE),
                         generator='src/la_grid/plotting/figure_presentation.py',
-                        notes='Stage 4 uses saved Unconstrained and Impact-first service-availability curves; execution modes and completion-event service updates are defined in the caption.')
+                        notes='Stage 4 is a method flow: priority rules and GA task-order planning lead to DS > 0 crew scheduling with realized repair durations and directed travel, then repair-completion updates station functionality and service evaluation. Unconstrained is a separate parallel reference; no recovery-result curves appear here.')
                 elif stem=='Main/Fig07':
                     row.update(source_commit=FIGURE_BASELINE_COMMIT,source_file=original_path,
                         presentation_generator='src/la_grid/plotting/figure7_final_presentation_20261016.py',

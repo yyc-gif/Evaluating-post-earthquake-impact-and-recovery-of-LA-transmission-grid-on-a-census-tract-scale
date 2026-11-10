@@ -83,31 +83,34 @@ def test_independent_main_results_and_merged_resource_artwork_preserved():
         for e in ['pdf','png']:assert bool(changes.loc[s+'.'+e,'unchanged'])
 
 
-def test_figure1_builder_reuses_the_saved_workflow_output():
+def test_figure1_builder_generates_method_process_not_recovery_results():
     import inspect
     import figure_presentation
     import build_current_suite_p2
 
-    source_csv=suite_utils.payload(CURRENT_SUITE_BASE,
-        'provenance/legacy_outputs/stage6/recovery_curves_all_system.csv')
-    source_commit='ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15'
-    source_dir='results/figure_review_s6_main4_20261107'
-    source_pdf=suite_utils.payload(source_commit,source_dir+'/Main/Fig01.pdf')
-    source_png=suite_utils.payload(source_commit,source_dir+'/Main/Fig01.png')
-    source_preview=suite_utils.payload(source_commit,source_dir+'/Page_Previews/Fig01.png')
-    record=json.loads(suite_utils.payload(source_commit,
-        source_dir+'/QA/NUMERICAL_AND_PRESERVATION_QA.json'))
-    pdf,png,preview,audit=figure_presentation.verify_restoration_workflow_artifact(
-        source_csv,source_pdf,source_png,source_preview,record)
-    assert pdf==source_pdf and png==source_png and preview==source_preview
-    assert audit['source_rows']==9601 and audit['points_plotted_per_series']==2001
-    assert audit['outside_stage4_pixels_identical']
+    panel_pdf,panel_png,panel_audit=build_current_suite_p2.workflow_figure.build_stage4_process_panel()
+    source_pdf=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Main/Fig01.pdf')
+    pdf,audit=figure_presentation.restoration_workflow(source_pdf,panel_pdf,panel_audit)
+    with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
+        stage_text=' '.join(panel[0].get_text().split())
+    for phrase in ('Priority rules','Repair scheduling and execution',
+                   'Repair-completion events','Vulnerability-first','DS > 0 tasks',
+                   'finite crews','DS-specific durations','Directed travel',
+                   'release crew','station functionality becomes 1',
+                   'source-connectivity','tract-service evaluation'):
+        assert phrase in stage_text
+    for phrase in ('availability curves','T80','cumulative service loss',
+                   'Impact-first service-availability'):
+        assert phrase.lower() not in stage_text.lower()
     builder_source=inspect.getsource(build_current_suite_p2.main)
-    assert 'verify_restoration_workflow_artifact' in builder_source
-    assert 'restoration_workflow(original_f1)' not in builder_source
-    assert 'draw_rect' not in inspect.getsource(figure_presentation.restoration_workflow)
-    assert 'saved Unconstrained and Impact-first service-availability trajectories' in \
+    assert 'build_stage4_process_panel' in builder_source
+    assert 'restoration_workflow(' in builder_source
+    assert 'recovery_curves_all_system.csv' not in builder_source
+    assert 'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15' not in builder_source
+    assert 'saved Unconstrained and Impact-first service-availability trajectories' not in \
         build_current_suite_p2.captions()[0][1]
+    assert audit['outside_stage4_pixels_identical']
+    assert audit['no_recovery_curves_or_downstream_outcomes']
 
 
 def test_no_extra_numbered_artwork_or_retired_numbering():

@@ -46,8 +46,9 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
         if record['final_name'] in {'Main/Fig01.pdf','Main/Fig01.png'}:
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
-            assert qa['figure1_workflow_generated_artifact_reused']
-            assert qa['figure1_stage4_audit']['workflow_generation_record_verified']
+            assert qa['figure1_updated_with_method_process_panel']
+            assert qa['figure1_no_downstream_result_plot_in_stage4']
+            assert qa['figure1_stage4_audit']['outside_stage4_pixels_identical']
         elif record['final_name'] in {'Supplement/FigS05.pdf','Supplement/FigS05.png'}:
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
@@ -77,51 +78,78 @@ def test_preservation_registry_compares_frozen_inputs_to_actual_outputs():
         else:
             assert row['byte_identical']
 
-def test_figure1_uses_hash_verified_workflow_generated_curves():
+def test_figure1_stage4_is_implementation_derived_method_flow():
     import inspect
     import figure_presentation
     import build_current_suite_p2
 
-    artifact_commit=builder.WORKFLOW_ARTIFACT_COMMIT
-    pdf=builder.u.payload(artifact_commit,builder.WORKFLOW_ARTIFACT_PDF)
-    png=builder.u.payload(artifact_commit,builder.WORKFLOW_ARTIFACT_PNG)
-    preview=builder.u.payload(artifact_commit,builder.WORKFLOW_ARTIFACT_PREVIEW)
-    curves=builder.source(builder.WORKFLOW_CURVES)
-    record=json.loads(builder.u.payload(artifact_commit,builder.WORKFLOW_GENERATION_RECORD))
-    checked_pdf,checked_png,checked_preview,audit=(
-        figure_presentation.verify_restoration_workflow_artifact(
-            curves,pdf,png,preview,record))
-    assert (SUITE/'Main/Fig01.pdf').read_bytes()==checked_pdf
-    assert (SUITE/'Main/Fig01.png').read_bytes()==checked_png
-    assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==checked_preview
-    assert audit['source_rows']==9601
-    assert audit['points_plotted_per_series']==2001
-    assert audit['series_columns']=={
-        'Unconstrained':'2pc50 | S3_Mean | Population',
-        'Impact-first':'2pc50 | Impact population first | Population'}
+    panel_pdf,panel_png,panel_audit=builder.workflow_figure.build_stage4_process_panel()
+    source_pdf=builder.source(builder.SOURCE+'/Main/Fig01.pdf')
+    expected_pdf,audit=figure_presentation.restoration_workflow(
+        source_pdf,panel_pdf,panel_audit)
+    with fitz.open(stream=expected_pdf,filetype='pdf') as doc:
+        expected_png=doc[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
+        expected_preview=doc[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
+    with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
+        stage_text=clean_pdf_text(panel[0].get_text())
+    assert (SUITE/'Main/Fig01.pdf').read_bytes()==expected_pdf
+    assert (SUITE/'Main/Fig01.png').read_bytes()==expected_png
+    assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==expected_preview
     assert audit['outside_stage4_pixels_identical']
+    assert audit['no_recovery_curves_or_downstream_outcomes']
+    for phrase in ('Priority rules','Repair scheduling and execution',
+                   'Repair-completion events','Vulnerability-first',
+                   'DS > 0 tasks','finite crews','DS-specific durations',
+                   'Directed travel','release crew','station functionality becomes 1',
+                   'source-connectivity','tract-service evaluation'):
+        assert phrase in stage_text
+    for phrase in ('availability curves','Impact-first service-availability',
+                   'T80','cumulative service loss'):
+        assert phrase.lower() not in stage_text.lower()
     generator_source=inspect.getsource(builder.main)
-    assert 'verify_restoration_workflow_artifact' in generator_source
-    assert 'restoration_workflow(' not in generator_source
-    assert 'draw_rect' not in inspect.getsource(figure_presentation.restoration_workflow)
+    assert 'build_stage4_process_panel' in generator_source
+    assert 'restoration_workflow(' in generator_source
+    builder_module=inspect.getsource(builder)
+    assert 'FIG1_CURVE_SOURCE' not in builder_module
+    assert 'FIG1_WORKFLOW_COMMIT' not in builder_module
+    assert "source(FIG1_CURVE_SOURCE" not in generator_source
+    assert "source(FIG1_WORKFLOW_DIR" not in generator_source
+    assert 'verify_restoration_workflow_artifact' not in generator_source
+    assert 'show_pdf_page' in inspect.getsource(figure_presentation.restoration_workflow)
     p2_builder_source=inspect.getsource(build_current_suite_p2.main)
-    assert 'verify_restoration_workflow_artifact' in p2_builder_source
-    assert "source(FIG1_CURVE_SOURCE,CURRENT_SUITE_BASE)" in p2_builder_source
-    assert 'restoration_workflow(original_f1)' not in p2_builder_source
+    assert 'build_stage4_process_panel' in p2_builder_source
+    assert 'restoration_workflow(' in p2_builder_source
+    assert 'recovery_curves_all_system.csv' not in p2_builder_source
+    assert 'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15' not in p2_builder_source
     p2_caption=build_current_suite_p2.captions()[0][1]
-    assert 'saved Unconstrained and Impact-first service-availability trajectories' in p2_caption
+    assert 'saved Unconstrained and Impact-first service-availability trajectories' not in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    for phrase in ('saved population-weighted service-availability trajectories',
-                   'Unconstrained and Impact-first','finite crews','sampled repair durations',
-                   'directed travel','At each completion','source-gated tract service',
-                   'not averaged schedules'):
+    for phrase in ('parallel Unconstrained reference','priority rules and GA task-order planning',
+                   'DS > 0 tasks','realized damage-state-specific durations','directed travel',
+                   'completion-triggered crew release','source-gated tract-service reevaluation'):
         assert phrase in fig1
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
     row=next(r for r in manifest if r['final_name']=='Main/Fig01.pdf')
-    assert row['workflow_artifact_commit']==artifact_commit
-    assert row['workflow_artifact_sha256']==hashlib.sha256(pdf).hexdigest()
-    assert row['workflow_curve_source_sha256']==hashlib.sha256(curves).hexdigest()
+    assert row['stage4_generator']==builder.WORKFLOW_GENERATOR
+    assert row['stage4_panel_sha256']==hashlib.sha256(panel_pdf).hexdigest()
+    assert row['stage4_scheduler_source_sha256']==hashlib.sha256(
+        (ROOT/builder.SCHEDULER_SOURCE).read_bytes()).hexdigest()
+    assert row['stage4_ga_source_sha256']==hashlib.sha256(
+        (ROOT/builder.GA_SOURCE).read_bytes()).hexdigest()
+    with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as packet:
+        assert len(packet)==16
+        packet_text=clean_pdf_text(packet[0].get_text())
+        assert 'Figure 1. Analytical framework' in packet_text
+        assert 'Repair-completion events' in packet_text
+
+
+def test_supplementary_s5_remains_unchanged_by_figure1_correction():
+    baseline='8d7d458b9e85bb72c4c25cd927815137bd916bbc'
+    for rel in ('results/figure_review_s6_main4_20261107/Supplement/FigS05.pdf',
+                'results/figure_review_s6_main4_20261107/Supplement/FigS05.png',
+                'results/figure_review_s6_main4_20261107/Page_Previews/FigS05.png'):
+        assert (ROOT/rel).read_bytes()==builder.u.payload(baseline,rel)
 
 
 def test_s5_actual_pdf_png_packet_and_visual_centering():
@@ -295,14 +323,21 @@ def test_palette_and_source_science_preserved():
     assert expected==actual
     q=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
     assert q['all_four_promoted_panels_preserved']
-    assert q['figure1_workflow_generated_artifact_reused']
-    assert q['figure1_curve_source_sha256']=='b4a0889e12ed855f1f681b73dbb429306f513585fd00afe058480e6aa5a43922'
+    assert q['figure1_updated_with_method_process_panel']
+    assert q['figure1_no_downstream_result_plot_in_stage4']
+    assert 'figure1_curve_source_sha256' not in q
+    assert q['figure1_stage4_generator_audit']['no_recovery_curves_or_downstream_outcomes']
     assert q['unaffected_13_artwork_pairs_byte_identical']
     assert q['figure8_separate_map_legends_updated']
     assert q['dynamic_full_minus_fixed_identity_max_abs_error']<1e-12
     assert q['static_station_records']==92 and q['static_core_source_records']==14
     for path,record in json.loads((SUITE/'QA/SOURCE_IDENTITIES.json').read_text())['source_files'].items():
-        if not path.startswith('derived/'):
+        if record.get('locally_executed_source'):
+            assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==record['sha256']
+        elif path.startswith('generated/'):
+            artifact=path.rsplit('/',1)[-1]
+            assert hashlib.sha256((SUITE/'QA'/artifact).read_bytes()).hexdigest()==record['sha256']
+        elif not path.startswith('derived/'):
             assert hashlib.sha256(builder.u.payload(record['commit'],path)).hexdigest()==record['sha256']
 
 def test_s5_four_policy_sensitivity_contains_verified_vulnerability_first():

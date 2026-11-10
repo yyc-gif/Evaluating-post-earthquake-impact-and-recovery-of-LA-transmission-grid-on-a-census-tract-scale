@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Stage 4 contrasts saved population-weighted service-availability trajectories for Unconstrained and Impact-first under 2pc50. Unconstrained repairs proceed in parallel; Impact-first uses finite crews, sampled repair durations and directed travel. At each completion, station functionality and source-gated tract service are updated. Curves are frozen model outputs, not averaged schedules or observed outages.
+Stage 4 separates the parallel Unconstrained reference from constrained restoration strategies. It shows priority rules and GA task-order planning, finite-crew dispatch of DS > 0 tasks using realized damage-state-specific durations and directed travel, and completion-triggered crew release, station functionality restoration and source-gated tract-service reevaluation.
 
 ## Figure 2. Transmission network and tract dependencies
 
