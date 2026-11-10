@@ -23,3 +23,7 @@ No simulation, damage realization, recovery trajectory, repair schedule, or scie
 ## Verification
 
 The active promotion integration test file passes all 13 tests. Two canonical builds produced identical SHA-256 values for all 103 files under the review suite and its mirror. The four modified artwork files are Figure 1 PDF/PNG and S5 PDF/PNG; the other 28 numbered artwork files match their starting-commit LFS object hashes. Figure 1's non-Module-D rendered pixels are identical to the source at 120 dpi. The 8-main/8-supplement collection remains a 16-page complete figure-and-caption packet.
+
+## Remote delivery
+
+The artwork-bearing commit `856c32740da8ed4b782d44fc591d15adceb8d44b` was pushed to `refs/heads/review/fig1-moduleD-s5-final-20261109`. GitHub accepted 11 Git LFS objects (181,198,907 bytes total). Those objects were fetched again from GitHub into a separate, initially empty LFS object store; SHA-256 and byte length for all 15 changed LFS paths (11 unique payloads, including mirrored artwork) matched the committed pointers and local files. The remote branch ref matched the pushed commit at verification time.
