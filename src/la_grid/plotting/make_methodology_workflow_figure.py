@@ -239,11 +239,12 @@ def build_figure() -> tuple[Path, Path, Path]:
         "Unchanged tract weights aggregate modeled available station service",
         "Exact event intervals produce tract cumulative burden and T50/T80",
     ], COLORS["service"])
-    box(.38, 1.13, 8.64, 3.16, "D", "Restoration modeling", [
-        "Eight fixed priorities, including Vulnerability-first",
-        "Community-burden GA planning; frozen strategy choice",
-        "Damage-filtered tasks, 57 crews and directed travel",
-        "Repair completion restores raw functionality",
+    box(.38, 1.13, 8.64, 3.16, "D", "Restoration strategies and execution", [
+        "Rule-based priorities include Vulnerability-first",
+        "GA searches task orders by service burden",
+        "Finite crews schedule DS-specific tasks and durations",
+        "Directed road travel links repair tasks",
+        "Completion restores station function; service is reevaluated",
     ], COLORS["recovery"])
     box(9.48, 1.13, 8.64, 3.16, "E", "Outputs and interpretation", [
         "Population, hospital and Q1–Q4 burdens",

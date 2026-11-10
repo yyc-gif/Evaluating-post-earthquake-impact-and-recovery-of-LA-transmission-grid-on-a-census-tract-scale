@@ -265,7 +265,15 @@ def main(output_dir=None,mirror_dir=None):
             f'<img src="{u.escape(name)}" alt="{u.escape(title)}"><p>{u.escape(body)}</p></section>'])
     u.write(mirror/'FIGURE_REVIEW_GALLERY.html','\n'.join(html))
     u.dump(dest/'QA/ARTWORK_PRESERVATION.json',preservation)
+    implementation_files=[GEN,'src/la_grid/plotting/figure_presentation.py',
+        'src/la_grid/plotting/consolidate_current_figure_suite.py',
+        'src/la_grid/plotting/short_current_captions_20261013.py',
+        'src/la_grid/plotting/make_methodology_workflow_figure.py']
+    implementation={path:{'commit':'local implementation at build time',
+        'sha256':u.sha(ROOT/path),'bytes':(ROOT/path).stat().st_size}
+        for path in implementation_files}
     u.dump(dest/'QA/SOURCE_IDENTITIES.json',{'baseline':BASE,'source_files':source_hashes,
+        'implementation_files':implementation,
         'original_notes_describe_separate_candidates_not_exact_current_S6':True})
     u.dump(dest/'QA/PACKET_PAGE_REGISTRY.json',page_rows)
     u.dump(dest/'QA/NUMBERING_MAP.json',MAPPING)
@@ -330,6 +338,7 @@ def main(output_dir=None,mirror_dir=None):
         'The collection contains eight main plus eight supplementary figures. Combined packet: 16 pages, each artwork followed immediately by its concise caption on the same page.\n\n'
         'This is a separate author-review collection. The source suite, manuscripts, simulation data, restoration results and clustering are unchanged. '
         'Figure 1 Stage 4 is a restoration-execution process schematic without actual recovery curves. Figure 8 has separate Panel C and Panel D legends, with exact definitions in its caption. Supplementary Figure S5 includes Vulnerability-first comparisons calculated from its saved event-state archive; see `QA/S5_VULNERABILITY_FIRST_METHODS_QA.md` for pairing checks and estimates. The other 13 artwork pairs are byte-identical to their pinned sources. '
+        'Figure 1 Module D distinguishes fixed priority rules (including Vulnerability-first), GA repair-order search, finite-crew damage-state repairs, directed travel and completion-event service updates. S5 is centered using the full visible bounds, including strategy labels, axes, tick labels and legends. '
         'No simulation or scientific model is rerun; only frozen result outputs are plotted. '
         'The source notes describe older candidate layouts. The actual promoted figure uses dynamic A/B curves for six scheduled strategies plus Unconstrained and static conditional C/D maps.\n\n'
         'Place Main Figure 4 after Section 4.2 and before the Section 4.3 heading. See MANUSCRIPT_INTEGRATION.md for the bridge and figure-reference substitutions. '
@@ -338,7 +347,7 @@ def main(output_dir=None,mirror_dir=None):
         'The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. '
         'Current older-suite builders remain available and do not target this separate collection.\n')
     u.write(dest/'README.md',readme);u.write(mirror/'README.md',readme)
-    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 1 Stage 4 restored to a concise restoration-execution process schematic; quantitative recovery curves are not embedded in the workflow. Figure 8 now has separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated; the other 13 numbered artwork pairs remain byte-identical to their pinned sources.\n')
+    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 1 Stage 4 restored to a concise restoration-execution process schematic; quantitative recovery curves are not embedded in the workflow. Figure 8 now has separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated; the other 13 numbered artwork pairs remain byte-identical to their pinned sources.\n\n# 2026-11-09\n\nFigure 1 Module D now shows priority rules (including Vulnerability-first), GA repair-order search, finite-crew damage-state scheduling, directed travel and repair-completion service updates. S5 is centered on the complete visible composition; independent 600-dpi raster margins and PDF/PNG identity are tested. No scientific values or schedules changed.\n')
     u.write(dest/'MANUSCRIPT_INTEGRATION.md',manuscript_integration())
     print(json.dumps(qa,indent=2))
 

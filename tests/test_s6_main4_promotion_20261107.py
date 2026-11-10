@@ -5,6 +5,7 @@ import importlib.util
 import json
 import re
 import sys
+import subprocess
 from pathlib import Path
 
 import fitz
@@ -22,7 +23,7 @@ def rows(path):
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def clean_pdf_text(text):
-    return ' '.join(text.replace('\xa0',' ').replace('\xad','-').split())
+    return ' '.join(text.replace('\xa0',' ').replace('\xad','-').replace('\ufffd','-').split())
 
 def test_exact_numbering_and_inventory():
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
@@ -77,20 +78,102 @@ def test_preservation_registry_compares_frozen_inputs_to_actual_outputs():
             assert row['byte_identical']
 
 def test_figure1_stage4_is_execution_process_not_result_curves():
+    import numpy as np
+
     with fitz.open(SUITE/'Main/Fig01.pdf') as doc:
-        text=clean_pdf_text(doc[0].get_text())
-        for phrase in ('Unconstrained restoration','Constrained restoration strategies',
-                       'At each repair-completion event','Repair completes',
-                       'Station function set to 1','Re-evaluate source connectivity',
-                       'Update tract service through W'):
+        page=doc[0]
+        text=clean_pdf_text(page.get_text())
+        for phrase in ('Unconstrained reference','Repairs proceed in parallel.',
+                       'No crew or travel limits.','Priority rules and GA search',
+                       'Fixed priorities include Vulnerability-first.',
+                       'GA search uses service-burden objective.',
+                       'Finite crews schedule DS-specific tasks.',
+                       'Repair durations vary by damage state.',
+                       'Directed road travel links tasks.',
+                       'Schedules set repair-completion times.',
+                       'Repair-completion events','Raw station functionality set to 1',
+                       'Re-evaluate source connectivity','Update tract service through W'):
             assert phrase in text
+        stage4=[s for block in page.get_text('dict')['blocks']
+                for line in block.get('lines',[]) for s in line.get('spans',[])
+                if 481.7<s['bbox'][1]<614.7 and 9.5<s['bbox'][0]<256.3]
+        stage4_text=clean_pdf_text(' '.join(s['text'] for s in stage4))
         for obsolete in ('Mean population-weighted service availability',
-                         'Unconstrained | Impact-first','Time after earthquake (h)'):
-            assert obsolete not in text
+                         'Unconstrained | Impact-first','Time after earthquake (h)',
+                         'Modeled service availability curves'):
+            assert obsolete not in stage4_text
+        assert all(s['bbox'][0]>=9.5 and s['bbox'][2]<=256.3 for s in stage4)
+    source=builder.source(builder.SOURCE+'/Main/Fig01.pdf')
+    with fitz.open(stream=source,filetype='pdf') as before, fitz.open(SUITE/'Main/Fig01.pdf') as after:
+        a=before[0].get_pixmap(dpi=120,alpha=False)
+        b=after[0].get_pixmap(dpi=120,alpha=False)
+        ar=np.frombuffer(a.samples,dtype=np.uint8).reshape(a.height,a.width,3)
+        br=np.frombuffer(b.samples,dtype=np.uint8).reshape(b.height,b.width,3)
+        assert ar.shape==br.shape
+        outside=np.ones(ar.shape[:2],dtype=bool)
+        scale=120/72
+        outside[round(481.7*scale)-2:round(614.7*scale)+2,
+                round(9.5*scale)-2:round(256.3*scale)+2]=False
+        assert np.array_equal(ar[outside],br[outside])
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
     assert 'repair completion' in fig1 and 'numerical recovery outcomes' in fig1
     assert 'availability trajectories' not in fig1
+
+
+def test_s5_actual_pdf_png_packet_and_visual_centering():
+    from PIL import Image
+    import numpy as np
+
+    pdf_path=SUITE/'Supplement/FigS05.pdf'
+    png_path=SUITE/'Supplement/FigS05.png'
+    preview_path=SUITE/'Page_Previews/FigS05.png'
+    with fitz.open(pdf_path) as doc:
+        page=doc[0]
+        assert abs(page.rect.width*25.4/72-185.0)<.01
+        assert abs(page.rect.height*25.4/72-210.0)<.01
+        text=clean_pdf_text(page.get_text())
+        for value in ('Impact-first','Hospital-first','Degree-first','Vulnerability-first',
+                      'A. Mapping-weight cutoff','B. Source-connectivity gate',
+                      'C. Functionality threshold','0% cutoff','1% cutoff','0.05','0.75'):
+            assert value in text
+        assert page.get_pixmap(dpi=600,alpha=False).tobytes('png')==png_path.read_bytes()
+        assert page.get_pixmap(dpi=150,alpha=False).tobytes('png')==preview_path.read_bytes()
+
+    image=np.asarray(Image.open(png_path).convert('RGB'))
+    ink=np.any(image<248,axis=2)
+    ys,xs=np.where(ink)
+    left=185.0*xs.min()/image.shape[1]
+    right=185.0*(image.shape[1]-1-xs.max())/image.shape[1]
+    assert abs(left-right)<=1.0, (left,right)
+
+    with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as packet, \
+         fitz.open(pdf_path) as art:
+        assert len(packet)==16
+        page=packet[12]
+        rect=fitz.Rect(0,0,art[0].rect.width,art[0].rect.height)
+        assert page.get_pixmap(dpi=150,clip=rect,alpha=False).samples==art[0].get_pixmap(dpi=150,alpha=False).samples
+        assert all(value in clean_pdf_text(page.get_text()) for value in (
+            'A. Mapping-weight cutoff','B. Source-connectivity gate',
+            'C. Functionality threshold'))
+
+    manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
+    rec=next(r for r in manifest if r['final_name']=='Supplement/FigS05.pdf')
+    assert digest(pdf_path)==rec['sha256']
+    assert (ROOT/rec['mirror_file']).read_bytes()==pdf_path.read_bytes()
+    audit=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
+    margins=audit['s5_vulnerability_plot_audit']['complete_visible_composition_centering']
+    assert abs(margins['after_visible_left_mm']-margins['after_visible_right_mm'])<.15
+    assert margins['includes_strategy_labels_axis_titles_and_legends']
+    raster=audit['s5_vulnerability_plot_audit']['independent_600dpi_png_visible_bounds']
+    assert abs(raster['visible_left_mm']-left)<.02
+    assert abs(raster['visible_right_mm']-right)<.02
+
+    plot_rel='results/figure_review_s6_main4_20261107/QA/S5_VULNERABILITY_PLOT_DATA.json'
+    committed=json.loads(subprocess.check_output(['git','show',
+        '5e10f48bbc2b8dc873cc9bda4ad575f8d683cd41:'+plot_rel],cwd=ROOT))
+    current=json.loads((ROOT/plot_rel).read_text(encoding='utf-8'))
+    assert current==committed
 
 def test_all_four_promoted_panels_and_vector_contents_are_unchanged():
     raw=builder.source(builder.SOURCE+'/Supplement/FigS06.pdf')
@@ -219,6 +302,20 @@ def test_s5_four_policy_sensitivity_contains_verified_vulnerability_first():
 def test_source_suite_files_are_not_overwritten():
     manifest=builder.u.csv_rows(builder.source(builder.SOURCE+'/FIGURE_MANIFEST.csv'))
     for row in manifest:
-        assert digest(ROOT/row['current_source_file'])==row['sha256']
-        assert digest(ROOT/row['mirror_file'])==row['sha256']
-    assert (ROOT/builder.SOURCE/'MANUSCRIPT_FACING_CAPTIONS.md').read_bytes()==builder.source(builder.SOURCE+'/MANUSCRIPT_FACING_CAPTIONS.md')
+        current=builder.source(row['current_source_file'])
+        mirror=builder.source(row['mirror_file'])
+        assert hashlib.sha256(current).hexdigest()==row['sha256']
+        assert hashlib.sha256(mirror).hexdigest()==row['sha256']
+        if (ROOT/row['current_source_file']).is_file():
+            assert digest(ROOT/row['current_source_file'])==row['sha256']
+        if (ROOT/row['mirror_file']).is_file():
+            assert digest(ROOT/row['mirror_file'])==row['sha256']
+    source_caption=builder.SOURCE+'/MANUSCRIPT_FACING_CAPTIONS.md'
+    committed=subprocess.check_output(['git','show','5e10f48bbc2b8dc873cc9bda4ad575f8d683cd41:'+source_caption],cwd=ROOT)
+    assert committed==builder.source(source_caption)
+
+
+def test_local_renderer_implementation_hashes_are_recorded():
+    impl=json.loads((SUITE/'QA/SOURCE_IDENTITIES.json').read_text(encoding='utf-8'))['implementation_files']
+    for rel,record in impl.items():
+        assert digest(ROOT/rel)==record['sha256']

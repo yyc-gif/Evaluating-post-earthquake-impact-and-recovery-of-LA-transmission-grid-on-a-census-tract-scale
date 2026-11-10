@@ -1,0 +1,65 @@
+{
+  "starting_head": "5e10f48bbc2b8dc873cc9bda4ad575f8d683cd41",
+  "source_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+  "changed_artwork_pairs": [
+    "Main/Fig01.pdf",
+    "Main/Fig01.png",
+    "Supplement/FigS05.pdf",
+    "Supplement/FigS05.png"
+  ],
+  "all_other_artwork_pairs_unchanged": true,
+  "figure1": {
+    "page_mm": [
+      185.0,
+      220.0
+    ],
+    "pdf_png_render_identical_600dpi": true,
+    "non_moduleD_content_pixel_identical_at_120dpi": true,
+    "new_moduleD_text_and_bounds_verified": true,
+    "illustrative_recovery_curves_removed": true
+  },
+  "supplement_s5": {
+    "page_mm": [
+      185.0,
+      210.0
+    ],
+    "pdf_png_render_identical_600dpi": true,
+    "preview_matches_pdf_150dpi": true,
+    "actual_600dpi_visible_margins": {
+      "dpi": 600,
+      "width_px": 4371,
+      "height_px": 4961,
+      "left_mm": 21.289178677648135,
+      "right_mm": 21.11988103408831,
+      "top_mm": 16.847409796412013,
+      "bottom_mm": 6.434186655916146,
+      "rgb_threshold": 248
+    },
+    "horizontal_margin_difference_mm": 0.16929764355982613,
+    "packet_figure_region_pixel_identical_at_150dpi": true,
+    "embedded_fonts": [
+      "ELUGPM+Arial-BoldMT",
+      "ELUGPM+ArialMT"
+    ],
+    "raster_images": 0,
+    "four_policies_and_three_panels_verified": true,
+    "plot_data_value_structure_equal_to_starting_commit": true,
+    "plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",
+    "audit_sha256": "a29bd3bd1fce4d88231bad9ca84e205591039dbf7d8852f6672f6bfe531b4c83"
+  },
+  "figure_packet_pages": {
+    "main": 8,
+    "supplement": 8,
+    "complete": 16
+  },
+  "manifest_pairs": 32,
+  "mirrors_byte_identical": true,
+  "generator_implementation_sha256": {
+    "src/la_grid/plotting/build_s6_main4_review.py": "43fe3df4793bd1fb5d644cf6a61ad5dd7f5e81baf439d30a0ab73af58413f64b",
+    "src/la_grid/plotting/figure_presentation.py": "6d5126a9874320fa9d87179362da0677b0b89ed585524d78628fc596f17bcc8a",
+    "src/la_grid/plotting/consolidate_current_figure_suite.py": "9e3a9a91352742358a77c53438a40a3611a6713e5b77730f2a54a30fd4ec7f95",
+    "src/la_grid/plotting/short_current_captions_20261013.py": "63e8236b7c200c32e4d6bffa563ecb3df2d4ac109ecc5d90ad13c4c4e2d82e52",
+    "src/la_grid/plotting/make_methodology_workflow_figure.py": "9b15541187dde2503b954f63e196c9825f520d5a29cc7fbc379d3fef60f00494"
+  },
+  "scientific_models_or_schedules_rerun": false
+}

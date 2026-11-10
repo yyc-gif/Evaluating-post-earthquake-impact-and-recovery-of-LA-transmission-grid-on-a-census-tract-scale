@@ -8,6 +8,15 @@
       "Unconstrained reference",
       "Constrained restoration"
     ],
+    "priority_rules": [
+      "Predefined repair priorities, including Vulnerability-first"
+    ],
+    "ga": "Search-based repair-order planning against service burden; no global optimum implied.",
+    "scheduling": [
+      "Finite crews",
+      "DS-specific repair tasks and durations",
+      "Directed road travel between tasks"
+    ],
     "old_internal_labels_visually_replaced": [
       "Constrained restoration",
       "Finite crews; dispatch includes directed travel and repairs.",
@@ -31,7 +40,7 @@
     "completion_event_recovery": true,
     "process_steps": [
       "Repair completes",
-      "Station function set to 1",
+      "Raw station functionality set to 1",
       "Re-evaluate source connectivity",
       "Update tract service through W"
     ],
@@ -138,7 +147,25 @@
     "width_mm": 185.0,
     "height_mm": 210.0,
     "axes_count": 3,
-    "no_recovery_model_or_schedule_rerun": true
+    "no_recovery_model_or_schedule_rerun": true,
+    "complete_visible_composition_centering": {
+      "before_visible_left_mm": 35.89686111111111,
+      "before_visible_right_mm": 6.474999999999943,
+      "after_visible_left_mm": 21.185930555555537,
+      "after_visible_right_mm": 21.18593055555555,
+      "center_shift_mm": -14.710930555555578,
+      "includes_strategy_labels_axis_titles_and_legends": true
+    },
+    "independent_600dpi_png_visible_bounds": {
+      "dpi": 600,
+      "width_px": 4371,
+      "height_px": 4961,
+      "visible_left_mm": 21.289178677648135,
+      "visible_right_mm": 21.11988103408831,
+      "visible_top_mm": 16.847409796412013,
+      "visible_bottom_mm": 6.434186655916146,
+      "ink_threshold_rgb_lt": 248
+    }
   },
   "s5_vulnerability_archive_audit_sha256": "a29bd3bd1fce4d88231bad9ca84e205591039dbf7d8852f6672f6bfe531b4c83",
   "s5_vulnerability_plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",

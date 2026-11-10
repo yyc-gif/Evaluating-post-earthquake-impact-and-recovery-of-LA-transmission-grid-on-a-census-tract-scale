@@ -296,6 +296,8 @@ def supplementary5_four_policy(plot_data_bytes):
     import matplotlib.pyplot as plt
     from matplotlib import font_manager
     from matplotlib.lines import Line2D
+    import numpy as np
+    from PIL import Image
 
     data=json.loads(plot_data_bytes)
     assert data['schema']=='S5_FOUR_POLICY_SENSITIVITY_V1'
@@ -435,6 +437,19 @@ def supplementary5_four_policy(plot_data_bytes):
                           'C. Functionality threshold'):
                 assert value in text,value
             assert '5th' not in text and 'confidence interval' not in text.lower()
+    with Image.open(io.BytesIO(png)) as image:
+        raster=np.asarray(image.convert('RGB'))
+    visible=np.any(raster<248,axis=2)
+    ys,xs=np.where(visible)
+    raster_margins={
+        'dpi':600,'width_px':int(raster.shape[1]),'height_px':int(raster.shape[0]),
+        'visible_left_mm':float(185.0*xs.min()/raster.shape[1]),
+        'visible_right_mm':float(185.0*(raster.shape[1]-1-xs.max())/raster.shape[1]),
+        'visible_top_mm':float(210.0*ys.min()/raster.shape[0]),
+        'visible_bottom_mm':float(210.0*(raster.shape[0]-1-ys.max())/raster.shape[0]),
+        'ink_threshold_rgb_lt':248,
+    }
+    assert abs(raster_margins['visible_left_mm']-raster_margins['visible_right_mm'])<=1.0
     return pdf,png,preview,{
         'source_plot_data_sha256':hashlib.sha256(plot_data_bytes).hexdigest(),
         'four_policies_in_all_three_panels':True,
@@ -446,6 +461,7 @@ def supplementary5_four_policy(plot_data_bytes):
         'width_mm':185.0,'height_mm':210.0,
         'axes_count':3,'no_recovery_model_or_schedule_rerun':True,
         'complete_visible_composition_centering':center_audit,
+        'independent_600dpi_png_visible_bounds':raster_margins,
     }
 
 
@@ -483,21 +499,31 @@ def restoration_workflow(raw):
                 fontname='Fig1RestorationBold' if bold else 'Fig1RestorationBody',
                 fontsize=size,color=color,overlay=True)
 
-        label('Unconstrained restoration',17.0,495.0,6.7,True)
+        label('Unconstrained reference',17.0,495.0,6.7,True)
         label('Repairs proceed in parallel.',17.0,505.2,7.0)
-        label('No finite-crew or travel limits.',17.0,514.0,7.0)
-        label('Constrained restoration strategies',140.0,495.0,7.0,True)
-        label('Priority order with finite crews.',140.0,505.2,7.0)
-        label('Dispatch includes directed travel.',140.0,514.0,7.0)
-        page.draw_line(fitz.Point(132.0,487.8),fitz.Point(132.0,519.0),
+        label('No crew or travel limits.',17.0,514.0,7.0)
+        label('Priority rules and GA search',118.0,495.0,6.8,True)
+        right_lines=[
+            'Fixed priorities include Vulnerability-first.',
+            'GA search uses service-burden objective.',
+            'Finite crews schedule DS-specific tasks.',
+            'Repair durations vary by damage state.',
+            'Directed road travel links tasks.',
+            'Schedules set repair-completion times.',
+        ]
+        line_font=fitz.Font(fontfile='C:/Windows/Fonts/arial.ttf')
+        assert all(line_font.text_length(text,fontsize=7.0)<=132.0 for text in right_lines)
+        for text,y in zip(right_lines,[503.0,510.6,518.2,525.8,533.4,541.0]):
+            label(text,118.0,y,7.0)
+        page.draw_line(fitz.Point(108.0,487.8),fitz.Point(108.0,541.8),
                        color=(0.82,0.85,0.86),width=0.45,overlay=True)
-        page.draw_line(fitz.Point(15.5,522.0),fitz.Point(250.0,522.0),
+        page.draw_line(fitz.Point(15.5,545.0),fitz.Point(250.0,545.0),
                        color=(0.82,0.85,0.86),width=0.45,overlay=True)
-        label('At each repair-completion event',15.5,532.0,7.0,True)
+        label('Repair-completion events',15.5,554.0,7.0,True)
 
-        boxes=[(15.5,'Repair\ncompletes'),(75.0,'Station\nfunction set\nto 1'),
+        boxes=[(15.5,'Repair\ncompletes'),(75.0,'Raw station\nfunctionality\nset to 1'),
                (134.5,'Re-evaluate\nsource\nconnectivity'),(194.0,'Update tract\nservice\nthrough W')]
-        box_width=53.0; top=539.0; bottom=581.0
+        box_width=53.0; top=560.0; bottom=590.0
         for x,text in boxes:
             page.draw_rect(fitz.Rect(x,top,x+box_width,bottom),
                            color=(.56,.62,.65),fill=(.98,.99,.99),
@@ -507,21 +533,25 @@ def restoration_workflow(raw):
             for line_text in lines:
                 text_width=fitz.Font(fontfile='C:/Windows/Fonts/arial.ttf').text_length(
                     line_text,fontsize=7.0)
+                assert text_width<=box_width-4.0,(line_text,text_width,box_width)
                 label(line_text,x+(box_width-text_width)/2,line_y,7.0)
                 line_y+=8.4
         for x1,x2 in ((68.5,75.0),(128.0,134.5),(187.5,194.0)):
-            y=560.0
+            y=575.0
             page.draw_line(fitz.Point(x1,y),fitz.Point(x2-1.5,y),
                            color=(.30,.37,.40),width=.7,overlay=True)
             page.draw_polyline([fitz.Point(x2-3.4,y-1.8),fitz.Point(x2-1.5,y),
                                 fitz.Point(x2-3.4,y+1.8)],
                                color=(.30,.37,.40),width=.7,overlay=True)
-        label('Repeat the update after every repair completion.',15.5,596.0,7.0)
+        label('Station service is reevaluated after each repair completion.',15.5,602.0,7.0)
 
         result=finish(doc)
         return result,dict(
             panel='4',title=title_text,
-            execution_modes=['Unconstrained reference','Constrained restoration'],
+              execution_modes=['Unconstrained reference','Constrained restoration'],
+              priority_rules=['Predefined repair priorities, including Vulnerability-first'],
+              ga='Search-based repair-order planning against service burden; no global optimum implied.',
+              scheduling=['Finite crews','DS-specific repair tasks and durations','Directed road travel between tasks'],
             old_internal_labels_visually_replaced=sorted(old_text),
             output='Repair completion updates functionality, source connectivity and mapped tract service.',
             no_threshold_or_T80_in_panel=True,
@@ -530,8 +560,8 @@ def restoration_workflow(raw):
             panel_bounds_preserved=True,other_panels_and_stage_5_content_unchanged=True,
             body_font='Arial',body_font_size_pt=7.0,
             illustrative_curves_removed=True,completion_event_recovery=True,
-            process_steps=['Repair completes','Station function set to 1',
-                           'Re-evaluate source connectivity','Update tract service through W'],
+              process_steps=['Repair completes','Raw station functionality set to 1',
+                             'Re-evaluate source connectivity','Update tract service through W'],
             original_panel_graphics_covered_by_opaque_vector_replacement=True,
             source_vector_signature='outside authorized panel verified by native-render pixel test',
             width_pt=w,height_pt=h)
