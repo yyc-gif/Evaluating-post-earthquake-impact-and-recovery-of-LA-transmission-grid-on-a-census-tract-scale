@@ -93,9 +93,14 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
     pdf,audit=figure_presentation.restoration_workflow(source_pdf,panel_pdf,panel_audit)
     with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
         stage_text=' '.join(panel[0].get_text().split())
-    assert stage_text.split() == ['1', '2', '3', '4', '5']
-    assert panel_audit['uses_priority_map'] and panel_audit['uses_logistics_artwork']
-    assert panel_audit['no_explanatory_text']
+    for phrase in ('PRIORITY RULES', 'REPAIR SCHEDULING',
+                   'Crew 5: 300558', 'Crew 9: 303169',
+                   'COMPLETION EVENTS', 'Station 300558 repaired at 18.15 h'):
+        assert phrase in stage_text
+    assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
+    assert panel_audit['no_fabricated_task_events']
+    assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
+    assert len(panel_audit['plotted_task_events']) == 4
     for phrase in ('availability curves','T80','cumulative service loss',
                    'Impact-first service-availability'):
         assert phrase.lower() not in stage_text.lower()

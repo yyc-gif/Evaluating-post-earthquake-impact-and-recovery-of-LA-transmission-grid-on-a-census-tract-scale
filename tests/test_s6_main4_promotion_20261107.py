@@ -97,9 +97,15 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==expected_preview
     assert audit['outside_stage4_pixels_identical']
     assert audit['no_recovery_curves_or_downstream_outcomes']
-    assert stage_text.split() == ['1', '2', '3', '4', '5']
-    assert panel_audit['uses_priority_map'] and panel_audit['uses_logistics_artwork']
-    assert panel_audit['no_explanatory_text']
+    for phrase in ('PRIORITY RULES', 'first five repair targets',
+                   'REPAIR SCHEDULING', 'Crew 5: 300558',
+                   'Crew 9: 303169', 'COMPLETION EVENTS',
+                   'Station 300558 repaired at 18.15 h', 'source gate'):
+        assert phrase in stage_text
+    assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
+    assert panel_audit['no_fabricated_task_events']
+    assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
+    assert len(panel_audit['plotted_task_events']) == 4
     for phrase in ('availability curves','Impact-first service-availability',
                    'T80','cumulative service loss'):
         assert phrase.lower() not in stage_text.lower()
@@ -122,10 +128,9 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert 'saved Unconstrained and Impact-first service-availability trajectories' not in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    for phrase in ('rule-based and GA repair planning','map illustrates Impact-first',
-                   'Crew origins and task-to-task travel','finite-crew scheduling',
-                   'repair completion updates station functionality',
-                   'Unconstrained parallel repair is shown separately'):
+    for phrase in ('Impact-first priority-map example', 'actual two-crew repair schedule',
+                   'directed travel', 'teal intervals are repair',
+                   'Completion releases the crew', 'Unconstrained repair is the parallel reference'):
         assert phrase in fig1
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
     row=next(r for r in manifest if r['final_name']=='Main/Fig01.pdf')
@@ -139,7 +144,7 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
         assert len(packet)==16
         packet_text=clean_pdf_text(packet[0].get_text())
         assert 'Figure 1. Analytical framework' in packet_text
-        assert 'map illustrates Impact-first' in packet_text
+        assert 'Impact-first priority-map example' in packet_text
 
 
 def test_supplementary_s5_remains_unchanged_by_figure1_correction():

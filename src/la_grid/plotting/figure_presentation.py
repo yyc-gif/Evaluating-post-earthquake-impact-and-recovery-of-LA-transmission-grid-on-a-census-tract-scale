@@ -503,14 +503,19 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
         page=final_doc[0]
         stage_text=' '.join(page.get_textbox(rect).replace('\xa0',' ').replace('\xad','').split())
         assert process_panel_audit['uses_priority_map']
-        assert process_panel_audit['uses_logistics_artwork']
-        assert process_panel_audit['no_explanatory_text']
+        assert process_panel_audit['uses_saved_schedule']
+        assert process_panel_audit['no_fabricated_task_events']
         with fitz.open(stream=process_panel_pdf,filetype='pdf') as process_panel:
             panel_text=' '.join(process_panel[0].get_text().replace('\xa0',' ').split())
         rejected=('availability curves','T80','cumulative service loss',
                   'population-weighted service availability','Impact-first service-availability')
         assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
-        assert len(panel_text.split()) < 12, panel_text
+        required=('PRIORITY RULES','first five repair targets',
+                  'REPAIR SCHEDULING','crew','Crew 5: 300558',
+                  'Crew 9: 303169',
+                  'COMPLETION EVENTS','Station 300558 repaired at 18.15 h',
+                  'raw station f = 1','source gate','tract service')
+        assert all(term in panel_text for term in required), panel_text
         assert len(final_doc)==1
 
     with fitz.open(stream=raw,filetype='pdf') as before, \

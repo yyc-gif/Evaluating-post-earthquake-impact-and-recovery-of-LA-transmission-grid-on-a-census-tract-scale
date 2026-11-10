@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT / "src/la_grid/plotting"))
 import build_s6_main4_review as builder
 import figure_presentation
 
-START = "54b64c2ad01d6b6b2dbfd5892e7567d82a71f463"
+START = "6cfccca37cde7a53b909067caaaadea256cfd226"
 SUITE = ROOT / "results/figure_review_s6_main4_20261107"
 OUT = ROOT / "docs/reproducibility/figure1_stage4_methods_correction_20261110"
 FIGURE = "results/figure_review_s6_main4_20261107/Main/Fig01"
@@ -84,11 +84,17 @@ def main() -> None:
         panel_vector_count = len(panel[0].get_contents())
         panel_image_count = len(panel[0].get_images())
         panel_fonts = sorted({font[3] for font in panel[0].get_fonts()})
-    required = ("1", "2", "3", "4", "5")
+    required = ("PRIORITY RULES", "first five repair targets",
+                "REPAIR SCHEDULING", "Crew 5: 300558",
+                "Crew 9: 303169", "COMPLETION EVENTS",
+                "Station 300558 repaired at 18.15 h", "source gate")
     rejected = ("availability curves", "Impact-first service-availability", "T80",
                 "cumulative service loss", "population-weighted service availability")
-    assert panel_text.split() == list(required), panel_text
-    assert panel_audit["uses_priority_map"] and panel_audit["uses_logistics_artwork"]
+    assert all(term in panel_text for term in required), panel_text
+    assert panel_audit["uses_priority_map"] and panel_audit["uses_saved_schedule"]
+    assert panel_audit["no_fabricated_task_events"]
+    assert panel_audit["schedule_archive_sha256"] == panel_audit["schedule_manifest"]["npz_sha256"]
+    assert len(panel_audit["plotted_task_events"]) == 4
     assert not any(text.lower() in panel_text.lower() for text in rejected), panel_text
     assert panel_vector_count > 0
 
@@ -149,8 +155,8 @@ def main() -> None:
         packet_pages = {"complete": len(packet), "main": len(main_packet), "supplement": len(supp_packet)}
         assert packet_pages == {"complete": 16, "main": 8, "supplement": 8}
         first_page_text = " ".join(packet[0].get_text().split())
-        assert "map illustrates Impact-first" in first_page_text
-        assert "Unconstrained parallel repair" in first_page_text
+        assert "Impact-first priority-map example" in first_page_text
+        assert "Unconstrained repair is the parallel reference" in first_page_text
         (OUT / "FIGURE_PACKET_PAGE1_FINAL_150DPI.png").write_bytes(
             packet[0].get_pixmap(dpi=150, alpha=False).tobytes("png"))
 
@@ -174,9 +180,12 @@ def main() -> None:
         "ga_source_sha256": sha((ROOT / builder.GA_SOURCE).read_bytes()),
         "stage4_panel_pdf_sha256": sha(panel_pdf),
         "stage4_panel_png_sha256": sha(panel_png),
-        "stage4_text_checks": {"no_explanatory_text": True, "priority_rank_markers": True},
+        "stage4_text_checks": {"three_labeled_operations": True, "priority_rank_markers": True,
+                               "four_archived_task_events": True},
         "stage4_priority_map_sha256": panel_audit["priority_map_sha256"],
-        "stage4_logistics_figure_sha256": panel_audit["logistics_figure_sha256"],
+        "stage4_schedule_archive_sha256": panel_audit["schedule_archive_sha256"],
+        "stage4_priority_sequence_sha256": panel_audit["priority_sequence_sha256"],
+        "stage4_plotted_task_events": panel_audit["plotted_task_events"],
         "stage4_rejected_result_terms_absent": True,
         "stage4_vector_content_stream_count": panel_vector_count,
         "stage4_embedded_image_count": panel_image_count,

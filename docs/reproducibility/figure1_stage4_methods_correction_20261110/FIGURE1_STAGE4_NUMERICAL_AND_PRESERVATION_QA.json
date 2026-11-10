@@ -5,8 +5,8 @@
     524.409423828125,
     623.6220703125
   ],
-  "figure1_after_sha256": "0068f55758790751c7405d31a42ad03773ff9d4cc159eb7c80528fd783338ceb",
-  "figure1_before_sha256": "0d8f692b7f979089f4f98a32dae5f65f421beb07675475a6a8c04ac30925c974",
+  "figure1_after_sha256": "298118b8cea1d05ef5db13ee31fc1636b0f23ff26f873d19d78bbfee6e332117",
+  "figure1_before_sha256": "0068f55758790751c7405d31a42ad03773ff9d4cc159eb7c80528fd783338ceb",
   "figure1_mirror_and_manifest_match": true,
   "figure1_pdf_dimensions_pt": [
     0.0,
@@ -14,11 +14,11 @@
     524.409423828125,
     623.6220703125
   ],
-  "figure1_png_sha256": "8d11299f845eed48d608d3f68df37d74d6ae40d310d8c569fb26ed274059eb9a",
-  "figure_presentation_sha256": "35022c2244655fa2b9a0aadbac47d82fb1f8247081d11969c7cc56f7a87a80b9",
+  "figure1_png_sha256": "052aa25c7a6bfa7b1c379843337fa79607ae7828276f20e53b18ceff29e93d1f",
+  "figure_presentation_sha256": "16945da7ef98415be10d82d148dc756787ac9082a66932edc6022cbdf43d0abd",
   "ga_source_sha256": "0ea6dd2e3ea74584ce707a820c8aeb035c712620c3e88ad4c33ecee78d0b7d51",
   "outside_stage4_render_pixels_identical_at_120dpi": true,
-  "p2_builder_sha256": "a32310be5c0121c7a8f45a785f052e0c4df0abf6b658bf6cf3baaebbf883ab63",
+  "p2_builder_sha256": "1f004707996b956e270d255a7a54fb0dfa84092a59b615843485f972125d0d0b",
   "packet_page_counts": {
     "complete": 16,
     "main": 8,
@@ -38,11 +38,11 @@
       "sha256": "503590858e0f5980fdb14e1ccdff9a0d93037e0fd5e4bbde860d054286c6eb8f"
     }
   },
-  "s6_builder_sha256": "099c6ea4177e9c16ac17b36d623b724f35356f31d107e6d895a247965d67e8bb",
+  "s6_builder_sha256": "2580353c45ee4fe8e4c14ad1ba700d53118ad6f2d538e324daab46617b338a27",
   "scheduler_source_sha256": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22",
   "simulations_or_schedules_rerun": false,
   "source_figure_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
-  "stage4_embedded_image_count": 6,
+  "stage4_embedded_image_count": 3,
   "stage4_fonts": [
     "Arial Bold",
     "Arial Regular",
@@ -50,7 +50,7 @@
     "ELUGPM+ArialMT"
   ],
   "stage4_generator": "src/la_grid/plotting/make_methodology_workflow_figure.py",
-  "stage4_generator_sha256": "74ca32bd05dd70ac3f05d5ef4a8c18167b149872253e79b10227786c97bebee0",
+  "stage4_generator_sha256": "51fed10a31977ba9434d6a5d2040161896fb829ebc8c835fff467d6f980da00c",
   "stage4_implementation_checks": {
     "completion_restores_raw_functionality": true,
     "completion_state_passes_source_gate": true,
@@ -60,16 +60,60 @@
     "ga_task_order_search": true,
     "travel_then_realized_repair": true
   },
-  "stage4_logistics_figure_sha256": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
-  "stage4_panel_pdf_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
-  "stage4_panel_png_sha256": "d52fe1588d3de31068c8379bd8e4de3cb81d96401af9d3ce8292f10d3ca5fc25",
+  "stage4_panel_pdf_sha256": "d31889b73b2bc07642d0e2e0886d517964663ed4f1143903919bdf9812de72a0",
+  "stage4_panel_png_sha256": "f18ab8006b6c1389ab8ad0c93cca8d9ff99223920de95a157c76cba3571bb7dc",
+  "stage4_plotted_task_events": [
+    {
+      "arrival_hr": 0.4440701079330163,
+      "completion_hr": 18.154886173136717,
+      "crew_index": 4,
+      "dispatch_rank": 5,
+      "free_hr": 0.0,
+      "repair_hr": 17.7108160652037,
+      "station_id": "300558",
+      "travel_hr": 0.4440701079330163
+    },
+    {
+      "arrival_hr": 18.660075251558798,
+      "completion_hr": 30.628466247832577,
+      "crew_index": 4,
+      "dispatch_rank": 79,
+      "free_hr": 18.154886173136717,
+      "repair_hr": 11.96839099627378,
+      "station_id": "306450",
+      "travel_hr": 0.5051890784220806
+    },
+    {
+      "arrival_hr": 0.2866015663812338,
+      "completion_hr": 17.87064606594311,
+      "crew_index": 8,
+      "dispatch_rank": 9,
+      "free_hr": 0.0,
+      "repair_hr": 17.584044499561877,
+      "station_id": "303169",
+      "travel_hr": 0.2866015663812338
+    },
+    {
+      "arrival_hr": 18.12285799304426,
+      "completion_hr": 42.93682284742478,
+      "crew_index": 8,
+      "dispatch_rank": 78,
+      "free_hr": 17.87064606594311,
+      "repair_hr": 24.81396485438052,
+      "station_id": "307832",
+      "travel_hr": 0.252211927101149
+    }
+  ],
   "stage4_priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+  "stage4_priority_sequence_sha256": "98c3516788127bd4cd821c6d0e85f30ddf579047e032923dab1f46696d8fbeb4",
   "stage4_rejected_result_terms_absent": true,
+  "stage4_schedule_archive_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
   "stage4_text_checks": {
-    "no_explanatory_text": true,
-    "priority_rank_markers": true
+    "four_archived_task_events": true,
+    "priority_rank_markers": true,
+    "three_labeled_operations": true
   },
-  "stage4_vector_content_stream_count": 33,
+  "stage4_vector_content_stream_count": 35,
   "starting_branch": "review/fig1-moduleD-s5-final-20261109",
-  "starting_commit": "54b64c2ad01d6b6b2dbfd5892e7567d82a71f463"
+  "starting_commit": "6cfccca37cde7a53b909067caaaadea256cfd226"
 }

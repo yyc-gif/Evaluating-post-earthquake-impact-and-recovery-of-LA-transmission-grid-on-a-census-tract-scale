@@ -5,7 +5,7 @@
     "panel": "4",
     "panel_title": "Restoration Strategies and Execution",
     "source_page_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
-    "process_panel_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
+    "process_panel_sha256": "d31889b73b2bc07642d0e2e0886d517964663ed4f1143903919bdf9812de72a0",
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -24,7 +24,7 @@
     "no_recovery_curves_or_downstream_outcomes": true,
     "old_stage4_result_labels_removed": true,
     "outside_stage4_pixels_identical": true,
-    "changed_pixels_at_120dpi": 32689,
+    "changed_pixels_at_120dpi": 24615,
     "authorized_edit_rect_pt": [
       9.5,
       481.7,
@@ -58,18 +58,85 @@
         "Repair-completion events"
       ],
       "priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
-      "logistics_figure_sha256": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+      "schedule_archive_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
+      "priority_sequence_sha256": "98c3516788127bd4cd821c6d0e85f30ddf579047e032923dab1f46696d8fbeb4",
+      "schedule_manifest": {
+        "identity": {
+          "crew_roster_sha256": "af96c30ea378f28c29bdf37ec0b29076e8305462ee6ae5f5d5a16e39aecaa62c",
+          "crew_scale": 1.0,
+          "duration_scale": 1.0,
+          "executable_code_commit_sha": "9bfa628e2bc1099f4a9ce6ec1fc83b96ce83b257",
+          "frozen_context_hash": "d53752d59f96120acded9e531c936665b330b4b42437595a358a0e5a318a69f5",
+          "frozen_physical_manifest_sha256": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba",
+          "hazard": "2pc50",
+          "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+          "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+          "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+          "resource_case": "C57_D1",
+          "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168",
+          "split": "evaluation",
+          "strategy": "impact-first"
+        },
+        "maximum_completion_hr": 98.60395667944535,
+        "npz_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
+        "schedule_count": 1000,
+        "status": "FORMAL_FROZEN_MATRIX_V1"
+      },
+      "schedule_commit": "6cfccca37cde7a53b909067caaaadea256cfd226",
+      "plotted_task_events": [
+        {
+          "crew_index": 4,
+          "station_id": "300558",
+          "dispatch_rank": 5,
+          "free_hr": 0.0,
+          "travel_hr": 0.4440701079330163,
+          "arrival_hr": 0.4440701079330163,
+          "repair_hr": 17.7108160652037,
+          "completion_hr": 18.154886173136717
+        },
+        {
+          "crew_index": 4,
+          "station_id": "306450",
+          "dispatch_rank": 79,
+          "free_hr": 18.154886173136717,
+          "travel_hr": 0.5051890784220806,
+          "arrival_hr": 18.660075251558798,
+          "repair_hr": 11.96839099627378,
+          "completion_hr": 30.628466247832577
+        },
+        {
+          "crew_index": 8,
+          "station_id": "303169",
+          "dispatch_rank": 9,
+          "free_hr": 0.0,
+          "travel_hr": 0.2866015663812338,
+          "arrival_hr": 0.2866015663812338,
+          "repair_hr": 17.584044499561877,
+          "completion_hr": 17.87064606594311
+        },
+        {
+          "crew_index": 8,
+          "station_id": "307832",
+          "dispatch_rank": 78,
+          "free_hr": 17.87064606594311,
+          "travel_hr": 0.252211927101149,
+          "arrival_hr": 18.12285799304426,
+          "repair_hr": 24.81396485438052,
+          "completion_hr": 42.93682284742478
+        }
+      ],
       "uses_priority_map": true,
-      "uses_logistics_artwork": true,
-      "no_explanatory_text": true,
+      "uses_saved_schedule": true,
+      "source_graphics_labeled": true,
+      "no_fabricated_task_events": true,
       "width_pt": 246.8,
       "height_pt": 133.0,
-      "body_font": null,
-      "body_font_pt": null,
+      "body_font": "Arial",
+      "body_font_pt": 6.3,
       "no_recovery_curves_or_downstream_outcomes": true,
       "no_simulation_or_schedule_rerun": true,
-      "panel_pdf_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
-      "panel_png_sha256": "d52fe1588d3de31068c8379bd8e4de3cb81d96401af9d3ce8292f10d3ca5fc25"
+      "panel_pdf_sha256": "d31889b73b2bc07642d0e2e0886d517964663ed4f1143903919bdf9812de72a0",
+      "panel_png_sha256": "f18ab8006b6c1389ab8ad0c93cca8d9ff99223920de95a157c76cba3571bb7dc"
     },
     "starting_figure1_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84"
   },
@@ -95,18 +162,85 @@
       "Repair-completion events"
     ],
     "priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
-    "logistics_figure_sha256": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+    "schedule_archive_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
+    "priority_sequence_sha256": "98c3516788127bd4cd821c6d0e85f30ddf579047e032923dab1f46696d8fbeb4",
+    "schedule_manifest": {
+      "identity": {
+        "crew_roster_sha256": "af96c30ea378f28c29bdf37ec0b29076e8305462ee6ae5f5d5a16e39aecaa62c",
+        "crew_scale": 1.0,
+        "duration_scale": 1.0,
+        "executable_code_commit_sha": "9bfa628e2bc1099f4a9ce6ec1fc83b96ce83b257",
+        "frozen_context_hash": "d53752d59f96120acded9e531c936665b330b4b42437595a358a0e5a318a69f5",
+        "frozen_physical_manifest_sha256": "1db720da8c362d769215f66deca05df39d78af2cf9c7e9ead05cb280797334ba",
+        "hazard": "2pc50",
+        "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+        "matrix_sha256": "798189a92123a6f111170ffe6b620e2bd2ca710f35df33004ef1a0093efc36fe",
+        "physical_hashes_sha256": "53a982665211a9252b477fdcc0b9610bb090bfebff9a336e16808167563a6548",
+        "resource_case": "C57_D1",
+        "sequence_sha256": "d75ee1dc0fed0671b40d7f539d1e456ea42402105554cb1eb41ab3ec41bc9168",
+        "split": "evaluation",
+        "strategy": "impact-first"
+      },
+      "maximum_completion_hr": 98.60395667944535,
+      "npz_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
+      "schedule_count": 1000,
+      "status": "FORMAL_FROZEN_MATRIX_V1"
+    },
+    "schedule_commit": "6cfccca37cde7a53b909067caaaadea256cfd226",
+    "plotted_task_events": [
+      {
+        "crew_index": 4,
+        "station_id": "300558",
+        "dispatch_rank": 5,
+        "free_hr": 0.0,
+        "travel_hr": 0.4440701079330163,
+        "arrival_hr": 0.4440701079330163,
+        "repair_hr": 17.7108160652037,
+        "completion_hr": 18.154886173136717
+      },
+      {
+        "crew_index": 4,
+        "station_id": "306450",
+        "dispatch_rank": 79,
+        "free_hr": 18.154886173136717,
+        "travel_hr": 0.5051890784220806,
+        "arrival_hr": 18.660075251558798,
+        "repair_hr": 11.96839099627378,
+        "completion_hr": 30.628466247832577
+      },
+      {
+        "crew_index": 8,
+        "station_id": "303169",
+        "dispatch_rank": 9,
+        "free_hr": 0.0,
+        "travel_hr": 0.2866015663812338,
+        "arrival_hr": 0.2866015663812338,
+        "repair_hr": 17.584044499561877,
+        "completion_hr": 17.87064606594311
+      },
+      {
+        "crew_index": 8,
+        "station_id": "307832",
+        "dispatch_rank": 78,
+        "free_hr": 17.87064606594311,
+        "travel_hr": 0.252211927101149,
+        "arrival_hr": 18.12285799304426,
+        "repair_hr": 24.81396485438052,
+        "completion_hr": 42.93682284742478
+      }
+    ],
     "uses_priority_map": true,
-    "uses_logistics_artwork": true,
-    "no_explanatory_text": true,
+    "uses_saved_schedule": true,
+    "source_graphics_labeled": true,
+    "no_fabricated_task_events": true,
     "width_pt": 246.8,
     "height_pt": 133.0,
-    "body_font": null,
-    "body_font_pt": null,
+    "body_font": "Arial",
+    "body_font_pt": 6.3,
     "no_recovery_curves_or_downstream_outcomes": true,
     "no_simulation_or_schedule_rerun": true,
-    "panel_pdf_sha256": "fdea6671154aed8671916819c9827bb4fd94e75fb8c3b21e54e770005898a31b",
-    "panel_png_sha256": "d52fe1588d3de31068c8379bd8e4de3cb81d96401af9d3ce8292f10d3ca5fc25"
+    "panel_pdf_sha256": "d31889b73b2bc07642d0e2e0886d517964663ed4f1143903919bdf9812de72a0",
+    "panel_png_sha256": "f18ab8006b6c1389ab8ad0c93cca8d9ff99223920de95a157c76cba3571bb7dc"
   },
   "figure1_no_downstream_result_plot_in_stage4": true,
   "unaffected_13_artwork_pairs_byte_identical": true,

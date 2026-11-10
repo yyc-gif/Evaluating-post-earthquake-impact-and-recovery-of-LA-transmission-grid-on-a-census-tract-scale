@@ -1,8 +1,7 @@
 """Render the current methodology workflow as compact, editable vector artwork.
 
-This is a presentation-only schematic. It reads no scientific result tables and
-does not execute any model or analysis. Longer definitions belong in the
-manuscript caption; the flow and methods shown here are the adopted workflow.
+The Stage 4 panel reads an archived priority order and frozen repair events;
+it does not execute the scheduler or modify scientific results.
 """
 
 from __future__ import annotations
@@ -15,9 +14,12 @@ from matplotlib import font_manager, patches
 import matplotlib.pyplot as plt
 import hashlib
 import io
+import json
 import os
+import subprocess
 from pathlib import Path
 import fitz
+import numpy as np
 
 try:
     from la_grid.paths import REPO_ROOT
@@ -147,49 +149,107 @@ def build_stage4_process_panel(width_pt: float = 246.8,
     height_pt = float(height_pt)
     assert width_pt == 246.8 and height_pt == 133.0
     priority_path = REPO_ROOT / "results/figure_review_s6_main4_20261107/Supplement/FigS07.pdf"
-    logistics_path = REPO_ROOT / "results/figure_review_s6_main4_20261107/Supplement/FigS02.pdf"
-    assert priority_path.is_file() and logistics_path.is_file()
+    schedule_rel = "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__impact-first"
+    schedule_commit = "6cfccca37cde7a53b909067caaaadea256cfd226"
+    def archived(suffix):
+        return subprocess.check_output(
+            ["git", "show", f"{schedule_commit}:{schedule_rel}.{suffix}"], cwd=REPO_ROOT)
+    schedule_bytes = archived("npz")
+    schedule_manifest = json.loads(archived("json"))
+    sequence_bytes = subprocess.check_output(
+        ["git", "show", f"{schedule_commit}:Formal_Experiment_20260923/Stage 4 Output_expanded/FULL_RULE_SEQUENCES.json"],
+        cwd=REPO_ROOT)
+    priority_order = json.loads(sequence_bytes)["2pc50"]["impact-first"]
+    assert hashlib.sha256(schedule_bytes).hexdigest() == schedule_manifest["npz_sha256"]
+    identity = schedule_manifest["identity"]
+    assert (identity["hazard"], identity["resource_case"], identity["strategy"],
+            identity["split"], schedule_manifest["schedule_count"]) == (
+                "2pc50", "C57_D1", "impact-first", "evaluation", 1000)
+    with np.load(io.BytesIO(schedule_bytes), allow_pickle=False) as saved:
+        assert saved["completion"].shape == (1000, 92)
+        ids = saved["station_ids"].astype(str)
+        dispatch = saved["dispatch"][0]
+        crew = saved["crew"][0]
+        arrival = saved["arrival"][0]
+        travel = saved["travel"][0]
+        completion = saved["completion"][0]
+        previous = saved["previous"][0]
+    events = []
+    for crew_index in (4, 8):
+        for j in np.where(crew == crew_index)[0]:
+            free = float(arrival[j] - travel[j])
+            prior = int(previous[j])
+            assert (prior < 0 and abs(free) < 1e-12) or (
+                prior >= 0 and abs(free - completion[prior]) < 1e-10)
+            assert 0 <= free < arrival[j] < completion[j]
+            events.append({"crew_index": crew_index, "station_id": ids[j],
+                           "dispatch_rank": int(dispatch[j]) + 1,
+                           "free_hr": free, "travel_hr": float(travel[j]),
+                           "arrival_hr": float(arrival[j]),
+                           "repair_hr": float(completion[j] - arrival[j]),
+                           "completion_hr": float(completion[j])})
+    events.sort(key=lambda e: (e["crew_index"], e["free_hr"]))
+    assert [sum(e["crew_index"] == c for e in events) for c in (4, 8)] == [2, 2]
+    assert [ids[j] for j in np.argsort(dispatch)[:5]] == priority_order[:5]
+    first_event = next(e for e in events if e["crew_index"] == 4)
+    assert first_event["station_id"] == "300558"
     doc = fitz.open()
     page = doc.new_page(width=width_pt, height=height_pt)
-    with fitz.open(priority_path) as priority, fitz.open(logistics_path) as logistics:
-        assert len(priority) == len(logistics) == 1
-        # Actual priority-map and logistics artwork, clipped to omit its page titles.
-        page.show_pdf_page(fitz.Rect(4, 6, 77, 100), priority, 0,
-                           clip=fitz.Rect(52, 535, 302, 678), keep_proportion=True)
-        page.show_pdf_page(fitz.Rect(91, 5, 159, 55), logistics, 0,
-                           clip=fitz.Rect(68, 40, 424, 275), keep_proportion=True)
-        page.show_pdf_page(fitz.Rect(91, 60, 159, 101), logistics, 0,
-                           clip=fitz.Rect(78, 350, 430, 584), keep_proportion=True)
+    with fitz.open(priority_path) as priority:
+        assert len(priority) == 1
+        # Figure S7C is an Impact-first example, not a map of every rule.
+        page.show_pdf_page(fitz.Rect(5, 3, 78, 41), priority, 0,
+                           clip=fitz.Rect(52, 535, 302, 733), keep_proportion=True)
 
-    ink = (0.19, 0.24, 0.28)
+    arial = font_manager.findfont("Arial", fallback_to_default=False)
+    bold = str(Path(arial).with_name("arialbd.ttf"))
+    page.insert_font(fontname="Arial", fontfile=arial)
+    page.insert_font(fontname="Arial-Bold", fontfile=bold)
+    ink = (0.15, 0.19, 0.21)
+    muted = (0.39, 0.45, 0.49)
     teal = (0.14, 0.53, 0.47)
-    muted = (0.43, 0.49, 0.53)
-    purple = (0.48, 0.31, 0.56)
-    for x0, x1 in ((78, 88), (161, 171)):
-        page.draw_line((x0, 52), (x1 - 3, 52), color=muted, width=0.8)
-        page.draw_polyline([(x1 - 5, 49), (x1, 52), (x1 - 5, 55)],
-                           color=muted, width=0.8)
+    travel_gray = (0.60, 0.65, 0.68)
 
-    # Event-driven repair: travel, repair, then an instantaneous station update.
-    for y, offset in ((21, 0), (49, 12), (77, 24)):
-        page.draw_circle((181, y + 5), 3.5, color=muted, fill=muted)
-        page.draw_line((185, y + 5), (197 + offset / 3, y + 5),
-                       color=muted, width=1, dashes="[2 2] 0")
-        page.draw_rect(fitz.Rect(198 + offset / 3, y + 1, 219 + offset / 3, y + 9),
-                       color=purple, fill=purple, width=0.3)
-        finish = 220 + offset / 3
-        page.draw_line((finish, y - 2), (finish, y + 13), color=teal, width=1.3)
-        page.draw_circle((finish + 7, y + 5), 4, color=teal, fill=teal)
-        page.draw_circle((finish + 7, y + 5), 1.4, color=None, fill=(1, 1, 1))
+    def label(x, y, value, size=6.3, weight=False, color=ink):
+        page.insert_text((x, y), value, fontname="Arial-Bold" if weight else "Arial",
+                         fontsize=size, color=color)
 
-    # A separate parallel-repair lane denotes the Unconstrained reference.
-    page.draw_line((5, 108), (241, 108), color=(0.82, 0.85, 0.87), width=0.5)
-    for y in (115, 121, 127):
-        page.draw_rect(fitz.Rect(88, y - 1.5, 157, y + 1.5),
-                       color=(0.72, 0.77, 0.79), fill=(0.72, 0.77, 0.79), width=0.2)
-    page.draw_line((165, 113), (165, 130), color=teal, width=0.8)
-    for y in (115, 121, 127):
-        page.draw_circle((171, y), 2, color=teal, fill=teal)
+    # Three rows carry the actual information flow; labels identify each source.
+    label(83, 10, "PRIORITY RULES", 7.0, True)
+    label(83, 21, "Impact-first: first five repair targets", 6.4)
+    label(83, 31, "Purple: tract population (log); 1-5: rank", 6.0)
+    label(83, 39, "Other network/community rules or GA set order", 5.7)
+    page.draw_line((5, 43), (241, 43), color=(0.83, 0.86, 0.87), width=0.5)
+    page.draw_polyline([(232, 41), (235, 44), (238, 41)], color=muted, width=0.7)
+
+    label(6, 51, "REPAIR SCHEDULING", 7.0, True)
+    label(91, 51, "DS > 0 -> earliest-free crew", 6.2)
+    x0, scale = 32.0, 1.13
+    for crew_index, y in ((4, 62), (8, 74)):
+        label(6, y + 1, f"Crew {crew_index + 1}", 5.7)
+        for event in (e for e in events if e["crew_index"] == crew_index):
+            left = x0 + scale * event["free_hr"]
+            arrival_x = x0 + scale * event["arrival_hr"]
+            right = x0 + scale * event["completion_hr"]
+            page.draw_rect(fitz.Rect(left, y - 4, arrival_x, y + 1),
+                           color=travel_gray, fill=travel_gray, width=0.2)
+            page.draw_rect(fitz.Rect(arrival_x, y - 4, right, y + 1),
+                           color=teal, fill=teal, width=0.2)
+            page.draw_line((right, y - 5), (right, y + 2), color=ink, width=0.4)
+    label(33, 83, "0", 5.3)
+    label(76, 83, "40 h", 5.3)
+    label(91, 63, "Crew 5: 300558 -> 306450", 5.9)
+    label(91, 75, "Crew 9: 303169 -> 307832", 5.9)
+    label(91, 83, "Gray: directed travel (<1 h); teal: DS repair", 5.4)
+    page.draw_line((5, 88), (241, 88), color=(0.83, 0.86, 0.87), width=0.5)
+    page.draw_polyline([(232, 86), (235, 89), (238, 86)], color=muted, width=0.7)
+
+    label(6, 98, "COMPLETION EVENTS", 7.0, True)
+    label(6, 109, f"Station {first_event['station_id']} repaired at {first_event['completion_hr']:.2f} h (crew 5)", 6.3)
+    label(6, 119, "Crew released; raw station f = 1 -> source gate -> tract service", 6.1)
+    page.draw_line((5, 123), (241, 123), color=(0.83, 0.86, 0.87), width=0.5)
+    label(6, 131, "Unconstrained reference: parallel repair without crew/travel queue", 5.8,
+          color=muted)
     pdf_bytes = doc.tobytes(garbage=4, deflate=True, no_new_id=True)
     doc.close()
     with fitz.open(stream=pdf_bytes, filetype="pdf") as rendered:
@@ -205,14 +265,19 @@ def build_stage4_process_panel(width_pt: float = 246.8,
         "connected_operations": ["Priority rules", "Repair scheduling and execution",
                                  "Repair-completion events"],
         "priority_map_sha256": hashlib.sha256(priority_path.read_bytes()).hexdigest(),
-        "logistics_figure_sha256": hashlib.sha256(logistics_path.read_bytes()).hexdigest(),
+        "schedule_archive_sha256": hashlib.sha256(schedule_bytes).hexdigest(),
+        "priority_sequence_sha256": hashlib.sha256(sequence_bytes).hexdigest(),
+        "schedule_manifest": schedule_manifest,
+        "schedule_commit": schedule_commit,
+        "plotted_task_events": events,
         "uses_priority_map": True,
-        "uses_logistics_artwork": True,
-        "no_explanatory_text": True,
+        "uses_saved_schedule": True,
+        "source_graphics_labeled": True,
+        "no_fabricated_task_events": True,
         "width_pt": width_pt,
         "height_pt": height_pt,
-        "body_font": None,
-        "body_font_pt": None,
+        "body_font": "Arial",
+        "body_font_pt": 6.3,
         "no_recovery_curves_or_downstream_outcomes": True,
         "no_simulation_or_schedule_rerun": True,
         "panel_pdf_sha256": hashlib.sha256(pdf_bytes).hexdigest(),
