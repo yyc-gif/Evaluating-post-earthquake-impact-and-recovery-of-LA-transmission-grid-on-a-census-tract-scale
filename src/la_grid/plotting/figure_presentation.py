@@ -510,11 +510,14 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
         rejected=('availability curves','T80','cumulative service loss',
                   'population-weighted service availability','Impact-first service-availability')
         assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
-        required=('PRIORITY RULES','first five repair targets',
-                  'REPAIR SCHEDULING','crew','Crew 5: 300558',
-                  'Crew 9: 303169',
-                  'COMPLETION EVENTS','Station 300558 repaired at 18.15 h',
-                  'raw station f = 1','source gate','tract service')
+        required=('PRIORITY RULES','map shows station ranks',
+                  'Network/community rules + GA set station order',
+                  'Unconstrained reference: parallel repair',
+                  'REPAIR SCHEDULING','evaluation realization 0',
+                  '2 of 57 crews','earliest','Crew 5','Crew 9',
+                  '300558','306450','303169','307832','COMPLETION EVENTS',
+                  'Station 300558 completes at 18.15 h',
+                  'raw functionality = 1','source gate','tract service')
         assert all(term in panel_text for term in required), panel_text
         assert len(final_doc)==1
 

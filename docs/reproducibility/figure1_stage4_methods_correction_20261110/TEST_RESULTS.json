@@ -4,7 +4,7 @@
   "result": "PASS",
   "passed": 15,
   "failed": 0,
-  "duration_seconds": 277.43,
+  "duration_seconds": 194.13,
   "additional_targeted_test": {
     "suite": "tests/test_current_figure_suite_integration.py::test_figure1_builder_generates_method_process_not_recovery_results",
     "result": "PASS",
@@ -13,8 +13,10 @@
   "independent_verification": "verify_correction.py passed; archived schedule hash and event identities, S5 preservation, outside-panel pixel identity, and packet page counts verified.",
   "deterministic_rebuild": {
     "result": "PASS",
-    "figure1_pdf_sha256": "298118b8cea1d05ef5db13ee31fc1636b0f23ff26f873d19d78bbfee6e332117",
-    "figure1_png_sha256": "052aa25c7a6bfa7b1c379843337fa79607ae7828276f20e53b18ceff29e93d1f",
-    "complete_packet_sha256": "71c38c3c99d671aa32e450e532790530d13b2b0fb8f3bcc31053e2adfa543ac3"
+    "figure1_pdf_sha256": "e78871939fb4b7c76fc0797002aa0918042002a59a5a278610a4bd306a3972f5",
+    "figure1_png_sha256": "c167df9242cdb51a066df03d129c7d7265df49038989c0fdaac99928364b040e",
+    "main_packet_sha256": "0660b4ecfc5127840f9403c75a8eca51d6614bae3f2af2c8b935edab45ff35b8",
+    "complete_packet_sha256": "690f44c818187ea2d80340e071d2f62e01010ae393a6fc6f6c89c64d1557724e",
+    "canonical_rebuild_idempotence": "PASS"
   }
 }

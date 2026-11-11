@@ -97,14 +97,25 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==expected_preview
     assert audit['outside_stage4_pixels_identical']
     assert audit['no_recovery_curves_or_downstream_outcomes']
-    for phrase in ('PRIORITY RULES', 'first five repair targets',
-                   'REPAIR SCHEDULING', 'Crew 5: 300558',
-                   'Crew 9: 303169', 'COMPLETION EVENTS',
-                   'Station 300558 repaired at 18.15 h', 'source gate'):
+    for phrase in ('PRIORITY RULES', 'map shows station ranks',
+                   'Network/community rules + GA set station order',
+                   'Unconstrained reference: parallel repair',
+                   'REPAIR SCHEDULING', 'evaluation realization 0',
+                   '2 of 57 crews', 'Crew 5', 'Crew 9', '300558',
+                   '306450', '303169', '307832', 'COMPLETION EVENTS',
+                   'Station 300558 completes at 18.15 h', 'source gate'):
         assert phrase in stage_text
     assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
     assert panel_audit['no_fabricated_task_events']
     assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
+    assert panel_audit['crews_in_model'] == 57
+    assert panel_audit['crews_shown'] == [5, 9]
+    assert panel_audit['schedule_axis_hours'] == [0, 15, 30, 45]
+    assert panel_audit['schedule_axis_max_hr'] == 45
+    assert panel_audit['body_font_pt'] >= 7.0
+    assert panel_audit['rank_marker_font_pt'] == 7.0
+    assert abs(max(e['completion_hr'] for e in panel_audit['plotted_task_events'])
+               - 42.93682284742478) < 1e-9
     assert len(panel_audit['plotted_task_events']) == 4
     for phrase in ('availability curves','Impact-first service-availability',
                    'T80','cumulative service loss'):
@@ -128,8 +139,9 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert 'saved Unconstrained and Impact-first service-availability trajectories' not in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    for phrase in ('Impact-first priority-map example', 'actual two-crew repair schedule',
-                   'directed travel', 'teal intervals are repair',
+    for phrase in ('Impact-first priority-map example', 'two archived crew histories',
+                   '2pc50/C57_D1 evaluation realization 0', '2 of 57 crews',
+                   'directed travel', 'realized damage-state repair durations',
                    'Completion releases the crew', 'Unconstrained repair is the parallel reference'):
         assert phrase in fig1
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')

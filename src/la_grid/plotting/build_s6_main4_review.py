@@ -142,10 +142,12 @@ def main(output_dir=None,mirror_dir=None):
         title=label(new)+'.'+old_title.split('.',1)[1]
         body=references(body)
         if new=='Main/Fig01':
-            body=('Stage 4 links an Impact-first priority-map example to an actual two-crew repair schedule from '
-                  'evaluation realization 0. Gray intervals are directed travel; teal intervals are repair. '
-                  'Completion releases the crew and restores raw station functionality before source-gated tract-service evaluation. '
-                  'Other rule-based strategies and GA supply alternative orders; Unconstrained repair is the parallel reference.')
+            body=('Stage 4 links an Impact-first priority-map example to two archived crew histories from '
+                  '2pc50/C57_D1 evaluation realization 0 (2 of 57 crews shown). Each strategy supplies a station '
+                  'order; DS>0 tasks are assigned to the earliest-free crew with directed travel and realized '
+                  'damage-state repair durations. Completion releases the crew, restores raw station functionality, '
+                  'and passes the updated state to source-gated tract-service evaluation. Unconstrained repair is '
+                  'the parallel reference.')
         if new=='Main/Fig08':
             old_rule='outlines mark frozen Q4 and the cohort P75'
             new_rule=('outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) '

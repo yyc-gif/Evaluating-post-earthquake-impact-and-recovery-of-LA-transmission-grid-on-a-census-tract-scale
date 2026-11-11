@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT / "src/la_grid/plotting"))
 import build_s6_main4_review as builder
 import figure_presentation
 
-START = "6cfccca37cde7a53b909067caaaadea256cfd226"
+START = "9119bbc5290215f422426037b5cb7f9051adeabd"
 SUITE = ROOT / "results/figure_review_s6_main4_20261107"
 OUT = ROOT / "docs/reproducibility/figure1_stage4_methods_correction_20261110"
 FIGURE = "results/figure_review_s6_main4_20261107/Main/Fig01"
@@ -84,16 +84,34 @@ def main() -> None:
         panel_vector_count = len(panel[0].get_contents())
         panel_image_count = len(panel[0].get_images())
         panel_fonts = sorted({font[3] for font in panel[0].get_fonts()})
-    required = ("PRIORITY RULES", "first five repair targets",
-                "REPAIR SCHEDULING", "Crew 5: 300558",
-                "Crew 9: 303169", "COMPLETION EVENTS",
-                "Station 300558 repaired at 18.15 h", "source gate")
+        spans = [span for block in panel[0].get_text("dict")["blocks"] if "lines" in block
+                 for line in block["lines"] for span in line["spans"]]
+    required = ("PRIORITY RULES", "map shows station ranks",
+                "Network/community rules + GA set station order",
+                "Unconstrained reference: parallel repair",
+                "REPAIR SCHEDULING", "evaluation realization 0",
+                "2 of 57 crews", "Time (h)", "45 h", "Crew 5", "Crew 9", "300558",
+                "306450", "303169", "307832",
+                "COMPLETION EVENTS", "Station 300558 completes at 18.15 h",
+                "source gate")
     rejected = ("availability curves", "Impact-first service-availability", "T80",
                 "cumulative service loss", "population-weighted service availability")
     assert all(term in panel_text for term in required), panel_text
     assert panel_audit["uses_priority_map"] and panel_audit["uses_saved_schedule"]
     assert panel_audit["no_fabricated_task_events"]
     assert panel_audit["schedule_archive_sha256"] == panel_audit["schedule_manifest"]["npz_sha256"]
+    assert panel_audit["crews_in_model"] == 57
+    assert panel_audit["crews_shown"] == [5, 9]
+    assert panel_audit["schedule_axis_hours"] == [0, 15, 30, 45]
+    assert panel_audit["schedule_axis_max_hr"] == 45
+    assert panel_audit["body_font_pt"] >= 7.0
+    assert panel_audit["rank_marker_font_pt"] == 7.0
+    assert abs(max(e["completion_hr"] for e in panel_audit["plotted_task_events"])
+               - 42.93682284742478) < 1e-9
+    for phrase in ("Time", "Crew 5", "Crew 9", "300558", "306450", "303169", "307832",
+                   "15", "30", "45 h", "travel", "repair"):
+        assert any(phrase in span["text"].replace("\u00a0", " ")
+                   and span["size"] >= 6.99 for span in spans), phrase
     assert len(panel_audit["plotted_task_events"]) == 4
     assert not any(text.lower() in panel_text.lower() for text in rejected), panel_text
     assert panel_vector_count > 0

@@ -1,16 +1,16 @@
 # Figure 1 Stage 4 visual QA
 
-The final Figure 1 PDF was rendered as a complete 185 x 220 mm page and its Stage 4 region was inspected separately at 600 dpi. The assembled figure-and-caption packet's first page was also rendered. The map's southern extent and all three rows are visible; labels, arrows and the bottom reference line remain inside the module.
+Final page size is 185 x 220 mm. At native publication dimensions, Stage 4 remains a three-part method flow and fits inside the original module area. The Figure 1 preview and 600-dpi Stage 4 panel were inspected. The Impact-first map's full southern extent is present; the 1-5 rank markers retain their saved locations, with 7 pt numerals and slightly enlarged circles. The explanatory text, crew labels, station IDs, time ticks, and event descriptions are 7 pt.
 
-| Operation | Displayed source | Meaning |
-| --- | --- | --- |
-| Priority rules | Figure S7C vector map, Impact-first first five repair targets | Numbered markers are repair rank; purple background represents tract population on a logarithmic scale. Network/community rules and GA provide alternative orders. |
-| Repair scheduling | Archived `2pc50/C57_D1/impact-first` evaluation schedule, realization 0 | Two actual crew histories with station IDs. Gray segments are directed travel (<1 h here); teal segments are realized DS-specific repairs. The labels link each crew's first and second task. |
-| Completion events | Same archived schedule | Crew 5 completes station 300558 at 18.15 h, becomes available for its next task, and the station's raw functionality becomes 1 before source-gated tract-service evaluation. |
+| Step | What the reader sees |
+| --- | --- |
+| Priority rules | Impact-first map: purple is log tract population and numbered stations are ranks 1-5. Network/community rules and GA set station orders; Unconstrained is identified separately as parallel repair. |
+| Repair scheduling | Actual archived 2pc50 / C57_D1 evaluation realization 0, showing crews 5 and 9 (2 of the modeled 57). DS>0 tasks are assigned to the earliest-free crew. Each row identifies its two station tasks; gray marks directed travel and teal shows realized DS-specific repair duration. The elapsed-time axis has 0, 15, 30 and 45 h ticks. |
+| Completion events | Station 300558 completes at 18.15 h, releasing crew 5. Raw station functionality becomes 1, then the updated state passes to the source gate and tract-service evaluation. |
 
-The four plotted events, crew indices, station IDs, arrival and completion times are recorded in `FIGURE1_STAGE4_NUMERICAL_AND_PRESERVATION_QA.json`. Travel segments are thin because the Gantt uses actual time proportions, not exaggerated travel width. No recovery-result curve, T80 or cumulative-loss chart appears in Stage 4.
+The final crew-9 task completes at 42.9368228474 h and appears before the 45 h axis limit. Event rows, the source NPZ SHA256, and scheduler/resource-code identities are in `FIGURE1_STAGE4_NUMERICAL_AND_PRESERVATION_QA.json`. The four events were read from the archived schedule; no schedule or simulation was rerun.
 
-At 120 dpi the rendered pixels outside Stage 4 match the starting figure. Supplementary S5 PDF, PNG and preview are byte-identical. The complete packet remains 16 pages.
+Rendered full-page review: `FIG01_COMPLETE_PAGE_FINAL_150DPI.png`. The packet's Figure 1 and caption page was inspected. Every rendered pixel outside the Stage 4 replacement region is identical to starting commit `9119bbc5290215f422426037b5cb7f9051adeabd`. Supplementary S5 PDF, PNG and page preview remain byte-identical. The combined packet remains 16 pages.
 
 Rebuild: `python src/la_grid/plotting/build_s6_main4_review.py`.
 Verify: `python docs/reproducibility/figure1_stage4_methods_correction_20261110/verify_correction.py`.

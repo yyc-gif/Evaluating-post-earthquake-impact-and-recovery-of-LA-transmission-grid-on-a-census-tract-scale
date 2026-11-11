@@ -5,7 +5,7 @@
     "panel": "4",
     "panel_title": "Restoration Strategies and Execution",
     "source_page_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
-    "process_panel_sha256": "d31889b73b2bc07642d0e2e0886d517964663ed4f1143903919bdf9812de72a0",
+    "process_panel_sha256": "80932a47c34c6d0596c6b4fc16525dade259e8c02ca702a565aed0fad9533843",
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -24,7 +24,7 @@
     "no_recovery_curves_or_downstream_outcomes": true,
     "old_stage4_result_labels_removed": true,
     "outside_stage4_pixels_identical": true,
-    "changed_pixels_at_120dpi": 24615,
+    "changed_pixels_at_120dpi": 29399,
     "authorized_edit_rect_pt": [
       9.5,
       481.7,
@@ -42,6 +42,13 @@
       "scheduler_source_sha256": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22",
       "ga_source": "src/la_grid/revision/r1_ga_revision.py",
       "ga_source_sha256": "0ea6dd2e3ea74584ce707a820c8aeb035c712620c3e88ad4c33ecee78d0b7d51",
+      "crew_count_source": "src/la_grid/revision/r1_final_matrix.py",
+      "crew_count_source_sha256": "6b550d7988bf184f041b4c3172bca17e001291ed0b30311c08e33c009a614910",
+      "crews_in_model": 57,
+      "crews_shown": [
+        5,
+        9
+      ],
       "implementation_checks": {
         "damaged_tasks_only": true,
         "earliest_available_crew": true,
@@ -132,11 +139,19 @@
       "width_pt": 246.8,
       "height_pt": 133.0,
       "body_font": "Arial",
-      "body_font_pt": 6.3,
+      "body_font_pt": 7.0,
+      "rank_marker_font_pt": 7.0,
+      "schedule_axis_hours": [
+        0,
+        15,
+        30,
+        45
+      ],
+      "schedule_axis_max_hr": 45,
       "no_recovery_curves_or_downstream_outcomes": true,
       "no_simulation_or_schedule_rerun": true,
-      "panel_pdf_sha256": "d31889b73b2bc07642d0e2e0886d517964663ed4f1143903919bdf9812de72a0",
-      "panel_png_sha256": "f18ab8006b6c1389ab8ad0c93cca8d9ff99223920de95a157c76cba3571bb7dc"
+      "panel_pdf_sha256": "80932a47c34c6d0596c6b4fc16525dade259e8c02ca702a565aed0fad9533843",
+      "panel_png_sha256": "358bbd503fe76b2e14aa101779d82dd1f5af97cbbf06a9d7f1955493845f47d2"
     },
     "starting_figure1_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84"
   },
@@ -146,6 +161,13 @@
     "scheduler_source_sha256": "c1a439dd054271f5b0c5a398c29c890db2750601db7f327dcd9bb880a69b8c22",
     "ga_source": "src/la_grid/revision/r1_ga_revision.py",
     "ga_source_sha256": "0ea6dd2e3ea74584ce707a820c8aeb035c712620c3e88ad4c33ecee78d0b7d51",
+    "crew_count_source": "src/la_grid/revision/r1_final_matrix.py",
+    "crew_count_source_sha256": "6b550d7988bf184f041b4c3172bca17e001291ed0b30311c08e33c009a614910",
+    "crews_in_model": 57,
+    "crews_shown": [
+      5,
+      9
+    ],
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -236,11 +258,19 @@
     "width_pt": 246.8,
     "height_pt": 133.0,
     "body_font": "Arial",
-    "body_font_pt": 6.3,
+    "body_font_pt": 7.0,
+    "rank_marker_font_pt": 7.0,
+    "schedule_axis_hours": [
+      0,
+      15,
+      30,
+      45
+    ],
+    "schedule_axis_max_hr": 45,
     "no_recovery_curves_or_downstream_outcomes": true,
     "no_simulation_or_schedule_rerun": true,
-    "panel_pdf_sha256": "d31889b73b2bc07642d0e2e0886d517964663ed4f1143903919bdf9812de72a0",
-    "panel_png_sha256": "f18ab8006b6c1389ab8ad0c93cca8d9ff99223920de95a157c76cba3571bb7dc"
+    "panel_pdf_sha256": "80932a47c34c6d0596c6b4fc16525dade259e8c02ca702a565aed0fad9533843",
+    "panel_png_sha256": "358bbd503fe76b2e14aa101779d82dd1f5af97cbbf06a9d7f1955493845f47d2"
   },
   "figure1_no_downstream_result_plot_in_stage4": true,
   "unaffected_13_artwork_pairs_byte_identical": true,
