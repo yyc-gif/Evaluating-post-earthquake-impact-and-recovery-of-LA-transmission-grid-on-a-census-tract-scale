@@ -467,78 +467,161 @@ def supplementary5_four_policy(plot_data_bytes):
 
 
 def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
-    """Replace only Figure 1 Stage 4 with the implementation-derived process flow."""
+    """Give Stage 4 a full-width row and reflow Stage 5's saved vector plots below."""
     import numpy as np
 
-    rect=fitz.Rect(9.5,481.7,256.3,614.7)
+    page_width=524.409423828125
+    source_height=623.6220703125
+    page_height=752.0
+    stage4_header=fitz.Rect(9.5,446.0,514.9,463.0)
+    stage4_body=fitz.Rect(9.5,463.0,514.9,595.0)
+    stage5_header=fitz.Rect(9.5,605.0,514.9,622.0)
+    stage5_body=fitz.Rect(9.5,622.0,514.9,742.0)
     assert process_panel_audit['no_recovery_curves_or_downstream_outcomes']
     assert process_panel_audit['implementation_checks'] and all(
         process_panel_audit['implementation_checks'].values())
     with fitz.open(stream=raw,filetype='pdf') as doc:
-        page=doc[0]
-        width,height=page.rect.width,page.rect.height
-        assert abs(width-524.409423828125)<0.02
-        assert abs(height-623.6220703125)<0.02
-        source_spans=spans(page)
-        assert any('restoration' in
-                   s['text'].replace('\u00a0',' ').replace('\u00ad','').lower()
-                   and 'execution' in
-                   s['text'].replace('\u00a0',' ').replace('\u00ad','').lower()
-                   for s in source_spans)
-        old=[s for s in source_spans if rect.intersects(fitz.Rect(s['bbox']))]
-        for span in old:
-            overlap=rect & fitz.Rect(span['bbox'])
-            page.add_redact_annot(overlap+(-0.03,-0.03,0.03,0.03),fill=None)
-        if old:
-            page.apply_redactions(images=0,graphics=1)
-        page.draw_rect(rect,color=None,fill=(1,1,1),overlay=True)
+        source_page=doc[0]
+        assert abs(source_page.rect.width-page_width)<0.02
+        assert abs(source_page.rect.height-source_height)<0.02
+        page_doc=fitz.open()
+        page=page_doc.new_page(width=page_width,height=page_height)
+        arial='C:/Windows/Fonts/arial.ttf'
+        bold='C:/Windows/Fonts/arialbd.ttf'
+        page.insert_font(fontname='Arial',fontfile=arial)
+        page.insert_font(fontname='Arial-Bold',fontfile=bold)
+        page.show_pdf_page(fitz.Rect(0,0,page_width,source_height),doc,0,
+                           keep_proportion=False,overlay=True)
+        # Preserve Stages 1-3 in their original positions and replace only the old
+        # Stage 3-to-4 connector and the former side-by-side bottom row.
+        page.draw_rect(fitz.Rect(0,434.4,page_width,page_height),color=None,
+                       fill=(1,1,1),overlay=True)
+        connector=(0.35,0.40,0.43)
+        def arrow_down(x,y0,y1):
+            page.draw_line((x,y0),(x,y1-2.5),color=connector,width=0.65)
+            page.draw_polyline([(x-2.2,y1-4.8),(x,y1),(x+2.2,y1-4.8)],
+                               color=connector,width=0.65)
+
+        # Keep the original Stage 3 bottom rule; continue its connector without
+        # drawing a second, nearly overlapping horizontal border.
+        arrow_down(262.2,434.4,446)
+
+        border=(0.55,0.62,0.66)
+        stage4_fill=(0.90,0.95,0.94)
+        stage5_fill=(0.91,0.94,0.97)
+        page.draw_rect(fitz.Rect(9.5,446,514.9,595),color=border,
+                       fill=(1,1,1),width=0.7)
+        page.draw_rect(stage4_header,color=border,fill=stage4_fill,width=0.7)
+        page.draw_rect(fitz.Rect(9.5,461.5,514.9,463),color=stage4_fill,
+                       fill=stage4_fill,width=0)
+        page.draw_circle((19.5,454.5),6.2,color=(0.14,0.53,0.47),
+                         fill=(0.14,0.53,0.47),width=0.2)
+        page.insert_text((16.7,457.6),'4',fontsize=9.0,fontname='Arial-Bold',
+                         color=(1,1,1))
+        page.insert_text((29,458.0),'Restoration Strategies and Execution',
+                         fontsize=11.2,fontname='Arial-Bold',color=(0.14,0.19,0.21))
         with fitz.open(stream=process_panel_pdf,filetype='pdf') as panel:
             assert len(panel)==1
-            assert abs(panel[0].rect.width-rect.width)<0.02
-            assert abs(panel[0].rect.height-rect.height)<0.02
-            page.show_pdf_page(rect,panel,0,keep_proportion=False,overlay=True)
-        result=finish(doc)
+            assert abs(panel[0].rect.width-stage4_body.width)<0.02
+            assert abs(panel[0].rect.height-stage4_body.height)<0.02
+            page.show_pdf_page(stage4_body,panel,0,keep_proportion=False,overlay=True)
+
+        # Stage 5's three original result graphics are preserved as vector crops and
+        # arranged in one full-width row; their values and plot geometry are not redrawn.
+        page.draw_line((262.2,595),(262.2,602.5),color=connector,width=0.65)
+        page.draw_polyline([(260,600),(262.2,602.5),(264.4,600)],
+                           color=connector,width=0.65)
+        page.draw_rect(fitz.Rect(9.5,605,514.9,742),color=border,
+                       fill=(1,1,1),width=0.7)
+        page.draw_rect(stage5_header,color=border,fill=stage5_fill,width=0.7)
+        page.draw_rect(fitz.Rect(9.5,620.5,514.9,622),color=stage5_fill,
+                       fill=stage5_fill,width=0)
+        page.draw_circle((19.5,613.5),6.2,color=(0.28,0.44,0.60),
+                         fill=(0.28,0.44,0.60),width=0.2)
+        page.insert_text((16.7,616.6),'5',fontsize=9.0,fontname='Arial-Bold',
+                         color=(1,1,1))
+        page.insert_text((29,617.0),'Community Outcomes',fontsize=11.2,
+                         fontname='Arial-Bold',color=(0.14,0.19,0.21))
+
+        col_bounds=[(9.5,178.1),(178.1,346.7),(346.7,514.9)]
+        for x in (178.1,346.7):
+            page.draw_line((x,622),(x,742),color=(0.84,0.87,0.88),width=0.55)
+        # Use the same Arial faces as the main artwork.
+        def centered_label(bounds,y,text,size=8.0,weight=True):
+            font=fitz.Font(fontfile=bold if weight else arial)
+            text_width=font.text_length(text,fontsize=size)
+            page.insert_text(((bounds[0]+bounds[1]-text_width)/2,y),text,
+                             fontname='Arial-Bold' if weight else 'Arial',
+                             fontsize=size,color=(0.16,0.20,0.23))
+        headings=('Recovery outcomes','Vulnerability groups','Spatial patterns')
+        for bounds,text in zip(col_bounds,headings):
+            centered_label(bounds,636,text,8.4,True)
+
+        source_crops=[fitz.Rect(275,503,351,551),
+                      fitz.Rect(357,505,433,555),
+                      fitz.Rect(444,503,514,552)]
+        targets=[fitz.Rect(20,640,167,695),
+                 fitz.Rect(188,640,336,695),
+                 fitz.Rect(357,640,505,695)]
+        for src_rect,target_rect in zip(source_crops,targets):
+            page.show_pdf_page(target_rect,doc,0,clip=src_rect,
+                               keep_proportion=True,overlay=True)
+        labels=[('Service loss','Time to 80% service (T80)'),
+                ('Service loss by quartile','|Q4-Q1| loss gap; Gini'),
+                ('Service-loss gap','Community typology',
+                 'High vulnerability + slow-recovery hotspots')]
+        for bounds,lines in zip(col_bounds,labels):
+            baselines=(704,715,726)
+            for y,text in zip(baselines,lines):
+                centered_label(bounds,y,text,7.5,False)
+
+        result=finish(page_doc)
+        page_doc.close()
 
     with fitz.open(stream=result,filetype='pdf') as final_doc:
         page=final_doc[0]
-        stage_text=' '.join(page.get_textbox(rect).replace('\xa0',' ').replace('\xad','').split())
+        stage_text=' '.join(page.get_textbox(fitz.Rect(9.5,446,514.9,595))
+                             .replace('\xa0',' ').replace('\xad','-').split())
         assert process_panel_audit['uses_priority_map']
         assert process_panel_audit['uses_saved_schedule']
         assert process_panel_audit['no_fabricated_task_events']
         with fitz.open(stream=process_panel_pdf,filetype='pdf') as process_panel:
-            panel_text=' '.join(process_panel[0].get_text().replace('\xa0',' ').split())
+            panel_text=' '.join(process_panel[0].get_text().replace('\xa0',' ')
+                                .replace('\xad','-').replace('\u037e',';')
+                                .replace('\ufffd','-').split())
         rejected=('availability curves','T80','cumulative service loss',
                   'population-weighted service availability','Impact-first service-availability')
         assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
-        required=('PRIORITY RULES','map shows station ranks',
-                  'Network/community rules + GA set station order',
-                  'Unconstrained reference: parallel repair',
-                  'REPAIR SCHEDULING','evaluation realization 0',
-                  '2 of 57 crews','earliest','Crew 5','Crew 9',
-                  '300558','306450','303169','307832','COMPLETION EVENTS',
-                  'Station 300558 completes at 18.15 h',
-                  'raw functionality = 1','source gate','tract service')
-        assert all(term in panel_text for term in required), panel_text
+        required=('Priority Rules','Impact-first example','population (log scale)',
+                  'Repair Scheduling','2 of 57 crews shown','directed travel',
+                  'DS-specific repair','Crew 5','Crew 9','45 h',
+                  'Completion Events','18.15 h','Crew','released',
+                  'functionality = 1','source gate','tract service state')
+        assert all(term.lower() in panel_text.lower() for term in required), panel_text
         assert len(final_doc)==1
+        assert abs(page.rect.width-page_width)<0.02
+        assert abs(page.rect.height-page_height)<0.02
+        stage5_text=' '.join(page.get_textbox(stage5_body).replace('\xa0',' ')
+                             .replace('\xad','-').split())
+        for phrase in ('Recovery outcomes','Vulnerability groups','Spatial patterns',
+                       'Service loss','Time to 80% service','Service loss by quartile',
+                       'Q4-Q1','Gini','Community typology','slow-recovery hotspots'):
+            assert phrase.lower() in stage5_text.lower(),(phrase,stage5_text)
 
+    region_comparisons=[]
     with fitz.open(stream=raw,filetype='pdf') as before, \
          fitz.open(stream=result,filetype='pdf') as after:
-        before_pix=before[0].get_pixmap(dpi=120,alpha=False)
-        after_pix=after[0].get_pixmap(dpi=120,alpha=False)
+        top=fitz.Rect(0,0,page_width,434.0)
+        before_pix=before[0].get_pixmap(dpi=80,clip=top,alpha=False)
+        after_pix=after[0].get_pixmap(dpi=80,clip=top,alpha=False)
         before_rgb=np.frombuffer(before_pix.samples,dtype=np.uint8).reshape(
             before_pix.height,before_pix.width,3)
         after_rgb=np.frombuffer(after_pix.samples,dtype=np.uint8).reshape(
             after_pix.height,after_pix.width,3)
         assert before_rgb.shape==after_rgb.shape
-        scale=120.0/72.0
-        x0=max(0,int(np.floor(rect.x0*scale))-2)
-        x1=min(before_pix.width,int(np.ceil(rect.x1*scale))+2)
-        y0=max(0,int(np.floor(rect.y0*scale))-2)
-        y1=min(before_pix.height,int(np.ceil(rect.y1*scale))+2)
-        outside=np.ones(before_rgb.shape[:2],dtype=bool)
-        outside[y0:y1,x0:x1]=False
-        assert np.array_equal(before_rgb[outside],after_rgb[outside])
-        changed_pixels=int(np.count_nonzero(np.any(before_rgb!=after_rgb,axis=2)))
+        region_comparisons.append({'region':'Stages 1-3 and upstream connectors',
+            'pixel_identical':bool(np.array_equal(before_rgb,after_rgb)),
+            'pixels':int(before_rgb.shape[0]*before_rgb.shape[1]),'dpi':80})
     return result,{
         'panel':'4','panel_title':'Restoration Strategies and Execution',
         'source_page_sha256':hashlib.sha256(raw).hexdigest(),
@@ -547,11 +630,19 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
         'operations':process_panel_audit['connected_operations'],
         'unconstrained_is_separate_reference':True,
         'no_recovery_curves_or_downstream_outcomes':True,
+        'full_width_stage4':True,
+        'stage5_reflowed_from_original_vector_result_graphics':True,
+        'top_modules_unscaled_and_preserved':region_comparisons,
         'old_stage4_result_labels_removed':True,
-        'outside_stage4_pixels_identical':True,
-        'changed_pixels_at_120dpi':changed_pixels,
-        'authorized_edit_rect_pt':[rect.x0,rect.y0,rect.x1,rect.y1],
-        'figure_dimensions_pt':[width,height],
+        'authorized_layout_regions_pt':{'stage4_header':list(stage4_header),
+            'stage4_body':list(stage4_body),'stage5_header':list(stage5_header),
+            'stage5_body':list(stage5_body)},
+        'figure_dimensions_pt':[page_width,page_height],
+        'figure_dimensions_mm':[page_width*25.4/72,page_height*25.4/72],
+        'stage4_map_source_region_pt':[52,535,302,733],
+        'stage5_original_result_vector_crops_pt':[list(r) for r in source_crops],
+        'stage5_vector_crops_not_redrawn':True,
+        'top_modules_translation_pt':[0,0],
         'no_simulation_or_schedule_rerun':True,
     }
 

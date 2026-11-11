@@ -127,9 +127,9 @@ def apply_artwork_style() -> None:
     )
 
 
-def build_stage4_process_panel(width_pt: float = 246.8,
-                               height_pt: float = 133.0) -> tuple[bytes, bytes, dict]:
-    """Render Figure 1 Stage 4 from the implemented priority/schedule/event flow."""
+def build_stage4_process_panel(width_pt: float = 505.4,
+                               height_pt: float = 132.0) -> tuple[bytes, bytes, dict]:
+    """Render the full-width, three-operation Stage 4 method panel."""
     schedule_path = REPO_ROOT / "src/la_grid/revision/r1_realization_scheduling.py"
     ga_path = REPO_ROOT / "src/la_grid/revision/r1_ga_revision.py"
     resource_path = REPO_ROOT / "src/la_grid/revision/r1_final_matrix.py"
@@ -151,7 +151,7 @@ def build_stage4_process_panel(width_pt: float = 246.8,
 
     width_pt = float(width_pt)
     height_pt = float(height_pt)
-    assert width_pt == 246.8 and height_pt == 133.0
+    assert width_pt == 505.4 and height_pt == 132.0
     priority_path = REPO_ROOT / "results/figure_review_s6_main4_20261107/Supplement/FigS07.pdf"
     schedule_rel = "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__impact-first"
     schedule_commit = "6cfccca37cde7a53b909067caaaadea256cfd226"
@@ -207,20 +207,20 @@ def build_stage4_process_panel(width_pt: float = 246.8,
         assert len(priority) == 1
         # Figure S7C is an Impact-first example, not a map of every rule.
         map_clip = fitz.Rect(52, 535, 302, 733)
-        map_target = fitz.Rect(4, 3, 78, 42)
+        map_target = fitz.Rect(7, 29, 161, 128)
+        # Preserve the saved rank-marker centers while increasing their print-size legibility.
+        words = priority[0].get_text("words", clip=map_clip)
+        spans = [word for word in words if word[4] in {"1", "2", "3", "4", "5"}]
+        rank_centers = {int(word[4]): ((word[0] + word[2]) / 2,
+                                       (word[1] + word[3]) / 2)
+                        for word in spans}
+        assert set(rank_centers) == {1, 2, 3, 4, 5}
+        for word in spans:
+            priority[0].add_redact_annot(fitz.Rect(word[:4]), fill=None,
+                                          cross_out=False)
+        priority[0].apply_redactions(images=0, graphics=0)
         page.show_pdf_page(map_target, priority, 0, clip=map_clip,
                            keep_proportion=True)
-        # Preserve the saved rank-marker centers while increasing their print-size legibility.
-        spans = [span for block in priority[0].get_text("dict")["blocks"]
-                 if "lines" in block for line in block["lines"]
-                 for span in line["spans"]
-                 if fitz.Rect(52, 535, 302, 733).intersects(fitz.Rect(span["bbox"]))
-                 and span["text"] in {"1", "2", "3", "4", "5"}]
-        rank_centers = {int(span["text"]):
-                        ((span["bbox"][0] + span["bbox"][2]) / 2,
-                         (span["bbox"][1] + span["bbox"][3]) / 2)
-                        for span in spans}
-        assert set(rank_centers) == {1, 2, 3, 4, 5}
         map_scale = min(map_target.width / map_clip.width,
                         map_target.height / map_clip.height)
         map_drawn_width = map_clip.width * map_scale
@@ -228,66 +228,109 @@ def build_stage4_process_panel(width_pt: float = 246.8,
         for rank, (sx, sy) in rank_centers.items():
             cx = map_x_offset + (sx - map_clip.x0) * map_scale
             cy = map_target.y0 + (sy - map_clip.y0) * map_scale
-            page.draw_circle((cx, cy), 3.5, color=(0.08, 0.12, 0.15),
+            page.draw_circle((cx, cy), 4.1, color=(0.08, 0.12, 0.15),
                              fill=(0.08, 0.12, 0.15), width=0.25)
-            page.insert_text((cx - 1.55, cy + 1.8), str(rank), fontname="Arial-Bold",
-                             fontsize=7.0, color=(1, 1, 1))
+            page.insert_text((cx - 1.8, cy + 2.2), str(rank), fontname="Arial-Bold",
+                             fontsize=8.0, color=(1, 1, 1))
 
     ink = (0.15, 0.19, 0.21)
     muted = (0.39, 0.45, 0.49)
     teal = (0.14, 0.53, 0.47)
-    travel_gray = (0.60, 0.65, 0.68)
+    travel_gray = (0.49, 0.54, 0.57)
+    rule = (0.82, 0.85, 0.86)
+    soft = (0.95, 0.97, 0.97)
 
-    def label(x, y, value, size=7.0, weight=False, color=ink):
+    def label(x, y, value, size=8.0, weight=False, color=ink):
         page.insert_text((x, y), value, fontname="Arial-Bold" if weight else "Arial",
                          fontsize=size, color=color)
 
-    # Three rows carry the actual information flow; labels identify each source.
-    label(83, 9, "PRIORITY RULES", 7.6, True)
-    label(83, 17, "Impact-first: map shows station ranks 1-5", 7.0)
-    label(83, 25, "Purple: log tract population", 7.0)
-    label(83, 33, "Network/community rules + GA set station order", 7.0)
-    label(83, 41, "Unconstrained reference: parallel repair", 7.0)
-    page.draw_line((5, 44), (241, 44), color=(0.83, 0.86, 0.87), width=0.5)
-    page.draw_polyline([(232, 42), (235, 45), (238, 42)], color=muted, width=0.7)
+    # Align the three real operations as columns; arrows carry the method flow.
+    for x in (168.5, 337.0):
+        page.draw_line((x, 6), (x, height_pt - 6), color=rule, width=0.65)
+    label(9, 14, "Priority Rules", 9.0, True, color=(0.45, 0.25, 0.55))
+    label(177, 14, "Repair Scheduling", 9.0, True, color=(0.10, 0.43, 0.38))
+    label(346, 14, "Completion Events", 9.0, True, color=(0.27, 0.38, 0.45))
+    for x in (161.5, 330.0):
+        page.draw_line((x - 4, 11), (x + 3, 11), color=muted, width=0.8)
+        page.draw_polyline([(x, 8.5), (x + 3, 11), (x, 13.5)], color=muted, width=0.8)
 
-    label(6, 51, "REPAIR SCHEDULING", 7.6, True)
-    label(6, 60, "2pc50 / C57_D1 / evaluation realization 0; 2 of 57 crews", 7.0)
-    label(6, 69, "Time (h); DS>0 -> earliest-free crew; directed travel + realized DS duration", 7.0)
-    x0, scale = 34.0, 1.76
-    for crew_index, y in ((4, 77), (8, 87)):
+    label(9, 25, "Impact-first example; rank markers 1-5", 7.8)
+    label(9, 35, "Purple shading: tract population (log scale)", 7.8)
+    label(177, 25, "2 of 57 crews shown; labels are priority ranks", 7.7)
+    label(177, 35, "Gray: directed travel  |  Teal: DS-specific repair", 7.5)
+    label(346, 25, f"Recorded task finish: {first_event['completion_hr']:.2f} h", 7.8)
+
+    x0, x1 = 207.0, 326.0
+    scale = (x1 - x0) / 45.0
+    for crew_index, y in ((4, 57), (8, 86)):
         for event in (e for e in events if e["crew_index"] == crew_index):
             left = x0 + scale * event["free_hr"]
             arrival_x = x0 + scale * event["arrival_hr"]
             right = x0 + scale * event["completion_hr"]
-            # Keep the true time positions. A fine gray stroke makes sub-hour travel
-            # events visible without widening their interval on the time axis.
-            page.draw_line((left, y - 2.1), (arrival_x, y - 2.1),
-                           color=travel_gray, width=0.8)
-            page.draw_rect(fitz.Rect(arrival_x, y - 4.0, right, y + 0.5),
-                           color=teal, fill=teal, width=0.2)
-            page.draw_line((right, y - 4.8), (right, y + 1.4), color=ink, width=0.55)
-    label(6, 78, "Crew 5", 7.0)
-    label(6, 88, "Crew 9", 7.0)
-    label(124, 78, "300558 -> 306450", 7.0)
-    label(124, 88, "303169 -> 307832", 7.0)
+            page.draw_line((left, y), (arrival_x, y), color=travel_gray, width=2.0)
+            page.draw_rect(fitz.Rect(arrival_x, y - 3.1, right, y + 3.1),
+                           color=teal, fill=teal, width=0.25)
+            page.draw_line((right, y - 7), (right, y + 7), color=ink, width=0.7)
+            rank = str(event["dispatch_rank"])
+            rank_width = fitz.Font(fontfile=bold).text_length(rank, fontsize=7.5)
+            page.insert_text((arrival_x + (right - arrival_x - rank_width) / 2,
+                              y + 2.4), rank, fontname="Arial-Bold",
+                             fontsize=7.5, color=(1, 1, 1))
+            completion_label = f"{event['completion_hr']:.2f}"
+            label_width = fitz.Font(fontfile=arial).text_length(completion_label,
+                                                               fontsize=7.5)
+            label(max(x0, right - label_width), y - 5.0, completion_label, 7.5)
+    label(173, 59.5, "Crew 5", 7.8, True)
+    label(173, 88.5, "Crew 9", 7.8, True)
     for tick in (0, 15, 30, 45):
         tx = x0 + scale * tick
-        page.draw_line((tx, 91), (tx, 93), color=ink, width=0.45)
+        page.draw_line((tx, 101), (tx, 104), color=ink, width=0.55)
         tick_label = "45 h" if tick == 45 else str(tick)
-        label(tx - (4.0 if tick == 45 else 1.4), 99, tick_label, 7.0)
-    page.draw_line((x0, 92), (x0 + scale * 45, 92), color=muted, width=0.45)
-    page.draw_rect(fitz.Rect(178, 95, 182, 98), color=travel_gray,
-                   fill=travel_gray, width=0.2)
-    label(184, 98, "travel", 7.0)
-    page.draw_rect(fitz.Rect(211, 95, 215, 98), color=teal, fill=teal, width=0.2)
-    label(217, 98, "repair", 7.0)
-    page.draw_line((5, 101), (241, 101), color=(0.83, 0.86, 0.87), width=0.5)
-    page.draw_polyline([(232, 99), (235, 102), (238, 99)], color=muted, width=0.7)
+        width = fitz.Font(fontfile=arial).text_length(tick_label, fontsize=7.8)
+        label(tx - width / 2, 114, tick_label, 7.8)
+    page.draw_line((x0, 102.5), (x1, 102.5), color=muted, width=0.6)
+    page.draw_line((173, 122), (185, 122), color=travel_gray, width=2.0)
+    label(188, 124.5, "Travel", 7.5)
+    page.draw_rect(fitz.Rect(222, 119, 230, 125), color=teal, fill=teal, width=0.2)
+    label(233, 124.5, "Repair", 7.5)
+    label(270, 124.5, "Bar number = priority rank", 7.5)
 
-    label(6, 109, "COMPLETION EVENTS", 7.6, True)
-    label(6, 119, f"Station {first_event['station_id']} completes at {first_event['completion_hr']:.2f} h; crew released", 7.0)
-    label(6, 129, "At completion: raw functionality = 1 -> source gate -> tract service", 7.0)
+    # The event releases the crew and restores raw station functionality; only the
+    # updated station state then proceeds through the source gate to tract service.
+    event_rect = fitz.Rect(382, 39, 459, 59)
+    crew_rect = fitz.Rect(346, 72, 410, 94)
+    function_rect = fitz.Rect(426, 72, 499, 94)
+    service_rect = fitz.Rect(385, 108, 495, 128)
+    for rect, color in ((event_rect, (0.91, 0.95, 0.95)),
+                        (crew_rect, (0.96, 0.97, 0.97)),
+                        (function_rect, (0.92, 0.95, 0.96)),
+                        (service_rect, (0.94, 0.96, 0.96))):
+        page.draw_rect(rect, color=(0.56, 0.63, 0.66), fill=color, width=0.7)
+    def centered(rect, lines, size=8.0, weight=False):
+        font_name = "Arial-Bold" if weight else "Arial"
+        font = fitz.Font(fontfile=bold if weight else arial)
+        line_h = size * 1.15
+        top = rect.y0 + (rect.height - line_h * len(lines)) / 2
+        for i, value in enumerate(lines):
+            width = font.text_length(value, fontsize=size)
+            page.insert_text((rect.x0 + (rect.width - width) / 2,
+                              top + (i + 0.85) * line_h), value,
+                             fontname=font_name, fontsize=size, color=ink)
+    centered(event_rect, ("Repair task", "completes"), 8.2, True)
+    centered(crew_rect, ("Crew", "released"), 8.0, True)
+    centered(function_rect, ("Station raw", "functionality = 1"), 7.8, True)
+    centered(service_rect, ("Re-evaluate source gate", "Update tract service state"), 7.5, True)
+    # Split the recorded event into the independent crew-release and station-state
+    # effects, then pass station functionality to downstream service evaluation.
+    page.draw_line((420.5, 59), (420.5, 64), color=muted, width=0.8)
+    page.draw_line((378, 64), (462.5, 64), color=muted, width=0.8)
+    for cx in (378, 462.5):
+        page.draw_line((cx, 64), (cx, 72), color=muted, width=0.8)
+        page.draw_polyline([(cx - 2.2, 69.5), (cx, 72), (cx + 2.2, 69.5)],
+                           color=muted, width=0.8)
+    page.draw_line((462.5, 94), (462.5, 108), color=muted, width=0.8)
+    page.draw_polyline([(460.3, 105.5), (462.5, 108), (464.7, 105.5)],
+                       color=muted, width=0.8)
     pdf_bytes = doc.tobytes(garbage=4, deflate=True, no_new_id=True)
     doc.close()
     with fitz.open(stream=pdf_bytes, filetype="pdf") as rendered:
@@ -319,15 +362,26 @@ def build_stage4_process_panel(width_pt: float = 246.8,
         "width_pt": width_pt,
         "height_pt": height_pt,
         "body_font": "Arial",
-        "body_font_pt": 7.0,
-        "rank_marker_font_pt": 7.0,
+        "body_font_pt": 7.5,
+        "rank_marker_font_pt": 8.0,
+        "schedule_rank_label_pt": 7.5,
+        "source_map_rank_text_removed_before_relabel": True,
         "schedule_axis_hours": [0, 15, 30, 45],
         "schedule_axis_max_hr": 45,
+        "schedule_time_axis_range_hr": [0, 45],
+        "all_task_completion_hours": [round(e["completion_hr"], 8) for e in events],
+        "visual_operations": ["priority map", "crew Gantt", "completion-event state update"],
         "no_recovery_curves_or_downstream_outcomes": True,
         "no_simulation_or_schedule_rerun": True,
         "panel_pdf_sha256": hashlib.sha256(pdf_bytes).hexdigest(),
         "panel_png_sha256": hashlib.sha256(png_bytes).hexdigest(),
     }
+    with fitz.open(stream=pdf_bytes, filetype="pdf") as rendered:
+        spans = [span for block in rendered[0].get_text("dict")["blocks"]
+                 for line in block.get("lines", [])
+                 for span in line.get("spans", []) if span["text"].strip()]
+        audit["minimum_panel_text_pt"] = min(span["size"] for span in spans)
+        assert audit["minimum_panel_text_pt"] >= 7.5
     return pdf_bytes, png_bytes, audit
 
 

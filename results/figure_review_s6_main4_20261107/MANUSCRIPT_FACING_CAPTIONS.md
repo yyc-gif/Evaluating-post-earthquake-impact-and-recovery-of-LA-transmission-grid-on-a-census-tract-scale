@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Stage 4 links an Impact-first priority-map example to two archived crew histories from 2pc50/C57_D1 evaluation realization 0 (2 of 57 crews shown). Each strategy supplies a station order; DS>0 tasks are assigned to the earliest-free crew with directed travel and realized damage-state repair durations. Completion releases the crew, restores raw station functionality, and passes the updated state to source-gated tract-service evaluation. Unconstrained repair is the parallel reference.
+Stage 4 links station-priority rules to logistics-aware repair scheduling and completion events. The map is an Impact-first example. Other network- and community-based rules, including Vulnerability-first, and the GA each supply a station priority order; Unconstrained repair is the separate parallel reference. The Gantt shows four saved tasks from 2pc50/C57_D1 evaluation realization 0, with two of 57 crews shown. Only DS>0 tasks are scheduled; damaged stations are assigned in priority order subject to crew availability, directed travel and realized damage-state-specific repair duration. Gray segments show travel and teal bars show repair. At completion, the crew is released, raw station functionality is restored to 1, and source connectivity and tract service are updated.
 
 ## Figure 2. Transmission network and tract dependencies
 

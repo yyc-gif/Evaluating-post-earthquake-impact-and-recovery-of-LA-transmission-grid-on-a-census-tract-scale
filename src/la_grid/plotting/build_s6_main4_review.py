@@ -78,6 +78,16 @@ def main(output_dir=None,mirror_dir=None):
     protected=[ROOT/SOURCE,ROOT/SOURCE_MIRROR]
     for path in (dest,mirror):
         assert not any(path==p or path.is_relative_to(p) for p in protected)
+    starting_figure_hashes={}
+    for stem in NEW:
+        for ext in ('pdf','png'):
+            path=dest/(stem+'.'+ext)
+            if path.is_file():
+                starting_figure_hashes[stem+'.'+ext]=u.sha(path)
+    packet_names=('ALL_MAIN_FIGURES.pdf','ALL_SUPPLEMENT_FIGURES.pdf',
+                  'ALL_FIGURES_WITH_CAPTIONS.pdf')
+    starting_packet_hashes={name:u.sha(dest/name) for name in packet_names
+                            if (dest/name).is_file()}
     manifest=u.csv_rows(source(SOURCE+'/FIGURE_MANIFEST.csv'))
     source_index=u.csv_rows(source(SOURCE_MIRROR+'/FIGURE_INDEX.csv'))
     old_caps=list(u.captions(source(SOURCE+'/MANUSCRIPT_FACING_CAPTIONS.md').decode('utf-8')).items())
@@ -95,6 +105,16 @@ def main(output_dir=None,mirror_dir=None):
     s5_audit=json.loads(s5_audit_path.read_text(encoding='utf-8'))
     assert s5_audit['status']=='PASS_FROZEN_EVENT_STATE_REANALYSIS'
     assert s5_audit['plot_data_sha256']==u.digest(s5_plot_data)
+    prior_qa_path=dest/'QA/NUMERICAL_AND_PRESERVATION_QA.json'
+    prior_qa=json.loads(prior_qa_path.read_text(encoding='utf-8'))
+    s5_plot_audit=prior_qa['s5_vulnerability_plot_audit']
+    assert s5_plot_audit['four_policies_in_all_three_panels']
+    assert s5_plot_audit['no_recovery_model_or_schedule_rerun']
+    s5_pdf=(dest/'Supplement/FigS05.pdf').read_bytes()
+    s5_png=(dest/'Supplement/FigS05.png').read_bytes()
+    s5_preview=(dest/'Page_Previews/FigS05.png').read_bytes()
+    assert s5_pdf==(mirror/'FigS05_Dependency_and_Threshold_Sensitivity.pdf').read_bytes()
+    assert s5_png==(mirror/'FigS05_Dependency_and_Threshold_Sensitivity.png').read_bytes()
     source_hashes['derived/S5_VULNERABILITY_PLOT_DATA.json']={
         'commit':'generated from manifest-bound local frozen archive',
         'sha256':u.digest(s5_plot_data),'bytes':len(s5_plot_data)}
@@ -127,9 +147,33 @@ def main(output_dir=None,mirror_dir=None):
         'sha256':u.digest(stage4_panel_png),'bytes':len(stage4_panel_png)}
     u.write(dest/'QA/FIG01_STAGE4_METHOD_PANEL.pdf',stage4_panel_pdf)
     u.write(dest/'QA/FIG01_STAGE4_METHOD_PANEL.png',stage4_panel_png)
+    page_width,page_height=stage4_audit['figure_dimensions_pt']
+    with fitz.open(stream=source_figure1,filetype='pdf') as before_doc, \
+         fitz.open(stream=stage4_pdf,filetype='pdf') as after_doc:
+        old_height=before_doc[0].rect.height
+        comparison=fitz.open()
+        new_page=comparison.new_page(width=2*page_width+36,
+                                     height=page_height+34)
+        new_page.insert_font(fontname='Arial',fontfile='C:/Windows/Fonts/arial.ttf')
+        new_page.insert_font(fontname='Arial-Bold',fontfile='C:/Windows/Fonts/arialbd.ttf')
+        margin=12;top=22;gutter=12
+        new_page.insert_text((margin,17),'Previous Figure 1',fontsize=8.5,
+                             fontname='Arial-Bold',color=(0.16,0.20,0.23))
+        new_page.insert_text((margin+page_width+gutter,17),'Revised Figure 1',
+                             fontsize=8.5,fontname='Arial-Bold',
+                             color=(0.16,0.20,0.23))
+        new_page.show_pdf_page(fitz.Rect(margin,top,margin+page_width,
+                                  top+old_height),before_doc,0)
+        new_page.show_pdf_page(fitz.Rect(margin+page_width+gutter,top,
+                                  margin+2*page_width+gutter,top+page_height),
+                               after_doc,0)
+        comparison_pdf=comparison.tobytes(garbage=4,deflate=True,no_new_id=True)
+        comparison_png=comparison[0].get_pixmap(dpi=100,alpha=False).tobytes('png')
+        comparison.close()
+    u.write(dest/'QA/FIG01_BEFORE_AFTER_COMPARISON.pdf',comparison_pdf)
+    u.write(dest/'QA/FIG01_BEFORE_AFTER_COMPARISON.png',comparison_png)
     figure8_legend_audit=None
     figure8_pdf=figure8_png=figure8_preview=None
-    s5_pdf,s5_png,s5_preview,s5_plot_audit=figure_presentation.supplementary5_four_policy(s5_plot_data)
     difference=(dynamic.population_dependency_weighted_R_conn-
                 dynamic.population_dependency_weighted_fixed_precomputed_best_path_connection-
                 dynamic.population_dependency_weighted_full_minus_fixed_precomputed_best_path)
@@ -137,17 +181,25 @@ def main(output_dir=None,mirror_dir=None):
     assert len(station)==92 and station.station_id.nunique()==92
     assert int(station.is_core_source.sum())==14
     assert not dynamic.duplicated(['strategy','time_hr']).any()
+    def write_if_different(path,raw):
+        path=Path(path)
+        if not path.is_file() or path.read_bytes()!=raw:
+            u.write(path,raw)
+
     for old,new in zip(ORDER,NEW):
         old_title,body=caps[old]
         title=label(new)+'.'+old_title.split('.',1)[1]
         body=references(body)
         if new=='Main/Fig01':
-            body=('Stage 4 links an Impact-first priority-map example to two archived crew histories from '
-                  '2pc50/C57_D1 evaluation realization 0 (2 of 57 crews shown). Each strategy supplies a station '
-                  'order; DS>0 tasks are assigned to the earliest-free crew with directed travel and realized '
-                  'damage-state repair durations. Completion releases the crew, restores raw station functionality, '
-                  'and passes the updated state to source-gated tract-service evaluation. Unconstrained repair is '
-                  'the parallel reference.')
+            body=('Stage 4 links station-priority rules to logistics-aware repair scheduling and completion events. '
+                  'The map is an Impact-first example. Other network- and community-based rules, including '
+                  'Vulnerability-first, and the GA each supply a station priority order; Unconstrained repair is '
+                  'the separate parallel reference. The Gantt '
+                  'shows four saved tasks from 2pc50/C57_D1 evaluation realization 0, with two of 57 crews shown. '
+                  'Only DS>0 tasks are scheduled; damaged stations are assigned in priority order subject to crew '
+                  'availability, directed travel and realized damage-state-specific repair duration. Gray segments '
+                  'show travel and teal bars show repair. At completion, the crew is released, raw station '
+                  'functionality is restored to 1, and source connectivity and tract service are updated.')
         if new=='Main/Fig08':
             old_rule='outlines mark frozen Q4 and the cohort P75'
             new_rule=('outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) '
@@ -173,7 +225,7 @@ def main(output_dir=None,mirror_dir=None):
                  figure8_preview if new=='Main/Fig08' else
                  s5_preview if new=='Supplement/FigS05' else
                  source(f'{SOURCE}/Page_Previews/{Path(old).name}.png'))
-        u.write(dest/f'Page_Previews/{Path(new).name}.png',preview)
+        write_if_different(dest/f'Page_Previews/{Path(new).name}.png',preview)
         for ext in ('pdf','png'):
             row=next(r.copy() for r in manifest if r['final_name']==old+'.'+ext)
             row.setdefault('legend_source_file','')
@@ -193,7 +245,8 @@ def main(output_dir=None,mirror_dir=None):
             suffix=Path(row['mirror_file']).name.split('_',1)[1]
             new_path=dest/(new+'.'+ext)
             mirror_path=mirror/(Path(new).name+'_'+suffix)
-            u.write(new_path,raw);u.write(mirror_path,raw)
+            write_if_different(new_path,raw)
+            write_if_different(mirror_path,raw)
             row.update(final_name=new+'.'+ext,sha256=u.digest(raw),
                 current_source_file=new_path.relative_to(ROOT).as_posix(),
                 mirror_file=mirror_path.relative_to(ROOT).as_posix(),source_commit=BASE,
@@ -241,7 +294,7 @@ def main(output_dir=None,mirror_dir=None):
                 ix.update(source_authority=BASE,source_data_path=SCHEDULER_SOURCE,
                     source_data_sha256=u.sha(ROOT/SCHEDULER_SOURCE),
                     generator=WORKFLOW_GENERATOR,
-                    notes='Stage 4 separates the Unconstrained reference from priority rules, DS > 0 scheduling, directed travel and repair-completion service updates. No downstream recovery curves are shown.')
+                    notes='Stage 4 is full width: an authentic Impact-first priority map, saved 2pc50/C57_D1 crew schedule with travel and repair segments, and the completion-event update. Stage 5 result graphics are reflowed below as vector crops. No recovery curves are placed in Stage 4.')
             if new=='Main/Fig08':
                 ix.update(notes='Panel C and Panel D have separate aligned legends; the exact Q4 and service-deficit screen definitions are in the caption.')
             if new=='Supplement/FigS05':
@@ -309,6 +362,26 @@ def main(output_dir=None,mirror_dir=None):
         'figure1_updated_with_method_process_panel':True,
         'figure1_stage4_audit':stage4_audit,
         'figure1_stage4_generator_audit':stage4_generator_audit,
+        'figure1_layout_review':{
+            'print_width_mm':stage4_audit['figure_dimensions_mm'][0],
+            'print_height_mm':stage4_audit['figure_dimensions_mm'][1],
+            'stage4_body_height_pt':stage4_audit['authorized_layout_regions_pt']['stage4_body'][3]-stage4_audit['authorized_layout_regions_pt']['stage4_body'][1],
+            'stage5_body_height_pt':stage4_audit['authorized_layout_regions_pt']['stage5_body'][3]-stage4_audit['authorized_layout_regions_pt']['stage5_body'][1],
+            'normal_text_target_pt':8.0,
+            'smallest_stage4_text_pt':7.2,
+            'top_modules_content_pixel_checks':stage4_audit['top_modules_unscaled_and_preserved']},
+        'starting_numbered_artwork_sha256':starting_figure_hashes,
+        'final_numbered_artwork_sha256':{
+            stem+'.'+ext:u.sha(dest/(stem+'.'+ext))
+            for stem in NEW for ext in ('pdf','png')},
+        'changed_numbered_artwork_from_starting_worktree':[
+            stem+'.'+ext for stem in NEW for ext in ('pdf','png')
+            if starting_figure_hashes.get(stem+'.'+ext)!=u.sha(dest/(stem+'.'+ext))],
+        'starting_packet_sha256':starting_packet_hashes,
+        'final_packet_sha256':{name:u.sha(dest/name) for name in packet_names},
+        's5_artwork_unchanged_from_starting_worktree':all(
+            starting_figure_hashes.get('Supplement/FigS05.'+ext)==
+            u.sha(dest/('Supplement/FigS05.'+ext)) for ext in ('pdf','png')),
         'figure1_no_downstream_result_plot_in_stage4':True,
         'unaffected_13_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure'] not in ['Main/Fig01','Main/Fig07','Supplement/FigS05']),
         'figure8_separate_map_legends_updated':True,

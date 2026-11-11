@@ -92,14 +92,12 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
     source_pdf=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Main/Fig01.pdf')
     pdf,audit=figure_presentation.restoration_workflow(source_pdf,panel_pdf,panel_audit)
     with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
-        stage_text=' '.join(panel[0].get_text().split())
-    for phrase in ('PRIORITY RULES', 'map shows station ranks',
-                   'Network/community rules + GA set station order',
-                   'Unconstrained reference: parallel repair',
-                   'REPAIR SCHEDULING', 'evaluation realization 0',
-                   '2 of 57 crews', 'Crew 5', 'Crew 9', '300558',
-                   '306450', '303169', '307832',
-                   'COMPLETION EVENTS', 'Station 300558 completes at 18.15 h'):
+        stage_text=' '.join(panel[0].get_text().replace('\xad','-').split())
+    for phrase in ('Priority Rules', 'Impact-first example', 'rank markers 1-5',
+                   'population (log scale)', 'Repair Scheduling',
+                   '2 of 57 crews shown', 'directed travel', 'DS-specific repair',
+                   'Crew 5', 'Crew 9', 'Completion Events', '18.15 h',
+                   'functionality = 1', 'source gate', 'tract service state'):
         assert phrase in stage_text
     assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
     assert panel_audit['no_fabricated_task_events']
@@ -107,8 +105,11 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
     assert panel_audit['crews_in_model'] == 57
     assert panel_audit['schedule_axis_hours'] == [0, 15, 30, 45]
     assert panel_audit['schedule_axis_max_hr'] == 45
-    assert panel_audit['body_font_pt'] >= 7.0
-    assert panel_audit['rank_marker_font_pt'] == 7.0
+    assert panel_audit['body_font_pt'] >= 7.5
+    assert panel_audit['rank_marker_font_pt'] == 8.0
+    assert panel_audit['schedule_rank_label_pt'] == 7.5
+    assert panel_audit['minimum_panel_text_pt'] >= 7.5
+    assert panel_audit['source_map_rank_text_removed_before_relabel']
     assert abs(max(e['completion_hr'] for e in panel_audit['plotted_task_events'])
                - 42.93682284742478) < 1e-9
     assert len(panel_audit['plotted_task_events']) == 4
@@ -122,7 +123,9 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
     assert 'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15' not in builder_source
     assert 'saved Unconstrained and Impact-first service-availability trajectories' not in \
         build_current_suite_p2.captions()[0][1]
-    assert audit['outside_stage4_pixels_identical']
+    assert audit['full_width_stage4']
+    assert audit['stage5_reflowed_from_original_vector_result_graphics']
+    assert all(r['pixel_identical'] for r in audit['top_modules_unscaled_and_preserved'])
     assert audit['no_recovery_curves_or_downstream_outcomes']
 
 
