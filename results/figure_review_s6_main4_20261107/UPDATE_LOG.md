@@ -13,3 +13,7 @@ Figure 1 Stage 4 was temporarily changed to display downstream recovery curves. 
 # 2026-11-10
 
 Stage 4 now shows three implementation-derived operations: priority rules, DS > 0 crew scheduling with realized damage-state repair durations and directed travel, and repair-completion updates. Unconstrained is shown separately as a parallel reference. The generator and builder no longer use `recovery_curves_all_system.csv` or the Figure 1 artwork from `ea692f4`.
+
+# 2026-11-11
+
+Reduced the Stage 4 Impact-first population map to the median visible geographic footprint of Stages 1-3 and recolored vector population fills and the matching scale to blue-gray. Map numerals remain full station priority ranks; ambiguous Gantt numerals were removed because dispatch order is assigned only after DS0 filtering. Stage 5 now labels the rising trajectory as population-weighted service availability, defines T80, and replaces the retired spatial screen thumbnail with the current P2/K3 community map. Figure 1 data and the saved schedule are unchanged; S5 and the other 15 numbered artwork pairs are preserved.

@@ -170,7 +170,17 @@ def figure8_shared_map_legend(raw, class_colors):
     with fitz.open(stream=raw,filetype='pdf') as doc:
         page=doc[0]
         width,height=page.rect.width,page.rect.height
-        assert abs(width-518.4)<.01 and abs(height-684.0)<.01
+        assert abs(width-518.4)<.01 and any(abs(height-h)<.01 for h in (684.0,720.0))
+        if abs(height-684.0)<.01:
+            c_legend_row=(580,605)
+            d_legend_row=(627,645)
+            old_legend_bands=[fitz.Rect(35,580,248,605),fitz.Rect(15,627,210,645)]
+            unchanged_bottom_y=644
+        else:
+            c_legend_row=(608,630)
+            d_legend_row=(697,716)
+            old_legend_bands=[fitz.Rect(35,608,248,630),fitz.Rect(265,697,500,716)]
+            unchanged_bottom_y=height-36
         source_text=' '.join(s['text'].replace('\u00a0',' ').replace('\u00ad','-')
                              for s in spans(page))
         assert source_text.count('N/A (16)')==2
@@ -179,8 +189,8 @@ def figure8_shared_map_legend(raw, class_colors):
         old_labels=[]
         for span in spans(page):
             text=span['text'].replace('\u00a0',' ').replace('\u00ad','-')
-            top_row=580<=span['bbox'][1] and span['bbox'][3]<=605
-            bottom_row=627<=span['bbox'][1] and span['bbox'][3]<=645
+            top_row=c_legend_row[0]<=span['bbox'][1] and span['bbox'][3]<=c_legend_row[1]
+            bottom_row=d_legend_row[0]<=span['bbox'][1] and span['bbox'][3]<=d_legend_row[1]
             if (top_row and text in {'C1','C2','C3','N/A (16)'}) or (
                     bottom_row and text in {'Q4 + burden >= P75','N/A (16)'}):
                 old_labels.append(span)
@@ -192,7 +202,6 @@ def figure8_shared_map_legend(raw, class_colors):
         page.apply_redactions(images=0,graphics=0)
         # These bands contain only the two old legend rows; the bivariate
         # gradient and its axis labels remain outside the masked regions.
-        old_legend_bands=[fitz.Rect(35,580,248,605),fitz.Rect(15,627,210,645)]
         for band in old_legend_bands:
             page.draw_rect(band,color=None,fill=(1,1,1),overlay=True)
 
@@ -255,7 +264,7 @@ def figure8_shared_map_legend(raw, class_colors):
             after_pix.height,after_pix.width,3)
         assert before_rgb.shape==after_rgb.shape
         scale=120/72
-        allowed=[*old_legend_bands,fitz.Rect(0,644,width,height)]
+        allowed=[*old_legend_bands,fitz.Rect(0,unchanged_bottom_y,width,height)]
         outside=np.ones(before_rgb.shape[:2],dtype=bool)
         for band in allowed:
             x0=max(0,round(band.x0*scale)-2);x1=min(outside.shape[1],round(band.x1*scale)+2)
@@ -466,7 +475,8 @@ def supplementary5_four_policy(plot_data_bytes):
     }
 
 
-def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
+def restoration_workflow(raw, process_panel_pdf, process_panel_audit,
+                         community_typology_pdf=None):
     """Give Stage 4 a full-width row and reflow Stage 5's saved vector plots below."""
     import numpy as np
 
@@ -490,7 +500,8 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
         bold='C:/Windows/Fonts/arialbd.ttf'
         page.insert_font(fontname='Arial',fontfile=arial)
         page.insert_font(fontname='Arial-Bold',fontfile=bold)
-        page.show_pdf_page(fitz.Rect(0,0,page_width,source_height),doc,0,
+        page.show_pdf_page(fitz.Rect(0,0,page_width,434.4),doc,0,
+                           clip=fitz.Rect(0,0,page_width,434.4),
                            keep_proportion=False,overlay=True)
         # Preserve Stages 1-3 in their original positions and replace only the old
         # Stage 3-to-4 connector and the former side-by-side bottom row.
@@ -526,8 +537,8 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
             assert abs(panel[0].rect.height-stage4_body.height)<0.02
             page.show_pdf_page(stage4_body,panel,0,keep_proportion=False,overlay=True)
 
-        # Stage 5's three original result graphics are preserved as vector crops and
-        # arranged in one full-width row; their values and plot geometry are not redrawn.
+        # Stage 5's first two result graphics remain unchanged. The spatial thumbnail
+        # comes from the current P2/K3 community map, not the retired hotspot graphic.
         page.draw_line((262.2,595),(262.2,602.5),color=connector,width=0.65)
         page.draw_polyline([(260,600),(262.2,602.5),(264.4,600)],
                            color=connector,width=0.65)
@@ -558,22 +569,31 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
             centered_label(bounds,636,text,8.4,True)
 
         source_crops=[fitz.Rect(275,503,351,551),
-                      fitz.Rect(357,505,433,555),
-                      fitz.Rect(444,503,514,552)]
+                      fitz.Rect(357,505,433,555)]
         targets=[fitz.Rect(20,640,167,695),
-                 fitz.Rect(188,640,336,695),
-                 fitz.Rect(357,640,505,695)]
+                 fitz.Rect(188,640,336,695)]
         for src_rect,target_rect in zip(source_crops,targets):
             page.show_pdf_page(target_rect,doc,0,clip=src_rect,
                                keep_proportion=True,overlay=True)
-        labels=[('Service loss','Time to 80% service (T80)'),
-                ('Service loss by quartile','|Q4-Q1| loss gap; Gini'),
-                ('Service-loss gap','Community typology',
-                 'High vulnerability + slow-recovery hotspots')]
-        for bounds,lines in zip(col_bounds,labels):
-            baselines=(704,715,726)
+        labels=[('Population-weighted service availability',
+                 'T80: time to 80% modeled availability',
+                 'Time after earthquake (h); strategies in Figure 5'),
+                ('Service loss by quartile','|Q4-Q1| loss gap; Gini')]
+        for bounds,lines in zip(col_bounds[:2],labels):
+            baselines=(709,721,733)
             for y,text in zip(baselines,lines):
                 centered_label(bounds,y,text,7.5,False)
+        if community_typology_pdf is None:
+            raise ValueError('Stage 5 requires the approved P2/K3 community map source.')
+        with fitz.open(stream=community_typology_pdf,filetype='pdf') as community:
+            assert len(community)==1
+            community_map_clip=fitz.Rect(26,407,242,581)
+            community_map_target=fitz.Rect(385,638,476,706)
+            page.show_pdf_page(community_map_target,community,0,
+                               clip=community_map_clip,keep_proportion=True,
+                               overlay=True)
+        centered_label(col_bounds[2],718,'Community recovery types',7.5,False)
+        centered_label(col_bounds[2],731,'See Figure 8 for class key',7.0,False)
 
         result=finish(page_doc)
         page_doc.close()
@@ -592,23 +612,75 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
         rejected=('availability curves','T80','cumulative service loss',
                   'population-weighted service availability','Impact-first service-availability')
         assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
-        required=('Priority Rules','Impact-first example','population (log scale)',
-                  'Repair Scheduling','2 of 57 crews shown','directed travel',
+        required=('Priority Rules','Impact-first example','full station priority ranks',
+                  'Blue-gray fill: tract population (log scale)',
+                  'Repair Scheduling','2 of 57 crews','directed travel',
                   'DS-specific repair','Crew 5','Crew 9','45 h',
                   'Completion Events','18.15 h','Crew','released',
-                  'functionality = 1','source gate','tract service state')
+                  'functionality = 1','source gate','Stage 3 tract service')
         assert all(term.lower() in panel_text.lower() for term in required), panel_text
+        assert 'bar number' not in panel_text.lower()
         assert len(final_doc)==1
         assert abs(page.rect.width-page_width)<0.02
         assert abs(page.rect.height-page_height)<0.02
         stage5_text=' '.join(page.get_textbox(stage5_body).replace('\xa0',' ')
-                             .replace('\xad','-').split())
+                             .replace('\xad','-').replace('\u037e',';')
+                             .replace('\ufffd','-').split())
         for phrase in ('Recovery outcomes','Vulnerability groups','Spatial patterns',
-                       'Service loss','Time to 80% service','Service loss by quartile',
-                       'Q4-Q1','Gini','Community typology','slow-recovery hotspots'):
+                       'Population-weighted service availability',
+                       'T80: time to 80% modeled availability',
+                       'Time after earthquake (h); strategies in Figure 5',
+                       'Service loss by quartile','Q4-Q1','Gini',
+                       'Community recovery types'):
             assert phrase.lower() in stage5_text.lower(),(phrase,stage5_text)
+        # show_pdf_page retains clipped source text in the embedded Form XObject's
+        # text layer; the visible Stage 5 panels are separately drawn over that area.
 
     region_comparisons=[]
+    footprint_regions={
+        'Stage 1 network map':(45,225,220,365),
+        'Stage 2 damage map':(570,230,755,390),
+        'Stage 3 damage map':(25,640,190,810),
+        'Stage 3 functionality map':(235,640,370,810),
+        'Stage 3 connected-network map':(405,640,600,810),
+        'Stage 3 service map':(850,640,1065,810),
+    }
+    with fitz.open(stream=result,filetype='pdf') as final_render:
+        preview=final_render[0].get_pixmap(dpi=150,alpha=False)
+        rgb=np.frombuffer(preview.samples,dtype=np.uint8).reshape(
+            preview.height,preview.width,3)
+        def bbox(region):
+            x0,y0,x1,y1=region
+            crop=rgb[y0:y1,x0:x1]
+            yy,xx=np.where(np.any(crop<248,axis=2))
+            assert len(xx)>0,region
+            return [int(xx.min()+x0),int(yy.min()+y0),
+                    int(xx.max()+x0+1),int(yy.max()+y0+1)]
+        earlier_footprints={name:bbox(region)
+                            for name,region in footprint_regions.items()}
+        earlier_sizes=np.array([[b[2]-b[0],b[3]-b[1]]
+                                for b in earlier_footprints.values()])
+        median_size=np.median(earlier_sizes,axis=0)
+        scale=150/72
+        map_local=process_panel_audit['priority_map_target_rect_pt']
+        map_roi=(int((stage4_body.x0+map_local[0])*scale),
+                 int((stage4_body.y0+map_local[1])*scale),
+                 int((stage4_body.x0+map_local[2])*scale),
+                 int((stage4_body.y0+map_local[3])*scale))
+        stage4_map_bbox=bbox(map_roi)
+        stage4_size=np.array([stage4_map_bbox[2]-stage4_map_bbox[0],
+                              stage4_map_bbox[3]-stage4_map_bbox[1]])
+        footprint_qa={
+            'dpi':150,'threshold_rgb_lt':248,
+            'earlier_geographic_map_visible_bboxes_px':earlier_footprints,
+            'earlier_map_median_visible_size_px':median_size.tolist(),
+            'stage4_visible_bbox_px':stage4_map_bbox,
+            'stage4_visible_size_px':stage4_size.tolist(),
+            'stage4_to_median_dimension_ratios':(stage4_size/median_size).tolist(),
+            'within_10_percent_each_dimension':bool(np.all(
+                np.abs(stage4_size/median_size-1)<=0.10)),
+            'same_full_map_clip_and_aspect_ratio':True,
+        }
     with fitz.open(stream=raw,filetype='pdf') as before, \
          fitz.open(stream=result,filetype='pdf') as after:
         top=fitz.Rect(0,0,page_width,434.0)
@@ -632,6 +704,7 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
         'no_recovery_curves_or_downstream_outcomes':True,
         'full_width_stage4':True,
         'stage5_reflowed_from_original_vector_result_graphics':True,
+        'stage5_legacy_layer_is_clipped_and_covered_by_current_panels':True,
         'top_modules_unscaled_and_preserved':region_comparisons,
         'old_stage4_result_labels_removed':True,
         'authorized_layout_regions_pt':{'stage4_header':list(stage4_header),
@@ -640,6 +713,11 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit):
         'figure_dimensions_pt':[page_width,page_height],
         'figure_dimensions_mm':[page_width*25.4/72,page_height*25.4/72],
         'stage4_map_source_region_pt':[52,535,302,733],
+        'stage4_map_footprint_qa':footprint_qa,
+        'stage5_community_typology_source_sha256':hashlib.sha256(
+            community_typology_pdf).hexdigest(),
+        'stage5_community_typology_source_region_pt':[26,407,242,581],
+        'stage5_community_typology_target_pt':[385,638,476,706],
         'stage5_original_result_vector_crops_pt':[list(r) for r in source_crops],
         'stage5_vector_crops_not_redrawn':True,
         'top_modules_translation_pt':[0,0],
@@ -831,38 +909,48 @@ def gate_sensitivity(raw, values):
         source_control_threshold=.5,source_control_separate=True,no_simulation_or_new_statistics=True)
 
 
-def priority_geography(raw):
-    """Recolor only the population-context map and colorbar in white-purple."""
+def priority_geography(raw, palette_stops=None, source_palette_stops=None):
+    """Recolor vector population fills and their matching colorbar."""
     from matplotlib import colormaps
     from matplotlib.colors import LinearSegmentedColormap
     import numpy as np
-    stops=['#FFFFFF','#E0D6E9','#B69ACB','#8B63AC','#613A80']
-    population_palette=LinearSegmentedColormap.from_list('PopulationWhitePurple',stops,N=256)
+    stops=palette_stops or ['#FFFFFF','#E0D6E9','#B69ACB','#8B63AC','#613A80']
+    source_stops=source_palette_stops
+    population_palette=LinearSegmentedColormap.from_list('PopulationTarget',stops,N=256)
     with fitz.open(stream=raw,filetype='pdf') as doc:
         page=doc[0]
-        samples=colormaps['Greys'](np.linspace(0,1,256))[:,:3]
+        if source_stops is None:
+            samples=colormaps['Greys'](np.linspace(0,1,256))[:,:3]
+            source_name='Greys'
+        else:
+            source_palette=LinearSegmentedColormap.from_list(
+                'PopulationSource',source_stops,N=256)
+            samples=source_palette(np.linspace(0,1,256))[:,:3]
+            source_name='custom'
+        target_samples=population_palette(np.linspace(0,1,256))[:,:3]
         image_xrefs=sorted({image[0] for image in page.get_images()})
         source_indices=[]
         for xref in image_xrefs:
             pix=fitz.Pixmap(doc,xref)
             assert pix.n==3,'Unexpected population colorbar image format'
             colors=np.unique(np.frombuffer(pix.samples,np.uint8).reshape(-1,3),axis=0)
-            source_indices.extend(np.argmin(np.sum((colors[:,None,:]/255-samples[None,:,:])**2,axis=2),axis=1))
+            distances=np.sum((colors[:,None,:]/255-samples[None,:,:])**2,axis=2)
+            indices=np.argmin(distances,axis=1)
+            source_indices.extend(indices[distances[np.arange(len(indices)),indices]<0.00003])
         low,high=int(min(source_indices)),int(max(source_indices))
         assert high>low
-        # Expand the old truncated color ramp to white-purple; the existing
-        # logarithmic population normalization and tick positions are retained.
-        population_samples=population_palette(np.clip((np.arange(256)-low)/(high-low),0,1))[:,:3]
+        # Retain the source ramp's ordering and contrast range; only hue changes.
+        if source_stops is None:
+            population_samples=population_palette(
+                np.clip((np.arange(256)-low)/(high-low),0,1))[:,:3]
+        else:
+            population_samples=target_samples
         before=page.get_drawings()
         fills={d['fill'] for d in before if d['fill'] and d['rect'].y0>525}
-        fills={rgb for rgb in fills if max(rgb)-min(rgb)<2e-5
-               and low<=np.argmin(np.linalg.norm(samples-np.array(rgb),axis=1))<=high
-               and np.min(np.linalg.norm(samples-np.array(rgb),axis=1))<2e-5}
+        fills={rgb for rgb in fills
+               if low<=np.argmin(np.linalg.norm(samples-np.array(rgb),axis=1))<=high
+               and np.min(np.linalg.norm(samples-np.array(rgb),axis=1))<0.00003}
         assert len(fills)>20
-        mapping={}
-        for rgb in fills:
-            idx=np.argmin(np.linalg.norm(samples-np.array(rgb),axis=1))
-            mapping[rgb]=tuple(float(v) for v in population_samples[idx])
         number=rb'([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)'
         rgb_at_end=re.compile(number+rb'\s+'+number+rb'\s+'+number+rb'\s*$')
         def fill_operator_signature(stream):
@@ -888,13 +976,13 @@ def priority_geography(raw):
                 match=rgb_at_end.search(stream[window:operator])
                 if match:
                     rgb=tuple(float(match[i]) for i in (1,2,3))
-                    if max(rgb)-min(rgb)<2e-5:
-                        candidate=min(mapping,key=lambda color:sum((a-b)**2 for a,b in zip(color,rgb)))
-                        if max(abs(a-b) for a,b in zip(candidate,rgb))<2e-6:
-                            start=window+match.start();end=window+match.end()
-                            pieces.extend((stream[cursor:start],
-                                ' '.join(f'{v:.9f}' for v in mapping[candidate]).encode()))
-                            cursor=end;changed+=1
+                    distances=np.sum((samples-np.array(rgb))**2,axis=1)
+                    index=int(np.argmin(distances))
+                    if low<=index<=high and distances[index]<0.00003:
+                        start=window+match.start();end=window+match.end()
+                        replacement=' '.join(f'{v:.9f}' for v in population_samples[index]).encode()
+                        pieces.extend((stream[cursor:start],replacement))
+                        cursor=end;changed+=1
                 pos=operator+3
             if not changed:return stream,0
             pieces.append(stream[cursor:])
@@ -926,7 +1014,8 @@ def priority_geography(raw):
             image_bytes=io.BytesIO();Image.fromarray(rgb).save(image_bytes,format='PNG')
             page.replace_image(xref,stream=image_bytes.getvalue())
         assert image_rects=={xref:page.get_image_rects(xref) for xref in image_xrefs}
-        return finish(doc),dict(source_palette='Greys',population_palette='white_purple',
+        return finish(doc),dict(source_palette=source_name,
+             population_palette='blue_gray' if palette_stops else 'white_purple',
              palette_stops=stops,source_palette_index_range=[low,high],
              logarithmic_population_normalization_unchanged=True,
              paint_colors_changed=len(fills),

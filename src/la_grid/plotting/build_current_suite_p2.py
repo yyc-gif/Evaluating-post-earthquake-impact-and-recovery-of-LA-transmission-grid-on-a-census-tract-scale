@@ -141,7 +141,7 @@ def captions():
              re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)', text, re.M | re.S)]
     assert len(items) == 16
     short_bodies = [
-        'Study workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 shows an Impact-first priority-map example and a saved 2pc50/C57_D1 evaluation-realization-0 schedule excerpt. Other network- and community-based rules, including Vulnerability-first, and the GA each supply a station priority order; Unconstrained repair is the separate parallel reference. Only DS>0 tasks are scheduled to finite crews, accounting for directed travel and realized damage-state-specific repair duration. Gray segments show travel; teal bars show repair. At completion, the crew is released, raw station functionality is restored to 1, and source connectivity and tract service are updated.',
+        'Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 shows full station priority ranks for an Impact-first example and four saved tasks from 2pc50/C57_D1 evaluation realization 0 (2 of 57 crews). DS0 stations are excluded before finite-crew dispatch; scheduling uses priority order, directed travel and sampled damage-state-specific repair durations. Completion releases the crew, restores raw station functionality and updates source-gated tract service. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), service loss by vulnerability quartile and community recovery types; strategy trajectories appear in Figure 5.',
         'Transmission network, tract-substation mapping, and comparison of candidate tract assignments with public SCE assignments. Assignment agreement does not validate feeder boundaries or recovery outcomes.',
         'Earthquake damage and initial modeled service are followed by Unconstrained recovery. Panel C reports the mean loss shares from substation damage, functionality threshold, and source-path loss; D/E show population-weighted and tract-mean T80. T80 is time to 80% modeled service; applicable whiskers show 5th-95th realization ranges.',
         'Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.',
@@ -267,10 +267,24 @@ def main(output_dir=None, mirror_dir=None):
     changed={};changed_png={};style_checks={}
     original_f1_path='results/figure_review/Main/Fig01.pdf'
     original_f1=source(original_f1_path,CURRENT_SUITE_BASE)
+    community_source_path='results/figure_review/Main/Fig07.pdf'
+    community_source=source(community_source_path,FIGURE_BASELINE_COMMIT)
+    community_typology_pdf=figure_presentation.figure8_shared_map_legend(
+        community_source,{str(k):v for k,v in figure7_final.PROPOSED.items()})[0]
+    priority_map_source_path='results/figure_review/Supplement/FigS08.pdf'
+    priority_map_source=source(priority_map_source_path,CURRENT_SUITE_BASE)
+    priority_map_pdf,priority_map_palette_audit=figure_presentation.priority_geography(
+        priority_map_source,
+        palette_stops=['#EFF3F6','#CAD5DE','#94A6B5','#5E7486','#354E61'],
+        source_palette_stops=['#FFFFFF','#E0D6E9','#B69ACB','#8B63AC','#613A80'])
     stage4_panel_pdf,stage4_panel_png,stage4_generator_audit=(
-        workflow_figure.build_stage4_process_panel())
+        workflow_figure.build_stage4_process_panel(
+            priority_map_pdf=priority_map_pdf,
+            priority_map_source_sha256=u.digest(priority_map_source)))
+    stage4_generator_audit['priority_map_palette_audit']=priority_map_palette_audit
     revised_f1,f1_layout=figure_presentation.restoration_workflow(
-        original_f1,stage4_panel_pdf,stage4_generator_audit)
+        original_f1,stage4_panel_pdf,stage4_generator_audit,
+        community_typology_pdf=community_typology_pdf)
     with fitz.open(stream=revised_f1,filetype='pdf') as figure1:
         workflow_png=figure1[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
         workflow_preview=figure1[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
@@ -289,7 +303,7 @@ def main(output_dir=None, mirror_dir=None):
         'ga_source_sha256':u.sha(ROOT/FIG1_GA_SOURCE),
         'workflow_png_sha256':u.digest(workflow_png),
         'presentation':f1_layout,'scientific_data_changed':False,
-        'community_outcomes_panel_unchanged':True}
+        'community_spatial_panel_updated_to_current_p2_k3':True}
     style_checks['Main/Fig01']['stage4_generator_audit']=stage4_generator_audit
     print('[build] Figure 1 Stage 4 generated from priority, scheduling and completion methods',flush=True)
     original_s3_path='results/figure_review/Supplement/FigS03.pdf'
@@ -584,7 +598,7 @@ def main(output_dir=None, mirror_dir=None):
                         source_data_path=FIG1_SCHEDULER_SOURCE,
                         source_data_sha256=u.sha(ROOT/FIG1_SCHEDULER_SOURCE),
                         generator='src/la_grid/plotting/figure_presentation.py',
-                        notes='Full-width Stage 4 shows an Impact-first priority-map example, a saved crew schedule separating directed travel from realized repair, and the repair-completion state update. Stage 5 result graphics are reflowed below as vector crops. No recovery-result curves appear in Stage 4.')
+                        notes='Stage 4 map numbers are full station priority ranks; the saved crew schedule is an excerpt with two of 57 crews, and Gantt rank numbers are omitted to distinguish dispatch order after DS0 filtering. Stage 5 labels the rising curves as population-weighted service availability and shows the current community typology. No recovery-result curves appear in Stage 4.')
                 elif stem=='Main/Fig07':
                     row.update(source_commit=FIGURE_BASELINE_COMMIT,source_file=original_path,
                         presentation_generator='src/la_grid/plotting/figure7_final_presentation_20261016.py',

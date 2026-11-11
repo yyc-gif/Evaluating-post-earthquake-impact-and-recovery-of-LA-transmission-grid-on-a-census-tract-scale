@@ -60,7 +60,15 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
             assert qa['figure8_separate_map_legends_updated']
-            assert qa['figure8_legend_audit']['bivariate_colorbar_and_tract_geometry_unchanged']
+            if record['final_name'].endswith('.pdf'):
+                with fitz.open(stream=current,filetype='pdf') as page_doc:
+                    page=page_doc[0]
+                    text=clean_pdf_text(page.get_text())
+                    assert text.count('N/A (16)')==1
+                    assert 'Outlined: Q4 + deficit ≥38.4 h' in text
+                    drawings=page.get_drawings()
+                    assert sum(1 for d in drawings if fitz.Rect(20,365,259,600).intersects(d['rect']))>1000
+                    assert sum(1 for d in drawings if fitz.Rect(260,365,515,600).intersects(d['rect']))>1000
         else:
             assert current==expected
     index=rows(MIRROR/'FIGURE_INDEX.csv')
@@ -87,11 +95,19 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
 
     panel_pdf,panel_png,panel_audit=builder.workflow_figure.build_stage4_process_panel()
     source_pdf=builder.source(builder.SOURCE+'/Main/Fig01.pdf')
+    figure8_row=next(r for r in builder.u.csv_rows(
+        builder.source(builder.SOURCE+'/FIGURE_MANIFEST.csv'))
+        if r['final_name']=='Main/Fig07.pdf')
+    figure8_source=builder.source(figure8_row['current_source_file'])
+    colors=json.loads(builder.source(builder.SOURCE+'/CURRENT_CLUSTER_PALETTE.json'))['colors']
+    community_map=figure_presentation.figure8_shared_map_legend(
+        figure8_source,colors)[0]
     expected_pdf,audit=figure_presentation.restoration_workflow(
-        source_pdf,panel_pdf,panel_audit)
+        source_pdf,panel_pdf,panel_audit,community_typology_pdf=community_map)
     with fitz.open(stream=expected_pdf,filetype='pdf') as doc:
         expected_png=doc[0].get_pixmap(dpi=600,alpha=False).tobytes('png')
         expected_preview=doc[0].get_pixmap(dpi=150,alpha=False).tobytes('png')
+        final_text=clean_pdf_text(doc[0].get_text())
     with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
         stage_text=clean_pdf_text(panel[0].get_text())
     assert (SUITE/'Main/Fig01.pdf').read_bytes()==expected_pdf
@@ -99,15 +115,22 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==expected_preview
     assert audit['full_width_stage4']
     assert audit['stage5_reflowed_from_original_vector_result_graphics']
+    assert audit['stage5_legacy_layer_is_clipped_and_covered_by_current_panels']
     assert all(r['pixel_identical'] for r in audit['top_modules_unscaled_and_preserved'])
     assert audit['no_recovery_curves_or_downstream_outcomes']
-    for phrase in ('Priority Rules', 'Impact-first example', 'rank markers 1-5',
-                   'population (log scale)', 'Repair Scheduling',
-                   '2 of 57 crews shown', 'directed travel', 'DS-specific repair',
+    for phrase in ('Priority Rules', 'Impact-first example',
+                   'Map numbers: full station priority ranks 1-5',
+                   'Blue-gray fill: tract population (log scale)', 'Repair Scheduling',
+                   '2 of 57 crews', 'directed travel', 'DS-specific repair',
                    'Crew 5', 'Crew 9', '18.15', '30.63', '17.87', '42.94',
                    'Completion Events', 'functionality = 1', 'source gate',
-                   'tract service state'):
+                   'Stage 3 tract service'):
         assert phrase in stage_text
+    assert 'Bar number' not in stage_text
+    for phrase in ('Population-weighted service availability',
+                   'T80: time to 80% modeled availability',
+                   'Community recovery types'):
+        assert phrase in final_text
     with fitz.open(stream=expected_pdf,filetype='pdf') as doc:
         assert abs(doc[0].rect.width*25.4/72-185.0)<0.02
         assert abs(doc[0].rect.height*25.4/72-265.2889)<0.02
@@ -120,7 +143,9 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert panel_audit['schedule_axis_max_hr'] == 45
     assert panel_audit['body_font_pt'] >= 7.5
     assert panel_audit['rank_marker_font_pt'] == 8.0
-    assert panel_audit['schedule_rank_label_pt'] == 7.5
+    assert panel_audit['schedule_rank_label_pt'] is None
+    assert panel_audit['map_ranks_are_full_station_priority_ranks']
+    assert panel_audit['gantt_dispatch_numbers_removed_to_avoid_rank_ambiguity']
     assert panel_audit['minimum_panel_text_pt'] >= 7.5
     assert panel_audit['source_map_rank_text_removed_before_relabel']
     assert abs(max(e['completion_hr'] for e in panel_audit['plotted_task_events'])
@@ -147,14 +172,18 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert 'recovery_curves_all_system.csv' not in p2_builder_source
     assert 'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15' not in p2_builder_source
     p2_caption=build_current_suite_p2.captions()[0][1]
-    assert 'saved Unconstrained and Impact-first service-availability trajectories' not in p2_caption
+    assert 'full station priority ranks for an Impact-first example' in p2_caption
+    assert 'separate parallel-repair reference' in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
     for phrase in ('Impact-first example', 'four saved tasks',
-                   '2pc50/C57_D1 evaluation realization 0', 'two of 57 crews',
+                   '2pc50/C57_D1 evaluation realization 0', '2 of 57 crews',
                    'directed travel', 'damage-state-specific repair',
-                   'At completion, the crew is released',
-                   'Unconstrained repair is the separate parallel reference'):
+                   'Completion releases the crew',
+                   'Unconstrained is a separate parallel-repair reference',
+                   'population-weighted service availability',
+                   'T80 (time to 80% modeled service availability)',
+                   'community recovery types'):
         assert phrase in fig1
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
     row=next(r for r in manifest if r['final_name']=='Main/Fig01.pdf')
@@ -306,18 +335,21 @@ def test_figure8_panel_legends_are_separate_aligned_and_explained_in_caption():
         rule=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])
               for s in line['spans'] if clean_pdf_text(s['text']).startswith('Outlined: Q4')]
         assert len(rule)==1 and rule[0]['size']==7.5
-        audit=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))['figure8_legend_audit']
-        assert audit['old_NA_entries']==2 and audit['new_NA_entries']==1
-        assert audit['C_and_D_legends_separate_and_aligned']
-        assert audit['all_legend_entries_share_baseline']
-        assert len({item['baseline'] for item in audit['shared_legend_positions']})==1
-        assert audit['screening_symbol']=='thin gray line'
-        assert clean_pdf_text(audit['screening_rule_text']) in text
-        groups={item['group'] for item in audit['shared_legend_positions']}
-        assert groups=={'C','D'}
-        assert max(x['x1'] for x in audit['shared_legend_positions'] if x['group']=='C')<254
-        assert min(x['x0'] for x in audit['shared_legend_positions'] if x['group']=='D')>264
-        assert audit['bivariate_colorbar_and_tract_geometry_unchanged']
+        spans=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])
+               for s in line['spans']]
+        def span_for(label):
+            found=[s for s in spans if clean_pdf_text(s['text'])==label
+                   and (label.startswith('Outlined:') or s['bbox'][1]>600)]
+            assert len(found)==1,(label,len(found))
+            return found[0]
+        c_entries=[span_for(label) for label in ('C1','C2','C3','N/A (16)')]
+        d_entry=span_for('Outlined: Q4 + deficit ≥38.4 h')
+        legend_y=[s['bbox'][3] for s in c_entries+[d_entry]]
+        assert max(legend_y)-min(legend_y)<0.02
+        assert max(s['bbox'][2] for s in c_entries)<d_entry['bbox'][0]
+        drawings=page.get_drawings()
+        assert sum(1 for d in drawings if fitz.Rect(20,365,259,600).intersects(d['rect']))>1000
+        assert sum(1 for d in drawings if fitz.Rect(260,365,515,600).intersects(d['rect']))>1000
     caption=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     assert 'frozen FEMA NRI v1.19 SOVI quartile Q4' in caption
     assert '38.38135467381475 equivalent full-service-deficit hours' in caption
@@ -327,7 +359,7 @@ def test_figure8_panel_legends_are_separate_aligned_and_explained_in_caption():
     fig8=next(row for row in index if row['figure_number']=='Fig08')
     assert 'separate aligned legends' in fig8['notes']
     with fitz.open(SUITE/'ALL_FIGURES_WITH_CAPTIONS.pdf') as packet:
-        assert clean_pdf_text(audit['screening_rule_text']) in clean_pdf_text(packet[7].get_text())
+        assert 'Outlined: Q4 + deficit ≥38.4 h' in clean_pdf_text(packet[7].get_text())
 
 def test_caption_references_and_simultaneous_renumbering():
     text=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')

@@ -90,15 +90,22 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
 
     panel_pdf,panel_png,panel_audit=build_current_suite_p2.workflow_figure.build_stage4_process_panel()
     source_pdf=suite_utils.payload(CURRENT_SUITE_BASE,'results/figure_review/Main/Fig01.pdf')
-    pdf,audit=figure_presentation.restoration_workflow(source_pdf,panel_pdf,panel_audit)
+    community_source=suite_utils.payload(build_current_suite_p2.FIGURE_BASELINE_COMMIT,
+        'results/figure_review/Main/Fig07.pdf')
+    community_pdf=figure_presentation.figure8_shared_map_legend(
+        community_source,{str(k):v for k,v in build_current_suite_p2.figure7_final.PROPOSED.items()})[0]
+    pdf,audit=figure_presentation.restoration_workflow(
+        source_pdf,panel_pdf,panel_audit,community_typology_pdf=community_pdf)
     with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
         stage_text=' '.join(panel[0].get_text().replace('\xad','-').split())
-    for phrase in ('Priority Rules', 'Impact-first example', 'rank markers 1-5',
-                   'population (log scale)', 'Repair Scheduling',
-                   '2 of 57 crews shown', 'directed travel', 'DS-specific repair',
+    for phrase in ('Priority Rules', 'Impact-first example',
+                   'full station priority ranks 1-5',
+                   'Blue-gray fill: tract population (log scale)', 'Repair Scheduling',
+                   '2 of 57 crews', 'directed travel', 'DS-specific repair',
                    'Crew 5', 'Crew 9', 'Completion Events', '18.15 h',
-                   'functionality = 1', 'source gate', 'tract service state'):
+                   'functionality = 1', 'source gate', 'Stage 3 tract service'):
         assert phrase in stage_text
+    assert 'Bar number' not in stage_text
     assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
     assert panel_audit['no_fabricated_task_events']
     assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
@@ -107,7 +114,9 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
     assert panel_audit['schedule_axis_max_hr'] == 45
     assert panel_audit['body_font_pt'] >= 7.5
     assert panel_audit['rank_marker_font_pt'] == 8.0
-    assert panel_audit['schedule_rank_label_pt'] == 7.5
+    assert panel_audit['schedule_rank_label_pt'] is None
+    assert panel_audit['map_ranks_are_full_station_priority_ranks']
+    assert panel_audit['gantt_dispatch_numbers_removed_to_avoid_rank_ambiguity']
     assert panel_audit['minimum_panel_text_pt'] >= 7.5
     assert panel_audit['source_map_rank_text_removed_before_relabel']
     assert abs(max(e['completion_hr'] for e in panel_audit['plotted_task_events'])
@@ -121,8 +130,8 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
     assert 'restoration_workflow(' in builder_source
     assert 'recovery_curves_all_system.csv' not in builder_source
     assert 'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15' not in builder_source
-    assert 'saved Unconstrained and Impact-first service-availability trajectories' not in \
-        build_current_suite_p2.captions()[0][1]
+    assert 'full station priority ranks' in build_current_suite_p2.captions()[0][1]
+    assert 'separate parallel-repair reference' in build_current_suite_p2.captions()[0][1]
     assert audit['full_width_stage4']
     assert audit['stage5_reflowed_from_original_vector_result_graphics']
     assert all(r['pixel_identical'] for r in audit['top_modules_unscaled_and_preserved'])

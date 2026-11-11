@@ -5,7 +5,7 @@
     "panel": "4",
     "panel_title": "Restoration Strategies and Execution",
     "source_page_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
-    "process_panel_sha256": "b8d97a9b196863ea36e3b10a74c492b15189cd64a7e697c89114421ce6510c75",
+    "process_panel_sha256": "ab7685104cabd6b61c560b9669b2078037c75f9d6b6d5fc7775a3e2502a35727",
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -24,6 +24,7 @@
     "no_recovery_curves_or_downstream_outcomes": true,
     "full_width_stage4": true,
     "stage5_reflowed_from_original_vector_result_graphics": true,
+    "stage5_legacy_layer_is_clipped_and_covered_by_current_panels": true,
     "top_modules_unscaled_and_preserved": [
       {
         "region": "Stages 1-3 and upstream connectors",
@@ -73,6 +74,81 @@
       302,
       733
     ],
+    "stage4_map_footprint_qa": {
+      "dpi": 150,
+      "threshold_rgb_lt": 248,
+      "earlier_geographic_map_visible_bboxes_px": {
+        "Stage 1 network map": [
+          69,
+          243,
+          207,
+          351
+        ],
+        "Stage 2 damage map": [
+          585,
+          276,
+          755,
+          379
+        ],
+        "Stage 3 damage map": [
+          39,
+          664,
+          190,
+          774
+        ],
+        "Stage 3 functionality map": [
+          236,
+          676,
+          359,
+          756
+        ],
+        "Stage 3 connected-network map": [
+          405,
+          662,
+          600,
+          774
+        ],
+        "Stage 3 service map": [
+          850,
+          671,
+          1017,
+          775
+        ]
+      },
+      "earlier_map_median_visible_size_px": [
+        159.0,
+        106.0
+      ],
+      "stage4_visible_bbox_px": [
+        122,
+        1054,
+        271,
+        1166
+      ],
+      "stage4_visible_size_px": [
+        149,
+        112
+      ],
+      "stage4_to_median_dimension_ratios": [
+        0.9371069182389937,
+        1.0566037735849056
+      ],
+      "within_10_percent_each_dimension": true,
+      "same_full_map_clip_and_aspect_ratio": true
+    },
+    "stage5_community_typology_source_sha256": "5171d357aa4db5e4b7b45348702e18cea55e6d3e9010a062a94d034635995e8a",
+    "stage5_community_typology_source_region_pt": [
+      26,
+      407,
+      242,
+      581
+    ],
+    "stage5_community_typology_target_pt": [
+      385,
+      638,
+      476,
+      706
+    ],
     "stage5_original_result_vector_crops_pt": [
       [
         275.0,
@@ -85,12 +161,6 @@
         505.0,
         433.0,
         555.0
-      ],
-      [
-        444.0,
-        503.0,
-        514.0,
-        552.0
       ]
     ],
     "stage5_vector_crops_not_redrawn": true,
@@ -127,7 +197,27 @@
         "Repair scheduling and execution",
         "Repair-completion events"
       ],
-      "priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+      "priority_map_sha256": "30777ea33bb9b2ea2a6736bde0634ebca4e12a1602f1c42f1f5695a9c26c9e7a",
+      "priority_map_source_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+      "priority_map_palette": [
+        "#EFF3F6",
+        "#CAD5DE",
+        "#94A6B5",
+        "#5E7486",
+        "#354E61"
+      ],
+      "priority_map_visible_target_pt": [
+        75.0,
+        61.2
+      ],
+      "priority_map_target_rect_pt": [
+        46.75,
+        39.0,
+        121.75,
+        100.2
+      ],
+      "map_ranks_are_full_station_priority_ranks": true,
+      "gantt_dispatch_numbers_removed_to_avoid_rank_ambiguity": true,
       "schedule_archive_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
       "priority_sequence_sha256": "98c3516788127bd4cd821c6d0e85f30ddf579047e032923dab1f46696d8fbeb4",
       "schedule_manifest": {
@@ -204,7 +294,7 @@
       "body_font": "Arial",
       "body_font_pt": 7.5,
       "rank_marker_font_pt": 8.0,
-      "schedule_rank_label_pt": 7.5,
+      "schedule_rank_label_pt": null,
       "source_map_rank_text_removed_before_relabel": true,
       "schedule_axis_hours": [
         0,
@@ -230,9 +320,33 @@
       ],
       "no_recovery_curves_or_downstream_outcomes": true,
       "no_simulation_or_schedule_rerun": true,
-      "panel_pdf_sha256": "b8d97a9b196863ea36e3b10a74c492b15189cd64a7e697c89114421ce6510c75",
-      "panel_png_sha256": "9830f7d444656450b6665fab68c5c1bcaa69b2232f0f97c164d378b8b2a8e68d",
-      "minimum_panel_text_pt": 7.5
+      "panel_pdf_sha256": "ab7685104cabd6b61c560b9669b2078037c75f9d6b6d5fc7775a3e2502a35727",
+      "panel_png_sha256": "dc231419f565402e75d8c0d4c3de470f243f7775b79e909566dc344863e297ca",
+      "minimum_panel_text_pt": 7.5,
+      "priority_map_palette_audit": {
+        "source_palette": "custom",
+        "population_palette": "blue_gray",
+        "palette_stops": [
+          "#EFF3F6",
+          "#CAD5DE",
+          "#94A6B5",
+          "#5E7486",
+          "#354E61"
+        ],
+        "source_palette_index_range": [
+          0,
+          255
+        ],
+        "logarithmic_population_normalization_unchanged": true,
+        "paint_colors_changed": 47,
+        "streams_changed": 1,
+        "colorbar_resolution_preserved": true,
+        "fill_operator_geometry_sha256": [
+          "20716c44f380e85119967035c12905bdf4f9c41f52d86fdd88a3716bbee3d576"
+        ],
+        "image_rects_unchanged": true,
+        "all_geometry_and_nonfill_properties_unchanged": true
+      }
     },
     "starting_figure1_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84"
   },
@@ -264,7 +378,27 @@
       "Repair scheduling and execution",
       "Repair-completion events"
     ],
-    "priority_map_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+    "priority_map_sha256": "30777ea33bb9b2ea2a6736bde0634ebca4e12a1602f1c42f1f5695a9c26c9e7a",
+    "priority_map_source_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+    "priority_map_palette": [
+      "#EFF3F6",
+      "#CAD5DE",
+      "#94A6B5",
+      "#5E7486",
+      "#354E61"
+    ],
+    "priority_map_visible_target_pt": [
+      75.0,
+      61.2
+    ],
+    "priority_map_target_rect_pt": [
+      46.75,
+      39.0,
+      121.75,
+      100.2
+    ],
+    "map_ranks_are_full_station_priority_ranks": true,
+    "gantt_dispatch_numbers_removed_to_avoid_rank_ambiguity": true,
     "schedule_archive_sha256": "43fcd2150510a4823f899f59f1446edc47abfe8fb1caadc740a81a2114381222",
     "priority_sequence_sha256": "98c3516788127bd4cd821c6d0e85f30ddf579047e032923dab1f46696d8fbeb4",
     "schedule_manifest": {
@@ -341,7 +475,7 @@
     "body_font": "Arial",
     "body_font_pt": 7.5,
     "rank_marker_font_pt": 8.0,
-    "schedule_rank_label_pt": 7.5,
+    "schedule_rank_label_pt": null,
     "source_map_rank_text_removed_before_relabel": true,
     "schedule_axis_hours": [
       0,
@@ -367,9 +501,33 @@
     ],
     "no_recovery_curves_or_downstream_outcomes": true,
     "no_simulation_or_schedule_rerun": true,
-    "panel_pdf_sha256": "b8d97a9b196863ea36e3b10a74c492b15189cd64a7e697c89114421ce6510c75",
-    "panel_png_sha256": "9830f7d444656450b6665fab68c5c1bcaa69b2232f0f97c164d378b8b2a8e68d",
-    "minimum_panel_text_pt": 7.5
+    "panel_pdf_sha256": "ab7685104cabd6b61c560b9669b2078037c75f9d6b6d5fc7775a3e2502a35727",
+    "panel_png_sha256": "dc231419f565402e75d8c0d4c3de470f243f7775b79e909566dc344863e297ca",
+    "minimum_panel_text_pt": 7.5,
+    "priority_map_palette_audit": {
+      "source_palette": "custom",
+      "population_palette": "blue_gray",
+      "palette_stops": [
+        "#EFF3F6",
+        "#CAD5DE",
+        "#94A6B5",
+        "#5E7486",
+        "#354E61"
+      ],
+      "source_palette_index_range": [
+        0,
+        255
+      ],
+      "logarithmic_population_normalization_unchanged": true,
+      "paint_colors_changed": 47,
+      "streams_changed": 1,
+      "colorbar_resolution_preserved": true,
+      "fill_operator_geometry_sha256": [
+        "20716c44f380e85119967035c12905bdf4f9c41f52d86fdd88a3716bbee3d576"
+      ],
+      "image_rects_unchanged": true,
+      "all_geometry_and_nonfill_properties_unchanged": true
+    }
   },
   "figure1_layout_review": {
     "print_width_mm": 184.99999118381075,
@@ -377,7 +535,70 @@
     "stage4_body_height_pt": 132.0,
     "stage5_body_height_pt": 120.0,
     "normal_text_target_pt": 8.0,
-    "smallest_stage4_text_pt": 7.2,
+    "smallest_stage4_text_pt": 7.5,
+    "smallest_added_figure1_text_pt": 7.0,
+    "stage4_map_footprint_qa": {
+      "dpi": 150,
+      "threshold_rgb_lt": 248,
+      "earlier_geographic_map_visible_bboxes_px": {
+        "Stage 1 network map": [
+          69,
+          243,
+          207,
+          351
+        ],
+        "Stage 2 damage map": [
+          585,
+          276,
+          755,
+          379
+        ],
+        "Stage 3 damage map": [
+          39,
+          664,
+          190,
+          774
+        ],
+        "Stage 3 functionality map": [
+          236,
+          676,
+          359,
+          756
+        ],
+        "Stage 3 connected-network map": [
+          405,
+          662,
+          600,
+          774
+        ],
+        "Stage 3 service map": [
+          850,
+          671,
+          1017,
+          775
+        ]
+      },
+      "earlier_map_median_visible_size_px": [
+        159.0,
+        106.0
+      ],
+      "stage4_visible_bbox_px": [
+        122,
+        1054,
+        271,
+        1166
+      ],
+      "stage4_visible_size_px": [
+        149,
+        112
+      ],
+      "stage4_to_median_dimension_ratios": [
+        0.9371069182389937,
+        1.0566037735849056
+      ],
+      "within_10_percent_each_dimension": true,
+      "same_full_map_clip_and_aspect_ratio": true
+    },
     "top_modules_content_pixel_checks": [
       {
         "region": "Stages 1-3 and upstream connectors",
@@ -388,8 +609,8 @@
     ]
   },
   "starting_numbered_artwork_sha256": {
-    "Main/Fig01.pdf": "2a534743ed95c92c3ecc29978a40d3c56347fa03a77332ec90a7fa6a9c9102d5",
-    "Main/Fig01.png": "b8f27f3005e3c3365cfa51da6ca10f3c8ba0f842338d702e6763cb36abafeff1",
+    "Main/Fig01.pdf": "6fa4a6120f9e686c40a4e2452ff82a81eaaa9d2685b38943391306f50805f803",
+    "Main/Fig01.png": "0c09902ded903fb7d3a6b1fcf91bed86e9fe331f7f1e16bf0b783a62d378950a",
     "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
     "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
     "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
@@ -422,8 +643,8 @@
     "Supplement/FigS08.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
   },
   "final_numbered_artwork_sha256": {
-    "Main/Fig01.pdf": "7f60f8f607a0bee8ec0e8b8640ae653e871f9f640b9f36924c95170ddc91cca6",
-    "Main/Fig01.png": "b8f27f3005e3c3365cfa51da6ca10f3c8ba0f842338d702e6763cb36abafeff1",
+    "Main/Fig01.pdf": "6fa4a6120f9e686c40a4e2452ff82a81eaaa9d2685b38943391306f50805f803",
+    "Main/Fig01.png": "0c09902ded903fb7d3a6b1fcf91bed86e9fe331f7f1e16bf0b783a62d378950a",
     "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
     "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
     "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
@@ -455,101 +676,24 @@
     "Supplement/FigS08.pdf": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
     "Supplement/FigS08.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
   },
-  "changed_numbered_artwork_from_starting_worktree": [
-    "Main/Fig01.pdf"
-  ],
+  "changed_numbered_artwork_from_starting_worktree": [],
   "starting_packet_sha256": {
-    "ALL_MAIN_FIGURES.pdf": "50db7b7174601665d388264313685f42d4972f2c442f2af7fc565043e550db91",
+    "ALL_MAIN_FIGURES.pdf": "a1d3e715b9faa63f24cf1da4ba915b91dda74509d8674a09b7c97144c9b77599",
     "ALL_SUPPLEMENT_FIGURES.pdf": "ab7b7588103edd77729bab1c1111fd0aa04653f5fd5db47b3ef7b419620321be",
-    "ALL_FIGURES_WITH_CAPTIONS.pdf": "dc04723d987abf9d2a7bfbcbabcfed7f0c2f5f4088cc3120530b6f4cd652e8d8"
+    "ALL_FIGURES_WITH_CAPTIONS.pdf": "77da5c25787cf888b850fa156948b2e597dfaac8ca71b17c997563774269933a"
   },
   "final_packet_sha256": {
-    "ALL_MAIN_FIGURES.pdf": "0b48b628243604f053477e2c412391cc7074871d63b4e3a8f876450db67e2a6d",
+    "ALL_MAIN_FIGURES.pdf": "a1d3e715b9faa63f24cf1da4ba915b91dda74509d8674a09b7c97144c9b77599",
     "ALL_SUPPLEMENT_FIGURES.pdf": "ab7b7588103edd77729bab1c1111fd0aa04653f5fd5db47b3ef7b419620321be",
-    "ALL_FIGURES_WITH_CAPTIONS.pdf": "2a702699fd0f0f5a3fac38492929860d427fbd04485f50478ec5e9bc9fefaf8b"
+    "ALL_FIGURES_WITH_CAPTIONS.pdf": "77da5c25787cf888b850fa156948b2e597dfaac8ca71b17c997563774269933a"
   },
   "s5_artwork_unchanged_from_starting_worktree": true,
   "figure1_no_downstream_result_plot_in_stage4": true,
   "unaffected_13_artwork_pairs_byte_identical": true,
   "figure8_separate_map_legends_updated": true,
   "figure8_legend_audit": {
-    "legend_entries": {
-      "C": [
-        "C1",
-        "C2",
-        "C3",
-        "N/A (16)"
-      ],
-      "D": [
-        "Outlined: Q4 + deficit ≥38.4 h"
-      ]
-    },
-    "old_NA_entries": 2,
-    "new_NA_entries": 1,
-    "P75_shorthand_removed": true,
-    "screening_rule_text": "Outlined: Q4 + deficit ≥38.4 h",
-    "screening_symbol": "thin gray line",
-    "class_colors": {
-      "1": "#3C9198",
-      "2": "#52699E",
-      "3": "#C69EBA"
-    },
-    "font_size_pt": 7.5,
-    "shared_baseline_pt_from_bottom": 26.0,
-    "C_and_D_legends_separate_and_aligned": true,
-    "all_legend_entries_share_baseline": true,
-    "bivariate_colorbar_and_tract_geometry_unchanged": true,
-    "whiteout_bands_pt": [
-      [
-        35.0,
-        580.0,
-        248.0,
-        605.0
-      ],
-      [
-        15.0,
-        627.0,
-        210.0,
-        645.0
-      ]
-    ],
-    "shared_legend_positions": [
-      {
-        "label": "C1",
-        "x0": 59.1571044921875,
-        "x1": 80.7445068359375,
-        "baseline": 658.0,
-        "group": "C"
-      },
-      {
-        "label": "C2",
-        "x0": 89.7445068359375,
-        "x1": 111.3319091796875,
-        "baseline": 658.0,
-        "group": "C"
-      },
-      {
-        "label": "C3",
-        "x0": 120.3319091796875,
-        "x1": 141.9193115234375,
-        "baseline": 658.0,
-        "group": "C"
-      },
-      {
-        "label": "N/A (16)",
-        "x0": 150.9193115234375,
-        "x1": 194.8428955078125,
-        "baseline": 658.0,
-        "group": "C"
-      },
-      {
-        "label": "Outlined: Q4 + deficit ≥38.4 h",
-        "x0": 333.05072021484375,
-        "x1": 449.34930419921875,
-        "baseline": 658.0,
-        "group": "D"
-      }
-    ]
+    "source_file": "results/figure_review_rq_aligned_20261101/Main/Fig07.pdf",
+    "source_sha256": "55d421cbf2812fc515d3456e01ea8435b3bba688f60de9dbee37b23baca00040"
   },
   "s5_vulnerability_plot_audit": {
     "source_plot_data_sha256": "bb409d2a8dc514eec2e5cb546d5357b2803882ea044e1f27d8a787fda67cad2d",

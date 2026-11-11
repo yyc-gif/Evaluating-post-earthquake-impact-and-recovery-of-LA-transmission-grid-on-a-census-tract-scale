@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Stage 4 links station-priority rules to logistics-aware repair scheduling and completion events. The map is an Impact-first example. Other network- and community-based rules, including Vulnerability-first, and the GA each supply a station priority order; Unconstrained repair is the separate parallel reference. The Gantt shows four saved tasks from 2pc50/C57_D1 evaluation realization 0, with two of 57 crews shown. Only DS>0 tasks are scheduled; damaged stations are assigned in priority order subject to crew availability, directed travel and realized damage-state-specific repair duration. Gray segments show travel and teal bars show repair. At completion, the crew is released, raw station functionality is restored to 1, and source connectivity and tract service are updated.
+Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 shows full station priority ranks for an Impact-first example and four saved tasks from 2pc50/C57_D1 evaluation realization 0 (2 of 57 crews). DS0 stations are excluded before finite-crew dispatch; scheduling uses priority order, directed travel and sampled damage-state-specific repair durations. Completion releases the crew, restores raw station functionality and updates source-gated tract service. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), service loss by vulnerability quartile and community recovery types; strategy trajectories appear in Figure 5.
 
 ## Figure 2. Transmission network and tract dependencies
 

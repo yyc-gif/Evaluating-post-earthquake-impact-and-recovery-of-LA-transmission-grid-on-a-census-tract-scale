@@ -128,7 +128,10 @@ def apply_artwork_style() -> None:
 
 
 def build_stage4_process_panel(width_pt: float = 505.4,
-                               height_pt: float = 132.0) -> tuple[bytes, bytes, dict]:
+                               height_pt: float = 132.0,
+                               priority_map_pdf: bytes | None = None,
+                               priority_map_source_sha256: str | None = None
+                               ) -> tuple[bytes, bytes, dict]:
     """Render the full-width, three-operation Stage 4 method panel."""
     schedule_path = REPO_ROOT / "src/la_grid/revision/r1_realization_scheduling.py"
     ga_path = REPO_ROOT / "src/la_grid/revision/r1_ga_revision.py"
@@ -153,6 +156,14 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     height_pt = float(height_pt)
     assert width_pt == 505.4 and height_pt == 132.0
     priority_path = REPO_ROOT / "results/figure_review_s6_main4_20261107/Supplement/FigS07.pdf"
+    if priority_map_pdf is None:
+        import figure_presentation
+        priority_source_bytes = priority_path.read_bytes()
+        priority_map_pdf, _ = figure_presentation.priority_geography(
+            priority_source_bytes,
+            palette_stops=["#EFF3F6", "#CAD5DE", "#94A6B5", "#5E7486", "#354E61"],
+            source_palette_stops=["#FFFFFF", "#E0D6E9", "#B69ACB", "#8B63AC", "#613A80"])
+        priority_map_source_sha256 = hashlib.sha256(priority_source_bytes).hexdigest()
     schedule_rel = "Formal_Experiment_20260923/Formal_Schedule_Prepass/2pc50__C57_D1__impact-first"
     schedule_commit = "6cfccca37cde7a53b909067caaaadea256cfd226"
     def archived(suffix):
@@ -203,11 +214,14 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     bold = str(Path(arial).with_name("arialbd.ttf"))
     page.insert_font(fontname="Arial", fontfile=arial)
     page.insert_font(fontname="Arial-Bold", fontfile=bold)
-    with fitz.open(priority_path) as priority:
+    priority_source = fitz.open(stream=priority_map_pdf, filetype="pdf")
+    with priority_source as priority:
         assert len(priority) == 1
         # Figure S7C is an Impact-first example, not a map of every rule.
         map_clip = fitz.Rect(52, 535, 302, 733)
-        map_target = fitz.Rect(7, 29, 161, 128)
+        # Match the median visible map footprint in Stages 1-3 (about 138 x 104 px
+        # at 150 dpi); preserve the full extent and station coordinates.
+        map_target = fitz.Rect(46.75, 39.0, 121.75, 100.2)
         # Preserve the saved rank-marker centers while increasing their print-size legibility.
         words = priority[0].get_text("words", clip=map_clip)
         spans = [word for word in words if word[4] in {"1", "2", "3", "4", "5"}]
@@ -228,8 +242,9 @@ def build_stage4_process_panel(width_pt: float = 505.4,
         for rank, (sx, sy) in rank_centers.items():
             cx = map_x_offset + (sx - map_clip.x0) * map_scale
             cy = map_target.y0 + (sy - map_clip.y0) * map_scale
-            page.draw_circle((cx, cy), 4.1, color=(0.08, 0.12, 0.15),
-                             fill=(0.08, 0.12, 0.15), width=0.25)
+            priority_teal = (0.13, 0.36, 0.44)
+            page.draw_circle((cx, cy), 4.1, color=priority_teal,
+                             fill=priority_teal, width=0.25)
             page.insert_text((cx - 1.8, cy + 2.2), str(rank), fontname="Arial-Bold",
                              fontsize=8.0, color=(1, 1, 1))
 
@@ -247,16 +262,17 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     # Align the three real operations as columns; arrows carry the method flow.
     for x in (168.5, 337.0):
         page.draw_line((x, 6), (x, height_pt - 6), color=rule, width=0.65)
-    label(9, 14, "Priority Rules", 9.0, True, color=(0.45, 0.25, 0.55))
+    label(9, 14, "Priority Rules", 9.0, True, color=teal)
     label(177, 14, "Repair Scheduling", 9.0, True, color=(0.10, 0.43, 0.38))
     label(346, 14, "Completion Events", 9.0, True, color=(0.27, 0.38, 0.45))
     for x in (161.5, 330.0):
         page.draw_line((x - 4, 11), (x + 3, 11), color=muted, width=0.8)
         page.draw_polyline([(x, 8.5), (x + 3, 11), (x, 13.5)], color=muted, width=0.8)
 
-    label(9, 25, "Impact-first example; rank markers 1-5", 7.8)
-    label(9, 35, "Purple shading: tract population (log scale)", 7.8)
-    label(177, 25, "2 of 57 crews shown; labels are priority ranks", 7.7)
+    label(9, 25, "Impact-first example", 7.8)
+    label(9, 35, "Map numbers: full station priority ranks 1-5", 7.5)
+    label(9, 110, "Blue-gray fill: tract population (log scale)", 7.5)
+    label(177, 25, "2 of 57 crews; saved event excerpt", 7.7)
     label(177, 35, "Gray: directed travel  |  Teal: DS-specific repair", 7.5)
     label(346, 25, f"Recorded task finish: {first_event['completion_hr']:.2f} h", 7.8)
 
@@ -271,11 +287,6 @@ def build_stage4_process_panel(width_pt: float = 505.4,
             page.draw_rect(fitz.Rect(arrival_x, y - 3.1, right, y + 3.1),
                            color=teal, fill=teal, width=0.25)
             page.draw_line((right, y - 7), (right, y + 7), color=ink, width=0.7)
-            rank = str(event["dispatch_rank"])
-            rank_width = fitz.Font(fontfile=bold).text_length(rank, fontsize=7.5)
-            page.insert_text((arrival_x + (right - arrival_x - rank_width) / 2,
-                              y + 2.4), rank, fontname="Arial-Bold",
-                             fontsize=7.5, color=(1, 1, 1))
             completion_label = f"{event['completion_hr']:.2f}"
             label_width = fitz.Font(fontfile=arial).text_length(completion_label,
                                                                fontsize=7.5)
@@ -293,7 +304,6 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     label(188, 124.5, "Travel", 7.5)
     page.draw_rect(fitz.Rect(222, 119, 230, 125), color=teal, fill=teal, width=0.2)
     label(233, 124.5, "Repair", 7.5)
-    label(270, 124.5, "Bar number = priority rank", 7.5)
 
     # The event releases the crew and restores raw station functionality; only the
     # updated station state then proceeds through the source gate to tract service.
@@ -319,7 +329,7 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     centered(event_rect, ("Repair task", "completes"), 8.2, True)
     centered(crew_rect, ("Crew", "released"), 8.0, True)
     centered(function_rect, ("Station raw", "functionality = 1"), 7.8, True)
-    centered(service_rect, ("Re-evaluate source gate", "Update tract service state"), 7.5, True)
+    centered(service_rect, ("Re-evaluate source gate", "Update Stage 3 tract service"), 7.5, True)
     # Split the recorded event into the independent crew-release and station-state
     # effects, then pass station functionality to downstream service evaluation.
     page.draw_line((420.5, 59), (420.5, 64), color=muted, width=0.8)
@@ -349,7 +359,13 @@ def build_stage4_process_panel(width_pt: float = 505.4,
         "separate_unconstrained_reference": True,
         "connected_operations": ["Priority rules", "Repair scheduling and execution",
                                  "Repair-completion events"],
-        "priority_map_sha256": hashlib.sha256(priority_path.read_bytes()).hexdigest(),
+        "priority_map_sha256": hashlib.sha256(priority_map_pdf).hexdigest(),
+        "priority_map_source_sha256": priority_map_source_sha256,
+        "priority_map_palette": ["#EFF3F6", "#CAD5DE", "#94A6B5", "#5E7486", "#354E61"],
+        "priority_map_visible_target_pt": [map_target.width, map_target.height],
+        "priority_map_target_rect_pt": list(map_target),
+        "map_ranks_are_full_station_priority_ranks": True,
+        "gantt_dispatch_numbers_removed_to_avoid_rank_ambiguity": True,
         "schedule_archive_sha256": hashlib.sha256(schedule_bytes).hexdigest(),
         "priority_sequence_sha256": hashlib.sha256(sequence_bytes).hexdigest(),
         "schedule_manifest": schedule_manifest,
@@ -364,7 +380,7 @@ def build_stage4_process_panel(width_pt: float = 505.4,
         "body_font": "Arial",
         "body_font_pt": 7.5,
         "rank_marker_font_pt": 8.0,
-        "schedule_rank_label_pt": 7.5,
+        "schedule_rank_label_pt": None,
         "source_map_rank_text_removed_before_relabel": True,
         "schedule_axis_hours": [0, 15, 30, 45],
         "schedule_axis_max_hr": 45,
