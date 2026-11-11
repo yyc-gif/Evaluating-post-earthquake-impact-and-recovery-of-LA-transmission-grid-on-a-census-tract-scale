@@ -48,7 +48,9 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
             assert qa['figure1_updated_with_method_process_panel']
             assert qa['figure1_no_downstream_result_plot_in_stage4']
-            assert qa['figure1_stage4_audit']['outside_stage4_pixels_identical']
+            assert qa['figure1_stage4_audit']['full_width_stage4']
+            assert all(r['pixel_identical'] for r in
+                       qa['figure1_stage4_audit']['top_modules_unscaled_and_preserved'])
         elif record['final_name'] in {'Supplement/FigS05.pdf','Supplement/FigS05.png'}:
             assert current!=expected
             qa=json.loads((SUITE/'QA/NUMERICAL_AND_PRESERVATION_QA.json').read_text(encoding='utf-8'))
@@ -95,16 +97,20 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert (SUITE/'Main/Fig01.pdf').read_bytes()==expected_pdf
     assert (SUITE/'Main/Fig01.png').read_bytes()==expected_png
     assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==expected_preview
-    assert audit['outside_stage4_pixels_identical']
+    assert audit['full_width_stage4']
+    assert audit['stage5_reflowed_from_original_vector_result_graphics']
+    assert all(r['pixel_identical'] for r in audit['top_modules_unscaled_and_preserved'])
     assert audit['no_recovery_curves_or_downstream_outcomes']
-    for phrase in ('PRIORITY RULES', 'map shows station ranks',
-                   'Network/community rules + GA set station order',
-                   'Unconstrained reference: parallel repair',
-                   'REPAIR SCHEDULING', 'evaluation realization 0',
-                   '2 of 57 crews', 'Crew 5', 'Crew 9', '300558',
-                   '306450', '303169', '307832', 'COMPLETION EVENTS',
-                   'Station 300558 completes at 18.15 h', 'source gate'):
+    for phrase in ('Priority Rules', 'Impact-first example', 'rank markers 1-5',
+                   'population (log scale)', 'Repair Scheduling',
+                   '2 of 57 crews shown', 'directed travel', 'DS-specific repair',
+                   'Crew 5', 'Crew 9', '18.15', '30.63', '17.87', '42.94',
+                   'Completion Events', 'functionality = 1', 'source gate',
+                   'tract service state'):
         assert phrase in stage_text
+    with fitz.open(stream=expected_pdf,filetype='pdf') as doc:
+        assert abs(doc[0].rect.width*25.4/72-185.0)<0.02
+        assert abs(doc[0].rect.height*25.4/72-265.2889)<0.02
     assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
     assert panel_audit['no_fabricated_task_events']
     assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
@@ -112,8 +118,11 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert panel_audit['crews_shown'] == [5, 9]
     assert panel_audit['schedule_axis_hours'] == [0, 15, 30, 45]
     assert panel_audit['schedule_axis_max_hr'] == 45
-    assert panel_audit['body_font_pt'] >= 7.0
-    assert panel_audit['rank_marker_font_pt'] == 7.0
+    assert panel_audit['body_font_pt'] >= 7.5
+    assert panel_audit['rank_marker_font_pt'] == 8.0
+    assert panel_audit['schedule_rank_label_pt'] == 7.5
+    assert panel_audit['minimum_panel_text_pt'] >= 7.5
+    assert panel_audit['source_map_rank_text_removed_before_relabel']
     assert abs(max(e['completion_hr'] for e in panel_audit['plotted_task_events'])
                - 42.93682284742478) < 1e-9
     assert len(panel_audit['plotted_task_events']) == 4
@@ -121,6 +130,8 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
                    'T80','cumulative service loss'):
         assert phrase.lower() not in stage_text.lower()
     generator_source=inspect.getsource(builder.main)
+    assert 'supplementary5_four_policy(s5_plot_data)' not in generator_source
+    assert "Supplement/FigS05.pdf').read_bytes()" in generator_source
     assert 'build_stage4_process_panel' in generator_source
     assert 'restoration_workflow(' in generator_source
     builder_module=inspect.getsource(builder)
@@ -139,10 +150,11 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert 'saved Unconstrained and Impact-first service-availability trajectories' not in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    for phrase in ('Impact-first priority-map example', 'two archived crew histories',
-                   '2pc50/C57_D1 evaluation realization 0', '2 of 57 crews',
-                   'directed travel', 'realized damage-state repair durations',
-                   'Completion releases the crew', 'Unconstrained repair is the parallel reference'):
+    for phrase in ('Impact-first example', 'four saved tasks',
+                   '2pc50/C57_D1 evaluation realization 0', 'two of 57 crews',
+                   'directed travel', 'damage-state-specific repair',
+                   'At completion, the crew is released',
+                   'Unconstrained repair is the separate parallel reference'):
         assert phrase in fig1
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
     row=next(r for r in manifest if r['final_name']=='Main/Fig01.pdf')
@@ -156,7 +168,7 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
         assert len(packet)==16
         packet_text=clean_pdf_text(packet[0].get_text())
         assert 'Figure 1. Analytical framework' in packet_text
-        assert 'Impact-first priority-map example' in packet_text
+        assert 'Impact-first example' in packet_text
 
 
 def test_supplementary_s5_remains_unchanged_by_figure1_correction():
