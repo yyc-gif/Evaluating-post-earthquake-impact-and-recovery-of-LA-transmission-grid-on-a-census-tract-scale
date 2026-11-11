@@ -114,19 +114,21 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert (SUITE/'Main/Fig01.png').read_bytes()==expected_png
     assert (SUITE/'Page_Previews/Fig01.png').read_bytes()==expected_preview
     assert audit['full_width_stage4']
+    assert audit['stage4_map_footprint_qa']['within_10_percent_each_dimension']
     assert audit['stage5_reflowed_from_original_vector_result_graphics']
     assert audit['stage5_legacy_layer_is_clipped_and_covered_by_current_panels']
     assert all(r['pixel_identical'] for r in audit['top_modules_unscaled_and_preserved'])
     assert audit['no_recovery_curves_or_downstream_outcomes']
-    for phrase in ('Priority Rules', 'Impact-first example',
-                   'Map numbers: full station priority ranks 1-5',
-                   'Blue-gray fill: tract population (log scale)', 'Repair Scheduling',
-                   '2 of 57 crews', 'directed travel', 'DS-specific repair',
-                   'Crew 5', 'Crew 9', '18.15', '30.63', '17.87', '42.94',
-                   'Completion Events', 'functionality = 1', 'source gate',
-                   'Stage 3 tract service'):
+    for phrase in ('Priority Rules', 'Impact-first example', 'Tract population',
+                   'Repair Scheduling', 'Crew 5', 'Crew 9', 'Crew 12',
+                   'Crew 14', 'Crew 17', 'Travel', 'Repair', '60 h',
+                   'Completion Events', 'complete', 'Crew', 'released',
+                   'Station', 'restored', 'Tract', 'service'):
         assert phrase in stage_text
-    assert 'Bar number' not in stage_text
+    for retired in ('Map numbers:', 'Blue-gray fill', '2 of 57 crews',
+                    'saved event excerpt', 'Recorded task finish',
+                    'source gate', 'Stage 3 tract service'):
+        assert retired not in stage_text
     for phrase in ('Population-weighted service availability',
                    'T80: time to 80% modeled availability',
                    'Community recovery types'):
@@ -138,9 +140,9 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert panel_audit['no_fabricated_task_events']
     assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
     assert panel_audit['crews_in_model'] == 57
-    assert panel_audit['crews_shown'] == [5, 9]
-    assert panel_audit['schedule_axis_hours'] == [0, 15, 30, 45]
-    assert panel_audit['schedule_axis_max_hr'] == 45
+    assert panel_audit['crews_shown'] == [5, 9, 12, 14, 17]
+    assert panel_audit['schedule_axis_hours'] == [0, 15, 30, 45, 60]
+    assert panel_audit['schedule_axis_max_hr'] == 60
     assert panel_audit['body_font_pt'] >= 7.5
     assert panel_audit['rank_marker_font_pt'] == 8.0
     assert panel_audit['schedule_rank_label_pt'] is None
@@ -149,8 +151,12 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert panel_audit['minimum_panel_text_pt'] >= 7.5
     assert panel_audit['source_map_rank_text_removed_before_relabel']
     assert abs(max(e['completion_hr'] for e in panel_audit['plotted_task_events'])
-               - 42.93682284742478) < 1e-9
-    assert len(panel_audit['plotted_task_events']) == 4
+               - 57.75698225552637) < 1e-9
+    assert len(panel_audit['plotted_task_events']) == 12
+    assert panel_audit['priority_map_palette'] == [
+        '#F3F4F1', '#DFE7E1', '#BED2C8', '#91B4A5', '#659587']
+    assert all(e['travel_hr'] > 0 and e['repair_hr'] > 0
+               for e in panel_audit['plotted_task_events'])
     for phrase in ('availability curves','Impact-first service-availability',
                    'T80','cumulative service loss'):
         assert phrase.lower() not in stage_text.lower()
@@ -172,14 +178,14 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert 'recovery_curves_all_system.csv' not in p2_builder_source
     assert 'ea692f4dd6d1763a91b4b8f5c11e45ce6a8a1f15' not in p2_builder_source
     p2_caption=build_current_suite_p2.captions()[0][1]
-    assert 'full station priority ranks for an Impact-first example' in p2_caption
+    assert 'full station priority ranks' in p2_caption
     assert 'separate parallel-repair reference' in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    for phrase in ('Impact-first example', 'four saved tasks',
-                   '2pc50/C57_D1 evaluation realization 0', '2 of 57 crews',
-                   'directed travel', 'damage-state-specific repair',
-                   'Completion releases the crew',
+    for phrase in ('Impact-first example', 'five crew histories',
+                   '2pc50/C57_D1 evaluation realization 0', '5 of 57 crews',
+                   'saved directed travel and damage-state-specific repair intervals',
+                   'crews are released',
                    'Unconstrained is a separate parallel-repair reference',
                    'population-weighted service availability',
                    'T80 (time to 80% modeled service availability)',

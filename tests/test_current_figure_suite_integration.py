@@ -98,20 +98,22 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
         source_pdf,panel_pdf,panel_audit,community_typology_pdf=community_pdf)
     with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
         stage_text=' '.join(panel[0].get_text().replace('\xad','-').split())
-    for phrase in ('Priority Rules', 'Impact-first example',
-                   'full station priority ranks 1-5',
-                   'Blue-gray fill: tract population (log scale)', 'Repair Scheduling',
-                   '2 of 57 crews', 'directed travel', 'DS-specific repair',
-                   'Crew 5', 'Crew 9', 'Completion Events', '18.15 h',
-                   'functionality = 1', 'source gate', 'Stage 3 tract service'):
+    for phrase in ('Priority Rules', 'Impact-first example', 'Tract population',
+                   'Repair Scheduling', 'Crew 5', 'Crew 9', 'Crew 12',
+                   'Crew 14', 'Crew 17', 'Travel', 'Repair', '60 h',
+                   'Completion Events', 'complete', 'Crew', 'released',
+                   'Station', 'restored', 'Tract', 'service'):
         assert phrase in stage_text
-    assert 'Bar number' not in stage_text
+    for retired in ('Blue-gray fill', '2 of 57 crews', 'saved event excerpt',
+                    'Recorded task finish', 'source gate', 'Stage 3 tract service'):
+        assert retired.lower() not in stage_text.lower()
     assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
     assert panel_audit['no_fabricated_task_events']
     assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
     assert panel_audit['crews_in_model'] == 57
-    assert panel_audit['schedule_axis_hours'] == [0, 15, 30, 45]
-    assert panel_audit['schedule_axis_max_hr'] == 45
+    assert panel_audit['crews_shown'] == [5, 9, 12, 14, 17]
+    assert panel_audit['schedule_axis_hours'] == [0, 15, 30, 45, 60]
+    assert panel_audit['schedule_axis_max_hr'] == 60
     assert panel_audit['body_font_pt'] >= 7.5
     assert panel_audit['rank_marker_font_pt'] == 8.0
     assert panel_audit['schedule_rank_label_pt'] is None
@@ -120,8 +122,10 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
     assert panel_audit['minimum_panel_text_pt'] >= 7.5
     assert panel_audit['source_map_rank_text_removed_before_relabel']
     assert abs(max(e['completion_hr'] for e in panel_audit['plotted_task_events'])
-               - 42.93682284742478) < 1e-9
-    assert len(panel_audit['plotted_task_events']) == 4
+               - 57.75698225552637) < 1e-9
+    assert len(panel_audit['plotted_task_events']) == 12
+    assert panel_audit['priority_map_palette'] == [
+        '#F3F4F1', '#DFE7E1', '#BED2C8', '#91B4A5', '#659587']
     for phrase in ('availability curves','T80','cumulative service loss',
                    'Impact-first service-availability'):
         assert phrase.lower() not in stage_text.lower()

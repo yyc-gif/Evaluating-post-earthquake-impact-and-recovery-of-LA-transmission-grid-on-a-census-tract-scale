@@ -2,7 +2,7 @@
 
 ## Figure 1. Analytical framework
 
-Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 shows full station priority ranks for an Impact-first example and four saved tasks from 2pc50/C57_D1 evaluation realization 0 (2 of 57 crews). DS0 stations are excluded before finite-crew dispatch; scheduling uses priority order, directed travel and sampled damage-state-specific repair durations. Completion releases the crew, restores raw station functionality and updates source-gated tract service. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), service loss by vulnerability quartile and community recovery types; strategy trajectories appear in Figure 5.
+Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 pairs a representative Impact-first example map (numbers are full station priority ranks) with five crew histories from the saved 2pc50/C57_D1 evaluation realization 0 (5 of 57 crews). Gantt rows show saved directed travel and damage-state-specific repair intervals for damaged tasks (DS > 0); at completion, crews are released, raw station functionality is restored, and source-gated tract service is updated. Map shading is tract population on a logarithmic scale. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), vulnerability-quartile service loss and community recovery types; policy trajectories appear in Figure 5.
 
 ## Figure 2. Transmission network and tract dependencies
 

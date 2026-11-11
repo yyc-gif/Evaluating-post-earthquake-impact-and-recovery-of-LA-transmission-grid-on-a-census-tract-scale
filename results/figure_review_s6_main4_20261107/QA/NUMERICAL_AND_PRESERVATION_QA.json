@@ -5,7 +5,7 @@
     "panel": "4",
     "panel_title": "Restoration Strategies and Execution",
     "source_page_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
-    "process_panel_sha256": "ab7685104cabd6b61c560b9669b2078037c75f9d6b6d5fc7775a3e2502a35727",
+    "process_panel_sha256": "1b25befc67840d0cba4158479bb8a1e6dc943a1841bb28b195814ad687167f15",
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -120,18 +120,18 @@
         106.0
       ],
       "stage4_visible_bbox_px": [
-        122,
-        1054,
-        271,
-        1166
+        131,
+        1046,
+        281,
+        1159
       ],
       "stage4_visible_size_px": [
-        149,
-        112
+        150,
+        113
       ],
       "stage4_to_median_dimension_ratios": [
-        0.9371069182389937,
-        1.0566037735849056
+        0.9433962264150944,
+        1.0660377358490567
       ],
       "within_10_percent_each_dimension": true,
       "same_full_map_clip_and_aspect_ratio": true
@@ -180,8 +180,19 @@
       "crews_in_model": 57,
       "crews_shown": [
         5,
-        9
+        9,
+        12,
+        14,
+        17
       ],
+      "crew_selection_rule": "first five crews in saved crew-index order with repeated assignments",
+      "crew_event_counts": {
+        "5": 2,
+        "9": 2,
+        "12": 3,
+        "14": 3,
+        "17": 2
+      },
       "implementation_checks": {
         "damaged_tasks_only": true,
         "earliest_available_crew": true,
@@ -197,24 +208,24 @@
         "Repair scheduling and execution",
         "Repair-completion events"
       ],
-      "priority_map_sha256": "30777ea33bb9b2ea2a6736bde0634ebca4e12a1602f1c42f1f5695a9c26c9e7a",
+      "priority_map_sha256": "83c5724afe26d73fd5d1d83d9f641fc635273ba2768c67171696ccbbe258c7da",
       "priority_map_source_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
       "priority_map_palette": [
-        "#EFF3F6",
-        "#CAD5DE",
-        "#94A6B5",
-        "#5E7486",
-        "#354E61"
+        "#F3F4F1",
+        "#DFE7E1",
+        "#BED2C8",
+        "#91B4A5",
+        "#659587"
       ],
       "priority_map_visible_target_pt": [
-        75.0,
-        61.2
+        79.5,
+        60.0
       ],
       "priority_map_target_rect_pt": [
-        46.75,
-        39.0,
-        121.75,
-        100.2
+        49.0,
+        36.0,
+        128.5,
+        96.0
       ],
       "map_ranks_are_full_station_priority_ranks": true,
       "gantt_dispatch_numbers_removed_to_avoid_rank_ambiguity": true,
@@ -283,6 +294,86 @@
           "arrival_hr": 18.12285799304426,
           "repair_hr": 24.81396485438052,
           "completion_hr": 42.93682284742478
+        },
+        {
+          "crew_index": 11,
+          "station_id": "301105",
+          "dispatch_rank": 12,
+          "free_hr": 0.0,
+          "travel_hr": 0.2571593411381854,
+          "arrival_hr": 0.2571593411381854,
+          "repair_hr": 15.056065060214626,
+          "completion_hr": 15.313224401352812
+        },
+        {
+          "crew_index": 11,
+          "station_id": "308540",
+          "dispatch_rank": 72,
+          "free_hr": 15.313224401352812,
+          "travel_hr": 0.5004952318682487,
+          "arrival_hr": 15.81371963322106,
+          "repair_hr": 8.54481485623405,
+          "completion_hr": 24.35853448945511
+        },
+        {
+          "crew_index": 11,
+          "station_id": "302297",
+          "dispatch_rank": 87,
+          "free_hr": 24.35853448945511,
+          "travel_hr": 0.3502212741266614,
+          "arrival_hr": 24.70875576358177,
+          "repair_hr": 29.137528518593108,
+          "completion_hr": 53.84628428217488
+        },
+        {
+          "crew_index": 13,
+          "station_id": "310527",
+          "dispatch_rank": 14,
+          "free_hr": 0.0,
+          "travel_hr": 0.3567726177126968,
+          "arrival_hr": 0.3567726177126968,
+          "repair_hr": 16.062460964441662,
+          "completion_hr": 16.41923358215436
+        },
+        {
+          "crew_index": 13,
+          "station_id": "306444",
+          "dispatch_rank": 76,
+          "free_hr": 16.41923358215436,
+          "travel_hr": 0.2325415009193032,
+          "arrival_hr": 16.651775083073662,
+          "repair_hr": 8.943173391499183,
+          "completion_hr": 25.594948474572845
+        },
+        {
+          "crew_index": 13,
+          "station_id": "307557",
+          "dispatch_rank": 89,
+          "free_hr": 25.594948474572845,
+          "travel_hr": 0.1595502628303901,
+          "arrival_hr": 25.754498737403235,
+          "repair_hr": 11.51098655380034,
+          "completion_hr": 37.265485291203575
+        },
+        {
+          "crew_index": 16,
+          "station_id": "300493",
+          "dispatch_rank": 17,
+          "free_hr": 0.0,
+          "travel_hr": 0.1810631386104234,
+          "arrival_hr": 0.1810631386104234,
+          "repair_hr": 19.804340865368605,
+          "completion_hr": 19.985404003979028
+        },
+        {
+          "crew_index": 16,
+          "station_id": "306768",
+          "dispatch_rank": 82,
+          "free_hr": 19.985404003979028,
+          "travel_hr": 0.3422142266306608,
+          "arrival_hr": 20.327618230609687,
+          "repair_hr": 37.42936402491668,
+          "completion_hr": 57.75698225552637
         }
       ],
       "uses_priority_map": true,
@@ -300,38 +391,55 @@
         0,
         15,
         30,
-        45
+        45,
+        60
       ],
-      "schedule_axis_max_hr": 45,
+      "schedule_axis_max_hr": 60,
       "schedule_time_axis_range_hr": [
         0,
-        45
+        60
       ],
+      "schedule_end_hr": 57.75698225552637,
       "all_task_completion_hours": [
         18.15488617,
         30.62846625,
         17.87064607,
-        42.93682285
+        42.93682285,
+        15.3132244,
+        24.35853449,
+        53.84628428,
+        16.41923358,
+        25.59494847,
+        37.26548529,
+        19.985404,
+        57.75698226
       ],
       "visual_operations": [
         "priority map",
         "crew Gantt",
         "completion-event state update"
       ],
+      "completion_visual_labels": [
+        "Repair complete",
+        "Crew released",
+        "Station restored",
+        "Tract service"
+      ],
+      "population_map_display_scale": "logarithmic, described in caption",
       "no_recovery_curves_or_downstream_outcomes": true,
       "no_simulation_or_schedule_rerun": true,
-      "panel_pdf_sha256": "ab7685104cabd6b61c560b9669b2078037c75f9d6b6d5fc7775a3e2502a35727",
-      "panel_png_sha256": "dc231419f565402e75d8c0d4c3de470f243f7775b79e909566dc344863e297ca",
+      "panel_pdf_sha256": "1b25befc67840d0cba4158479bb8a1e6dc943a1841bb28b195814ad687167f15",
+      "panel_png_sha256": "a3a73abdc22eae7ce86b6b6d1b09db5c133d1008688145afdf415da1a35c018f",
       "minimum_panel_text_pt": 7.5,
       "priority_map_palette_audit": {
         "source_palette": "custom",
         "population_palette": "blue_gray",
         "palette_stops": [
-          "#EFF3F6",
-          "#CAD5DE",
-          "#94A6B5",
-          "#5E7486",
-          "#354E61"
+          "#F3F4F1",
+          "#DFE7E1",
+          "#BED2C8",
+          "#91B4A5",
+          "#659587"
         ],
         "source_palette_index_range": [
           0,
@@ -361,8 +469,19 @@
     "crews_in_model": 57,
     "crews_shown": [
       5,
-      9
+      9,
+      12,
+      14,
+      17
     ],
+    "crew_selection_rule": "first five crews in saved crew-index order with repeated assignments",
+    "crew_event_counts": {
+      "5": 2,
+      "9": 2,
+      "12": 3,
+      "14": 3,
+      "17": 2
+    },
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -378,24 +497,24 @@
       "Repair scheduling and execution",
       "Repair-completion events"
     ],
-    "priority_map_sha256": "30777ea33bb9b2ea2a6736bde0634ebca4e12a1602f1c42f1f5695a9c26c9e7a",
+    "priority_map_sha256": "83c5724afe26d73fd5d1d83d9f641fc635273ba2768c67171696ccbbe258c7da",
     "priority_map_source_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
     "priority_map_palette": [
-      "#EFF3F6",
-      "#CAD5DE",
-      "#94A6B5",
-      "#5E7486",
-      "#354E61"
+      "#F3F4F1",
+      "#DFE7E1",
+      "#BED2C8",
+      "#91B4A5",
+      "#659587"
     ],
     "priority_map_visible_target_pt": [
-      75.0,
-      61.2
+      79.5,
+      60.0
     ],
     "priority_map_target_rect_pt": [
-      46.75,
-      39.0,
-      121.75,
-      100.2
+      49.0,
+      36.0,
+      128.5,
+      96.0
     ],
     "map_ranks_are_full_station_priority_ranks": true,
     "gantt_dispatch_numbers_removed_to_avoid_rank_ambiguity": true,
@@ -464,6 +583,86 @@
         "arrival_hr": 18.12285799304426,
         "repair_hr": 24.81396485438052,
         "completion_hr": 42.93682284742478
+      },
+      {
+        "crew_index": 11,
+        "station_id": "301105",
+        "dispatch_rank": 12,
+        "free_hr": 0.0,
+        "travel_hr": 0.2571593411381854,
+        "arrival_hr": 0.2571593411381854,
+        "repair_hr": 15.056065060214626,
+        "completion_hr": 15.313224401352812
+      },
+      {
+        "crew_index": 11,
+        "station_id": "308540",
+        "dispatch_rank": 72,
+        "free_hr": 15.313224401352812,
+        "travel_hr": 0.5004952318682487,
+        "arrival_hr": 15.81371963322106,
+        "repair_hr": 8.54481485623405,
+        "completion_hr": 24.35853448945511
+      },
+      {
+        "crew_index": 11,
+        "station_id": "302297",
+        "dispatch_rank": 87,
+        "free_hr": 24.35853448945511,
+        "travel_hr": 0.3502212741266614,
+        "arrival_hr": 24.70875576358177,
+        "repair_hr": 29.137528518593108,
+        "completion_hr": 53.84628428217488
+      },
+      {
+        "crew_index": 13,
+        "station_id": "310527",
+        "dispatch_rank": 14,
+        "free_hr": 0.0,
+        "travel_hr": 0.3567726177126968,
+        "arrival_hr": 0.3567726177126968,
+        "repair_hr": 16.062460964441662,
+        "completion_hr": 16.41923358215436
+      },
+      {
+        "crew_index": 13,
+        "station_id": "306444",
+        "dispatch_rank": 76,
+        "free_hr": 16.41923358215436,
+        "travel_hr": 0.2325415009193032,
+        "arrival_hr": 16.651775083073662,
+        "repair_hr": 8.943173391499183,
+        "completion_hr": 25.594948474572845
+      },
+      {
+        "crew_index": 13,
+        "station_id": "307557",
+        "dispatch_rank": 89,
+        "free_hr": 25.594948474572845,
+        "travel_hr": 0.1595502628303901,
+        "arrival_hr": 25.754498737403235,
+        "repair_hr": 11.51098655380034,
+        "completion_hr": 37.265485291203575
+      },
+      {
+        "crew_index": 16,
+        "station_id": "300493",
+        "dispatch_rank": 17,
+        "free_hr": 0.0,
+        "travel_hr": 0.1810631386104234,
+        "arrival_hr": 0.1810631386104234,
+        "repair_hr": 19.804340865368605,
+        "completion_hr": 19.985404003979028
+      },
+      {
+        "crew_index": 16,
+        "station_id": "306768",
+        "dispatch_rank": 82,
+        "free_hr": 19.985404003979028,
+        "travel_hr": 0.3422142266306608,
+        "arrival_hr": 20.327618230609687,
+        "repair_hr": 37.42936402491668,
+        "completion_hr": 57.75698225552637
       }
     ],
     "uses_priority_map": true,
@@ -481,38 +680,55 @@
       0,
       15,
       30,
-      45
+      45,
+      60
     ],
-    "schedule_axis_max_hr": 45,
+    "schedule_axis_max_hr": 60,
     "schedule_time_axis_range_hr": [
       0,
-      45
+      60
     ],
+    "schedule_end_hr": 57.75698225552637,
     "all_task_completion_hours": [
       18.15488617,
       30.62846625,
       17.87064607,
-      42.93682285
+      42.93682285,
+      15.3132244,
+      24.35853449,
+      53.84628428,
+      16.41923358,
+      25.59494847,
+      37.26548529,
+      19.985404,
+      57.75698226
     ],
     "visual_operations": [
       "priority map",
       "crew Gantt",
       "completion-event state update"
     ],
+    "completion_visual_labels": [
+      "Repair complete",
+      "Crew released",
+      "Station restored",
+      "Tract service"
+    ],
+    "population_map_display_scale": "logarithmic, described in caption",
     "no_recovery_curves_or_downstream_outcomes": true,
     "no_simulation_or_schedule_rerun": true,
-    "panel_pdf_sha256": "ab7685104cabd6b61c560b9669b2078037c75f9d6b6d5fc7775a3e2502a35727",
-    "panel_png_sha256": "dc231419f565402e75d8c0d4c3de470f243f7775b79e909566dc344863e297ca",
+    "panel_pdf_sha256": "1b25befc67840d0cba4158479bb8a1e6dc943a1841bb28b195814ad687167f15",
+    "panel_png_sha256": "a3a73abdc22eae7ce86b6b6d1b09db5c133d1008688145afdf415da1a35c018f",
     "minimum_panel_text_pt": 7.5,
     "priority_map_palette_audit": {
       "source_palette": "custom",
       "population_palette": "blue_gray",
       "palette_stops": [
-        "#EFF3F6",
-        "#CAD5DE",
-        "#94A6B5",
-        "#5E7486",
-        "#354E61"
+        "#F3F4F1",
+        "#DFE7E1",
+        "#BED2C8",
+        "#91B4A5",
+        "#659587"
       ],
       "source_palette_index_range": [
         0,
@@ -583,18 +799,18 @@
         106.0
       ],
       "stage4_visible_bbox_px": [
-        122,
-        1054,
-        271,
-        1166
+        131,
+        1046,
+        281,
+        1159
       ],
       "stage4_visible_size_px": [
-        149,
-        112
+        150,
+        113
       ],
       "stage4_to_median_dimension_ratios": [
-        0.9371069182389937,
-        1.0566037735849056
+        0.9433962264150944,
+        1.0660377358490567
       ],
       "within_10_percent_each_dimension": true,
       "same_full_map_clip_and_aspect_ratio": true
@@ -609,8 +825,8 @@
     ]
   },
   "starting_numbered_artwork_sha256": {
-    "Main/Fig01.pdf": "6fa4a6120f9e686c40a4e2452ff82a81eaaa9d2685b38943391306f50805f803",
-    "Main/Fig01.png": "0c09902ded903fb7d3a6b1fcf91bed86e9fe331f7f1e16bf0b783a62d378950a",
+    "Main/Fig01.pdf": "0f8ea6aae134825fbb6f87f6f6334776ee653866deb296ce7cf3a749cf791f3b",
+    "Main/Fig01.png": "484120af7caa1e1a1b3f58e161b3664fe11403c9d99449cf012ccf62e8d2360b",
     "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
     "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
     "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
@@ -643,8 +859,8 @@
     "Supplement/FigS08.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
   },
   "final_numbered_artwork_sha256": {
-    "Main/Fig01.pdf": "6fa4a6120f9e686c40a4e2452ff82a81eaaa9d2685b38943391306f50805f803",
-    "Main/Fig01.png": "0c09902ded903fb7d3a6b1fcf91bed86e9fe331f7f1e16bf0b783a62d378950a",
+    "Main/Fig01.pdf": "0f8ea6aae134825fbb6f87f6f6334776ee653866deb296ce7cf3a749cf791f3b",
+    "Main/Fig01.png": "484120af7caa1e1a1b3f58e161b3664fe11403c9d99449cf012ccf62e8d2360b",
     "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
     "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
     "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
@@ -678,14 +894,14 @@
   },
   "changed_numbered_artwork_from_starting_worktree": [],
   "starting_packet_sha256": {
-    "ALL_MAIN_FIGURES.pdf": "a1d3e715b9faa63f24cf1da4ba915b91dda74509d8674a09b7c97144c9b77599",
+    "ALL_MAIN_FIGURES.pdf": "a54158c551c42f294f0de501abd9c287fd7d5990aaa08fe40d0502aa80b40fc6",
     "ALL_SUPPLEMENT_FIGURES.pdf": "ab7b7588103edd77729bab1c1111fd0aa04653f5fd5db47b3ef7b419620321be",
-    "ALL_FIGURES_WITH_CAPTIONS.pdf": "77da5c25787cf888b850fa156948b2e597dfaac8ca71b17c997563774269933a"
+    "ALL_FIGURES_WITH_CAPTIONS.pdf": "c634881ddde99b3ab852db2eed6641505c87cfab1521626edd0bb595c61cc56b"
   },
   "final_packet_sha256": {
-    "ALL_MAIN_FIGURES.pdf": "a1d3e715b9faa63f24cf1da4ba915b91dda74509d8674a09b7c97144c9b77599",
+    "ALL_MAIN_FIGURES.pdf": "a54158c551c42f294f0de501abd9c287fd7d5990aaa08fe40d0502aa80b40fc6",
     "ALL_SUPPLEMENT_FIGURES.pdf": "ab7b7588103edd77729bab1c1111fd0aa04653f5fd5db47b3ef7b419620321be",
-    "ALL_FIGURES_WITH_CAPTIONS.pdf": "77da5c25787cf888b850fa156948b2e597dfaac8ca71b17c997563774269933a"
+    "ALL_FIGURES_WITH_CAPTIONS.pdf": "a1d7a697e4f05e5084f796325b8192704cb791388afea16e612661671d472b6b"
   },
   "s5_artwork_unchanged_from_starting_worktree": true,
   "figure1_no_downstream_result_plot_in_stage4": true,

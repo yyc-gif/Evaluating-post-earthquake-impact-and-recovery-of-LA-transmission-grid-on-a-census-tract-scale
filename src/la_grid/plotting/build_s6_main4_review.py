@@ -132,20 +132,20 @@ def main(output_dir=None,mirror_dir=None):
         figure_presentation.figure8_shared_map_legend(figure8_source,palette['colors']))
     priority_map_source=source(SOURCE+'/Supplement/FigS08.pdf')
     source_white_purple=['#FFFFFF','#E0D6E9','#B69ACB','#8B63AC','#613A80']
-    priority_blue_gray=['#EFF3F6','#CAD5DE','#94A6B5','#5E7486','#354E61']
-    priority_map_blue_gray,priority_map_palette_audit=(
+    priority_sage=['#F3F4F1','#DFE7E1','#BED2C8','#91B4A5','#659587']
+    priority_map_sage,priority_map_palette_audit=(
         figure_presentation.priority_geography(
-            priority_map_source,palette_stops=priority_blue_gray,
+            priority_map_source,palette_stops=priority_sage,
             source_palette_stops=source_white_purple))
     stage4_panel_pdf,stage4_panel_png,stage4_generator_audit=(
         workflow_figure.build_stage4_process_panel(
-            priority_map_pdf=priority_map_blue_gray,
+            priority_map_pdf=priority_map_sage,
             priority_map_source_sha256=u.digest(priority_map_source)))
     stage4_generator_audit['priority_map_palette_audit']=priority_map_palette_audit
-    source_hashes['derived/Fig01_Stage4_Priority_Map_BlueGray.pdf']={
+    source_hashes['derived/Fig01_Stage4_Priority_Map_Sage.pdf']={
         'source_file':SOURCE+'/Supplement/FigS08.pdf',
         'source_sha256':u.digest(priority_map_source),
-        'derived_pdf_sha256':u.digest(priority_map_blue_gray),
+        'derived_pdf_sha256':u.digest(priority_map_sage),
         'palette_audit':priority_map_palette_audit}
     source_hashes['derived/Fig01_Stage5_P2K3_Community_Map.pdf']={
         'source_file':figure8_row['current_source_file'],
@@ -215,13 +215,14 @@ def main(output_dir=None,mirror_dir=None):
         body=references(body)
         if new=='Main/Fig01':
             body=('Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. '
-                  'Stage 4 shows full station priority ranks for an Impact-first example and four saved tasks from '
-                  '2pc50/C57_D1 evaluation realization 0 (2 of 57 crews). DS0 stations are excluded before finite-crew '
-                  'dispatch; scheduling uses priority order, directed travel and sampled damage-state-specific repair '
-                  'durations. Completion releases the crew, restores raw station functionality and updates source-gated '
-                  'tract service. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted '
-                  'service availability, T80 (time to 80% modeled service availability), service loss by vulnerability '
-                  'quartile and community recovery types; strategy trajectories appear in Figure 5.')
+                  'Stage 4 pairs a representative Impact-first example map (numbers are full station priority ranks) with five '
+                  'crew histories from the saved 2pc50/C57_D1 evaluation realization 0 (5 of 57 crews). Gantt rows show '
+                  'saved directed travel and damage-state-specific repair intervals for damaged tasks (DS > 0); at '
+                  'completion, crews are released, raw station functionality is restored, and source-gated tract service '
+                  'is updated. Map shading is tract population on a logarithmic scale. Unconstrained is a separate '
+                  'parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% '
+                  'modeled service availability), vulnerability-'
+                  'quartile service loss and community recovery types; policy trajectories appear in Figure 5.')
         if new=='Main/Fig08':
             old_rule='outlines mark frozen Q4 and the cohort P75'
             new_rule=('outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) '
@@ -313,7 +314,7 @@ def main(output_dir=None,mirror_dir=None):
                 ix.update(source_authority=BASE,source_data_path=SCHEDULER_SOURCE,
                     source_data_sha256=u.sha(ROOT/SCHEDULER_SOURCE),
                     generator=WORKFLOW_GENERATOR,
-                    notes='Stage 4 uses a reduced blue-gray population map; map numbers are full station priority ranks and the Gantt has no rank numerals because dispatch order is assigned after DS0 filtering. Saved travel and repair events and completion times are unchanged. Stage 5 labels the rising curve as population-weighted service availability and shows the current community typology.')
+                    notes='Stage 4 uses a muted sage-neutral population map and five saved crew histories. Map markers remain full station priority ranks; Gantt rows use authentic saved assignments and exact event timing, without dispatch-rank numerals. Completion links repair end to crew release, station restoration and tract-service update. Stage 5 result values and S5 artwork are unchanged.')
             if new=='Main/Fig08':
                 ix.update(notes='Panel C and Panel D have separate aligned legends; the exact Q4 and service-deficit screen definitions are in the caption.')
             if new=='Supplement/FigS05':
@@ -463,7 +464,7 @@ def main(output_dir=None,mirror_dir=None):
         'Main 4-7 become 5-8; former Supplement S7-S9 become S6-S8; Supplement S1-S5 remain unchanged. '
         'The collection contains eight main plus eight supplementary figures. Combined packet: 16 pages, each artwork followed immediately by its concise caption on the same page.\n\n'
         'This is a separate author-review collection. The source suite, manuscripts, simulation data, restoration results and clustering are unchanged. '
-        'Figure 1 Stage 4 is generated from the implemented restoration-priority, DS > 0 crew-scheduling and repair-completion process. The Impact-first map uses a smaller blue-gray population ramp; its labels are full station ranks, distinct from the Gantt dispatch queue. The Gantt shows 2 of 57 crews from a saved event excerpt, with no ambiguous bar numbers. Unconstrained remains a separate parallel-repair reference. Stage 5 labels service availability and T80 correctly and uses the current P2/K3 community map; it does not claim a policy-effect gap or a slow-recovery hotspot. Figure 8 has separate Panel C and Panel D legends, with exact definitions in its caption. Supplementary Figure S5 includes Vulnerability-first comparisons calculated from its saved event-state archive; see `QA/S5_VULNERABILITY_FIRST_METHODS_QA.md` for pairing checks and estimates. The other artwork remains unchanged. '
+        'Figure 1 Stage 4 uses a muted sage-neutral Impact-first map, five authentic crew histories and a minimal completion-event sequence. The saved schedule, repair events and all Stage 5 result values are unchanged. Unconstrained remains a separate parallel-repair reference. Figure 8 retains separate Panel C and Panel D legends with exact definitions in its caption. Supplementary Figure S5 includes Vulnerability-first comparisons from its saved event-state archive; see `QA/S5_VULNERABILITY_FIRST_METHODS_QA.md` for pairing checks and estimates. The other artwork remains unchanged. '
         'S5 is centered using the full visible bounds, including strategy labels, axes, tick labels and legends, in a 185 x 145 mm layout. '
         'No simulation or scientific model is rerun; only frozen result outputs are plotted. '
         'The source notes describe older candidate layouts. The actual promoted figure uses dynamic A/B curves for six scheduled strategies plus Unconstrained and static conditional C/D maps.\n\n'
@@ -473,7 +474,7 @@ def main(output_dir=None,mirror_dir=None):
         'The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. '
         'Current older-suite builders remain available and do not target this separate collection.\n')
     u.write(dest/'README.md',readme);u.write(mirror/'README.md',readme)
-    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 8 received separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated.\n\n# 2026-11-09\n\nFigure 1 Stage 4 was temporarily changed to display downstream recovery curves. This was a scientific placement error and is superseded by the correction below. Supplementary Figure S5 was compacted to 185 x 145 mm with the full visible composition centered; all three panels and frozen comparisons are retained.\n\n# 2026-11-10\n\nStage 4 now shows three implementation-derived operations: priority rules, DS > 0 crew scheduling with realized damage-state repair durations and directed travel, and repair-completion updates. Unconstrained is shown separately as a parallel reference. The generator and builder no longer use `recovery_curves_all_system.csv` or the Figure 1 artwork from `ea692f4`.\n\n# 2026-11-11\n\nReduced the Stage 4 Impact-first population map to the median visible geographic footprint of Stages 1-3 and recolored vector population fills and the matching scale to blue-gray. Map numerals remain full station priority ranks; ambiguous Gantt numerals were removed because dispatch order is assigned only after DS0 filtering. Stage 5 now labels the rising trajectory as population-weighted service availability, defines T80, and replaces the retired spatial screen thumbnail with the current P2/K3 community map. Figure 1 data and the saved schedule are unchanged; S5 and the other 15 numbered artwork pairs are preserved.\n')
+    u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 8 received separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated.\n\n# 2026-11-09\n\nFigure 1 Stage 4 was temporarily changed to display downstream recovery curves. This was a scientific placement error and is superseded by the correction below. Supplementary Figure S5 was compacted to 185 x 145 mm with the full visible composition centered; all three panels and frozen comparisons are retained.\n\n# 2026-11-10\n\nStage 4 now shows three implementation-derived operations: priority rules, DS > 0 crew scheduling with realized damage-state repair durations and directed travel, and repair-completion updates. Unconstrained is shown separately as a parallel reference. The generator and builder no longer use `recovery_curves_all_system.csv` or the Figure 1 artwork from `ea692f4`.\n\n# 2026-11-11\n\nStage 4 now uses a light sage-neutral Impact-first population map at a footprint matched to the earlier workflow maps. Its legend is compact; the full station priority positions are retained. The Gantt presents five authentic multi-task crew histories from the saved evaluation realization on a 0-60 h axis, with travel and repair shown separately and no confusing rank numbers. Completion is shown as a visual event-to-crew/station/tract-service sequence. Stage 5 result values and Supplementary Figure S5 are unchanged.\n')
     u.write(dest/'MANUSCRIPT_INTEGRATION.md',manuscript_integration())
     print(json.dumps(qa,indent=2))
 

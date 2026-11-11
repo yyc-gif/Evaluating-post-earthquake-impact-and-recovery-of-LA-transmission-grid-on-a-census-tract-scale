@@ -141,7 +141,7 @@ def captions():
              re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)', text, re.M | re.S)]
     assert len(items) == 16
     short_bodies = [
-        'Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 shows full station priority ranks for an Impact-first example and four saved tasks from 2pc50/C57_D1 evaluation realization 0 (2 of 57 crews). DS0 stations are excluded before finite-crew dispatch; scheduling uses priority order, directed travel and sampled damage-state-specific repair durations. Completion releases the crew, restores raw station functionality and updates source-gated tract service. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), service loss by vulnerability quartile and community recovery types; strategy trajectories appear in Figure 5.',
+        'Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 pairs a representative Impact-first example map (numbers are full station priority ranks) with five crew histories from the saved 2pc50/C57_D1 evaluation realization 0 (5 of 57 crews). Gantt rows show saved directed travel and damage-state-specific repair intervals for damaged tasks (DS > 0); at completion, crews are released, raw station functionality is restored, and source-gated tract service is updated. Map shading is tract population on a logarithmic scale. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), vulnerability-quartile service loss and community recovery types; policy trajectories appear in Figure 5.',
         'Transmission network, tract-substation mapping, and comparison of candidate tract assignments with public SCE assignments. Assignment agreement does not validate feeder boundaries or recovery outcomes.',
         'Earthquake damage and initial modeled service are followed by Unconstrained recovery. Panel C reports the mean loss shares from substation damage, functionality threshold, and source-path loss; D/E show population-weighted and tract-mean T80. T80 is time to 80% modeled service; applicable whiskers show 5th-95th realization ranges.',
         'Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.',
@@ -275,7 +275,7 @@ def main(output_dir=None, mirror_dir=None):
     priority_map_source=source(priority_map_source_path,CURRENT_SUITE_BASE)
     priority_map_pdf,priority_map_palette_audit=figure_presentation.priority_geography(
         priority_map_source,
-        palette_stops=['#EFF3F6','#CAD5DE','#94A6B5','#5E7486','#354E61'],
+        palette_stops=['#F3F4F1','#DFE7E1','#BED2C8','#91B4A5','#659587'],
         source_palette_stops=['#FFFFFF','#E0D6E9','#B69ACB','#8B63AC','#613A80'])
     stage4_panel_pdf,stage4_panel_png,stage4_generator_audit=(
         workflow_figure.build_stage4_process_panel(

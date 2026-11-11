@@ -612,14 +612,16 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit,
         rejected=('availability curves','T80','cumulative service loss',
                   'population-weighted service availability','Impact-first service-availability')
         assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
-        required=('Priority Rules','Impact-first example','full station priority ranks',
-                  'Blue-gray fill: tract population (log scale)',
-                  'Repair Scheduling','2 of 57 crews','directed travel',
-                  'DS-specific repair','Crew 5','Crew 9','45 h',
-                  'Completion Events','18.15 h','Crew','released',
-                  'functionality = 1','source gate','Stage 3 tract service')
+        required=('Priority Rules','Impact-first example','Tract population',
+                  'Repair Scheduling','Crew 5','Crew 9','Crew 12','Crew 14',
+                  'Crew 17','Travel','Repair','60 h','Completion Events',
+                  'Repair','complete','Crew','released','Station','restored',
+                  'Tract','service')
         assert all(term.lower() in panel_text.lower() for term in required), panel_text
         assert 'bar number' not in panel_text.lower()
+        for retired in ('Blue-gray fill','2 of 57 crews','saved event excerpt',
+                        'recorded task finish','source gate','stage 3 tract service'):
+            assert retired not in panel_text.lower(), panel_text
         assert len(final_doc)==1
         assert abs(page.rect.width-page_width)<0.02
         assert abs(page.rect.height-page_height)<0.02
