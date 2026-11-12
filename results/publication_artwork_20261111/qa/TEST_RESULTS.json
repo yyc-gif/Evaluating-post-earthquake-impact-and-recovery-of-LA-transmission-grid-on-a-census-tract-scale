@@ -1,0 +1,27 @@
+{
+  "command": "python -m pytest tests/test_publication_artwork_20261111.py -q",
+  "tests": 17,
+  "failures": 0,
+  "errors": 0,
+  "time_seconds": 8.603,
+  "test_names": [
+    "test_unit_lossless_optimization_and_rejection_of_changed_geometry",
+    "test_unit_real_lossless_tiff_roundtrip_and_repeatability",
+    "test_unit_filename_and_master_write_guards",
+    "test_unit_vector_placement_matches_public_wrapper",
+    "test_unit_embedded_font_has_numeric_and_caption_coverage",
+    "test_unit_off_strip_pruning_retains_vector_geometry_and_pixels",
+    "test_all_32_accepted_artwork_payloads_match_starting_commit",
+    "test_master_registry_retains_every_scientific_identity_and_verified_delivery",
+    "test_object_inventory_quantifies_actual_workflow_size",
+    "test_compact_layout_is_translation_not_global_scaling",
+    "test_candidate_numbering_is_bijective_and_does_not_change_masters",
+    "test_all_sixteen_tiffs_are_real_600dpi_rgb_and_have_bound_pixel_checks",
+    "test_workflow_candidate_only_changes_profile_specific_cross_references",
+    "test_caption_reference_ranges_are_valid_in_the_candidate",
+    "test_packets_have_the_correct_five_and_eleven_page_counts",
+    "test_optional_svg_is_never_delivered_after_a_failed_appearance_gate",
+    "test_no_unverified_journal_guarantees_or_master_deletion"
+  ],
+  "exporter_sha256": "3ca8793b5d7e9a3dcc0454a529674b1f20282e6e3780efeea4af34856d101abc"
+}

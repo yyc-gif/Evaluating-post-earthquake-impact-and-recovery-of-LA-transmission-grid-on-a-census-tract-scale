@@ -1,0 +1,121 @@
+{
+  "pages": [
+    {
+      "identity": "workflow",
+      "mode": "grayscale",
+      "page": 1
+    },
+    {
+      "identity": "network_dependencies",
+      "mode": "grayscale",
+      "page": 2
+    },
+    {
+      "identity": "damage_service",
+      "mode": "grayscale",
+      "page": 3
+    },
+    {
+      "identity": "source_connectivity",
+      "mode": "grayscale",
+      "page": 4
+    },
+    {
+      "identity": "strategy_performance",
+      "mode": "grayscale",
+      "page": 5
+    },
+    {
+      "identity": "strategy_performance",
+      "mode": "protanomaly",
+      "page": 6,
+      "severity": 100
+    },
+    {
+      "identity": "strategy_performance",
+      "mode": "deuteranomaly",
+      "page": 7,
+      "severity": 100
+    },
+    {
+      "identity": "strategy_performance",
+      "mode": "tritanomaly",
+      "page": 8,
+      "severity": 100
+    },
+    {
+      "identity": "distributional_effects",
+      "mode": "grayscale",
+      "page": 9
+    },
+    {
+      "identity": "resource_effects",
+      "mode": "grayscale",
+      "page": 10
+    },
+    {
+      "identity": "community_context",
+      "mode": "grayscale",
+      "page": 11
+    },
+    {
+      "identity": "community_context",
+      "mode": "protanomaly",
+      "page": 12,
+      "severity": 100
+    },
+    {
+      "identity": "community_context",
+      "mode": "deuteranomaly",
+      "page": 13,
+      "severity": 100
+    },
+    {
+      "identity": "community_context",
+      "mode": "tritanomaly",
+      "page": 14,
+      "severity": 100
+    },
+    {
+      "identity": "damage_geography",
+      "mode": "grayscale",
+      "page": 15
+    },
+    {
+      "identity": "restoration_logistics",
+      "mode": "grayscale",
+      "page": 16
+    },
+    {
+      "identity": "network_recovery",
+      "mode": "grayscale",
+      "page": 17
+    },
+    {
+      "identity": "ga_evaluation",
+      "mode": "grayscale",
+      "page": 18
+    },
+    {
+      "identity": "mapping_gate_sensitivity",
+      "mode": "grayscale",
+      "page": 19
+    },
+    {
+      "identity": "facility_limits",
+      "mode": "grayscale",
+      "page": 20
+    },
+    {
+      "identity": "priority_geography",
+      "mode": "grayscale",
+      "page": 21
+    },
+    {
+      "identity": "resource_outcomes",
+      "mode": "grayscale",
+      "page": 22
+    }
+  ],
+  "method": "Grayscale via Pillow luminance; Machado-model severity-100 CVD simulation via colorspacious. A simulation is not certification of universal accessibility."
+}

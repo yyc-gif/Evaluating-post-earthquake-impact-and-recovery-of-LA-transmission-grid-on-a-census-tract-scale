@@ -105,3 +105,13 @@ docs/reproducibility/supplement_presentation_20261014/*.py text eol=lf
 docs/reproducibility/supplement_presentation_20261014/*.md text eol=lf
 docs/reproducibility/supplement_presentation_20261014/*.json text eol=lf
 docs/reproducibility/supplement_presentation_20261014/*.xml text eol=lf
+
+# Portable journal-neutral artwork export sources and records.
+src/la_grid/plotting/publication_artwork.py text eol=lf
+src/la_grid/plotting/publication_caption_definitions.py text eol=lf
+tests/test_publication_artwork_20261111.py text eol=lf
+results/publication_artwork_20261111/**/*.json text eol=lf
+results/publication_artwork_20261111/**/*.md text eol=lf
+results/publication_artwork_20261111/**/*.txt text eol=lf
+results/publication_artwork_20261111/**/*.svg text eol=lf
+results/publication_artwork_20261111/**/*.icc -text

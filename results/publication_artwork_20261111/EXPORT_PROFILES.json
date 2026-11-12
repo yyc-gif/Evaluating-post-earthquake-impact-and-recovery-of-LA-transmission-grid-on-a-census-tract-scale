@@ -1,0 +1,38 @@
+{
+  "scientific_authority": "68c83459e60ef31f7e86af9155d5a11e1680235d",
+  "primary_target": "International Journal of Disaster Risk Science (Springer Nature)",
+  "profiles": {
+    "native_vector": {
+      "format": "PDF",
+      "physical_dimensions": "native, no automatic reduction",
+      "source": "universal/MASTERS.json",
+      "full_resource_original_retained": true,
+      "optimized_delivery_requires_exact_checks": true
+    },
+    "ijdrs_mixed_600": {
+      "format": "TIFF",
+      "dpi": 600,
+      "compression": "LZW lossless",
+      "color": "8-bit RGB with frozen sRGB ICC profile",
+      "dimensions": "native; compact workflow candidate",
+      "figure_selection": "IJDRS/CONFIGURATION.json",
+      "portal_certified": false
+    },
+    "requested_line_1200": {
+      "format": "TIFF",
+      "dpi": 1200,
+      "automatic_bulk_generation": false,
+      "use": "Explicit journal request for denser raster linework; does not improve small printed text"
+    },
+    "sharing_preview": {
+      "format": "PNG",
+      "dpi": 600,
+      "source": "Existing master counterparts, avoiding duplicate exports",
+      "caption_inside_artwork": false
+    }
+  },
+  "optional_vector_example": "No approved SVG derivative: see qa/SVG_EXAMPLE_QA.json for the rejected appearance round trip. Original vector PDFs and code are retained.",
+  "eps": "Not generated or certified: no suitable conversion and round-trip validation available",
+  "jpeg": "Not generated for text/line-rich artwork; TIFF meets the linked IJDRS format wording without lossy compression",
+  "size_policy": "No invented maximum byte size or figure-height rule; reject blind scaling below 7-pt effective text"
+}
