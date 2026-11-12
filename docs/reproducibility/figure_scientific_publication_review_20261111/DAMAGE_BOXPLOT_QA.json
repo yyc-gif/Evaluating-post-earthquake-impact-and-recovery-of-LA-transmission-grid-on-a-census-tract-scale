@@ -1,0 +1,74 @@
+{
+  "statistical_unit": "station mean over 1000 evaluation realizations",
+  "whiskers": "observed values within the 5th-95th station-percentile interval",
+  "records": [
+    {
+      "hazard": "LongBeach",
+      "source": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Stage 1 Output_expanded\\physical_inputs_LongBeach.npz",
+      "source_sha256": "47ebad579273a3528151510827f77dbe26c59b773888123d759635d67cc9abd6",
+      "stations": 92,
+      "realizations": 1000,
+      "median": 1.187,
+      "expected_whiskers": [
+        0.2,
+        3.036
+      ],
+      "pdf_whiskers": [
+        0.20000003989973755,
+        3.036000966805379
+      ],
+      "max_abs_error": 9.668053788658426e-07
+    },
+    {
+      "hazard": "SanFernando",
+      "source": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Stage 1 Output_expanded\\physical_inputs_SanFernando.npz",
+      "source_sha256": "460dd0868029f93d24899887dd020bd665ca29d14e399748b577f8a39647fbe0",
+      "stations": 92,
+      "realizations": 1000,
+      "median": 0.476,
+      "expected_whiskers": [
+        0.185,
+        2.978
+      ],
+      "pdf_whiskers": [
+        0.1850000092248397,
+        2.9780008050745828
+      ],
+      "max_abs_error": 8.050745825549654e-07
+    },
+    {
+      "hazard": "Northridge",
+      "source": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Stage 1 Output_expanded\\physical_inputs_Northridge.npz",
+      "source_sha256": "27e7357b40f378d5511ee179bff4793cbda2fde09eeadf906357839d5c77fe92",
+      "stations": 92,
+      "realizations": 1000,
+      "median": 1.2095,
+      "expected_whiskers": [
+        0.443,
+        3.619
+      ],
+      "pdf_whiskers": [
+        0.44300079556023253,
+        3.618999614885944
+      ],
+      "max_abs_error": 7.955602325249167e-07
+    },
+    {
+      "hazard": "2pc50",
+      "source": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Stage 1 Output_expanded\\physical_inputs_2pc50.npz",
+      "source_sha256": "fa40cc26567c22e7d8195e04949e2ef7dbc960a9751f4b9af3d687edf542cdcb",
+      "stations": 92,
+      "realizations": 1000,
+      "median": 3.543,
+      "expected_whiskers": [
+        3.277,
+        3.852
+      ],
+      "pdf_whiskers": [
+        3.2770001444523142,
+        3.8520005657024776
+      ],
+      "max_abs_error": 5.657024777505626e-07
+    }
+  ]
+}

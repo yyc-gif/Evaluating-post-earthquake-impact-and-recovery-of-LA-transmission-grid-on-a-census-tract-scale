@@ -1,0 +1,69 @@
+{
+  "identity": {
+    "DS_hash": "0424b1862f791f7b7aef19428480b5025ba2a67941ab5e1fa0f56510d5bc553c",
+    "crew_roster_hash": "af96c30ea378f28c29bdf37ec0b29076e8305462ee6ae5f5d5a16e39aecaa62c",
+    "directed_travel_hash": "f35821f8b74e0e4a36003493a482c13d01d2667284ca13f8c5c54e843ff57926",
+    "duration_hash": "f9018a5a3bb1c2bf57e87c8ec6a8b6f9335d8c9b28c43b483cdacc28aa5e05a3",
+    "event_horizon_hr": 480.0,
+    "executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0",
+    "graph_hash": "072a1ba271462f28cbf63d3ae190bbbced4210097cf3a01930c8484baa5df923",
+    "hazard": "2pc50",
+    "mapping_method_id": "M1_UTILITY_003",
+    "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+    "physical_sample_hash": "00ebf28a17c75edb53df059013d8783d0db66b7be591d7e83348df067a185a4d",
+    "realization_id": "2pc50__evaluation_0000",
+    "resource_scenario": "C57_D1",
+    "source_set_hash": "a81ef49fb042e2437baee60212eba90a137feb710f769fc233974aa07737cf74",
+    "split": "evaluation",
+    "strategy": "impact-first"
+  },
+  "station_id": "300558",
+  "tract_id": "06037402301",
+  "tract_dependency_weight": 1.0,
+  "crew_number": 5,
+  "completion_hr": 18.154886173136717,
+  "source_connection_hr": 30.733697448399262,
+  "archived_state_times_hr": [
+    17.87064606594311,
+    18.154886173136717,
+    30.733697448399262
+  ],
+  "columns": [
+    "Before",
+    "Repair",
+    "Connected"
+  ],
+  "rows": [
+    "Raw function",
+    "Source link",
+    "Tract service"
+  ],
+  "values": [
+    [
+      0.03,
+      1.0,
+      1.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "crew_released_at_completion": true,
+  "next_task_start_hr": 18.15488617313672,
+  "source_archive": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Formal_Trajectories\\2pc50\\C57_D1\\impact-first\\2pc50__evaluation_0000.npz",
+  "source_npz_sha256": "97a3d46d8ac48b82abd949b7fff3f1e92b0fa7fecf6658ea0a81b27744e01050",
+  "source_manifest_sha256": "5abfa9d8648ea04628cc250165a55c5365d9f05627d7ec2473b131ac0c6ca68c",
+  "task_events_sha256": "fa12ece4c5b5a816fb21a20d66cbb85d5383a4b5b835e245dbb10d15e956cb75",
+  "mapping_source": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+  "mapping_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+  "mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+  "selection": "First shown crew, first task; maximum dependency weight then lowest GEOID",
+  "no_gate_or_schedule_rerun": true
+}

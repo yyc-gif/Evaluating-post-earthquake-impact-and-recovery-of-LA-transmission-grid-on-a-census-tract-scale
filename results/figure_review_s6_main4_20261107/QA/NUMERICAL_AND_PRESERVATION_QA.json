@@ -5,7 +5,7 @@
     "panel": "4",
     "panel_title": "Restoration Strategies and Execution",
     "source_page_sha256": "32a856fe7f3eefe328078c5479522a48863aff2324585a36d25cfdfe3d219e84",
-    "process_panel_sha256": "1b25befc67840d0cba4158479bb8a1e6dc943a1841bb28b195814ad687167f15",
+    "process_panel_sha256": "ec5ba01dcfa741ee5d502735942bf29f25ec15aeb7f102960661fea9695692ba",
     "implementation_checks": {
       "damaged_tasks_only": true,
       "earliest_available_crew": true,
@@ -420,16 +420,86 @@
         "completion-event state update"
       ],
       "completion_visual_labels": [
-        "Repair complete",
-        "Crew released",
-        "Station restored",
+        "Raw function",
+        "Source link",
         "Tract service"
       ],
+      "completion_event_example": {
+        "identity": {
+          "DS_hash": "0424b1862f791f7b7aef19428480b5025ba2a67941ab5e1fa0f56510d5bc553c",
+          "crew_roster_hash": "af96c30ea378f28c29bdf37ec0b29076e8305462ee6ae5f5d5a16e39aecaa62c",
+          "directed_travel_hash": "f35821f8b74e0e4a36003493a482c13d01d2667284ca13f8c5c54e843ff57926",
+          "duration_hash": "f9018a5a3bb1c2bf57e87c8ec6a8b6f9335d8c9b28c43b483cdacc28aa5e05a3",
+          "event_horizon_hr": 480.0,
+          "executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0",
+          "graph_hash": "072a1ba271462f28cbf63d3ae190bbbced4210097cf3a01930c8484baa5df923",
+          "hazard": "2pc50",
+          "mapping_method_id": "M1_UTILITY_003",
+          "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+          "physical_sample_hash": "00ebf28a17c75edb53df059013d8783d0db66b7be591d7e83348df067a185a4d",
+          "realization_id": "2pc50__evaluation_0000",
+          "resource_scenario": "C57_D1",
+          "source_set_hash": "a81ef49fb042e2437baee60212eba90a137feb710f769fc233974aa07737cf74",
+          "split": "evaluation",
+          "strategy": "impact-first"
+        },
+        "station_id": "300558",
+        "tract_id": "06037402301",
+        "tract_dependency_weight": 1.0,
+        "crew_number": 5,
+        "completion_hr": 18.154886173136717,
+        "source_connection_hr": 30.733697448399262,
+        "archived_state_times_hr": [
+          17.87064606594311,
+          18.154886173136717,
+          30.733697448399262
+        ],
+        "columns": [
+          "Before",
+          "Repair",
+          "Connected"
+        ],
+        "rows": [
+          "Raw function",
+          "Source link",
+          "Tract service"
+        ],
+        "values": [
+          [
+            0.03,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "crew_released_at_completion": true,
+        "next_task_start_hr": 18.15488617313672,
+        "source_archive": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Formal_Trajectories\\2pc50\\C57_D1\\impact-first\\2pc50__evaluation_0000.npz",
+        "source_npz_sha256": "97a3d46d8ac48b82abd949b7fff3f1e92b0fa7fecf6658ea0a81b27744e01050",
+        "source_manifest_sha256": "5abfa9d8648ea04628cc250165a55c5365d9f05627d7ec2473b131ac0c6ca68c",
+        "task_events_sha256": "fa12ece4c5b5a816fb21a20d66cbb85d5383a4b5b835e245dbb10d15e956cb75",
+        "mapping_source": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+        "mapping_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+        "mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+        "selection": "First shown crew, first task; maximum dependency weight then lowest GEOID",
+        "no_gate_or_schedule_rerun": true
+      },
+      "completion_example_sha256": "bd3926486990e5e6c3fe2c93f7aeecde5db751bbcf5c98e3cea804eab04e0e04",
+      "arbitrary_workers_station_icon_and_tract_tiles_removed": true,
       "population_map_display_scale": "logarithmic, described in caption",
       "no_recovery_curves_or_downstream_outcomes": true,
       "no_simulation_or_schedule_rerun": true,
-      "panel_pdf_sha256": "1b25befc67840d0cba4158479bb8a1e6dc943a1841bb28b195814ad687167f15",
-      "panel_png_sha256": "a3a73abdc22eae7ce86b6b6d1b09db5c133d1008688145afdf415da1a35c018f",
+      "panel_pdf_sha256": "ec5ba01dcfa741ee5d502735942bf29f25ec15aeb7f102960661fea9695692ba",
+      "panel_png_sha256": "9a654a9cb091a85a5d6158ca2531e744d4b35efdd4af7c8a212968aec0d7bbff",
       "minimum_panel_text_pt": 7.5,
       "priority_map_palette_audit": {
         "source_palette": "custom",
@@ -709,16 +779,86 @@
       "completion-event state update"
     ],
     "completion_visual_labels": [
-      "Repair complete",
-      "Crew released",
-      "Station restored",
+      "Raw function",
+      "Source link",
       "Tract service"
     ],
+    "completion_event_example": {
+      "identity": {
+        "DS_hash": "0424b1862f791f7b7aef19428480b5025ba2a67941ab5e1fa0f56510d5bc553c",
+        "crew_roster_hash": "af96c30ea378f28c29bdf37ec0b29076e8305462ee6ae5f5d5a16e39aecaa62c",
+        "directed_travel_hash": "f35821f8b74e0e4a36003493a482c13d01d2667284ca13f8c5c54e843ff57926",
+        "duration_hash": "f9018a5a3bb1c2bf57e87c8ec6a8b6f9335d8c9b28c43b483cdacc28aa5e05a3",
+        "event_horizon_hr": 480.0,
+        "executable_code_commit_sha": "2d2fc7744b251b207b338f0a7851cb0ba4796ff0",
+        "graph_hash": "072a1ba271462f28cbf63d3ae190bbbced4210097cf3a01930c8484baa5df923",
+        "hazard": "2pc50",
+        "mapping_method_id": "M1_UTILITY_003",
+        "matrix_id": "JULY92_REVIEWER_REVISION_FINAL_V1",
+        "physical_sample_hash": "00ebf28a17c75edb53df059013d8783d0db66b7be591d7e83348df067a185a4d",
+        "realization_id": "2pc50__evaluation_0000",
+        "resource_scenario": "C57_D1",
+        "source_set_hash": "a81ef49fb042e2437baee60212eba90a137feb710f769fc233974aa07737cf74",
+        "split": "evaluation",
+        "strategy": "impact-first"
+      },
+      "station_id": "300558",
+      "tract_id": "06037402301",
+      "tract_dependency_weight": 1.0,
+      "crew_number": 5,
+      "completion_hr": 18.154886173136717,
+      "source_connection_hr": 30.733697448399262,
+      "archived_state_times_hr": [
+        17.87064606594311,
+        18.154886173136717,
+        30.733697448399262
+      ],
+      "columns": [
+        "Before",
+        "Repair",
+        "Connected"
+      ],
+      "rows": [
+        "Raw function",
+        "Source link",
+        "Tract service"
+      ],
+      "values": [
+        [
+          0.03,
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "crew_released_at_completion": true,
+      "next_task_start_hr": 18.15488617313672,
+      "source_archive": "C:\\2025-2026 Fall\\CY PLAN C257H (CIV ENG C263H) - Human Mobility and Network Science\\Project\\LA_grid_reviewer_revision\\Formal_Experiment_20260923\\Formal_Trajectories\\2pc50\\C57_D1\\impact-first\\2pc50__evaluation_0000.npz",
+      "source_npz_sha256": "97a3d46d8ac48b82abd949b7fff3f1e92b0fa7fecf6658ea0a81b27744e01050",
+      "source_manifest_sha256": "5abfa9d8648ea04628cc250165a55c5365d9f05627d7ec2473b131ac0c6ca68c",
+      "task_events_sha256": "fa12ece4c5b5a816fb21a20d66cbb85d5383a4b5b835e245dbb10d15e956cb75",
+      "mapping_source": "Data/JULY_UTILITY_CONSTRAINED_92.csv",
+      "mapping_commit": "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+      "mapping_sha256": "472aaa865e74b0d613e60e480e8da46d13604056048b90ba1f1f429060489446",
+      "selection": "First shown crew, first task; maximum dependency weight then lowest GEOID",
+      "no_gate_or_schedule_rerun": true
+    },
+    "completion_example_sha256": "bd3926486990e5e6c3fe2c93f7aeecde5db751bbcf5c98e3cea804eab04e0e04",
+    "arbitrary_workers_station_icon_and_tract_tiles_removed": true,
     "population_map_display_scale": "logarithmic, described in caption",
     "no_recovery_curves_or_downstream_outcomes": true,
     "no_simulation_or_schedule_rerun": true,
-    "panel_pdf_sha256": "1b25befc67840d0cba4158479bb8a1e6dc943a1841bb28b195814ad687167f15",
-    "panel_png_sha256": "a3a73abdc22eae7ce86b6b6d1b09db5c133d1008688145afdf415da1a35c018f",
+    "panel_pdf_sha256": "ec5ba01dcfa741ee5d502735942bf29f25ec15aeb7f102960661fea9695692ba",
+    "panel_png_sha256": "9a654a9cb091a85a5d6158ca2531e744d4b35efdd4af7c8a212968aec0d7bbff",
     "minimum_panel_text_pt": 7.5,
     "priority_map_palette_audit": {
       "source_palette": "custom",
@@ -825,8 +965,8 @@
     ]
   },
   "starting_numbered_artwork_sha256": {
-    "Main/Fig01.pdf": "0f8ea6aae134825fbb6f87f6f6334776ee653866deb296ce7cf3a749cf791f3b",
-    "Main/Fig01.png": "484120af7caa1e1a1b3f58e161b3664fe11403c9d99449cf012ccf62e8d2360b",
+    "Main/Fig01.pdf": "dc82fa9f4461a75dd9f5a22a358db8dc51caafa65e03395d9743b6aea4eb36ad",
+    "Main/Fig01.png": "8777f516f40ea3b6dbe81322ede6138c7f42e160072d60531eff6240deca2ae6",
     "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
     "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
     "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
@@ -835,32 +975,32 @@
     "Main/Fig04.png": "7ade1c00816475ebbbdf74ffa2c57d0bb1383f7986fd3383eb065b8b99ac9c34",
     "Main/Fig05.pdf": "75011f91ecb9e2c06dbfa250a5f5d3b274968ba459e81d9e174c8546b9a2acd8",
     "Main/Fig05.png": "56e887a8062ebee93f01c054d64080666a98645a8700004e8c5aae2cc7af0dc2",
-    "Main/Fig06.pdf": "4beef11842ee57170b91c823dcf882cd40f3ceda2b3075a69c1137b183a30f0c",
-    "Main/Fig06.png": "bd2934d6022d5e0a32b14dbb7900f4e8a13991e61ca336c60d70019de5de1fbb",
-    "Main/Fig07.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
-    "Main/Fig07.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
+    "Main/Fig06.pdf": "522c4889f7726c4233b5fd6d7d2a2a3ecb89b400ed989edde352402011da8974",
+    "Main/Fig06.png": "6113220017367ec6e4d9cb6e2b594f34e1eff6ea8c0ff4b6c4bd99cd503b2e80",
+    "Main/Fig07.pdf": "7b5aebabb5d1e88a5f6ba6d572708b2c315486a14e450a2a8533de957e238aa5",
+    "Main/Fig07.png": "8d905602b71bbe63f8f03afe1fcf8fc195ecdb3826d4e4e5fd284cff66edd78f",
     "Main/Fig08.pdf": "5171d357aa4db5e4b7b45348702e18cea55e6d3e9010a062a94d034635995e8a",
     "Main/Fig08.png": "dc78753ddb1b9e4ace8fd34febc5dfc9bfb4dacad31d3c1b1a3255a20b30afb4",
     "Supplement/FigS01.pdf": "09bb755f7a5a58ffcc399264a280504ccaff5262012e675a31a1a81c81a4c16e",
     "Supplement/FigS01.png": "c84381403277a5ddccd54f88188f254345c7bef29103c82e479a42342063253e",
-    "Supplement/FigS02.pdf": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
-    "Supplement/FigS02.png": "73d7955993a3b3ffbf58a707684cd16593ca9fe825be2254e36b2b0078c53cc0",
+    "Supplement/FigS02.pdf": "07ffe6f3cdf9b719b0543d311ee91b60d9375089dd26474e4b79a3be37e6f451",
+    "Supplement/FigS02.png": "b95981df452410e633ef827b4a276f4c5ec64669d45f21f72ac89058d5c27186",
     "Supplement/FigS03.pdf": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c",
     "Supplement/FigS03.png": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478",
-    "Supplement/FigS04.pdf": "1d9e97a4642992b00bb9c6abfd1f0f0e190ae1689e04f109dcfa8cd9ac7c1ec7",
-    "Supplement/FigS04.png": "86302144c3c28c2026e5d6b1dc938a919f480bff0b2bb67dce1e4eca093c4192",
+    "Supplement/FigS04.pdf": "08f4485d03276e7da2393e70cc9c24b93f5c6d6048774ad8e6a78dfca36c8716",
+    "Supplement/FigS04.png": "86ee9d4140084b97d3449c004a374ee5e6aee6c38de47f20b0fcff0eb70bad25",
     "Supplement/FigS05.pdf": "47a89d75b2ba0fa2434669255da0a985b192ef0405b34f671752a1a159fddcbe",
     "Supplement/FigS05.png": "503590858e0f5980fdb14e1ccdff9a0d93037e0fd5e4bbde860d054286c6eb8f",
     "Supplement/FigS06.pdf": "fae0fc5774ecbfa8c9f7d7b4c3b94af059726de648255f061f4188745f0dc051",
     "Supplement/FigS06.png": "fe45ed66139828ecb943d855876fb9c8188f7a03021b5c5bcd762726442c45f1",
-    "Supplement/FigS07.pdf": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
-    "Supplement/FigS07.png": "e7dcb96b52f1713303d16c327fed15654c06d40dbe90d7391238f6b7f928b64a",
-    "Supplement/FigS08.pdf": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
-    "Supplement/FigS08.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
+    "Supplement/FigS07.pdf": "93c80d7935bf03186d1e3989c2360bc812b8982716ece0b318f569cd4250309f",
+    "Supplement/FigS07.png": "8018262fc8cf2a9a5f345454d473cd1a6c15cf5af4f571d91c3fb10b85f13d51",
+    "Supplement/FigS08.pdf": "d7e10928ae2bd573e5f8397d1f965ba0e1d41cc73594cc6be21b7f44351e240a",
+    "Supplement/FigS08.png": "38b2661d56626c969b7d31245f74d39c4dde7d84428c675b8056c3f9f0ca923a"
   },
   "final_numbered_artwork_sha256": {
-    "Main/Fig01.pdf": "0f8ea6aae134825fbb6f87f6f6334776ee653866deb296ce7cf3a749cf791f3b",
-    "Main/Fig01.png": "484120af7caa1e1a1b3f58e161b3664fe11403c9d99449cf012ccf62e8d2360b",
+    "Main/Fig01.pdf": "dc82fa9f4461a75dd9f5a22a358db8dc51caafa65e03395d9743b6aea4eb36ad",
+    "Main/Fig01.png": "8777f516f40ea3b6dbe81322ede6138c7f42e160072d60531eff6240deca2ae6",
     "Main/Fig02.pdf": "0fd4100421509bbc8b59f2c8554461bfd4585516f28a08d53f236ba76683c52b",
     "Main/Fig02.png": "ebd725db54a4618f2d2fe7e699fb487a84218b6ab1f7a40af621b28c1fb2ab08",
     "Main/Fig03.pdf": "1dfc3a01590743e80f8022f3ac7a5c851cd4514bb677e044b740c4f4f3af6186",
@@ -869,43 +1009,172 @@
     "Main/Fig04.png": "7ade1c00816475ebbbdf74ffa2c57d0bb1383f7986fd3383eb065b8b99ac9c34",
     "Main/Fig05.pdf": "75011f91ecb9e2c06dbfa250a5f5d3b274968ba459e81d9e174c8546b9a2acd8",
     "Main/Fig05.png": "56e887a8062ebee93f01c054d64080666a98645a8700004e8c5aae2cc7af0dc2",
-    "Main/Fig06.pdf": "4beef11842ee57170b91c823dcf882cd40f3ceda2b3075a69c1137b183a30f0c",
-    "Main/Fig06.png": "bd2934d6022d5e0a32b14dbb7900f4e8a13991e61ca336c60d70019de5de1fbb",
-    "Main/Fig07.pdf": "f53e5a8ea401deb0a02318776fa169edb3cd159dcceb59711e2b16423fd638e7",
-    "Main/Fig07.png": "7753531b4d7070ef967d77b6231bbf6d179257dbd25ee787bfb8b6328412c574",
+    "Main/Fig06.pdf": "522c4889f7726c4233b5fd6d7d2a2a3ecb89b400ed989edde352402011da8974",
+    "Main/Fig06.png": "6113220017367ec6e4d9cb6e2b594f34e1eff6ea8c0ff4b6c4bd99cd503b2e80",
+    "Main/Fig07.pdf": "7b5aebabb5d1e88a5f6ba6d572708b2c315486a14e450a2a8533de957e238aa5",
+    "Main/Fig07.png": "8d905602b71bbe63f8f03afe1fcf8fc195ecdb3826d4e4e5fd284cff66edd78f",
     "Main/Fig08.pdf": "5171d357aa4db5e4b7b45348702e18cea55e6d3e9010a062a94d034635995e8a",
     "Main/Fig08.png": "dc78753ddb1b9e4ace8fd34febc5dfc9bfb4dacad31d3c1b1a3255a20b30afb4",
     "Supplement/FigS01.pdf": "09bb755f7a5a58ffcc399264a280504ccaff5262012e675a31a1a81c81a4c16e",
     "Supplement/FigS01.png": "c84381403277a5ddccd54f88188f254345c7bef29103c82e479a42342063253e",
-    "Supplement/FigS02.pdf": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
-    "Supplement/FigS02.png": "73d7955993a3b3ffbf58a707684cd16593ca9fe825be2254e36b2b0078c53cc0",
+    "Supplement/FigS02.pdf": "07ffe6f3cdf9b719b0543d311ee91b60d9375089dd26474e4b79a3be37e6f451",
+    "Supplement/FigS02.png": "b95981df452410e633ef827b4a276f4c5ec64669d45f21f72ac89058d5c27186",
     "Supplement/FigS03.pdf": "0eb7015dc5c0a6cf473c1bd88a7ea4a24a1490ce4684bab9acaa789a0fc2028c",
     "Supplement/FigS03.png": "db7b785e919d4c85392a16491c6456325b76862ab968dd0ed87e1edccbe34478",
-    "Supplement/FigS04.pdf": "1d9e97a4642992b00bb9c6abfd1f0f0e190ae1689e04f109dcfa8cd9ac7c1ec7",
-    "Supplement/FigS04.png": "86302144c3c28c2026e5d6b1dc938a919f480bff0b2bb67dce1e4eca093c4192",
+    "Supplement/FigS04.pdf": "08f4485d03276e7da2393e70cc9c24b93f5c6d6048774ad8e6a78dfca36c8716",
+    "Supplement/FigS04.png": "86ee9d4140084b97d3449c004a374ee5e6aee6c38de47f20b0fcff0eb70bad25",
     "Supplement/FigS05.pdf": "47a89d75b2ba0fa2434669255da0a985b192ef0405b34f671752a1a159fddcbe",
     "Supplement/FigS05.png": "503590858e0f5980fdb14e1ccdff9a0d93037e0fd5e4bbde860d054286c6eb8f",
     "Supplement/FigS06.pdf": "fae0fc5774ecbfa8c9f7d7b4c3b94af059726de648255f061f4188745f0dc051",
     "Supplement/FigS06.png": "fe45ed66139828ecb943d855876fb9c8188f7a03021b5c5bcd762726442c45f1",
-    "Supplement/FigS07.pdf": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
-    "Supplement/FigS07.png": "e7dcb96b52f1713303d16c327fed15654c06d40dbe90d7391238f6b7f928b64a",
-    "Supplement/FigS08.pdf": "78ebcdf6df9287c46f065ad1ac224092a82e4e67d13dfccf00f23377e16f18f3",
-    "Supplement/FigS08.png": "5760cfac0050d44f7670fb329ffbd2c3f41f7cc2af7f2b8728b76f07c6bd68df"
+    "Supplement/FigS07.pdf": "93c80d7935bf03186d1e3989c2360bc812b8982716ece0b318f569cd4250309f",
+    "Supplement/FigS07.png": "8018262fc8cf2a9a5f345454d473cd1a6c15cf5af4f571d91c3fb10b85f13d51",
+    "Supplement/FigS08.pdf": "d7e10928ae2bd573e5f8397d1f965ba0e1d41cc73594cc6be21b7f44351e240a",
+    "Supplement/FigS08.png": "38b2661d56626c969b7d31245f74d39c4dde7d84428c675b8056c3f9f0ca923a"
   },
   "changed_numbered_artwork_from_starting_worktree": [],
   "starting_packet_sha256": {
-    "ALL_MAIN_FIGURES.pdf": "a54158c551c42f294f0de501abd9c287fd7d5990aaa08fe40d0502aa80b40fc6",
-    "ALL_SUPPLEMENT_FIGURES.pdf": "ab7b7588103edd77729bab1c1111fd0aa04653f5fd5db47b3ef7b419620321be",
-    "ALL_FIGURES_WITH_CAPTIONS.pdf": "c634881ddde99b3ab852db2eed6641505c87cfab1521626edd0bb595c61cc56b"
+    "ALL_MAIN_FIGURES.pdf": "2c7a9cfaf3d3e36eb39540e62d79cbe66227ac4e58997ff247143530ae9c50e1",
+    "ALL_SUPPLEMENT_FIGURES.pdf": "560340a337b24b3f0a8dfe4ffce59795bceba70a45fb7d69bfb7ed578c7411b6",
+    "ALL_FIGURES_WITH_CAPTIONS.pdf": "b2dffc96878d7d7c774c70717c167397f9d5ccac7794384a3326e49292d5239b"
   },
   "final_packet_sha256": {
-    "ALL_MAIN_FIGURES.pdf": "a54158c551c42f294f0de501abd9c287fd7d5990aaa08fe40d0502aa80b40fc6",
-    "ALL_SUPPLEMENT_FIGURES.pdf": "ab7b7588103edd77729bab1c1111fd0aa04653f5fd5db47b3ef7b419620321be",
-    "ALL_FIGURES_WITH_CAPTIONS.pdf": "a1d7a697e4f05e5084f796325b8192704cb791388afea16e612661671d472b6b"
+    "ALL_MAIN_FIGURES.pdf": "2c7a9cfaf3d3e36eb39540e62d79cbe66227ac4e58997ff247143530ae9c50e1",
+    "ALL_SUPPLEMENT_FIGURES.pdf": "560340a337b24b3f0a8dfe4ffce59795bceba70a45fb7d69bfb7ed578c7411b6",
+    "ALL_FIGURES_WITH_CAPTIONS.pdf": "b2dffc96878d7d7c774c70717c167397f9d5ccac7794384a3326e49292d5239b"
   },
   "s5_artwork_unchanged_from_starting_worktree": true,
   "figure1_no_downstream_result_plot_in_stage4": true,
-  "unaffected_13_artwork_pairs_byte_identical": true,
+  "retained_artwork_byte_identical": true,
+  "scientific_label_corrections": {
+    "Main/Fig06": {
+      "role": "distributional",
+      "vector_signature": "6843f88ba5642fa10e2bcb6fea8cac1cf771f0f94b561416d42e48b587b0a64a",
+      "nontext_vectors_unchanged": true,
+      "corrections": [
+        {
+          "before": "Vulnerability-first",
+          "after": ""
+        }
+      ]
+    },
+    "Main/Fig07": {
+      "role": "resource_effects",
+      "vector_signature": "25687f627a09fe486b42ce0ed1a765b4d60ae17c37ada387f67112da6c5fb82e",
+      "nontext_vectors_unchanged": true,
+      "corrections": [
+        {
+          "before": "High­low vulnerability gap",
+          "after": "Absolute Q4-Q1 gap"
+        },
+        {
+          "before": "E. High­low vulnerability service­loss gap",
+          "after": "E. Absolute Q4-Q1 service-loss gap"
+        },
+        {
+          "before": "F. High­low vulnerability service­loss gap",
+          "after": "F. Absolute Q4-Q1 service-loss gap"
+        }
+      ],
+      "layout_translation": {
+        "source_sha256": "ef5d8915eec911131362b8aa8b9e5010d3ebd04377c729f3db4ba9c4c46427e8",
+        "translation_pt": [
+          -14.4,
+          0
+        ],
+        "scale": 1.0,
+        "source_form_embedded_without_scaling": true,
+        "before_margins_mm": [
+          13.038666666666666,
+          2.7093333333333334
+        ],
+        "after_margins_mm": [
+          7.958666666666667,
+          7.7893333333333326
+        ]
+      }
+    },
+    "Supplement/FigS02": {
+      "corrections": [],
+      "nontext_vectors_unchanged": true,
+      "layout_translation": {
+        "source_sha256": "ce5da91a9de587792fa7572a00a0be1eb7be88c270a39d070e5f4f0c081a7362",
+        "translation_pt": [
+          -16.32,
+          0
+        ],
+        "scale": 1.0,
+        "source_form_embedded_without_scaling": true,
+        "before_margins_mm": [
+          23.537333333333333,
+          11.853333333333333
+        ],
+        "after_margins_mm": [
+          17.78,
+          17.610666666666667
+        ]
+      }
+    },
+    "Supplement/FigS04": {
+      "role": "ga",
+      "vector_signature": "b1d0514e861b13d1102b3a4436cf4fe363d09edd3ec39cdf720cafafc5c85705",
+      "nontext_vectors_unchanged": true,
+      "corrections": [
+        {
+          "before": "2,000 validation realizations",
+          "after": "2,000 held-out realizations"
+        },
+        {
+          "before": "C. Independent validation",
+          "after": "C. Held-out evaluation"
+        }
+      ]
+    },
+    "Supplement/FigS07": {
+      "corrections": [],
+      "nontext_vectors_unchanged": true,
+      "layout_translation": {
+        "source_sha256": "9f03801db3e4a6730561cf9ef8c71f3f569e7f120fb6b4d3d56acd707c87baf8",
+        "translation_pt": [
+          -21.12,
+          0
+        ],
+        "scale": 1.0,
+        "source_form_embedded_without_scaling": true,
+        "before_margins_mm": [
+          21.336,
+          6.265333333333333
+        ],
+        "after_margins_mm": [
+          13.885333333333332,
+          13.716000000000001
+        ]
+      }
+    },
+    "Supplement/FigS08": {
+      "role": "resource_levels",
+      "vector_signature": "e60e53b9f7ab6b7f1791c998ca868aa4d70032fa92e58f9501511c2da084ed24",
+      "nontext_vectors_unchanged": true,
+      "corrections": [
+        {
+          "before": "E. High-low vulnerability service-loss gap",
+          "after": "E. Absolute Q4-Q1 service-loss gap"
+        },
+        {
+          "before": "Service-loss gap (h)",
+          "after": "Absolute gap (h)"
+        },
+        {
+          "before": "F. High-low vulnerability service-loss gap",
+          "after": "F. Absolute Q4-Q1 service-loss gap"
+        },
+        {
+          "before": "Service-loss gap (h)",
+          "after": "Absolute gap (h)"
+        }
+      ]
+    }
+  },
   "figure8_separate_map_legends_updated": true,
   "figure8_legend_audit": {
     "source_file": "results/figure_review_rq_aligned_20261101/Main/Fig07.pdf",

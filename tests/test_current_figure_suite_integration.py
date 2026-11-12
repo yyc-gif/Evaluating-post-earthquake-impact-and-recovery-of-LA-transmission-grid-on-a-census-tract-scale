@@ -98,11 +98,11 @@ def test_figure1_builder_generates_method_process_not_recovery_results():
         source_pdf,panel_pdf,panel_audit,community_typology_pdf=community_pdf)
     with fitz.open(stream=panel_pdf,filetype='pdf') as panel:
         stage_text=' '.join(panel[0].get_text().replace('\xad','-').split())
-    for phrase in ('Priority Rules', 'Impact-first example', 'Tract population',
+    for phrase in ('Priority Order', 'Impact-first example', 'Tract population',
                    'Repair Scheduling', 'Crew 5', 'Crew 9', 'Crew 12',
                    'Crew 14', 'Crew 17', 'Travel', 'Repair', '60 h',
-                   'Completion Events', 'complete', 'Crew', 'released',
-                   'Station', 'restored', 'Tract', 'service'):
+                   'Completion Events', 'Raw function', 'Source link', 'Tract service',
+                   'Before', 'Later', '18.2 h', '30.7 h', 'Repair end: crew released'):
         assert phrase in stage_text
     for retired in ('Blue-gray fill', '2 of 57 crews', 'saved event excerpt',
                     'Recorded task finish', 'source gate', 'Stage 3 tract service'):

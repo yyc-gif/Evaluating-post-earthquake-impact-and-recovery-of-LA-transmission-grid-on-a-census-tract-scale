@@ -69,6 +69,23 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
                     drawings=page.get_drawings()
                     assert sum(1 for d in drawings if fitz.Rect(20,365,259,600).intersects(d['rect']))>1000
                     assert sum(1 for d in drawings if fitz.Rect(260,365,515,600).intersects(d['rect']))>1000
+        elif record['final_name'].rsplit('.',1)[0] in {'Supplement/FigS02','Supplement/FigS07','Main/Fig07'}:
+            if record['final_name'].endswith('.pdf'):
+                import figure_presentation
+                base=expected
+                if record['final_name'].startswith('Main/Fig07'):
+                    base,_=figure_presentation.scientific_label_clarity(base,'resource_effects')
+                expected_centered,audit=figure_presentation.center_visible_artwork(base)
+                assert current==expected_centered
+                assert audit['scale']==1 and audit['source_form_embedded_without_scaling']
+                assert abs(audit['after_margins_mm'][0]-audit['after_margins_mm'][1])<.2
+        elif record['final_name'].rsplit('.',1)[0] in {
+                'Main/Fig06','Main/Fig07','Supplement/FigS04','Supplement/FigS08'}:
+            assert current!=expected
+            if record['final_name'].endswith('.pdf'):
+                import figure_presentation
+                with fitz.open(stream=current,filetype='pdf') as a, fitz.open(stream=expected,filetype='pdf') as b:
+                    assert figure_presentation.vector_signature(a[0])==figure_presentation.vector_signature(b[0])
         else:
             assert current==expected
     index=rows(MIRROR/'FIGURE_INDEX.csv')
@@ -78,7 +95,8 @@ def test_every_artwork_and_mirror_matches_actual_source_bytes():
 
 def test_preservation_registry_compares_frozen_inputs_to_actual_outputs():
     records=json.loads((SUITE/'QA/ARTWORK_PRESERVATION.json').read_text(encoding='utf-8'))
-    changed={'Main/Fig01','Main/Fig07','Supplement/FigS05'}
+    changed={'Main/Fig01','Main/Fig05','Main/Fig06','Main/Fig07',
+             'Supplement/FigS02','Supplement/FigS04','Supplement/FigS05','Supplement/FigS08','Supplement/FigS09'}
     assert len(records)==32
     for row in records:
         assert row['output_sha256']==digest(SUITE/(row['new_figure']+'.'+row['format']))
@@ -119,11 +137,11 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert audit['stage5_legacy_layer_is_clipped_and_covered_by_current_panels']
     assert all(r['pixel_identical'] for r in audit['top_modules_unscaled_and_preserved'])
     assert audit['no_recovery_curves_or_downstream_outcomes']
-    for phrase in ('Priority Rules', 'Impact-first example', 'Tract population',
+    for phrase in ('Priority Order', 'Impact-first example', 'Tract population',
                    'Repair Scheduling', 'Crew 5', 'Crew 9', 'Crew 12',
                    'Crew 14', 'Crew 17', 'Travel', 'Repair', '60 h',
-                   'Completion Events', 'complete', 'Crew', 'released',
-                   'Station', 'restored', 'Tract', 'service'):
+                   'Completion Events', 'Raw function', 'Source link', 'Tract service',
+                   'Before', 'Later', '18.2 h', '30.7 h', 'Repair end: crew released'):
         assert phrase in stage_text
     for retired in ('Map numbers:', 'Blue-gray fill', '2 of 57 crews',
                     'saved event excerpt', 'Recorded task finish',
@@ -137,6 +155,8 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
         assert abs(doc[0].rect.width*25.4/72-185.0)<0.02
         assert abs(doc[0].rect.height*25.4/72-265.2889)<0.02
     assert panel_audit['uses_priority_map'] and panel_audit['uses_saved_schedule']
+    assert panel_audit['priority_map_source_sha256']==hashlib.sha256(builder.source(
+        builder.SOURCE+'/Supplement/FigS08.pdf')).hexdigest()
     assert panel_audit['no_fabricated_task_events']
     assert panel_audit['schedule_archive_sha256'] == panel_audit['schedule_manifest']['npz_sha256']
     assert panel_audit['crews_in_model'] == 57
@@ -182,14 +202,13 @@ def test_figure1_stage4_is_implementation_derived_method_flow():
     assert 'separate parallel-repair reference' in p2_caption
     captions=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text(encoding='utf-8')
     fig1=captions.split('## Figure 1.',1)[1].split('\n## ',1)[0]
-    for phrase in ('Impact-first example', 'five crew histories',
-                   '2pc50/C57_D1 evaluation realization 0', '5 of 57 crews',
+    for phrase in ('Impact-first priority example', 'five of 57 crew histories',
+                   '2pc50/C57_D1 evaluation realization 0',
                    'saved directed travel and damage-state-specific repair intervals',
-                   'crews are released',
+                   'crew is released',
                    'Unconstrained is a separate parallel-repair reference',
-                   'population-weighted service availability',
-                   'T80 (time to 80% modeled service availability)',
-                   'community recovery types'):
+                   'T80 is time to 80% modeled service availability',
+                   'service loss integrates its deficit'):
         assert phrase in fig1
     manifest=rows(SUITE/'FIGURE_MANIFEST.csv')
     row=next(r for r in manifest if r['final_name']=='Main/Fig01.pdf')
@@ -392,7 +411,7 @@ def test_palette_and_source_science_preserved():
     assert q['figure1_no_downstream_result_plot_in_stage4']
     assert 'figure1_curve_source_sha256' not in q
     assert q['figure1_stage4_generator_audit']['no_recovery_curves_or_downstream_outcomes']
-    assert q['unaffected_13_artwork_pairs_byte_identical']
+    assert q['retained_artwork_byte_identical']
     assert q['figure8_separate_map_legends_updated']
     assert q['dynamic_full_minus_fixed_identity_max_abs_error']<1e-12
     assert q['static_station_records']==92 and q['static_core_source_records']==14
@@ -445,3 +464,77 @@ def test_local_renderer_implementation_hashes_are_recorded():
     impl=json.loads((SUITE/'QA/SOURCE_IDENTITIES.json').read_text(encoding='utf-8'))['implementation_files']
     for rel,record in impl.items():
         assert digest(ROOT/rel)==record['sha256']
+
+
+def test_completion_example_is_a_saved_disconnected_restoration_not_invented_cells():
+    path=ROOT/'docs/reproducibility/figure_scientific_publication_review_20261111/EVENT_STATE_EXAMPLE.json'
+    data=json.loads(path.read_text())
+    assert data['values']==[[.03,1.,1.],[0.,0.,1.],[0.,0.,1.]]
+    assert data['tract_id']=='06037402301' and data['tract_dependency_weight']==1
+    assert abs(data['completion_hr']-18.154886173136717)<1e-12
+    assert abs(data['source_connection_hr']-30.733697448399262)<1e-12
+    assert data['source_connection_hr']>data['completion_hr']
+    assert abs(data['next_task_start_hr']-data['completion_hr'])<1e-10
+    import inspect
+    source=inspect.getsource(builder.workflow_figure.build_stage4_process_panel)
+    assert 'tract_cells' not in source and 'crew_cx' not in source
+    if Path(data['source_archive']).is_file():
+        import numpy as np
+        assert digest(Path(data['source_archive']))==data['source_npz_sha256']
+        with np.load(data['source_archive'],allow_pickle=False) as a:
+            j=list(a['station_ids'].astype(str)).index(data['station_id'])
+            ix=[int(np.argmin(abs(a['event_time_hr']-t))) for t in data['archived_state_times_hr']]
+            assert a['f'][ix,j].tolist()==data['values'][0]
+            assert a['C'][ix,j].tolist()==data['values'][1]
+            assert a['e'][ix,j].tolist()==data['values'][2]
+
+
+def test_text_only_vector_check_detects_paint_and_geometry_changes():
+    import figure_presentation
+    with fitz.open() as doc:
+        p=doc.new_page();p.draw_rect(fitz.Rect(10,10,30,30),fill=(.2,.4,.5))
+        original=figure_presentation.vector_signature(p)
+        p.insert_text((10,50),'Caption')
+        assert figure_presentation.vector_signature(p)==original
+        p.draw_line((10,60),(30,60),color=(1,0,0))
+        assert figure_presentation.vector_signature(p)!=original
+    with fitz.open() as recolored:
+        p=recolored.new_page();p.draw_rect(fitz.Rect(10,10,30,30),fill=(.3,.4,.5))
+        assert figure_presentation.vector_signature(p)!=original
+
+
+def test_current_entrypoint_routes_to_the_review_collection():
+    import inspect
+    import build_current_figures
+    text=inspect.getsource(build_current_figures.main)
+    assert 'build_s6_main4_review' in text
+    assert 'historical_p2' in text
+
+
+def test_manifest_native_dimensions_match_every_actual_pdf():
+    for r in rows(SUITE/'FIGURE_MANIFEST.csv'):
+        if not r['final_name'].endswith('.pdf'):continue
+        with fitz.open(ROOT/r['current_source_file']) as doc:
+            expected=[doc[0].rect.width*25.4/72,doc[0].rect.height*25.4/72]
+            actual=[float(v.strip()) for v in r['size_mm'].split('x')]
+            assert max(abs(a-b) for a,b in zip(expected,actual))<.002
+
+
+def test_scientific_text_edits_do_not_remove_other_reference_labels():
+    qa=json.loads((SUITE/'QA/SCIENTIFIC_LABEL_CLARITY.json').read_text())
+    assert len(qa['Main/Fig06']['corrections'])==1
+    assert qa['Main/Fig06']['corrections'][0]['after']==''
+    assert len(qa['Supplement/FigS04']['corrections'])==2
+    for entry in qa.values():assert entry['nontext_vectors_unchanged']
+    with fitz.open(SUITE/'Main/Fig06.pdf') as doc:
+        assert clean_pdf_text(doc[0].get_text()).count('Vulnerability-first')>=5
+
+
+def test_damage_boxplot_caption_matches_frozen_station_percentiles():
+    qa=json.loads((ROOT/'docs/reproducibility/figure_scientific_publication_review_20261111/DAMAGE_BOXPLOT_QA.json').read_text())
+    assert len(qa['records'])==4
+    assert max(r['max_abs_error'] for r in qa['records'])<1e-5
+    assert all(r['stations']==92 and r['realizations']==1000 for r in qa['records'])
+    caps=(SUITE/'MANUSCRIPT_FACING_CAPTIONS.md').read_text()
+    assert '5th-95th station percentiles' in caps
+    assert '1.5-IQR' not in caps

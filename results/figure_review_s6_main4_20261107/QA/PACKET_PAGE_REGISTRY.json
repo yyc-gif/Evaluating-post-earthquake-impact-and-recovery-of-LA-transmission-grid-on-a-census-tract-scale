@@ -5,7 +5,7 @@
     "figure_height_pt": 752.0,
     "caption_height_pt": 159.0157012939453,
     "title": "Figure 1. Analytical framework",
-    "caption": "Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 pairs a representative Impact-first example map (numbers are full station priority ranks) with five crew histories from the saved 2pc50/C57_D1 evaluation realization 0 (5 of 57 crews). Gantt rows show saved directed travel and damage-state-specific repair intervals for damaged tasks (DS > 0); at completion, crews are released, raw station functionality is restored, and source-gated tract service is updated. Map shading is tract population on a logarithmic scale. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), vulnerability-quartile service loss and community recovery types; policy trajectories appear in Figure 5."
+    "caption": "Workflow from seismic damage through source-gated station functionality and tract dependencies to community recovery. Fixed rules or GA planning produce a station order for the same finite-crew scheduler. Stage 4 shows an Impact-first priority example and five of 57 crew histories from 2pc50/C57_D1 evaluation realization 0. Map numbers are full station priority ranks; damaged tasks (DS > 0) use saved directed travel and damage-state-specific repair intervals. At repair completion the crew is released and raw station functionality is restored. The recorded state inset shows why source connectivity and tract service need not increase immediately (all states 0-1). Map shading is log population. Unconstrained is a separate parallel-repair reference. T80 is time to 80% modeled service availability; service loss integrates its deficit. Strategy outcomes appear in Figure 5."
   },
   {
     "figure": "Main/Fig02",
@@ -19,9 +19,9 @@
     "figure": "Main/Fig03",
     "page": 3,
     "figure_height_pt": 612.283447265625,
-    "caption_height_pt": 96.5157470703125,
+    "caption_height_pt": 109.01570129394531,
     "title": "Figure 3. Damage and Unconstrained recovery",
-    "caption": "Earthquake damage and initial modeled service are followed by Unconstrained recovery. Panel C reports the mean loss shares from substation damage, functionality threshold, and source-path loss; D/E show population-weighted and tract-mean T80. T80 is time to 80% modeled service; applicable whiskers show 5th-95th realization ranges."
+    "caption": "A summarizes station-level mean damage states: boxes span the interquartile range, lines mark medians, and whiskers end at observations within the 5th-95th station percentiles, with outliers omitted. B shows tract initial-service distributions; C decomposes population-weighted Unconstrained deficit. D distributes system T80 across 1,000 2pc50 realizations; E maps tract-level mean T80. T80 is time to 80% modeled service availability."
   },
   {
     "figure": "Main/Fig04",
@@ -29,31 +29,31 @@
     "figure_height_pt": 643.4645385742188,
     "caption_height_pt": 121.51570129394531,
     "title": "Figure 4. Network-dependent source connectivity during recovery",
-    "caption": "(A) Recovery of population-dependency-weighted joint functionality and source connection through the full network (solid) or a fixed precomputed path (dashed). (B) Their difference shows restoration-sequence-dependent alternative-route support. (C) Station source access conditional on station functionality; (D) additional conditional reliability beyond the fixed path. Triangles mark Core sources. A/B are dynamic recovery comparisons; C/D are fragility-based station diagnostics. These topological measures are not delivered electricity."
+    "caption": "For 2pc50. (A) Recovery of population-dependency-weighted joint functionality and source connection through the full network (solid) or a fixed precomputed path (dashed). (B) Their difference shows restoration-sequence-dependent alternative-route support. (C) Station source access conditional on station functionality; (D) additional conditional reliability beyond the fixed path. Triangles mark Core sources. A/B are dynamic recovery comparisons; C/D are fragility-based station diagnostics. These topological measures are not delivered electricity."
   },
   {
     "figure": "Main/Fig05",
     "page": 5,
     "figure_height_pt": 530.0,
-    "caption_height_pt": 84.0157470703125,
+    "caption_height_pt": 96.5157470703125,
     "title": "Figure 5. Restoration-policy performance under 2pc50",
-    "caption": "Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability."
+    "caption": "For 2pc50/C57_D1. Recovery trajectories and outcomes for six scheduled strategies and the Unconstrained reference. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability."
   },
   {
     "figure": "Main/Fig06",
     "page": 6,
     "figure_height_pt": 708.6614379882812,
-    "caption_height_pt": 96.5157470703125,
+    "caption_height_pt": 109.01570129394531,
     "title": "Figure 6. Vulnerability-targeted recovery and distributional effects",
-    "caption": "A/B show overall and quartile service loss. C compares Vulnerability-first with Hospital-first, Impact-first, and Degree-first for overall loss, Q4 loss, signed Q4-Q1 gap, mean within-realization absolute |Q4-Q1| gap, and hospital-linked loss; D shows Gini change and E maps tract-level mean changes. B-D whiskers show 5th-95th realization ranges; negative map values favor Vulnerability-first."
+    "caption": "For 2pc50/C57_D1. A/B show overall and quartile service loss. C compares Vulnerability-first with Hospital-first, Impact-first, and Degree-first for overall loss, Q4 loss, signed Q4-Q1 gap, mean within-realization absolute |Q4-Q1| gap, and hospital-linked loss; D shows Gini change and E maps tract-level mean changes. B-D whiskers show 5th-95th realization ranges; negative map values favor Vulnerability-first."
   },
   {
     "figure": "Main/Fig07",
     "page": 7,
     "figure_height_pt": 634.9606323242188,
-    "caption_height_pt": 84.0157470703125,
+    "caption_height_pt": 109.01570129394531,
     "title": "Figure 7. Resource dependence of policy contrasts under 2pc50",
-    "caption": "Vulnerability-first effects across crew-availability and repair-duration scenarios. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons show means only. Negative values indicate lower deficit under Vulnerability-first."
+    "caption": "For 2pc50; resource multipliers are relative to C57_D1. Vulnerability-first minus each reference strategy across crew-availability and repair-duration scenarios. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons show means only. The third row is the change in mean within-realization absolute Q4-Q1 service-loss gap; other rows are deficit changes. Negative values favor Vulnerability-first for the named outcome."
   },
   {
     "figure": "Main/Fig08",
@@ -61,7 +61,7 @@
     "figure_height_pt": 684.0,
     "caption_height_pt": 146.5157012939453,
     "title": "Figure 8. Community recovery types and social vulnerability",
-    "caption": "A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) and have five-policy mean total service deficit at or above 38.38135467381475 equivalent full-service-deficit hours over 0-480 h (the positive-population cohort 75th percentile). The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score."
+    "caption": "For 2pc50/C57_D1. A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows three-class geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines in C and D identify tracts that are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) and have five-policy mean total service deficit at or above 38.38135467381475 equivalent full-service-deficit hours over 0-480 h (the positive-population cohort 75th percentile). Population is fitted as log1p population; profile cells are ordinary cohort z-score means, not weighted distances. ECDF markers locate class medians. This policy-conditioned screen is not a significance test or intervention-priority score."
   },
   {
     "figure": "Supplement/FigS01",
@@ -83,17 +83,17 @@
     "figure": "Supplement/FigS03",
     "page": 11,
     "figure_height_pt": 432.0,
-    "caption_height_pt": 71.5157470703125,
+    "caption_height_pt": 84.0157470703125,
     "title": "Supplementary Figure S3. Functional-network recovery",
-    "caption": "Recovery of the largest connected-component fraction and mean degree within that component among functional substations. The curves describe network topology, not power flow or delivered electricity."
+    "caption": "For 2pc50/C57_D1. Recovery of the largest connected-component fraction and mean degree within that component among functional substations. The curves describe network topology, not power flow or delivered electricity."
   },
   {
     "figure": "Supplement/FigS04",
     "page": 12,
     "figure_height_pt": 472.0,
-    "caption_height_pt": 84.0157470703125,
+    "caption_height_pt": 109.01570129394531,
     "title": "Supplementary Figure S4. Genetic-algorithm diagnostics",
-    "caption": "A/B summarize 20 GA runs using 64 optimization realizations and 100 repair orders per run. C/D evaluate the selected order on 2,000 separate validation realizations; D decomposes the mean GA-minus-Impact-first loss gap. Negative values indicate lower deficit under GA; a global optimum is not established."
+    "caption": "For 2pc50/C57_D1. A/B summarize 20 GA runs using 64 optimization realizations and 100 repair orders per run. C/D evaluate the selected order on 2,000 held-out simulation realizations; D decomposes the mean GA-minus-Impact-first loss gap. Negative values indicate lower deficit under GA; a global optimum is not established. This evaluates generalization within the same model, not independent observed outages. Paired component differences reflect restoration timing and gating, not different physical damage samples."
   },
   {
     "figure": "Supplement/FigS05",
@@ -101,30 +101,30 @@
     "figure_height_pt": 411.02362060546875,
     "caption_height_pt": 121.51570129394531,
     "title": "Supplementary Figure S5. Dependency and service-gate sensitivity",
-    "caption": "(A) Change in population-weighted normalized service deficit when the M1 mapping cutoff is relaxed from 3% to 0% or 1%. (B) Change when source connectivity is removed while the 0.50 functionality threshold is retained. (C) Change under 0.05 or 0.75 functionality thresholds, with source connectivity reevaluated. Points are means of paired differences across 1,000 frozen physical realizations; bars show empirical 5th-95th percentile ranges, not confidence intervals. No damage samples or repair schedules were regenerated."
+    "caption": "For 2pc50/C57_D1. (A) Change in population-weighted normalized service deficit when the M1 mapping cutoff is relaxed from 3% to 0% or 1%. (B) Change when source connectivity is removed while the 0.50 functionality threshold is retained. (C) Change under 0.05 or 0.75 functionality thresholds, with source connectivity reevaluated. Points are means of paired differences across 1,000 frozen physical realizations; bars show empirical 5th-95th percentile ranges, not confidence intervals. No damage samples or repair schedules were regenerated."
   },
   {
     "figure": "Supplement/FigS06",
     "page": 14,
     "figure_height_pt": 683.1495971679688,
-    "caption_height_pt": 71.5157470703125,
+    "caption_height_pt": 96.5157470703125,
     "title": "Supplementary Figure S6. Facility planning limits",
-    "caption": "Provider planning loads, reported limits, and modeled service-loss changes under capacity ceilings. Post-earthquake load flow and complete electrical-capacity adequacy are not assessed."
+    "caption": "For 2pc50/C57_D1. Provider planning loads, reported limits, and modeled service-loss changes under capacity ceilings. Post-earthquake load flow and complete electrical-capacity adequacy are not assessed. Panel B points show population-weighted mean increases from the modeled ceiling; bars span the paired 5th-95th realization percentiles."
   },
   {
     "figure": "Supplement/FigS07",
     "page": 15,
     "figure_height_pt": 748.346435546875,
-    "caption_height_pt": 71.5157470703125,
+    "caption_height_pt": 96.5157470703125,
     "title": "Supplementary Figure S7. Restoration-priority geography",
-    "caption": "Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The white-purple scale shows population; outcome comparisons appear in Figures 5-7 and Supplementary Figure S8."
+    "caption": "Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. A marks hospital-linked tracts, B marks frozen Q4 tracts, and C shades log population; ranks are full station priority positions, not realization-specific dispatch positions; outcome comparisons appear in Figures 5-7 and Supplementary Figure S8."
   },
   {
     "figure": "Supplement/FigS08",
     "page": 16,
     "figure_height_pt": 654.8031616210938,
-    "caption_height_pt": 71.5157470703125,
+    "caption_height_pt": 84.0157470703125,
     "title": "Supplementary Figure S8. Outcomes under resource variation",
-    "caption": "Absolute modeled service losses under crew-availability and repair-duration variations, reported separately for overall, Q4, Q4-Q1, and hospital-linked outcomes. Whiskers show the 5th-95th realization range."
+    "caption": "For 2pc50; resource multipliers are relative to C57_D1. Absolute modeled service losses under crew-availability and repair-duration variations, reported separately for overall, Q4, mean within-realization absolute Q4-Q1 gap, and hospital-linked outcomes. Whiskers show the 5th-95th realization range."
   }
 ]

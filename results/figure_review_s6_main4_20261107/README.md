@@ -7,3 +7,5 @@ This is a separate author-review collection. The source suite, manuscripts, simu
 Place Main Figure 4 after Section 4.2 and before the Section 4.3 heading. See MANUSCRIPT_INTEGRATION.md for the bridge and figure-reference substitutions. No editable manuscript document is tracked in this checkout, so manuscript placement is prepared, not falsely claimed as edited.
 
 Reproduce: `python src/la_grid/plotting/build_s6_main4_review.py`. The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. Current older-suite builders remain available and do not target this separate collection.
+
+Scientific/publication review: `docs/reproducibility/figure_scientific_publication_review_20261111/FIGURE_REVIEW.md`. The completion inset uses recorded raw/functionality, connectivity and tract-service states; no illustrative tract cells are invented. Journal-specific acceptance and manuscript alignment remain open gates; see `JOURNAL_AND_DESIGN.md` in that directory.

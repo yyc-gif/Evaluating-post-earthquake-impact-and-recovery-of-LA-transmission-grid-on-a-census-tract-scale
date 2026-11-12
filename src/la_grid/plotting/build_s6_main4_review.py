@@ -173,7 +173,9 @@ def main(output_dir=None,mirror_dir=None):
     u.write(dest/'QA/FIG01_STAGE4_METHOD_PANEL.pdf',stage4_panel_pdf)
     u.write(dest/'QA/FIG01_STAGE4_METHOD_PANEL.png',stage4_panel_png)
     page_width,page_height=stage4_audit['figure_dimensions_pt']
-    with fitz.open(stream=source_figure1,filetype='pdf') as before_doc, \
+    review_before=u.payload('96367fe564e065933e828d82afd2b5a8909b84e5',
+                          'results/figure_review_s6_main4_20261107/Main/Fig01.pdf')
+    with fitz.open(stream=review_before,filetype='pdf') as before_doc, \
          fitz.open(stream=stage4_pdf,filetype='pdf') as after_doc:
         old_height=before_doc[0].rect.height
         comparison=fitz.open()
@@ -209,20 +211,36 @@ def main(output_dir=None,mirror_dir=None):
         if not path.is_file() or path.read_bytes()!=raw:
             u.write(path,raw)
 
+    label_roles={'Main/Fig06':'distributional','Main/Fig07':'resource_effects',
+                 'Supplement/FigS04':'ga','Supplement/FigS08':'resource_levels'}
+    center_stems={'Main/Fig07','Supplement/FigS02','Supplement/FigS07'}
+    label_artwork={}; label_audits={}
+    for old,new in zip(ORDER,NEW):
+        if new in label_roles or new in center_stems:
+            print('Reviewing scientific labels: '+new,flush=True)
+            pdf=source(f'{SOURCE}/{old}.pdf')
+            label_audits[new]={'corrections':[],'nontext_vectors_unchanged':True}
+            if new in label_roles:
+                pdf,label_audits[new]=figure_presentation.scientific_label_clarity(pdf,label_roles[new])
+            if new in center_stems:
+                pdf,label_audits[new]['layout_translation']=figure_presentation.center_visible_artwork(pdf)
+            with fitz.open(stream=pdf,filetype='pdf') as revised:
+                label_artwork[new]={'pdf':pdf,'png':revised[0].get_pixmap(dpi=600,alpha=False).tobytes('png'),
+                                    'preview':revised[0].get_pixmap(dpi=150,alpha=False).tobytes('png')}
+    u.dump(dest/'QA/SCIENTIFIC_LABEL_CLARITY.json',label_audits)
     for old,new in zip(ORDER,NEW):
         old_title,body=caps[old]
         title=label(new)+'.'+old_title.split('.',1)[1]
         body=references(body)
         if new=='Main/Fig01':
-            body=('Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. '
-                  'Stage 4 pairs a representative Impact-first example map (numbers are full station priority ranks) with five '
-                  'crew histories from the saved 2pc50/C57_D1 evaluation realization 0 (5 of 57 crews). Gantt rows show '
-                  'saved directed travel and damage-state-specific repair intervals for damaged tasks (DS > 0); at '
-                  'completion, crews are released, raw station functionality is restored, and source-gated tract service '
-                  'is updated. Map shading is tract population on a logarithmic scale. Unconstrained is a separate '
-                  'parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% '
-                  'modeled service availability), vulnerability-'
-                  'quartile service loss and community recovery types; policy trajectories appear in Figure 5.')
+            body=workflow_figure.methodology_caption(5)
+        if new=='Main/Fig03':
+            body=('A summarizes station-level mean damage states: boxes span the interquartile range, lines mark medians, '
+                  'and whiskers end at observations within the 5th-95th station percentiles, with outliers omitted. B shows tract initial-service distributions; '
+                  'C decomposes population-weighted Unconstrained deficit. D distributes system T80 across 1,000 2pc50 '
+                  'realizations; E maps tract-level mean T80. T80 is time to 80% modeled service availability.')
+        if new=='Main/Fig05':
+            body=body.replace('for seven restoration strategies','for six scheduled strategies and the Unconstrained reference')
         if new=='Main/Fig08':
             old_rule='outlines mark frozen Q4 and the cohort P75'
             new_rule=('outlined tracts are in frozen FEMA NRI v1.19 SOVI quartile Q4 (the highest social-vulnerability quartile) '
@@ -230,6 +248,20 @@ def main(output_dir=None,mirror_dir=None):
                       'full-service-deficit hours over 0-480 h (the positive-population cohort 75th percentile)')
             assert old_rule in body
             body=body.replace(old_rule,new_rule)
+            body=body.replace('P2/K3 geography','three-class geography').replace('outlined tracts are','outlines in C and D identify tracts that are')
+            body=body.replace(' The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4.',
+                ' Population is fitted as log1p population; profile cells are ordinary cohort z-score means, not weighted distances. ECDF markers locate class medians.')
+        if new=='Main/Fig07':
+            body=body.replace('Vulnerability-first effects','Vulnerability-first minus each reference strategy').replace('Negative values indicate lower deficit under Vulnerability-first.',
+                'The third row is the change in mean within-realization absolute Q4-Q1 service-loss gap; other rows are deficit changes. Negative values favor Vulnerability-first for the named outcome.')
+        if new=='Supplement/FigS04':
+            body=body.replace('separate validation realizations','held-out simulation realizations')+' This evaluates generalization within the same model, not independent observed outages.'
+        if new=='Supplement/FigS06':
+            body+=' Panel B points show population-weighted mean increases from the modeled ceiling; bars span the paired 5th-95th realization percentiles.'
+        if new=='Supplement/FigS07':
+            body=body.replace('The white-purple scale shows population;', 'A marks hospital-linked tracts, B marks frozen Q4 tracts, and C shades log population; ranks are full station priority positions, not realization-specific dispatch positions;')
+        if new=='Supplement/FigS08':
+            body=body.replace('Q4-Q1,','mean within-realization absolute Q4-Q1 gap,')
         if new=='Supplement/FigS05':
             body=('(A) Change in population-weighted normalized service deficit when the M1 mapping cutoff is relaxed from 3% to 0% or 1%. '
                   '(B) Change when source connectivity is removed while the 0.50 functionality threshold is retained. '
@@ -237,11 +269,19 @@ def main(output_dir=None,mirror_dir=None):
                   'Points are means of paired differences across 1,000 frozen physical realizations; bars show empirical 5th-95th percentile '
                   'ranges, not confidence intervals. No damage samples or repair schedules were regenerated.')
         if new=='Main/Fig04':title,body=TITLE,CAPTION
+        if new in {'Main/Fig05','Main/Fig06','Main/Fig08','Supplement/FigS03',
+                   'Supplement/FigS04','Supplement/FigS05','Supplement/FigS06'}:
+            body='For 2pc50/C57_D1. '+body
+        if new=='Main/Fig04':body='For 2pc50. '+body
+        if new in {'Main/Fig07','Supplement/FigS08'}:
+            body='For 2pc50; resource multipliers are relative to C57_D1. '+body
+        if new=='Supplement/FigS04':
+            body+=' Paired component differences reflect restoration timing and gating, not different physical damage samples.'
         new_caps.append((title,body))
         if new=='Main/Fig08':
             figure8_legend_audit={'source_file':figure8_row['current_source_file'],
                 'source_sha256':u.digest(figure8_source)}
-        preview=(stage4_preview if new=='Main/Fig01' else
+        preview=(label_artwork[new]['preview'] if new in label_artwork else stage4_preview if new=='Main/Fig01' else
                  figure8_preview if new=='Main/Fig08' else
                  s5_preview if new=='Supplement/FigS05' else
                  source(f'{SOURCE}/Page_Previews/{Path(old).name}.png'))
@@ -255,12 +295,17 @@ def main(output_dir=None,mirror_dir=None):
             source_raw=source(row['current_source_file'])
             assert u.digest(source_raw)==row['sha256']
             assert source(row['mirror_file'])==source_raw
-            raw=(stage4_pdf if new=='Main/Fig01' and ext=='pdf' else
+            raw=(label_artwork[new][ext] if new in label_artwork else stage4_pdf if new=='Main/Fig01' and ext=='pdf' else
                  stage4_png if new=='Main/Fig01' and ext=='png' else
                  figure8_pdf if new=='Main/Fig08' and ext=='pdf' else
                  figure8_png if new=='Main/Fig08' and ext=='png' else
                  s5_pdf if new=='Supplement/FigS05' and ext=='pdf' else
                  s5_png if new=='Supplement/FigS05' and ext=='png' else source_raw)
+            if ext=='pdf':
+                with fitz.open(stream=raw,filetype='pdf') as art:
+                    native_mm=(art[0].rect.width*25.4/72,art[0].rect.height*25.4/72)
+                    actual_min=min(s['size'] for s in figure_presentation.spans(art[0]) if s['text'].strip())
+            row.update(size_mm=f'{native_mm[0]:.3f} x {native_mm[1]:.3f}',min_font_pt=f'{actual_min:.3f}')
             ix=next(r.copy() for r in source_index if r['source_path']==row['current_source_file'])
             suffix=Path(row['mirror_file']).name.split('_',1)[1]
             new_path=dest/(new+'.'+ext)
@@ -271,13 +316,13 @@ def main(output_dir=None,mirror_dir=None):
                 current_source_file=new_path.relative_to(ROOT).as_posix(),
                 mirror_file=mirror_path.relative_to(ROOT).as_posix(),source_commit=BASE,
                 source_file=f'{SOURCE}/{old}.{ext}',
-                status=('UPDATED_WORKFLOW_GENERATED_METHOD_PROCESS' if new=='Main/Fig01' else
+                status=('SCIENTIFIC_PRESENTATION_CORRECTION' if new in label_artwork else 'UPDATED_WORKFLOW_GENERATED_METHOD_PROCESS' if new=='Main/Fig01' else
                         'UPDATED_SEPARATE_MAP_LEGENDS' if new=='Main/Fig08' else
                         'UPDATED_FOUR_POLICY_SENSITIVITY' if new=='Supplement/FigS05' else
                         'RENUMBERED_REVIEW_ARTWORK_UNCHANGED'),
                 promotion_generator=GEN,promotion_generator_sha256=u.sha(ROOT/GEN),
                 previous_figure=old,
-                change_in_this_update=('STAGE4_PRIORITY_SCHEDULING_COMPLETION_FLOW' if new=='Main/Fig01' else
+                change_in_this_update=('SCIENTIFIC_PRESENTATION_CORRECTION' if new in label_artwork else 'STAGE4_PRIORITY_SCHEDULING_COMPLETION_FLOW' if new=='Main/Fig01' else
                                        'SEPARATE_PANEL_C_AND_D_LEGENDS' if new=='Main/Fig08' else
                                        'VULNERABILITY_FIRST_ADDED_TO_VERIFIED_SENSITIVITY_COMPARISONS' if new=='Supplement/FigS05' else
                                        'NUMBERING_AND_CAPTION_ONLY'))
@@ -319,6 +364,9 @@ def main(output_dir=None,mirror_dir=None):
                 ix.update(notes='Panel C and Panel D have separate aligned legends; the exact Q4 and service-deficit screen definitions are in the caption.')
             if new=='Supplement/FigS05':
                 ix.update(notes='Four-policy paired mapping, source-connectivity and functionality-threshold comparisons, including Vulnerability-first.')
+            if new in label_artwork:
+                ix.update(notes='Label clarification and/or whole-composition translation without scaling; original scientific vectors and results retained.',
+                          generator='src/la_grid/plotting/figure_presentation.py')
             rows.append(row);indices.append(ix)
             preservation.append({'previous_figure':old,'new_figure':new,'format':ext,
                 'source_sha256':u.digest(source_raw),'output_sha256':u.sha(new_path),
@@ -376,6 +424,8 @@ def main(output_dir=None,mirror_dir=None):
             'scheduler_source':SCHEDULER_SOURCE,
             'ga_source':GA_SOURCE,
             'implementation_checks':stage4_generator_audit['implementation_checks'],
+            'event_excerpt_file':'docs/reproducibility/figure_scientific_publication_review_20261111/EVENT_STATE_EXAMPLE.json',
+            'event_excerpt_sha256':stage4_generator_audit['completion_example_sha256'],
             'recovery_curves_all_system_used':False}})
     u.dump(dest/'QA/PACKET_PAGE_REGISTRY.json',page_rows)
     u.dump(dest/'QA/NUMBERING_MAP.json',MAPPING)
@@ -406,7 +456,8 @@ def main(output_dir=None,mirror_dir=None):
             starting_figure_hashes.get('Supplement/FigS05.'+ext)==
             u.sha(dest/('Supplement/FigS05.'+ext)) for ext in ('pdf','png')),
         'figure1_no_downstream_result_plot_in_stage4':True,
-        'unaffected_13_artwork_pairs_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure'] not in ['Main/Fig01','Main/Fig07','Supplement/FigS05']),
+        'retained_artwork_byte_identical':all(r['byte_identical'] for r in preservation if r['previous_figure'] not in ['Main/Fig01','Main/Fig05','Main/Fig06','Main/Fig07','Supplement/FigS02','Supplement/FigS04','Supplement/FigS05','Supplement/FigS08','Supplement/FigS09']),
+        'scientific_label_corrections':label_audits,
         'figure8_separate_map_legends_updated':True,
         'figure8_legend_audit':figure8_legend_audit,
         's5_vulnerability_plot_audit':s5_plot_audit,
@@ -473,6 +524,7 @@ def main(output_dir=None,mirror_dir=None):
         'Reproduce: `python src/la_grid/plotting/build_s6_main4_review.py`. '
         'The builder reads pinned actual source payloads and never invokes model, scheduling, or plotting analysis. '
         'Current older-suite builders remain available and do not target this separate collection.\n')
+    readme+='\nScientific/publication review: `docs/reproducibility/figure_scientific_publication_review_20261111/FIGURE_REVIEW.md`. The completion inset uses recorded raw/functionality, connectivity and tract-service states; no illustrative tract cells are invented. Journal-specific acceptance and manuscript alignment remain open gates; see `JOURNAL_AND_DESIGN.md` in that directory.\n'
     u.write(dest/'README.md',readme);u.write(mirror/'README.md',readme)
     u.write(dest/'UPDATE_LOG.md','# 2026-11-07\n\nPromoted complete S6 to Main Figure 4; renumbered remaining figures, captions, previews, inventory, palette metadata and gallery.\n\n# 2026-11-08\n\nFigure 8 received separate aligned Panel C and Panel D legends, with exact Q4 and 38.38135467381475 h definitions in its caption. Supplementary Figure S5 adds Vulnerability-first mapping, source-connectivity and functionality-threshold comparisons from matched frozen event states. No simulations, schedules or GA outputs were regenerated.\n\n# 2026-11-09\n\nFigure 1 Stage 4 was temporarily changed to display downstream recovery curves. This was a scientific placement error and is superseded by the correction below. Supplementary Figure S5 was compacted to 185 x 145 mm with the full visible composition centered; all three panels and frozen comparisons are retained.\n\n# 2026-11-10\n\nStage 4 now shows three implementation-derived operations: priority rules, DS > 0 crew scheduling with realized damage-state repair durations and directed travel, and repair-completion updates. Unconstrained is shown separately as a parallel reference. The generator and builder no longer use `recovery_curves_all_system.csv` or the Figure 1 artwork from `ea692f4`.\n\n# 2026-11-11\n\nStage 4 now uses a light sage-neutral Impact-first population map at a footprint matched to the earlier workflow maps. Its legend is compact; the full station priority positions are retained. The Gantt presents five authentic multi-task crew histories from the saved evaluation realization on a 0-60 h axis, with travel and repair shown separately and no confusing rank numbers. Completion is shown as a visual event-to-crew/station/tract-service sequence. Stage 5 result values and Supplementary Figure S5 are unchanged.\n')
     u.write(dest/'MANUSCRIPT_INTEGRATION.md',manuscript_integration())

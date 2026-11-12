@@ -155,10 +155,13 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     width_pt = float(width_pt)
     height_pt = float(height_pt)
     assert width_pt == 505.4 and height_pt == 132.0
-    priority_path = REPO_ROOT / "results/figure_review_s6_main4_20261107/Supplement/FigS07.pdf"
     if priority_map_pdf is None:
         import figure_presentation
-        priority_source_bytes = priority_path.read_bytes()
+        import consolidate_current_figure_suite as suite
+        # Do not feed centered publication output back into a fixed source crop.
+        priority_source_bytes = suite.payload(
+            "75cd19d4a0249d006efa00d4532762d0ee406c5a",
+            "results/figure_review_rq_aligned_20261101/Supplement/FigS08.pdf")
         priority_map_pdf, _ = figure_presentation.priority_geography(
             priority_source_bytes,
             palette_stops=["#F3F4F1", "#DFE7E1", "#BED2C8", "#91B4A5", "#659587"],
@@ -267,7 +270,7 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     # Align the three operations as quiet, equal-weight columns.
     for x in (168.5, 337.0):
         page.draw_line((x, 6), (x, height_pt - 6), color=rule, width=0.65)
-    label(9, 14, "Priority Rules", 9.0, True, color=ink)
+    label(9, 14, "Priority Order", 9.0, True, color=ink)
     label(177, 14, "Repair Scheduling", 9.0, True, color=ink)
     label(346, 14, "Completion Events", 9.0, True, color=ink)
     for x in (161.5, 330.0):
@@ -310,57 +313,38 @@ def build_stage4_process_panel(width_pt: float = 505.4,
     page.draw_rect(fitz.Rect(240, 119.5, 249, 125), color=teal, fill=teal, width=0.2)
     label(253, 124.5, "Repair", 7.5)
 
-    # Completion is a real event: the crew becomes available, station raw
-    # functionality is restored, and the updated station state feeds tract service.
-    def arrow(start, end, y):
-        page.draw_line((start, y), (end - 2.3, y), color=muted, width=0.75)
-        page.draw_polyline([(end - 4.3, y - 2.0), (end - 2.0, y),
-                            (end - 4.3, y + 2.0)], color=muted, width=0.75)
-
-    # A completed repair interval anchors the sequence.
-    page.draw_line((347, 60), (354, 60), color=travel_gray, width=2.2)
-    page.draw_rect(fitz.Rect(354, 56.8, 375, 63.2), color=teal,
-                   fill=teal, width=0.2)
-    page.draw_line((375, 53), (375, 67), color=ink, width=0.7)
-    label(350, 84, "Repair", 7.5, True)
-    label(350, 94, "complete", 7.5, True)
-    arrow(379, 392, 60)
-
-    # Crew release and station restoration are concurrent consequences.
-    crew_cx, station_cx, state_y = 403, 447, 60
-    # Compact crew glyph: three workers, no implied crew count in the schedule.
-    for cx in (crew_cx - 5, crew_cx, crew_cx + 5):
-        page.draw_circle((cx, state_y - 4), 1.65, color=muted,
-                         fill=muted, width=0.25)
-        page.draw_line((cx, state_y - 1.5), (cx, state_y + 4.5),
-                       color=muted, width=1.0)
-        page.draw_line((cx - 2.4, state_y + 1), (cx + 2.4, state_y + 1),
-                       color=muted, width=0.85)
-    page.draw_circle((station_cx, state_y), 8.3, color=dark_teal,
-                     fill=dark_teal, width=0.35)
-    one_width = fitz.Font(fontfile=bold).text_length("1", fontsize=8.2)
-    page.insert_text((station_cx - one_width / 2, state_y + 2.8), "1",
-                     fontname="Arial-Bold", fontsize=8.2, color=(1, 1, 1))
-    label(394, 84, "Crew", 7.5)
-    label(388, 94, "released", 7.5)
-    label(435, 84, "Station", 7.5)
-    label(432, 94, "restored", 7.5)
-    arrow(459, 467, 60)
-
-    # A small tract-grid cue indicates the spatial service state passed onward.
-    tract_cells = [
-        (468, 52, 478, 60, (0.87, 0.91, 0.89)),
-        (479, 52, 489, 60, (0.68, 0.81, 0.75)),
-        (490, 52, 500, 60, (0.40, 0.66, 0.57)),
-        (468, 61, 478, 69, (0.68, 0.81, 0.75)),
-        (479, 61, 489, 69, (0.40, 0.66, 0.57)),
-        (490, 61, 500, 69, (0.87, 0.91, 0.89)),
-    ]
-    for x0_cell, y0_cell, x1_cell, y1_cell, color in tract_cells:
-        page.draw_rect(fitz.Rect(x0_cell, y0_cell, x1_cell, y1_cell),
-                       color=(1, 1, 1), fill=color, width=0.55)
-    label(474, 84, "Tract", 7.5)
-    label(473, 94, "service", 7.5)
+    # Three exact archived states expose the distinction between repair and
+    # source-gated service. These are scalar observations, not invented map cells.
+    event_path = REPO_ROOT / 'docs/reproducibility/figure_scientific_publication_review_20261111/EVENT_STATE_EXAMPLE.json'
+    state_example = json.loads(event_path.read_text(encoding='utf-8'))
+    assert state_example['source_npz_sha256'] == '97a3d46d8ac48b82abd949b7fff3f1e92b0fa7fecf6658ea0a81b27744e01050'
+    assert state_example['values'] == [[.03, 1., 1.], [0., 0., 1.], [0., 0., 1.]]
+    example_task = next(e for e in events if e['station_id'] == state_example['station_id'])
+    assert abs(example_task['completion_hr'] - state_example['completion_hr']) < 1e-10
+    # A ring links the real task end in the Gantt to the repair-state column.
+    page.draw_circle((x0 + scale * example_task['completion_hr'], 42), 3.1,
+                     color=dark_teal, width=.9)
+    label(346, 30, 'Event-state example', 7.5)
+    table_x, cell_w, table_y, cell_h = 407., 30.5, 53., 15.
+    body_font = fitz.Font(fontfile=arial)
+    for c, text in enumerate(['Before', 'Repair', 'Later']):
+        tw = body_font.text_length(text, fontsize=7.5)
+        label(table_x + c*cell_w + (cell_w-tw)/2, 43, text, 7.5)
+    for r, row_label in enumerate(state_example['rows']):
+        label(346, table_y + r*cell_h + 10.4, row_label, 7.5)
+        for c, value in enumerate(state_example['values'][r]):
+            box = fitz.Rect(table_x+c*cell_w, table_y+r*cell_h,
+                            table_x+(c+1)*cell_w, table_y+(r+1)*cell_h)
+            fill = tuple(1. - float(value)*(1.-v) for v in teal)
+            page.draw_rect(box, fill=fill, color=rule, width=.4)
+            text = f'{value:.2f}'
+            tw = body_font.text_length(text, fontsize=7.5)
+            label(box.x0 + (cell_w-tw)/2, box.y0+10.4, text, 7.5,
+                  color=(1,1,1) if value > .7 else ink)
+    for c, text in enumerate(['', '18.2 h', '30.7 h']):
+        tw=body_font.text_length(text, fontsize=7.5)
+        label(table_x+c*cell_w+(cell_w-tw)/2, 109, text, 7.5)
+    label(346, 124, 'Repair end: crew released', 7.5)
     pdf_bytes = doc.tobytes(garbage=4, deflate=True, no_new_id=True)
     doc.close()
     with fitz.open(stream=pdf_bytes, filetype="pdf") as rendered:
@@ -411,8 +395,10 @@ def build_stage4_process_panel(width_pt: float = 505.4,
         "schedule_end_hr": max(e["completion_hr"] for e in events),
         "all_task_completion_hours": [round(e["completion_hr"], 8) for e in events],
         "visual_operations": ["priority map", "crew Gantt", "completion-event state update"],
-        "completion_visual_labels": ["Repair complete", "Crew released",
-                                     "Station restored", "Tract service"],
+        "completion_visual_labels": ["Raw function", "Source link", "Tract service"],
+        "completion_event_example": state_example,
+        "completion_example_sha256": hashlib.sha256(event_path.read_bytes()).hexdigest(),
+        "arbitrary_workers_station_icon_and_tract_tiles_removed": True,
         "population_map_display_scale": "logarithmic, described in caption",
         "no_recovery_curves_or_downstream_outcomes": True,
         "no_simulation_or_schedule_rerun": True,
@@ -426,6 +412,17 @@ def build_stage4_process_panel(width_pt: float = 505.4,
         audit["minimum_panel_text_pt"] = min(span["size"] for span in spans)
         assert audit["minimum_panel_text_pt"] >= 7.5
     return pdf_bytes, png_bytes, audit
+
+
+def methodology_caption(strategy_figure=5):
+    return ('Workflow from seismic damage through source-gated station functionality and tract dependencies to community recovery. '
+            'Fixed rules or GA planning produce a station order for the same finite-crew scheduler. '
+            'Stage 4 shows an Impact-first priority example and five of 57 crew histories from 2pc50/C57_D1 evaluation realization 0. '
+            'Map numbers are full station priority ranks; damaged tasks (DS > 0) use saved directed travel and damage-state-specific repair intervals. '
+            'At repair completion the crew is released and raw station functionality is restored. The recorded state inset shows why '
+            'source connectivity and tract service need not increase immediately (all states 0-1). Map shading is log population. '
+            'Unconstrained is a separate parallel-repair reference. T80 is time to 80% modeled service availability; '
+            f'service loss integrates its deficit. Strategy outcomes appear in Figure {strategy_figure}.')
 
 
 def add_card(ax: plt.Axes, x: float, y: float, width: float, height: float,
@@ -592,5 +589,11 @@ def build_figure() -> tuple[Path, Path, Path]:
 
 
 if __name__ == "__main__":
-    for artifact in build_figure():
-        print(artifact)
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--legacy-card-overview',action='store_true',
+                        help='Explicitly reproduce the historical standalone card overview.')
+    args=parser.parse_args()
+    if not args.legacy_card_overview:
+        parser.exit(message='For current Figure 1 and the complete suite, run build_current_figures.py --portable.\n')
+    for artifact in build_figure(): print(artifact)

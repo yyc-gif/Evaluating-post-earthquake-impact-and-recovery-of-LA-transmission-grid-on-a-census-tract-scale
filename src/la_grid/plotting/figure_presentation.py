@@ -16,8 +16,13 @@ def spans(page):
 
 
 def vector_signature(page):
-    drawings=[{k:repr(v) for k,v in d.items() if k not in ['seqno','layer']} for d in page.get_drawings()]
-    return hashlib.sha256(json.dumps(drawings,sort_keys=True).encode()).hexdigest()
+    # Compact numeric paths avoid millions of Point wrappers in dense tract maps.
+    digest=hashlib.sha256()
+    for drawing in page.get_cdrawings():
+        record={k:repr(v) for k,v in drawing.items() if k not in ['seqno','layer']}
+        digest.update(json.dumps(record,sort_keys=True).encode())
+        digest.update(b'\n')
+    return digest.hexdigest()
 
 
 def fonts(doc, bold, required):
@@ -100,6 +105,74 @@ def tile(page, doc, rect, dy=0):
 
 def finish(doc):
     return doc.tobytes(garbage=4,deflate=True,no_new_id=True)
+
+
+def scientific_label_clarity(raw, role):
+    """Correct scientific labels while preserving every non-text vector."""
+    doc=fitz.open(stream=raw,filetype='pdf'); page=doc[0]
+    changes=[]; rotations={}
+    for block in page.get_text('dict')['blocks']:
+        for line in block.get('lines',[]):
+            for s in line['spans']:
+                rotations[(s['text'],tuple(s['origin']))]=90 if line['dir'][1]<-.5 else 0
+    for s in spans(page):
+        text=' '.join(s['text'].replace('\ufffd',' ').replace('\xad','-').split())
+        replacement=None
+        if role=='ga' and 'Independent' in text:
+            replacement='C. Held-out evaluation'
+        elif role=='ga' and text=='2,000 validation realizations':
+            replacement='2,000 held-out realizations'
+        elif role in ('resource_effects','resource_levels'):
+            if text.startswith(('E.','F.')) and 'vulnerability' in text and 'gap' in text:
+                replacement=text[:2]+' Absolute Q4-Q1 service-loss gap'
+            elif 'High' in text and 'vulnerability' in text and 'gap' in text:
+                replacement='Absolute Q4-Q1 gap'
+            elif text=='Service-loss gap (h)':
+                replacement='Absolute gap (h)'
+        elif (role=='distributional' and text=='Vulnerability-first'
+              and s['origin'][0]<200 and 100<s['origin'][1]<250):
+            replacement=''
+        if replacement is not None:
+            changes.append((s,replacement,rotations[(s['text'],tuple(s['origin']))]))
+    assert changes, role
+    before=remove(page,[s for s,_,_ in changes])
+    for s,text,rotate in changes:
+        if not text: continue
+        bold='Bold' in s['font']; name='ReviewHeading' if bold else 'ReviewBody'
+        path='C:/Windows/Fonts/'+('arialbd.ttf' if bold else 'arial.ttf')
+        page.insert_font(fontname=name,fontfile=path)
+        font=fitz.Font(fontfile=path); size=s['size']
+        x,y=s['origin']
+        if not rotate and text.startswith(('C.','E.','F.')):
+            x=(s['bbox'][0]+s['bbox'][2])/2-font.text_length(text,fontsize=size)/2
+        if rotate:
+            y=(s['bbox'][1]+s['bbox'][3])/2+font.text_length(text,fontsize=size)/2
+        page.insert_text((x,y),text,fontname=name,fontsize=size,rotate=rotate,color=fitz.sRGB_to_pdf(s['color']))
+    result=finish(doc);doc.close()
+    return result,dict(role=role,vector_signature=before,nontext_vectors_unchanged=True,
+        corrections=[dict(before=s['text'],after=t) for s,t,_ in changes])
+
+
+def center_visible_artwork(raw):
+    """Translate the complete vector composition; never rescale scientific art."""
+    import numpy as np
+    with fitz.open(stream=raw,filetype='pdf') as source:
+        p=source[0];pix=p.get_pixmap(dpi=150,alpha=False)
+        rgb=np.frombuffer(pix.samples,np.uint8).reshape(pix.height,pix.width,3)
+        _,xx=np.where(np.any(rgb<245,axis=2))
+        left,right=int(xx.min()),int(pix.width-1-xx.max())
+        shift_px=round((right-left)/2)
+        dx=shift_px*72/150
+        assert min(left+shift_px,right-shift_px)>0
+        with fitz.open() as out:
+            page=out.new_page(width=p.rect.width,height=p.rect.height)
+            page.show_pdf_page(fitz.Rect(dx,0,p.rect.width+dx,p.rect.height),source,0,
+                               keep_proportion=False)
+            result=finish(out)
+    return result,dict(source_sha256=hashlib.sha256(raw).hexdigest(),
+        translation_pt=[dx,0],scale=1.0,source_form_embedded_without_scaling=True,
+        before_margins_mm=[left*25.4/150,right*25.4/150],
+        after_margins_mm=[(left+shift_px)*25.4/150,(right-shift_px)*25.4/150])
 
 
 def figure5(raw):
@@ -612,11 +685,11 @@ def restoration_workflow(raw, process_panel_pdf, process_panel_audit,
         rejected=('availability curves','T80','cumulative service loss',
                   'population-weighted service availability','Impact-first service-availability')
         assert not any(text.lower() in panel_text.lower() for text in rejected),panel_text
-        required=('Priority Rules','Impact-first example','Tract population',
+        required=('Priority Order','Impact-first example','Tract population',
                   'Repair Scheduling','Crew 5','Crew 9','Crew 12','Crew 14',
                   'Crew 17','Travel','Repair','60 h','Completion Events',
-                  'Repair','complete','Crew','released','Station','restored',
-                  'Tract','service')
+                  'Raw function','Source link','Tract service','Before','Later',
+                  '18.2 h','30.7 h','Repair end: crew released')
         assert all(term.lower() in panel_text.lower() for term in required), panel_text
         assert 'bar number' not in panel_text.lower()
         for retired in ('Blue-gray fill','2 of 57 crews','saved event excerpt',

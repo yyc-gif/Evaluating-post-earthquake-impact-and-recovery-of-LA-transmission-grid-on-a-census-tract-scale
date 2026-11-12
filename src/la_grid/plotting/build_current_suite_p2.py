@@ -141,22 +141,22 @@ def captions():
              re.findall(r'^## (.+?)\n\n(.*?)(?=^## |\Z)', text, re.M | re.S)]
     assert len(items) == 16
     short_bodies = [
-        'Workflow from tract-substation mapping and earthquake damage to modeled recovery and community outcomes. Stage 4 pairs a representative Impact-first example map (numbers are full station priority ranks) with five crew histories from the saved 2pc50/C57_D1 evaluation realization 0 (5 of 57 crews). Gantt rows show saved directed travel and damage-state-specific repair intervals for damaged tasks (DS > 0); at completion, crews are released, raw station functionality is restored, and source-gated tract service is updated. Map shading is tract population on a logarithmic scale. Unconstrained is a separate parallel-repair reference. Stage 5 shows population-weighted service availability, T80 (time to 80% modeled service availability), vulnerability-quartile service loss and community recovery types; policy trajectories appear in Figure 5.',
+        workflow_figure.methodology_caption(4),
         'Transmission network, tract-substation mapping, and comparison of candidate tract assignments with public SCE assignments. Assignment agreement does not validate feeder boundaries or recovery outcomes.',
-        'Earthquake damage and initial modeled service are followed by Unconstrained recovery. Panel C reports the mean loss shares from substation damage, functionality threshold, and source-path loss; D/E show population-weighted and tract-mean T80. T80 is time to 80% modeled service; applicable whiskers show 5th-95th realization ranges.',
-        'Recovery trajectories and outcomes for seven restoration strategies. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.',
+        'A summarizes the across-station distribution of mean damage: boxes span the interquartile range, lines mark medians and whiskers end at observations within the 5th-95th station percentiles, with outliers omitted. B shows initial tract-service distributions; C decomposes Unconstrained loss. D distributes system T80 across 1,000 realizations; E maps tract mean T80. T80 is time to 80% modeled service availability.',
+        'Recovery trajectories and outcomes for six scheduled strategies and the Unconstrained reference. A shows population-weighted service availability. B reports mean overall, Q4 and hospital-linked service loss and population T80; whiskers show 5th-95th realization ranges. T80 denotes time to 80% modeled service availability.',
         'A/B show overall and quartile service loss. C compares Vulnerability-first with Hospital-first, Impact-first, and Degree-first for overall loss, Q4 loss, signed Q4-Q1 gap, mean within-realization absolute |Q4-Q1| gap, and hospital-linked loss; D shows Gini change and E maps tract-level mean changes. B-D whiskers show 5th-95th realization ranges; negative map values favor Vulnerability-first.',
-        'Vulnerability-first effects across crew-availability and repair-duration scenarios. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons show means only. Negative values indicate lower deficit under Vulnerability-first.',
+        'Vulnerability-first minus each reference strategy across crew-availability and repair-duration scenarios. Whiskers are 95% bootstrap confidence intervals for mean effects, not realization ranges; Degree-first hospital-linked comparisons show means only. The third row is the change in mean within-realization absolute Q4-Q1 gap, not a signed gap. Negative values favor Vulnerability-first for the named outcome.',
         'A shows six feature distributions; B shows standardized means for all seven fitted variables, grouped by research question; C shows P2/K3 geography. D maps continuous SOVI and five-policy mean cumulative service deficit; outlines mark frozen Q4 and the cohort P75. The descriptive intersection contains 94 tracts (350,799 residents); high-burden prevalence is 16.23% in Q4 and 27.97% outside Q4. This policy-conditioned screen is not a significance test or intervention-priority score.',
         'Station damage severity and corresponding initial modeled tract-service availability. Availability is a network proxy, not physical MW or observed customer outages.',
         'Crew bases, station tasks, and task-to-task travel times used in restoration scheduling. These are pre-event scheduling inputs, not post-earthquake traffic forecasts.',
         'Recovery of the largest connected-component fraction and mean degree within that component among functional substations. The curves describe network topology, not power flow or delivered electricity.',
-        'A/B summarize 20 GA runs using 64 optimization realizations and 100 repair orders per run. C/D evaluate the selected order on 2,000 separate validation realizations; D decomposes the mean GA-minus-Impact-first loss gap. Negative values indicate lower deficit under GA; a global optimum is not established.',
+        'A/B summarize 20 GA runs using 64 optimization realizations and 100 repair orders per run. C/D evaluate the selected order on 2,000 held-out simulation realizations; D decomposes the mean GA-minus-Impact-first loss gap. Negative values indicate lower deficit under GA; a global optimum or independent empirical validation is not established.',
         'Sensitivity of modeled service loss to dependency cutoff and source/threshold assumptions. Panel B isolates source-connectivity removal at fixed 0.50 functionality; (C) Functionality thresholds 0.05 and 0.75 retain source connectivity.',
         'Dynamic and static source-connectivity measures and alternate-path contributions under their stated conditioning. These are connectivity probabilities, not delivered power.',
-        'Provider planning loads, reported limits, and modeled service-loss changes under capacity ceilings. Post-earthquake load flow and complete electrical-capacity adequacy are not assessed.',
+        'Provider planning loads, reported limits, and modeled service-loss changes under capacity ceilings. Panel B points are population-weighted mean increases; bars are paired 5th-95th realization percentiles. Post-earthquake load flow and complete electrical-capacity adequacy are not assessed.',
         'Repair-priority geography for Hospital-first, Vulnerability-first, and Impact-first strategies. The white-purple scale shows population; outcome comparisons appear in Figures 4-6 and Supplementary Figure S9.',
-        'Absolute modeled service losses under crew-availability and repair-duration variations, reported separately for overall, Q4, Q4-Q1, and hospital-linked outcomes. Whiskers show the 5th-95th realization range.'
+        'Absolute modeled service losses under crew-availability and repair-duration variations, reported separately for overall, Q4, mean within-realization absolute Q4-Q1 gap, and hospital-linked outcomes. Whiskers show the 5th-95th realization range.'
     ]
     assert len(short_bodies) == len(items)
     items = [(title, body) for (title, _), body in zip(items, short_bodies)]
@@ -514,6 +514,16 @@ def main(output_dir=None, mirror_dir=None):
         original_path='results/figure_review/'+stem+'.pdf'
         original=source(original_path,CURRENT_SUITE_BASE)
         raw=changed.get(stem,original)
+        clarity_roles={'Main/Fig05':'distributional','Main/Fig06':'resource_effects',
+                       'Supplement/FigS04':'ga','Supplement/FigS09':'resource_levels'}
+        if stem in clarity_roles:
+            raw,label_qa=figure_presentation.scientific_label_clarity(raw,clarity_roles[stem])
+            changed[stem]=raw
+            style_checks.setdefault(stem,{})['scientific_label_clarity']=label_qa
+        if stem in {'Main/Fig06','Supplement/FigS02','Supplement/FigS08'}:
+            raw,center_qa=figure_presentation.center_visible_artwork(raw)
+            changed[stem]=raw
+            style_checks.setdefault(stem,{})['whole_composition_centering']=center_qa
         for ext in ['pdf','png']:
             row=next(r.copy() for r in original_manifest if r['final_name']==stem+'.'+ext)
             ix=next(r.copy() for r in original_index if r['source_path']==row['current_source_file'])
