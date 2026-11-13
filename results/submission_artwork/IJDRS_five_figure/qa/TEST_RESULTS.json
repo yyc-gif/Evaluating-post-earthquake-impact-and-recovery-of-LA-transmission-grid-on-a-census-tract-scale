@@ -1,0 +1,25 @@
+{
+  "command": "python -m pytest tests/test_ijdrs_five_figure_20261112.py -q",
+  "run_started_local": "2026-11-13T01:17:36.415310",
+  "tests": 24,
+  "passed": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 163.714,
+  "builder_sha256": "3d6af20385e724dfddbbcb95c11aa19ed91dbac819ea3600690ef8a9a9a2a95c",
+  "test_file_sha256": "fffb1a08fc9a586f903f372ed5e5116c9f406476681d46cbb3f88e8885cedc4a",
+  "packets": {
+    "ALL_MAIN_FIGURES_WITH_CAPTIONS.pdf": {"pages": 5, "sha256": "c6d894071bbbf9a7007af9e46ce4038fe6d43665d9b3a4fa4a5465524ad2ea8f"},
+    "ALL_SUPPLEMENT_PROPOSED_WITH_CAPTIONS.pdf": {"pages": 13, "sha256": "909f9f32465213bef7b69bb43c195f72f10dbdb767d3b00c9bfb0dc0470b91af"},
+    "ALL_FIGURES_WITH_CAPTIONS.pdf": {"pages": 18, "sha256": "747ff3659f0cd7126101c88ecafbfc2f8bdd4af9daac53f11b58d18742637843"}
+  },
+  "reproduction": {
+    "force_rebuild_binary_outputs": 75,
+    "changed_binary_outputs": 0,
+    "final_normal_rebuild_changed_binary_outputs": 0,
+    "normal_cached_rebuild": "passed; manuscript identity rechecked",
+    "artwork_only_cached_rebuild": "passed; explicitly does not recheck the private DOCX"
+  },
+  "scope": "Independent artwork-configuration tests. No scientific model reruns and no claim that unavailable historical scientific payloads were fully rehashed."
+}
