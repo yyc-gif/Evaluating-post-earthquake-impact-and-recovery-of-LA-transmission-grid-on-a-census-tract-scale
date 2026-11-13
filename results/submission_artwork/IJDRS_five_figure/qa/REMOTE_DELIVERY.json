@@ -1,0 +1,17 @@
+{
+  "status": "partial_metadata_delivery_only",
+  "date": "2026-11-13",
+  "branch": "refs/heads/submission/ijdrs-five-main-20261112",
+  "verified_metadata_commit": "e63c623703e764ac1cd60fd430f5a9b3a8daa5d8",
+  "remote_head_matched_metadata_commit": true,
+  "complete_artwork_delivery": false,
+  "new_lfs_payloads_verified": false,
+  "upload_error": "This repository exceeded its LFS budget. The account responsible for the budget should increase it to restore access.",
+  "verification": "Actual remote Git text bytes downloaded and matched local SHA256. Binary files were intentionally omitted from the metadata-only delivery; no pointer-only artifact upload is claimed.",
+  "remote_text_payloads_verified": [
+    {"path": "src/la_grid/plotting/build_ijdrs_five_figure.py", "sha256": "3d6af20385e724dfddbbcb95c11aa19ed91dbac819ea3600690ef8a9a9a2a95c"},
+    {"path": "results/submission_artwork/IJDRS_five_figure/MAIN_CAPTIONS.md", "sha256": "564b691af7774a085760edcbd807baeed6d0c755e327a623ff30e0f19d689298"},
+    {"path": "results/submission_artwork/IJDRS_five_figure/SECTION4_EDITING_PLAN.md", "sha256": "4b225d500ad8c6c656be951695541ae4d6a4960d6abce6048c2b75b29fb9f29d"}
+  ],
+  "next_delivery_gate": "Restore GitHub LFS access, push the preserved complete artwork commit, then run verify_delivery.py on that remotely reachable commit. Do not merge or call this complete before actual payload verification."
+}
