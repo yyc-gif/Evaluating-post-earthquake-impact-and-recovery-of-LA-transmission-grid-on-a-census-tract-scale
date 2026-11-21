@@ -1,0 +1,3 @@
+# small exploratory deliverables use regular Git blobs
+*.csv -filter diff -merge text eol=lf
+*.png -filter -diff -merge -text
