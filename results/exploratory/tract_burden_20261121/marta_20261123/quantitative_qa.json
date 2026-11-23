@@ -1,0 +1,225 @@
+{
+  "status": "PASS",
+  "frozen_source_commit": "1887bca4872f24d6d547637440db5619a4423452",
+  "source_lfs_inputs": {
+    "burden": {
+      "path": "results/stage7/2026-10-14/five_policy_total_deficit.csv",
+      "lfs_sha256": "8d182f5485315f3da13dd2182e86f91799365a4b5636a6c38e863d59c22fcc37",
+      "observed_sha256": "8d182f5485315f3da13dd2182e86f91799365a4b5636a6c38e863d59c22fcc37",
+      "bytes": 176630,
+      "rows": 2299,
+      "missing_by_column": {
+        "tract_id": 0,
+        "B_Unconstrained": 0,
+        "MeanDelta": 0,
+        "MeanTotal5": 0,
+        "frozen_SOVI_quartile": 0,
+        "Population": 0
+      }
+    },
+    "p2": {
+      "path": "docs/data_research/stage7_path_b_p2_integration_review_20261014/FROZEN_P2_TRACT_TABLE_2315.csv",
+      "lfs_sha256": "4f5ca1fab302443ed899c919894de89622ec60b458b6511325105ac3d934f211",
+      "observed_sha256": "4f5ca1fab302443ed899c919894de89622ec60b458b6511325105ac3d934f211",
+      "bytes": 829685,
+      "rows": 2315,
+      "missing_by_column": {
+        "tract_id": 0,
+        "Init_Supply": 0,
+        "Grid_Impact": 0,
+        "Redundancy_HHI": 0,
+        "B_480_hr": 0,
+        "Delta_B_logistics": 0,
+        "SOVI_SCORE": 0,
+        "log1p_Population": 0,
+        "Population": 0,
+        "T80": 0,
+        "T80_unreached": 0,
+        "BUILDVALUE": 0,
+        "B_unconstrained": 0,
+        "frozen_SOVI_quartile": 0,
+        "INTPTLAT": 0,
+        "INTPTLON": 0,
+        "utm_x_m": 0,
+        "utm_y_m": 0,
+        "hospital_tract": 0,
+        "residential_member": 0,
+        "additional_zero_housing_positive_population": 0,
+        "B_Unconstrained": 0,
+        "MeanDelta": 0,
+        "MeanTotal5": 0,
+        "FEMA_NCV14_CA_v119": 16,
+        "P2_K3_class": 16,
+        "P2_K4_sensitivity_class": 16,
+        "Q4_and_high_mean_total5": 0
+      }
+    },
+    "policy": {
+      "path": "docs/data_research/stage7_path_b_p2_integration_review_20261014/inputs/FROZEN_POLICY_TRACT_MEANS_2315.csv",
+      "lfs_sha256": "f2746d8b985ddc89c0930a0b334aa7eb5c3f7b0a83035f31f861adad4a310a30",
+      "observed_sha256": "f2746d8b985ddc89c0930a0b334aa7eb5c3f7b0a83035f31f861adad4a310a30",
+      "bytes": 565348,
+      "rows": 2315,
+      "missing_by_column": {
+        "review_status": 0,
+        "tract_id": 0,
+        "Population": 0,
+        "frozen_SOVI_quartile": 0,
+        "B_unconstrained": 0,
+        "B_impact-first": 0,
+        "B_hospital-first": 0,
+        "B_degree-first": 0,
+        "B_betweenness-first": 0,
+        "B_vulnerability-first": 0,
+        "MeanTotal5": 0,
+        "MeanTotal4_no_Vulnerability": 0,
+        "MeanDelta5": 0,
+        "MeanDelta4_no_Vulnerability": 0
+      }
+    },
+    "features": {
+      "path": "results/stage7/2026-10-14/tract_features.csv",
+      "lfs_sha256": "641d6af084dbb052f4011c946577153212f06981bf51d2c7a598f4b94dcbc5fb",
+      "observed_sha256": "641d6af084dbb052f4011c946577153212f06981bf51d2c7a598f4b94dcbc5fb",
+      "bytes": 371100,
+      "rows": 2299,
+      "missing_by_column": {
+        "tract_id": 0,
+        "Init_Supply": 0,
+        "Grid_Impact": 0,
+        "Redundancy_HHI": 0,
+        "B_Unconstrained": 0,
+        "MeanDelta": 0,
+        "SOVI_SCORE": 0,
+        "log1p_Population": 0,
+        "Population": 0,
+        "frozen_SOVI_quartile": 0,
+        "additional_zero_housing_positive_population": 0,
+        "MeanTotal5": 0,
+        "K3_class": 0
+      }
+    },
+    "geometry": {
+      "path": "docs/data_research/stage7_path_b_p2_integration_review_20261014/inputs/FULL_2315_GEOMETRY.gpkg",
+      "lfs_sha256": "7e66c6b3a8241ad5d4cad8ec4ced1b55d6cefea7693441c21e2d6db4e6222657",
+      "observed_sha256": "7e66c6b3a8241ad5d4cad8ec4ced1b55d6cefea7693441c21e2d6db4e6222657",
+      "bytes": 5017600,
+      "rows": 2315,
+      "invalid_polygons": 0,
+      "crs": "EPSG:3310"
+    },
+    "blocks": {
+      "path": "docs/data_research/stage7_path_b_p2_integration_review_20261014/inputs/SPATIAL_BLOCK_ASSIGNMENTS.csv",
+      "lfs_sha256": "d23ecc8af4e25b66bbb2fdd85ac114377b39a0c263eba44ec7f856b604c2f7f9",
+      "observed_sha256": "d23ecc8af4e25b66bbb2fdd85ac114377b39a0c263eba44ec7f856b604c2f7f9",
+      "bytes": 249933,
+      "rows": 2299,
+      "missing_by_column": {
+        "review_status": 0,
+        "tract_id": 0,
+        "utm_x_m": 0,
+        "utm_y_m": 0,
+        "block_5000": 0,
+        "block_10000": 0,
+        "broad_region": 0,
+        "K3_class": 0,
+        "K4_class": 0
+      }
+    },
+    "membership": {
+      "path": "docs/data_research/stage7_path_b_p2_integration_review_20261014/P2_FROZEN_MEMBERSHIPS.csv",
+      "lfs_sha256": "9d277d81fe2593b403068b6dee057a72483a7c1f0a1dbf9ad7628c363d042746",
+      "observed_sha256": "9d277d81fe2593b403068b6dee057a72483a7c1f0a1dbf9ad7628c363d042746",
+      "bytes": 174770,
+      "rows": 4598,
+      "missing_by_column": {
+        "tract_id": 0,
+        "model": 0,
+        "saved_label": 0,
+        "class_id": 0,
+        "namespace": 0
+      }
+    },
+    "eligibility": {
+      "path": "docs/data_research/stage7_path_b_p2_integration_review_20261014/P2_COHORT_ELIGIBILITY_2315.csv",
+      "lfs_sha256": "43a54d701e7923d3c2bd03574d422986f0fda0e881c7b72f4c001f0a43c44fdc",
+      "observed_sha256": "43a54d701e7923d3c2bd03574d422986f0fda0e881c7b72f4c001f0a43c44fdc",
+      "bytes": 86319,
+      "rows": 2315,
+      "missing_by_column": {
+        "tract_id": 0,
+        "Population": 0,
+        "residential_member": 0,
+        "additional_zero_housing_positive_population": 0,
+        "frozen_SOVI_quartile": 0,
+        "eligible": 0,
+        "exclusion_reason": 2299
+      }
+    },
+    "components": {
+      "path": "Formal_Experiment_20260923/Formal_Reviewer_Results/FORMAL_SOURCE_LOSS_BY_TRACT.csv",
+      "lfs_sha256": "974a0d6526a13a014f652f919027e0d67c5602a7e3f66aaafa8122d7002f5f74",
+      "observed_sha256": "974a0d6526a13a014f652f919027e0d67c5602a7e3f66aaafa8122d7002f5f74",
+      "bytes": 29783412
+    }
+  },
+  "n_full": 2315,
+  "n_positive": 2299,
+  "residents": 9066522,
+  "frozen_input_numeric_qa": {
+    "compact_B_Unconstrained": 0.0,
+    "compact_MeanDelta": 0.0,
+    "compact_MeanTotal5": 0.0,
+    "features_B_Unconstrained": 0.0,
+    "features_MeanDelta": 0.0,
+    "features_MeanTotal5": 0.0,
+    "Init_Supply": 0.0,
+    "Grid_Impact": 0.0,
+    "Redundancy_HHI": 0.0,
+    "SOVI_SCORE": 0.0,
+    "matched_policy_baseline": 0.0,
+    "mean_added_without_vulnerability_first": 1.3211653993039363e-14,
+    "saved_policy_mean_added": 0.0,
+    "saved_policy_mean_total": 0.0
+  },
+  "decimal_identity_qa": {
+    "saved_total_minus_baseline_plus_added_h": "4.4E-15",
+    "saved_total_minus_policy_average_h": "1.54E-14",
+    "saved_added_minus_matched_policy_added_h": "1.345E-14"
+  },
+  "prior_csv_sha256": "4da7a6fe49cd9ff401382415f43e4b82f4b228fe6bcd233883b03c6afa3e5d4d",
+  "prior_max_abs_differences_h": {
+    "B_Unconstrained": 0.0,
+    "MeanDelta": 0.0,
+    "MeanTotal5": 0.0,
+    "Delta_impact-first": 0.0,
+    "Delta_hospital-first": 0.0,
+    "Delta_degree-first": 0.0,
+    "Delta_betweenness-first": 0.0,
+    "Delta_vulnerability-first": 0.0,
+    "B_impact-first": 0.0,
+    "B_hospital-first": 0.0,
+    "B_degree-first": 0.0,
+    "B_betweenness-first": 0.0,
+    "B_vulnerability-first": 0.0
+  },
+  "reference": {
+    "pearson_five_priority_mean": 0.0269727566,
+    "pearson_omit_degree_first": -0.1621060285,
+    "target_size": 579,
+    "baseline_covered_tracts": 212,
+    "baseline_missed_residents": 1432501,
+    "total_covered_tracts": 334,
+    "total_missed_residents": 963079
+  },
+  "regenerated": {
+    "pearson_five_priority_mean": 0.02697275663482777,
+    "pearson_omit_degree_first": -0.16210602853228437,
+    "target_size": 579,
+    "baseline_covered_tracts": 212,
+    "baseline_missed_residents": 1432501,
+    "total_covered_tracts": 334,
+    "total_missed_residents": 963079
+  },
+  "max_absolute_covariance_identity_residual_h2": 9.43689570931383e-16
+}
